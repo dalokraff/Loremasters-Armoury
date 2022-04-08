@@ -228,10 +228,25 @@ mod.SKIN_CHANGED = {
         changed_model = false,
         unit = "units/weapons/player/wpn_emp_gk_shield_05/wpn_emp_gk_shield_05",
     },
+    es_sword_shield_breton_skin_03_runed_01 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_emp_gk_shield_02/wpn_emp_gk_shield_02_runed_01",
+    },
+    es_sword_shield_breton_skin_03_runed_02 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_emp_gk_shield_02/wpn_emp_gk_shield_02_runed_01",
+    },
     es_sword_shield_breton_skin_04 = {
         changed_texture = false,
         changed_model = false,
         unit = "units/weapons/player/wpn_emp_gk_shield_01/wpn_emp_gk_shield_01",
+    },
+    es_sword_shield_breton_skin_04_magic_01_magic_01 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_emp_gk_shield_01/wpn_emp_gk_shield_01_magic_01",
     },
     es_sword_shield_breton_skin_05 = {
         changed_texture = false,
