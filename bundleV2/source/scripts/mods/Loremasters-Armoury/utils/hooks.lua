@@ -17,46 +17,36 @@ mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, positi
     end
 end)
 
-local hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh"
-local Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01"
-local Avelorn01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01"
-local Griffongate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01"
-local Empire_shield01 = "units/empire_shield/Kruber_Empire_shield01_mesh"
-local Empire_shield02 = "units/empire_shield/Kruber_Empire_shield02_mesh"
-local Empire_shield03 = "units/empire_shield/Kruber_Empire_shield_spear01_mesh"
-local Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Kotbs01"
+--this table is used to tell the package manager that the custom units are loaded already
+-- local hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh"
+-- local Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01"
+-- local Avelorn01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01"
+-- local Griffongate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01"
+-- local Empire_shield01 = "units/empire_shield/Kruber_Empire_shield01_mesh"
+-- local Empire_shield02 = "units/empire_shield/Kruber_Empire_shield02_mesh"
+-- local Empire_shield03 = "units/empire_shield/Kruber_Empire_shield_spear01_mesh"
+-- local Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Kotbs01"
+-- local Empire_shield03_Middenheim01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Middenheim01"
 
 local new_pacakges = {
     hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh",
     Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01",
     Avelorn01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01",
+    Caledor01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Caledor01",
+    Avelorn02 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn02",
     Griffongate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01",
+    Eaglegate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Eaglegate01",
     Empire_shield01 = "units/empire_shield/Kruber_Empire_shield01_mesh",
     Empire_shield02 = "units/empire_shield/Kruber_Empire_shield02_mesh",
     Empire_shield03 = "units/empire_shield/Kruber_Empire_shield_spear01_mesh",
     Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Kotbs01",
-    Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Middenheim01",
+    Empire_shield03_Middenheim01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Middenheim01",
 }
--- pacakge_tisch[hat_path] = hat_path
--- pacakge_tisch[hat_path.."_3p"] = hat_path.."_3p"
--- pacakge_tisch[Eataine01] = Eataine01
--- pacakge_tisch[Eataine01.."_3p"] = Eataine01.."_3p"
--- pacakge_tisch[Avelorn01] = Avelorn01
--- pacakge_tisch[Avelorn01.."_3p"] = Avelorn01.."_3p"
--- pacakge_tisch[Griffongate01] = Griffongate01
--- pacakge_tisch[Griffongate01.."_3p"] = Griffongate01.."_3p"
--- pacakge_tisch[Empire_shield01] = Empire_shield01
--- pacakge_tisch[Empire_shield01.."_3p"] = Empire_shield01.."_3p"
--- pacakge_tisch[Empire_shield02] = Empire_shield02
--- pacakge_tisch[Empire_shield02.."_3p"] = Empire_shield02.."_3p"
--- pacakge_tisch[Empire_shield03] = Empire_shield03
--- pacakge_tisch[Empire_shield03.."_3p"] = Empire_shield03.."_3p"
--- pacakge_tisch[Empire_shield03] = Empire_shield03
--- pacakge_tisch[Empire_shield03.."_3p"] = Empire_shield03.."_3p"
+
 local pacakge_tisch = {}
 for k,v in pairs(new_pacakges) do
-    pacakge_tisch[k] = v
-    pacakge_tisch[k.."_3p"] = v.."_3p"
+    pacakge_tisch[v] = v
+    pacakge_tisch[v.."_3p"] = v.."_3p"
 end
 
 mod:hook(PackageManager, "load",

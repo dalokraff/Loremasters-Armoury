@@ -78,24 +78,27 @@ end
 
 local function re_equip_weapons(skin)
     local player = Managers.player:local_player()
-    local player_unit = player.player_unit    
-    local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
-    local career_extension = ScriptUnit.extension(player_unit, "career_system")
-    local career_name = career_extension:career_name()
-    local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
-    local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
+    if player then 
+        local player_unit = player.player_unit    
+        local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
+        local career_extension = ScriptUnit.extension(player_unit, "career_system")
+        if career_extension then
+            local career_name = career_extension:career_name()
+            local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
+            local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
-    -- mod:echo(item_one.skin)
-    -- mod:echo(item_two.skin)
-    -- mod:echo(skin)
+            -- mod:echo(item_one.skin)
+            -- mod:echo(item_two.skin)
+            -- mod:echo(skin)
 
-    if item_one.skin == skin or item_two.name == skin then
-        BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
-        inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
-        BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
-        inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
+            if item_one.skin == skin or item_two.name == skin then
+                BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
+                inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
+                BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
+                inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
+            end
+        end
     end
-  
 end
 
 
