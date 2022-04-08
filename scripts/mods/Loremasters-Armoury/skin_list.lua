@@ -328,6 +328,16 @@ mod.SKIN_CHANGED = {
         changed_model = false,
         unit = "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01",
     },
+    we_1h_spears_shield_skin_01_runed_01 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01_runed_01",
+    },
+    we_1h_spears_shield_skin_02 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_we_shield_02/wpn_we_shield_02",
+    },
 }
 mod.has_old_texture = false
 
