@@ -268,10 +268,25 @@ mod.SKIN_CHANGED = {
         changed_model = false,
         unit = "units/weapons/player/wpn_empire_shield_02/wpn_emp_shield_02",
     },
+    es_1h_sword_shield_skin_02_runed_01 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_empire_shield_02/wpn_emp_shield_02_runed_01"
+    },
     es_1h_sword_shield_skin_03 = {
         changed_texture = false,
         changed_model = false,
         unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03",
+    },
+    es_1h_sword_shield_skin_03_runed_01 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03_runed_01",
+    },
+    es_1h_sword_shield_skin_03_runed_02 = {
+        changed_texture = false,
+        changed_model = false,
+        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03_runed_01",
     },
     es_1h_sword_shield_skin_04 = {
         changed_texture = false,
