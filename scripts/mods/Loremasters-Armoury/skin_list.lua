@@ -212,133 +212,56 @@ mod.SKIN_LIST = {
     },
 }
 
-mod.SKIN_CHANGED = {
-    es_sword_shield_breton_skin_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_02/wpn_emp_gk_shield_02",
-    },
-    es_sword_shield_breton_skin_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_04/wpn_emp_gk_shield_04",
-    },
-    es_sword_shield_breton_skin_03 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_05/wpn_emp_gk_shield_05",
-    },
-    es_sword_shield_breton_skin_03_runed_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_02/wpn_emp_gk_shield_02_runed_01",
-    },
-    es_sword_shield_breton_skin_03_runed_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_02/wpn_emp_gk_shield_02_runed_01",
-    },
-    es_sword_shield_breton_skin_04 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_01/wpn_emp_gk_shield_01",
-    },
-    es_sword_shield_breton_skin_04_magic_01_magic_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_01/wpn_emp_gk_shield_01_magic_01",
-    },
-    es_sword_shield_breton_skin_05 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_emp_gk_shield_03/wpn_emp_gk_shield_03",
-    },
-    es_deus_01_skin_03 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03",
-    },
-    es_1h_sword_shield_skin_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_01_t1/wpn_emp_shield_01_t1",
-    },
-    es_1h_sword_shield_skin_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_02/wpn_emp_shield_02",
-    },
-    es_1h_sword_shield_skin_02_runed_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_02/wpn_emp_shield_02_runed_01"
-    },
-    es_1h_sword_shield_skin_03 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03",
-    },
-    es_1h_sword_shield_skin_03_runed_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03_runed_01",
-    },
-    es_1h_sword_shield_skin_03_runed_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03_runed_01",
-    },
-    es_1h_sword_shield_skin_04 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_04/wpn_emp_shield_04",
-    },
-    es_1h_sword_shield_skin_05 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_05/wpn_emp_shield_05",
-    },
-    es_1h_mace_shield_skin_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_01_t1/wpn_emp_shield_01_t1"
-    },
-    es_1h_mace_shield_skin_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_02/wpn_emp_shield_02"
-    },
-    es_1h_mace_shield_skin_03 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_03/wpn_emp_shield_03"
-    },
-    es_1h_mace_shield_skin_04 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_04/wpn_emp_shield_04"
-    },
-    es_1h_mace_shield_skin_05 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_empire_shield_05/wpn_emp_shield_05"
-    },
-    we_1h_spears_shield_skin_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01",
-    },
-    we_1h_spears_shield_skin_01_runed_01 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01_runed_01",
-    },
-    we_1h_spears_shield_skin_02 = {
-        changed_texture = false,
-        changed_model = false,
-        unit = "units/weapons/player/wpn_we_shield_02/wpn_we_shield_02",
-    },
+local skin_table = table.shallow_copy(WeaponSkins.skins)
+local skins_to_change = {
+    "es_sword_shield_breton_skin_01",
+    "es_sword_shield_breton_skin_02",
+    "es_sword_shield_breton_skin_03",
+    "es_sword_shield_breton_skin_03_runed_01",
+    "es_sword_shield_breton_skin_03_runed_02",
+    "es_sword_shield_breton_skin_04",
+    "es_sword_shield_breton_skin_04_magic_01_magic_01",
+    "es_sword_shield_breton_skin_05",
+    "es_deus_01_skin_01",
+    "es_deus_01_skin_01_runed",
+    "es_deus_01_skin_02_runed",
+    "es_deus_01_skin_03_runed",
+    "es_deus_01_skin_02",
+    "es_deus_01_skin_03",
+    "es_1h_sword_shield_skin_01",
+    "es_1h_sword_shield_skin_02",
+    "es_1h_sword_shield_skin_02_runed_01",
+    "es_1h_sword_shield_skin_03",
+    "es_1h_sword_shield_skin_03_runed_01",
+    "es_1h_sword_shield_skin_03_runed_02",
+    "es_1h_sword_shield_skin_04",
+    "es_1h_sword_shield_skin_05",
+    "es_1h_mace_shield_skin_01",
+    "es_1h_mace_shield_skin_02",
+    "es_1h_mace_shield_skin_02_runed_01",
+    "es_1h_mace_shield_skin_03",
+    "es_1h_mace_shield_skin_03_runed_01",
+    "es_1h_mace_shield_skin_03_runed_02",
+    "es_1h_mace_shield_skin_04",
+    "es_1h_mace_shield_skin_05",
+    "we_1h_spears_shield_skin_01",
+    "we_1h_spears_shield_skin_01_runed_01",
+    "we_1h_spears_shield_skin_02",
 }
+
+mod.SKIN_CHANGED = {}
+
+for _,skin in pairs(skins_to_change) do
+    local unit = skin_table[skin].left_hand_unit
+    
+    local tisch = {
+        changed_texture = false,
+        changed_model = false,
+        unit = unit,
+    }
+    mod.SKIN_CHANGED[skin] = table.shallow_copy(tisch)
+end
+
 mod.has_old_texture = false
 
 return

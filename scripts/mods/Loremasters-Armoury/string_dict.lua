@@ -1,4 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
+mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
 
 local desc_strings = {
     Kruber_Grail_Knight_Bastonne02 = "The current ruler, Duke Bohemond Beastslayer, is a lineal descendant of Gilles le Breton; the first Royarch of Bretonnia and a founding Duke of the fabled Dukedom of Bastonne.",
@@ -48,61 +49,21 @@ local name_strings = {
 
 }
 
-local desc = {
-    es_sword_shield_breton_skin_04_description = "es_sword_shield_breton_skin_03",
-    es_sword_shield_breton_skin_02_description = "es_sword_shield_breton_skin_01",
-    es_sword_shield_breton_skin_03_description = "es_sword_shield_breton_skin_02",
-    es_sword_shield_breton_skin_03_runed_01_description = "es_sword_shield_breton_skin_03_runed_01",
-    es_sword_shield_breton_skin_03_runed_02_description = "es_sword_shield_breton_skin_03_runed_02",
-    es_sword_shield_breton_skin_05_description = "es_sword_shield_breton_skin_04",
-    es_sword_shield_breton_skin_04_magic_01_description = "es_sword_shield_breton_skin_04_magic_01_magic_01",
-    es_sword_shield_breton_skin_01_description = "es_sword_shield_breton_skin_05",
-    es_deus_01_skin_03_description = "es_deus_01_skin_03",
-    we_1h_spears_shield_skin_01_description = "we_1h_spears_shield_skin_01",
-    we_1h_spears_shield_skin_01_runed_01_description = "we_1h_spears_shield_skin_01_runed_01",
-    we_1h_spears_shield_skin_02_description = "we_1h_spears_shield_skin_02",
-    es_1h_sword_shield_skin_01_description = "es_1h_sword_shield_skin_02",
-    es_1h_sword_shield_skin_02_description = "es_1h_sword_shield_skin_03",
-    es_1h_sword_shield_skin_02_runed_01_description = "es_1h_sword_shield_skin_02_runed_01",
-    es_1h_sword_shield_skin_03_description = "es_1h_sword_shield_skin_03",
-    es_1h_sword_shield_skin_03_runed_01_description = "es_1h_sword_shield_skin_03_runed_01",
-    es_1h_sword_shield_skin_03_runed_02_description = "es_1h_sword_shield_skin_03_runed_02",
-    es_1h_sword_shield_skin_04_description = "es_1h_sword_shield_skin_04",
-    es_1h_sword_shield_skin_05_description = "es_1h_sword_shield_skin_05",
-    es_1h_mace_shield_skin_01_description = "es_1h_mace_shield_skin_01",
-    es_1h_mace_shield_skin_02_description = "es_1h_mace_shield_skin_02",
-    es_1h_mace_shield_skin_03_description = "es_1h_mace_shield_skin_03",
-    es_1h_mace_shield_skin_04_description = "es_1h_mace_shield_skin_04",
-    es_1h_mace_shield_skin_05_description = "es_1h_mace_shield_skin_05",
-}
+local desc = {}
+local name = {}
+local skin_table = table.shallow_copy(WeaponSkins.skins)
 
-local name = {
-    es_sword_shield_breton_skin_04_name = "es_sword_shield_breton_skin_03",
-    es_sword_shield_breton_skin_02_name = "es_sword_shield_breton_skin_01",
-    es_sword_shield_breton_skin_03_name = "es_sword_shield_breton_skin_02",
-    es_sword_shield_breton_skin_03_runed_01_name = "es_sword_shield_breton_skin_03_runed_01",
-    es_sword_shield_breton_skin_03_runed_02_name = "es_sword_shield_breton_skin_03_runed_02",
-    es_sword_shield_breton_skin_05_name = "es_sword_shield_breton_skin_04",
-    es_sword_shield_breton_skin_04_magic_01_name = "es_sword_shield_breton_skin_04_magic_01_magic_01",
-    es_sword_shield_breton_skin_01_name = "es_sword_shield_breton_skin_05",
-    es_deus_01_skin_03_name = "es_deus_01_skin_03",
-    we_1h_spears_shield_skin_01_name = "we_1h_spears_shield_skin_01",
-    we_1h_spears_shield_skin_01_runed_01_name = "we_1h_spears_shield_skin_01_runed_01",
-    we_1h_spears_shield_skin_02_name = "we_1h_spears_shield_skin_02",
-    es_1h_sword_shield_skin_01_name = "es_1h_sword_shield_skin_02",
-    es_1h_sword_shield_skin_02_name = "es_1h_sword_shield_skin_03",
-    es_1h_sword_shield_skin_02_runed_01_name = "es_1h_sword_shield_skin_02_runed_01",
-    es_1h_sword_shield_skin_03_name = "es_1h_sword_shield_skin_03",
-    es_1h_sword_shield_skin_03_runed_01_name = "es_1h_sword_shield_skin_03_runed_01",
-    es_1h_sword_shield_skin_03_runed_02_name = "es_1h_sword_shield_skin_03_runed_02",
-    es_1h_sword_shield_skin_04_name = "es_1h_sword_shield_skin_04",
-    es_1h_sword_shield_skin_05_name = "es_1h_sword_shield_skin_05",
-    es_1h_mace_shield_skin_01_name = "es_1h_mace_shield_skin_01",
-    es_1h_mace_shield_skin_02_name = "es_1h_mace_shield_skin_02",
-    es_1h_mace_shield_skin_03_name = "es_1h_mace_shield_skin_03",
-    es_1h_mace_shield_skin_04_name = "es_1h_mace_shield_skin_04",
-    es_1h_mace_shield_skin_05_name = "es_1h_mace_shield_skin_05",
-}
+for skin, data in pairs(mod.SKIN_CHANGED) do
+    local description = skin_table[skin].description
+    local heiss = skin_table[skin].display_name
+    
+    mod:echo(skin)
+    mod:echo(heiss)
+
+    
+    desc[description] = skin
+    name[heiss] = skin
+end
 
 mod.dict = {}
 mod.helper_dict = {}
