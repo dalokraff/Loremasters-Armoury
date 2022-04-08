@@ -9,7 +9,7 @@ data = {
         slot1 = "textures/Kruber_empire_shield_basic2_Middenheim01B/Kruber_empire_shield_basic2_Middenheim01_diffuse"
     }
     normals = {
-        slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_combined"
+        slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_normal"
     }
     MABs = {
         slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_combined"
