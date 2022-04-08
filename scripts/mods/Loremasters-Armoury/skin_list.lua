@@ -159,8 +159,8 @@ mod.SKIN_LIST = {
     Kerillian_elf_shield_basic2_Eaglegate01 = {
         kind = "unit",
         new_units = {
-            "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Eaglegate01",
-            "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Eaglegate01_3p",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eaglegate01",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eaglegate01_3p",
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,--"we_1h_spears_shield_skin_01",
