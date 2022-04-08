@@ -1,0 +1,46 @@
+data = {
+    mat_slots = {
+        slot1 = "Material",
+    }
+
+    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2"
+
+    colors = {
+        // slot1 = "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_Bastonne02_diffuse",
+        slot1 = "textures/TEX_Dark_Elf_Dagger_COL"
+    }
+    normals = {
+        // slot1 = "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        slot1 = "textures/TEX_Dark_Elf_Dagger_NRM"
+    }
+    MABs = {
+    //    slot1 = "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+        slot1 = "textures/TEX_Dark_Elf_Dagger_MAB"
+    }
+
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    MAB_slot = "texture_map_0205ba86"
+
+}
+
+renderables = {
+	// "test" = {
+	// 	always_keep = false
+	// 	culling = "bounding_volume"
+	// 	generate_uv_unwrap = false
+	// 	occluder = false
+	// 	shadow_caster = true
+	// 	surface_queries = false
+	// 	viewport_visible = true
+	// },
+    "test_2" = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+}

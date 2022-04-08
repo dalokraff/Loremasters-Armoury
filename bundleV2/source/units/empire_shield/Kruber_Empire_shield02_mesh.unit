@@ -1,0 +1,34 @@
+data = {
+    mat_slots = {
+        slot1 = "shield",
+    }
+
+    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2"
+
+    colors = {
+        slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_Ostland01_diffuse"
+    }
+    normals = {
+        slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_combined"
+    }
+    MABs = {
+        slot1 = "textures/Kruber_empire_shield_basic2/Kruber_empire_shield_basic2_combined"
+    }
+
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    MAB_slot = "texture_map_0205ba86"
+
+}
+
+renderables = {
+    "Kruber_Empire_shield02_mesh" = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = false
+		surface_queries = false
+		viewport_visible = true
+	},
+}
