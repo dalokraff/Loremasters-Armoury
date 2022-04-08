@@ -75,7 +75,6 @@ local function swap_units_old(Armoury_key, skin)
 
 end
 
-
 local function re_equip_weapons(skin)
     local player = Managers.player:local_player()
     if player then 
@@ -100,7 +99,6 @@ local function re_equip_weapons(skin)
         end
     end
 end
-
 
 function mod.re_apply_illusion(Armoury_key, skin)
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then

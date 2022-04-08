@@ -622,5 +622,4 @@ menu.options_widgets = {
 	},
 
 }
-
 return menu

@@ -18,15 +18,6 @@ mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, positi
 end)
 
 --this table is used to tell the package manager that the custom units are loaded already
--- local hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh"
--- local Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01"
--- local Avelorn01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01"
--- local Griffongate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01"
--- local Empire_shield01 = "units/empire_shield/Kruber_Empire_shield01_mesh"
--- local Empire_shield02 = "units/empire_shield/Kruber_Empire_shield02_mesh"
--- local Empire_shield03 = "units/empire_shield/Kruber_Empire_shield_spear01_mesh"
--- local Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Kotbs01"
--- local Empire_shield03_Middenheim01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Middenheim01"
 
 local new_pacakges = {
     hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh",
