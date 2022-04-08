@@ -57,10 +57,6 @@ for skin, data in pairs(mod.SKIN_CHANGED) do
     local description = skin_table[skin].description
     local heiss = skin_table[skin].display_name
     
-    mod:echo(skin)
-    mod:echo(heiss)
-
-    
     desc[description] = skin
     name[heiss] = skin
 end
