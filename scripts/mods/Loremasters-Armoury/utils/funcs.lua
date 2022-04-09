@@ -110,6 +110,9 @@ function mod.re_apply_illusion(Armoury_key, skin)
         goto continue_re_apply_illusion
     elseif mod.SKIN_LIST[Armoury_key].kind == "texture" and not mod.SKIN_CHANGED[skin].changed_texture then
         swap_units_old(mod.current_skin[skin], skin)
+        if mod.SKIN_LIST[Armoury_key].is_vanilla_unit then
+            swap_units_new(Armoury_key, skin) 
+        end
         re_equip_weapons(skin)
         mod.SKIN_CHANGED[skin].changed_texture = true
         mod.has_old_texture = true

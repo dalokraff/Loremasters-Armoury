@@ -64,6 +64,11 @@ mod.SKIN_LIST = {
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
         },
+        new_units = {
+            "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03",
+            "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03_3p",
+        },
+        is_vanilla_unit = true, 
         swap_hand = "left_hand_unit",
         skip_meshes = {},
     },
