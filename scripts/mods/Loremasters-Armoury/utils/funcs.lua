@@ -90,7 +90,7 @@ local function re_equip_weapons(skin)
             -- mod:echo(item_two.skin)
             -- mod:echo(skin)
 
-            if item_one.skin == skin or item_two.name == skin then
+            if item_one.skin == skin or item_two.skin == skin then
                 BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
                 inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
                 BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
