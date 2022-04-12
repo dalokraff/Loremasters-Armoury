@@ -85,28 +85,13 @@ local function re_equip_weapons(skin)
             local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
             local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
-            -- mod:echo(item_one.skin)
-            -- mod:echo(item_two.skin)
-            -- mod:echo(skin)
-
             if item_one.skin == skin or item_two.skin == skin then
                 BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
                 inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
                 BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
                 inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
             end
-            -- for k,v in pairs(item_one.data) do
-            --     mod:echo(tostring(k)..":    "..tostring(v))
-            -- end
-            -- mod:echo("================")
-
-            -- for k,v in pairs(BackendUtils.get_item_units(item_one.data, backend_id)) do
-            --     mod:echo(tostring(k)..":    "..tostring(v))
-            -- end
-            -- for k,v in pairs(BackendUtils.get_item_units(item_two.data, backend_id)) do
-            --     mod:echo(tostring(k)..":    "..tostring(v))
-            -- end
-
+    
         end
     end
 end

@@ -3,22 +3,6 @@ mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
--- mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, position, rotation, material)
---     for skin,bools in pairs(mod.SKIN_CHANGED) do
---         if bools.changed_texture then
---             local Armoury_key = mod:get(skin)
---             mod:echo(tostring(skin)..":  "..tostring(bools.changed_texture))
---             local old_unit = WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand]
---             --if mod.SKIN_LIST[Armoury_key].units[1] == unit_name or mod.SKIN_LIST[Armoury_key].units[2] == unit_name then
---             if old_unit == unit_name or old_unit.."_3p" == unit_name then
---                 mod.level_queue[Armoury_key] = skin
---                 mod.preview_queue[Armoury_key] = skin
---             end
---         end
---     end
--- end)
-
-
 --this hook is used to generate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
@@ -41,22 +25,10 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
                     mod.level_queue[unit_1p] = {
                         Armoury_key = Armoury_key_melee,
                         skin = skin,
-                        -- id = Unit.get_data(unit_1p, "unique_id"),
                     }
                     mod.level_queue[unit_3p] = {
                         Armoury_key = Armoury_key_melee,
                         skin = skin,
-                        -- id = Unit.get_data(unit_3p, "unique_id"),
-                    }
-                    mod.preview_queue[unit_1p] = {
-                        Armoury_key = Armoury_key_melee,
-                        skin = skin,
-                        -- id = Unit.get_data(unit_1p, "unique_id"),
-                    }
-                    mod.preview_queue[unit_3p] = {
-                        Armoury_key = Armoury_key_melee,
-                        skin = skin,
-                        -- id = Unit.get_data(unit_3p, "unique_id"),
                     }
                 end
             end
@@ -73,22 +45,10 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
                     mod.level_queue[unit_1p] = {
                         Armoury_key = Armoury_key_range,
                         skin = skin,
-                        -- id = Unit.get_data(unit_1p, "unique_id"),
                     }
                     mod.level_queue[unit_3p] = {
                         Armoury_key = Armoury_key_range,
                         skin = skin,
-                        -- id = Unit.get_data(unit_3p, "unique_id"),
-                    }
-                    mod.preview_queue[unit_1p] = {
-                        Armoury_key = Armoury_key_range,
-                        skin = skin,
-                        -- id = Unit.get_data(unit_1p, "unique_id"),
-                    }
-                    mod.preview_queue[unit_3p] = {
-                        Armoury_key = Armoury_key_range,
-                        skin = skin,
-                        -- id = Unit.get_data(unit_3p, "unique_id"),
                     }
                 end
             end
@@ -100,8 +60,70 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     return func(self, backend_id)
 end)
 
---this table is used to tell the package manager that the custom units are loaded already
+local slot_dict = {
+    "melee",
+    "ranged",
+}
+mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings) 
+    local player = Managers.player:local_player()
+    mod:echo(player)
+    if player then
+        mod:echo("1")
+        local player_unit = player.player_unit    
+        local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
+        local career_extension = ScriptUnit.extension(player_unit, "career_system")
+        if career_extension then
+            mod:echo("2")
+            local career_name = career_extension:career_name()
+            for slot_order,units in pairs(self._equipment_units) do
+                local slot = slot_dict[slot_order]
+                if slot then
+                    mod:echo("3")
+                    --get backend id
+                    if self._item_info_by_slot[slot] then 
+                        local backend_id = self._item_info_by_slot[slot].backend_id
+                        local item = BackendUtils.get_loadout_item(career_name, "slot_"..slot)
+                        if item then
+                            local skin = item.skin
+                            --get unit
+                            local Armoury_key = mod:get(skin)
+                            local hand = mod.SKIN_LIST[Armoury_key].swap_hand
+                            local hand_key = hand:gsub("_hand_unit", "")
+                            local unit = units[hand_key]
+                            
+                            mod:echo(unit)
+                            mod:echo(Armoury_key)
+                            mod:echo(skin)
 
+                            if unit then
+                                mod.preview_queue[unit] = {
+                                    Armoury_key = Armoury_key,
+                                    skin = skin,
+                                }
+                            end
+                        end
+                    end
+                end
+            end
+
+            
+        end
+    end
+    -- return func(self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings)
+end)
+
+-- mod:hook(HeroPreviewer, "wield_weapon_slot",  function (func, self, slot_type) 
+--     for k,v in pairs(self._equipment_units) do
+--         if type(v) == "table" then
+--             for i,j in pairs(v) do
+--                 mod:echo(tostring(i)..":    "..tostring(j))
+--             end
+--         end
+--     end
+--     return func(self, slot_type)
+-- end)
+
+--this table is used to tell the package manager that the custom units are loaded already
 local new_pacakges = {
     hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh",
     Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01",
