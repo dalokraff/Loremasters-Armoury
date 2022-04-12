@@ -27,10 +27,11 @@ local function spawn_package_to_player (package_name)
         local rotation = Unit.local_rotation(player_unit, 0)
         local unit_template_name = "interaction_unit"
         local extension_init_data  = {}
-        
-        local unit = World.spawn_unit(world, package_name, position, rotation)
+        local unit_spawner = Managers.state.unit_spawner
+        local unit = unit_spawner:spawn_local_unit(package_name)--World.spawn_unit(world, package_name, position, rotation)
 
         mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
+        mod:echo(Unit.world_position(unit, 0))
         return unit
 	end
   
@@ -234,18 +235,23 @@ function mod.update()
             mod.re_apply_illusion(Armoury_key, skin)
         end
     end
-    for Armoury_key,skin in pairs(mod.level_queue) do
+    for unit,tisch in pairs(mod.level_queue) do
         if Managers.world:has_world("level_world") then
             local world = Managers.world:world("level_world")
-            mod.apply_new_skin_from_texture(Armoury_key, world, skin)
+            local Armoury_key = tisch.Armoury_key
+            local skin = tisch.skin
+            mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
+            mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             flush_level = true
         end  
     end
-    for Armoury_key,skin in pairs(mod.preview_queue) do
+    for unit,tisch in pairs(mod.preview_queue) do
         if Managers.world:has_world("character_preview") then
             local world = Managers.world:world("character_preview")
+            local Armoury_key = tisch.Armoury_key
+            local skin = tisch.skin
             mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
-            mod.apply_new_skin_from_texture(Armoury_key, world, skin)
+            mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             flush_preview = true
         end
     end

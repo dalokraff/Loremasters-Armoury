@@ -2,9 +2,8 @@ local mod = get_mod("Loremasters-Armoury")
 
 mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
 
-local function apply_texture_to_all_world_units(world, package, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
-    local units = World.units_by_resource(world, package)
-    for _,unit in pairs(units) do 
+local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+    if Unit.alive(unit) then
         local num_meshes = Unit.num_meshes(unit)
         for i = 0, num_meshes - 1, 1 do
             if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] then
@@ -20,11 +19,10 @@ local function apply_texture_to_all_world_units(world, package, diff_slot, pack_
             end
             ::continue_apply_texture_to_all_world_units::
         end
-    end
-    
+    end    
 end
 
-function mod.apply_new_skin_from_texture(Armoury_key, world, skin)
+function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
     local diff_slot = "texture_map_c0ba2942" 
     local pack_slot = "texture_map_0205ba86"
     local norm_slot = "texture_map_59cd86b9"
@@ -36,12 +34,13 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin)
     local hand = mod.SKIN_LIST[Armoury_key].swap_hand
     -- local skin = mod.SKIN_LIST[Armoury_key].swap_skin
 
-    local package_1p = WeaponSkins.skins[skin][hand]
-    local package_3p = WeaponSkins.skins[skin][hand].."_3p"
+    -- local package_1p = WeaponSkins.skins[skin][hand]
+    -- local package_3p = WeaponSkins.skins[skin][hand].."_3p"
+    
+    apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
 
-    apply_texture_to_all_world_units(world, package_1p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
-    apply_texture_to_all_world_units(world, package_3p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)    
-
+    -- apply_texture_to_all_world_units(world, package_1p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+    -- apply_texture_to_all_world_units(world, package_3p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)    
 end
 
 
@@ -96,6 +95,18 @@ local function re_equip_weapons(skin)
                 BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
                 inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
             end
+            -- for k,v in pairs(item_one.data) do
+            --     mod:echo(tostring(k)..":    "..tostring(v))
+            -- end
+            -- mod:echo("================")
+
+            -- for k,v in pairs(BackendUtils.get_item_units(item_one.data, backend_id)) do
+            --     mod:echo(tostring(k)..":    "..tostring(v))
+            -- end
+            -- for k,v in pairs(BackendUtils.get_item_units(item_two.data, backend_id)) do
+            --     mod:echo(tostring(k)..":    "..tostring(v))
+            -- end
+
         end
     end
 end
@@ -111,7 +122,8 @@ function mod.re_apply_illusion(Armoury_key, skin)
     elseif mod.SKIN_LIST[Armoury_key].kind == "texture" and not mod.SKIN_CHANGED[skin].changed_texture then
         swap_units_old(mod.current_skin[skin], skin)
         if mod.SKIN_LIST[Armoury_key].is_vanilla_unit then
-            swap_units_new(Armoury_key, skin) 
+            swap_units_new(Armoury_key, skin)
+            mod.SKIN_CHANGED[skin].changed_model = true
         end
         re_equip_weapons(skin)
         mod.SKIN_CHANGED[skin].changed_texture = true

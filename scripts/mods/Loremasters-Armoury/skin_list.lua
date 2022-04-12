@@ -72,6 +72,22 @@ mod.SKIN_LIST = {
         swap_hand = "left_hand_unit",
         skip_meshes = {},
     },
+    Kruber_empire_shield_hero1_Kotbs01 = {
+        kind = "texture",
+        swap_skin = nil,--"es_deus_01_skin_03",
+        textures = {
+            "textures/Kruber_empire_shield_hero1_Kotbs01/Kruber_empire_shield_hero1_Kotbs01_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03",
+            "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03_3p",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "left_hand_unit",
+        skip_meshes = {},
+    },
     Kerillian_elf_shield_basic_Avelorn01 = {
         kind = "texture",
         swap_skin = nil,--"we_1h_spears_shield_skin_01", 
@@ -175,6 +191,15 @@ mod.SKIN_LIST = {
         new_units = {
             "units/empire_shield/Kruber_Empire_shield01_mesh",
             "units/empire_shield/Kruber_Empire_shield01_mesh_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,--"es_1h_sword_shield_skin_03",
+    },
+    Kruber_empire_shield_basic1_Ostermark01 = {
+        kind = "unit",
+        new_units = {
+            "units/empire_shield/Kruber_Empire_shield01_mesh_Ostermark01",
+            "units/empire_shield/Kruber_Empire_shield01_mesh_Ostermark01_3p",
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,--"es_1h_sword_shield_skin_03",

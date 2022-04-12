@@ -4,7 +4,7 @@ common = {
   }
 
   output = {
-		format = "BC7"
+		format = "DXT5"
 		apply_processing = true
 		enable_cut_alpha_threshold = true
 		cut_alpha_threshold = 0.5
