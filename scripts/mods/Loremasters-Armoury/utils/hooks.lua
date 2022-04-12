@@ -3,7 +3,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
---this hook is used to generate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
+--this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
     local data_range = self.recently_acquired_list["slot_ranged"]
@@ -60,40 +60,32 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     return func(self, backend_id)
 end)
 
+
+--this hook is used to populate the character_preview queue; gets the unit loaded in the preview if it's of the correct skin. correct hand and in the correct slot
 local slot_dict = {
     "melee",
     "ranged",
 }
 mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings) 
     local player = Managers.player:local_player()
-    mod:echo(player)
     if player then
-        mod:echo("1")
         local player_unit = player.player_unit    
         local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
         local career_extension = ScriptUnit.extension(player_unit, "career_system")
         if career_extension then
-            mod:echo("2")
             local career_name = career_extension:career_name()
             for slot_order,units in pairs(self._equipment_units) do
                 local slot = slot_dict[slot_order]
+                
                 if slot then
-                    mod:echo("3")
-                    --get backend id
                     if self._item_info_by_slot[slot] then 
-                        local backend_id = self._item_info_by_slot[slot].backend_id
                         local item = BackendUtils.get_loadout_item(career_name, "slot_"..slot)
                         if item then
                             local skin = item.skin
-                            --get unit
                             local Armoury_key = mod:get(skin)
                             local hand = mod.SKIN_LIST[Armoury_key].swap_hand
                             local hand_key = hand:gsub("_hand_unit", "")
                             local unit = units[hand_key]
-                            
-                            mod:echo(unit)
-                            mod:echo(Armoury_key)
-                            mod:echo(skin)
 
                             if unit then
                                 mod.preview_queue[unit] = {
@@ -109,19 +101,7 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
             
         end
     end
-    -- return func(self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings)
 end)
-
--- mod:hook(HeroPreviewer, "wield_weapon_slot",  function (func, self, slot_type) 
---     for k,v in pairs(self._equipment_units) do
---         if type(v) == "table" then
---             for i,j in pairs(v) do
---                 mod:echo(tostring(i)..":    "..tostring(j))
---             end
---         end
---     end
---     return func(self, slot_type)
--- end)
 
 --this table is used to tell the package manager that the custom units are loaded already
 local new_pacakges = {

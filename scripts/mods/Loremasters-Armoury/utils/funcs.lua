@@ -32,15 +32,8 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
     local norm = mod.SKIN_LIST[Armoury_key].textures[3]
 
     local hand = mod.SKIN_LIST[Armoury_key].swap_hand
-    -- local skin = mod.SKIN_LIST[Armoury_key].swap_skin
-
-    -- local package_1p = WeaponSkins.skins[skin][hand]
-    -- local package_3p = WeaponSkins.skins[skin][hand].."_3p"
     
     apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
-
-    -- apply_texture_to_all_world_units(world, package_1p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
-    -- apply_texture_to_all_world_units(world, package_3p, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)    
 end
 
 

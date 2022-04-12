@@ -7,9 +7,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
 
-local shield = "units/weapons/player/wpn_emp_gk_shield_05/wpn_emp_gk_shield_05"
-local shield_3p = "units/weapons/player/wpn_emp_gk_shield_05/wpn_emp_gk_shield_05_3p"
-
+--this tables are used as queues that get filled and flushed as skins and their respective units are changed
 mod.level_queue = {}
 mod.preview_queue = {}
 mod.current_skin = {}
