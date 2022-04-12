@@ -83,16 +83,20 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                         if item then
                             local skin = item.skin
                             local Armoury_key = mod:get(skin)
-                            local hand = mod.SKIN_LIST[Armoury_key].swap_hand
-                            local hand_key = hand:gsub("_hand_unit", "")
-                            local unit = units[hand_key]
+                            local skin_list = mod.SKIN_LIST[Armoury_key]
+                            if skin_list then
+                                local hand = skin_list.swap_hand
+                                local hand_key = hand:gsub("_hand_unit", "")
+                                local unit = units[hand_key]
 
-                            if unit then
-                                mod.preview_queue[unit] = {
-                                    Armoury_key = Armoury_key,
-                                    skin = skin,
-                                }
+                                if unit then
+                                    mod.preview_queue[unit] = {
+                                        Armoury_key = Armoury_key,
+                                        skin = skin,
+                                    }
+                                end
                             end
+                            
                         end
                     end
                 end
