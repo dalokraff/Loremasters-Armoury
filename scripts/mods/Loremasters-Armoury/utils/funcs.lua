@@ -27,13 +27,15 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
     local pack_slot = "texture_map_0205ba86"
     local norm_slot = "texture_map_59cd86b9"
 
-    local diff = mod.SKIN_LIST[Armoury_key].textures[1]
-    local MAB = mod.SKIN_LIST[Armoury_key].textures[2]
-    local norm = mod.SKIN_LIST[Armoury_key].textures[3]
+    if mod.SKIN_LIST[Armoury_key].textures then
+        local diff = mod.SKIN_LIST[Armoury_key].textures[1]
+        local MAB = mod.SKIN_LIST[Armoury_key].textures[2]
+        local norm = mod.SKIN_LIST[Armoury_key].textures[3]
 
-    local hand = mod.SKIN_LIST[Armoury_key].swap_hand
-    
-    apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+        local hand = mod.SKIN_LIST[Armoury_key].swap_hand
+        
+        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+    end
 end
 
 
