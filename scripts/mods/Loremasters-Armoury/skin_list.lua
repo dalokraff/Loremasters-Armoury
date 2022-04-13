@@ -243,22 +243,31 @@ mod.SKIN_LIST = {
 }
 
 local skin_table = table.shallow_copy(WeaponSkins.skins)
-local skins_to_change = {
-    "es_sword_shield_breton_skin_01",
+local skins_to_change = {}
+
+--these mod tables are used split up so the vmf widgets can easily group the skins by weapon type
+mod.bret_skins = {
+	"es_sword_shield_breton_skin_01",
     "es_sword_shield_breton_skin_02",
     "es_sword_shield_breton_skin_03",
     "es_sword_shield_breton_skin_03_runed_01",
     "es_sword_shield_breton_skin_03_runed_02",
     "es_sword_shield_breton_skin_04",
-    "es_sword_shield_breton_skin_04_magic_01_magic_01",
+    -- "es_sword_shield_breton_skin_04_magic_01_magic_01",
     "es_sword_shield_breton_skin_05",
-    "es_deus_01_skin_01",
+}
+
+mod.empire_spear_shield = {
+	"es_deus_01_skin_01",
     "es_deus_01_skin_01_runed",
     "es_deus_01_skin_02_runed",
     "es_deus_01_skin_03_runed",
     "es_deus_01_skin_02",
     "es_deus_01_skin_03",
-    "es_1h_sword_shield_skin_01",
+}
+
+mod.empire_sword_shield = {
+	"es_1h_sword_shield_skin_01",
     "es_1h_sword_shield_skin_02",
     "es_1h_sword_shield_skin_02_runed_01",
     "es_1h_sword_shield_skin_03",
@@ -266,7 +275,10 @@ local skins_to_change = {
     "es_1h_sword_shield_skin_03_runed_02",
     "es_1h_sword_shield_skin_04",
     "es_1h_sword_shield_skin_05",
-    "es_1h_mace_shield_skin_01",
+}
+
+mod.empire_mace_shield = {
+	"es_1h_mace_shield_skin_01",
     "es_1h_mace_shield_skin_02",
     "es_1h_mace_shield_skin_02_runed_01",
     "es_1h_mace_shield_skin_03",
@@ -274,10 +286,22 @@ local skins_to_change = {
     "es_1h_mace_shield_skin_03_runed_02",
     "es_1h_mace_shield_skin_04",
     "es_1h_mace_shield_skin_05",
-    "we_1h_spears_shield_skin_01",
+}
+
+mod.elf_skins = {
+	"we_1h_spears_shield_skin_01",
     "we_1h_spears_shield_skin_01_runed_01",
     "we_1h_spears_shield_skin_02",
 }
+
+table.append(skins_to_change, mod.bret_skins)
+table.append(skins_to_change, mod.empire_spear_shield)
+table.append(skins_to_change, mod.empire_sword_shield)
+table.append(skins_to_change, mod.empire_mace_shield)
+table.append(skins_to_change, mod.elf_skins)
+
+--this mod table is used for the vmf menu localization
+mod.vanilla_game_strings = table.shallow_copy(skins_to_change)
 
 mod.SKIN_CHANGED = {}
 

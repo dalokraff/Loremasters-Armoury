@@ -1,7 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
-mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
-mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
 --this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)

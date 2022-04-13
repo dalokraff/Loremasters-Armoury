@@ -1,7 +1,4 @@
 local mod = get_mod("Loremasters-Armoury")
-mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
-mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
-mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 
 -- Your mod code goes here.

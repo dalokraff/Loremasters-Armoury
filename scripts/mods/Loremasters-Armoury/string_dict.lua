@@ -27,13 +27,19 @@ local desc_strings = {
 
 }
 
-local name_strings = {
-    Kruber_Grail_Knight_Bastonne02 = "The Scale of Smearghus",
+local name_strings = {}
+
+--these mod name tables are spilt up so the keys can be used by vmf widgets
+mod.bret_shields = {
+	Kruber_Grail_Knight_Bastonne02 = "The Scale of Smearghus",
     Kruber_bret_shield_basic1_Reynard01 = "Protecteur d'Arden",
     Kruber_bret_shield_basic2_Luidhard01 = "Le Faucon Rouge",
     Kruber_bret_shield_basic3_Lothar01 = "Knight Shield of the Golden Hart",
     Kruber_bret_shield_hero1_Alberic01 = "Bastion de la Tempete",
-    Kruber_empire_shield_hero1_Ostermark01 = "Shield of Ostermark Spearman",
+}
+
+mod.empire_shields = {
+	Kruber_empire_shield_hero1_Ostermark01 = "Shield of Ostermark Spearman",
     Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (Spear mesh)",
     Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
     Kruber_empire_shield_basic1 = "Reikland Captain's Shield",
@@ -41,7 +47,10 @@ local name_strings = {
     Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
     Kruber_empire_shield_basic2_Kotbs01 = "Sol Invictus",
     Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
-    Kerillian_elf_shield_basic_Avelorn01 = "Avelorn Levy-Shield",
+}
+
+mod.elf_shields = {
+	Kerillian_elf_shield_basic_Avelorn01 = "Avelorn Levy-Shield",
     Kerillian_elf_shield_basic_Avelorn01_mesh = "Avelorn Levy-Shield",
     Kerillian_elf_shield_heroClean_Saphery01 = "Cython-Ildir-Minaith",
     Kerillian_elf_shield_heroClean_Caledor01 = "Dragon Shield of Caledor",
@@ -50,8 +59,25 @@ local name_strings = {
     Kerillian_elf_shield_basic2_mesh = "Griffon Gate Sentry-Shield",
     Kerillian_elf_shield_basic2_Eaglegate01 = "Eagle Gate Sentry-Shield",
     Kerillian_elf_shield_basicClean = "Avalu-Asur",
-
 }
+
+--merges all the upbove tables together to be used for another mod table that is sent to the localization hook
+for k,v in pairs(mod.bret_shields) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.empire_shields) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.elf_shields) do
+    name_strings[k] = v
+end
+
+--copies the name_strings table to be used in a mod table for the vmf menu localization
+mod.name_strings_id = {}
+for k,v in pairs(name_strings) do
+    mod.name_strings_id[k] = v
+end
+
 
 local desc = {}
 local name = {}

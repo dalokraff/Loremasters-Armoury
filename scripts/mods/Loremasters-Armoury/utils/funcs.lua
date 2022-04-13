@@ -1,6 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
-
-mod:dofile("scripts/mods/Loremasters-Armoury/skin_list")
+mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
 local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
     if Unit.alive(unit) then
@@ -79,7 +78,9 @@ local function re_equip_weapons(skin)
             local career_name = career_extension:career_name()
             local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
             local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
-
+            for k,v in pairs(item_one) do
+                mod:echo(tostring(k)..":    "..tostring(v))
+            end
             if item_one.skin == skin or item_two.skin == skin then
                 BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
                 inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
