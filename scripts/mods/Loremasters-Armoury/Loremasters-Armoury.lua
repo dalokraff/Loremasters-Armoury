@@ -4,12 +4,15 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
 
---this tables are used as queues that get filled and flushed as skins and their respective units are changed
+--thesse tables are used as queues that get filled and flushed as skins and their respective units are changed
 mod.level_queue = {}
 mod.preview_queue = {}
 mod.current_skin = {}
 
 
+--on mod update:
+--the level_queue and previe_queue are checked to see if the respective worlds have any units that need to be retextured
+--the SKIN_CHANGED table is updated with info from the vmf menu about which skins are currently being used by which weapons
 function mod.update()
     local flush_preview = false
     local flush_level = false

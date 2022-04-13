@@ -5,6 +5,7 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
     if Unit.alive(unit) then
         local num_meshes = Unit.num_meshes(unit)
         for i = 0, num_meshes - 1, 1 do
+            --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
             if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] then
                 goto continue_apply_texture_to_all_world_units
             end
@@ -38,6 +39,8 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
 end
 
 
+--this functions ensure that the local network lookup tables get update with repsective package paths,
+--to prevent sending clients/host a bad lookup key can causing them to crash
 local function swap_units_new(Armoury_key, skin)
     local hand = mod.SKIN_LIST[Armoury_key].swap_hand
     
@@ -68,6 +71,7 @@ local function swap_units_old(Armoury_key, skin)
 
 end
 
+--function to re-equip weapons if the either weapon skin matches the passed in skin
 local function re_equip_weapons(skin)
     local player = Managers.player:local_player()
     if player then 
@@ -92,6 +96,11 @@ local function re_equip_weapons(skin)
     end
 end
 
+
+--this function checks whether a skin from the vmf menu needs:
+--to be given the default unit; depending on the current state of the skin different actions are taken 
+--to have it's default unit retextured
+--to have it's default skin be given a new unit
 function mod.re_apply_illusion(Armoury_key, skin)
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then
         swap_units_old(mod.current_skin[skin], skin)
