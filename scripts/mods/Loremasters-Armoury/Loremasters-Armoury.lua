@@ -53,3 +53,29 @@ function mod.update()
     
     
 end
+
+
+mod:command("HM_hat", "", function()
+    local package = "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_15"
+    local diff_slot = "texture_map_c0ba2942"
+    local diff = "textures/Kerillian_Ellyrion_helm_base/Kerillian_Ellyrion_helm_base_diffuse"   
+    local world = Managers.world:world("level_world")
+    local units = World.units_by_resource(world, package)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if i < 6 then  
+                local mesh = Unit.mesh(unit, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, diff_slot, diff)
+                    -- for _,slot_name in pairs(slot_list) do
+                    --     Material.set_texture(mat, slot_name, diff)
+                    -- end
+                end
+            end
+        end
+    end
+end)
