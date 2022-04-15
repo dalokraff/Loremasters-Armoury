@@ -110,7 +110,7 @@ end)
 mod:command("HM_hat_2", "", function()
     local package = "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_15"
     local diff_slot = "texture_map_c0ba2942"
-    local diff = "textures/Kerillian_Ellyrion_helm_base/Kerillian_Ellyrion_helm_base_diffuse_3"
+    local diff = "textures/Kerillian_Ellyrion_helm_base/Kerillian_Ellyrion_helm_base_diffuse_2"
     local diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse"
     local world = Managers.world:world("level_world")
     local units = World.units_by_resource(world, package)
