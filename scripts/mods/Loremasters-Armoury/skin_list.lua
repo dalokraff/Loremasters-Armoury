@@ -96,6 +96,11 @@ mod.SKIN_LIST = {
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
         },
+        new_units = {
+            "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01",
+            "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01_3p",
+        },
+        is_vanilla_unit = true, 
         swap_hand = "left_hand_unit",
         skip_meshes = {
             skip0 = true,
