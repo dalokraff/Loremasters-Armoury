@@ -105,27 +105,16 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
     end
 end)
 
---this table is used to tell the package manager that the custom units are loaded already
-local new_pacakges = {
-    hat_path = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh",
-    Eataine01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01",
-    Avelorn01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01",
-    Caledor01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Caledor01",
-    Avelorn02 = "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn02",
-    Griffongate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01",
-    Eaglegate01 = "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eaglegate01",
-    Empire_shield01 = "units/empire_shield/Kruber_Empire_shield01_mesh",
-    Empire_shield02 = "units/empire_shield/Kruber_Empire_shield02_mesh",
-    Empire_shield02_Ostermark01 = "units/empire_shield/Kruber_Empire_shield01_mesh_Ostermark01",
-    Empire_shield03 = "units/empire_shield/Kruber_Empire_shield_spear01_mesh",
-    Empire_shield03_Kotbs01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Kotbs01",
-    Empire_shield03_Middenheim01 = "units/empire_shield/Kruber_Empire_shield02_mesh_Middenheim01",
-}
 
+--the name of pacakges to count as loaded are taken from the string_dict file
 local pacakge_tisch = {}
-for k,v in pairs(new_pacakges) do
-    pacakge_tisch[v] = v
-    pacakge_tisch[v.."_3p"] = v.."_3p"
+for k,v in pairs(mod.SKIN_LIST) do
+    if v.kind == "unit" then
+        local package = v.new_units[1]
+        pacakge_tisch[package] = package
+        pacakge_tisch[package.."_3p"] = package.."_3p"
+    end
+    
 end
 
 mod:hook(PackageManager, "load",

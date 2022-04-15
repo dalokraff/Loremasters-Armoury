@@ -171,8 +171,8 @@ mod.SKIN_LIST = {
     Kerillian_elf_shield_basicClean = {
         kind = "unit",
         new_units = {
-            "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01",
-            "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01_3p",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eataine01",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eataine01_3p",
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
@@ -182,6 +182,33 @@ mod.SKIN_LIST = {
         new_units = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eaglegate01",
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Eaglegate01_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,
+    },
+    Kerillian_elf_shield_basicClean_Saphery01 = {
+        kind = "unit",
+        new_units = {
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Saphery01",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Saphery01_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,
+    },
+    Kerillian_elf_shield_basicClean_Caledor01 = {
+        kind = "unit",
+        new_units = {
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Caledor01",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_basicClean_mesh_Caledor01_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,
+    },
+    Kerillian_elf_shield_heroClean_Eataine01 = {
+        kind = "unit",
+        new_units = {
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01",
+            "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Eataine01_3p",
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,

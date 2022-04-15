@@ -24,12 +24,15 @@ local desc_strings = {
     Kerillian_elf_shield_basic2_mesh = "Being the oldest great mountain fortress of Ulthuan, facing hundreds of sieges over thousands of years, the Griffon Gate has never fallen to its attackers.",
     Kerillian_elf_shield_basic2_Eaglegate01 = "Should a soldier survive his duty at one of the great fortresses of Ulthuan, he will thereafter be treated with respect by commoner and noble alike.",
     Kerillian_elf_shield_basicClean = "Phoenixes - the chosen messengers of the Creator God - are a popular symbols among the folk of Eataine, who believe that is was Asuryan who lifted Ulthuan from ocean's depths.",
-
+    Kerillian_elf_shield_basicClean_Saphery01 = "Aside from powerful mages, the enchanted land of Saphery is also home to Swordmasters of Hoeth, who dedicate their lives to study of meditation and deadly martial arts.",
+    Kerillian_elf_shield_basicClean_Caledor01 = "Phoenixes - the chosen messengers of the Creator God - are a popular symbols among the folk of Eataine, who believe that is was Asuryan who lifted Ulthuan from ocean's depths.",
+    Kerillian_elf_shield_heroClean_Eataine01 = "Woe betide he who encounters an army of Caledor on the march, for it will surely be the last battle he ever fights.",
 }
 
 local name_strings = {}
 
 --these mod name tables are spilt up so the keys can be used by vmf widgets
+--the order of shields only matters for vmf menu and it is displayed as the reverse
 mod.bret_shields = {
 	Kruber_Grail_Knight_Bastonne02 = "The Scale of Smearghus",
     Kruber_bret_shield_basic1_Reynard01 = "Protecteur d'Arden",
@@ -39,25 +42,28 @@ mod.bret_shields = {
 }
 
 mod.empire_shields = {
-	Kruber_empire_shield_hero1_Ostermark01 = "Shield of Ostermark Spearman",
-    Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (Spear mesh)",
+    Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",    
     Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
-    Kruber_empire_shield_basic1 = "Reikland Captain's Shield",
-    Kruber_empire_shield_basic1_Ostermark01 = "Shield of Ostermark Spearman (Sergeant's mesh)",
-    Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
-    Kruber_empire_shield_basic2_Kotbs01 = "Sol Invictus",
     Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
+    Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (spear)",
+    Kruber_empire_shield_basic2_Kotbs01 = "Sol Invictus",
+    Kruber_empire_shield_basic1_Ostermark01 = "Shield of Ostermark Spearman (Sergeant's mesh)",
+    Kruber_empire_shield_hero1_Ostermark01 = "Shield of Ostermark Spearman",
+    Kruber_empire_shield_basic1 = "Reikland Captain's Shield",
 }
 
 mod.elf_shields = {
-	Kerillian_elf_shield_basic_Avelorn01 = "Avelorn Levy-Shield",
-    Kerillian_elf_shield_basic_Avelorn01_mesh = "Avelorn Levy-Shield",
-    Kerillian_elf_shield_heroClean_Saphery01 = "Cython-Ildir-Minaith",
-    Kerillian_elf_shield_heroClean_Caledor01 = "Dragon Shield of Caledor",
     Kerillian_elf_shield_heroClean_Avelorn02 = "Shield of the Maiden Guard",
+    Kerillian_elf_shield_basic2_mesh = "Griffon Gate Sentry-Shield (new mesh)", 
     Kerillian_elf_shield_basic2 = "Griffon Gate Sentry-Shield",
-    Kerillian_elf_shield_basic2_mesh = "Griffon Gate Sentry-Shield",
     Kerillian_elf_shield_basic2_Eaglegate01 = "Eagle Gate Sentry-Shield",
+    Kerillian_elf_shield_heroClean_Caledor01 = "Dragon Shield of Caledor (Noble)",
+    Kerillian_elf_shield_basicClean_Caledor01 = "Dragon Shield of Caledo",
+    Kerillian_elf_shield_heroClean_Saphery01 = "Cython-Ildir-Minaith (Noble)",
+    Kerillian_elf_shield_basicClean_Saphery01 = "Cython-Ildir-Minaith",
+    Kerillian_elf_shield_basic_Avelorn01_mesh = "Avelorn Levy-Shield (new mesh)",
+    Kerillian_elf_shield_basic_Avelorn01 = "Avelorn Levy-Shield",
+    Kerillian_elf_shield_heroClean_Eataine01 = "Avalu-Asur (Noble)",
     Kerillian_elf_shield_basicClean = "Avalu-Asur",
 }
 
