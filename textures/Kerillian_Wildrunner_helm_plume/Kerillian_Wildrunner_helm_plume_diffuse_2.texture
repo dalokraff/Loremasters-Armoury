@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse"
+    filename = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse_2"
   }
 
   output = {
