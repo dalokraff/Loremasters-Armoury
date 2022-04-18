@@ -258,6 +258,64 @@ mod:command("HM_hat_plume", "", function()
         end
     end
 end)
+mod:command("HM_hat_plume_2", "", function()
+    local package = ItemMasterList["maidenguard_hat_1001"].unit
+    local diff_slot = "texture_map_c0ba2942"
+    local diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse_2"
+    -- local diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse"
+    local world = Managers.world:world("level_world")
+    local units = World.units_by_resource(world, package)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then  
+                local mesh = Unit.mesh(unit, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, diff_slot, diff)
+                end
+            -- elseif i >= 6 or i < 9 then
+            --     local mesh = Unit.mesh(unit, i)
+            --     local num_mats = Mesh.num_materials(mesh)
+            --     for j = 0, num_mats - 1, 1 do
+            --         local mat = Mesh.material(mesh, j)
+            --         Material.set_texture(mat, diff_slot, diff_mask)
+            --     end
+            end
+        end
+    end
+end)
+mod:command("HM_hat_plume_3", "", function()
+    local package = ItemMasterList["maidenguard_hat_1001"].unit
+    local diff_slot = "texture_map_c0ba2942"
+    local diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse_3"
+    -- local diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse"
+    local world = Managers.world:world("level_world")
+    local units = World.units_by_resource(world, package)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then  
+                local mesh = Unit.mesh(unit, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, diff_slot, diff)
+                end
+            -- elseif i >= 6 or i < 9 then
+            --     local mesh = Unit.mesh(unit, i)
+            --     local num_mats = Mesh.num_materials(mesh)
+            --     for j = 0, num_mats - 1, 1 do
+            --         local mat = Mesh.material(mesh, j)
+            --         Material.set_texture(mat, diff_slot, diff_mask)
+            --     end
+            end
+        end
+    end
+end)
 
 mod:command("HM_hat_compare_plume", "", function()
     local package = ItemMasterList["maidenguard_hat_1001"].unit
