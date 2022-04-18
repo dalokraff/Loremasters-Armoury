@@ -224,5 +224,96 @@ mod:command("HM_hat_del", "", function()
     local world = Managers.world:world("level_world") 
     for unit,_ in pairs(mod.units) do 
         World.destroy_unit(world, unit)
+        mod.units[unit] = nil
     end
 end)
+
+
+mod:command("HM_hat_plume", "", function()
+    local package = ItemMasterList["maidenguard_hat_1001"].unit
+    local diff_slot = "texture_map_c0ba2942"
+    local diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse"
+    -- local diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse"
+    local world = Managers.world:world("level_world")
+    local units = World.units_by_resource(world, package)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then  
+                local mesh = Unit.mesh(unit, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, diff_slot, diff)
+                end
+            -- elseif i >= 6 or i < 9 then
+            --     local mesh = Unit.mesh(unit, i)
+            --     local num_mats = Mesh.num_materials(mesh)
+            --     for j = 0, num_mats - 1, 1 do
+            --         local mat = Mesh.material(mesh, j)
+            --         Material.set_texture(mat, diff_slot, diff_mask)
+            --     end
+            end
+        end
+    end
+end)
+
+mod:command("HM_hat_compare_plume", "", function()
+    local package = ItemMasterList["maidenguard_hat_1001"].unit
+    local unit1 = spawn_package_to_player(package, 0)
+    local unit2 = spawn_package_to_player(package, 1)
+    local unit3 = spawn_package_to_player(package, 2)
+    local unit4 = spawn_package_to_player(package, 3)
+    
+    mod.units[unit1] = {
+        diff_slot = "texture_map_c0ba2942",
+        diff = nil,
+        diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse",
+    }
+    mod.units[unit2] = {
+        diff_slot = "texture_map_c0ba2942",
+        diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse",
+        diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse",
+    }
+    mod.units[unit3] = {
+        diff_slot = "texture_map_c0ba2942",
+        diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse_2",
+        diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse",
+    }
+    mod.units[unit4] = {
+        diff_slot = "texture_map_c0ba2942",
+        diff = "textures/Kerillian_Wildrunner_helm_plume/Kerillian_Wildrunner_helm_plume_diffuse_3",
+        diff_mask = "textures/Kerillian_Ellyrion_helm_base/Ellyrion_helm_mask_diffuse",
+    }
+    for unit,data in pairs(mod.units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if data.diff then
+                if true  then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, data.diff_slot, data.diff)
+                    end
+                -- elseif i >= 6 or i < 9 then
+                --     local mesh = Unit.mesh(unit, i)
+                --     local num_mats = Mesh.num_materials(mesh)
+                --     for j = 0, num_mats - 1, 1 do
+                --         local mat = Mesh.material(mesh, j)
+                --         Material.set_texture(mat, data.diff_slot, data.diff_mask)
+                --     end
+                end
+            end
+        end
+    end
+end)
+
+-- local localize = Managers.localizer
+-- for k,v in pairs(ItemMasterList) do
+--     if v.item_type == "hat" then
+--         print(tostring(localize:_base_lookup(v.display_name))..":      "..tostring(k))
+--     end
+-- end
