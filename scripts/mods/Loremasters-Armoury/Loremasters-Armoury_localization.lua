@@ -72,7 +72,7 @@ for _,skin in pairs(mod.vanilla_game_strings) do
 	if not mod_text_ids[skin] then
 		mod_text_ids[skin] = {}
 	end
-	mod_text_ids[skin]['en'] = game_localize:_base_lookup(skin_name)
+	mod_text_ids[skin]['en'] = game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin))
 end
 
 
