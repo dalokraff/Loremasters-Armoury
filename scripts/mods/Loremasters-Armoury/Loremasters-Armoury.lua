@@ -38,8 +38,11 @@ function mod.update()
             local world = Managers.world:world("character_preview")
             local Armoury_key = tisch.Armoury_key
             local skin = tisch.skin
-            mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
-            mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
+            -- mod:echo(Armoury_key)
+            if Armoury_key ~= "default" and mod.SKIN_LIST[Armoury_key] then
+                mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
+                mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
+            end
             flush_preview = true
         end
     end
@@ -53,3 +56,8 @@ function mod.update()
     
     
 end
+
+mod:command("key", "", function()
+    local Armoury_key = mod:get("maidenguard_hat_1001")
+    mod:echo(Armoury_key)
+end)

@@ -5,14 +5,35 @@ local mod_text_ids = {
 	mod_description = {
 		en = "Loremasters-Armoury description",
 	},
-	choose_char = {
-		en = "Choose Character",
+	choose_char_hat = {
+		en = "Choose Hat for Character",
 	},
 	choose_skin = {
 		en = "Choose active skin"
 	},
+	choose_wep = {
+		en = "Choose Weapon",
+	},
+	choose_hat = {
+		en = "Choose Hat",
+	},
 	pick_wep = {
 		en = "Pick Weapon",
+	},
+	krub = {
+		en = "Kruber",
+	},
+	bard = {
+		en = "Bardin",
+	},
+	salt = {
+		en = "Saltspyre",
+	},
+	elf = {
+		en = "Kerrilian",
+	},
+	wiz = {
+		en = "Sienna",
 	},
 	bret_sword_shield = {
 		en = "Breton Long Sword and Shield",
@@ -28,6 +49,9 @@ local mod_text_ids = {
 	},
 	elf_spear_shield = {
 		en = "High Elf Spear and Shield",
+	},
+	elf_hm_hat_1001 = {
+		en = "Windrunner's helm",
 	},
 	default = {
 		en = "default",

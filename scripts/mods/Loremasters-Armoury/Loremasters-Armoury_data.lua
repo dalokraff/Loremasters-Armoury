@@ -22,11 +22,11 @@ local shield_sub_choice = {
 menu.options = {}
 menu.options.widgets = {
 	{
-		setting_id = "elf_shields",
+		setting_id = "weapons",
 		type = "dropdown",
 		default_value = 1,
-		title = "choose_char",
-		tooltip = "choose_char",
+		title = "choose_wep",
+		tooltip = "choose_wep",
 		options = {
 			{text = "pick_wep",   value = 1},
 			{text = "bret_sword_shield",   value = 2, show_widgets = {}},
@@ -34,6 +34,22 @@ menu.options.widgets = {
 			{text = "emp_sword_shield",   value = 4, show_widgets = {}},
 			{text = "emp_mace_shield",   value = 5, show_widgets = {}},
 			{text = "elf_spear_shield",   value = 6, show_widgets = {}},
+		},
+		sub_widgets = {},
+	},
+	{
+		setting_id = "hats",
+		type = "dropdown",
+		default_value = 1,
+		title = "choose_char_hat",
+		tooltip = "choose_char_hat",
+		options = {
+			{text = "choose_char_hat",   value = 1},
+			{text = "krub",   value = 2, show_widgets = {}},
+			{text = "bard",   value = 3, show_widgets = {}},
+			{text = "salt",   value = 4, show_widgets = {}},
+			{text = "elf",   value = 5, show_widgets = {}},
+			{text = "wiz",   value = 6, show_widgets = {}},
 		},
 		sub_widgets = {},
 	}
@@ -114,6 +130,25 @@ for _,skin in ipairs(mod.elf_skins) do
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[6].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+
+
+--reset skins for hats
+num_skins = 0
+--elf hats
+for _,skin in ipairs(mod.elf_hat_skins) do
+	local widget = table.clone(shield_sub_choice)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.elf_hats) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[2].options[5].show_widgets, num_skins)
+	table.insert(menu.options.widgets[2].sub_widgets, widget)
 end
 
 return menu

@@ -272,9 +272,25 @@ mod.SKIN_LIST = {
         swap_hand = "left_hand_unit",
         swap_skin = nil,
     },
+    Kerillian_elf_hat_Windrunner = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_empire_shield_hero1_Kotbs01/Kruber_empire_shield_hero1_Kotbs01_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
 }
 
-local skin_table = table.shallow_copy(WeaponSkins.skins)
+local skin_table_weapons = table.shallow_copy(WeaponSkins.skins)
+local skin_table_items = table.clone(ItemMasterList)
 local skins_to_change = {}
 
 --these mod tables are used split up so the vmf widgets can easily group the skins by weapon type
@@ -326,11 +342,16 @@ mod.elf_skins = {
     "we_1h_spears_shield_skin_02",
 }
 
+mod.elf_hat_skins = {
+	"maidenguard_hat_1001",
+}
+
 table.append(skins_to_change, mod.bret_skins)
 table.append(skins_to_change, mod.empire_spear_shield)
 table.append(skins_to_change, mod.empire_sword_shield)
 table.append(skins_to_change, mod.empire_mace_shield)
 table.append(skins_to_change, mod.elf_skins)
+table.append(skins_to_change, mod.elf_hat_skins)
 
 --this mod table is used for the vmf menu localization
 mod.vanilla_game_strings = table.shallow_copy(skins_to_change)
@@ -338,7 +359,13 @@ mod.vanilla_game_strings = table.shallow_copy(skins_to_change)
 mod.SKIN_CHANGED = {}
 
 for _,skin in pairs(skins_to_change) do
-    local unit = skin_table[skin].left_hand_unit
+    local unit = nil
+    if skin_table_weapons[skin] then
+        unit = skin_table_weapons[skin].left_hand_unit
+    elseif skin_table_items[skin] then
+        unit = skin_table_items[skin].unit
+    end
+ 
     
     local tisch = {
         changed_texture = false,

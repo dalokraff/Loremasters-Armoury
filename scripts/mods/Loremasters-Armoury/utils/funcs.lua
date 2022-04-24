@@ -43,15 +43,21 @@ end
 --to prevent sending clients/host a bad lookup key can causing them to crash
 local function swap_units_new(Armoury_key, skin)
     local hand = mod.SKIN_LIST[Armoury_key].swap_hand
-    
-    NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]
-    NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+    if hand == "left_hand_unit" or hand == "right_hand_unit" then
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
 
-    NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]
-    NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]] = mod.SKIN_LIST[Armoury_key].new_units[2]
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]] = mod.SKIN_LIST[Armoury_key].new_units[2]
 
-    
-    WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        
+        WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
+    elseif hand == "hat" then
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+       
+        ItemMasterList[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
+    end
 
 end
 
@@ -59,11 +65,20 @@ local function swap_units_old(Armoury_key, skin)
     if mod.SKIN_CHANGED[skin].changed_model then
         local hand = mod.SKIN_LIST[Armoury_key].swap_hand
         
+        if hand == "left_hand_unit" or hand == "right_hand_unit" then
+
+            NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
+            NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
+
+            NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit.."_3p"] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]
+            NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]] = mod.SKIN_CHANGED[skin].unit.."_3p"
+
+            WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
+            mod.SKIN_CHANGED[skin].changed_model = false
+        end
+    elseif hand == "hat" then
         NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
         NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
-
-        NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit.."_3p"] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]] = mod.SKIN_CHANGED[skin].unit.."_3p"
 
         WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
         mod.SKIN_CHANGED[skin].changed_model = false
