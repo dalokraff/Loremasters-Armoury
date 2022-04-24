@@ -489,7 +489,7 @@ table.append(skins_to_change, mod.elf_skins)
 table.append(skins_to_change, mod.elf_hat_skins)
 
 --this mod table is used for the vmf menu localization
-mod.vanilla_game_strings = table.shallow_copy(skins_to_change)
+mod.vanilla_game_strings = table.clone(skins_to_change)
 
 mod.SKIN_CHANGED = {}
 
@@ -507,7 +507,7 @@ for _,skin in pairs(skins_to_change) do
         changed_model = false,
         unit = unit,
     }
-    mod.SKIN_CHANGED[skin] = table.shallow_copy(tisch)
+    mod.SKIN_CHANGED[skin] = table.clone(tisch)
 end
 
 mod.has_old_texture = false
