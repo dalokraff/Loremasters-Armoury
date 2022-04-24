@@ -78,16 +78,16 @@ mod.elf_shields = {
 }
 
 mod.elf_hats = {
-    Kerillian_elf_hat_Windrunner_Avelorn = "Kerillian_elf_hat_Windrunner_Avelorn",
-    Kerillian_elf_hat_Windrunner_Caledor = "Kerillian_elf_hat_Windrunner_Caledor",
-    Kerillian_elf_hat_Windrunner_Chrace = "Kerillian_elf_hat_Windrunner_Chrace",
-    Kerillian_elf_hat_Windrunner_Cothique = "Kerillian_elf_hat_Windrunner_Cothique",
-    Kerillian_elf_hat_Windrunner_Eataine = "Kerillian_elf_hat_Windrunner_Eataine",
-    Kerillian_elf_hat_Windrunner_Ellyrion = "Kerillian_elf_hat_Windrunner_Ellyrion",
-    Kerillian_elf_hat_Windrunner_Nagarythe = "Kerillian_elf_hat_Windrunner_Nagarythe",
-    Kerillian_elf_hat_Windrunner_Saphery = "Kerillian_elf_hat_Windrunner_Saphery",
-    Kerillian_elf_hat_Windrunner_Tiranoc = "Kerillian_elf_hat_Windrunner_Tiranoc",
-    Kerillian_elf_hat_Windrunner_Yvresse = "Kerillian_elf_hat_Windrunner_Yvresse",
+    Kerillian_elf_hat_Windrunner_Avelorn = "Avelorn",
+    Kerillian_elf_hat_Windrunner_Caledor = "Caledor",
+    Kerillian_elf_hat_Windrunner_Chrace = "Chrace",
+    Kerillian_elf_hat_Windrunner_Cothique = "Cothique",
+    Kerillian_elf_hat_Windrunner_Eataine = "Eataine",
+    Kerillian_elf_hat_Windrunner_Ellyrion = "Ellyrion",
+    Kerillian_elf_hat_Windrunner_Nagarythe = "Nagarythe",
+    Kerillian_elf_hat_Windrunner_Saphery = "Saphery",
+    Kerillian_elf_hat_Windrunner_Tiranoc = "Tiranoc",
+    Kerillian_elf_hat_Windrunner_Yvresse = "Yvresse",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
