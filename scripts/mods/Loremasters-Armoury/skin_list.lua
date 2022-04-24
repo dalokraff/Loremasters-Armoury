@@ -272,11 +272,146 @@ mod.SKIN_LIST = {
         swap_hand = "left_hand_unit",
         swap_skin = nil,
     },
-    Kerillian_elf_hat_Windrunner = {
+    Kerillian_elf_hat_Windrunner_Avelorn = {
         kind = "texture",
         swap_skin = nil,
         textures = {
-            "textures/Kruber_empire_shield_hero1_Kotbs01/Kruber_empire_shield_hero1_Kotbs01_diffuse",
+            "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Caledor = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Caledor/Kerillian_Wildrunner_helm_Caledor_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Chrace = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Chrace/Kerillian_Wildrunner_helm_Chrace_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Cothique = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Cothique/Kerillian_Wildrunner_helm_Cothique_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Eataine = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Eataine/Kerillian_Wildrunner_helm_Eataine_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Ellyrion = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Ellyrion/Kerillian_Wildrunner_helm_Ellyrion_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Nagarythe = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Nagarythe/Kerillian_Wildrunner_helm_Nagarythe_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Saphery = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Saphery/Kerillian_Wildrunner_helm_Saphery_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Tiranoc = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Tiranoc/Kerillian_Wildrunner_helm_Tiranoc_diffuse",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
+            "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_elf_hat_Windrunner_Yvresse = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Wildrunner_helm/Yvresse/Kerillian_Wildrunner_helm_Yvresse_diffuse",
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_combined",
             "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_shield02_normal",
         },

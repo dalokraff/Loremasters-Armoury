@@ -5,10 +5,6 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
     local data_range = self.recently_acquired_list["slot_ranged"]
-    local hat = self.recently_acquired_list["slot_hat"]
-    for k,v in pairs(self.recently_acquired_list) do 
-        mod:echo(k)
-    end
 
     for skin,bools in pairs(mod.SKIN_CHANGED) do
         if bools.changed_texture then
@@ -142,49 +138,6 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
         end
     end
 end)
--- mod:hook_safe(CosmeticUtils,"update_cosmetic_slot", function(player, slot, item_name, skin_name)
---     if slot == "slot_hat" then 
---         mod:echo(slot)
---         mod:echo(item_name)
---         mod:echo(skin_name)
---         local num = player:get_data("slot_hat")
---         mod:echo(NetworkLookup.item_names[num])
---     end
---     -- local num = player:get_data("slot_hat")
---     -- local unit = Managers.state.unit_storage:unit(num)
---     -- mod:echo(unit)
---     -- mod:echo(num)
--- end)
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit    
--- local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
--- local career_extension = ScriptUnit.extension(player_unit, "career_system")
--- local career_name = career_extension:career_name()
--- local item = BackendUtils.get_loadout_item(career_name, "slot_".."hat")
--- for k ,v in pairs(item.data) do 
---     mod:echo(tostring(k)..":    "..tostring(v))
--- end
--- mod:echo(item)
--- mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings) 
---     mod:echo(item_slot_type)
---     if item_slot_type == "hat" then
---         mod:echo(unit)
---         for k,v in pairs(item_template.slots) do 
---             mod:echo(tostring(k)..":    "..tostring(v))
---         end
---     end
---     for slot_order,units in pairs(self._equipment_units) do
---         -- local slot = slot_dict[slot_order]
---         mod:echo(slot_order)
---     end
--- end)
-
--- mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
---     local data_melee = self.recently_acquired_list["slot_melee"]
---     local data_range = self.recently_acquired_list["slot_ranged"]
---     local data_hat = self.recently_acquired_list["slot_hat"]
---     mod:echo(data_hat)
--- end)
 
 --the name of pacakges to count as loaded are taken from the string_dict file
 local pacakge_tisch = {}

@@ -27,7 +27,16 @@ local desc_strings = {
     Kerillian_elf_shield_basicClean_Saphery01 = "Aside from powerful mages, the enchanted land of Saphery is also home to Swordmasters of Hoeth, who dedicate their lives to study of meditation and deadly martial arts.",
     Kerillian_elf_shield_heroClean_Eataine01 = "Phoenixes - the chosen messengers of the Creator God - are a popular symbols among the folk of Eataine, who believe that is was Asuryan who lifted Ulthuan from ocean's depths.",
     Kerillian_elf_shield_basicClean_Caledor01 = "Woe betide he who encounters an army of Caledor on the march, for it will surely be the last battle he ever fights.",
-    Kerillian_elf_hat_Windrunner = "New Windrunnder Description",
+    Kerillian_elf_hat_Windrunner_Avelorn = "Kerillian_elf_hat_Windrunner_Avelorn",
+    Kerillian_elf_hat_Windrunner_Caledor = "Kerillian_elf_hat_Windrunner_Caledor",
+    Kerillian_elf_hat_Windrunner_Chrace = "Kerillian_elf_hat_Windrunner_Chrace",
+    Kerillian_elf_hat_Windrunner_Cothique = "Kerillian_elf_hat_Windrunner_Cothique",
+    Kerillian_elf_hat_Windrunner_Eataine = "Kerillian_elf_hat_Windrunner_Eataine",
+    Kerillian_elf_hat_Windrunner_Ellyrion = "Kerillian_elf_hat_Windrunner_Ellyrion",
+    Kerillian_elf_hat_Windrunner_Nagarythe = "Kerillian_elf_hat_Windrunner_Nagarythe",
+    Kerillian_elf_hat_Windrunner_Saphery = "Kerillian_elf_hat_Windrunner_Saphery",
+    Kerillian_elf_hat_Windrunner_Tiranoc = "Kerillian_elf_hat_Windrunner_Tiranoc",
+    Kerillian_elf_hat_Windrunner_Yvresse = "Kerillian_elf_hat_Windrunner_Yvresse",
 }
 
 local name_strings = {}
@@ -69,7 +78,16 @@ mod.elf_shields = {
 }
 
 mod.elf_hats = {
-    Kerillian_elf_hat_Windrunner = "New Windrunnder",
+    Kerillian_elf_hat_Windrunner_Avelorn = "Kerillian_elf_hat_Windrunner_Avelorn",
+    Kerillian_elf_hat_Windrunner_Caledor = "Kerillian_elf_hat_Windrunner_Caledor",
+    Kerillian_elf_hat_Windrunner_Chrace = "Kerillian_elf_hat_Windrunner_Chrace",
+    Kerillian_elf_hat_Windrunner_Cothique = "Kerillian_elf_hat_Windrunner_Cothique",
+    Kerillian_elf_hat_Windrunner_Eataine = "Kerillian_elf_hat_Windrunner_Eataine",
+    Kerillian_elf_hat_Windrunner_Ellyrion = "Kerillian_elf_hat_Windrunner_Ellyrion",
+    Kerillian_elf_hat_Windrunner_Nagarythe = "Kerillian_elf_hat_Windrunner_Nagarythe",
+    Kerillian_elf_hat_Windrunner_Saphery = "Kerillian_elf_hat_Windrunner_Saphery",
+    Kerillian_elf_hat_Windrunner_Tiranoc = "Kerillian_elf_hat_Windrunner_Tiranoc",
+    Kerillian_elf_hat_Windrunner_Yvresse = "Kerillian_elf_hat_Windrunner_Yvresse",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
