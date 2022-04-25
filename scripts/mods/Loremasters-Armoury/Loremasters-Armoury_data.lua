@@ -59,7 +59,7 @@ local num_skins = 0
 
 --bret sword and shield
 for _,skin in ipairs(mod.bret_skins) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1
@@ -74,7 +74,7 @@ end
 
 --emp spear and shield
 for _,skin in ipairs(mod.empire_spear_shield) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1
@@ -89,7 +89,7 @@ end
 
 --emp sword and shield
 for _,skin in ipairs(mod.empire_sword_shield) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1
@@ -104,7 +104,7 @@ end
 
 --emp mace and shield
 for _,skin in ipairs(mod.empire_mace_shield) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, false)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1
@@ -119,7 +119,7 @@ end
 
 --elf spear and shield
 for _,skin in ipairs(mod.elf_skins) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1
@@ -138,7 +138,7 @@ end
 num_skins = 0
 --elf hats
 for _,skin in ipairs(mod.elf_hat_skins) do
-	local widget = table.clone(shield_sub_choice)
+	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
 	local x = 1

@@ -113,7 +113,7 @@ end
 local desc = {}
 local name = {}
 -- local skin_table = table.clone(WeaponSkins.skins)
-local skin_table = table.clone(ItemMasterList)
+local skin_table = table.clone(ItemMasterList, true)
 
 for skin, data in pairs(mod.SKIN_CHANGED) do
     local description = skin_table[skin].description
@@ -126,10 +126,10 @@ end
 mod.dict = {}
 mod.helper_dict = {}
 for k,v in pairs(desc) do
-    mod.dict[k] = table.clone(desc_strings)
+    mod.dict[k] = table.clone(desc_strings, true)
 end
 for k,v in pairs(name) do
-    mod.dict[k] = table.clone(name_strings)
+    mod.dict[k] = table.clone(name_strings, true)
 end
 
 for k,v in pairs(desc) do
