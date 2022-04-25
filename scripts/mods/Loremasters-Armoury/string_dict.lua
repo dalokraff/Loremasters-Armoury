@@ -27,16 +27,16 @@ local desc_strings = {
     Kerillian_elf_shield_basicClean_Saphery01 = "Aside from powerful mages, the enchanted land of Saphery is also home to Swordmasters of Hoeth, who dedicate their lives to study of meditation and deadly martial arts.",
     Kerillian_elf_shield_heroClean_Eataine01 = "Phoenixes - the chosen messengers of the Creator God - are a popular symbols among the folk of Eataine, who believe that is was Asuryan who lifted Ulthuan from ocean's depths.",
     Kerillian_elf_shield_basicClean_Caledor01 = "Woe betide he who encounters an army of Caledor on the march, for it will surely be the last battle he ever fights.",
-    Kerillian_elf_hat_Windrunner_Avelorn = "Kerillian_elf_hat_Windrunner_Avelorn",
-    Kerillian_elf_hat_Windrunner_Caledor = "Kerillian_elf_hat_Windrunner_Caledor",
-    Kerillian_elf_hat_Windrunner_Chrace = "Kerillian_elf_hat_Windrunner_Chrace",
-    Kerillian_elf_hat_Windrunner_Cothique = "Kerillian_elf_hat_Windrunner_Cothique",
-    Kerillian_elf_hat_Windrunner_Eataine = "Kerillian_elf_hat_Windrunner_Eataine",
-    Kerillian_elf_hat_Windrunner_Ellyrion = "Kerillian_elf_hat_Windrunner_Ellyrion",
-    Kerillian_elf_hat_Windrunner_Nagarythe = "Kerillian_elf_hat_Windrunner_Nagarythe",
-    Kerillian_elf_hat_Windrunner_Saphery = "Kerillian_elf_hat_Windrunner_Saphery",
-    Kerillian_elf_hat_Windrunner_Tiranoc = "Kerillian_elf_hat_Windrunner_Tiranoc",
-    Kerillian_elf_hat_Windrunner_Yvresse = "Kerillian_elf_hat_Windrunner_Yvresse",
+    Kerillian_elf_hat_Windrunner_Avelorn = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Avelorn.",
+    Kerillian_elf_hat_Windrunner_Caledor = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Caledor",
+    Kerillian_elf_hat_Windrunner_Chrace = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Chrace",
+    Kerillian_elf_hat_Windrunner_Cothique = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Cothique",
+    Kerillian_elf_hat_Windrunner_Eataine = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Eataine",
+    Kerillian_elf_hat_Windrunner_Ellyrion = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Ellyrion",
+    Kerillian_elf_hat_Windrunner_Nagarythe = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Nagarythe",
+    Kerillian_elf_hat_Windrunner_Saphery = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Saphery",
+    Kerillian_elf_hat_Windrunner_Tiranoc = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Tiranoc",
+    Kerillian_elf_hat_Windrunner_Yvresse = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Yvresse",
 }
 
 local name_strings = {}
@@ -78,16 +78,16 @@ mod.elf_shields = {
 }
 
 mod.elf_hats = {
-    Kerillian_elf_hat_Windrunner_Avelorn = "Avelorn",
-    Kerillian_elf_hat_Windrunner_Caledor = "Caledor",
-    Kerillian_elf_hat_Windrunner_Chrace = "Chrace",
-    Kerillian_elf_hat_Windrunner_Cothique = "Cothique",
-    Kerillian_elf_hat_Windrunner_Eataine = "Eataine",
-    Kerillian_elf_hat_Windrunner_Ellyrion = "Ellyrion",
-    Kerillian_elf_hat_Windrunner_Nagarythe = "Nagarythe",
-    Kerillian_elf_hat_Windrunner_Saphery = "Saphery",
-    Kerillian_elf_hat_Windrunner_Tiranoc = "Tiranoc",
-    Kerillian_elf_hat_Windrunner_Yvresse = "Yvresse",
+    Kerillian_elf_hat_Windrunner_Avelorn = "Knight helm of Avelorn",
+    Kerillian_elf_hat_Windrunner_Caledor = "Knight helm of Caledor",
+    Kerillian_elf_hat_Windrunner_Chrace = "Knight helm of Chrace",
+    Kerillian_elf_hat_Windrunner_Cothique = "Knight helm of Cothique",
+    Kerillian_elf_hat_Windrunner_Eataine = "Knight helm of Eataine",
+    Kerillian_elf_hat_Windrunner_Ellyrion = "Knight helm of Ellyrion",
+    Kerillian_elf_hat_Windrunner_Nagarythe = "Knight helm of Nagarythe",
+    Kerillian_elf_hat_Windrunner_Saphery = "Knight helm of Saphery",
+    Kerillian_elf_hat_Windrunner_Tiranoc = "Knight helm of Tiranoc",
+    Kerillian_elf_hat_Windrunner_Yvresse = "Knight helm of Yvresse",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
