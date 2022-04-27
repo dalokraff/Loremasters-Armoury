@@ -56,7 +56,7 @@ function mod.update()
     
 end
 
-local function spawn_package_to_player (package_name, offset)
+local function spawn_package_to_player (package_name, hieght, offset)
 	local player = Managers.player:local_player()
 	local world = Managers.world:world("level_world")
   
@@ -64,7 +64,7 @@ local function spawn_package_to_player (package_name, offset)
 	  local player_unit = player.player_unit
   
         local pos_off = offset or 0
-	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0+offset, 0)
+	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0+offset, hieght)
 	  local rotation = Unit.local_rotation(player_unit, 0)
 	  local unit = World.spawn_unit(world, package_name, position, rotation)
   
@@ -87,16 +87,16 @@ mod:command("FK_sun_suits", "", function()
     Managers.package:load(package, "global")
     Managers.package:load(skin_package, "global")
 
-    local unit0 = spawn_package_to_player(package,-1.5)
+    local unit0 = spawn_package_to_player(package,0,-1.5)
     Unit.set_material(unit0, "mtr_outfit",skin_mtr)
 
-    local unit1 = spawn_package_to_player(package,0)
+    local unit1 = spawn_package_to_player(package,0,0)
     Unit.set_material(unit1, "mtr_outfit",skin_mtr)
 
-    local unit2 = spawn_package_to_player(package,1.5)
+    local unit2 = spawn_package_to_player(package,0,1.5)
     Unit.set_material(unit2, "mtr_outfit",skin_mtr)
 
-    local unit3 = spawn_package_to_player(package,3)
+    local unit3 = spawn_package_to_player(package,0,3)
     Unit.set_material(unit3, "mtr_outfit",skin_mtr)
 
     local tisch = {}
@@ -147,3 +147,84 @@ mod:command("FK_sun_suits", "", function()
     end
 
 end)
+
+
+mod:command("FK_sun_hats", "", function()
+    local package = "units/beings/player/empire_soldier_knight/headpiece/es_k_hat_12"
+    -- local skin_package = "units/beings/player/empire_soldier_knight/skins/black_and_gold/chr_empire_soldier_knight_black_and_gold"
+    -- local skin_mtr = "units/beings/player/empire_soldier_knight/skins/black_and_gold/mtr_outfit_black_and_gold"
+
+    local diff_slot = "texture_map_c0ba2942"
+    local norm_slot = "texture_map_59cd86b9"
+    local comb_slot = "texture_map_0205ba86"
+
+    Managers.package:load(package, "global")
+    -- Managers.package:load(skin_package, "global")
+
+    local unit0 = spawn_package_to_player(package,1,-1)
+    -- Unit.set_material(unit0, "mtr_outfit",skin_mtr)
+
+    local unit1 = spawn_package_to_player(package,1,0)
+    -- Unit.set_material(unit1, "mtr_outfit",skin_mtr)
+
+    local unit2 = spawn_package_to_player(package,1,1)
+    -- Unit.set_material(unit2, "mtr_outfit",skin_mtr)
+
+    local unit3 = spawn_package_to_player(package,1,2)
+    -- Unit.set_material(unit3, "mtr_outfit",skin_mtr)
+
+    local tisch = {}
+
+    tisch[unit1] = {
+        diff = 'textures/KOTBS_HAT/one/diff',
+        norm = 'textures/KOTBS_HAT/one/norm',
+        comb = 'textures/KOTBS_HAT/one/comb',
+    }
+    tisch[unit2] = {
+        diff = 'textures/KOTBS_HAT/two/diff',
+        norm = 'textures/KOTBS_HAT/two/norm',
+        comb = 'textures/KOTBS_HAT/two/comb',
+    }
+    tisch[unit3] = {
+        diff = 'textures/KOTBS_HAT/three/diff',
+        norm = 'textures/KOTBS_HAT/three/norm',
+        comb = 'textures/KOTBS_HAT/three/comb',
+    }
+    
+    for unit,textures in pairs(tisch) do
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if textures then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, textures.diff)
+                        Material.set_texture(mat, norm_slot, textures.norm)
+                        Material.set_texture(mat, comb_slot, textures.comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, textures.diff)
+                        Material.set_texture(mat, norm_slot, textures.norm)
+                        Material.set_texture(mat, comb_slot, textures.comb)
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
+-- for k,v in pairs(ItemMasterList) do
+--     if v.item_type == "hat"then
+--         local game_localize = Managers.localizer
+--         mod:echo(tostring(k)..":    "..tostring(game_localize:_base_lookup(v.display_name)))
+--     end
+-- end
