@@ -55,3 +55,95 @@ function mod.update()
     
     
 end
+
+local function spawn_package_to_player (package_name, offset)
+	local player = Managers.player:local_player()
+	local world = Managers.world:world("level_world")
+  
+	if world and player and player.player_unit then
+	  local player_unit = player.player_unit
+  
+        local pos_off = offset or 0
+	  local position = Unit.local_position(player_unit, 0) + Vector3(0, 0+offset, 0)
+	  local rotation = Unit.local_rotation(player_unit, 0)
+	  local unit = World.spawn_unit(world, package_name, position, rotation)
+  
+	  mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
+	  return unit
+	end
+  
+	return nil
+end
+
+mod:command("FK_sun_suits", "", function()
+    local package = "units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh"
+    local skin_package = "units/beings/player/empire_soldier_knight/skins/black_and_gold/chr_empire_soldier_knight_black_and_gold"
+    local skin_mtr = "units/beings/player/empire_soldier_knight/skins/black_and_gold/mtr_outfit_black_and_gold"
+
+    local diff_slot = "texture_map_64cc5eb8"
+    local norm_slot = "texture_map_861dbfdc"
+    local comb_slot = "texture_map_abb81538"
+
+    Managers.package:load(package, "global")
+    Managers.package:load(skin_package, "global")
+
+    local unit0 = spawn_package_to_player(package,-1.5)
+    Unit.set_material(unit0, "mtr_outfit",skin_mtr)
+
+    local unit1 = spawn_package_to_player(package,0)
+    Unit.set_material(unit1, "mtr_outfit",skin_mtr)
+
+    local unit2 = spawn_package_to_player(package,1.5)
+    Unit.set_material(unit2, "mtr_outfit",skin_mtr)
+
+    local unit3 = spawn_package_to_player(package,3)
+    Unit.set_material(unit3, "mtr_outfit",skin_mtr)
+
+    local tisch = {}
+
+    tisch[unit1] = {
+        diff = 'textures/KOTBS_SKIN/one/diff',
+        norm = 'textures/KOTBS_SKIN/one/norm',
+        comb = 'textures/KOTBS_SKIN/one/comb',
+    }
+    tisch[unit2] = {
+        diff = 'textures/KOTBS_SKIN/two/diff',
+        norm = 'textures/KOTBS_SKIN/two/norm',
+        comb = 'textures/KOTBS_SKIN/two/comb',
+    }
+    tisch[unit3] = {
+        diff = 'textures/KOTBS_SKIN/three/diff',
+        norm = 'textures/KOTBS_SKIN/three/norm',
+        comb = 'textures/KOTBS_SKIN/three/comb',
+    }
+    
+    for unit,textures in pairs(tisch) do
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if textures then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, textures.diff)
+                        Material.set_texture(mat, norm_slot, textures.norm)
+                        Material.set_texture(mat, comb_slot, textures.comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, textures.diff)
+                        Material.set_texture(mat, norm_slot, textures.norm)
+                        Material.set_texture(mat, comb_slot, textures.comb)
+                    end
+                end
+            end
+        end
+    end
+
+end)
