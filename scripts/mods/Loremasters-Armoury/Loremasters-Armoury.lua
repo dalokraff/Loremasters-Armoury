@@ -228,3 +228,239 @@ end)
 --         mod:echo(tostring(k)..":    "..tostring(game_localize:_base_lookup(v.display_name)))
 --     end
 -- end
+
+mod:command("FK_swap_suit1", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh"
+    local diff = 'textures/KOTBS_SKIN/one/diff'
+    local norm = 'textures/KOTBS_SKIN/one/norm'
+    local comb = 'textures/KOTBS_SKIN/one/comb'
+    local diff_slot = "texture_map_64cc5eb8"
+    local norm_slot = "texture_map_861dbfdc"
+    local comb_slot = "texture_map_abb81538"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
+mod:command("FK_swap_suit2", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh"
+    local diff = 'textures/KOTBS_SKIN/two/diff'
+    local norm = 'textures/KOTBS_SKIN/two/norm'
+    local comb = 'textures/KOTBS_SKIN/two/comb'
+    local diff_slot = "texture_map_64cc5eb8"
+    local norm_slot = "texture_map_861dbfdc"
+    local comb_slot = "texture_map_abb81538"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
+mod:command("FK_swap_suit3", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh"
+    local diff = 'textures/KOTBS_SKIN/three/diff'
+    local norm = 'textures/KOTBS_SKIN/three/norm'
+    local comb = 'textures/KOTBS_SKIN/three/comb'
+    local diff_slot = "texture_map_64cc5eb8"
+    local norm_slot = "texture_map_861dbfdc"
+    local comb_slot = "texture_map_abb81538"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("FK_swap_hat1", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/headpiece/es_k_hat_12"
+    local diff = 'textures/KOTBS_HAT/one/diff'
+    local norm = 'textures/KOTBS_HAT/one/norm'
+    local comb = 'textures/KOTBS_HAT/one/comb'
+    local diff_slot = "texture_map_c0ba2942"
+    local norm_slot = "texture_map_59cd86b9"
+    local comb_slot = "texture_map_0205ba86"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
+mod:command("FK_swap_hat2", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/headpiece/es_k_hat_12"
+    local diff = 'textures/KOTBS_HAT/two/diff'
+    local norm = 'textures/KOTBS_HAT/two/norm'
+    local comb = 'textures/KOTBS_HAT/two/comb'
+    local diff_slot = "texture_map_c0ba2942"
+    local norm_slot = "texture_map_59cd86b9"
+    local comb_slot = "texture_map_0205ba86"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
+mod:command("FK_swap_hat3", "", function()
+    local world = Managers.world:world("level_world")
+    local unit_path = "units/beings/player/empire_soldier_knight/headpiece/es_k_hat_12"
+    local diff = 'textures/KOTBS_HAT/three/diff'
+    local norm = 'textures/KOTBS_HAT/three/norm'
+    local comb = 'textures/KOTBS_HAT/three/comb'
+    local diff_slot = "texture_map_c0ba2942"
+    local norm_slot = "texture_map_59cd86b9"
+    local comb_slot = "texture_map_0205ba86"
+    local units = World.units_by_resource(world, unit_path)
+    for _,unit in pairs(units) do 
+        local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+    end
+end)
