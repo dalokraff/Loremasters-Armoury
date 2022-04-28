@@ -122,7 +122,7 @@ mod:command("FK_sun_suits", "", function()
         mod:echo(num_meshes)
         for i = 0, num_meshes - 1, 1 do
             if textures then
-                if true then  
+                if i>6 and i<=9 then  
                     local mesh = Unit.mesh(unit, i)
                     local num_mats = Mesh.num_materials(mesh)
                     for j = 0, num_mats - 1, 1 do
@@ -244,7 +244,7 @@ mod:command("FK_swap_suit1", "", function()
         mod:echo(num_meshes)
         for i = 0, num_meshes - 1, 1 do
             if true then
-                if true then  
+                if i>6 and i<=9 then  
                     local mesh = Unit.mesh(unit, i)
                     local num_mats = Mesh.num_materials(mesh)
                     for j = 0, num_mats - 1, 1 do
@@ -283,7 +283,7 @@ mod:command("FK_swap_suit2", "", function()
         mod:echo(num_meshes)
         for i = 0, num_meshes - 1, 1 do
             if true then
-                if true then  
+                if i>6 and i<=9 then  
                     local mesh = Unit.mesh(unit, i)
                     local num_mats = Mesh.num_materials(mesh)
                     for j = 0, num_mats - 1, 1 do
@@ -322,7 +322,7 @@ mod:command("FK_swap_suit3", "", function()
         mod:echo(num_meshes)
         for i = 0, num_meshes - 1, 1 do
             if true then
-                if true then  
+                if i>6 and i<=9 then  
                     local mesh = Unit.mesh(unit, i)
                     local num_mats = Mesh.num_materials(mesh)
                     for j = 0, num_mats - 1, 1 do
