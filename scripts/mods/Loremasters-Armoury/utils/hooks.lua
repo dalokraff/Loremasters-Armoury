@@ -6,6 +6,10 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     local data_melee = self.recently_acquired_list["slot_melee"]
     local data_range = self.recently_acquired_list["slot_ranged"]
 
+    -- for name, slot in pairs(self.recently_acquired_list) do 
+    --     mod:echo(tostring(name)..":     "..tostring(slot))
+    -- end
+
     for skin,bools in pairs(mod.SKIN_CHANGED) do
         if bools.changed_texture then
             local Armoury_key_melee = mod:get(skin)
@@ -58,27 +62,65 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     return func(self, backend_id)
 end)
 
---hook to populate level queue with hat units
-mod:hook_safe(PlayerUnitAttachmentExtension,"show_attachments", function(self, show)
-    if self._show_attachments then
-        local slots = self._attachments.slots
-        local slot_hat = slots["slot_hat"]
 
-        local unit = slot_hat.unit
-        local hat_name = slot_hat.name
-        local Armoury_key = mod:get(hat_name)
-        for skin,bools in pairs(mod.SKIN_CHANGED) do
-            if bools.changed_texture then
-                if hat_name == skin then
-                    mod.level_queue[unit] = {
-                        Armoury_key = Armoury_key,
-                        skin = skin,
-                    }
-                end
+mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
+    local unit_name = nil
+    if Unit.has_data(target, 'unit_name') then
+        unit_name = Unit.get_data(target, 'unit_name')
+    end
+    for skin,tisch in pairs(mod.SKIN_CHANGED) do
+        local Armoury_key = mod:get(skin)
+        if tisch.changed_texture then
+            mod:echo(tisch.unit)
+            if unit_name == mod.SKIN_LIST[Armoury_key].new_units[1] then
+                mod:echo(Armoury_key)
+                mod.level_queue[target] = {
+                    Armoury_key = Armoury_key,
+                    skin = skin,
+                }
             end
         end
     end
+ 
+    return func(world, source, target, node_linking)
 end)
+
+-- mod:hook(Unit, "animation_event", function(func, unit, event)
+--     if Unit.has_animation_state_machine(unit) then
+--         if Unit.has_animation_event(unit, event) then
+--             return func(unit, event)
+--         end
+--     end
+--     return nil
+-- end)
+
+-- local world = Managers.world:world("level_world")
+-- local units = World.units(world)
+-- for k,v in pairs(units) do 
+--     Unit.animation_event(v, 'hgello')
+-- end
+
+--hook to populate level queue with hat units
+-- mod:hook_safe(PlayerUnitAttachmentExtension,"show_attachments", function(self, show)
+--     if self._show_attachments then
+--         local slots = self._attachments.slots
+--         local slot_hat = slots["slot_hat"]
+
+--         local unit = slot_hat.unit
+--         local hat_name = slot_hat.name
+--         local Armoury_key = mod:get(hat_name)
+--         for skin,bools in pairs(mod.SKIN_CHANGED) do
+--             if bools.changed_texture then
+--                 if hat_name == skin then
+--                     mod.level_queue[unit] = {
+--                         Armoury_key = Armoury_key,
+--                         skin = skin,
+--                     }
+--                 end
+--             end
+--         end
+--     end
+-- end)
 
 --this hook is used to populate the character_preview queue; gets the unit loaded in the preview if it's of the correct skin. correct hand and in the correct slot
 local slot_dict = {
