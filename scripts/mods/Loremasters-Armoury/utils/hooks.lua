@@ -5,7 +5,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
     local data_range = self.recently_acquired_list["slot_ranged"]
-    
+
     for skin,bools in pairs(mod.SKIN_CHANGED) do
         if bools.changed_texture then
             local Armoury_key_melee = mod:get(skin)
@@ -67,11 +67,13 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
     for skin,tisch in pairs(mod.SKIN_CHANGED) do
         local Armoury_key = mod:get(skin)
         if tisch.changed_texture then
-            if unit_name == mod.SKIN_LIST[Armoury_key].new_units[1] then
-                mod.level_queue[target] = {
-                    Armoury_key = Armoury_key,
-                    skin = skin,
-                }
+            if mod.SKIN_LIST[Armoury_key].new_units then
+                if unit_name == mod.SKIN_LIST[Armoury_key].new_units[1] then
+                    mod.level_queue[target] = {
+                        Armoury_key = Armoury_key,
+                        skin = skin,
+                    }
+                end
             end
         end
     end
@@ -133,8 +135,6 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                     end
                 end
             end
-
-            
         end
     end
 end)

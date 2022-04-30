@@ -113,6 +113,12 @@ end
 for k,v in pairs(mod.elf_hats) do
     name_strings[k] = v
 end
+for k,v in pairs(mod.krub_hats) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.krub_armors) do
+    name_strings[k] = v
+end
 --copies the name_strings table to be used in a mod table for the vmf menu localization
 mod.name_strings_id = {}
 for k,v in pairs(name_strings) do
