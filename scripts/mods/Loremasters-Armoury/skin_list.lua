@@ -556,6 +556,7 @@ for _,skin in pairs(skins_to_change) do
         changed_texture = false,
         changed_model = false,
         unit = unit,
+        cosmetic_table = Cosmetics[skin]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)
 end

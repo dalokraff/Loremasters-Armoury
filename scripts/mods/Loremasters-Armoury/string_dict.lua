@@ -37,8 +37,8 @@ local desc_strings = {
     Kerillian_elf_hat_Windrunner_Saphery = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Saphery",
     Kerillian_elf_hat_Windrunner_Tiranoc = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Tiranoc",
     Kerillian_elf_hat_Windrunner_Yvresse = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Yvresse",
-    Kruber_KOTBS_hat = "KOTBS HAT",
-    Kruber_KOTBS_armor = "KOTBS ARMOR",
+    Kruber_KOTBS_hat = "There is a subtle touch of elven magic upon this helm, protecting its wearer's mind and enhancing their senses. A favour from an old friend?",
+    Kruber_KOTBS_armor = "To accomplish any task - to defeat any foe, all that is needed is a keen eye, a sharp mind and the favour of the Goddess.",
 }
 
 local name_strings = {}
@@ -93,11 +93,11 @@ mod.elf_hats = {
 }
 
 mod.krub_hats = {
-    Kruber_KOTBS_hat = "KOTBS HAT",
+    Kruber_KOTBS_hat = "Blessed Helm of the Blazing Sun",
 }
 
 mod.krub_armors = {
-    Kruber_KOTBS_armor = "KOTBS ARMOR",
+    Kruber_KOTBS_armor = "Blessed Plate of the Blazing Sun",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook

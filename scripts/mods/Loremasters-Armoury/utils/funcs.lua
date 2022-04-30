@@ -158,21 +158,28 @@ local function re_equip_weapons(skin)
                 inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
             end
 
-            local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
-            attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
+            -- local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
+            -- attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
 
-            local Amoury_key = mod:get(skin)
-            local Amoury_item = mod.SKIN_LIST[Amoury_key]
-            if Amoury_item then
-                local cosmetic_key = Amoury_item.cosmetic_key
+           
+            
+            local cosmetic_table = mod.SKIN_CHANGED[skin].cosmetic_table
+            if cosmetic_table then 
                 local cosmetic_extension = ScriptUnit.extension(player_unit, "cosmetic_system")
-                if cosmetic_key then 
-                    local material_changes = Cosmetics[cosmetic_key].material_changes
+                local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
+
+                if mod.SKIN_CHANGED[skin].texture then
+                    local material_changes = cosmetic_table.material_changes
                     if material_changes then 
                         cosmetic_extension:change_skin_materials(material_changes)
                     end
+                else 
+                    attachment_extension:show_attachments(false)
+                    attachment_extension:show_attachments(true)
                 end
+                    
             end
+            
            
         end
     end
