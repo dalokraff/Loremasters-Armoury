@@ -464,7 +464,7 @@ mod.SKIN_LIST = {
     },
 }
 
-local skin_table_weapons = table.shallow_copy(WeaponSkins.skins)
+local skin_table_weapons = table.clone(WeaponSkins.skins)
 local skin_table_items = table.clone(ItemMasterList, true)
 local skins_to_change = {}
 
