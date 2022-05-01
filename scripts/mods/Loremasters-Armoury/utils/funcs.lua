@@ -6,7 +6,6 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
         local num_meshes = Unit.num_meshes(unit)
         for i = 0, num_meshes - 1, 1 do
             --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
-            -- mod:echo("is_fps_unit"..":  "..tostring(is_fps_unit))
             if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)]  and not is_fps_unit then
                 goto continue_apply_texture_to_all_world_units
             end
@@ -52,7 +51,6 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
                 norm_slot = "texture_map_861dbfdc"
                 pack_slot = "texture_map_b788717c"
                 is_fps_unit = true
-                -- mod:echo("is_fps_unit"..":  "..tostring(is_fps_unit))
             end
         end
     end
@@ -97,8 +95,8 @@ local function swap_units_new(Armoury_key, skin)
         -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
         -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
        
-        -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
-        local y =1
+        -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]\
+        local y = 1
     end
 
 end
@@ -125,52 +123,15 @@ local function swap_units_old(Armoury_key, skin)
         ItemMasterList[skin]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
         mod.SKIN_CHANGED[skin].changed_model = false
     elseif hand == "armor" then
-        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
+        -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
        
-        ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
         mod.SKIN_CHANGED[skin].changed_model = false
     end
 
 end
 
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local cosmetic_extension = ScriptUnit.extension(player_unit, "cosmetic_system")
--- local material_changes = {
---     package_name = "units/beings/player/empire_soldier_knight/skins/black_and_gold/chr_empire_soldier_knight_black_and_gold",
---     third_person = {
---         mtr_outfit = "units/beings/player/empire_soldier_knight/skins/black_and_gold/mtr_outfit_black_and_gold"
---     },
---     first_person = {
---         mtr_outfit = "units/beings/player/empire_soldier_knight/skins/black_and_gold/mtr_outfit_black_and_gold_1p"
---     }
--- }
--- mod:echo(material_changes.third_person)
--- cosmetic_extension:change_skin_materials(material_changes)
--- mod:echo(cosmetic_extension)
--- for k,v in pairs(cosmetic_extension) do
---     mod:echo(tostring(k))
--- end
-
--- local career_extension = ScriptUnit.extension(player_unit, "career_system")
--- local career_name = career_extension:career_name()
--- local item_hat = BackendUtils.get_loadout_item(career_name, "slot_hat")
--- mod:echo(item_hat)
--- local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
--- attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
--- local player = Managers.player:local_player()
--- CosmeticUtils.update_cosmetic_slot(self._player, "slot_skin", item_data.name)
--- local player = Managers.player
--- for k,v in pairs(player) do
---     mod:echo(tostring(k)..":    "..tostring(v))
-    
--- end
--- for k,v in pairs(ItemMasterList) do 
---     local game_localize = Managers.localizer
---     mod:echo(game_localize:_base_lookup("skin_es_knight_brass_keep"))
-
--- end
 --function to re-equip weapons if the either weapon skin matches the passed in skin
 local function re_equip_weapons(skin, unit)
     local player = Managers.player:local_player()
@@ -184,9 +145,7 @@ local function re_equip_weapons(skin, unit)
             local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
             local item_hat = BackendUtils.get_loadout_item(career_name, "slot_hat")
             local item_skin =  BackendUtils.get_loadout_item(career_name, "slot_skin")
-            -- for k,v in pairs(item_one) do
-            --     mod:echo(tostring(k)..":    "..tostring(v))
-            -- end
+
             if item_one.skin == skin or item_two.skin == skin then
                 BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
                 inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
@@ -196,37 +155,7 @@ local function re_equip_weapons(skin, unit)
 
             local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
             attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
-            -- local unit_name = Unit.get_data(unit, "unit_name")
-            -- if string.find(unit_name, mesh) then
-            --     local world = Managers.world:world("level_world")
-            --     local unit_spawner = Managers.state.unit_spawner
-            --     local pos = Unit.local_position(player_unit, 0)
-            --     local rot = Unit.local_rotation(player_unit, 0)
-            --     unit_spawner:mark_for_deletion(unit)
-            --     local new_unit = unit_spawner:spawn_local_unit_with_extensions(unit_name, nil, nil, pos, rot)
-            --     AttachmentUtils.link(world, player_unit, new_unit, AttachmentNodeLinking.kruber)
-            -- end
-            -- attachment_extension:update_resync_loadout()
-           
-            -- CosmeticUtils.update_cosmetic_slot(player, "slot_skin", item_skin.name)
-            -- local cosmetic_table = mod.SKIN_CHANGED[skin].cosmetic_table
-            -- if cosmetic_table then 
-            --     local cosmetic_extension = ScriptUnit.extension(player_unit, "cosmetic_system")
-            --     local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
 
-            --     if mod.SKIN_CHANGED[skin].texture then
-            --         local material_changes = cosmetic_table.material_changes
-            --         if material_changes then 
-            --             cosmetic_extension:change_skin_materials(material_changes)
-            --         end
-            --     else 
-            --         attachment_extension:show_attachments(false)
-            --         attachment_extension:show_attachments(true)
-            --     end
-                    
-            -- end
-            
-           
         end
     end
 end
@@ -238,10 +167,13 @@ end
 --to have it's default skin be given a new unit
 function mod.re_apply_illusion(Armoury_key, skin, unit)
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then
+        if ItemMasterList[skin].item_type == "skin"  then
+            mod:echo("You will need to re-equip your character skin for this change to be updated.")
+        end
         swap_units_old(mod.current_skin[skin], skin)
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = false
-        mod.SKIN_CHANGED[skin].changed_model = false
+        mod.SKIN_CHANGED[skin].changed_model = false   
     elseif Armoury_key == "default" then
         goto continue_re_apply_illusion
     elseif mod.SKIN_LIST[Armoury_key].kind == "texture" and not mod.SKIN_CHANGED[skin].changed_texture then
@@ -253,6 +185,9 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = true
         mod.has_old_texture = true
+        if ItemMasterList[skin].item_type == "skin" then
+            mod:echo("You will need to re-equip your character skin for this change to be updated.")
+        end
     elseif mod.SKIN_LIST[Armoury_key].kind == "unit" and not mod.SKIN_CHANGED[skin].changed_model then
         swap_units_new(Armoury_key, skin)
         re_equip_weapons(skin, unit)

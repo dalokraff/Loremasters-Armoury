@@ -78,7 +78,6 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
                 end
             end
             if mod.SKIN_LIST[Armoury_key].fps_units then
-                mod:echo(mod.SKIN_LIST[Armoury_key].fps_units[1])
                 if unit_name == mod.SKIN_LIST[Armoury_key].fps_units[1] then
                     mod.level_queue[target] = {
                         Armoury_key = Armoury_key,
@@ -91,15 +90,6 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
  
     return func(world, source, target, node_linking)
 end)
-
--- mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
---     if Unit.has_data(target, 'unit_name') then
---         local unit_name = Unit.get_data(target, 'unit_name')
---         mod:echo(unit_name)
---     end
---     return func(world, source, target, node_linking)
--- end)
-
 
 --this hook is used to populate the character_preview queue; gets the unit loaded in the preview if it's of the correct skin. correct hand and in the correct slot
 local slot_dict = {
@@ -163,31 +153,12 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
 
 end)
 
--- mod:hook_safe(HeroPreviewer, "_spawn_hero_unit",  function (self, skin_data, optional_scale, career_index) 
---     local unit = self.mesh_unit
---     local skin_name = skin_data.name
---     local Armoury_key = mod:get(skin_name)
---     if mod.SKIN_CHANGED[skin_name] then
---         mod:echo(unit)
---         if mod.SKIN_CHANGED[skin_name].changed_texture then
---             mod.preview_queue[unit] = {
---                 Armoury_key = Armoury_key,
---                 skin = skin_name,
---             }
---         end
---     end
--- end)
-
 
 mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt) 
     local unit = self.mesh_unit
     local skin_data = self._hero_loading_package_data.skin_data
     local skin_name = skin_data.name
     local Armoury_key = mod:get(skin_name)
-    -- mod:echo(self.mesh_unit)
-    -- Unit.set_material(unit, "mtr_outfit","units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p")
-    -- mod:echo(self.character_unit)
-    -- mod:echo(Unit.num_meshes(self.character_unit))
     if mod.SKIN_CHANGED[skin_name] then
         if mod.SKIN_CHANGED[skin_name].changed_texture then
             mod.preview_queue[unit] = {
@@ -196,36 +167,6 @@ mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt)
             }
         end
     end
-
-    -- local diff_slot = "texture_map_64cc5eb8"
-    -- local norm_slot = "texture_map_861dbfdc"
-    -- local pack_slot = "texture_map_abb81538"
-    -- local diff = mod.SKIN_LIST[Armoury_key].textures[1]
-    -- local MAB = mod.SKIN_LIST[Armoury_key].textures[2]
-    -- local norm = mod.SKIN_LIST[Armoury_key].textures[3]
-    -- local num_meshes = Unit.num_meshes(unit)
-    --     for i = 0, num_meshes - 1, 1 do
-    --         --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
-    --         if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] then
-    --             goto continue_apply_texture_to_all_world_units
-    --         end
-    --         local mesh = Unit.mesh(unit, i)
-    --         local num_mats = Mesh.num_materials(mesh)
-    --         for j = 0, num_mats - 1, 1 do
-    --             local mat = Mesh.material(mesh, j)
-    --             if diff then
-    --                 Material.set_texture(mat, diff_slot, diff)
-    --             end
-    --             if MAB then 
-    --                 Material.set_texture(mat, pack_slot, MAB)
-    --             end
-    --             if norm then
-    --                 Material.set_texture(mat, norm_slot, norm)
-    --             end
-    --         end
-    --         ::continue_apply_texture_to_all_world_units::
-    --     end
-
 end)
 
 --the name of pacakges to count as loaded are taken from the string_dict file
