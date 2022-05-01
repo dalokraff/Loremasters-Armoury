@@ -1,12 +1,13 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
-local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     if Unit.alive(unit) then
         local num_meshes = Unit.num_meshes(unit)
         for i = 0, num_meshes - 1, 1 do
             --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
-            if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] then
+            mod:echo("is_fps_unit"..":  "..tostring(is_fps_unit))
+            if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)]  and not is_fps_unit then
                 goto continue_apply_texture_to_all_world_units
             end
             local mesh = Unit.mesh(unit, i)
@@ -33,20 +34,37 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
     local pack_slot = "texture_map_0205ba86"
     local norm_slot = "texture_map_59cd86b9"
 
+    local is_fps_unit = false
     if mod.SKIN_LIST[Armoury_key].swap_hand == 'armor' then 
         diff_slot = "texture_map_64cc5eb8"
         norm_slot = "texture_map_861dbfdc"
         pack_slot = "texture_map_abb81538"
     end
 
-    if mod.SKIN_LIST[Armoury_key].textures then
+    if mod.SKIN_LIST[Armoury_key].fps_units then 
+        if Unit.get_data(unit, 'unit_name') == mod.SKIN_LIST[Armoury_key].fps_units[1] then
+            diff_slot = "texture_map_64cc5eb8"
+            norm_slot = "texture_map_861dbfdc"
+            pack_slot = "texture_map_b788717c"
+            is_fps_unit = true
+            mod:echo("is_fps_unit"..":  "..tostring(is_fps_unit))
+        end
+    end
+
+    if mod.SKIN_LIST[Armoury_key].textures and not is_fps_unit then
         local diff = mod.SKIN_LIST[Armoury_key].textures[1]
         local MAB = mod.SKIN_LIST[Armoury_key].textures[2]
         local norm = mod.SKIN_LIST[Armoury_key].textures[3]
 
         local hand = mod.SKIN_LIST[Armoury_key].swap_hand
         
-        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key)
+        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
+    elseif mod.SKIN_LIST[Armoury_key].textures_fps and is_fps_unit then 
+        local diff = mod.SKIN_LIST[Armoury_key].textures_fps[1]
+        local MAB = mod.SKIN_LIST[Armoury_key].textures_fps[2]
+        local norm = mod.SKIN_LIST[Armoury_key].textures_fps[3]
+        
+        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     end
 end
 
@@ -135,6 +153,8 @@ end
 -- mod:echo(item_hat)
 -- local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
 -- attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
+-- local player = Managers.player:local_player()
+-- CosmeticUtils.update_cosmetic_slot(self._player, "slot_skin", item_data.name)
 
 --function to re-equip weapons if the either weapon skin matches the passed in skin
 local function re_equip_weapons(skin)
@@ -148,6 +168,7 @@ local function re_equip_weapons(skin)
             local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
             local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
             local item_hat = BackendUtils.get_loadout_item(career_name, "slot_hat")
+            local item_skin =  BackendUtils.get_loadout_item(career_name, "slot_skin")
             -- for k,v in pairs(item_one) do
             --     mod:echo(tostring(k)..":    "..tostring(v))
             -- end
@@ -158,27 +179,27 @@ local function re_equip_weapons(skin)
                 inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
             end
 
-            -- local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
-            -- attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
-
+            local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
+            attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
+            -- attachment_extension:update_resync_loadout()
            
-            
-            local cosmetic_table = mod.SKIN_CHANGED[skin].cosmetic_table
-            if cosmetic_table then 
-                local cosmetic_extension = ScriptUnit.extension(player_unit, "cosmetic_system")
-                local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
+            -- CosmeticUtils.update_cosmetic_slot(player, "slot_skin", item_skin.name)
+            -- local cosmetic_table = mod.SKIN_CHANGED[skin].cosmetic_table
+            -- if cosmetic_table then 
+            --     local cosmetic_extension = ScriptUnit.extension(player_unit, "cosmetic_system")
+            --     local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
 
-                if mod.SKIN_CHANGED[skin].texture then
-                    local material_changes = cosmetic_table.material_changes
-                    if material_changes then 
-                        cosmetic_extension:change_skin_materials(material_changes)
-                    end
-                else 
-                    attachment_extension:show_attachments(false)
-                    attachment_extension:show_attachments(true)
-                end
+            --     if mod.SKIN_CHANGED[skin].texture then
+            --         local material_changes = cosmetic_table.material_changes
+            --         if material_changes then 
+            --             cosmetic_extension:change_skin_materials(material_changes)
+            --         end
+            --     else 
+            --         attachment_extension:show_attachments(false)
+            --         attachment_extension:show_attachments(true)
+            --     end
                     
-            end
+            -- end
             
            
         end

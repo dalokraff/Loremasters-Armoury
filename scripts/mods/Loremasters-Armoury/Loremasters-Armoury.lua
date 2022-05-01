@@ -28,6 +28,7 @@ function mod.update()
             local world = Managers.world:world("level_world")
             local Armoury_key = tisch.Armoury_key
             local skin = tisch.skin
+            mod:echo(Unit.get_data(unit, 'unit_name'))
             mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
             mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             flush_level = true
@@ -39,6 +40,8 @@ function mod.update()
             local Armoury_key = tisch.Armoury_key
             local skin = tisch.skin
             if Armoury_key ~= "default" and mod.SKIN_LIST[Armoury_key] then
+                -- mod:echo(Armoury_key)
+                -- mod:echo(skin)
                 mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
                 mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             end

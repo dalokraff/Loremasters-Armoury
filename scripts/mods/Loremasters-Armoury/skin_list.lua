@@ -430,8 +430,16 @@ mod.SKIN_LIST = {
             "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined",
             "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal",
         },
+        textures_fps = {
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_diffuse_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal_1p",
+        },
         new_units = {
             "units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh",
+        },
+        fps_units = {
+            "units/beings/player/empire_soldier_knight/first_person_base/chr_first_person_mesh",
         },
         is_vanilla_unit = true, 
         swap_hand = "armor",
