@@ -17,10 +17,10 @@ function mod.update()
     local flush_preview = false
     local flush_level = false
 
-    for skin,_ in pairs(mod.SKIN_CHANGED) do
+    for skin,tisch in pairs(mod.SKIN_CHANGED) do
         if Managers.world:has_world("level_world") then
             local Armoury_key = mod:get(skin)
-            mod.re_apply_illusion(Armoury_key, skin)
+            mod.re_apply_illusion(Armoury_key, skin, tisch.unit)
         end
     end
     for unit,tisch in pairs(mod.level_queue) do
