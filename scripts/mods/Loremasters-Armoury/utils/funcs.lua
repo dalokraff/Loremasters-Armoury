@@ -166,7 +166,11 @@ end
 --     mod:echo(tostring(k)..":    "..tostring(v))
     
 -- end
+-- for k,v in pairs(ItemMasterList) do 
+--     local game_localize = Managers.localizer
+--     mod:echo(game_localize:_base_lookup("skin_es_knight_brass_keep"))
 
+-- end
 --function to re-equip weapons if the either weapon skin matches the passed in skin
 local function re_equip_weapons(skin, unit)
     local player = Managers.player:local_player()
