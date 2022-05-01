@@ -156,15 +156,17 @@ end)
 
 mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt) 
     local unit = self.mesh_unit
-    local skin_data = self._hero_loading_package_data.skin_data
-    local skin_name = skin_data.name
-    local Armoury_key = mod:get(skin_name)
-    if mod.SKIN_CHANGED[skin_name] then
-        if mod.SKIN_CHANGED[skin_name].changed_texture then
-            mod.preview_queue[unit] = {
-                Armoury_key = Armoury_key,
-                skin = skin_name,
-            }
+    if self._hero_loading_package_data then
+        local skin_data = self._hero_loading_package_data.skin_data
+        local skin_name = skin_data.name
+        local Armoury_key = mod:get(skin_name)
+        if mod.SKIN_CHANGED[skin_name] then
+            if mod.SKIN_CHANGED[skin_name].changed_texture then
+                mod.preview_queue[unit] = {
+                    Armoury_key = Armoury_key,
+                    skin = skin_name,
+                }
+            end
         end
     end
 end)
