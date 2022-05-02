@@ -168,7 +168,7 @@ end
 function mod.re_apply_illusion(Armoury_key, skin, unit)
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then
         if ItemMasterList[skin].item_type == "skin"  then
-            mod:echo("You will need to re-equip your character skin for this change to be updated.")
+            mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
         end
         swap_units_old(mod.current_skin[skin], skin)
         re_equip_weapons(skin, unit)
@@ -186,7 +186,7 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = true
         mod.has_old_texture = true
         if ItemMasterList[skin].item_type == "skin" then
-            mod:echo("You will need to re-equip your character skin for this change to be updated.")
+            mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
         end
     elseif mod.SKIN_LIST[Armoury_key].kind == "unit" and not mod.SKIN_CHANGED[skin].changed_model then
         swap_units_new(Armoury_key, skin)

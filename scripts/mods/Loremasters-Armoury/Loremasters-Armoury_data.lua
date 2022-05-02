@@ -149,22 +149,7 @@ for _,skin in ipairs(mod.elf_skins) do
 end
 
 
---reset skins for krub hats
-num_skins = 0
---krub hats
-for _,skin in ipairs(mod.krub_hat_skins) do
-	local widget = table.clone(shield_sub_choice, true)
-	widget.setting_id = skin
-	widget.title = skin
-	local x = 1
-	for Amoury_key,skin_name  in pairs(mod.krub_hats) do
-		local choice = {text = Amoury_key,   value = Amoury_key}
-		table.insert(widget.options, choice)
-	end
-	num_skins = num_skins + 1
-	table.insert(menu.options.widgets[2].options[2].show_widgets, num_skins)
-	table.insert(menu.options.widgets[2].sub_widgets, widget)
-end
+
 
 --reset skins for elf hats
 num_skins = 0
@@ -173,6 +158,7 @@ for _,skin in ipairs(mod.elf_hat_skins) do
 	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
 	widget.title = skin
+	print("here:	"..tostring(menu.options.widgets[2].options[5].text))
 	local x = 1
 	for Amoury_key,skin_name  in pairs(mod.elf_hats) do
 		local choice = {text = Amoury_key,   value = Amoury_key}
@@ -183,6 +169,23 @@ for _,skin in ipairs(mod.elf_hat_skins) do
 	table.insert(menu.options.widgets[2].sub_widgets, widget)
 end
 
+--reset skins for krub hats
+-- num_skins = 0
+--krub hats
+for _,skin in ipairs(mod.krub_hat_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	print("here:	"..tostring(menu.options.widgets[2].options[2].text))
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.krub_hats) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[2].options[2].show_widgets, num_skins)
+	table.insert(menu.options.widgets[2].sub_widgets, widget)
+end
 
 --reset skins for krub armor
 num_skins = 0
