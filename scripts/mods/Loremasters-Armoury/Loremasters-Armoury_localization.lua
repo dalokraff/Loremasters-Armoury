@@ -14,6 +14,9 @@ local mod_text_ids = {
 	choose_wep = {
 		en = "Choose Weapon",
 	},
+	choose_char_armor = {
+		en = "Choose Character Skin"
+	},
 	choose_hat = {
 		en = "Choose Hat",
 	},
@@ -72,7 +75,8 @@ for _,skin in pairs(mod.vanilla_game_strings) do
 	if not mod_text_ids[skin] then
 		mod_text_ids[skin] = {}
 	end
-	mod_text_ids[skin]['en'] = game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin))
+	local translation = game_localize:_base_lookup(ItemMasterList[skin].display_name)--game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin)) or game_localize:_base_lookup(tostring(skin))
+	mod_text_ids[skin]['en'] = translation
 end
 
 

@@ -58,19 +58,28 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     return func(self, backend_id)
 end)
 
---hook to populate level queue with hat units
-mod:hook_safe(PlayerUnitAttachmentExtension,"show_attachments", function(self, show)
-    if self._show_attachments then
-        local slots = self._attachments.slots
-        local slot_hat = slots["slot_hat"]
 
-        local unit = slot_hat.unit
-        local hat_name = slot_hat.name
-        local Armoury_key = mod:get(hat_name)
-        for skin,bools in pairs(mod.SKIN_CHANGED) do
-            if bools.changed_texture then
-                if hat_name == skin then
-                    mod.level_queue[unit] = {
+mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
+    local unit_name = nil
+    if Unit.has_data(target, 'unit_name') then
+        unit_name = Unit.get_data(target, 'unit_name')
+    end
+    for skin,tisch in pairs(mod.SKIN_CHANGED) do
+        local Armoury_key = mod:get(skin)
+        if tisch.changed_texture then
+            if mod.SKIN_LIST[Armoury_key].new_units then
+                if unit_name == mod.SKIN_LIST[Armoury_key].new_units[1] then
+                    
+                    mod.SKIN_CHANGED[skin].changed_texture = true
+                    mod.level_queue[target] = {
+                        Armoury_key = Armoury_key,
+                        skin = skin,
+                    }
+                end
+            end
+            if mod.SKIN_LIST[Armoury_key].fps_units then
+                if unit_name == mod.SKIN_LIST[Armoury_key].fps_units[1] then
+                    mod.level_queue[target] = {
                         Armoury_key = Armoury_key,
                         skin = skin,
                     }
@@ -78,6 +87,8 @@ mod:hook_safe(PlayerUnitAttachmentExtension,"show_attachments", function(self, s
             end
         end
     end
+ 
+    return func(world, source, target, node_linking)
 end)
 
 --this hook is used to populate the character_preview queue; gets the unit loaded in the preview if it's of the correct skin. correct hand and in the correct slot
@@ -93,23 +104,36 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
         local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
         local career_extension = ScriptUnit.extension(player_unit, "career_system")
         if career_extension then
-            local career_name = career_extension:career_name()
-            for slot_order,units in pairs(self._equipment_units) do
-                local slot = slot_dict[slot_order]
-                
-                if slot then
-                    if self._item_info_by_slot[slot] then 
-                        local item = BackendUtils.get_loadout_item(career_name, "slot_"..slot)
-                        if item_slot_type == "melee" or  item_slot_type == "ranged" then
-                            if item.skin then 
-                                local skin = item.skin
-                                local Armoury_key = mod:get(skin)
-                                local skin_list = mod.SKIN_LIST[Armoury_key]
-                                if skin_list then
-                                    local hand = skin_list.swap_hand
-                                    local hand_key = hand:gsub("_hand_unit", "")
-                                    local unit = units[hand_key]
+            if career_extension.career_name then
+                local career_name = career_extension:career_name()
+                for slot_order,units in pairs(self._equipment_units) do
+                    local slot = slot_dict[slot_order]
+                    
+                    if slot then
+                        if self._item_info_by_slot[slot] then 
+                            local item = BackendUtils.get_loadout_item(career_name, "slot_"..slot)
+                            if item_slot_type == "melee" or  item_slot_type == "ranged" then
+                                if item.skin then 
+                                    local skin = item.skin
+                                    local Armoury_key = mod:get(skin)
+                                    local skin_list = mod.SKIN_LIST[Armoury_key]
+                                    if skin_list then
+                                        local hand = skin_list.swap_hand
+                                        local hand_key = hand:gsub("_hand_unit", "")
+                                        local unit = units[hand_key]
 
+                                        if unit then
+                                            mod.preview_queue[unit] = {
+                                                Armoury_key = Armoury_key,
+                                                skin = skin,
+                                            }
+                                        end
+                                    end
+                                end
+                            elseif item_slot_type == "hat" then
+                                if item.key then
+                                    local skin = item.key
+                                    local Armoury_key = mod:get(skin)
                                     if unit then
                                         mod.preview_queue[unit] = {
                                             Armoury_key = Armoury_key,
@@ -118,23 +142,31 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                                     end
                                 end
                             end
-                        elseif item_slot_type == "hat" then
-                            if item.key then
-                                local skin = item.key
-                                local Armoury_key = mod:get(skin)
-                                if unit then
-                                    mod.preview_queue[unit] = {
-                                        Armoury_key = Armoury_key,
-                                        skin = skin,
-                                    }
-                                end
-                            end
                         end
                     end
                 end
             end
+        end
+    end
+    
 
-            
+
+end)
+
+
+mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt) 
+    local unit = self.mesh_unit
+    if self._hero_loading_package_data then
+        local skin_data = self._hero_loading_package_data.skin_data
+        local skin_name = skin_data.name
+        local Armoury_key = mod:get(skin_name)
+        if mod.SKIN_CHANGED[skin_name] then
+            if mod.SKIN_CHANGED[skin_name].changed_texture and unit then
+                mod.preview_queue[unit] = {
+                    Armoury_key = Armoury_key,
+                    skin = skin_name,
+                }
+            end
         end
     end
 end)
