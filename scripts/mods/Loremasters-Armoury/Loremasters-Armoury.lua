@@ -230,9 +230,9 @@ end)
 mod:command("GK_swap_hat3_02", "", function()
     local world = Managers.world:world("level_world")
     local unit_path = "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02"
-    local diff = 'textures/GK_HIPPO_HAT/three/diff'
-    local norm = 'textures/GK_HIPPO_HAT/three/norm'
-    local comb = 'textures/GK_HIPPO_HAT/three/comb'
+    local diff = 'textures/GK_PURE_HAT/three/diff'
+    local norm = 'textures/GK_PURE_HAT/three/norm'
+    local comb = 'textures/GK_PURE_HAT/three/comb'
     local diff_slot = "texture_map_c0ba2942"
     local norm_slot = "texture_map_59cd86b9"
     local comb_slot = "texture_map_0205ba86"
