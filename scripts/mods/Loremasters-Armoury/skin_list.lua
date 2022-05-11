@@ -268,7 +268,7 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_diffuse",
-             
+            "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_normal",
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",

@@ -457,3 +457,52 @@ mod:command("GK_swap_hat3_03", "", function()
         end
     end
 end)
+
+
+
+mod:command("Averlorn_Runner_helm", "", function()
+    local package = "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12"
+    Managers.package:load(package, "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local unit_spawner = Managers.state.unit_spawner
+    local unit_template_name = "interaction_unit"
+    local extension_init_data = {}
+    local unit, go_id = unit_spawner:spawn_local_unit(package, position, rotation)
+
+    local diff = "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_diffuse"
+    local norm = "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_normal"
+    -- local comb = 'textures/GK_HIPPO_HAT/three/comb'
+    local diff_slot = "texture_map_c0ba2942"
+    local norm_slot = "texture_map_59cd86b9"
+    local comb_slot = "texture_map_0205ba86"
+
+    local num_meshes = Unit.num_meshes(unit)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        -- Material.set_texture(mat, comb_slot, comb)
+                        
+                    end
+                elseif false then
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, diff_slot, diff)
+                        Material.set_texture(mat, norm_slot, norm)
+                        -- Material.set_texture(mat, comb_slot, comb)
+                    end
+                end
+            end
+        end
+end)
