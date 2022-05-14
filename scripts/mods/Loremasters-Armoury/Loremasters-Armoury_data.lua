@@ -178,10 +178,14 @@ for _,skin in ipairs(mod.krub_hat_skins) do
 	widget.title = skin
 	print("here:	"..tostring(menu.options.widgets[2].options[2].text))
 	local x = 1
-	for Amoury_key,skin_name  in pairs(mod.krub_hats) do
+	for Amoury_key,skin_name in pairs(mod.krub_hats[skin]) do
 		local choice = {text = Amoury_key,   value = Amoury_key}
 		table.insert(widget.options, choice)
 	end
+	-- for Amoury_key,skin_name  in pairs(mod.krub_hats) do
+	-- 	local choice = {text = Amoury_key,   value = Amoury_key}
+	-- 	table.insert(widget.options, choice)
+	-- end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[2].options[2].show_widgets, num_skins)
 	table.insert(menu.options.widgets[2].sub_widgets, widget)

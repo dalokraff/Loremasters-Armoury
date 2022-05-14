@@ -470,6 +470,174 @@ mod.SKIN_LIST = {
             skip26 = true,
         },
     },
+    Kruber_Worthy_helm_black = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_black_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Worthy_helm_red = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_red_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Worthy_helm_white = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_white_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Worthy_helm_yellow = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_yellow_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Pureheart_helm_black = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_black_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Pureheart_helm_red = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_red_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Pureheart_helm_white = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_white_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Pureheart_helm_yellow = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_yellow_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    }, 
+    Kruber_Hippogryph_helm_black = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_black_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Hippogryph_helm_blue = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_blue_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Hippogryph_helm_red = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_red_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_Hippogryph_helm_white = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_white_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
 }
 
 local skin_table_weapons = table.clone(WeaponSkins.skins)
@@ -531,6 +699,9 @@ mod.elf_hat_skins = {
 
 mod.krub_hat_skins = {
 	"knight_hat_1001",
+    "questing_knight_hat_0000", 
+    "questing_knight_hat_0001", 
+    "questing_knight_hat_0003", 
 }
 
 mod.krub_armor_skins = {

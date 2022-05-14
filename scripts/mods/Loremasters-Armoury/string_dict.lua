@@ -39,6 +39,18 @@ local desc_strings = {
     Kerillian_elf_hat_Windrunner_Yvresse = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Yvresse",
     Kruber_KOTBS_hat = "There is a subtle touch of elven magic upon this helm, protecting its wearer's mind and enhancing their senses. A favour from an old friend?",
     Kruber_KOTBS_armor = "To accomplish any task - to defeat any foe, all that is needed is a keen eye, a sharp mind and the favour of the Goddess.",
+    Kruber_Hippogryph_helm_black = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
+    Kruber_Hippogryph_helm_blue = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
+    Kruber_Hippogryph_helm_red = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
+    Kruber_Hippogryph_helm_white = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
+    Kruber_Pureheart_helm_black = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
+    Kruber_Pureheart_helm_red = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
+    Kruber_Pureheart_helm_white = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
+    Kruber_Pureheart_helm_yellow = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
+    Kruber_Worthy_helm_black = "A knight's headpiece, as stalwart and true as he who dons it.",
+    Kruber_Worthy_helm_red = "A knight's headpiece, as stalwart and true as he who dons it.",
+    Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
+    Kruber_Worthy_helm_yellow = "A knight's headpiece, as stalwart and true as he who dons it.",
 }
 
 local name_strings = {}
@@ -93,7 +105,27 @@ mod.elf_hats = {
 }
 
 mod.krub_hats = {
-    Kruber_KOTBS_hat = "Blessed Helm of the Blazing Sun",
+    knight_hat_1001 = {
+        Kruber_KOTBS_hat = "Blessed Helm of the Blazing Sun",
+    },
+    questing_knight_hat_0003 = {
+        Kruber_Hippogryph_helm_black = "Hippogryph Helm (Outcast)",
+        Kruber_Hippogryph_helm_blue = "Hippogryph Helm (Gallant)",
+        Kruber_Hippogryph_helm_red = "Hippogryph Helm (Valiant)",
+        Kruber_Hippogryph_helm_white = "Hippogryph Helm (Purified)",
+    },
+    questing_knight_hat_0001 = {
+        Kruber_Pureheart_helm_black = "Pureheart Helm (Outcast)",
+        Kruber_Pureheart_helm_red = "Pureheart Helm (Valiant)",
+        Kruber_Pureheart_helm_white = "Pureheart Helm (Purified)",
+        Kruber_Pureheart_helm_yellow = "Pureheart Helm (Paladin)",
+    },
+    questing_knight_hat_0000 = {
+        Kruber_Worthy_helm_black = "Helm of the Worthy (Outcast)",
+        Kruber_Worthy_helm_red = "Helm of the Worthy (Valiant)",
+        Kruber_Worthy_helm_white = "Helm of the Worthy (Purified)",
+        Kruber_Worthy_helm_yellow = "Helm of the Worthy (Paladin)",
+    },
 }
 
 mod.krub_armors = {
@@ -113,8 +145,12 @@ end
 for k,v in pairs(mod.elf_hats) do
     name_strings[k] = v
 end
-for k,v in pairs(mod.krub_hats) do
-    name_strings[k] = v
+for k,helm in pairs(mod.krub_hats) do
+    for variant,name in pairs(helm) do 
+        -- mod:echo(tostring(variant)..":     "..tostring(name))
+        name_strings[variant] = name
+    end
+    -- mod:echo(tostring(k)..":     "..tostring(helm))
 end
 for k,v in pairs(mod.krub_armors) do
     name_strings[k] = v
