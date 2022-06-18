@@ -27,7 +27,7 @@ renderables = {
 		culling = "bounding_volume"
 		generate_uv_unwrap = false
 		occluder = false
-		shadow_caster = true
+		shadow_caster = false
 		surface_queries = false
 		viewport_visible = true
 	},
