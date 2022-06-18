@@ -53,8 +53,8 @@ local desc_strings = {
     Kruber_Worthy_helm_red = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_yellow = "A knight's headpiece, as stalwart and true as he who dons it.",
-    Bardin_dwarf_shield_basicClean_KarakNorn01 = "",
-    Bardin_dwarf_shield_heroClean_KarakNorn01 = "",
+    Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
+    Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
 }
 
 local name_strings = {}
@@ -98,8 +98,8 @@ mod.elf_shields = {
 }
 
 mod.dwarf_shields = {
-    Bardin_dwarf_shield_basicClean_KarakNorn01 = "basic",
-    Bardin_dwarf_shield_heroClean_KarakNorn01 = "hero",
+    Bardin_dwarf_shield_basicClean_KarakNorn01 = "Karak Norn Karinak",
+    Bardin_dwarf_shield_heroClean_KarakNorn01 = "Karak Norn Karinak (Runic)",
 }
 
 mod.elf_hats = {
