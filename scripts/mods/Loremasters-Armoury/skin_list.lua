@@ -656,6 +656,24 @@ mod.SKIN_LIST = {
         swap_hand = "hat",
         skip_meshes = {},
     },
+    Bardin_dwarf_shield_basicClean_KarakNorn01 = {
+        kind = "unit",
+        new_units = {
+            "units/dwarf_shield/Bardin_dwarf_shield_basicClean_KarakNorn01_mesh",
+            "units/dwarf_shield/Bardin_dwarf_shield_basicClean_KarakNorn01_mesh_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,
+    },
+    Bardin_dwarf_shield_heroClean_KarakNorn01 = {
+        kind = "unit",
+        new_units = {
+            "units/dwarf_shield/Bardin_dwarf_shield_heroClean_KarakNorn01_mesh",
+            "units/dwarf_shield/Bardin_dwarf_shield_heroClean_KarakNorn01_mesh_3p",
+        },
+        swap_hand = "left_hand_unit",
+        swap_skin = nil,
+    },
 }
 
 local skin_table_weapons = table.clone(WeaponSkins.skins)
@@ -711,6 +729,26 @@ mod.elf_skins = {
     "we_1h_spears_shield_skin_02",
 }
 
+mod.dwarf_axe_shield = {
+    "dw_1h_axe_shield_skin_02",
+	"dw_1h_axe_shield_skin_03",
+    "dw_1h_axe_shield_skin_04",
+    "dw_1h_axe_shield_skin_05",
+    "dw_1h_axe_shield_skin_02_runed_01",
+    "dw_1h_axe_shield_skin_05_runed_01",
+    "dw_1h_axe_shield_skin_05_runed_02",
+}
+
+mod.dwarf_ham_shield = {
+    "dw_1h_hammer_shield_skin_02",
+    "dw_1h_hammer_shield_skin_03",
+    "dw_1h_hammer_shield_skin_04",
+    "dw_1h_hammer_shield_skin_05",
+    "dw_1h_hammer_shield_skin_02_runed_01",
+    "dw_1h_hammer_shield_skin_04_runed_01",
+    "dw_1h_hammer_shield_skin_04_runed_02",
+}
+
 mod.elf_hat_skins = {
 	"maidenguard_hat_1001",
 }
@@ -730,6 +768,8 @@ table.append(skins_to_change, mod.bret_skins)
 table.append(skins_to_change, mod.empire_spear_shield)
 table.append(skins_to_change, mod.empire_sword_shield)
 table.append(skins_to_change, mod.empire_mace_shield)
+table.append(skins_to_change, mod.dwarf_axe_shield)
+table.append(skins_to_change, mod.dwarf_ham_shield)
 table.append(skins_to_change, mod.elf_skins)
 table.append(skins_to_change, mod.elf_hat_skins)
 table.append(skins_to_change, mod.krub_hat_skins)

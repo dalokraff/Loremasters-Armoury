@@ -1,0 +1,34 @@
+data = {
+    mat_slots = {
+        slot1 = "Tex_0457_0"
+    }
+
+    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2"
+
+    colors = {
+        slot1 = "textures/Bardin_dwarf_shield_basicClean_KarakNorn01/Bardin_dwarf_shield_basicClean_KarakNorn01_diffuse"
+    }
+    normals = {
+        slot1 = "textures/Bardin_dwarf_shield_basicClean_KarakNorn01/Bardin_dwarf_shield_basicClean_KarakNorn01_normal"
+    }
+    MABs = {
+        slot1 = "textures/Bardin_dwarf_shield_basicClean_KarakNorn01/Bardin_dwarf_shield_basicClean_KarakNorn01_combined"
+    }
+
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    MAB_slot = "texture_map_0205ba86"
+
+}
+
+renderables = {
+    Bardin_shield_02_mesh = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+}

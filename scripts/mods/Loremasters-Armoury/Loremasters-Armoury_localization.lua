@@ -53,6 +53,12 @@ local mod_text_ids = {
 	elf_spear_shield = {
 		en = "High Elf Spear and Shield",
 	},
+	dwarf_axe_shield = {
+		en = "Dwarf Axe and Shield"
+	},
+	dwarf_ham_shield = {
+		en = "Dwarf Hammer and Shield"
+	},
 	elf_hm_hat_1001 = {
 		en = "Windrunner's helm",
 	},

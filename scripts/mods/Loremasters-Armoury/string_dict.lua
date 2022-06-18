@@ -53,6 +53,8 @@ local desc_strings = {
     Kruber_Worthy_helm_red = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_yellow = "A knight's headpiece, as stalwart and true as he who dons it.",
+    Bardin_dwarf_shield_basicClean_KarakNorn01 = "",
+    Bardin_dwarf_shield_heroClean_KarakNorn01 = "",
 }
 
 local name_strings = {}
@@ -93,6 +95,11 @@ mod.elf_shields = {
     Kerillian_elf_shield_basic_Avelorn01 = "Avelorn Levy-Shield",
     Kerillian_elf_shield_heroClean_Eataine01 = "Avalu-Asur (Noble)",
     Kerillian_elf_shield_basicClean = "Avalu-Asur",
+}
+
+mod.dwarf_shields = {
+    Bardin_dwarf_shield_basicClean_KarakNorn01 = "basic",
+    Bardin_dwarf_shield_heroClean_KarakNorn01 = "hero",
 }
 
 mod.elf_hats = {
@@ -144,6 +151,9 @@ for k,v in pairs(mod.empire_shields) do
     name_strings[k] = v
 end
 for k,v in pairs(mod.elf_shields) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.dwarf_shields) do
     name_strings[k] = v
 end
 for k,v in pairs(mod.elf_hats) do
