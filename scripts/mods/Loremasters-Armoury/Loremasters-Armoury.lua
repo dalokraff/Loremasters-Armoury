@@ -55,3 +55,104 @@ function mod.update()
     
     
 end
+
+
+
+local function spawn_package_to_player (package_name)
+	local player = Managers.player:local_player()
+	local world = Managers.world:world("level_world")
+    local unit_spawner = Managers.state.unit_spawner
+    local init_data = {}
+    local material = "units/props/tzeentch/tzeentch_faction_01"
+
+	if world and player and player.player_unit then
+        local player_unit = player.player_unit
+    
+        local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 0)
+        local rotation = Unit.local_rotation(player_unit, 0)
+        local unit_template_name = "interaction_unit"
+        local extension_init_data  = {}
+        
+        --local unit, go_id = unit_spawner:spawn_network_unit(package_name, unit_template_name, extension_init_data, position, rotation, material)
+        local unit = World.spawn_unit(world, package_name, position, rotation)
+
+        mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
+        return unit
+	end
+  
+	return nil
+end
+
+mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, position, rotation, material)
+    mod:echo(unit_name)
+end)
+
+
+mod:command("spawn_fall_elf", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
+    
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local body = spawn_package_to_player(pack_body)
+    local hat = spawn_package_to_player(pack_hat)
+    local world = Managers.world:world("level_world")
+    AttachmentUtils.link(world, body, hat, AttachmentNodeLinking.hat.slot_hat)
+
+    local num_meshes = Unit.num_meshes(body)
+    for i = 0, num_meshes - 1, 1 do
+        if true then
+            if i < 12 or i > 16 then  
+                local mesh = Unit.mesh(body, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, "texture_map_64cc5eb8", "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse")      
+                end
+            end
+        end
+    end
+    
+    
+    local num_meshes = Unit.num_meshes(hat)
+    mod:echo(num_meshes)
+    for i = 0, num_meshes - 1, 1 do
+        if true then
+            if true then  
+                local mesh = Unit.mesh(hat, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, "texture_map_c0ba2942", "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse")      
+                end
+            end
+        end
+    end
+
+end)
+
+mod:command("spawn_greenHerald", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    -- local body = spawn_package_to_player(pack_body)
+    local hat = spawn_package_to_player(pack_hat)
+    local world = Managers.world:world("level_world")
+    -- AttachmentUtils.link(world, body, hat, AttachmentNodeLinking.hat.slot_hat)
+
+    local num_meshes = Unit.num_meshes(hat)
+    for i = 0, num_meshes - 1, 1 do
+        if true then
+            if i < 12 or i > 16 then  
+                local mesh = Unit.mesh(body, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    Material.set_texture(mat, "texture_map_64cc5eb8", "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse")      
+                end
+            end
+        end
+    end
+end)
+
