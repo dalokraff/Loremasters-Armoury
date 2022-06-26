@@ -58,7 +58,7 @@ end
 
 
 
-local function spawn_package_to_player (package_name)
+local function spawn_package_to_player (package_name, y,z)
 	local player = Managers.player:local_player()
 	local world = Managers.world:world("level_world")
     local unit_spawner = Managers.state.unit_spawner
@@ -68,7 +68,7 @@ local function spawn_package_to_player (package_name)
 	if world and player and player.player_unit then
         local player_unit = player.player_unit
     
-        local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 0)
+        local position = Unit.local_position(player_unit, 0) + Vector3(0, y, z)
         local rotation = Unit.local_rotation(player_unit, 0)
         local unit_template_name = "interaction_unit"
         local extension_init_data  = {}
@@ -87,72 +87,433 @@ mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, positi
     mod:echo(unit_name)
 end)
 
+mod.units_to_remove = {}
 
 mod:command("spawn_fall_elf", "", function()
     local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
     local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
-    
+    local elf_table = {}
+    elf_table[1] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse",
+    }
+    elf_table[2] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse2",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse2",
+    }
+    elf_table[3] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse3",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse3",
+    }
+    elf_table[4] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse4",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse4",
+    }
+
     Managers.package:load(pack_hat, "global")
     Managers.package:load(pack_body, "global")
-    local body = spawn_package_to_player(pack_body)
-    local hat = spawn_package_to_player(pack_hat)
-    local world = Managers.world:world("level_world")
-    AttachmentUtils.link(world, body, hat, AttachmentNodeLinking.hat.slot_hat)
 
-    local num_meshes = Unit.num_meshes(body)
-    for i = 0, num_meshes - 1, 1 do
-        if true then
-            if i < 12 or i > 16 then  
-                local mesh = Unit.mesh(body, i)
-                local num_mats = Mesh.num_materials(mesh)
-                for j = 0, num_mats - 1, 1 do
-                    local mat = Mesh.material(mesh, j)
-                    Material.set_texture(mat, "texture_map_64cc5eb8", "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse")      
+
+    for i,text in pairs(elf_table) do
+        local body = spawn_package_to_player(pack_body,i,0)
+        local hat = spawn_package_to_player(pack_hat,i,0)
+        mod:echo(i)
+        local world = Managers.world:world("level_world")
+        AttachmentUtils.link(world, body, hat, AttachmentNodeLinking.hat.slot_hat)
+        mod.units_to_remove[body] = body
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(body)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i < 12 or i > 16 then  
+                    local mesh = Unit.mesh(body, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        mod:echo(text['body'])
+                        Material.set_texture(mat, "texture_map_64cc5eb8", text['body'])      
+                    end
+                end
+            end
+        end
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        mod:echo(text['hat'])
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
                 end
             end
         end
     end
-    
-    
-    local num_meshes = Unit.num_meshes(hat)
-    mod:echo(num_meshes)
-    for i = 0, num_meshes - 1, 1 do
-        if true then
-            if true then  
-                local mesh = Unit.mesh(hat, i)
-                local num_mats = Mesh.num_materials(mesh)
-                for j = 0, num_mats - 1, 1 do
-                    local mat = Mesh.material(mesh, j)
-                    Material.set_texture(mat, "texture_map_c0ba2942", "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse")      
-                end
-            end
-        end
-    end
-
 end)
 
 mod:command("spawn_greenHerald", "", function()
     local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse4",
+    }
 
     Managers.package:load(pack_hat, "global")
-    Managers.package:load(pack_body, "global")
-    -- local body = spawn_package_to_player(pack_body)
-    local hat = spawn_package_to_player(pack_hat)
-    local world = Managers.world:world("level_world")
-    -- AttachmentUtils.link(world, body, hat, AttachmentNodeLinking.hat.slot_hat)
-
-    local num_meshes = Unit.num_meshes(hat)
-    for i = 0, num_meshes - 1, 1 do
-        if true then
-            if i < 12 or i > 16 then  
-                local mesh = Unit.mesh(body, i)
-                local num_mats = Mesh.num_materials(mesh)
-                for j = 0, num_mats - 1, 1 do
-                    local mat = Mesh.material(mesh, j)
-                    Material.set_texture(mat, "texture_map_64cc5eb8", "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse")      
+    
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i,1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i > 3 and i < 8 then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
                 end
             end
         end
+    end
+end)
+
+
+
+mod:command("spawn_BeastHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i > 3 and i < 8 then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_FrostHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i > 3 and i < 8 then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_NightHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i > 3 and i < 8 then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_PurifiedHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse2",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse3",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse4",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse4",
+    }
+    Managers.package:load(pack_hat, "global")
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if i > 3 and i < 8 then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            elseif i <= 3 then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['mask'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_Midden", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse4",
+    }
+    Managers.package:load(pack_hat, "global")
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_Nuln", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse4",
+    }
+    Managers.package:load(pack_hat, "global")
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_Reik", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse4",
+    }
+    Managers.package:load(pack_hat, "global")
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        local world = Managers.world:world("level_world")
+        mod.units_to_remove[hat] = hat
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("spawn_Stir", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse",
+    }
+    elf_table[2] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse2",
+    }
+    elf_table[3] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse3",
+    }
+    elf_table[4] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse4",
+    }
+    Managers.package:load(pack_hat, "global")
+    for i,text in pairs(elf_table) do
+        local hat = spawn_package_to_player(pack_hat, i, 1.5)
+        mod.units_to_remove[hat] = hat
+        local world = Managers.world:world("level_world")
+        local num_meshes = Unit.num_meshes(hat)
+        mod:echo(num_meshes)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(hat, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("delete_units", "", function()
+    local world = Managers.world:world("level_world")
+    for _,unit in pairs(mod.units_to_remove) do
+        if Unit.alive(unit) then
+            World.destroy_unit(world, unit)
+        end
+        unit = nil
     end
 end)
 
