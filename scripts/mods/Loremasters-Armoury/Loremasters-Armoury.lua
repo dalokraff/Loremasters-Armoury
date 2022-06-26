@@ -154,6 +154,218 @@ mod:command("spawn_fall_elf", "", function()
     end
 end)
 
+mod:command("swap_fall_elf", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
+    local elf_table = {}
+    elf_table[1] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+    local bodies = World.units_by_resource(world, pack_body)
+    for _,unit in pairs(bodies) do
+        
+        mod:echo(i)
+        
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i < 12 or i > 16 then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_64cc5eb8", elf_table[1]['body'])      
+                    end
+                end
+            end
+        end
+    end
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
+mod:command("swap_fall_elf2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
+    local elf_table = {}
+    elf_table[1] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse2",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+    local bodies = World.units_by_resource(world, pack_body)
+    for _,unit in pairs(bodies) do
+        
+        mod:echo(i)
+        
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i < 12 or i > 16 then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_64cc5eb8", elf_table[1]['body'])      
+                    end
+                end
+            end
+        end
+    end
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
+mod:command("swap_fall_elf3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
+    local elf_table = {}
+    elf_table[1] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse3",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+    local bodies = World.units_by_resource(world, pack_body)
+    for _,unit in pairs(bodies) do
+        
+        mod:echo(i)
+        
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i < 12 or i > 16 then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_64cc5eb8", elf_table[1]['body'])      
+                    end
+                end
+            end
+        end
+    end
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
+mod:command("swap_fall_elf4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local pack_body = "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh"
+    local elf_table = {}
+    elf_table[1] = {
+        body = "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse4",
+        hat = "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+    local bodies = World.units_by_resource(world, pack_body)
+    for _,unit in pairs(bodies) do
+        
+        mod:echo(i)
+        
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if i < 12 or i > 16 then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_64cc5eb8", elf_table[1]['body'])      
+                    end
+                end
+            end
+        end
+    end
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
 mod:command("spawn_greenHerald", "", function()
     local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
     local elf_table = {}
@@ -193,6 +405,129 @@ mod:command("spawn_greenHerald", "", function()
     end
 end)
 
+mod:command("swap_greenHerald", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse"
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_greenHerald2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse2"
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_greenHerald3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse3"
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_greenHerald4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_11"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse4"
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
 
 
 mod:command("spawn_BeastHorns", "", function()
@@ -226,6 +561,130 @@ mod:command("spawn_BeastHorns", "", function()
                     for j = 0, num_mats - 1, 1 do
                         local mat = Mesh.material(mesh, j)
                         Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_BeastHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_BeastHorns2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_BeastHorns3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_BeastHorns4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
                     end
                 end
             end
@@ -271,6 +730,130 @@ mod:command("spawn_FrostHorns", "", function()
     end
 end)
 
+mod:command("swap_FrostHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_FrostHorns2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_FrostHorns3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_FrostHorns4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
 mod:command("spawn_NightHorns", "", function()
     local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
     local elf_table = {}
@@ -302,6 +885,130 @@ mod:command("spawn_NightHorns", "", function()
                     for j = 0, num_mats - 1, 1 do
                         local mat = Mesh.material(mesh, j)
                         Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_NightHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_NightHorns2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_NightHorns3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_NightHorns4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
                     end
                 end
             end
@@ -359,6 +1066,170 @@ mod:command("spawn_PurifiedHorns", "", function()
     end
 end)
 
+mod:command("swap_PurifiedHorns", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if i > 3 and i < 8 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            elseif i <= 3 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['mask'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_PurifiedHorns2", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse2",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if i > 3 and i < 8 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            elseif i <= 3 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['mask'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_PurifiedHorns3", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse3",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if i > 3 and i < 8 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            elseif i <= 3 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['mask'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_PurifiedHorns4", "", function()
+    local pack_hat = "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse4",
+        mask = "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if i > 3 and i < 8 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            elseif i <= 3 then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['mask'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
 mod:command("spawn_Midden", "", function()
     local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
     local elf_table = {}
@@ -389,6 +1260,130 @@ mod:command("spawn_Midden", "", function()
                     for j = 0, num_mats - 1, 1 do
                         local mat = Mesh.material(mesh, j)
                         Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Midden", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Midden2", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Midden3", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Midden4", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
                     end
                 end
             end
@@ -433,6 +1428,130 @@ mod:command("spawn_Nuln", "", function()
     end
 end)
 
+mod:command("swap_Nuln", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Nuln2", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Nuln3", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Nuln4", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
 mod:command("spawn_Reik", "", function()
     local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
     local elf_table = {}
@@ -470,6 +1589,130 @@ mod:command("spawn_Reik", "", function()
     end
 end)
 
+mod:command("swap_Reik", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Reik2", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Reik3", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Reik4", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
 mod:command("spawn_Stir", "", function()
     local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
     local elf_table = {}
@@ -500,6 +1743,130 @@ mod:command("spawn_Stir", "", function()
                     for j = 0, num_mats - 1, 1 do
                         local mat = Mesh.material(mesh, j)
                         Material.set_texture(mat, "texture_map_c0ba2942", text['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Stir", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Stir2", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse2",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Stir3", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse3",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
+                    end
+                end
+            end
+        end
+    end
+end)
+
+mod:command("swap_Stir4", "", function()
+    local pack_hat = "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02"
+    local elf_table = {}
+    elf_table[1] = {
+        hat = "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse4",
+    }
+
+    Managers.package:load(pack_hat, "global")
+    Managers.package:load(pack_body, "global")
+    local world = Managers.world:world("level_world")
+
+    local hats = World.units_by_resource(world, pack_hat)
+    for _,unit in pairs(hats) do
+        
+        mod:echo(i)
+        local num_meshes = Unit.num_meshes(unit)
+        for i = 0, num_meshes - 1, 1 do
+            if true then
+                if true then  
+                    local mesh = Unit.mesh(unit, i)
+                    local num_mats = Mesh.num_materials(mesh)
+                    for j = 0, num_mats - 1, 1 do
+                        local mat = Mesh.material(mesh, j)
+                        Material.set_texture(mat, "texture_map_c0ba2942", elf_table[1]['hat'])      
                     end
                 end
             end
