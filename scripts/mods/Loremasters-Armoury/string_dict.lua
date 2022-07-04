@@ -62,7 +62,7 @@ local desc_strings = {
     Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_yellow = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_SunsetBonnet_helm_Middenland = "Remnant of a Middenland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
-    Kruber_SunsetBonnet_helm_Nuln = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
+    Kruber_SunsetBonnet_helm_Nuln = "Remnant of a Nuln uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Kruber_SunsetBonnet_helm_Reikwald = "Remnant of a Reikwald uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Kruber_SunsetBonnet_helm_Stirland = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
@@ -139,7 +139,7 @@ mod.elf_hats = {
     },
     waywatcher_hat_0001 = {
         Kerillian_HornOfKurnous_helm_Beaststalker = "Horn of Kurnous (Beaststalker)",
-        Kerillian_HornOfKurnous_helm_Frostwatcher = "Horn of Kurnous (Frostwatcher", 
+        Kerillian_HornOfKurnous_helm_Frostwatcher = "Horn of Kurnous (Frostwatcher)", 
         Kerillian_HornOfKurnous_helm_Nightstalker = "Horn of Kurnous (Nightstalker)",
         Kerillian_HornOfKurnous_helm_Purified = "Horn of Kurnous (Purified)",
     }
