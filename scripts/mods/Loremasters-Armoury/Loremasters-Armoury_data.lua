@@ -190,7 +190,7 @@ for _,skin in ipairs(mod.elf_hat_skins) do
 	widget.title = skin
 	print("here:	"..tostring(menu.options.widgets[2].options[5].text))
 	local x = 1
-	for Amoury_key,skin_name  in pairs(mod.elf_hats) do
+	for Amoury_key,skin_name  in pairs(mod.elf_hats[skin]) do
 		local choice = {text = Amoury_key,   value = Amoury_key}
 		table.insert(widget.options, choice)
 	end
@@ -235,6 +235,23 @@ for _,skin in ipairs(mod.krub_armor_skins) do
 	end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[3].options[2].show_widgets, num_skins)
+	table.insert(menu.options.widgets[3].sub_widgets, widget)
+end
+
+--reset skins for ker armor
+-- num_skins = 0
+--ker armor
+for _,skin in ipairs(mod.elf_armor_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.ker_armors) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[3].options[5].show_widgets, num_skins)
 	table.insert(menu.options.widgets[3].sub_widgets, widget)
 end
 

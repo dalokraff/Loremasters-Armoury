@@ -227,6 +227,35 @@ mod.SKIN_LIST = {
         swap_hand = "left_hand_unit",
         swap_skin = nil,
     },
+    Ker_Autumn_Weave_Armor = {
+        kind = "texture",
+        swap_skin = nil,
+        cosmetic_key = "skin_ww_waywatcher_1001",
+        skin_to_swap = {
+            skin_ww_waywatcher_1001 = "skin_ww_waywatcher_1001",
+        },
+        textures = {
+            "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse",
+        },
+        textures_fps = {
+            "textures/Kerillian_HeraldOfTheWeave_body_Autumn/Kerillian_HeraldOfTheWeave_body_Autumn_diffuse_1p",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded_skin_01/third_person_base/chr_third_person_mesh",
+        },
+        fps_units = {
+            "units/beings/player/way_watcher_upgraded_skin_01/first_person_base/chr_first_person_mesh",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "armor",
+        skip_meshes = { 
+            skip12 = true,
+            skip13 = true,
+            skip14 = true,
+            skip15 = true,
+            skip16 = true,
+        },
+    },
     Kruber_empire_shield_basic1 = {
         kind = "unit",
         new_units = {
@@ -420,6 +449,106 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+    },
+    Kerillian_Evercrown_helm_AutumnHerald = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_Evercrown_helm_GreenHerald = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_12",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kerillian_HornOfKurnous_helm_Beaststalker = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_HornOfKurnous_helm_Beaststalker/Kerillian_HornOfKurnous_helm_Beaststalker_diffuse",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+        },
+    },
+    Kerillian_HornOfKurnous_helm_Frostwatcher = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_HornOfKurnous_helm_Frostwatcher/Kerillian_HornOfKurnous_helm_Frostwatcher_diffuse",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+        },
+    },
+    Kerillian_HornOfKurnous_helm_Nightstalker = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_HornOfKurnous_helm_Nightstalker/Kerillian_HornOfKurnous_helm_Nightstalker_diffuse",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+        },
+    },
+    Kerillian_HornOfKurnous_helm_Purified = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse",
+        },
+        new_units = {
+            "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+        },
     },
     Kruber_KOTBS_hat = {
         kind = "texture",
@@ -656,6 +785,58 @@ mod.SKIN_LIST = {
         swap_hand = "hat",
         skip_meshes = {},
     },
+    Kruber_SunsetBonnet_helm_Middenland = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse",             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_SunsetBonnet_helm_Nuln = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse",             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_SunsetBonnet_helm_Reikwald = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse",             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
+    Kruber_SunsetBonnet_helm_Stirland = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse",             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+    },
     Bardin_dwarf_shield_basicClean_KarakNorn01 = {
         kind = "unit",
         new_units = {
@@ -751,17 +932,24 @@ mod.dwarf_ham_shield = {
 
 mod.elf_hat_skins = {
 	"maidenguard_hat_1001",
+    "waywatcher_hat_0011",
+    "waywatcher_hat_0001",
 }
 
 mod.krub_hat_skins = {
 	"knight_hat_1001",
     "questing_knight_hat_0000", 
     "questing_knight_hat_0001", 
-    "questing_knight_hat_0003", 
+    "questing_knight_hat_0003",
+    "huntsman_hat_0001",
 }
 
 mod.krub_armor_skins = {
 	"skin_es_knight_black_and_gold",
+}
+
+mod.elf_armor_skins = {
+	"skin_ww_waywatcher_1001",
 }
 
 table.append(skins_to_change, mod.bret_skins)
@@ -774,6 +962,7 @@ table.append(skins_to_change, mod.elf_skins)
 table.append(skins_to_change, mod.elf_hat_skins)
 table.append(skins_to_change, mod.krub_hat_skins)
 table.append(skins_to_change, mod.krub_armor_skins)
+table.append(skins_to_change, mod.elf_armor_skins)
 
 --this mod table is used for the vmf menu localization
 mod.vanilla_game_strings = table.clone(skins_to_change, true)

@@ -83,9 +83,9 @@ local function spawn_package_to_player (package_name, y,z)
 	return nil
 end
 
-mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, position, rotation, material)
-    mod:echo(unit_name)
-end)
+-- mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, position, rotation, material)
+--     mod:echo(unit_name)
+-- end)
 
 mod.units_to_remove = {}
 
@@ -123,6 +123,7 @@ mod:command("spawn_fall_elf", "", function()
         mod.units_to_remove[body] = body
         mod.units_to_remove[hat] = hat
         local num_meshes = Unit.num_meshes(body)
+        mod:echo(num_meshes)
         for i = 0, num_meshes - 1, 1 do
             if true then
                 if i < 12 or i > 16 then  

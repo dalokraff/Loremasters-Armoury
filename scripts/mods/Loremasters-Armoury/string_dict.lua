@@ -39,6 +39,13 @@ local desc_strings = {
     Kerillian_elf_hat_Windrunner_Saphery = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Saphery",
     Kerillian_elf_hat_Windrunner_Tiranoc = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Tiranoc",
     Kerillian_elf_hat_Windrunner_Yvresse = "Still well preserved even after centuries of combat, this masterfully crafted helm bears colours of the kingdom of Yvresse",
+    Ker_Autumn_Weave_Armor = "Tirsyth, the Ashenhall, is a High Realm of Athel Loren encased in eternal autumn. Elves who live there revere life's end as fervently as they do its start, erecting moonstone statues of the departed to remember and honour their deceased kin.",
+    Kerillian_Evercrown_helm_AutumnHerald = "High-status waywatcher's mask, worn by a warrior skilled in the myriad ways of silent death.",
+    Kerillian_Evercrown_helm_GreenHerald = "High-status waywatcher's mask, worn by a warrior skilled in the myriad ways of silent death.",
+    Kerillian_HornOfKurnous_helm_Beaststalker = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.",
+    Kerillian_HornOfKurnous_helm_Frostwatcher = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.", 
+    Kerillian_HornOfKurnous_helm_Nightstalker = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.",
+    Kerillian_HornOfKurnous_helm_Purified = "Showing proper respect to the Pale Queen might call her into acton, and this save your soul from the clutches of chaos.",
     Kruber_KOTBS_hat = "There is a subtle touch of elven magic upon this helm, protecting its wearer's mind and enhancing their senses. A favour from an old friend?",
     Kruber_KOTBS_armor = "To accomplish any task - to defeat any foe, all that is needed is a keen eye, a sharp mind and the favour of the Goddess.",
     Kruber_Hippogryph_helm_black = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
@@ -53,6 +60,10 @@ local desc_strings = {
     Kruber_Worthy_helm_red = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_yellow = "A knight's headpiece, as stalwart and true as he who dons it.",
+    Kruber_SunsetBonnet_helm_Middenland = "Remnant of a Middenland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
+    Kruber_SunsetBonnet_helm_Nuln = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
+    Kruber_SunsetBonnet_helm_Reikwald = "Remnant of a Reikwald uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
+    Kruber_SunsetBonnet_helm_Stirland = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
 }
@@ -103,16 +114,28 @@ mod.dwarf_shields = {
 }
 
 mod.elf_hats = {
-    Kerillian_elf_hat_Windrunner_Avelorn = "Knight helm of Avelorn",
-    Kerillian_elf_hat_Windrunner_Caledor = "Knight helm of Caledor",
-    Kerillian_elf_hat_Windrunner_Chrace = "Knight helm of Chrace",
-    Kerillian_elf_hat_Windrunner_Cothique = "Knight helm of Cothique",
-    Kerillian_elf_hat_Windrunner_Eataine = "Knight helm of Eataine",
-    Kerillian_elf_hat_Windrunner_Ellyrion = "Knight helm of Ellyrion",
-    Kerillian_elf_hat_Windrunner_Nagarythe = "Knight helm of Nagarythe",
-    Kerillian_elf_hat_Windrunner_Saphery = "Knight helm of Saphery",
-    Kerillian_elf_hat_Windrunner_Tiranoc = "Knight helm of Tiranoc",
-    Kerillian_elf_hat_Windrunner_Yvresse = "Knight helm of Yvresse",
+    maidenguard_hat_1001 = {
+        Kerillian_elf_hat_Windrunner_Avelorn = "Knight helm of Avelorn",
+        Kerillian_elf_hat_Windrunner_Caledor = "Knight helm of Caledor",
+        Kerillian_elf_hat_Windrunner_Chrace = "Knight helm of Chrace",
+        Kerillian_elf_hat_Windrunner_Cothique = "Knight helm of Cothique",
+        Kerillian_elf_hat_Windrunner_Eataine = "Knight helm of Eataine",
+        Kerillian_elf_hat_Windrunner_Ellyrion = "Knight helm of Ellyrion",
+        Kerillian_elf_hat_Windrunner_Nagarythe = "Knight helm of Nagarythe",
+        Kerillian_elf_hat_Windrunner_Saphery = "Knight helm of Saphery",
+        Kerillian_elf_hat_Windrunner_Tiranoc = "Knight helm of Tiranoc",
+        Kerillian_elf_hat_Windrunner_Yvresse = "Knight helm of Yvresse",
+    },
+    waywatcher_hat_0011 = {
+        Kerillian_Evercrown_helm_AutumnHerald = "Evercrown (Autumn)",
+        Kerillian_Evercrown_helm_GreenHerald = "Evercrown (Evergreen)",
+    },
+    waywatcher_hat_0001 = {
+        Kerillian_HornOfKurnous_helm_Beaststalker = "Horn of Kurnous (Beaststalker)",
+        Kerillian_HornOfKurnous_helm_Frostwatcher = "Horn of Kurnous (Frostwatcher", 
+        Kerillian_HornOfKurnous_helm_Nightstalker = "Horn of Kurnous (Nightstalker)",
+        Kerillian_HornOfKurnous_helm_Purified = "Horn of Kurnous (Purified)",
+    }
 }
 
 mod.krub_hats = {
@@ -137,10 +160,20 @@ mod.krub_hats = {
         Kruber_Worthy_helm_white = "Helm of the Worthy (Purified)",
         Kruber_Worthy_helm_yellow = "Helm of the Worthy (Paladin)",
     },
+    huntsman_hat_0001 = {
+        Kruber_SunsetBonnet_helm_Middenland = "Sunset Bonnet (Middenland)",
+        Kruber_SunsetBonnet_helm_Nuln = "Sunset Bonnet (Nuln)",
+        Kruber_SunsetBonnet_helm_Reikwald = "Sunset Bonnet (Reikwald)",
+        Kruber_SunsetBonnet_helm_Stirland = "Sunset Bonnet (Stirland)",
+    },
 }
 
 mod.krub_armors = {
     Kruber_KOTBS_armor = "Blessed Plate of the Blazing Sun",
+}
+
+mod.ker_armors = {
+    Ker_Autumn_Weave_Armor = "Herald of Autumn",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
@@ -156,8 +189,10 @@ end
 for k,v in pairs(mod.dwarf_shields) do
     name_strings[k] = v
 end
-for k,v in pairs(mod.elf_hats) do
-    name_strings[k] = v
+for k,helm in pairs(mod.elf_hats) do
+    for variant,name in pairs(helm) do 
+        name_strings[variant] = name
+    end
 end
 for k,helm in pairs(mod.krub_hats) do
     for variant,name in pairs(helm) do 
@@ -167,6 +202,9 @@ for k,helm in pairs(mod.krub_hats) do
     -- mod:echo(tostring(k)..":     "..tostring(helm))
 end
 for k,v in pairs(mod.krub_armors) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.ker_armors) do
     name_strings[k] = v
 end
 --copies the name_strings table to be used in a mod table for the vmf menu localization
