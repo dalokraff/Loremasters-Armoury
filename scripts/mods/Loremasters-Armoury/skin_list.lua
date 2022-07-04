@@ -249,11 +249,16 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "armor",
         skip_meshes = { 
-            skip12 = true,
+            skip4 = true,
+            skip5 = true,
+            skip6 = true,
+            -- skip12 = true,
             skip13 = true,
             skip14 = true,
             skip15 = true,
             skip16 = true,
+            skip17 = true,
+            skip18 = true,
         },
     },
     Kruber_empire_shield_basic1 = {
