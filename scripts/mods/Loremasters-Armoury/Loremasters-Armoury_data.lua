@@ -36,6 +36,7 @@ menu.options.widgets = {
 			{text = "elf_spear_shield",   value = 6, show_widgets = {}},
 			{text = "dwarf_axe_shield",   value = 7, show_widgets = {}},
 			{text = "dwarf_ham_shield",   value = 8, show_widgets = {}},
+			{text = "elf_bow",   value = 9, show_widgets = {}},
 		},
 		sub_widgets = {},
 	},
@@ -177,6 +178,21 @@ for _,skin in ipairs(mod.dwarf_ham_shield) do
 	end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[8].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+--elf long bow
+for _,skin in ipairs(mod.elf_bow_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name in pairs(mod.elf_bows[skin]) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[9].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
 end
 

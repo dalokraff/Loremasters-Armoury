@@ -261,6 +261,15 @@ mod.SKIN_LIST = {
             skip18 = true,
         },
     },
+    Kerillian_elf_bow_Antlersong_Autumn = {
+        kind = "texture",
+        swap_skin = nil, 
+        textures = {
+            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",             
+        },
+        swap_hand = "left_hand_unit",
+        skip_meshes = {},
+    },
     Kruber_empire_shield_basic1 = {
         kind = "unit",
         new_units = {
@@ -542,6 +551,17 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_helm_Purified_diffuse",
+        },
+        textures_other_mesh = {
+            skip1 = {
+                "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse",
+            },
+            skip2 = {
+                "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse",
+            },
+            skip3 = {
+                "textures/Kerillian_HornOfKurnous_helm_Purified/Kerillian_HornOfKurnous_mask_Purified_diffuse",
+            },
         },
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
@@ -915,6 +935,10 @@ mod.elf_skins = {
     "we_1h_spears_shield_skin_02",
 }
 
+mod.elf_bow_skins = {
+    "we_longbow_skin_06",
+}
+
 mod.dwarf_axe_shield = {
     "dw_1h_axe_shield_skin_02",
 	"dw_1h_axe_shield_skin_03",
@@ -964,6 +988,7 @@ table.append(skins_to_change, mod.empire_mace_shield)
 table.append(skins_to_change, mod.dwarf_axe_shield)
 table.append(skins_to_change, mod.dwarf_ham_shield)
 table.append(skins_to_change, mod.elf_skins)
+table.append(skins_to_change, mod.elf_bow_skins)
 table.append(skins_to_change, mod.elf_hat_skins)
 table.append(skins_to_change, mod.krub_hat_skins)
 table.append(skins_to_change, mod.krub_armor_skins)

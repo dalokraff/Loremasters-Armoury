@@ -3,24 +3,47 @@ mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
 local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     if Unit.alive(unit) then
+        
         local num_meshes = Unit.num_meshes(unit)
+        mod:echo('num of mesh   '..tostring(num_meshes))
         for i = 0, num_meshes - 1, 1 do
+            local new_diff = diff
+            local new_MAB = MAB
+            local new_norm = norm
             --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
-            if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)]  and not is_fps_unit then
-                goto continue_apply_texture_to_all_world_units
+            if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] and not is_fps_unit then
+                if mod.SKIN_LIST[Armoury_key].textures_other_mesh then 
+                    if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)] then
+                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1] then
+                            new_diff = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1]
+                        end
+                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2] then
+                            new_MAB = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2]
+                        end
+                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3] then
+                            new_norm = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3]
+                        end
+                    else 
+                        goto continue_apply_texture_to_all_world_units
+                    end
+                    -- goto apply_new_textures
+                end
+                -- goto continue_apply_texture_to_all_world_units
             end
+            -- ::apply_new_textures::
             local mesh = Unit.mesh(unit, i)
             local num_mats = Mesh.num_materials(mesh)
             for j = 0, num_mats - 1, 1 do
                 local mat = Mesh.material(mesh, j)
-                if diff then
-                    Material.set_texture(mat, diff_slot, diff)
+                mod:echo(new_diff)
+                if new_diff then
+                    Material.set_texture(mat, diff_slot, new_diff)
                 end
-                if MAB then 
-                    Material.set_texture(mat, pack_slot, MAB)
+                if new_MAB then 
+                    Material.set_texture(mat, pack_slot, new_MAB)
                 end
-                if norm then
-                    Material.set_texture(mat, norm_slot, norm)
+                if new_norm then
+                    Material.set_texture(mat, norm_slot, new_norm)
                 end
             end
             ::continue_apply_texture_to_all_world_units::
