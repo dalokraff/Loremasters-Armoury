@@ -267,8 +267,21 @@ mod.SKIN_LIST = {
         textures = {
             "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",             
         },
+        textures_other_mesh = {
+            skip1 = {
+                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+            },
+        },
+        -- textures_fps = {
+        --     "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
+        -- },
+        -- fps_units = {
+        --     "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
+        -- },
         swap_hand = "left_hand_unit",
-        skip_meshes = {},
+        skip_meshes = {
+            skip1 = true,
+        },
     },
     Kruber_empire_shield_basic1 = {
         kind = "unit",

@@ -27,6 +27,8 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
                         goto continue_apply_texture_to_all_world_units
                     end
                     -- goto apply_new_textures
+                else
+                    goto continue_apply_texture_to_all_world_units
                 end
                 -- goto continue_apply_texture_to_all_world_units
             end
