@@ -265,22 +265,41 @@ mod.SKIN_LIST = {
         kind = "texture",
         swap_skin = nil, 
         textures = {
-            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",             
+            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
+            -- "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",    
         },
+        is_vanilla_unit = true,
         textures_other_mesh = {
             skip1 = {
                 "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
             },
+            skip2 = {
+                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+            },
+            skip3 = {
+                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+            },
+            fps_mat = {
+                skip1 = true,
+                skip1 = true,
+                skip3 = true,
+            }
         },
-        -- textures_fps = {
-        --     "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
-        -- },
-        -- fps_units = {
-        --     "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
-        -- },
+        textures_fps = {
+            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+        },
+        fps_units = {
+            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
+        },
+        new_units = {
+            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
+            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2_3p",
+        },
         swap_hand = "left_hand_unit",
         skip_meshes = {
             skip1 = true,
+            skip2 = true,
+            skip3 = true,
         },
     },
     Kruber_empire_shield_basic1 = {

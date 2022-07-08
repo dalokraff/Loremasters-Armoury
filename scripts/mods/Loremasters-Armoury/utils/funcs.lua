@@ -10,6 +10,7 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
             local new_diff = diff
             local new_MAB = MAB
             local new_norm = norm
+            mod:echo(num_meshes)
             --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
             if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] and not is_fps_unit then
                 if mod.SKIN_LIST[Armoury_key].textures_other_mesh then 
@@ -22,6 +23,11 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
                         end
                         if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3] then
                             new_norm = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3]
+                        end
+                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["fps_mat"]["skip"..tostring(i)] then
+                            diff_slot = "texture_map_64cc5eb8"
+                            norm_slot = "texture_map_861dbfdc"
+                            pack_slot = "texture_map_b788717c"
                         end
                     else 
                         goto continue_apply_texture_to_all_world_units
