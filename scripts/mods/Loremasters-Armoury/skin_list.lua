@@ -278,6 +278,9 @@ mod.SKIN_LIST = {
                 mesh = 1, 
             },
         },
+        mat_to_skip = {
+            skip1 = true,
+        },
         new_units = {
             "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
             "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2_3p",

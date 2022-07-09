@@ -46,8 +46,10 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
                     Material.set_texture(mat, norm_slot, new_norm)
                 end
                 if mod.SKIN_LIST[Armoury_key].special_textures then 
-                    for _,text_tisch in ipairs(mod.SKIN_LIST[Armoury_key].special_textures) do 
-                        Material.set_texture(mat, text_tisch.slot, text_tisch.texture)
+                    if not mod.SKIN_LIST[Armoury_key].mat_to_skip["skip"..tostring(j)] then 
+                        for _,text_tisch in ipairs(mod.SKIN_LIST[Armoury_key].special_textures) do 
+                            Material.set_texture(mat, text_tisch.slot, text_tisch.texture)
+                        end
                     end
                 end
             end
