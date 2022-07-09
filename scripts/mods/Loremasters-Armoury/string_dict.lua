@@ -117,7 +117,13 @@ mod.dwarf_shields = {
 mod.elf_bows = {
     we_longbow_skin_06 = {
         Kerillian_elf_bow_Antlersong_Autumn = "Song of Delliandra",
-    }
+    },
+    we_longbow_skin_06_runed_01 = {
+        Kerillian_elf_bow_Antlersong_Autumn_runed01 = "Song of Delliandra Runed",
+    },
+    we_longbow_skin_06_runed_02 = {
+        Kerillian_elf_bow_Antlersong_Autumn_runed01 = "Song of Delliandra Runed",
+    },
 }
 
 mod.elf_hats = {

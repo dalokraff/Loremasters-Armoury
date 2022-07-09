@@ -290,6 +290,35 @@ mod.SKIN_LIST = {
             skip1 = true, 
         },
     },
+    Kerillian_elf_bow_Antlersong_Autumn_runed01 = {
+        kind = "texture",
+        swap_skin = nil, 
+        textures = {},
+        is_vanilla_unit = true,
+        special_textures = {
+            {
+                slot = "texture_map_c0ba2942",
+                texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
+                mesh = 1, 
+            },
+            {
+                slot = "texture_map_64cc5eb8",
+                texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+                mesh = 1, 
+            },
+        },
+        mat_to_skip = {
+            skip1 = true,
+        },
+        new_units = {
+            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2_runed_01",
+            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2_runed_01_3p",
+        },
+        swap_hand = "left_hand_unit",
+        skip_meshes = {
+            skip1 = true, 
+        },
+    },
     Kruber_empire_shield_basic1 = {
         kind = "unit",
         new_units = {
@@ -957,6 +986,8 @@ mod.elf_skins = {
 
 mod.elf_bow_skins = {
     "we_longbow_skin_06",
+    "we_longbow_skin_06_runed_01",
+    "we_longbow_skin_06_runed_02",
 }
 
 mod.dwarf_axe_shield = {
