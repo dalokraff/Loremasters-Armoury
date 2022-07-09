@@ -55,7 +55,3 @@ function mod.update()
     
     
 end
-
--- mod:hook_safe(UnitSpawner, 'spawn_local_unit', function (self, unit_name, position, rotation, material)
---     mod:echo(unit_name)
--- end)

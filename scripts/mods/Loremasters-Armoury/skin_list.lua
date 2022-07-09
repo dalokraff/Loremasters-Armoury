@@ -264,32 +264,19 @@ mod.SKIN_LIST = {
     Kerillian_elf_bow_Antlersong_Autumn = {
         kind = "texture",
         swap_skin = nil, 
-        textures = {
-            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
-            -- "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",    
-        },
+        textures = {},
         is_vanilla_unit = true,
-        textures_other_mesh = {
-            skip1 = {
-                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+        special_textures = {
+            {
+                slot = "texture_map_c0ba2942",
+                texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
+                mesh = 1, 
             },
-            skip2 = {
-                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+            {
+                slot = "texture_map_64cc5eb8",
+                texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
+                mesh = 1, 
             },
-            skip3 = {
-                "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
-            },
-            fps_mat = {
-                skip1 = true,
-                skip1 = true,
-                skip3 = true,
-            }
-        },
-        textures_fps = {
-            "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
-        },
-        fps_units = {
-            "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
         },
         new_units = {
             "units/weapons/player/wpn_we_bow_03_t2/wpn_we_bow_03_t2",
@@ -297,9 +284,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {
-            skip1 = true,
-            skip2 = true,
-            skip3 = true,
+            skip1 = true, 
         },
     },
     Kruber_empire_shield_basic1 = {

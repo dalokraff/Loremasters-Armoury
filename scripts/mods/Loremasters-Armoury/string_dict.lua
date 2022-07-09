@@ -208,6 +208,11 @@ for k,helm in pairs(mod.krub_hats) do
     end
     -- mod:echo(tostring(k)..":     "..tostring(helm))
 end
+for k,weapon in pairs(mod.elf_bows) do
+    for variant,name in pairs(weapon) do 
+        name_strings[variant] = name
+    end
+end
 for k,v in pairs(mod.krub_armors) do
     name_strings[k] = v
 end

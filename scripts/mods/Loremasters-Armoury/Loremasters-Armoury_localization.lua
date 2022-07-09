@@ -62,6 +62,9 @@ local mod_text_ids = {
 	elf_hm_hat_1001 = {
 		en = "Windrunner's helm",
 	},
+	elf_bow = {
+		en = "Elf Longbow",
+	},
 	default = {
 		en = "default",
 	}
