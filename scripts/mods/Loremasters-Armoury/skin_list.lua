@@ -258,7 +258,7 @@ mod.SKIN_LIST = {
             skip15 = true,
             skip16 = true,
             skip17 = true,
-            skip18 = true,
+            -- skip18 = true,
         },
     },
     Kerillian_elf_bow_Antlersong_Autumn = {
