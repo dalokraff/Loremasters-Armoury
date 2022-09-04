@@ -247,9 +247,15 @@ local name = {}
 -- local skin_table = table.clone(WeaponSkins.skins)
 local skin_table = table.clone(ItemMasterList, true)
 
+local pattern = "_rightHand"
+
+
 for skin, data in pairs(mod.SKIN_CHANGED) do
-    local description = skin_table[skin].description
-    local heiss = skin_table[skin].display_name
+    
+    local new_name = string.gsub(skin, pattern, "")
+    
+    local description = skin_table[new_name].description
+    local heiss = skin_table[new_name].display_name
     
     desc[description] = skin
     name[heiss] = skin

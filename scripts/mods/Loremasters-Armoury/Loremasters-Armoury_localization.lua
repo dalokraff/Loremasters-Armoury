@@ -88,11 +88,15 @@ end
 
 local game_localize = Managers.localizer
 for _,skin in pairs(mod.vanilla_game_strings) do
+	
+	local pattern = "_rightHand"
+    local new_name = string.gsub(skin, pattern, "")
+	
 	local skin_name = tostring(skin).."_name"
 	if not mod_text_ids[skin] then
 		mod_text_ids[skin] = {}
 	end
-	local translation = game_localize:_base_lookup(ItemMasterList[skin].display_name)--game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin)) or game_localize:_base_lookup(tostring(skin))
+	local translation = game_localize:_base_lookup(ItemMasterList[new_name].display_name)--game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin)) or game_localize:_base_lookup(tostring(skin))
 	mod_text_ids[skin]['zh'] = translation
 	mod_text_ids[skin]['en'] = translation
 	mod_text_ids[skin]['fr'] = translation

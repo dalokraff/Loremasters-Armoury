@@ -1048,6 +1048,15 @@ mod.empire_sword_skins = {
     "es_1h_sword_skin_02_runed_01",
     "es_1h_sword_skin_03",
     "es_1h_sword_skin_04",
+
+    "es_1h_sword_shield_skin_01_rightHand",
+    "es_1h_sword_shield_skin_02_rightHand",
+    "es_1h_sword_shield_skin_02_runed_01_rightHand",
+    "es_1h_sword_shield_skin_03_rightHand",
+    "es_1h_sword_shield_skin_03_runed_01_rightHand",
+    "es_1h_sword_shield_skin_03_runed_02_rightHand",
+    "es_1h_sword_shield_skin_04_rightHand",
+    "es_1h_sword_shield_skin_05_rightHand",
 }
 
 table.append(skins_to_change, mod.bret_skins)
@@ -1069,12 +1078,20 @@ mod.vanilla_game_strings = table.clone(skins_to_change, true)
 
 mod.SKIN_CHANGED = {}
 
+local pattern = "_rightHand"
+-- local new_name = string.gsub(skin, pattern, "")
+
 for _,skin in pairs(skins_to_change) do
     local unit = nil
-    if skin_table_weapons[skin] then
-        unit = skin_table_weapons[skin].left_hand_unit or skin_table_weapons[skin].right_hand_unit
-    elseif skin_table_items[skin] then
-        unit = skin_table_items[skin].unit
+    local new_name = string.gsub(skin, pattern, "")
+    if skin_table_weapons[new_name] then
+        if string.find(skin, pattern) then 
+            unit = skin_table_weapons[new_name].right_hand_unit
+        else 
+            unit = skin_table_weapons[new_name].left_hand_unit or skin_table_weapons[new_name].right_hand_unit
+        end
+    elseif skin_table_items[new_name] then
+        unit = skin_table_items[new_name].unit
     end
  
     
@@ -1082,7 +1099,7 @@ for _,skin in pairs(skins_to_change) do
         changed_texture = false,
         changed_model = false,
         unit = unit,
-        cosmetic_table = Cosmetics[skin]
+        cosmetic_table = Cosmetics[new_name]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)
 end
