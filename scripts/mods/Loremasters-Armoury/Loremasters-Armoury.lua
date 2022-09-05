@@ -95,6 +95,4 @@ mod:command("swap_sword", "", function()
         end
         
     end
-    
-
 end)

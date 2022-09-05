@@ -65,6 +65,9 @@ local mod_text_ids = {
 	elf_bow = {
 		en = "Elf Longbow",
 	},
+	emp_sword = {
+		en = "Empire Sword",
+	},
 	default = {
 		en = "default",
 	}
