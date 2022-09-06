@@ -7,7 +7,8 @@ package = [
 ]
 
 lua = [
-	"scripts/mods/Loremasters-Armoury/*"
+	"scripts/mods/Loremasters-Armoury/*",
+  "materials/Loremasters-Armoury/amoury_atlas"
 ]
 
 material = [
