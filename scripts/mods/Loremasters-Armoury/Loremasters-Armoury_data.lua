@@ -1,5 +1,6 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
+-- mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
 local menu = {
 	name = "Loremasters-Armoury",
@@ -270,5 +271,28 @@ for _,skin in ipairs(mod.elf_armor_skins) do
 	table.insert(menu.options.widgets[3].options[5].show_widgets, num_skins)
 	table.insert(menu.options.widgets[3].sub_widgets, widget)
 end
+
+menu.custom_gui_texture = {}
+menu.custom_gui_textures = {
+	atlases = {
+		{
+			"materials/Loremasters-Armoury/amoury_atlas",
+			"amoury_atlas",
+			"amoury_atlas_masked",
+		},
+	},
+
+	textures = {
+		"textures/hud/amoury_atlas/amoury_atlas"
+	},
+
+	-- Injections
+	ui_renderer_injections = {
+		{
+			"ingame_ui",
+			"materials/Loremasters-Armoury/amoury_atlas",
+		},
+	},
+}
 
 return menu

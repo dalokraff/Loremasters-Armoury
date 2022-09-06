@@ -5,6 +5,9 @@ local mod_text_ids = {
 	mod_description = {
 		en = "Loremasters-Armoury description",
 	},
+	mod_name = {
+		en = "Loremaster's Armoury",
+	},
 	choose_char_hat = {
 		en = "Choose Hat for Character",
 	},
