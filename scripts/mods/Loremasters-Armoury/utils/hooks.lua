@@ -227,3 +227,18 @@ mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
     
 	return func(self, text_id)
 end)
+
+
+mod:hook(BackendInterfaceLootPlayfab,'get_achievement_rewards', function (func, self, achievement_id)
+
+    local achievement_rewards = self._backend_mirror:get_achievement_rewards()
+	local rewards = achievement_rewards[achievement_id] and achievement_rewards[achievement_id][1]
+
+    if rewards then
+        if mod.achievement_rewards[achievement_id] then
+            return mod.achievement_rewards[achievement_id]
+        end
+    end
+
+    return func(self, achievement_id)
+end)

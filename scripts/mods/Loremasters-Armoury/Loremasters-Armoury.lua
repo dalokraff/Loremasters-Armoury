@@ -65,3 +65,17 @@ end
 
 
 mod.complete = 0
+
+mod:command("increase_count", "", function()
+
+    mod.complete = mod.complete + 1
+
+end)
+
+mod:command("achievement_reset", "", function()
+
+    for k,v in pairs(mod.achievement_list) do 
+        mod:set(k, false)
+    end
+
+end)

@@ -1,13 +1,42 @@
 local mod = get_mod("Loremasters-Armoury")
-
 local limit = 3
+
+mod.achievement_list = {
+	test_1_completed = false, 
+}
+
+-- for cheevo,finished in pairs(achievement_list) do
+-- 	cheevo = mod:get(cheevo) or false
+-- end
+
+-- {
+-- 	reward_type = item, hat, weapon_skin, currency, frame, skin, keep_decoration_painting
+-- 	item_name = 
+-- 	weapon_skin_name =
+-- 	decoration_name = 
+
+-- }
+
+mod.achievement_rewards = {
+	test_1 = {
+		reward_type = "weapon_skin",
+		weapon_skin_name = "we_longbow_skin_06_runed_01",
+	}, 
+}
+
 AchievementTemplates.achievements.test_1 = {
 	name = "test_1",
 	display_completion_ui = true,
-	icon = "armoury_icon",
+	icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
 	desc = "test_1_desc",
 	completed = function (statistics_db, stats_id)
-		if mod.complete >= limit then
+		
+		local cheevo = "test_1_completed"
+		local finished = mod:get(cheevo)
+
+		if (mod.complete >= limit) or finished then
+			mod:set(cheevo, true)
+			mod:echo('COMPLETED!!!')
 			return true
 		end
 
@@ -15,6 +44,12 @@ AchievementTemplates.achievements.test_1 = {
 	end,
 	progress = function (statistics_db, stats_id)
 		local count = mod.complete
+
+		local cheevo = "test_1_completed"
+		local finished = mod:get(cheevo) 
+		if finished then
+			count = limit
+		end
 
 		count = math.min(count, limit)
 
