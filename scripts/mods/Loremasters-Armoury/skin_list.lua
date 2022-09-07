@@ -97,6 +97,7 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip0 = true,
         },
+        icon = "kerillian_elf_shield_basic_avelorn01_icon",
     },
     Kerillian_elf_shield_basic_Avelorn01_mesh = {
         kind = "unit",
@@ -127,6 +128,7 @@ mod.SKIN_LIST = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01_3p",
         },
         swap_hand = "left_hand_unit",
+        icon = "kerillian_elf_shield_basic2_griffongate01_icon",
     },
     test_unit = {
         kind = "unit",
@@ -145,6 +147,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_heroclean_saphery01_icon",
     },
     Kerillian_elf_shield_heroClean_Caledor01 = {
         kind = "unit",
@@ -154,6 +157,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_heroclean_caledor01_icon",
     },
     Kerillian_elf_shield_heroClean_Avelorn02 = {
         kind = "unit",
@@ -163,6 +167,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_heroclean_avelorn02_icon",
     },
     Kerillian_elf_shield_basicClean = {
         kind = "unit",
@@ -172,6 +177,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_basicclean_eataine01_icon",
     },
     Kerillian_elf_shield_basic2_Eaglegate01 = {
         kind = "unit",
@@ -181,6 +187,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_basic2_eaglegate01_icon",
     },
     Kerillian_elf_shield_basicClean_Saphery01 = {
         kind = "unit",
@@ -190,6 +197,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_basicclean_saphery01_icon",
     },
     Kerillian_elf_shield_basicClean_Caledor01 = {
         kind = "unit",
@@ -199,6 +207,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_basicclean_caledor01_icon",
     },
     Kerillian_elf_shield_basicClean_Chrace01 = {
         kind = "unit",
@@ -208,6 +217,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_basicclean_chrace01_icon",
     },
     Kerillian_elf_shield_heroClean_Eataine01 = {
         kind = "unit",
@@ -217,6 +227,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_heroclean_eataine01_icon",
     },
     Kerillian_elf_shield_heroClean_Chrace01 = {
         kind = "unit",
@@ -226,6 +237,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icon = "kerillian_elf_shield_heroclean_chrace01_icon",
     },
     Ker_Autumn_Weave_Armor = {
         kind = "texture",
