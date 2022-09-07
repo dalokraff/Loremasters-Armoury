@@ -48,6 +48,7 @@ local desc_strings = {
     Kerillian_HornOfKurnous_helm_Purified = "Showing proper respect to the Pale Queen might call her into acton, and this save your soul from the clutches of chaos.",
     Kerillian_elf_bow_Antlersong_Autumn = "Under the perennially auburn leaves of the mighty guardian Delliandra, the forest grows and grows eternally.",
     Kerillian_elf_bow_Antlersong_Autumn_runed01 = "Under the perennially auburn leaves of the mighty guardian Delliandra, the forest grows and grows eternally.",
+    Kerillian_elf_bow_Antlersong_Autumn_runed02 = "Under the perennially auburn leaves of the mighty guardian Delliandra, the forest grows and grows eternally.",
     Kruber_KOTBS_hat = "There is a subtle touch of elven magic upon this helm, protecting its wearer's mind and enhancing their senses. A favour from an old friend?",
     Kruber_KOTBS_armor = "To accomplish any task - to defeat any foe, all that is needed is a keen eye, a sharp mind and the favour of the Goddess.",
     Kruber_Hippogryph_helm_black = "Helmet of an audacious knight, acclaimed valiant after slaying a mighty beast.",
@@ -123,7 +124,7 @@ mod.elf_bows = {
         Kerillian_elf_bow_Antlersong_Autumn_runed01 = "Song of Delliandra Runed",
     },
     we_longbow_skin_06_runed_02 = {
-        Kerillian_elf_bow_Antlersong_Autumn_runed01 = "Song of Delliandra Runed",
+        Kerillian_elf_bow_Antlersong_Autumn_runed02 = "Song of Delliandra Runed",
     },
 }
 
