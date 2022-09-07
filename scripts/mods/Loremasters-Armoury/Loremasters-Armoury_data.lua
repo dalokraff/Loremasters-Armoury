@@ -276,9 +276,9 @@ menu.custom_gui_texture = {}
 menu.custom_gui_textures = {
 	atlases = {
 		{
-			"materials/Loremasters-Armoury/amoury_atlas",
-			"amoury_atlas",
-			"amoury_atlas_masked",
+			"materials/Loremasters-Armoury/armoury_atlas",
+			"armoury_atlas",
+			"armoury_atlas_masked",
 		},
 	},
 
@@ -290,7 +290,7 @@ menu.custom_gui_textures = {
 	ui_renderer_injections = {
 		{
 			"ingame_ui",
-			"materials/Loremasters-Armoury/amoury_atlas",
+			"materials/Loremasters-Armoury/armoury_atlas",
 		},
 	},
 }

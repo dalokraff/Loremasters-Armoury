@@ -1,0 +1,23 @@
+armoury_atlas = {
+    material_contexts = {
+        surface_material = ""
+    }
+
+    shader = "gui:DIFFUSE_MAP"
+
+    textures = {
+        diffuse_map = "textures/armoury/armoury_atlas"
+    }
+}
+
+armoury_atlas_masked = {
+    material_contexts = {
+        surface_material = ""
+    }
+
+    shader = "gui_gradient:DIFFUSE_MAP:MASKED"
+
+    textures = {
+        diffuse_map = "textures/armoury/armoury_atlas"
+    }
+}

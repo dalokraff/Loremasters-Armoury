@@ -289,6 +289,7 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
+        icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
     },
     Kerillian_elf_bow_Antlersong_Autumn_runed01 = {
         kind = "texture",
@@ -318,6 +319,7 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
+        icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
     },
     Kruber_empire_shield_basic1 = {
         kind = "unit",

@@ -62,3 +62,6 @@ function mod.update()
     
     
 end
+
+
+mod.complete = 0
