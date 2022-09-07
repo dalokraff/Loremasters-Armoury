@@ -282,9 +282,9 @@ menu.custom_gui_textures = {
 		},
 	},
 
-	textures = {
-		"textures/hud/amoury_atlas/amoury_atlas"
-	},
+	-- textures = {
+	-- 	"textures/hud/amoury_atlas/amoury_atlas"
+	-- },
 
 	-- Injections
 	ui_renderer_injections = {

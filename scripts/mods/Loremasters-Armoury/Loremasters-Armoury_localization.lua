@@ -70,7 +70,14 @@ local mod_text_ids = {
 	},
 	default = {
 		en = "default",
-	}
+	},
+	test_1 = {
+		en = "test achievement",
+	},
+	test_1_desc = {
+		en = "test description",
+	},
+
 }
 
 for id,text in pairs(mod.name_strings_id) do
