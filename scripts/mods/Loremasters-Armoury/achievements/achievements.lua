@@ -1,13 +1,27 @@
 local mod = get_mod("Loremasters-Armoury")
 
-
+local limit = 3
 AchievementTemplates.achievements.test_1 = {
 	name = "test_1",
 	display_completion_ui = true,
 	icon = "armoury_icon",
 	desc = "test_1_desc",
 	completed = function (statistics_db, stats_id)
-		return statistics_db:get_persistent_stat(stats_id, "killed_lord_as_last_player_standing") > 0
+		if mod.complete >= limit then
+			return true
+		end
+
+		return false
+	end,
+	progress = function (statistics_db, stats_id)
+		local count = mod.complete
+
+		count = math.min(count, limit)
+
+		return {
+			count,
+			limit
+		}
 	end
 }
 
