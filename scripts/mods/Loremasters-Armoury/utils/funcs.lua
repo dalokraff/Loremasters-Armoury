@@ -116,6 +116,8 @@ local function swap_units_new(Armoury_key, skin)
 
         
         WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
+        WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon or "armoury_icon"
     elseif hand == "hat" then
         NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]
         NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
@@ -145,6 +147,7 @@ local function swap_units_old(Armoury_key, skin)
 
             WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
             mod.SKIN_CHANGED[skin].changed_model = false
+            WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_CHANGED[skin].icon 
         end
     elseif hand == "hat" then
         NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
