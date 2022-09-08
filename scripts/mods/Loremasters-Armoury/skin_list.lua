@@ -10,6 +10,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
+        icon = "kruber_bret_shield_hero1_bastonne01_icon",
     },
     Kruber_bret_shield_basic1_Reynard01 = {
         kind = "texture",
@@ -20,6 +21,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
+        icon = "kruber_bret_shield_basic1_reynard01_icon",
     },
     Kruber_bret_shield_basic2_Luidhard01 = {
         kind = "texture",
@@ -30,6 +32,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
+        icon = "kruber_bret_shield_basic2_luidhard01_icon",
     },
     Kruber_bret_shield_basic3_Lothar01 = {
         kind = "texture",
@@ -40,6 +43,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
+        icon = "kruber_bret_shield_basic3_lothar01_icon",
     },
     Kruber_bret_shield_hero1_Alberic01 = {
         kind = "texture",
@@ -50,6 +54,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
+        icon = "kruber_bret_shield_hero1_alberic01_icon",
     },
     Kruber_empire_shield_hero1_Ostermark01 = {
         kind = "texture",
