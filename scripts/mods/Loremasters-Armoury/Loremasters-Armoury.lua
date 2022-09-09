@@ -81,6 +81,25 @@ mod:command("achievement_reset", "", function()
 
 end)
 
+mod:command("complete_sub_quest_01", "", function()
+
+    mod.main_quest.sub_quest_01 = true
+
+end)
+mod:command("complete_sub_quest_02", "", function()
+
+    mod.main_quest.sub_quest_02 = true
+
+end)
+mod:command("complete_sub_quest_03", "", function()
+
+    mod.main_quest.sub_quest_03 = true
+
+end)
+
+
+
+
 local num_husk = #NetworkLookup.husks
 -- local num_interacts = #NetworkLookup.interactions
 NetworkLookup.husks[num_husk +1] = "units/shield"

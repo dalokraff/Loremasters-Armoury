@@ -327,7 +327,19 @@ local loremasters = {
 	entries = {
 		"test_1",
 		"test_2",
-	}
+		"main_quest",
+	},
+	categories = {
+		{
+			sorting = 1,
+			name = "Main_Quest_log",
+			entries = {
+				"sub_quest_01",
+				"sub_quest_02",
+				"sub_quest_03",
+			},
+		},
+	},
 }
 
 for _, dlc in pairs(DLCSettings) do
