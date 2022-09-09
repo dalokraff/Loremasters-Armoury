@@ -1,6 +1,7 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
 
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
@@ -79,3 +80,64 @@ mod:command("achievement_reset", "", function()
     end
 
 end)
+
+local num_husk = #NetworkLookup.husks
+-- local num_interacts = #NetworkLookup.interactions
+NetworkLookup.husks[num_husk +1] = "units/shield"
+NetworkLookup.husks["units/shield"] = num_husk +1
+-- NetworkLookup.interactions["achievement_object"] = num_interacts+1
+-- NetworkLookup.interactions[num_interacts + 1] = "achievement_object"
+
+mod:command("object_test_network", "", function()
+    
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local extension_init_data = {}
+    Managers.state.unit_spawner:spawn_network_unit("units/shield", "interaction_unit", extension_init_data, position, rotation)
+end)
+
+mod:command("object_test_local", "", function()
+    
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local extension_init_data = {}
+    local unit,final_unit_template_name = Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
+    local unit_template = Managers.state.unit_spawner.unit_template_lut[final_unit_template_name]
+    NetworkUnit.add_unit(unit)
+    NetworkUnit.set_is_husk_unit(unit, false)
+    local go_type = unit_template.go_type
+	local go_initializer_function = Managers.state.unit_spawner.gameobject_initializers[go_type]
+	local go_init_data = go_initializer_function(unit, unit_name, unit_template, Managers.state.unit_spawner.gameobject_functor_context)
+	local go_id = GameSession.create_game_object(Managers.state.unit_spawner.game_session, go_type, go_init_data)
+
+	Managers.state.unit_storage:add_unit_info(unit, go_id, go_type, Managers.state.unit_spawner.own_peer_id)
+	Managers.state.entity:sync_unit_extensions(unit, go_id)
+end)
+
+-- spawn_local_unit_with_extensions
+-- spawn_network_unit
+
+
+-- local num_husk = #NetworkLookup.husks
+-- local num_interacts = #NetworkLookup.interactions
+-- NetworkLookup.husks[num_husk +1] = "units/shield"
+-- NetworkLookup.husks["units/shield"] = num_husk +1
+-- NetworkLookup.interactions["achievement_object"] = num_interacts+1
+-- NetworkLookup.interactions[num_interacts + 1] = "achievement_object"
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- local extension_init_data = {}
+-- Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
+
+
+-- for k,v in pairs(InteractionDefinitions) do 
+--     mod:echo(k)
+    
+-- end

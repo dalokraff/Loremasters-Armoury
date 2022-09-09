@@ -1,0 +1,32 @@
+actors = [
+	{
+		enabled = true
+		mass = 0
+		name = "test_2"
+		node = "test_2"
+		shapes = [
+			{
+				material = "default"
+				shape = "test_2"
+				template = "pickup"
+				type = "convex_computed"
+			}
+		]
+		template = "dynamic"
+	},
+	{
+        enabled = true
+        mass = 0
+        name = "test_2"
+        node = "test_2"
+        shapes = [
+            {
+                material = "default"
+                shape = "test_2"
+                template = "pickup_interact_collision_shape"
+                type = "convex_computed"
+            }
+        ]
+        template = "keyframed_no_collision"
+    }
+]

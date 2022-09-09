@@ -242,3 +242,55 @@ mod:hook(BackendInterfaceLootPlayfab,'get_achievement_rewards', function (func, 
 
     return func(self, achievement_id)
 end)
+
+
+-- mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, ...)
+--     if rpc_name == "skip_local_interaction" then 
+--         return 
+--     end
+--     return func(self, rpc_name, ...)
+-- end)
+
+-- mod:hook(NetworkTransmit, "send_rpc", function (func, self, rpc_name, peer_id, ...)
+--     if rpc_name == "skip_local_interaction" then 
+--         return 
+--     end
+--     return func(self, rpc_name, peer_id, ...)
+-- end)
+
+-- mod:hook(NetworkTransmit, "send_rpc_party_clients", function (func, self, rpc_name, party, include_spectators, ...)
+--     if rpc_name == "skip_local_interaction" then 
+--         return 
+--     end
+--     return func(self, rpc_name, party, include_spectators, ...)
+-- end)
+
+-- mod:hook(NetworkTransmit, "send_rpc_party_clients", function (func, self, rpc_name, party, include_spectators, ...)
+--     if rpc_name == "skip_local_interaction" then 
+--         return 
+--     end
+--     return func(self, rpc_name, party, include_spectators, ...)
+-- end)
+
+-- mod:hook(InteractionHelper, "request", function (func, self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
+--     local rpc_name = InteractionHelper.interactions[interaction_type].request_rpc
+--     if rpc_name == "skip_local_interaction" then 
+--         return 
+--     end
+
+--     return func(self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
+-- end)
+
+mod:hook(InteractionDefinitions.inventory_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+    if result == InteractionResult.SUCCESS and not data.is_husk then
+        if unit_name == "units/shield" then
+            data.start_time = nil
+            mod:echo('successfull!!!')
+            Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
+            return
+        end
+    end
+
+    return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)

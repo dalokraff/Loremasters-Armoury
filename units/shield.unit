@@ -1,9 +1,9 @@
 data = {
     mat_slots = {
-        slot1 = "Material",
+        slot1 = "CC607F9F",
     }
 
-    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2"
+    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
 
     colors = {
         // slot1 = "textures/Kruber_Grail_Knight_shield02/Kruber_Grail_Knight_Bastonne02_diffuse",
@@ -22,6 +22,20 @@ data = {
     norm_slot = "texture_map_59cd86b9"
     MAB_slot = "texture_map_0205ba86"
 
+    extensions = [
+        "UnitSynchronizationExtension",
+        "GenericUnitInteractableExtension"
+    ]
+    interaction_data = {
+        hud_description = "shield"
+        interaction_length = 0
+        interaction_type = "inventory_access"
+        interactor_animation = "interaction_start"
+        interactor_animation_time_variable = "revive_time"
+        only_once = false
+        hud_text_line_1 = "line_1"
+        hud_text_line_2 =  "lin1_2"
+    }
 }
 
 renderables = {
