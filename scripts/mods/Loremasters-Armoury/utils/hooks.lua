@@ -281,11 +281,14 @@ end)
 --     return func(self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
 -- end)
 
-mod:hook(InteractionDefinitions.inventory_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+mod:hook(InteractionDefinitions.talents_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     local unit_name = Unit.get_data(interactable_unit, "unit_name")
     if result == InteractionResult.SUCCESS and not data.is_husk then
         if unit_name == "units/shield" then
             data.start_time = nil
+            local shield_count = mod:get("num_shields_collected")
+            shield_count = shield_count + 1
+            mod:set("num_shields_collected", shield_count)
             mod:echo('successfull!!!')
             Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
             return
@@ -293,4 +296,13 @@ mod:hook(InteractionDefinitions.inventory_access.client, "stop", function (func,
     end
 
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)
+
+mod:hook(InteractionDefinitions.talents_access.client, 'hud_description', function (func, interactable_unit, ...)
+    if Unit.has_data(interactable_unit, "is_LA_object") then
+        -- mod:echo(Unit.get_data(interactable_unit, "interaction_data", "hud_description"))
+        return Unit.get_data(interactable_unit, "interaction_data", "hud_description"), Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
+    end
+
+    return func(interactable_unit, ...)
 end)

@@ -77,6 +77,12 @@ local mod_text_ids = {
 	test_1_desc = {
 		en = "test description",
 	},
+	sub_quest_01_desc = {
+		en = "collect 3 sheilds",
+	},
+	sub_quest_01 = {
+		en = "Shield Collector",
+	},
 
 }
 

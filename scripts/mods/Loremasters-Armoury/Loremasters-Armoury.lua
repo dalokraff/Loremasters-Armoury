@@ -97,6 +97,18 @@ mod:command("complete_sub_quest_03", "", function()
 
 end)
 
+if not mod:get("num_shields_collected") then 
+    mod:set("num_shields_collected", 0)
+end
+
+mod:command("reset_sub_quests", "", function()
+
+    mod.main_quest.sub_quest_01 = false
+    mod.main_quest.sub_quest_02 = false
+    mod.main_quest.sub_quest_03 = false
+    mod:set("num_shields_collected", 0)
+end)
+
 
 
 

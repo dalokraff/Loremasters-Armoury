@@ -131,6 +131,8 @@ AchievementTemplates.achievements.main_quest = {
 
 }
 
+
+local num_shields_needed = 3
 AchievementTemplates.achievements.sub_quest_01 = {
 	name = "sub_quest_01",
 	display_completion_ui = true,
@@ -138,8 +140,23 @@ AchievementTemplates.achievements.sub_quest_01 = {
 	desc = "sub_quest_01_desc",
 	completed = function (statistics_db, stats_id)
 		
+		if mod:get("num_shields_collected") >= num_shields_needed then
+			mod.main_quest.sub_quest_01 = true
+		end
+
 		return mod.main_quest.sub_quest_01
-	end
+	end,
+	progress = function (statistics_db, stats_id)
+		local collected = mod:get("num_shields_collected")
+		if mod:get("num_shields_collected") > 3 then
+			collected = 3
+		end
+
+		return {
+			collected,
+			num_shields_needed,
+		}
+	end,
 }
 
 AchievementTemplates.achievements.sub_quest_02 = {
