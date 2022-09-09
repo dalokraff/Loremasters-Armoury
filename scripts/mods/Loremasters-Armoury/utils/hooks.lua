@@ -284,7 +284,7 @@ end)
 mod:hook(InteractionDefinitions.talents_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     local unit_name = Unit.get_data(interactable_unit, "unit_name")
     if result == InteractionResult.SUCCESS and not data.is_husk then
-        if unit_name == "units/shield" then
+        if mod.cheevo_units[unit_name] then
             data.start_time = nil
             local shield_count = mod:get("num_shields_collected")
             shield_count = shield_count + 1
@@ -305,4 +305,28 @@ mod:hook(InteractionDefinitions.talents_access.client, 'hud_description', functi
     end
 
     return func(interactable_unit, ...)
+end)
+
+
+
+mod:hook(UnitSpawner,'create_unit_extensions', function (func, self, world, unit, ...)
+
+    local unit_name = Unit.get_data(unit, "unit_name")
+
+    if mod.cheevo_units[unit_name] then
+        Unit.set_data(unit,"interaction_data","hud_description", "test_item")
+        Unit.set_data(unit,"interaction_data","interaction_length", 0)
+        Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
+        Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
+        Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
+        Unit.set_data(unit,"interaction_data","only_once", false)
+        Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
+        Unit.set_data(unit, "is_LA_object", true)
+
+        Unit.set_data(unit, "extensions", "UnitSynchronizationExtension")
+        Unit.set_data(unit, "extensions", "GenericUnitInteractableExtension")
+
+    end
+
+    return func(self, world, unit, ...)
 end)
