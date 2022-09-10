@@ -10,7 +10,15 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
-        icon = "kruber_bret_shield_hero1_bastonne01_icon",
+        icons = {
+            es_sword_shield_breton_skin_01 = "kruber_bret_shield_hero1_bastonne01_icon",
+            es_sword_shield_breton_skin_02 = "kruber_bret_shield_hero1_bastonne01_icon",
+            es_sword_shield_breton_skin_03 = "kruber_bret_shield_hero1_bastonne01_icon",
+            es_sword_shield_breton_skin_03_runed_01 = "kruber_bret_shield_hero1_bastonne01_blueglow_icon",
+            es_sword_shield_breton_skin_03_runed_02 = "kruber_bret_shield_hero1_bastonne01_purpleglow_icon",
+            es_sword_shield_breton_skin_04 = "kruber_bret_shield_hero1_bastonne01_icon",
+            es_sword_shield_breton_skin_05 = "kruber_bret_shield_hero1_bastonne01_icon",
+        },
     },
     Kruber_bret_shield_basic1_Reynard01 = {
         kind = "texture",
@@ -21,7 +29,15 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
-        icon = "kruber_bret_shield_basic1_reynard01_icon",
+        icons = {
+            es_sword_shield_breton_skin_01 = "kruber_bret_shield_basic1_reynard01_icon",
+            es_sword_shield_breton_skin_02 = "kruber_bret_shield_basic1_reynard01_icon",
+            es_sword_shield_breton_skin_03 = "kruber_bret_shield_basic1_reynard01_icon",
+            es_sword_shield_breton_skin_03_runed_01 = "kruber_bret_shield_basic1_reynard01_blueglow_icon",
+            es_sword_shield_breton_skin_03_runed_02 = "kruber_bret_shield_basic1_reynard01_purpleglow_icon",
+            es_sword_shield_breton_skin_04 = "kruber_bret_shield_basic1_reynard01_icon",
+            es_sword_shield_breton_skin_05 = "kruber_bret_shield_basic1_reynard01_icon",
+        },
     },
     Kruber_bret_shield_basic2_Luidhard01 = {
         kind = "texture",
@@ -32,7 +48,15 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
-        icon = "kruber_bret_shield_basic2_luidhard01_icon",
+        icons = {
+            es_sword_shield_breton_skin_01 = "kruber_bret_shield_basic2_luidhard01_icon",
+            es_sword_shield_breton_skin_02 = "kruber_bret_shield_basic2_luidhard01_icon",
+            es_sword_shield_breton_skin_03 = "kruber_bret_shield_basic2_luidhard01_icon",
+            es_sword_shield_breton_skin_03_runed_01 = "kruber_bret_shield_basic2_luidhard01_blueglow_icon",
+            es_sword_shield_breton_skin_03_runed_02 = "kruber_bret_shield_basic2_luidhard01_purpleglow_icon",
+            es_sword_shield_breton_skin_04 = "kruber_bret_shield_basic2_luidhard01_icon",
+            es_sword_shield_breton_skin_05 = "kruber_bret_shield_basic2_luidhard01_icon",
+        },
     },
     Kruber_bret_shield_basic3_Lothar01 = {
         kind = "texture",
@@ -43,7 +67,15 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
-        icon = "kruber_bret_shield_basic3_lothar01_icon",
+        icons = {
+            es_sword_shield_breton_skin_01 = "kruber_bret_shield_basic3_lothar01_icon",
+            es_sword_shield_breton_skin_02 = "kruber_bret_shield_basic3_lothar01_icon",
+            es_sword_shield_breton_skin_03 = "kruber_bret_shield_basic3_lothar01_icon",
+            es_sword_shield_breton_skin_03_runed_01 = "kruber_bret_shield_basic3_lothar01_blueglow_icon",
+            es_sword_shield_breton_skin_03_runed_02 = "kruber_bret_shield_basic3_lothar01_purpleglow_icon",
+            es_sword_shield_breton_skin_04 = "kruber_bret_shield_basic3_lothar01_icon",
+            es_sword_shield_breton_skin_05 = "kruber_bret_shield_basic3_lothar01_icon",
+        },
     },
     Kruber_bret_shield_hero1_Alberic01 = {
         kind = "texture",
@@ -54,7 +86,15 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
-        icon = "kruber_bret_shield_hero1_alberic01_icon",
+        icons = {
+            es_sword_shield_breton_skin_01 = "kruber_bret_shield_hero1_alberic01_icon",
+            es_sword_shield_breton_skin_02 = "kruber_bret_shield_hero1_alberic01_icon",
+            es_sword_shield_breton_skin_03 = "kruber_bret_shield_hero1_alberic01_icon",
+            es_sword_shield_breton_skin_03_runed_01 = "kruber_bret_shield_hero1_alberic01_blueglow_icon",
+            es_sword_shield_breton_skin_03_runed_02 = "kruber_bret_shield_hero1_alberic01_purpleglow_icon",
+            es_sword_shield_breton_skin_04 = "kruber_bret_shield_hero1_alberic01_icon",
+            es_sword_shield_breton_skin_05 = "kruber_bret_shield_hero1_alberic01_icon",
+        },
     },
     Kruber_empire_shield_hero1_Ostermark01 = {
         kind = "texture",
@@ -102,7 +142,12 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip0 = true,
         },
-        icon = "kerillian_elf_shield_basic_avelorn01_icon",
+        -- icon = "kerillian_elf_shield_basic_avelorn01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic_avelorn01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic_avelorn01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basic_avelorn01_icon",
+        },
     },
     Kerillian_elf_shield_basic_Avelorn01_mesh = {
         kind = "unit",
@@ -133,7 +178,12 @@ mod.SKIN_LIST = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01_3p",
         },
         swap_hand = "left_hand_unit",
-        icon = "kerillian_elf_shield_basic2_griffongate01_icon",
+        -- icon = "kerillian_elf_shield_basic2_griffongate01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic2_griffongate01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic2_griffongate01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basic2_griffongate01_icon",
+        },
     },
     test_unit = {
         kind = "unit",
@@ -152,7 +202,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_heroclean_saphery01_icon",
+        -- icon = "kerillian_elf_shield_heroclean_saphery01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_saphery01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_saphery01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_heroclean_saphery01_icon",
+        },
     },
     Kerillian_elf_shield_heroClean_Caledor01 = {
         kind = "unit",
@@ -162,7 +217,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_heroclean_caledor01_icon",
+        -- icon = "kerillian_elf_shield_heroclean_caledor01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_caledor01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_caledor01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_heroclean_caledor01_icon",
+        },
     },
     Kerillian_elf_shield_heroClean_Avelorn02 = {
         kind = "unit",
@@ -172,7 +232,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_heroclean_avelorn02_icon",
+        -- icon = "kerillian_elf_shield_heroclean_avelorn02_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_avelorn02_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_avelorn02_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_heroclean_avelorn02_icon",
+        },
     },
     Kerillian_elf_shield_basicClean = {
         kind = "unit",
@@ -182,7 +247,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_basicclean_eataine01_icon",
+        -- icon = "kerillian_elf_shield_basicclean_eataine01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_eataine01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_eataine01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basicclean_eataine01_icon",
+        },
     },
     Kerillian_elf_shield_basic2_Eaglegate01 = {
         kind = "unit",
@@ -192,7 +262,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_basic2_eaglegate01_icon",
+        -- icon = "kerillian_elf_shield_basic2_eaglegate01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic2_eaglegate01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic2_eaglegate01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basic2_eaglegate01_icon",
+        },
     },
     Kerillian_elf_shield_basicClean_Saphery01 = {
         kind = "unit",
@@ -202,7 +277,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_basicclean_saphery01_icon",
+        -- icon = "kerillian_elf_shield_basicclean_saphery01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_saphery01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_saphery01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basicclean_saphery01_icon",
+        },
     },
     Kerillian_elf_shield_basicClean_Caledor01 = {
         kind = "unit",
@@ -212,7 +292,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_basicclean_caledor01_icon",
+        -- icon = "kerillian_elf_shield_basicclean_caledor01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_caledor01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_caledor01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basicclean_caledor01_icon",
+        },
     },
     Kerillian_elf_shield_basicClean_Chrace01 = {
         kind = "unit",
@@ -222,7 +307,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_basicclean_chrace01_icon",
+        -- icon = "kerillian_elf_shield_basicclean_chrace01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_chrace01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_chrace01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basicclean_chrace01_icon",
+        },
     },
     Kerillian_elf_shield_heroClean_Eataine01 = {
         kind = "unit",
@@ -232,7 +322,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_heroclean_eataine01_icon",
+        -- icon = "kerillian_elf_shield_heroclean_eataine01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_eataine01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_eataine01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_heroclean_eataine01_icon",
+        },
     },
     Kerillian_elf_shield_heroClean_Chrace01 = {
         kind = "unit",
@@ -242,7 +337,12 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        icon = "kerillian_elf_shield_heroclean_chrace01_icon",
+        -- icon = "kerillian_elf_shield_heroclean_chrace01_icon",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_chrace01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_chrace01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_heroclean_chrace01_icon",
+        },
     },
     Ker_Autumn_Weave_Armor = {
         kind = "texture",
@@ -306,7 +406,12 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+        icons = {
+            we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+            we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+            we_longbow_skin_06_runed_02 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+        },
     },
     Kerillian_elf_bow_Antlersong_Autumn_runed01 = {
         kind = "texture",
@@ -336,7 +441,12 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
+        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
+        icons = {
+            we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
+            we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
+            we_longbow_skin_06_runed_02 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
+        },
     },
     Kerillian_elf_bow_Antlersong_Autumn_runed02 = {
         kind = "texture",
@@ -366,7 +476,12 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
+        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
+        icons = {
+            we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
+            we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
+            we_longbow_skin_06_runed_02 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
+        },
     },
     Kruber_empire_shield_basic1 = {
         kind = "unit",
@@ -968,6 +1083,22 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icons = {
+            dw_1h_axe_shield_skin_02 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_03 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_04 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_02_runed_01 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05_runed_01 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05_runed_02 = "bardin_dwarf_shield_basicclean_karaknorn01_axe_icon",
+            dw_1h_hammer_shield_skin_02 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_03 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_05 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_02_runed_01 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04_runed_01 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04_runed_02 = "bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon",
+        },
     },
     Bardin_dwarf_shield_heroClean_KarakNorn01 = {
         kind = "unit",
@@ -977,6 +1108,22 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
+        icons = {
+            dw_1h_axe_shield_skin_02 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_03 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_04 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_02_runed_01 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05_runed_01 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_axe_shield_skin_05_runed_02 = "bardin_dwarf_shield_heroclean_karaknorn01_axe_icon",
+            dw_1h_hammer_shield_skin_02 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_03 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_05 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_02_runed_01 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04_runed_01 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+            dw_1h_hammer_shield_skin_04_runed_02 = "bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon",
+        },
     },
 }
 

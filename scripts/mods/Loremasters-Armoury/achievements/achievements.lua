@@ -89,7 +89,7 @@ mod.main_quest = {
 AchievementTemplates.achievements.main_quest = {
 	name = "main_quest",
 	-- display_completion_ui = true,
-	icon = "achievement_trophy_helmgart_lord_1",
+	icon = "loremaster_test_icon",
 	desc = "main_quest_desc",
 	completed = function (statistics_db, stats_id)
 		
@@ -136,7 +136,7 @@ local num_shields_needed = 3
 AchievementTemplates.achievements.sub_quest_01 = {
 	name = "sub_quest_01",
 	display_completion_ui = true,
-	icon = "achievement_trophy_helmgart_lord_1",
+	icon = "quest_icon_empty",
 	desc = "sub_quest_01_desc",
 	completed = function (statistics_db, stats_id)
 		
@@ -162,18 +162,18 @@ AchievementTemplates.achievements.sub_quest_01 = {
 AchievementTemplates.achievements.sub_quest_02 = {
 	name = "sub_quest_02",
 	display_completion_ui = true,
-	icon = "achievement_trophy_helmgart_lord_1",
+	icon = "quest_icon_empty",
 	desc = "sub_quest_02_desc",
 	completed = function (statistics_db, stats_id)
 		
-		return mod.main_quest.sub_quest_02 
+		return mod.main_quest.sub_quest_02
 	end
 }
 
 AchievementTemplates.achievements.sub_quest_03 = {
 	name = "sub_quest_03",
 	display_completion_ui = true,
-	icon = "achievement_trophy_helmgart_lord_1",
+	icon = "quest_icon_empty",
 	desc = "sub_quest_03_desc",
 	completed = function (statistics_db, stats_id)
 	

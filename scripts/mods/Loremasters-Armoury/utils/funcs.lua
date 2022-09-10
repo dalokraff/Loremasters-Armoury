@@ -102,14 +102,14 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
         apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     end
 
-    if WeaponSkins.skins[skin] then
+    if WeaponSkins.skins[skin] and mod.SKIN_LIST[Armoury_key].icons then
         mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
-        WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon or WeaponSkins.skins[skin]['inventory_icon']
+        WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or WeaponSkins.skins[skin]['inventory_icon']
     end
 
-    if ItemMasterList[skin] then
+    if ItemMasterList[skin] and mod.SKIN_LIST[Armoury_key].icons then
         mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
-        ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon or ItemMasterList[skin]['inventory_icon']
+        ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or ItemMasterList[skin]['inventory_icon']
     end
 
 end
@@ -129,13 +129,17 @@ local function swap_units_new(Armoury_key, skin)
         
         WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
         mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
-        WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon or WeaponSkins.skins[skin]['inventory_icon']
+        if mod.SKIN_LIST[Armoury_key].icons then
+            WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or WeaponSkins.skins[skin]['inventory_icon']
+        end
     elseif hand == "hat" then
         NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]
         NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
        
         ItemMasterList[skin]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
-        ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon or ItemMasterList[skin]['inventory_icon']
+        if mod.SKIN_LIST[Armoury_key].icons then
+            ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or ItemMasterList[skin]['inventory_icon']
+        end
     elseif hand == "armor" then
         -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
         -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
@@ -167,7 +171,9 @@ local function swap_units_old(Armoury_key, skin)
         NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
 
         ItemMasterList[skin]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
-        ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icon
+        if mod.SKIN_LIST[Armoury_key].icons then
+            ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin]
+        end
         mod.SKIN_CHANGED[skin].changed_model = false
     elseif hand == "armor" then
         -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
@@ -207,38 +213,6 @@ local function re_equip_weapons(skin, unit)
     end
 end
 
-local function swap_inventory_icons(Armoury_key, skin)
-    
-    if mod.SKIN_CHANGED[skin] then
-        local armoury_icon = mod.SKIN_LIST[Armoury_key].icon
-
-
-        local old_icon = mod.SKIN_CHANGED[skin].icon
-        local skin_data = WeaponSkins.skins[skin]
-        local item_data = ItemMasterList[skin]
-
-        if skin_data then
-            if skin_data.inventory_icon == armoury_icon then
-                WeaponSkins.skins[skin].inventory_icon = old_icon
-            else 
-                WeaponSkins.skins[skin].inventory_icon = armoury_icon
-            end
-        end
-
-        if item_data then
-            if item_data.inventory_icon == armoury_icon then
-                ItemMasterList[skin].inventory_icon = old_icon
-            else 
-                ItemMasterList[skin].inventory_icon = armoury_icon
-            end
-        end
-    end
-
-end
-
-
-
-
 --this function checks whether a skin from the vmf menu needs:
 --to be given the default unit; depending on the current state of the skin different actions are taken 
 --to have it's default unit retextured
@@ -249,7 +223,7 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
             mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
         end
         swap_units_old(mod.current_skin[skin], skin)
-        -- swap_inventory_icons(Armoury_key, skin)
+        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = false
         mod.SKIN_CHANGED[skin].changed_model = false   
@@ -267,7 +241,7 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
             swap_units_new(Armoury_key, skin)
             mod.SKIN_CHANGED[skin].changed_model = true
         end
-        -- swap_inventory_icons(Armoury_key, skin)
+        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = true
         mod.has_old_texture = true
@@ -276,12 +250,12 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
         end
     elseif mod.SKIN_LIST[Armoury_key].kind == "unit" and not mod.SKIN_CHANGED[skin].changed_model then
         swap_units_new(Armoury_key, skin)
-        -- swap_inventory_icons(Armoury_key, skin)
+        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_model = true
     end
     if mod.current_skin[skin] ~= Armoury_key then
-        -- swap_inventory_icons(Armoury_key, skin)
+        -- 
         mod.SKIN_CHANGED[skin].changed_texture = false
         mod.SKIN_CHANGED[skin].changed_model = false
     end
