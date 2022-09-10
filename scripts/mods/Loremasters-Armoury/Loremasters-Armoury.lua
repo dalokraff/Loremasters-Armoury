@@ -169,11 +169,11 @@ mod.cheevo_units = {
 	"units/weapons/player/pup_sacks/pup_sacks_04",
 	"units/weapons/player/pup_sacks/pup_sacks_05",
 }
-local num_husk = #NetworkLookup.husks
+-- local num_husk = #NetworkLookup.husks
 for k,v in pairs(mod.cheevo_units) do 
-    NetworkLookup.husks[num_husk +1] = v
-    NetworkLookup.husks[v] = num_husk +1
-    num_husk = num_husk + 1
+    -- NetworkLookup.husks[num_husk +1] = v
+    -- NetworkLookup.husks[v] = num_husk +1
+    -- num_husk = num_husk + 1
     mod.cheevo_units[v] = v
 end
 
@@ -184,8 +184,75 @@ mod:command("sword_test_network", "", function()
     local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
     local rotation = Unit.local_rotation(player_unit, 0)
     local extension_init_data = {}
-    Managers.state.unit_spawner:spawn_network_unit("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "interaction_unit", extension_init_data, position, rotation)
+    Managers.state.unit_spawner:spawn_network_unit("units/shield", "interaction_unit", extension_init_data, position, rotation)
 end)
+
+
+mod:command("sword_test_local", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local extension_init_data = {}
+    Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
+end)
+
+-- mod:echo(NetworkLookup.husks["units/weapons/player/pup_scrolls/pup_scroll_t1"])
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- local extension_init_data = {}
+-- local source_unit = Managers.state.unit_spawner:spawn_network_unit("units/weapons/player/pup_scrolls/pup_scroll_t1", "interaction_unit", extension_init_data, position, rotation)
+-- local template_id = NetworkLookup.spawn_unit_templates["vortex_unit"]
+-- local source_unit_id = Managers.state.unit_storage:go_id(source_unit)
+-- local group_spawn_index = 1
+-- Managers.state.network.network_transmit:send_rpc_server("rpc_request_spawn_network_unit", template_id, position, rotation, source_unit_id, extension_init_data, group_spawn_index)
+
+
+--     local player = Managers.player:local_player()
+--     local player_unit = player.player_unit
+--     local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+--     local rotation = Unit.local_rotation(player_unit, 0)
+--     local extension_init_data = {}
+--     Managers.state.unit_spawner:spawn_local_unit("units/weapons/player/pup_scrolls/pup_scroll_t1", "interaction_unit", position, rotation)
+
+
+-- for k,v in pairs(NetworkLookup.spawn_unit_templates) do 
+--     mod:echo(k)
+-- end
+
+-- mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+--     local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
+-- 	local pickup_settings = pickup_extension:get_pickup_settings()
+--     mod:echo(pickup_settings.type)
+
+--     if pickup_settings.type == "painting_scrap" then
+--         local shield_count = mod:get("num_shields_collected")
+--         shield_count = shield_count + 1
+--         mod:set("num_shields_collected", shield_count)
+--         mod:echo('successfull!!!')
+--     end
+
+--     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+-- end)
+
+
+-- local player = Managers.player:local_player()
+--     local player_unit = player.player_unit
+--     local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+--     local rotation = Unit.local_rotation(player_unit, 0)
+-- Managers.state.network.network_transmit:send_rpc_server(
+-- 			"rpc_spawn_pickup_with_physics",
+-- 			NetworkLookup.pickup_names["painting_scrap"],
+-- 			position,
+-- 			rotation,
+-- 			NetworkLookup.pickup_spawn_types['dropped']
+-- 		)
+
+
+        
 
 -- local unit_name = "units/weapons/player/pup_lore_page/pup_lore_page_01"
 -- Managers.package:load(unit_name, "global")

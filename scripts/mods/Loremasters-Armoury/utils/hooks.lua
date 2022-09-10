@@ -281,52 +281,76 @@ end)
 --     return func(self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
 -- end)
 
-mod:hook(InteractionDefinitions.talents_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
-    local unit_name = Unit.get_data(interactable_unit, "unit_name")
-    if result == InteractionResult.SUCCESS and not data.is_husk then
-        if mod.cheevo_units[unit_name] then
-            data.start_time = nil
-            local shield_count = mod:get("num_shields_collected")
-            shield_count = shield_count + 1
-            mod:set("num_shields_collected", shield_count)
-            mod:echo('successfull!!!')
-            Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
-            return
-        end
+-- mod:hook(InteractionDefinitions.talents_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+--     local unit_name = Unit.get_data(interactable_unit, "unit_name")
+--     if result == InteractionResult.SUCCESS and not data.is_husk then
+--         if mod.cheevo_units[unit_name] then
+--             data.start_time = nil
+--             local shield_count = mod:get("num_shields_collected")
+--             shield_count = shield_count + 1
+--             mod:set("num_shields_collected", shield_count)
+--             mod:echo('successfull!!!')
+--             Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
+--             return
+--         end
+--     end
+
+--     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+-- end)
+
+-- mod:hook(InteractionDefinitions.talents_access.client, 'hud_description', function (func, interactable_unit, ...)
+--     if Unit.has_data(interactable_unit, "is_LA_object") then
+--         -- mod:echo(Unit.get_data(interactable_unit, "interaction_data", "hud_description"))
+--         return Unit.get_data(interactable_unit, "interaction_data", "hud_description"), Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
+--     end
+
+--     return func(interactable_unit, ...)
+-- end)
+
+
+
+-- mod:hook(UnitSpawner,'create_unit_extensions', function (func, self, world, unit, ...)
+
+--     local unit_name = Unit.get_data(unit, "unit_name")
+
+--     if mod.cheevo_units[unit_name] then
+--         Unit.set_data(unit,"interaction_data","hud_description", "test_item")
+--         Unit.set_data(unit,"interaction_data","interaction_length", 0)
+--         Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
+--         Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
+--         Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
+--         Unit.set_data(unit,"interaction_data","only_once", false)
+--         Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
+--         Unit.set_data(unit, "is_LA_object", true)
+
+--         Unit.set_data(unit, "extensions", "UnitSynchronizationExtension")
+--         Unit.set_data(unit, "extensions", "GenericUnitInteractableExtension")
+
+--     end
+
+--     return func(self, world, unit, ...)
+-- end)
+
+
+mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+    local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
+	local pickup_settings = pickup_extension:get_pickup_settings()
+    mod:echo(pickup_settings.type)
+
+    if pickup_settings.type == "painting_scrap" then
+        local shield_count = mod:get("num_shields_collected")
+        shield_count = shield_count + 1
+        mod:set("num_shields_collected", shield_count)
+        mod:echo('successfull!!!')
     end
 
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
 end)
 
-mod:hook(InteractionDefinitions.talents_access.client, 'hud_description', function (func, interactable_unit, ...)
-    if Unit.has_data(interactable_unit, "is_LA_object") then
-        -- mod:echo(Unit.get_data(interactable_unit, "interaction_data", "hud_description"))
-        return Unit.get_data(interactable_unit, "interaction_data", "hud_description"), Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
-    end
 
-    return func(interactable_unit, ...)
-end)
+-- mod:hook(InteractionDefinitions.pickup_object.client, 'start', function (func, world, interactor_unit, interactable_unit, data, config, t)
+    
+--     -- mod:echo(interactable_unit)
 
-
-
-mod:hook(UnitSpawner,'create_unit_extensions', function (func, self, world, unit, ...)
-
-    local unit_name = Unit.get_data(unit, "unit_name")
-
-    if mod.cheevo_units[unit_name] then
-        Unit.set_data(unit,"interaction_data","hud_description", "test_item")
-        Unit.set_data(unit,"interaction_data","interaction_length", 0)
-        Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
-        Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
-        Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
-        Unit.set_data(unit,"interaction_data","only_once", false)
-        Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
-        Unit.set_data(unit, "is_LA_object", true)
-
-        Unit.set_data(unit, "extensions", "UnitSynchronizationExtension")
-        Unit.set_data(unit, "extensions", "GenericUnitInteractableExtension")
-
-    end
-
-    return func(self, world, unit, ...)
-end)
+--     return func(world, interactor_unit, interactable_unit, data, config, t)
+-- end)
