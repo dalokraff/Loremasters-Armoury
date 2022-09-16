@@ -75,6 +75,13 @@ mod.main_quest = {
 	sub_quest_01 = false,
 	sub_quest_02 = false, 
 	sub_quest_03 = false,
+	sub_quest_04 = false,
+	sub_quest_05 = false,
+	sub_quest_06 = false,
+	sub_quest_07 = false,
+	sub_quest_08 = false,
+	sub_quest_09 = false,
+	sub_quest_10 = false,
 }
 -- mod:echo(#main_quest)
 -- local num_completed = 0
@@ -93,11 +100,15 @@ AchievementTemplates.achievements.main_quest = {
 	desc = "main_quest_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod.main_quest[sub_01] and mod.main_quest[sub_01] and mod.main_quest[sub_01] then
-			return true
+		-- if mod.main_quest[sub_01] and mod.main_quest[sub_01] and mod.main_quest[sub_01] then
+		-- 	return true
+		-- end
+		for _, quest in pairs(mod.main_quest) do
+			return false
 		end
+
 		
-		return false
+		return true
 	end,
 	progress = function (statistics_db, stats_id)
 		local num_completed = 0
@@ -132,7 +143,17 @@ AchievementTemplates.achievements.main_quest = {
 }
 
 
+-- AchievementManager._achievement_completed("sub_quest_01")
+-- mod:echo(Managers.state.achievement:_achievement_completed("sub_quest_01"))
+-- for k,v in pairs(AchievementTemplates.achievements) do 
+-- 	mod:echo(k)
+-- end
+-- mod:echo(AchievementTemplates.achievements["sub_quest_01"])
+
 local num_shields_needed = 3
+
+
+local total_kills_sub_quest_one = 500
 AchievementTemplates.achievements.sub_quest_01 = {
 	name = "sub_quest_01",
 	display_completion_ui = true,
@@ -140,25 +161,27 @@ AchievementTemplates.achievements.sub_quest_01 = {
 	desc = "sub_quest_01_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("num_shields_collected") >= num_shields_needed then
+		--kill 500 rats with specific skin
+		if mod:get("sub_quest_one_kills") >= total_kills_sub_quest_one then
 			mod.main_quest.sub_quest_01 = true
 		end
 
 		return mod.main_quest.sub_quest_01
 	end,
 	progress = function (statistics_db, stats_id)
-		local collected = mod:get("num_shields_collected")
-		if mod:get("num_shields_collected") > 3 then
-			collected = 3
+		local collected = mod:get("sub_quest_one_kills")
+		if mod:get("sub_quest_one_kills") > total_kills_sub_quest_one then
+			collected = total_kills_sub_quest_one
 		end
 
 		return {
 			collected,
-			num_shields_needed,
+			total_kills_sub_quest_one,
 		}
 	end,
 }
 
+local total_kills_sub_quest_two = 500
 AchievementTemplates.achievements.sub_quest_02 = {
 	name = "sub_quest_02",
 	display_completion_ui = true,
@@ -166,26 +189,68 @@ AchievementTemplates.achievements.sub_quest_02 = {
 	desc = "sub_quest_02_desc",
 	completed = function (statistics_db, stats_id)
 		
+		--kill 500 nosrcans with specific skin
+		if mod:get("sub_quest_two_kills") >= total_kills_sub_quest_two then
+			mod.main_quest.sub_quest_02 = true
+		end
+
 		return mod.main_quest.sub_quest_02
-	end
+	end,
+	progress = function (statistics_db, stats_id)
+		local collected = mod:get("sub_quest_two_kills")
+		if mod:get("sub_quest_two_kills") > total_kills_sub_quest_two then
+			collected = total_kills_sub_quest_two
+		end
+
+		return {
+			collected,
+			total_kills_sub_quest_two,
+		}
+	end,
 }
 
 AchievementTemplates.achievements.sub_quest_03 = {
 	name = "sub_quest_03",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_mq01_quest_sub3_icon",
 	desc = "sub_quest_03_desc",
 	completed = function (statistics_db, stats_id)
-	
-		return mod.main_quest.sub_quest_03
+		
+		if mod:get("sub_quest_three_found") then
+			return true
+		end
+
+		return false
 	end
 }
 
+AchievementTemplates.achievements.sub_quest_04 = {
+	name = "sub_quest_04",
+	display_completion_ui = true,
+	icon = "la_mq01_quest_sub4_icon",
+	desc = "sub_quest_04_desc",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_four_found") then
+			return true
+		end
 
--- for k,v in pairs (UIAtlasHelper._ui_atlas_settings["achievement_trophy_helmgart_lord_1"]) do
--- 	mod:echo(v)
--- end
+		return false
+	end
+}
 
--- mod:echo(UIAtlasHelper._ui_atlas_settings["achievement_trophy_helmgart_lord_1"])
+AchievementTemplates.achievements.sub_quest_05 = {
+	name = "sub_quest_05",
+	display_completion_ui = true,
+	icon = "la_mq01_quest_sub5_icon",
+	desc = "sub_quest_05_desc",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_five_found") then
+			return true
+		end
 
--- UIAtlasHelper._ui_atlas_settings["test_1"] = 
+		return false
+	end
+}
+

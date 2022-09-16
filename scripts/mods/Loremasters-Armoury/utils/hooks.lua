@@ -331,7 +331,7 @@ end)
 --     return func(self, world, unit, ...)
 -- end)
 
-
+--hook to allow for painting scraps to be used as objectives
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
 	local pickup_settings = pickup_extension:get_pickup_settings()
@@ -354,3 +354,60 @@ end)
 
 --     return func(world, interactor_unit, interactable_unit, data, config, t)
 -- end)
+
+
+--hook for showing proper item reward in okri's challenges
+local LA_quest_rewards = {
+    sub_quest_01 = {
+        weapon_skin_name = "Kruber_empire_shield_hero1_Ostermark01",
+        reward_type = "weapon_skin",
+    },
+    sub_quest_02 = {
+        item_name = "Kruber_bret_shield_basic2_Luidhard01",
+        reward_type = "item",
+    },
+    sub_quest_03 = {
+        item_name = "explosive_barrel",
+        reward_type = "item",
+    },
+    main_quest = {
+		weapon_skin_name = "Kruber_bret_shield_basic2_Luidhard01",
+        reward_type = "weapon_skin",
+	},
+}
+
+WeaponSkins.skins["test_item"] = {
+    inventory_icon = "kerillian_elf_shield_basicclean_chrace01_icon",
+    description = "test_item_desc",
+	rarity = "rare",
+	display_name = "test_item_name",
+}
+
+mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
+    local quest_manager = self._quest_manager
+	local achievement_manager = self._achievement_manager
+    -- mod:echo(entry_type)
+    if entry_type == "quest" then
+		
+		manager = quest_manager
+	else
+		
+		manager = achievement_manager
+	end
+    
+    for i = 1, #entries, 1 do
+        local entry_id = entries[i]
+        -- mod:echo(entry_id)
+        local entry_data = manager:get_data_by_id(entry_id)
+
+        if entry_data.id then
+            if LA_quest_rewards[entry_data.id] then 
+                entry_data.reward = LA_quest_rewards[entry_data.id]
+            end
+        end        
+    end
+
+    
+
+    return func(self, entries, entry_type, entry_subtype)
+end)

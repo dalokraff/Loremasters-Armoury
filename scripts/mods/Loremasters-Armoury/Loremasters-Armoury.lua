@@ -101,6 +101,26 @@ if not mod:get("num_shields_collected") then
     mod:set("num_shields_collected", 0)
 end
 
+if not mod:get("sub_quest_one_kills") then 
+    mod:set("sub_quest_one_kills", 0)
+end
+
+if not mod:get("sub_quest_two_kills") then 
+    mod:set("sub_quest_two_kills", 0)
+end
+
+if mod:get("sub_quest_three_found") == nil then 
+    mod:set("sub_quest_three_found", false)
+end
+
+if mod:get("sub_quest_four_found") == nil then 
+    mod:set("sub_quest_three_found", false)
+end
+
+if mod:get("sub_quest_five_found") == nil then 
+    mod:set("sub_quest_three_found", false)
+end
+
 mod:command("reset_sub_quests", "", function()
 
     mod.main_quest.sub_quest_01 = false

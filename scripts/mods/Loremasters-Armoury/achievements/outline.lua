@@ -337,6 +337,8 @@ local loremasters = {
 				"sub_quest_01",
 				"sub_quest_02",
 				"sub_quest_03",
+				"sub_quest_04",
+				"sub_quest_05",
 			},
 		},
 	},
