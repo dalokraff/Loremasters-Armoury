@@ -104,7 +104,9 @@ AchievementTemplates.achievements.main_quest = {
 		-- 	return true
 		-- end
 		for _, quest in pairs(mod.main_quest) do
-			return false
+			if not quest then 
+				return false
+			end
 		end
 
 		
@@ -217,6 +219,7 @@ AchievementTemplates.achievements.sub_quest_03 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_three_found") then
+			mod.main_quest.sub_quest_03 = true
 			return true
 		end
 
@@ -232,6 +235,7 @@ AchievementTemplates.achievements.sub_quest_04 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_four_found") then
+			mod.main_quest.sub_quest_04 = true
 			return true
 		end
 
@@ -247,6 +251,9 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_five_found") then
+			AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
+			mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
+			mod.main_quest.sub_quest_05 = true
 			return true
 		end
 
@@ -254,3 +261,92 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	end
 }
 
+AchievementTemplates.achievements.sub_quest_06 = {
+	name = "sub_quest_06",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_06_completed") then
+			AchievementTemplates.achievements.sub_quest_07.desc = "sub_quest_07_desc"
+			mod.LA_quest_rewards.sub_quest_07.item_name = "sub_quest_07_reward"
+			mod.main_quest.sub_quest_06 = true
+			return true
+		end
+
+		return false
+	end
+}
+
+AchievementTemplates.achievements.sub_quest_07 = {
+	name = "sub_quest_07",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_07_interacted") then
+			AchievementTemplates.achievements.sub_quest_08.desc = "sub_quest_08_desc"
+			mod.LA_quest_rewards.sub_quest_08.item_name = "sub_quest_08_reward"
+			mod.main_quest.sub_quest_07 = true
+			return true
+		end
+
+		return false
+	end
+}
+
+AchievementTemplates.achievements.sub_quest_08 = {
+	name = "sub_quest_08",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_08_kill_n_collect") then
+			AchievementTemplates.achievements.sub_quest_09.desc = "sub_quest_09_desc"
+			mod.LA_quest_rewards.sub_quest_09.item_name = "sub_quest_09_reward"
+			mod.main_quest.sub_quest_08 = true
+			return true
+		end
+
+		return false
+	end
+}
+
+AchievementTemplates.achievements.sub_quest_09 = {
+	name = "sub_quest_09",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_09_pillgrimage") then
+			AchievementTemplates.achievements.sub_quest_10.desc = "sub_quest_10_desc"
+			mod.LA_quest_rewards.sub_quest_10.item_name = "sub_quest_10_reward"
+			mod.main_quest.sub_quest_09 = true
+			return true
+		end
+
+		return false
+	end
+}
+
+AchievementTemplates.achievements.sub_quest_10 = {
+	name = "sub_quest_10",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_10_pray") then
+			mod.main_quest.sub_quest_10 = true
+			return true
+		end
+
+		return false
+	end
+}
+
+--"locked_hidden_quest"

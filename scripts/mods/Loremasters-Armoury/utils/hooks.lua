@@ -243,94 +243,6 @@ mod:hook(BackendInterfaceLootPlayfab,'get_achievement_rewards', function (func, 
     return func(self, achievement_id)
 end)
 
-
--- mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, ...)
---     if rpc_name == "skip_local_interaction" then 
---         return 
---     end
---     return func(self, rpc_name, ...)
--- end)
-
--- mod:hook(NetworkTransmit, "send_rpc", function (func, self, rpc_name, peer_id, ...)
---     if rpc_name == "skip_local_interaction" then 
---         return 
---     end
---     return func(self, rpc_name, peer_id, ...)
--- end)
-
--- mod:hook(NetworkTransmit, "send_rpc_party_clients", function (func, self, rpc_name, party, include_spectators, ...)
---     if rpc_name == "skip_local_interaction" then 
---         return 
---     end
---     return func(self, rpc_name, party, include_spectators, ...)
--- end)
-
--- mod:hook(NetworkTransmit, "send_rpc_party_clients", function (func, self, rpc_name, party, include_spectators, ...)
---     if rpc_name == "skip_local_interaction" then 
---         return 
---     end
---     return func(self, rpc_name, party, include_spectators, ...)
--- end)
-
--- mod:hook(InteractionHelper, "request", function (func, self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
---     local rpc_name = InteractionHelper.interactions[interaction_type].request_rpc
---     if rpc_name == "skip_local_interaction" then 
---         return 
---     end
-
---     return func(self, interaction_type, interactor_go_id, interactable_go_id, is_level_unit, is_server)
--- end)
-
--- mod:hook(InteractionDefinitions.talents_access.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
---     local unit_name = Unit.get_data(interactable_unit, "unit_name")
---     if result == InteractionResult.SUCCESS and not data.is_husk then
---         if mod.cheevo_units[unit_name] then
---             data.start_time = nil
---             local shield_count = mod:get("num_shields_collected")
---             shield_count = shield_count + 1
---             mod:set("num_shields_collected", shield_count)
---             mod:echo('successfull!!!')
---             Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
---             return
---         end
---     end
-
---     return func(world, interactor_unit, interactable_unit, data, config, t, result)
--- end)
-
--- mod:hook(InteractionDefinitions.talents_access.client, 'hud_description', function (func, interactable_unit, ...)
---     if Unit.has_data(interactable_unit, "is_LA_object") then
---         -- mod:echo(Unit.get_data(interactable_unit, "interaction_data", "hud_description"))
---         return Unit.get_data(interactable_unit, "interaction_data", "hud_description"), Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
---     end
-
---     return func(interactable_unit, ...)
--- end)
-
-
-
--- mod:hook(UnitSpawner,'create_unit_extensions', function (func, self, world, unit, ...)
-
---     local unit_name = Unit.get_data(unit, "unit_name")
-
---     if mod.cheevo_units[unit_name] then
---         Unit.set_data(unit,"interaction_data","hud_description", "test_item")
---         Unit.set_data(unit,"interaction_data","interaction_length", 0)
---         Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
---         Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
---         Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
---         Unit.set_data(unit,"interaction_data","only_once", false)
---         Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
---         Unit.set_data(unit, "is_LA_object", true)
-
---         Unit.set_data(unit, "extensions", "UnitSynchronizationExtension")
---         Unit.set_data(unit, "extensions", "GenericUnitInteractableExtension")
-
---     end
-
---     return func(self, world, unit, ...)
--- end)
-
 --hook to allow for painting scraps to be used as objectives
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
@@ -347,42 +259,80 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
 end)
 
-
--- mod:hook(InteractionDefinitions.pickup_object.client, 'start', function (func, world, interactor_unit, interactable_unit, data, config, t)
-    
---     -- mod:echo(interactable_unit)
-
---     return func(world, interactor_unit, interactable_unit, data, config, t)
--- end)
-
-
---hook for showing proper item reward in okri's challenges
-local LA_quest_rewards = {
+--setting up tables that contain data for the reward info of chalenges in Okri's Book
+mod.LA_quest_rewards = {
+    main_quest = {
+		item_name = "main_quest_reward",
+        reward_type = "item",
+	},
     sub_quest_01 = {
-        weapon_skin_name = "Kruber_empire_shield_hero1_Ostermark01",
-        reward_type = "weapon_skin",
+        item_name = "sub_quest_01_reward",
+        reward_type = "item",
     },
     sub_quest_02 = {
-        item_name = "Kruber_bret_shield_basic2_Luidhard01",
+        item_name = "sub_quest_02_reward",
         reward_type = "item",
     },
     sub_quest_03 = {
-        item_name = "explosive_barrel",
+        item_name = "sub_quest_03_reward",
         reward_type = "item",
     },
-    main_quest = {
-		weapon_skin_name = "Kruber_bret_shield_basic2_Luidhard01",
-        reward_type = "weapon_skin",
-	},
+    sub_quest_04 = {
+        item_name = "sub_quest_04_reward",
+        reward_type = "item",
+    },
+    sub_quest_05 = {
+        item_name = "sub_quest_05_reward",
+        reward_type = "item",
+    },
+    sub_quest_06 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+    },
+    sub_quest_07 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+    },
+    sub_quest_08 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+    },
+    sub_quest_09 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+    },
+    sub_quest_10 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+    },
 }
 
-WeaponSkins.skins["test_item"] = {
-    inventory_icon = "kerillian_elf_shield_basicclean_chrace01_icon",
-    description = "test_item_desc",
-	rarity = "rare",
-	display_name = "test_item_name",
+for quest,data in pairs(mod.LA_quest_rewards) do 
+    ItemMasterList[quest.."_reward"] = {
+        -- temporary_template = "explosive_barrel",
+        -- slot_type = "healthkit",
+        -- is_local = true,
+        display_name = quest.."_reward_name",
+        inventory_icon = "quest_icon_empty",
+        -- left_hand_unit = "units/weapons/player/wpn_explosive_barrel/wpn_explosive_barrel_01",
+        rarity = "plentiful",
+        -- gamepad_hud_icon = "consumables_icon_defence",
+        -- hud_icon = "consumables_icon_defence",
+        item_type = quest.."_reward_desc",
+        -- item_type = "item_description",
+        can_wield = CanWieldAllItemTemplates
+    }
+end
+
+ItemMasterList["LA_locked_reward"] = {
+    inventory_icon = "achievement_trophy_helmgart_lord_1",
+    rarity = "plentiful",
+    item_type = "LA_locked_reward_desc",
+    display_name = "LA_locked_reward_name",
+    can_wield = CanWieldAllItemTemplates
 }
 
+--hook for showing proper item reward in okri's challenges
 mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
     local quest_manager = self._quest_manager
 	local achievement_manager = self._achievement_manager
@@ -401,8 +351,8 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
         local entry_data = manager:get_data_by_id(entry_id)
 
         if entry_data.id then
-            if LA_quest_rewards[entry_data.id] then 
-                entry_data.reward = LA_quest_rewards[entry_data.id]
+            if mod.LA_quest_rewards[entry_data.id] then 
+                entry_data.reward = mod.LA_quest_rewards[entry_data.id]
             end
         end        
     end

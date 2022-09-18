@@ -270,16 +270,4 @@ for Armoury_key,Armoury_data in pairs(mod.SKIN_LIST) do
         rarity = "rare",
         display_name = "test_item_name",
     }
-    ItemMasterList[Armoury_key] = {
-        -- temporary_template = "explosive_barrel",
-        -- slot_type = "healthkit",
-        -- is_local = true,
-        inventory_icon = "quest_icon_empty",
-        -- left_hand_unit = "units/weapons/player/wpn_explosive_barrel/wpn_explosive_barrel_01",
-        rarity = "plentiful",
-        -- gamepad_hud_icon = "consumables_icon_defence",
-        hud_icon = "consumables_icon_defence",
-        item_type = "explosive_inventory_item",
-        can_wield = CanWieldAllItemTemplates
-    }
 end

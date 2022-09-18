@@ -77,11 +77,75 @@ local mod_text_ids = {
 	test_1_desc = {
 		en = "test description",
 	},
+	main_quest_desc = {
+		en = "Complete Sub Quests 1-10 to receive the reward.",
+	},
+	main_quest = {
+		en = "Main Quest",
+	},
 	sub_quest_01_desc = {
-		en = "collect 3 sheilds",
+		en = "sub_quest_01_desc",
 	},
 	sub_quest_01 = {
-		en = "Shield Collector",
+		en = "Fight against the Infestation",
+	},
+	sub_quest_02_desc = {
+		en = "sub_quest_02_desc",
+	},
+	sub_quest_02 = {
+		en = "Fight against the Corruption",
+	},
+	sub_quest_03_desc = {
+		en = "Find Loremaster's Armoury lost shipment in Righteous Stand.",
+	},
+	sub_quest_03 = {
+		en = "A Favour for the Loremaster I",
+	},
+	sub_quest_04_desc = {
+		en = "Find Loremaster's Armoury lost shipment in Convocation of Decay.",
+	},
+	sub_quest_04 = {
+		en = "A Favour for the Loremaster II",
+	},
+	sub_quest_05_desc = {
+		en = "Find Loremaster's Armoury lost shipment in Empire in Flames.",
+	},
+	sub_quest_05 = {
+		en = "A Favour for the Loremaster III",
+	},
+	sub_quest_06_desc = {
+		en = "Complete Athel Yelnuli after retrieving 3 Tomes and 2 Grimoires.",
+	},
+	sub_quest_06 = {
+		en = "Calming the Winds",
+	},
+	sub_quest_07_desc = {
+		en = "Search Blood in the Darkness for the Reikland chronicle.",
+	},
+	sub_quest_07 = {
+		en = "The Librarian",
+	},
+	sub_quest_08_desc = {
+		en = "Retreive the mysterious artifact from Bödvarr Ribspreader in The War Camp.",
+	},
+	sub_quest_08 = {
+		en = "That Belongs in a Museum!",
+	},
+	sub_quest_09_desc = {
+		en = "Cleanse the corrupted artifact at the altar in The Citadel of Eternity.",
+	},
+	sub_quest_09 = {
+		en = "An Overdue Restoration",
+	},
+	sub_quest_10_desc = {
+		en = "Pray at the Shrine of Myrmidia in Pilgrimage Chamber of Taal's Horn Keep.",
+	},
+	sub_quest_10 = {
+		en = "Blessing of the Sun",
+	},
+
+	locked_hidden_quest = {
+		en = "This quest is locked until the previous one is compelted",
 	},
 
 }

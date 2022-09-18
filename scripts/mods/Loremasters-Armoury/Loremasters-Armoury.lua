@@ -114,19 +114,64 @@ if mod:get("sub_quest_three_found") == nil then
 end
 
 if mod:get("sub_quest_four_found") == nil then 
-    mod:set("sub_quest_three_found", false)
+    mod:set("sub_quest_four_found", false)
 end
 
 if mod:get("sub_quest_five_found") == nil then 
-    mod:set("sub_quest_three_found", false)
+    mod:set("sub_quest_five_found", false)
+end
+
+if mod:get("sub_quest_06_completed") == nil then 
+    mod:set("sub_quest_06_completed", false)
+end
+
+if mod:get("sub_quest_07_interacted") == nil then 
+    mod:set("sub_quest_07_interacted", false)
+end
+
+if mod:get("sub_quest_08_kill_n_collect") == nil then 
+    mod:set("sub_quest_08_kill_n_collect", false)
+end
+
+if mod:get("sub_quest_09_pillgrimage") == nil then 
+    mod:set("sub_quest_09_pillgrimage", false)
+end
+
+if mod:get("sub_quest_10_pray") == nil then 
+    mod:set("sub_quest_10_pray", false)
 end
 
 mod:command("reset_sub_quests", "", function()
+    for quest,_ in pairs(mod.main_quest) do
+        mod.main_quest[quest] = false
+    end
+    mod:set("sub_quest_one_kills", 0)
+    mod:set("sub_quest_two_kills", 0)
+    mod:set("sub_quest_three_found", false)
+    mod:set("sub_quest_four_found", false)
+    mod:set("sub_quest_five_found", false)
+    mod:set("sub_quest_06_completed", false)
+    mod:set("sub_quest_07_interacted", false)
+    mod:set("sub_quest_08_kill_n_collect", false)
+    mod:set("sub_quest_09_pillgrimage", false)
+    mod:set("sub_quest_10_pray", false)
+end)
 
-    mod.main_quest.sub_quest_01 = false
-    mod.main_quest.sub_quest_02 = false
-    mod.main_quest.sub_quest_03 = false
-    mod:set("num_shields_collected", 0)
+mod:command("complete_sub_quests", "", function()
+
+    for quest,_ in pairs(mod.main_quest) do
+        mod.main_quest[quest] = true
+    end
+    mod:set("sub_quest_one_kills", 500)
+    mod:set("sub_quest_two_kills", 500)
+    mod:set("sub_quest_three_found", true)
+    mod:set("sub_quest_four_found", true)
+    mod:set("sub_quest_five_found", true)
+    mod:set("sub_quest_06_completed", true)
+    mod:set("sub_quest_07_interacted", true)
+    mod:set("sub_quest_08_kill_n_collect", true)
+    mod:set("sub_quest_09_pillgrimage", true)
+    mod:set("sub_quest_10_pray", true)
 end)
 
 
@@ -217,197 +262,3 @@ mod:command("sword_test_local", "", function()
     local extension_init_data = {}
     Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
 end)
-
--- mod:echo(NetworkLookup.husks["units/weapons/player/pup_scrolls/pup_scroll_t1"])
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
--- local rotation = Unit.local_rotation(player_unit, 0)
--- local extension_init_data = {}
--- local source_unit = Managers.state.unit_spawner:spawn_network_unit("units/weapons/player/pup_scrolls/pup_scroll_t1", "interaction_unit", extension_init_data, position, rotation)
--- local template_id = NetworkLookup.spawn_unit_templates["vortex_unit"]
--- local source_unit_id = Managers.state.unit_storage:go_id(source_unit)
--- local group_spawn_index = 1
--- Managers.state.network.network_transmit:send_rpc_server("rpc_request_spawn_network_unit", template_id, position, rotation, source_unit_id, extension_init_data, group_spawn_index)
-
-
---     local player = Managers.player:local_player()
---     local player_unit = player.player_unit
---     local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
---     local rotation = Unit.local_rotation(player_unit, 0)
---     local extension_init_data = {}
---     Managers.state.unit_spawner:spawn_local_unit("units/weapons/player/pup_scrolls/pup_scroll_t1", "interaction_unit", position, rotation)
-
-
--- for k,v in pairs(NetworkLookup.spawn_unit_templates) do 
---     mod:echo(k)
--- end
-
--- mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
---     local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
--- 	local pickup_settings = pickup_extension:get_pickup_settings()
---     mod:echo(pickup_settings.type)
-
---     if pickup_settings.type == "painting_scrap" then
---         local shield_count = mod:get("num_shields_collected")
---         shield_count = shield_count + 1
---         mod:set("num_shields_collected", shield_count)
---         mod:echo('successfull!!!')
---     end
-
---     return func(world, interactor_unit, interactable_unit, data, config, t, result)
--- end)
-
-
--- local player = Managers.player:local_player()
---     local player_unit = player.player_unit
---     local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
---     local rotation = Unit.local_rotation(player_unit, 0)
--- Managers.state.network.network_transmit:send_rpc_server(
--- 			"rpc_spawn_pickup_with_physics",
--- 			NetworkLookup.pickup_names["painting_scrap"],
--- 			position,
--- 			rotation,
--- 			NetworkLookup.pickup_spawn_types['dropped']
--- 		)
-
-
-        
-
--- local unit_name = "units/weapons/player/pup_lore_page/pup_lore_page_01"
--- Managers.package:load(unit_name, "global")
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
--- local rotation = Unit.local_rotation(player_unit, 0)
--- local extension_init_data = {}
--- local unit = Managers.state.unit_spawner:spawn_network_unit(unit_name, "interaction_unit", extension_init_data, position, rotation)
--- Unit.enable_physics(unit)
-
--- local unit_name = "units/weapons/player/wpn_potion_buff/wpn_potion_buff_3p"
--- local unit_name ="units/weapons/player/pup_potion_01/pup_potion_strenght_01"
--- local unit_name ="units/shield"
--- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
--- local unit_name = "units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01"
--- local num_husk = #NetworkLookup.husks
--- NetworkLookup.husks[num_husk +1] = unit_name
--- NetworkLookup.husks[unit_name] = num_husk +1
--- local world = Managers.world:world("level_world")
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
--- local rotation = Unit.local_rotation(player_unit, 0)
--- local extension_init_data = {}
--- -- local unit = Managers.state.unit_spawner:spawn_local_unit(unit_name, position, rotation)
--- local unit_template_name = "interaction_unit"
-
-
--- local unit = Managers.state.unit_spawner:spawn_network_unit(unit_name, "interaction_unit", extension_init_data, position, rotation)
--- Unit.set_data(unit,"interaction_data","hud_description", "potion")
--- Unit.set_data(unit,"interaction_data","interaction_length", 0)
--- Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
--- Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
--- Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
--- Unit.set_data(unit,"interaction_data","only_once", false)
--- Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
--- mod:echo(Unit.has_data(unit,"interaction_data"))
--- local final_unit_template_name = Managers.state.unit_spawner:create_unit_extensions(world, unit, unit_template_name, extension_init_data)
-
--- local unit_templates = require("scripts/network/unit_extension_templates")
--- local unit_template = unit_templates[final_unit_template_name]
-
--- NetworkUnit.add_unit(unit)
--- NetworkUnit.set_is_husk_unit(unit, false)
-
--- local go_type = unit_template.go_type
--- local go_initializer_function = self.gameobject_initializers[go_type]
--- local go_init_data = go_initializer_function(unit, unit_name, unit_template, self.gameobject_functor_context)
--- local go_id = GameSession.create_game_object(self.game_session, go_type, go_init_data)
-
--- self.unit_storage:add_unit_info(unit, go_id, go_type, self.own_peer_id)
--- self.entity_manager:sync_unit_extensions(unit, go_id)
-
-
-
-
-
-
-
-
--- Unit.enable_physics(unit)
-
--- mod:hook(GenericUnitInteractorExtension, "init", function (func, self, extension_init_context, unit, extension_init_data)
---     local unit_name = Unit.get_data(unit, "unit_name")
---     if unit_name == "units/shield" then
---         Unit.set_data(unit,"interaction_data","hud_description", "potion")
---         Unit.set_data(unit,"interaction_data","interaction_length", 0)
---         Unit.set_data(unit,"interaction_data","interaction_type", "talents_access")
---         Unit.set_data(unit,"interaction_data","interactor_animation","interaction_start")
---         Unit.set_data(unit,"interaction_data","interactor_animation_time_variable", "revive_time")
---         Unit.set_data(unit,"interaction_data","only_once", false)
---         Unit.set_data(unit,"interaction_data","hud_text_line_2", "line test")
---     end
-
-    
---     return func(self, extension_init_context, unit, extension_init_data)
--- end)
-
--- mod:hook(EntityManager2,"sync_unit_extensions",function (func, self, unit, go_id)
---     local extensions = self._units[unit]
-
--- 	if extensions then
--- 		for extension_name, extension in pairs(extensions) do
--- 			if extension.game_object_initialized ~= nil then
--- 				mod:echo(extension_name)
--- 			end
--- 		end
--- 	end
---     return func(self, unit, go_id)
-
--- end)
-
--- mod:hook(GenericUnitInteractorExtension, "start_interaction", function (func, self, hold_input, interactable_unit, interaction_type, forced)
-
---     local interaction_context = self.interaction_context
---     local network_manager = Managers.state.network
---     local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
---     mod:echo(interactable_go_id)
---     mod:echo(is_level_unit)
-
---     return func(self, hold_input, interactable_unit, interaction_type, forced)
--- end)
-
--- mod:hook(GenericUnitInteractorExtension, 'can_interact', function (func, self, interactable_unit, interaction_type)
-    
---     if Unit.alive(interactable_unit) then
---         if Unit.has_data(interactable_unit, "interaction_data") then
---             mod:echo(Unit.get_data(interactable_unit, "interaction_data", "interaction_type"))
---         end
---     end
-    
---     return func(self, interactable_unit, interaction_type)
--- end)
-
--- spawn_local_unit_with_extensions
--- spawn_network_unit
-
-
--- local num_husk = #NetworkLookup.husks
--- local num_interacts = #NetworkLookup.interactions
--- NetworkLookup.husks[num_husk +1] = "units/shield"
--- NetworkLookup.husks["units/shield"] = num_husk +1
--- NetworkLookup.interactions["achievement_object"] = num_interacts+1
--- NetworkLookup.interactions[num_interacts + 1] = "achievement_object"
-
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
--- local rotation = Unit.local_rotation(player_unit, 0)
--- local extension_init_data = {}
--- Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
-
-
--- for k,v in pairs(InteractionDefinitions) do 
---     mod:echo(k)
-    
--- end
