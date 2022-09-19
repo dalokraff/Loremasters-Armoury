@@ -1,5 +1,6 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/crate_locations")
 
 --this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
@@ -243,7 +244,8 @@ mod:hook(BackendInterfaceLootPlayfab,'get_achievement_rewards', function (func, 
     return func(self, achievement_id)
 end)
 
---hook to allow for painting scraps to be used as objectives
+--hooks to allow for painting scraps to be used as objectives
+mod.attached_units = {}
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     
     if interactable_unit then 
@@ -256,19 +258,51 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
             end
         end
     end
-    
-    -- local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
-	-- local pickup_settings = pickup_extension:get_pickup_settings()
-    -- mod:echo(pickup_settings.type)
-
-    -- if pickup_settings.type == "painting_scrap" then
-    --     local shield_count = mod:get("num_shields_collected")
-    --     shield_count = shield_count + 1
-    --     mod:set("num_shields_collected", shield_count)
-    --     mod:echo('successfull!!!')
-    -- end
-
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)
+
+mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+    local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+    local level_name = Managers.state.game_mode:level_key()
+    if mod.list_of_LA_levels[level_name] then
+        local LA_position = mod.list_of_LA_levels[level_name].position
+        mod:echo(LA_position:unbox())
+        mod:echo(position)
+        if Vector3.equal(position, LA_position:unbox()) then
+            mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                mod:echo(scrap_go_id)
+                mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = 0,
+                        source = "root_point",
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                mod:echo(mod.attached_units[scrap_go_id].target)
+
+                return 
+            end
+        end
+    end
+
+    return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
 end)
 
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
