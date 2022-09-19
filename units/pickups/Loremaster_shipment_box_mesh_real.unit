@@ -3,7 +3,8 @@ data = {
         slot1 = "Tex_1431_0"
     }
 
-    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
+    mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
 
     colors = {
         slot1 = "textures/pickups/Loremaster_shipment_box_diffuse"
@@ -14,9 +15,9 @@ data = {
     MABs = {
     }
 
-    color_slot = "texture_map_c0ba2942" 
-    norm_slot = "texture_map_59cd86b9"
-    MAB_slot = "texture_map_0205ba86"
+    color_slot = "texture_map_64cc5eb8" 
+    norm_slot = "texture_map_861dbfdc"
+    MAB_slot = "texture_map_b788717c"
 
 }
 
