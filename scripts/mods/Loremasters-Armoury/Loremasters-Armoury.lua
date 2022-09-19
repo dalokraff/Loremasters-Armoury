@@ -283,6 +283,7 @@ mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
         local level_name = Managers.state.game_mode:level_key()
+        -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
             Managers.state.network.network_transmit:send_rpc_server(
                 "rpc_spawn_pickup_with_physics",
@@ -292,9 +293,15 @@ mod.on_game_state_changed = function(status, state_name)
                 NetworkLookup.pickup_spawn_types['dropped']
             )
         end
+
+        if level_name == "inn_level" then
+            local position = Vector3(-6.56431, 3.91166, 5.16261)
+            local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.381939)
+            local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+        end
+
     end
 end
-
 -- mod:hook_safe(InteractionDefinitions.pickup_object.client, "stop", function(world, interactor_unit, interactable_unit, data, config, t, result)
 --     if interactable_unit then 
 --         local go_id = Managers.state.unit_storage:go_id(interactable_unit)

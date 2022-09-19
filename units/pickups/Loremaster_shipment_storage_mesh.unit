@@ -1,0 +1,34 @@
+data = {
+    mat_slots = {
+        slot1 = "Tex_1431_0"
+    }
+
+    mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
+
+    colors = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_diffuse"
+    }
+    normals = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_normal"
+    }
+    MABs = {
+    }
+
+    color_slot = "texture_map_64cc5eb8" 
+    norm_slot = "texture_map_861dbfdc"
+    MAB_slot = "texture_map_b788717c"
+
+}
+
+renderables = {
+    Loremaster_shipment_box_stacked = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+}
