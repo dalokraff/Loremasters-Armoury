@@ -279,6 +279,11 @@ end)
 -- local extension_init_data = {}
 -- Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
 
+-- local position = Vector3(-6.56431, 3.91166, 5.16261)
+-- local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
+-- local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.381939)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
@@ -296,7 +301,7 @@ mod.on_game_state_changed = function(status, state_name)
 
         if level_name == "inn_level" then
             local position = Vector3(-6.56431, 3.91166, 5.16261)
-            local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.381939)
+            local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
             local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
         end
 
