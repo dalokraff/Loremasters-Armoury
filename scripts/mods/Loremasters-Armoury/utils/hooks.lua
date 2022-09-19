@@ -246,6 +246,10 @@ end)
 
 --hooks to allow for painting scraps to be used as objectives
 mod.attached_units = {}
+local level_quest_table = {
+    military = "sub_quest_three_found",
+
+}
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     
     if interactable_unit then 
@@ -255,6 +259,12 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
             if mod.attached_units[go_id] then 
                 mod:echo(mod.attached_units[go_id].target)
                 Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+
+                local level_name = Managers.state.game_mode:level_key()
+                local quest = level_quest_table[level_name]
+                if quest then
+                    mod:set(quest.."_temp", true)
+                end
             end
         end
     end
@@ -290,6 +300,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
                 Unit.set_data(box_unit, "unit_marker", scrap_go_id)
                 Unit.set_data(scrap_unit, "is_LA_box", true)
+                -- Unit.set_data(scrap_unit, "level", level_name)
                 Unit.set_unit_visibility(scrap_unit, false)
                 mod.attached_units[scrap_go_id] = {
                     source = scrap_unit, 
@@ -303,6 +314,22 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
     end
 
     return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+end)
+
+mod:hook_safe(LevelEndView, "start", function(self)
+    for level,quest in pairs(level_quest_table) do 
+        if mod:get(quest.."_temp") then
+            if self.game_won then
+                mod:set(quest, true)
+            end
+        end
+    end
+end)
+
+mod:hook_safe(LevelTransitionHandler,"load_current_level", function (self)
+    for level,quest in pairs(level_quest_table) do 
+        mod:set(quest.."_temp", false)
+    end
 end)
 
 --setting up tables that contain data for the reward info of chalenges in Okri's Book

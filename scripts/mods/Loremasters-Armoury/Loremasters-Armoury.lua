@@ -263,6 +263,15 @@ mod:command("sword_test_local", "", function()
     Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
 end)
 
+mod:command("spawn_crate", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+end)
+
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
 -- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
