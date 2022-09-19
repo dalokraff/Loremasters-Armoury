@@ -245,16 +245,28 @@ end)
 
 --hook to allow for painting scraps to be used as objectives
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
-    local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
-	local pickup_settings = pickup_extension:get_pickup_settings()
-    mod:echo(pickup_settings.type)
-
-    if pickup_settings.type == "painting_scrap" then
-        local shield_count = mod:get("num_shields_collected")
-        shield_count = shield_count + 1
-        mod:set("num_shields_collected", shield_count)
-        mod:echo('successfull!!!')
+    
+    if interactable_unit then 
+        local go_id = Managers.state.unit_storage:go_id(interactable_unit)
+        if go_id then
+            mod:echo(go_id)
+            if mod.attached_units[go_id] then 
+                mod:echo(mod.attached_units[go_id].target)
+                Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+            end
+        end
     end
+    
+    -- local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
+	-- local pickup_settings = pickup_extension:get_pickup_settings()
+    -- mod:echo(pickup_settings.type)
+
+    -- if pickup_settings.type == "painting_scrap" then
+    --     local shield_count = mod:get("num_shields_collected")
+    --     shield_count = shield_count + 1
+    --     mod:set("num_shields_collected", shield_count)
+    --     mod:echo('successfull!!!')
+    -- end
 
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
 end)

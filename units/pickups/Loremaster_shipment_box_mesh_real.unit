@@ -1,0 +1,33 @@
+data = {
+    mat_slots = {
+        slot1 = "Tex_1431_0"
+    }
+
+    mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2_3p"
+
+    colors = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_diffuse"
+    }
+    normals = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_normal"
+    }
+    MABs = {
+    }
+
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    MAB_slot = "texture_map_0205ba86"
+
+}
+
+renderables = {
+    Loremaster_shipment_box_real = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+}

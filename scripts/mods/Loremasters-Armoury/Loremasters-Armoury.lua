@@ -262,3 +262,112 @@ mod:command("sword_test_local", "", function()
     local extension_init_data = {}
     Managers.state.unit_spawner:spawn_local_unit_with_extensions("units/shield", "interaction_unit", extension_init_data, position, rotation)
 end)
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- local extension_init_data = {}
+-- Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+
+mod.list_of_LA_levels = {
+    military = {
+        position = stingray.Vector3Box(172.06, 255.759, -13.775)
+    },
+}
+mod.attached_units = {}
+
+mod.on_game_state_changed = function(status, state_name)
+    if status == "enter" and state_name == "StateIngame" then
+        mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
+        local level_name = Managers.state.game_mode:level_key()
+        if mod.list_of_LA_levels[level_name] then 
+            Managers.state.network.network_transmit:send_rpc_server(
+                "rpc_spawn_pickup_with_physics",
+                NetworkLookup.pickup_names["painting_scrap"],
+                mod.list_of_LA_levels[level_name].position:unbox(),
+                Quaternion.from_elements(0,0,0,0),
+                NetworkLookup.pickup_spawn_types['dropped']
+            )
+        end
+    end
+end
+
+mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+    local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+    local level_name = Managers.state.game_mode:level_key()
+    if mod.list_of_LA_levels[level_name] then
+        local LA_position = mod.list_of_LA_levels[level_name].position
+        mod:echo(LA_position:unbox())
+        mod:echo(position)
+        if Vector3.equal(position, LA_position:unbox()) then
+            mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                mod:echo(scrap_go_id)
+                mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = 0,
+                        source = "root_point",
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                mod:echo(mod.attached_units[scrap_go_id].target)
+
+                return 
+            end
+        end
+    end
+
+    return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+end)
+
+-- mod:hook_safe(InteractionDefinitions.pickup_object.client, "stop", function(world, interactor_unit, interactable_unit, data, config, t, result)
+--     if interactable_unit then 
+--         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
+--         if go_id then
+--             mod:echo(go_id)
+--             if mod.attached_units[go_id] then 
+--                 mod:echo(mod.attached_units[go_id].target)
+--                 Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+--             end
+--         end
+--     end
+-- end)
+
+-- local tisch = {}
+
+-- local key_vec = Vector3(0,1,2)
+-- tisch[key_vec] = 10
+-- mod:echo(key_vec)
+-- mod:echo(tisch[key_vec])
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0)
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- mod:echo(position)
+-- mod:echo(rotation)
+
+-- [MOD][ExecLua][ECHO] Vector3(172.06, 255.759, -13.775)
+-- [MOD][ExecLua][ECHO] Vector4(0, 0, -0.484305, -0.874899)
+
+-- local level_name = Managers.state.game_mode:level_key()
+-- mod:echo(level_name)
+-- military
