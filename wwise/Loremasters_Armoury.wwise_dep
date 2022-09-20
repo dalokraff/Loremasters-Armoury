@@ -1,0 +1,9 @@
+
+win32 = {
+	banks = [
+		"wwise/Loremasters_Armoury"
+	]
+	metadata = "wwise/project"
+	streams = [
+	]
+}

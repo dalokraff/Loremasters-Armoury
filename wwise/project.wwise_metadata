@@ -1,0 +1,444 @@
+
+aux_buses = [
+]
+banks = {
+	asuka = {
+		events = [
+			"ganbare"
+		]
+	}
+	ayaya = {
+		events = [
+			"ayaya"
+		]
+	}
+	Init = {
+		events = [
+		]
+	}
+	Loremasters_Armoury = {
+		events = [
+			"Loremaster_shipment_pickup_sound"
+		]
+	}
+	pan_hits = {
+		events = [
+			"pan_impact01"
+			"pan_impact02"
+			"pan_impact03"
+			"pan_melee_new01"
+			"pan_melee01"
+			"pan_melee02"
+			"pan_melee03"
+			"pan_melee04"
+			"rand_pan"
+		]
+	}
+	pusfume = {
+		events = [
+			"psf_b_01_1"
+			"psf_b_01_2"
+			"psf_b_01_3"
+			"psf_b_02_1"
+			"psf_b_02_2"
+			"psf_b_03_1"
+			"psf_b_03_2"
+			"psf_b_04_1"
+			"psf_b_04_2"
+			"psf_b_05_1"
+			"psf_b_05_2"
+			"psf_hello"
+			"psf_ker_01_1"
+			"psf_ker_02_1"
+			"psf_ker_02_2"
+			"psf_ker_02_3"
+			"psf_ker_03_1"
+			"psf_ker_03_2"
+			"psf_ker_03_3"
+			"psf_kr_01_1"
+			"psf_kr_01_2"
+			"psf_kr_01_3"
+			"psf_kr_02_1"
+			"psf_kr_02_2"
+			"psf_kruber_03_1"
+			"psf_kruber_03_2"
+			"psf_kruber_04_1"
+			"psf_s_01_1"
+			"psf_s_01_2"
+			"psf_s_02_1"
+			"psf_saltz_01_1"
+			"psf_saltz_02_1"
+			"psf_saltz_03_1"
+			"psf_saltz_03_2"
+			"psf_saltz_03_3"
+			"psf_saltz_04_1"
+		]
+	}
+}
+buses = [
+	"Master Audio Bus"
+	"Motion Factory Bus"
+	"MUSIC"
+	"SFX"
+	"VO"
+]
+events = {
+	ayaya = {
+		attenuation_max = 500
+		duration_max = 56.02066
+		duration_min = 56.02066
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	ganbare = {
+		attenuation_max = 500
+		duration_max = 2
+		duration_min = 2
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	Loremaster_shipment_pickup_sound = {
+		attenuation_max = 20
+		duration_max = 1.346021
+		duration_min = 1.346021
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	pan_impact01 = {
+		attenuation_max = 0
+		duration_max = 1.197687
+		duration_min = 1.197687
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_impact02 = {
+		attenuation_max = 0
+		duration_max = 1.198413
+		duration_min = 1.198413
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_impact03 = {
+		attenuation_max = 0
+		duration_max = 1.198413
+		duration_min = 1.198413
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_melee_new01 = {
+		attenuation_max = 500
+		duration_max = 0.679184
+		duration_min = 0.679184
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	pan_melee01 = {
+		attenuation_max = 0
+		duration_max = 0.603537
+		duration_min = 0.603537
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_melee02 = {
+		attenuation_max = 0
+		duration_max = 0.558367
+		duration_min = 0.558367
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_melee03 = {
+		attenuation_max = 0
+		duration_max = 0.620408
+		duration_min = 0.620408
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	pan_melee04 = {
+		attenuation_max = 0
+		duration_max = 0.643809
+		duration_min = 0.643809
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	psf_b_01_1 = {
+		attenuation_max = 20
+		duration_max = 1.033152
+		duration_min = 1.033152
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_01_2 = {
+		attenuation_max = 20
+		duration_max = 12.75202
+		duration_min = 12.75202
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_01_3 = {
+		attenuation_max = 20
+		duration_max = 9.195102
+		duration_min = 9.195102
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_02_1 = {
+		attenuation_max = 20
+		duration_max = 11.00721
+		duration_min = 11.00721
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_02_2 = {
+		attenuation_max = 20
+		duration_max = 14.04587
+		duration_min = 14.04587
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_03_1 = {
+		attenuation_max = 20
+		duration_max = 14.87655
+		duration_min = 14.87655
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_03_2 = {
+		attenuation_max = 20
+		duration_max = 16.79898
+		duration_min = 16.79898
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_04_1 = {
+		attenuation_max = 20
+		duration_max = 14.57925
+		duration_min = 14.57925
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_04_2 = {
+		attenuation_max = 20
+		duration_max = 3.952064
+		duration_min = 3.952064
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_05_1 = {
+		attenuation_max = 20
+		duration_max = 8.648232
+		duration_min = 8.648232
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_b_05_2 = {
+		attenuation_max = 20
+		duration_max = 8.928073
+		duration_min = 8.928073
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_hello = {
+		attenuation_max = 20
+		duration_max = 0.738118
+		duration_min = 0.738118
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_01_1 = {
+		attenuation_max = 20
+		duration_max = 9.96737
+		duration_min = 9.96737
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_02_1 = {
+		attenuation_max = 20
+		duration_max = 8.169864
+		duration_min = 8.169864
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_02_2 = {
+		attenuation_max = 20
+		duration_max = 6.79492
+		duration_min = 6.79492
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_02_3 = {
+		attenuation_max = 20
+		duration_max = 2.520386
+		duration_min = 2.520386
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_03_1 = {
+		attenuation_max = 20
+		duration_max = 7.24025
+		duration_min = 7.24025
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_03_2 = {
+		attenuation_max = 20
+		duration_max = 10.9578
+		duration_min = 10.9578
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_ker_03_3 = {
+		attenuation_max = 20
+		duration_max = 4.068798
+		duration_min = 4.068798
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kr_01_1 = {
+		attenuation_max = 20
+		duration_max = 10.22154
+		duration_min = 10.22154
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kr_01_2 = {
+		attenuation_max = 20
+		duration_max = 16.57905
+		duration_min = 16.57905
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kr_01_3 = {
+		attenuation_max = 20
+		duration_max = 7.625034
+		duration_min = 7.625034
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kr_02_1 = {
+		attenuation_max = 20
+		duration_max = 10.1393
+		duration_min = 10.1393
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kr_02_2 = {
+		attenuation_max = 20
+		duration_max = 10.92161
+		duration_min = 10.92161
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kruber_03_1 = {
+		attenuation_max = 20
+		duration_max = 5.146327
+		duration_min = 5.146327
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kruber_03_2 = {
+		attenuation_max = 20
+		duration_max = 3.953197
+		duration_min = 3.953197
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_kruber_04_1 = {
+		attenuation_max = 20
+		duration_max = 14.34102
+		duration_min = 14.34102
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_s_01_1 = {
+		attenuation_max = 20
+		duration_max = 6.84068
+		duration_min = 6.84068
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_s_01_2 = {
+		attenuation_max = 20
+		duration_max = 3.199274
+		duration_min = 3.199274
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_s_02_1 = {
+		attenuation_max = 20
+		duration_max = 4.772834
+		duration_min = 4.772834
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_01_1 = {
+		attenuation_max = 20
+		duration_max = 8.232766
+		duration_min = 8.232766
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_02_1 = {
+		attenuation_max = 20
+		duration_max = 9.199116
+		duration_min = 9.199116
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_03_1 = {
+		attenuation_max = 20
+		duration_max = 2.081066
+		duration_min = 2.081066
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_03_2 = {
+		attenuation_max = 20
+		duration_max = 3.64746
+		duration_min = 3.64746
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_03_3 = {
+		attenuation_max = 20
+		duration_max = 4.341587
+		duration_min = 4.341587
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	psf_saltz_04_1 = {
+		attenuation_max = 20
+		duration_max = 1.110204
+		duration_min = 1.110204
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	rand_pan = {
+		attenuation_max = 500
+		duration_max = 56.02066
+		duration_min = 0.679184
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+}
+parameters = [
+	"Acoustic_Banner"
+	"Anechoic"
+	"Brick"
+	"Carpet"
+	"Concrete"
+	"Cork_Tiles"
+	"Curtains"
+	"Drywall"
+	"Fabric"
+	"Mountain"
+	"Tile"
+	"Wood"
+	"Wood_Bright"
+	"Wood_Deep"
+]
+state_groups = {
+}
+switch_groups = {
+}
+triggers = [
+]

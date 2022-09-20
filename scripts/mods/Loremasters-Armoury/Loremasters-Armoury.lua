@@ -274,10 +274,12 @@ end)
 
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+-- local position = Unit.local_position(player_unit, 0) 
 -- local rotation = Unit.local_rotation(player_unit, 0)
 -- local extension_init_data = {}
 -- Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+-- mod:echo(position)
+-- mod:echo(rotation)
 
 -- local position = Vector3(-6.56431, 3.91166, 5.16261)
 -- local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
@@ -290,13 +292,17 @@ mod.on_game_state_changed = function(status, state_name)
         local level_name = Managers.state.game_mode:level_key()
         -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
-            Managers.state.network.network_transmit:send_rpc_server(
-                "rpc_spawn_pickup_with_physics",
-                NetworkLookup.pickup_names["painting_scrap"],
-                mod.list_of_LA_levels[level_name].position:unbox(),
-                Quaternion.from_elements(0,0,0,0),
-                NetworkLookup.pickup_spawn_types['dropped']
-            )
+            if not mod.list_of_LA_levels[level_name].collected then
+                if (level_name == "military") or (level_name == "catacombs" and mod:get("sub_quest_three_found")) or (level_name == "ussingen" and mod:get("sub_quest_four_found")) then
+                    Managers.state.network.network_transmit:send_rpc_server(
+                        "rpc_spawn_pickup_with_physics",
+                        NetworkLookup.pickup_names["painting_scrap"],
+                        mod.list_of_LA_levels[level_name].position:unbox(),
+                        Quaternion.from_elements(0,0,0,0),
+                        NetworkLookup.pickup_spawn_types['dropped']
+                    )
+                end
+            end
         end
 
         if level_name == "inn_level" then

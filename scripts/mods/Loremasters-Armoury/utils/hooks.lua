@@ -248,7 +248,8 @@ end)
 mod.attached_units = {}
 local level_quest_table = {
     military = "sub_quest_three_found",
-
+    catacombs = "sub_quest_four_found",
+    ussingen = "sub_quest_five_found",
 }
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     
@@ -265,6 +266,10 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
                 if quest then
                     mod:set(quest.."_temp", true)
                 end
+                local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
+                local pickup_settings = pickup_extension:get_pickup_settings()
+                pickup_settings.pickup_sound_event = "Loremaster_shipment_pickup_sound"
+                -- LA_crate_pickup
             end
         end
     end
@@ -308,6 +313,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 }
                 mod:echo(mod.attached_units[scrap_go_id].target)
 
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+
                 return 
             end
         end
@@ -321,6 +328,7 @@ mod:hook_safe(LevelEndView, "start", function(self)
         if mod:get(quest.."_temp") then
             if self.game_won then
                 mod:set(quest, true)
+                mod.list_of_LA_levels[level].compelted = true
             end
         end
     end

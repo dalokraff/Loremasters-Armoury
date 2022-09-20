@@ -147,6 +147,9 @@ local mod_text_ids = {
 	locked_hidden_quest = {
 		en = "This quest is locked until the previous one is compelted",
 	},
+	LA_crate = {
+		en = "Shipping Crate"
+	},
 
 }
 
