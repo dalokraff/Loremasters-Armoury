@@ -276,10 +276,95 @@ end)
 -- local player_unit = player.player_unit
 -- local position = Unit.local_position(player_unit, 0) 
 -- local rotation = Unit.local_rotation(player_unit, 0)
--- local extension_init_data = {}
--- Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
 -- mod:echo(position)
 -- mod:echo(rotation)
+-- local extension_init_data = {}
+-- Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_MQ01_sub7_chronicle_mesh", position, rotation)
+-- local function radians_to_quaternion(theta, ro, phi)
+--     local c1 =  math.cos(theta/2)
+--     local c2 = math.cos(ro/2)
+--     local c3 = math.cos(phi/2)
+--     local s1 = math.sin(theta/2)
+--     local s2 = math.sin(ro/2)
+--     local s3 = math.sin(phi/2)
+--     local x = (s1*s2*c3) + (c1*c2*s3)
+--     local y = (s1*c2*c3) + (c1*s2*s3)
+--     local z = (c1*s2*c3) - (s1*c2*s3)
+--     local w = (c1*c2*c3) - (s1*s2*s3)
+--     local rot = Quaternion.from_elements(x, y, z, w)
+--     return rot
+-- end
+
+-- local rotation = Quaternion.multiply(Quaternion.from_elements(0, 0, 0, 1), radians_to_quaternion(0, 0, math.pi*1/2))
+-- local rotation = Quaternion.multiply(rotation, radians_to_quaternion(math.pi, 0, 0))
+-- mod:echo(rotation)
+-- Managers.state.network.network_transmit:send_rpc_server(
+--                         "rpc_spawn_pickup_with_physics",
+--                         NetworkLookup.pickup_names["painting_scrap"],
+--                         Vector3(70.4, -10.4, -0.76),
+--                         rotation,
+--                         NetworkLookup.pickup_spawn_types['dropped']
+--                     )
+
+-- mod.attached_units = {}
+-- mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+--     local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+--     local level_name = Managers.state.game_mode:level_key()
+--     if pickup_name == "painting_scrap" then
+--         local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+
+--         local pickup_settings = AllPickups[pickup_name]
+--         local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+        
+--         local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+--         mod:echo(scrap_go_id)
+--         mod:echo(scrap_unit)
+--         local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_MQ01_sub7_chronicle_mesh", position, rotation)
+--         local world = Managers.world:world("level_world")
+--         local attach_nodes = {
+--             {
+--                 target = 0,
+--                 source = "root_point",
+--             },
+--         }
+--         AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+--         Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+--         Unit.set_data(scrap_unit, "is_LA_box", true)
+--         -- Unit.set_data(scrap_unit, "level", level_name)
+--         Unit.set_unit_visibility(scrap_unit, false)
+--         mod.attached_units[scrap_go_id] = {
+--             source = scrap_unit, 
+--             target = box_unit,
+--         }
+--         mod:echo(mod.attached_units[scrap_go_id].target)
+
+--         Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+
+--         return 
+--     end
+
+--     return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
+-- end)
+
+-- mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+    
+--     if interactable_unit then 
+--         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
+--         if go_id then
+--             mod:echo(go_id)
+--             if mod.attached_units[go_id] then 
+--                 mod:echo(mod.attached_units[go_id].target)
+--                 Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+
+--                 local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
+--                 local pickup_settings = pickup_extension:get_pickup_settings()
+--                 pickup_settings.pickup_sound_event = "Loremaster_shipment_pickup_sound"
+--                 -- LA_crate_pickup
+--             end
+--         end
+--     end
+--     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+-- end)
 
 -- local position = Vector3(-6.56431, 3.91166, 5.16261)
 -- local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
@@ -299,6 +384,20 @@ mod.on_game_state_changed = function(status, state_name)
                         NetworkLookup.pickup_names["painting_scrap"],
                         mod.list_of_LA_levels[level_name].position:unbox(),
                         Quaternion.from_elements(0,0,0,0),
+                        NetworkLookup.pickup_spawn_types['dropped']
+                    )
+                end
+            end
+        end
+
+        if mod.list_of_LA_levels_books[level_name] then
+            if not mod.list_of_LA_levels_books[level_name].collected then
+                if (level_name == "dlc_bastion") then
+                    Managers.state.network.network_transmit:send_rpc_server(
+                        "rpc_spawn_pickup_with_physics",
+                        NetworkLookup.pickup_names["painting_scrap"],
+                        mod.list_of_LA_levels_books[level_name].position:unbox(),
+                        mod.list_of_LA_levels_books[level_name].rotation:unbox(),
                         NetworkLookup.pickup_spawn_types['dropped']
                     )
                 end

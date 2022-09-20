@@ -1,6 +1,7 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/crate_locations")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/book_locations")
 
 --this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
@@ -299,6 +300,46 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local attach_nodes = {
                     {
                         target = 0,
+                        source = "root_point",
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                -- Unit.set_data(scrap_unit, "level", level_name)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                mod:echo(mod.attached_units[scrap_go_id].target)
+
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+
+                return 
+            end
+        end
+    end
+
+    if mod.list_of_LA_levels_books[level_name] then
+        local LA_position = mod.list_of_LA_levels_books[level_name].position
+        mod:echo(LA_position:unbox())
+        mod:echo(position)
+        if Vector3.equal(position, LA_position:unbox()) then
+            mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                mod:echo(scrap_go_id)
+                mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_MQ01_sub7_chronicle_mesh", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = "LA_MQ01_sub7_chronicle",
                         source = "root_point",
                     },
                 }
