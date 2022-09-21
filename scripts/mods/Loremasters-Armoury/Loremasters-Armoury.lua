@@ -174,6 +174,11 @@ mod:command("complete_sub_quests", "", function()
     mod:set("sub_quest_10_pray", true)
 end)
 
+mod:command("complete_sub_quest_06", "", function()
+    mod.main_quest["sub_quest_06"] = true
+    mod:set("sub_quest_06_completed", true)
+end)
+
 
 
 
@@ -392,7 +397,7 @@ mod.on_game_state_changed = function(status, state_name)
 
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
-                if (level_name == "dlc_bastion") then
+                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_completed") then
                     Managers.state.network.network_transmit:send_rpc_server(
                         "rpc_spawn_pickup_with_physics",
                         NetworkLookup.pickup_names["painting_scrap"],

@@ -251,6 +251,7 @@ local level_quest_table = {
     military = "sub_quest_three_found",
     catacombs = "sub_quest_four_found",
     ussingen = "sub_quest_five_found",
+    dlc_bastion = "sub_quest_06_completed",
 }
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     
@@ -369,7 +370,12 @@ mod:hook_safe(LevelEndView, "start", function(self)
         if mod:get(quest.."_temp") then
             if self.game_won then
                 mod:set(quest, true)
-                mod.list_of_LA_levels[level].compelted = true
+                if mod.list_of_LA_levels[level] then
+                    mod.list_of_LA_levels[level].compelted = true
+                end
+                if mod.list_of_LA_levels_books[level] then
+                    mod.list_of_LA_levels_books[level].compelted = true
+                end
             end
         end
     end
