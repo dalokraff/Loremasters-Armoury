@@ -3,6 +3,9 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/crate_locations")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/book_locations")
 
+require("scripts/managers/achievements/achievement_templates")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievements")
+
 --this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
@@ -548,3 +551,43 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
 
     return func(self, entries, entry_type, entry_subtype)
 end)
+
+
+mod:hook(AchievementManager,"outline", function (func, self)
+    if not self.initialized then
+		return nil, "AchievementManager not initialized"
+	end
+    local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
+	return outline
+end)
+
+mod:hook(AchievementManager,"get_entries_from_category", function (func, self, in_category_id)
+	local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
+    return self:_search_sub_categories(outline.categories, in_category_id)
+end)
+
+
+mod:hook(AchievementManager,"setup_achievement_data", function (func, self)
+	if not self._enabled then
+		return
+	end
+
+	if not self.initialized then
+		return nil, "AchievementManager not initialized"
+	end
+
+	local function setup_achievement_data_from_categories(achievement_manager, categories)
+		for i, category in ipairs(categories) do
+			if category.categories then
+				setup_achievement_data_from_categories(achievement_manager, category.categories)
+			end
+
+			if category.entries then
+				achievement_manager:setup_achievement_data_from_list(category.entries)
+			end
+		end
+	end
+    local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
+	setup_achievement_data_from_categories(self, outline.categories)
+end)
+

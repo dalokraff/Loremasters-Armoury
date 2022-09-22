@@ -1,6 +1,6 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
-mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
+-- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
 
 -- Your mod code goes here.
@@ -276,6 +276,18 @@ mod:command("spawn_crate", "", function()
     local rotation = Unit.local_rotation(player_unit, 0)
     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
 end)
+
+
+mod:command("spawn_gemstone", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1.5)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+end)
+
+
 
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
