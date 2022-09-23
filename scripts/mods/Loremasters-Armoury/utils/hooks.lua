@@ -2,6 +2,7 @@ local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/funcs")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/crate_locations")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/book_locations")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/pickup_marker")
 
 require("scripts/managers/achievements/achievement_templates")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievements")
@@ -542,6 +543,14 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
 
+-- Managers.level_transition_handler:set_next_level("sig_crag_wastes_path1")
+-- local level_name = Managers.state.game_mode:level_key()
+-- mod:echo(level_name)
+
+-- for k,v in pairs(DEUS_LEVEL_SETTINGS) do 
+--     mod:echo(k)
+-- end
+
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {
     main_quest = {
@@ -682,4 +691,22 @@ mod:hook(AchievementManager,"setup_achievement_data", function (func, self)
 	end
     local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
 	setup_achievement_data_from_categories(self, outline.categories)
+end)
+
+
+
+mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
+    
+    for scrap_id, units in pairs(mod.attached_units) do 
+        if Unit.alive(units.target) then
+            local position = Unit.local_position(units.target, 0)
+            local pos_box = Vector3Box(position)
+            mod.render_marker(pos_box)
+        else 
+            mod.attached_units[scrap_id] = nil
+        end
+
+    end
+
+	func(self, dt, ...)
 end)
