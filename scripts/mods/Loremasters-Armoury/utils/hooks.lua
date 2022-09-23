@@ -375,11 +375,11 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
                 mod:echo(scrap_go_id)
                 mod:echo(scrap_unit)
-                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
                     {
-                        target = "LA_artifact_gemstone",
+                        target = "root_point",
                         source = "root_point",
                     },
                 }

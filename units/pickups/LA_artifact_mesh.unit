@@ -1,0 +1,63 @@
+data = {
+    mat_slots = {
+        slot1 = "LA_artifact_gemstone_texture"
+        slot2 = "LA_artifact_chest_texture"
+    }
+
+    mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01_3p"
+    // mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    // mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
+    
+    colors = {
+        slot1 = "textures/pickups/LA_artifact_gemstone_diffuse"
+        slot2 = "textures/pickups/LA_artifact_chest_diffuse"
+    }
+    normals = {
+        slot1 = "textures/pickups/LA_artifact_gemstone_normal"
+        slot2 = "textures/pickups/LA_artifact_chest_normal"
+    }
+    MABs = {
+        slot1 = "textures/pickups/LA_artifact_gemstone_combined"
+        slot2 = "textures/pickups/LA_artifact_chest_combined"
+    }
+    emis_colors = {
+		slot1 = "textures/pickups/LA_artifact_gemstone_emission_color"
+        slot2 = "textures/blank_emis"
+	}
+    emis_details = {
+        slot1 = "textures/pickups/LA_artifact_gemstone_emission"
+        slot2 = "textures/blank_emis"
+    }
+
+    // color_slot = "texture_map_64cc5eb8" 
+    // norm_slot = "texture_map_861dbfdc"
+    // MAB_slot = "texture_map_b788717c"
+
+    color_slot = "texture_map_c0ba2942" 
+    norm_slot = "texture_map_59cd86b9"
+    MAB_slot = "texture_map_0205ba86"
+    emis_col_slot = "texture_map_71d74d4d"
+	emis_det_slot = "texture_map_ee282ea2"
+
+}
+
+renderables = {
+    root_point = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_artifact_gemstone = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+}

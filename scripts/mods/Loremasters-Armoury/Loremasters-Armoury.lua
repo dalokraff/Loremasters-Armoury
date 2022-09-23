@@ -287,7 +287,14 @@ mod:command("spawn_gemstone", "", function()
     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
 end)
 
-
+mod:command("spawn_chest_with_gemstone", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+end)
 
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
