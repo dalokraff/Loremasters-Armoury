@@ -148,7 +148,13 @@ local mod_text_ids = {
 		en = "This quest is locked until the previous one is compelted",
 	},
 	LA_crate = {
-		en = "Shipping Crate"
+		en = "Shipping Crate",
+	},
+	reikbuch = {
+		en = "Reikland Chronicle",
+	},
+	magic_gem = {
+		en = "Stone of X",
 	},
 
 }

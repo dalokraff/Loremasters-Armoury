@@ -279,6 +279,8 @@ end)
 mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
     local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
     local level_name = Managers.state.game_mode:level_key()
+    
+    --for spawning the crate pickup
     if mod.list_of_LA_levels[level_name] then
         local LA_position = mod.list_of_LA_levels[level_name].position
         mod:echo(LA_position:unbox())
@@ -318,7 +320,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
             end
         end
     end
-
+    
+    --for spawning the book pickup
     if mod.list_of_LA_levels_books[level_name] then
         local LA_position = mod.list_of_LA_levels_books[level_name].position
         mod:echo(LA_position:unbox())
@@ -351,14 +354,14 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                     target = box_unit,
                 }
                 mod:echo(mod.attached_units[scrap_go_id].target)
-
-                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
 
                 return 
             end
         end
     end
 
+    --for spawning the gem pickup
     mod:echo(Vector3Box(position))
     mod:echo(mod.stored_vectors[Vector3Box(position)])
     if mod.stored_vectors[level_name] then
@@ -391,7 +394,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 }
                 mod:echo(mod.attached_units[scrap_go_id].target)
 
-                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem")
 
                 return 
             end
