@@ -359,6 +359,45 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
         end
     end
 
+    mod:echo(Vector3Box(position))
+    mod:echo(mod.stored_vectors[Vector3Box(position)])
+    if mod.stored_vectors[level_name] then
+        if Vector3.equal(position, mod.stored_vectors[level_name]:unbox()) then
+            mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                mod:echo(scrap_go_id)
+                mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = "LA_artifact_gemstone",
+                        source = "root_point",
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                -- Unit.set_data(scrap_unit, "level", level_name)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                mod:echo(mod.attached_units[scrap_go_id].target)
+
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+
+                return 
+            end
+        end
+    end
+
     return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
 end)
 
@@ -399,39 +438,41 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         if attacker_unique_id then
             local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
             local career_extension = ScriptUnit.extension(attacker_player.player_unit, "career_system")
-            local career_name = career_extension:career_name()
-            local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
-            local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
+            if career_extension then
+                local career_name = career_extension:career_name()
+                local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
+                local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
-            local tisch = {
-                item_one, 
-                item_two, 
-            }
+                local tisch = {
+                    item_one, 
+                    item_two, 
+                }
 
-            local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
-            local master_list_item = rawget(ItemMasterList, damage_source)
+                local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
+                local master_list_item = rawget(ItemMasterList, damage_source)
 
 
-            for _,item in pairs(tisch) do 
-                if mod.current_skin[item.skin] then
-                    local quest_data = skin_killQuest[mod.current_skin[item.skin]]
-                    if quest_data then
-                        if master_list_item then
-                            if master_list_item.name == item.ItemId then 
-                                mod:echo(mod.current_skin[item.skin])
-                                local breed_killed = Unit.get_data(victim_unit, "breed")
-                                local breed_killed_name = breed_killed.name
-			                    local killed_race_name = breed_killed.race
-                                for quest,enemy_types in pairs(quest_data) do
-                                    
-                                    mod:echo(breed_killed_name)
-                                    mod:echo(killed_race_name)
-                                    for _,enemy in pairs(enemy_types) do 
-                                        mod:echo(quest.."       "..enemy)
-                                        if (enemy == breed_killed_name) or (enemy == killed_race_name) then
-                                            local current_kills = mod:get(quest)
-                                            current_kills = current_kills + 1
-                                            mod:set(quest, current_kills)
+                for _,item in pairs(tisch) do 
+                    if mod.current_skin[item.skin] then
+                        local quest_data = skin_killQuest[mod.current_skin[item.skin]]
+                        if quest_data then
+                            if master_list_item then
+                                if master_list_item.name == item.ItemId then 
+                                    mod:echo(mod.current_skin[item.skin])
+                                    local breed_killed = Unit.get_data(victim_unit, "breed")
+                                    local breed_killed_name = breed_killed.name
+                                    local killed_race_name = breed_killed.race
+                                    for quest,enemy_types in pairs(quest_data) do
+                                        
+                                        mod:echo(breed_killed_name)
+                                        mod:echo(killed_race_name)
+                                        for _,enemy in pairs(enemy_types) do 
+                                            mod:echo(quest.."       "..enemy)
+                                            if (enemy == breed_killed_name) or (enemy == killed_race_name) then
+                                                local current_kills = mod:get(quest)
+                                                current_kills = current_kills + 1
+                                                mod:set(quest, current_kills)
+                                            end
                                         end
                                     end
                                 end
@@ -445,6 +486,33 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
     end
 
 	return func(victim_unit, damage_data, statistics_db, is_server)
+end)
+
+--used to register when bodvarr dies, so his collectable can be spawned
+mod.stored_vectors = {}
+mod:hook_safe(Unit, "animation_event", function(unit, event)
+
+    if Unit.has_data(unit, "breed") then
+        local name = Unit.get_data(unit, "breed").name
+        if name == "chaos_exalted_champion_warcamp" then
+            local level_name = Managers.state.game_mode:level_key()
+            if level_name == "warcamp" then
+                if string.find(event, "death") or string.find(event, "ragdoll") then 
+                    local position = Unit.local_position(unit, 0)
+                    mod:echo(position)
+                    mod:echo(unit)
+                    mod.stored_vectors[level_name] = Vector3Box(position)
+                    Managers.state.network.network_transmit:send_rpc_server(
+                            "rpc_spawn_pickup_with_physics",
+                            NetworkLookup.pickup_names["painting_scrap"],
+                            position,
+                            Quaternion.from_elements(0,0,0,0),
+                            NetworkLookup.pickup_spawn_types['dropped']
+                        )
+                end
+            end
+        end
+    end
 end)
 
 
@@ -590,4 +658,3 @@ mod:hook(AchievementManager,"setup_achievement_data", function (func, self)
     local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
 	setup_achievement_data_from_categories(self, outline.categories)
 end)
-
