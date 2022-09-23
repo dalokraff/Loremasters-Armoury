@@ -661,3 +661,26 @@ mod:hook(AchievementManager,"setup_achievement_data", function (func, self)
     local outline = require("scripts/mods/Loremasters-Armoury/achievements/outline")
 	setup_achievement_data_from_categories(self, outline.categories)
 end)
+
+mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (func, self, game_won, quickplay, statistics_db, stats_id)
+    local current_level_key = Managers.level_transition_handler:get_current_level_keys()
+    local collection_levels = require("scripts/mods/Loremasters-Armoury/achievements/official_book_collector")
+
+    if mod:get("sub_quest_five_found") then
+        for level, tisch in pairs(collection_levels) do 
+            if level == current_level_key then 
+                local mission_system = Managers.state.entity:system("mission_system")
+                local tome = mission_system:get_level_end_mission_data("tome_bonus_mission")
+                local grimoire = mission_system:get_level_end_mission_data("grimoire_hidden_mission")
+
+                if tome and grimoire then
+                    if (tome.current_amount == tisch.tomes) and (grimoire.current_amount == tisch.grims) then
+                    mod:set(tisch.quest, true)
+                    end
+                end
+            end
+        end
+    end
+
+    return func(self, game_won, quickplay, statistics_db, stats_id)
+end)
