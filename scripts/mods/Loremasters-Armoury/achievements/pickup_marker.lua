@@ -71,7 +71,7 @@ function mod.render_marker(pos_box)
 
         local dist = Vector3.distance(player_pos, waypoint_position)
 
-        if dist <= 25 then
+        if dist <= 5 then
             
             local world = Managers.world:world("level_world")
             local viewport = ScriptWorld.viewport(world, player.viewport_name)
