@@ -81,12 +81,12 @@ function mod.render_marker(pos_box)
 
             local top_world = Managers.world:world("top_ingame_view")
 
-            -- local mod_gui = World.create_screen_gui(top_world, "immediate",
-            --             "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
-            --             )
             local mod_gui = World.create_screen_gui(top_world, "immediate",
-                        "material", "materials/Loremasters-Armoury/armoury_atlas"
+                        "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
                         )
+            -- local mod_gui = World.create_screen_gui(top_world, "immediate",
+            --             "material", "materials/Loremasters-Armoury/armoury_atlas"
+            --             )
 
             -- local player_pos = ScriptCamera.position(camera)
             local distance = Vector3.distance(player_pos, waypoint_position) / 5
@@ -122,11 +122,11 @@ function mod.render_marker(pos_box)
 
 
 
-            local texture_settings = atlas["la_waypoint_main_icon"]
-            local uv00_table = texture_settings.uv00
-            local uv11_table = texture_settings.uv11
-            local uv00 = Vector2(uv00_table[1], uv00_table[2])
-            local uv11 = Vector2(uv11_table[1], uv11_table[2])
+            -- local texture_settings = atlas["la_waypoint_main_icon"]
+            -- local uv00_table = texture_settings.uv00
+            -- local uv11_table = texture_settings.uv11
+            -- local uv00 = Vector2(uv00_table[1], uv00_table[2])
+            -- local uv11 = Vector2(uv11_table[1], uv11_table[2])
 
 
 
@@ -143,10 +143,12 @@ function mod.render_marker(pos_box)
                         icon_loc_x = x
                         icon_loc_y = y
 
-                        Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(icon_loc_x, icon_loc_y), Vector2(waypoint_size_behind, waypoint_size_behind), Color(alpha, 255, 255, 255))
+                        -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(icon_loc_x, icon_loc_y), Vector2(waypoint_size_behind, waypoint_size_behind), Color(alpha, 255, 255, 255))
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                     end
                 else
-                    Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
+                    -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
+                    Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
             end
 
 
