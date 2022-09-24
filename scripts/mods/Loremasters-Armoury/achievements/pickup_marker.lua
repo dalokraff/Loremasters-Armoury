@@ -76,7 +76,7 @@ function mod.render_marker(pos_box)
             local world = Managers.world:world("level_world")
             local viewport = ScriptWorld.viewport(world, player.viewport_name)
             local camera = ScriptViewport.camera(viewport)
-            local scale = UIResolutionScale()
+            -- local scale = UIResolutionScale()
             local waypoint_position2d, depth = Camera.world_to_screen(camera, waypoint_position)
 
             local top_world = Managers.world:world("top_ingame_view")

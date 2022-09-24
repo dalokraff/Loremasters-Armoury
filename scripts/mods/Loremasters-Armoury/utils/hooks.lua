@@ -496,7 +496,7 @@ end)
 mod.stored_vectors = {}
 mod:hook_safe(Unit, "animation_event", function(unit, event)
 
-    if Unit.has_data(unit, "breed") then
+    if Unit.has_data(unit, "breed") and mod:get("sub_quest_07_interacted") then
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_champion_warcamp" then
             local level_name = Managers.state.game_mode:level_key()
