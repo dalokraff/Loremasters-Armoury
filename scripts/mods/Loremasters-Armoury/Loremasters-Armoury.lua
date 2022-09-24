@@ -428,7 +428,7 @@ mod.on_game_state_changed = function(status, state_name)
             end
         end
 
-        if level_name == "inn_level" then
+        if level_name == "inn_level" and mod:get("sub_quest_five_found") then
             local position = Vector3(-6.56431, 3.91166, 5.16261)
             local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
             local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)

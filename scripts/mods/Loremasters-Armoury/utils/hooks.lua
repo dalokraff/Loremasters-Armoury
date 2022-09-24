@@ -543,14 +543,6 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
 
--- Managers.level_transition_handler:set_next_level("sig_crag_wastes_path1")
--- local level_name = Managers.state.game_mode:level_key()
--- mod:echo(level_name)
-
--- for k,v in pairs(DEUS_LEVEL_SETTINGS) do 
---     mod:echo(k)
--- end
-
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {
     main_quest = {
@@ -694,7 +686,8 @@ mod:hook(AchievementManager,"setup_achievement_data", function (func, self)
 end)
 
 
-
+--this hook is for generating the marker when close to a LA quest pickup
+--genral idea inspired by the waypoints in https://github.com/badwin-vt/waypoints
 mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
     
     for scrap_id, units in pairs(mod.attached_units) do 
