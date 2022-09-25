@@ -156,6 +156,9 @@ local mod_text_ids = {
 	magic_gem = {
 		en = "Stone of X",
 	},
+	locked = {
+		en = "",
+	},
 
 }
 

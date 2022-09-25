@@ -251,7 +251,9 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_05") then
+			AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
 			AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
+			AchievementTemplates.achievements.sub_quest_06.icon = "quest_icon_empty"
 			mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
 			mod.main_quest.sub_quest_05 = true
 			return true
@@ -262,14 +264,16 @@ AchievementTemplates.achievements.sub_quest_05 = {
 }
 
 AchievementTemplates.achievements.sub_quest_06 = {
-	name = "sub_quest_06",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_quest_lock_icon",
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_06") then
+			AchievementTemplates.achievements.sub_quest_07.name = "sub_quest_07"
 			AchievementTemplates.achievements.sub_quest_07.desc = "sub_quest_07_desc"
+			AchievementTemplates.achievements.sub_quest_07.icon = "quest_icon_empty"
 			mod.LA_quest_rewards.sub_quest_07.item_name = "sub_quest_07_reward"
 			mod.main_quest.sub_quest_06 = true
 			return true
@@ -280,14 +284,16 @@ AchievementTemplates.achievements.sub_quest_06 = {
 }
 
 AchievementTemplates.achievements.sub_quest_07 = {
-	name = "sub_quest_07",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_quest_lock_icon",
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_07") then
+			AchievementTemplates.achievements.sub_quest_08.name = "sub_quest_08"
 			AchievementTemplates.achievements.sub_quest_08.desc = "sub_quest_08_desc"
+			AchievementTemplates.achievements.sub_quest_08.icon = "quest_icon_empty"
 			mod.LA_quest_rewards.sub_quest_08.item_name = "sub_quest_08_reward"
 			mod.main_quest.sub_quest_07 = true
 			return true
@@ -298,14 +304,16 @@ AchievementTemplates.achievements.sub_quest_07 = {
 }
 
 AchievementTemplates.achievements.sub_quest_08 = {
-	name = "sub_quest_08",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_quest_lock_icon",
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_08") then
+			AchievementTemplates.achievements.sub_quest_09.name = "sub_quest_09"
 			AchievementTemplates.achievements.sub_quest_09.desc = "sub_quest_09_desc"
+			AchievementTemplates.achievements.sub_quest_09.icon = "quest_icon_empty"
 			mod.LA_quest_rewards.sub_quest_09.item_name = "sub_quest_09_reward"
 			mod.main_quest.sub_quest_08 = true
 			return true
@@ -316,14 +324,16 @@ AchievementTemplates.achievements.sub_quest_08 = {
 }
 
 AchievementTemplates.achievements.sub_quest_09 = {
-	name = "sub_quest_09",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_quest_lock_icon",
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_09") then
+			AchievementTemplates.achievements.sub_quest_10.name = "sub_quest_10"
 			AchievementTemplates.achievements.sub_quest_10.desc = "sub_quest_10_desc"
+			AchievementTemplates.achievements.sub_quest_10.icon = "quest_icon_empty"
 			mod.LA_quest_rewards.sub_quest_10.item_name = "sub_quest_10_reward"
 			mod.main_quest.sub_quest_09 = true
 			return true
@@ -334,9 +344,9 @@ AchievementTemplates.achievements.sub_quest_09 = {
 }
 
 AchievementTemplates.achievements.sub_quest_10 = {
-	name = "sub_quest_10",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_quest_lock_icon",
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		

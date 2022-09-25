@@ -620,44 +620,42 @@ mod.LA_quest_rewards = {
     sub_quest_06 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
     },
     sub_quest_07 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
     },
     sub_quest_08 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub8_icon",
     },
     sub_quest_09 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub9_icon",
     },
     sub_quest_10 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
     },
 }
 
 for quest,data in pairs(mod.LA_quest_rewards) do 
     ItemMasterList[quest.."_reward"] = {
-        -- temporary_template = "explosive_barrel",
-        -- slot_type = "healthkit",
-        -- is_local = true,
         display_name = quest.."_reward_name",
-        inventory_icon = "quest_icon_empty",
-        -- left_hand_unit = "units/weapons/player/wpn_explosive_barrel/wpn_explosive_barrel_01",
+        inventory_icon = data.unlocked_reward_icon or "quest_icon_empty",
         rarity = "plentiful",
-        -- gamepad_hud_icon = "consumables_icon_defence",
-        -- hud_icon = "consumables_icon_defence",
         item_type = quest.."_reward_desc",
-        -- item_type = "item_description",
         can_wield = CanWieldAllItemTemplates
     }
 end
 
 ItemMasterList["LA_locked_reward"] = {
-    inventory_icon = "achievement_trophy_helmgart_lord_1",
+    inventory_icon = "la_reward_lock_icon",
     rarity = "plentiful",
     item_type = "LA_locked_reward_desc",
     display_name = "LA_locked_reward_name",
