@@ -442,9 +442,12 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
         local level_name = Managers.state.game_mode:level_key()
         mod:echo(hud_description)
         mod:echo(level_name)
-        if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") and mod:get("sub_quest_09") then
-            mod:echo(hud_description)
-            mod:set("sub_quest_10", true)
+        if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") then
+            if mod:get("sub_quest_09") then 
+                if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) then
+                    mod:set("sub_quest_10", true)
+                end
+            end
         end
 	end
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
