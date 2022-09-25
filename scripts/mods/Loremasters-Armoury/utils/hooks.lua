@@ -405,6 +405,33 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
     return func(self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
 end)
 
+--checks if citadel expidition has been finished
+mod:hook(StatisticsUtil, "_register_completed_journey_difficulty", function (func, statistics_db, player, journey_name, dominant_god, difficulty_name)
+    mod:echo(journey_name)
+
+    if string.find(journey_name, "citadel") and mod:get("sub_quest_08_kill_n_collect") then
+        mod:set("sub_quest_09_pillgrimage", true)
+    end
+
+    return func(statistics_db, player, journey_name, dominant_god, difficulty_name)
+end)
+
+--checks if you've prayed as myrmidia's shrine
+mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+	
+	if result == InteractionResult.SUCCESS and not data.is_husk and rawget(_G, "HeroViewStateKeepDecorations") then
+		local hud_description = Unit.get_data(interactable_unit, "interaction_data", "hud_description")
+        local level_name = Managers.state.game_mode:level_key()
+        mod:echo(hud_description)
+        mod:echo(level_name)
+        if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") and mod:get("sub_quest_09_pillgrimage") then
+            mod:echo(hud_description)
+            mod:set("sub_quest_10_pray", true)
+        end
+	end
+    return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)
+
 mod:hook_safe(LevelEndView, "start", function(self)
     for level,quest in pairs(level_quest_table) do 
         if mod:get(quest.."_temp") then
@@ -442,7 +469,7 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         if attacker_unique_id then
             local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
             local career_extension = ScriptUnit.extension(attacker_player.player_unit, "career_system")
-            if career_extension then
+            if career_extension.career_name then
                 local career_name = career_extension:career_name()
                 local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
                 local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")

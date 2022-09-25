@@ -434,6 +434,12 @@ mod.on_game_state_changed = function(status, state_name)
             local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
         end
 
+        if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08_kill_n_collect") then
+            local position = Vector3(0.6, 34.85, 13.56)
+            local rotation = Quaternion.from_elements(0,0,0,0)
+            local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+        end
+
     end
 end
 -- mod:hook_safe(InteractionDefinitions.pickup_object.client, "stop", function(world, interactor_unit, interactable_unit, data, config, t, result)
@@ -467,6 +473,17 @@ end
 -- [MOD][ExecLua][ECHO] Vector3(172.06, 255.759, -13.775)
 -- [MOD][ExecLua][ECHO] Vector4(0, 0, -0.484305, -0.874899)
 
+-- Managers.state.game_mode:start_specific_level("arena_citadel_slaanesh_path1")
 -- local level_name = Managers.state.game_mode:level_key()
 -- mod:echo(level_name)
--- military
+-- -- military
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- -- local position = Unit.local_position(player_unit, 0)
+-- local position = Vector3(0.6, 34.85, 13.56)
+-- local rotation = Quaternion.from_elements(0,0,0,0)
+-- mod:echo(position)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+
+-- mod:echo(string.find("arena_citadel_slaanesh_path1", "arena_citadel2"))
