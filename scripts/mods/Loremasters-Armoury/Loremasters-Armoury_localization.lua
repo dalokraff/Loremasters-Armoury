@@ -126,7 +126,7 @@ local mod_text_ids = {
 		en = "The Librarian",
 	},
 	sub_quest_08_desc = {
-		en = "Retreive the mysterious artifact from Bödvarr Ribspreader in The War Camp.",
+		en = "Retreive the mysterious artifact from Burblespue Halescourge.",
 	},
 	sub_quest_08 = {
 		en = "That Belongs in a Museum!",
