@@ -1,9 +1,9 @@
 local level_quest_table = {
-    military = "sub_quest_three_found",
-    catacombs = "sub_quest_four_found",
-    ussingen = "sub_quest_five_found",
-    dlc_bastion = "sub_quest_07_interacted",
-    warcamp = "sub_quest_08_kill_n_collect",
+    military = "sub_quest_03",
+    catacombs = "sub_quest_04",
+    ussingen = "sub_quest_05",
+    dlc_bastion = "sub_quest_07",
+    warcamp = "sub_quest_08",
 }
 
 return level_quest_table

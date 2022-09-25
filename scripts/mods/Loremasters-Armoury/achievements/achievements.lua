@@ -164,15 +164,15 @@ AchievementTemplates.achievements.sub_quest_01 = {
 	completed = function (statistics_db, stats_id)
 		
 		--kill 500 rats with specific skin
-		if mod:get("sub_quest_one_kills") >= total_kills_sub_quest_one then
+		if mod:get("sub_quest_01") >= total_kills_sub_quest_one then
 			mod.main_quest.sub_quest_01 = true
 		end
 
 		return mod.main_quest.sub_quest_01
 	end,
 	progress = function (statistics_db, stats_id)
-		local collected = mod:get("sub_quest_one_kills")
-		if mod:get("sub_quest_one_kills") > total_kills_sub_quest_one then
+		local collected = mod:get("sub_quest_01")
+		if mod:get("sub_quest_01") > total_kills_sub_quest_one then
 			collected = total_kills_sub_quest_one
 		end
 
@@ -192,15 +192,15 @@ AchievementTemplates.achievements.sub_quest_02 = {
 	completed = function (statistics_db, stats_id)
 		
 		--kill 500 nosrcans with specific skin
-		if mod:get("sub_quest_two_kills") >= total_kills_sub_quest_two then
+		if mod:get("sub_quest_02") >= total_kills_sub_quest_two then
 			mod.main_quest.sub_quest_02 = true
 		end
 
 		return mod.main_quest.sub_quest_02
 	end,
 	progress = function (statistics_db, stats_id)
-		local collected = mod:get("sub_quest_two_kills")
-		if mod:get("sub_quest_two_kills") > total_kills_sub_quest_two then
+		local collected = mod:get("sub_quest_02")
+		if mod:get("sub_quest_02") > total_kills_sub_quest_two then
 			collected = total_kills_sub_quest_two
 		end
 
@@ -218,7 +218,7 @@ AchievementTemplates.achievements.sub_quest_03 = {
 	desc = "sub_quest_03_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_three_found") then
+		if mod:get("sub_quest_03") then
 			mod.main_quest.sub_quest_03 = true
 			return true
 		end
@@ -234,7 +234,7 @@ AchievementTemplates.achievements.sub_quest_04 = {
 	desc = "sub_quest_04_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_four_found") then
+		if mod:get("sub_quest_04") then
 			mod.main_quest.sub_quest_04 = true
 			return true
 		end
@@ -250,7 +250,7 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	desc = "sub_quest_05_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_five_found") then
+		if mod:get("sub_quest_05") then
 			AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
 			mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
 			mod.main_quest.sub_quest_05 = true
@@ -268,7 +268,7 @@ AchievementTemplates.achievements.sub_quest_06 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_06_completed") then
+		if mod:get("sub_quest_06") then
 			AchievementTemplates.achievements.sub_quest_07.desc = "sub_quest_07_desc"
 			mod.LA_quest_rewards.sub_quest_07.item_name = "sub_quest_07_reward"
 			mod.main_quest.sub_quest_06 = true
@@ -286,7 +286,7 @@ AchievementTemplates.achievements.sub_quest_07 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_07_interacted") then
+		if mod:get("sub_quest_07") then
 			AchievementTemplates.achievements.sub_quest_08.desc = "sub_quest_08_desc"
 			mod.LA_quest_rewards.sub_quest_08.item_name = "sub_quest_08_reward"
 			mod.main_quest.sub_quest_07 = true
@@ -304,7 +304,7 @@ AchievementTemplates.achievements.sub_quest_08 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_08_kill_n_collect") then
+		if mod:get("sub_quest_08") then
 			AchievementTemplates.achievements.sub_quest_09.desc = "sub_quest_09_desc"
 			mod.LA_quest_rewards.sub_quest_09.item_name = "sub_quest_09_reward"
 			mod.main_quest.sub_quest_08 = true
@@ -322,7 +322,7 @@ AchievementTemplates.achievements.sub_quest_09 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_09_pillgrimage") then
+		if mod:get("sub_quest_09") then
 			AchievementTemplates.achievements.sub_quest_10.desc = "sub_quest_10_desc"
 			mod.LA_quest_rewards.sub_quest_10.item_name = "sub_quest_10_reward"
 			mod.main_quest.sub_quest_09 = true
@@ -340,7 +340,7 @@ AchievementTemplates.achievements.sub_quest_10 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_10_pray") then
+		if mod:get("sub_quest_10") then
 			mod.main_quest.sub_quest_10 = true
 			return true
 		end

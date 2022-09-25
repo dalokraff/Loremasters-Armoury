@@ -376,7 +376,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
                 mod:echo(scrap_go_id)
                 mod:echo(scrap_unit)
-                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
                     {
@@ -409,8 +409,8 @@ end)
 mod:hook(StatisticsUtil, "_register_completed_journey_difficulty", function (func, statistics_db, player, journey_name, dominant_god, difficulty_name)
     mod:echo(journey_name)
 
-    if string.find(journey_name, "citadel") and mod:get("sub_quest_08_kill_n_collect") then
-        mod:set("sub_quest_09_pillgrimage", true)
+    if string.find(journey_name, "citadel") and mod:get("sub_quest_08") then
+        mod:set("sub_quest_09", true)
     end
 
     return func(statistics_db, player, journey_name, dominant_god, difficulty_name)
@@ -424,9 +424,9 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
         local level_name = Managers.state.game_mode:level_key()
         mod:echo(hud_description)
         mod:echo(level_name)
-        if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") and mod:get("sub_quest_09_pillgrimage") then
+        if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") and mod:get("sub_quest_09") then
             mod:echo(hud_description)
-            mod:set("sub_quest_10_pray", true)
+            mod:set("sub_quest_10", true)
         end
 	end
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
@@ -523,7 +523,7 @@ end)
 mod.stored_vectors = {}
 mod:hook_safe(Unit, "animation_event", function(unit, event)
 
-    if Unit.has_data(unit, "breed") and mod:get("sub_quest_07_interacted") then
+    if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") then
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_champion_warcamp" then
             local level_name = Managers.state.game_mode:level_key()
@@ -551,7 +551,7 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     local current_level_key = Managers.level_transition_handler:get_current_level_keys()
     local collection_levels = require("scripts/mods/Loremasters-Armoury/achievements/official_book_collector")
 
-    if mod:get("sub_quest_five_found") then
+    if mod:get("sub_quest_05") then
         for level, tisch in pairs(collection_levels) do 
             if level == current_level_key then 
                 local mission_system = Managers.state.entity:system("mission_system")
@@ -730,3 +730,87 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
 
 	func(self, dt, ...)
 end)
+
+
+-- mod:hook(HeroViewStateAchievements,"_create_entries", function ( func, self, entries, entry_type, entry_subtype)
+-- 	local quest_manager = self._quest_manager
+-- 	local achievement_manager = self._achievement_manager
+-- 	self._claimable_challenge_widgets = {}
+-- 	self._has_claimable_filtered_challenges = nil
+-- 	local widget_definition, manager = nil
+-- 	local can_close = false
+
+-- 	if entry_type == "quest" then
+-- 		widget_definition = quest_entry_definition
+-- 		can_close = entry_subtype == "daily" and quest_manager:can_refresh_daily_quest()
+-- 		manager = quest_manager
+-- 	else
+-- 		widget_definition = achievement_entry_definition
+-- 		manager = achievement_manager
+-- 	end
+
+--     local needle = self._search_query
+-- 	local query = self._search_widgets_by_name.filters.content.query
+
+-- 	needle = SearchUtils.extract_queries(needle, UISettings.achievement_search_definitions, query)
+-- 	local temp_content = {}
+-- 	local claimable_achievement_widgets = {}
+-- 	local unclaimable_achievement_widgets = {}
+
+--     for i = 1, #entries, 1 do
+-- 		local entry_id = entries[i]
+-- 		local entry_data = manager:get_data_by_id(entry_id)
+
+--         local claimed = entry_data.claimed
+--         local quest_id = entry_data.id
+--         if mod:get(quest_id) then 
+--             entry_data.claimed = true
+--         end
+
+
+--         -- for k,v in pairs(entry_data) do 
+--         --     mod:echo(tostring(k).."     "..tostring(v))
+--         -- end
+--     end
+
+--     return func(self, entries, entry_type, entry_subtype)
+
+-- end)
+
+-- mod:hook(BackendInterfaceLootPlayfab, "achievement_rewards_claimed", function (func, self, achievement_id)
+--     local lamod = get_mod("Loremasters-Armoury")
+--     if lamod:get(achievement_id) then
+--         return mod:get(achievement_id)
+--     end
+
+--     return func(self, achievement_id)
+-- end)
+
+-- mod:hook(HeroViewStateAchievements, "draw", function (func, self, input_service, dt)
+
+--     for _, widget in ipairs(self._widgets) do
+		
+
+		
+
+--         -- mod:echo(widget)
+--         for k,v in pairs(widget) do 
+--             mod:echo(tostring(k).."     "..tostring(v))
+--             if type(v) == "table" then
+--                 for i,j in pairs(v) do 
+--                     mod:echo(tostring(i).."     "..tostring(j))
+--                 end
+--             end
+--         end
+		
+-- 	end
+
+
+--     return func(self, input_service, dt)
+-- end)
+
+
+-- mod:hook_safe(UIRenderer,"draw_texture", function (self, material, position, size, color, masked, saturated, retained_id, point_sample)
+--     mod:echo(material)
+-- end)
+

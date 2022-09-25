@@ -101,60 +101,60 @@ if not mod:get("num_shields_collected") then
     mod:set("num_shields_collected", 0)
 end
 
-if not mod:get("sub_quest_one_kills") then 
-    mod:set("sub_quest_one_kills", 0)
+if not mod:get("sub_quest_01") then 
+    mod:set("sub_quest_01", 0)
 end
 
-if not mod:get("sub_quest_two_kills") then 
-    mod:set("sub_quest_two_kills", 0)
+if not mod:get("sub_quest_02") then 
+    mod:set("sub_quest_02", 0)
 end
 
-if mod:get("sub_quest_three_found") == nil then 
-    mod:set("sub_quest_three_found", false)
+if mod:get("sub_quest_03") == nil then 
+    mod:set("sub_quest_03", false)
 end
 
-if mod:get("sub_quest_four_found") == nil then 
-    mod:set("sub_quest_four_found", false)
+if mod:get("sub_quest_04") == nil then 
+    mod:set("sub_quest_04", false)
 end
 
-if mod:get("sub_quest_five_found") == nil then 
-    mod:set("sub_quest_five_found", false)
+if mod:get("sub_quest_05") == nil then 
+    mod:set("sub_quest_05", false)
 end
 
-if mod:get("sub_quest_06_completed") == nil then 
-    mod:set("sub_quest_06_completed", false)
+if mod:get("sub_quest_06") == nil then 
+    mod:set("sub_quest_06", false)
 end
 
-if mod:get("sub_quest_07_interacted") == nil then 
-    mod:set("sub_quest_07_interacted", false)
+if mod:get("sub_quest_07") == nil then 
+    mod:set("sub_quest_07", false)
 end
 
-if mod:get("sub_quest_08_kill_n_collect") == nil then 
-    mod:set("sub_quest_08_kill_n_collect", false)
+if mod:get("sub_quest_08") == nil then 
+    mod:set("sub_quest_08", false)
 end
 
-if mod:get("sub_quest_09_pillgrimage") == nil then 
-    mod:set("sub_quest_09_pillgrimage", false)
+if mod:get("sub_quest_09") == nil then 
+    mod:set("sub_quest_09", false)
 end
 
-if mod:get("sub_quest_10_pray") == nil then 
-    mod:set("sub_quest_10_pray", false)
+if mod:get("sub_quest_10") == nil then 
+    mod:set("sub_quest_10", false)
 end
 
 mod:command("reset_sub_quests", "", function()
     for quest,_ in pairs(mod.main_quest) do
         mod.main_quest[quest] = false
     end
-    mod:set("sub_quest_one_kills", 0)
-    mod:set("sub_quest_two_kills", 0)
-    mod:set("sub_quest_three_found", false)
-    mod:set("sub_quest_four_found", false)
-    mod:set("sub_quest_five_found", false)
-    mod:set("sub_quest_06_completed", false)
-    mod:set("sub_quest_07_interacted", false)
-    mod:set("sub_quest_08_kill_n_collect", false)
-    mod:set("sub_quest_09_pillgrimage", false)
-    mod:set("sub_quest_10_pray", false)
+    mod:set("sub_quest_01", 0)
+    mod:set("sub_quest_02", 0)
+    mod:set("sub_quest_03", false)
+    mod:set("sub_quest_04", false)
+    mod:set("sub_quest_05", false)
+    mod:set("sub_quest_06", false)
+    mod:set("sub_quest_07", false)
+    mod:set("sub_quest_08", false)
+    mod:set("sub_quest_09", false)
+    mod:set("sub_quest_10", false)
 end)
 
 mod:command("complete_sub_quests", "", function()
@@ -162,23 +162,27 @@ mod:command("complete_sub_quests", "", function()
     for quest,_ in pairs(mod.main_quest) do
         mod.main_quest[quest] = true
     end
-    mod:set("sub_quest_one_kills", 500)
-    mod:set("sub_quest_two_kills", 500)
-    mod:set("sub_quest_three_found", true)
-    mod:set("sub_quest_four_found", true)
-    mod:set("sub_quest_five_found", true)
-    mod:set("sub_quest_06_completed", true)
-    mod:set("sub_quest_07_interacted", true)
-    mod:set("sub_quest_08_kill_n_collect", true)
-    mod:set("sub_quest_09_pillgrimage", true)
-    mod:set("sub_quest_10_pray", true)
+    mod:set("sub_quest_01", 500)
+    mod:set("sub_quest_02", 500)
+    mod:set("sub_quest_03", true)
+    mod:set("sub_quest_04", true)
+    mod:set("sub_quest_05", true)
+    mod:set("sub_quest_06", true)
+    mod:set("sub_quest_07", true)
+    mod:set("sub_quest_08", true)
+    mod:set("sub_quest_09", true)
+    mod:set("sub_quest_10", true)
 end)
 
 mod:command("complete_sub_quest_06", "", function()
     mod.main_quest["sub_quest_06"] = true
-    mod:set("sub_quest_06_completed", true)
+    mod:set("sub_quest_06", true)
 end)
 
+mod:command("complete_sub_quest_08", "", function()
+    mod.main_quest["sub_quest_08"] = true
+    mod:set("sub_quest_08", true)
+end)
 
 
 
@@ -319,6 +323,14 @@ end)
 --     return rot
 -- end
 
+-- local player = Managers.player:local_player()
+--     local player_unit = player.player_unit
+--     local position = Vector3(-5.9, 4.96421, 6.15258)
+--     local rot = radians_to_quaternion(0, math.pi, 0)
+--     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+--     mod:echo(position)
+--     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+
 -- local rotation = Quaternion.multiply(Quaternion.from_elements(0, 0, 0, 1), radians_to_quaternion(0, 0, math.pi*1/2))
 -- local rotation = Quaternion.multiply(rotation, radians_to_quaternion(math.pi, 0, 0))
 -- mod:echo(rotation)
@@ -395,6 +407,22 @@ end)
 -- local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.381939)
 -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
 
+
+local function radians_to_quaternion(theta, ro, phi)
+    local c1 =  math.cos(theta/2)
+    local c2 = math.cos(ro/2)
+    local c3 = math.cos(phi/2)
+    local s1 = math.sin(theta/2)
+    local s2 = math.sin(ro/2)
+    local s3 = math.sin(phi/2)
+    local x = (s1*s2*c3) + (c1*c2*s3)
+    local y = (s1*c2*c3) + (c1*s2*s3)
+    local z = (c1*s2*c3) - (s1*c2*s3)
+    local w = (c1*c2*c3) - (s1*s2*s3)
+    local rot = Quaternion.from_elements(x, y, z, w)
+    return rot
+end
+
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
@@ -402,7 +430,7 @@ mod.on_game_state_changed = function(status, state_name)
         -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
-                if (level_name == "military") or (level_name == "catacombs" and mod:get("sub_quest_three_found")) or (level_name == "ussingen" and mod:get("sub_quest_four_found")) then
+                if (level_name == "military") or (level_name == "catacombs" and mod:get("sub_quest_03")) or (level_name == "ussingen" and mod:get("sub_quest_04")) then
                     Managers.state.network.network_transmit:send_rpc_server(
                         "rpc_spawn_pickup_with_physics",
                         NetworkLookup.pickup_names["painting_scrap"],
@@ -416,7 +444,7 @@ mod.on_game_state_changed = function(status, state_name)
 
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
-                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_completed") then
+                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06") then
                     Managers.state.network.network_transmit:send_rpc_server(
                         "rpc_spawn_pickup_with_physics",
                         NetworkLookup.pickup_names["painting_scrap"],
@@ -428,16 +456,30 @@ mod.on_game_state_changed = function(status, state_name)
             end
         end
 
-        if level_name == "inn_level" and mod:get("sub_quest_five_found") then
-            local position = Vector3(-6.56431, 3.91166, 5.16261)
-            local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
-            local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+        if level_name == "inn_level" then
+            if mod:get("sub_quest_05") then
+                local position = Vector3(-6.56431, 3.91166, 5.16261)
+                local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+            end
+            if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
+                local position = Vector3(-5.9, 4.96421, 6.15258)
+                local rot = radians_to_quaternion(0, math.pi, 0)
+                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+            end
+            if mod:get("sub_quest_09") then
+                local position = Vector3(-5.9, 4.96421, 6.15258)
+                local rot = radians_to_quaternion(0, math.pi, 0)
+                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+            end
         end
 
-        if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08_kill_n_collect") then
+        if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08") then
             local position = Vector3(0.6, 34.85, 13.56)
             local rotation = Quaternion.from_elements(0,0,0,0)
-            local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+            local gem_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
         end
 
     end
