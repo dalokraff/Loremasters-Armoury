@@ -7,6 +7,24 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/pickup_marker")
 require("scripts/managers/achievements/achievement_templates")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievements")
 
+
+
+
+local function radians_to_quaternion(theta, ro, phi)
+    local c1 =  math.cos(theta/2)
+    local c2 = math.cos(ro/2)
+    local c3 = math.cos(phi/2)
+    local s1 = math.sin(theta/2)
+    local s2 = math.sin(ro/2)
+    local s3 = math.sin(phi/2)
+    local x = (s1*s2*c3) + (c1*c2*s3)
+    local y = (s1*c2*c3) + (c1*s2*s3)
+    local z = (c1*s2*c3) - (s1*c2*s3)
+    local w = (c1*c2*c3) - (s1*s2*s3)
+    local rot = Quaternion.from_elements(x, y, z, w)
+    return rot
+end
+
 --this hook is used to populate the level_world queue; get's the units to change with what custom illusion should be applied to that unit
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
     local data_melee = self.recently_acquired_list["slot_melee"]
@@ -525,11 +543,14 @@ mod:hook_safe(Unit, "animation_event", function(unit, event)
 
     if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") then
         local name = Unit.get_data(unit, "breed").name
-        if name == "chaos_exalted_champion_warcamp" then
+        if name == "chaos_exalted_sorcerer" then
             local level_name = Managers.state.game_mode:level_key()
-            if level_name == "warcamp" then
+            mod:echo(level_name)
+            if level_name == "ground_zero" then
                 if string.find(event, "death") or string.find(event, "ragdoll") then 
-                    local position = Unit.local_position(unit, 0)
+                    local position = Vector3(363.476, 50.4658, -13.7107) 
+                    local rot = radians_to_quaternion(0, -math.pi/2, 0)
+                    local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
                     mod:echo(position)
                     mod:echo(unit)
                     mod.stored_vectors[level_name] = Vector3Box(position)
@@ -537,7 +558,7 @@ mod:hook_safe(Unit, "animation_event", function(unit, event)
                             "rpc_spawn_pickup_with_physics",
                             NetworkLookup.pickup_names["painting_scrap"],
                             position,
-                            Quaternion.from_elements(0,0,0,0),
+                            rotation,
                             NetworkLookup.pickup_spawn_types['dropped']
                         )
                 end

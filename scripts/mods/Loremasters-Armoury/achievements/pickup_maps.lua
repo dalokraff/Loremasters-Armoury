@@ -3,7 +3,7 @@ local level_quest_table = {
     catacombs = "sub_quest_04",
     ussingen = "sub_quest_05",
     dlc_bastion = "sub_quest_07",
-    warcamp = "sub_quest_08",
+    ground_zero = "sub_quest_08",
 }
 
 return level_quest_table
