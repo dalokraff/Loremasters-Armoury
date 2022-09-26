@@ -2,6 +2,7 @@ local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
+-- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/test")
 
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
@@ -300,6 +301,15 @@ mod:command("spawn_chest_with_gemstone", "", function()
     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
 end)
 
+mod:command("spawn_book", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0, 0, 1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+end)
+
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
 -- local position = Unit.local_position(player_unit, 0) 
@@ -325,11 +335,11 @@ end)
 
 -- local player = Managers.player:local_player()
 --     local player_unit = player.player_unit
---     local position = Vector3(-5.9, 4.96421, 6.15258)
---     local rot = radians_to_quaternion(0, math.pi, 0)
+--     local position = Vector3(70.4, -10.4, -0.85)
+--     local rot = radians_to_quaternion(0, -3*math.pi/4, 0)
 --     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
 --     mod:echo(position)
---     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+--     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
 
 -- local rotation = Quaternion.multiply(Quaternion.from_elements(0, 0, 0, 1), radians_to_quaternion(0, 0, math.pi*1/2))
 -- local rotation = Quaternion.multiply(rotation, radians_to_quaternion(math.pi, 0, 0))
@@ -526,6 +536,6 @@ end
 -- local position = Vector3(0.6, 34.85, 13.56)
 -- local rotation = Quaternion.from_elements(0,0,0,0)
 -- mod:echo(position)
--- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
 
 -- mod:echo(string.find("arena_citadel_slaanesh_path1", "arena_citadel2"))
