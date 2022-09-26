@@ -433,6 +433,17 @@ local function radians_to_quaternion(theta, ro, phi)
     return rot
 end
 
+
+-- local position = Vector3(-6, 4.7, 6.3)
+-- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
+-- local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+-- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+
+-- local position = Vector3(-5.9, 4.98, 6.15258)
+-- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
+-- local rotation =  radians_to_quaternion(0, math.pi, 0)
+-- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
@@ -471,6 +482,12 @@ mod.on_game_state_changed = function(status, state_name)
                 local position = Vector3(-6.56431, 3.91166, 5.16261)
                 local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+            end
+            if mod:get("sub_quest_07") then
+                local position = Vector3(-6, 4.7, 6.3)
+                local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
+                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
                 local position = Vector3(-5.9, 4.96421, 6.15258)
