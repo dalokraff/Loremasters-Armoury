@@ -558,15 +558,15 @@ end
 -- mod:echo(level_name)
 -- -- military
 
-local player = Managers.player:local_player()
-local player_unit = player.player_unit
-local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
--- local position = Vector3(0.6, 34.85, 13.56)
-local rotation = Quaternion.from_elements(0,0,0,0)
-mod:echo(position)
--- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
-local extension_init_data = {}
-Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+-- -- local position = Vector3(0.6, 34.85, 13.56)
+-- local rotation = Quaternion.from_elements(0,0,0,0)
+-- mod:echo(position)
+-- -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+-- local extension_init_data = {}
+-- Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
 
 -- -- mod:echo(string.find("arena_citadel_slaanesh_path1", "arena_citadel2"))
 
