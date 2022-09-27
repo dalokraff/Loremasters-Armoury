@@ -269,6 +269,7 @@ end)
 
 --hooks to allow for painting scraps to be used as objectives
 mod.attached_units = {}
+mod.replace_chat_message = nil
 local level_quest_table = require("scripts/mods/Loremasters-Armoury/achievements/pickup_maps")
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
     
@@ -287,12 +288,32 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
                 end
                 local pickup_extension = ScriptUnit.extension(interactable_unit, "pickup_system")
                 local pickup_settings = pickup_extension:get_pickup_settings()
-                pickup_settings.pickup_sound_event = "Loremaster_shipment_pickup_sound"
-                -- LA_crate_pickup
+
+                if Unit.has_data(interactable_unit, "pickup_sound") then
+                    pickup_settings.pickup_sound_event = Unit.get_data(interactable_unit, "pickup_sound")
+                end
+                if Unit.has_data(interactable_unit, "pickup_message") then
+                    mod.replace_chat_message = Unit.get_data(interactable_unit, "pickup_message")
+                end
             end
         end
     end
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)
+
+--hooking ChatManager to intercept art pickup message proved too difficult so hooked string.format instead
+mod:hook(string, "format", function(func, message, ...)
+    if mod.replace_chat_message then
+        if message == Localize("system_chat_player_picked_up_painting_chat") then
+            local new_mesage = mod:localize(mod.replace_chat_message)
+            mod.replace_chat_message = nil
+            -- message = string.format(new_mesage, ...)
+            -- message = new_mesage
+            return new_mesage
+        end
+    end
+
+    return func(message, ...)
 end)
 
 mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
@@ -334,6 +355,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 mod:echo(mod.attached_units[scrap_go_id].target)
 
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_crate_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
 
                 return 
             end
@@ -374,6 +397,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 }
                 mod:echo(mod.attached_units[scrap_go_id].target)
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
 
                 return 
             end
@@ -414,6 +439,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 mod:echo(mod.attached_units[scrap_go_id].target)
 
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_magic_gem_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
 
                 return 
             end

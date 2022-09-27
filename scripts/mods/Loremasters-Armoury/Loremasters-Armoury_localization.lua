@@ -120,7 +120,7 @@ local mod_text_ids = {
 		en = "Calming the Winds",
 	},
 	sub_quest_07_desc = {
-		en = "Search Blood in the Darkness for the Reikland chronicle.",
+		en = "Search Blood in the Darkness for The Chronica Reiklandorum.",
 	},
 	sub_quest_07 = {
 		en = "The Librarian",
@@ -151,13 +151,22 @@ local mod_text_ids = {
 		en = "Shipping Crate",
 	},
 	reikbuch = {
-		en = "Reikland Chronicle",
+		en = "Chronica Reiklandorum",
 	},
 	magic_gem = {
 		en = "Stone of X",
 	},
 	locked = {
 		en = "",
+	},
+	LA_crate_pickup = {
+		en = "Picked up a missing Shipment Crate",
+	},
+	LA_magic_gem_pickup = {
+		en = "Picked up The Lost Artifact",
+	},
+	LA_reikbuch_pickup = {
+		en = "Picked up The Chronica Reiklandorum",
 	},
 
 }
