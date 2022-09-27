@@ -445,13 +445,81 @@ end
 -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
 
 
-local num_husk = #NetworkLookup.husks
-NetworkLookup.husks[num_husk +1] = "units/pickups/LA_reikland_chronicle_mesh"
-NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = num_husk +1
-NetworkLookup.husks[num_husk +2] = "units/pickups/LA_artifact_corrupted_mesh"
-NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = num_husk +2
-NetworkLookup.husks[num_husk +3] = "units/pickups/LA_artifact_mesh"
-NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +3
+-- local num_husk = #NetworkLookup.husks
+-- NetworkLookup.husks[num_husk +1] = "units/pickups/LA_reikland_chronicle_mesh"
+-- NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = num_husk +1
+-- NetworkLookup.husks[num_husk +2] = "units/pickups/LA_artifact_corrupted_mesh"
+-- NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = num_husk +2
+-- NetworkLookup.husks[num_husk +3] = "units/pickups/LA_artifact_mesh"
+-- NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +3
+
+
+NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = 1
+NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = 1
+NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = 1
+
+mod:echo(InteractionHelper.interactions["decoration"].request_rpc)
+
+
+mod.approve_request = false
+mod.interactor_goid = nil
+
+mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
+	-- mod:echo(interaction_type_id)
+    local interactable_unit = self.unit_storage:unit(interactable_go_id)
+    mod:echo(Unit.get_data(interactable_unit, "unit_name"))
+    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+
+    if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
+        local interactor_unit = self.unit_storage:unit(interactor_go_id)
+        local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
+        local interaction_type = NetworkLookup.interactions[interaction_type_id]
+        interactor_extension:interaction_approved(interaction_type, interactable_unit)
+
+        local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+
+        mod.approve_request = true
+        mod.interactor_goid = interactor_go_id
+
+        return 
+    end
+    return func(self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
+end)
+
+mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (func, self, interactor_unit, interaction_result)
+    
+    
+
+    if mod.approve_request then 
+        mod.approve_request = false
+        interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
+        mod.interactor_goid = nil
+        
+    end
+
+    if mod.unit_is_being_interacted_with then
+        
+        if not self.interactor_unit then
+            self.interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
+        else
+            interactor_unit = nil
+        end
+        mod.unit_is_being_interacted_with = false 
+    end
+    mod.unit_is_being_interacted_with = true
+
+    return func(self, interactor_unit, interaction_result)
+end)
+
+-- mod:hook_safe(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (self, interactor_unit, interaction_result)
+--     local unit_name = Unit.get_data(interactable_unit, "unit_name")
+--     if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
+--         if mod.unit_is_being_interacted_with then
+--             mod.unit_is_being_interacted_with = false 
+--             interactor_unit = nil
+--         end
+--     end
+-- end)
 
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
