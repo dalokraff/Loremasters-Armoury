@@ -444,6 +444,13 @@ end
 -- local rotation =  radians_to_quaternion(0, math.pi, 0)
 -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
 
+
+local num_husk = #NetworkLookup.husks
+NetworkLookup.husks[num_husk +1] = "units/pickups/LA_reikland_chronicle_mesh"
+NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = num_husk +1
+NetworkLookup.husks[num_husk +2] = "units/pickups/LA_artifact_mesh"
+NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +2
+
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
@@ -487,7 +494,9 @@ mod.on_game_state_changed = function(status, state_name)
                 local position = Vector3(-6, 4.7, 6.3)
                 local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
                 local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+                -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+                local extension_init_data = {}
+                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
                 local position = Vector3(-5.9, 4.96421, 6.15258)
@@ -499,7 +508,9 @@ mod.on_game_state_changed = function(status, state_name)
                 local position = Vector3(-5.9, 4.96421, 6.15258)
                 local rot = radians_to_quaternion(0, math.pi, 0)
                 local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+                -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+                local extension_init_data = {}
+                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
         end
 
@@ -547,12 +558,34 @@ end
 -- mod:echo(level_name)
 -- -- military
 
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- -- local position = Unit.local_position(player_unit, 0)
+local player = Managers.player:local_player()
+local player_unit = player.player_unit
+local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
 -- local position = Vector3(0.6, 34.85, 13.56)
--- local rotation = Quaternion.from_elements(0,0,0,0)
--- mod:echo(position)
+local rotation = Quaternion.from_elements(0,0,0,0)
+mod:echo(position)
 -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+local extension_init_data = {}
+Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
 
--- mod:echo(string.find("arena_citadel_slaanesh_path1", "arena_citadel2"))
+-- -- mod:echo(string.find("arena_citadel_slaanesh_path1", "arena_citadel2"))
+
+
+-- local top_world = Managers.world:world("top_ingame_view")
+-- local mod_gui = World.create_screen_gui(top_world, "immediate",
+-- "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
+-- )
+
+-- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(600, 600), Vector2(100, 100))
+
+-- mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
+    
+--     local top_world = Managers.world:world("top_ingame_view")
+--     local mod_gui = World.create_screen_gui(top_world, "immediate",
+--     "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
+--     )
+
+--     Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(600, 600), Vector2(100, 100))
+
+-- 	func(self, dt, ...)
+-- end)

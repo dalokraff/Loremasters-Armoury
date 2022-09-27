@@ -1,6 +1,6 @@
 actors = [
 	{
-		enabled = true
+		enabled = false
 		mass = 1
 		name = "Loremaster_shipment_box_stacked"
 		node = "Loremaster_shipment_box_stacked"
@@ -8,6 +8,51 @@ actors = [
 			{
 				material = "default"
 				shape = "Loremaster_shipment_box_stacked"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+	{
+		enabled = true
+		mass = 1
+		name = "crate_01"
+		node = "crate_01"
+		shapes = [
+			{
+				material = "default"
+				shape = "crate_01"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+	{
+		enabled = true
+		mass = 1
+		name = "crate_02"
+		node = "crate_02"
+		shapes = [
+			{
+				material = "default"
+				shape = "crate_02"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+	{
+		enabled = true
+		mass = 1
+		name = "crate_03"
+		node = "crate_03"
+		shapes = [
+			{
+				material = "default"
+				shape = "crate_03"
 				template = "default"
 				type = "convex_computed"
 			}

@@ -1,0 +1,17 @@
+actors = [
+	{
+		enabled = true
+		mass = 1
+		name = "LA_reikland_chronicle"
+		node = "LA_reikland_chronicle"
+		shapes = [
+			{
+				material = "default"
+				shape = "LA_reikland_chronicle"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+]
