@@ -1,0 +1,17 @@
+actors = [
+	{
+		enabled = true
+		mass = 1
+		name = "LA_artifact_gemstone"
+		node = "LA_artifact_gemstone"
+		shapes = [
+			{
+				material = "default"
+				shape = "LA_artifact_gemstone"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+]

@@ -156,6 +156,9 @@ local mod_text_ids = {
 	magic_gem = {
 		en = "Stone of X",
 	},
+	magic_gem_nurgle = {
+		en = "Corrupted Stone of X",
+	},
 	locked = {
 		en = "",
 	},
@@ -167,6 +170,12 @@ local mod_text_ids = {
 	},
 	LA_reikbuch_pickup = {
 		en = "Picked up The Chronica Reiklandorum",
+	},
+	reikbuch_desc = {
+		en = "Fashion plays a more important role in a Reiklander's social life than in most other provinces. The peasantry, of course, care little for such fripperies, but amongst the growing middle classes the correct sleeves, shoes, and colours are matters of great import. The Reiklander nobility tend to set the fashion for a season, leaving it to the merchant and other 'grubby tradesmen' to copy their new styles as fast as they can. [1a]The presence of the Imperial Court in Altdorf has only served to exacerbate these tendencies. Recent vogues have included Bretonnian styles, the 'new rustic', and most recently a return to simple militaristic clothing reminiscent of an earlier era. Slashed sleeves, elaborate codpieces, and reliquary charms remain as fashionable as ever.[1a]	At their worst, Reiklanders are arrogant, overbearing, and drunken slaves to fashion. Notorious for their ability to celebrate at the drop of a hat, the image of the beribboned Reiklander sot is a popular stereotype amongst the rest of the Empire. In certain places the small black insects that plague an ill-kept taproom are known as 'Reikflies' as they can detect the smallest amount of ale unerringly.[1a] The people of many of the other Imperial provinces are suspicious of the fashionable, cosmopolitan nature of the Reikland men, claiming that they are effeminate and womanish for caring so much about what they wear. Curiously, Reiklander men also have a reputation as wife-stealing, pig-buggering philanderers.[1a] More than one Talabeclander husband has found his woman seduced by the charming words and dashing look of a Reiklander dandy. Reiklander women, meanwhile, are known for their beauty, as well as unbearably vain personality.[1a] Loud, outspoken, and often smug about the imagined superiority of their opinions, Reiklanders are traditionally known to be controlling and strongly opinionated. Their lack of stamina is also a welcome source for vituperative and malicious comments amongst the other peoples of the Empire. [1a]The Reiklander tendency to want to finish a task quickly and then come home is well known. Indeed, as war increasingly consumes the Empire, Reiklanders have flocked to the Emperor's banner, so much so that there have been worries that there would be no one be at home to tend to the fields and bring in the harvest.[1a] Although they honour all the gods, Reiklanders generally see Sigmar as their special patron, for he was once one of them. Other popular deities of the Old World Pantheon in Reikland include Dyrath, a regional name for Rhya, whom Reiklanders of Vorbergland honour as the goddess of fertility, and Shallya, whose temples and hospices are frequent recipients of gifts and bequests of wealthy Reiklanders.[1a] ",
+	},
+	magic_gem_desc = {
+		en = "",
 	},
 
 }

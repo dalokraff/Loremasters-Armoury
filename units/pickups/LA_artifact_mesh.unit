@@ -48,7 +48,7 @@ data = {
             interactor_animation_time_variable = "revive_time"
             only_once = false
             hud_text_line_1 = "magic_gem"
-            hud_text_line_2 =  "magic_gem is cool"
+            hud_text_line_2 =  "magic_gem_desc"
             
         }
 }

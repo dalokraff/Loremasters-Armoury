@@ -30,7 +30,8 @@ data = {
             interactor_animation_time_variable = "revive_time"
             only_once = false
             hud_text_line_1 = "reikbuch"
-            hud_text_line_2 =  "reikbuch is cool"
+            hud_text_line_2 =  "reikbuch_desc"
+            hud_text_line_3 =  "reikbuch_footer"
             
         }
 }
