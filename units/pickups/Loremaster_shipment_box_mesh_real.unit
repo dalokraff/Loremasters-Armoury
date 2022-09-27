@@ -13,6 +13,7 @@ data = {
         slot1 = "textures/pickups/Loremaster_shipment_box_normal"
     }
     MABs = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_combined"
     }
 
     color_slot = "texture_map_64cc5eb8" 
