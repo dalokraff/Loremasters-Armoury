@@ -2,12 +2,12 @@ actors = [
 	{
 		enabled = true
 		mass = 1
-		name = "LA_artifact_gemstone"
-		node = "LA_artifact_gemstone"
+		name = "root_point"
+		node = "root_point"
 		shapes = [
 			{
 				material = "default"
-				shape = "LA_artifact_gemstone"
+				shape = "root_point"
 				template = "default"
 				type = "convex_computed"
 			}

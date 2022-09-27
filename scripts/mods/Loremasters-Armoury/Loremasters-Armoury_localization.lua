@@ -177,6 +177,9 @@ local mod_text_ids = {
 	magic_gem_desc = {
 		en = "",
 	},
+	magic_gem_nurgle_desc = {
+		en = "",
+	},
 
 }
 

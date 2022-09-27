@@ -448,8 +448,10 @@ end
 local num_husk = #NetworkLookup.husks
 NetworkLookup.husks[num_husk +1] = "units/pickups/LA_reikland_chronicle_mesh"
 NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = num_husk +1
-NetworkLookup.husks[num_husk +2] = "units/pickups/LA_artifact_mesh"
-NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +2
+NetworkLookup.husks[num_husk +2] = "units/pickups/LA_artifact_corrupted_mesh"
+NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = num_husk +2
+NetworkLookup.husks[num_husk +3] = "units/pickups/LA_artifact_mesh"
+NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +3
 
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
@@ -504,7 +506,7 @@ mod.on_game_state_changed = function(status, state_name)
                 local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
                 -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "LA_artifact_corrupted_mesh", extension_init_data, position, rotation)
+                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_09") then
                 local position = Vector3(-5.9, 4.96421, 6.15258)
@@ -563,8 +565,10 @@ end
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
 -- -- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
--- local position = Vector3(27.0182, -9.92629, 27.1653)
+-- -- local position = Vector3(27.0182, -9.92629, 27.1653)
 -- local rotation = Quaternion.from_elements(0,0,0,0)
+-- local extension_init_data = {}
+-- Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
 -- mod:echo(position)
 -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_MQ01_sub7_chronicle_mesh", position, rotation)
 -- local extension_init_data = {}
