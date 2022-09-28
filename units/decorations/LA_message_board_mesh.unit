@@ -1,0 +1,91 @@
+data = {
+    mat_slots = {
+        slot1 = "LA_message_board_texture"
+        slot2 = "LA_message_board_papers_texture"
+    }
+
+    mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
+
+    colors = {
+        slot1 = "textures/decorations/Board/LA_message_board_diffuse"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_diffuse"
+    }
+    normals = {
+        slot1 = "textures/decorations/Board/LA_message_board_normal"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_normal"
+    }
+    MABs = {
+        slot1 = "textures/decorations/Board/LA_message_board_combined"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_combined"
+    }
+
+    color_slot = "texture_map_64cc5eb8" 
+    norm_slot = "texture_map_861dbfdc"
+    MAB_slot = "texture_map_b788717c"
+    
+
+    interaction_data = {
+            hud_description = "LA_message_board"
+            camera_interaction_name = "LA_message_board"
+            interaction_length = 0
+            interaction_type = "decoration"
+            interactor_animation = "interaction_start"
+            interactor_animation_time_variable = "revive_time"
+            only_once = false
+            hud_text_line_1 = "LA_message_board"
+            hud_text_line_2 =  "LA_message_board_desc"
+            hud_text_line_3 =  "LA_message_board_footer"
+            
+        }
+
+}
+
+renderables = {
+    root_point = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_message_board_archive = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_message_board_lantern = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_message_board_letter = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_message_board_papers = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    
+}

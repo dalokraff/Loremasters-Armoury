@@ -2,12 +2,12 @@ actors = [
 	{
 		enabled = true
 		mass = 1
-		name = "root_point"
-		node = "root_point"
+		name = "LA_message_board_archive"
+		node = "LA_message_board_archive"
 		shapes = [
 			{
 				material = "default"
-				shape = "root_point"
+				shape = "LA_message_board_archive"
 				template = "default"
 				type = "convex_computed"
 			}

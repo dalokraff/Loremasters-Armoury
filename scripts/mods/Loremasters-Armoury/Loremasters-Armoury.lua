@@ -456,107 +456,7 @@ end
 -- NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = num_husk +3
 
 
-NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = 1
-NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = 1
-NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = 1
 
-mod:echo(InteractionHelper.interactions["decoration"].request_rpc)
-
-mod.LA_new_interactors = {
-    "units/pickups/LA_reikland_chronicle_mesh",
-    "units/pickups/LA_artifact_corrupted_mesh",
-    "units/pickups/LA_artifact_mesh",
-}
-
-mod.approve_request = false
-mod.interactor_goid = nil
-
-mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
-	-- mod:echo(interaction_type_id)
-    local interactable_unit = self.unit_storage:unit(interactable_go_id)
-    mod:echo(Unit.get_data(interactable_unit, "unit_name"))
-    local unit_name = Unit.get_data(interactable_unit, "unit_name")
-
-    if mod.LA_new_interactors[unit_name] then
-        local interactor_unit = self.unit_storage:unit(interactor_go_id)
-        local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
-        local interaction_type = NetworkLookup.interactions[interaction_type_id]
-        interactor_extension:interaction_approved(interaction_type, interactable_unit)
-
-        local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
-
-        mod.approve_request = true
-        mod.interactor_goid = interactor_go_id
-
-        return 
-    end
-    return func(self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
-end)
-
-mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (func, self, interactor_unit, interaction_result)
-    
-    
-
-    if mod.approve_request then 
-        mod.approve_request = false
-        interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
-        mod.interactor_goid = nil
-        
-    end
-
-    if mod.unit_is_being_interacted_with then
-        
-        if not self.interactor_unit then
-            self.interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
-        else
-            interactor_unit = nil
-        end
-        mod.unit_is_being_interacted_with = false 
-    end
-    mod.unit_is_being_interacted_with = true
-
-    return func(self, interactor_unit, interaction_result)
-end)
-
--- mod:hook(GenericUnitInteractorExtension,"can_interact", function (func, self, interactable_unit, interaction_type)
-
---     local unit_name = Unit.get_data(interactable_unit, "unit_name")
-
---     if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
---         return true 
---     end
-
---     return func(self, interactable_unit, interaction_type)
--- end)
-
-mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, self, hold_input, interactable_unit, interaction_type, forced)
-
-    local interaction_context = self.interaction_context
-    local network_manager = Managers.state.network
-    local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
-    local unit = self.unit
-
-    if interactable_go_id == nil then
-        if interactable_unit then 
-
-            local interaction_data = interaction_context.data
-            local interactor_data = interaction_data.interactor_data
-            local interaction_template = InteractionDefinitions[interaction_type]
-            local client_functions = interaction_template.client
-
-            table.clear(interactor_data)
-
-            if client_functions.set_interactor_data then
-                client_functions.set_interactor_data(unit, interactable_unit, interactor_data)
-            end
-
-            self.state = "waiting_for_confirmation"
-            return
-        end
-    end
-
-    return func(self, hold_input, interactable_unit, interaction_type, forced)
-end)
 
 -- mod:hook_safe(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (self, interactor_unit, interaction_result)
 --     local unit_name = Unit.get_data(interactable_unit, "unit_name")
@@ -605,10 +505,49 @@ mod.on_game_state_changed = function(status, state_name)
         end
 
         if level_name == "inn_level" then
+            
+            -- local player = Managers.player:local_player()
+            -- local player_unit = player.player_unit
+            -- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+            -- local rotation = Unit.local_rotation(player_unit, 0)
+            local position = Vector3(24.17, -5.96, 27.2681)
+            local rotation = Quaternion.from_elements(0,0,0.376287, -0.926503)
+            local world = Managers.world:world("level_world")
+            local extension_init_data = {}
+            local small_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_small", "interaction_unit", extension_init_data, position, rotation)
+            local medium_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_medium", "interaction_unit", extension_init_data, position, rotation)
+            local large_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_large", "interaction_unit", extension_init_data, position, rotation)
+            
+        
+            local board_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_message_board_mesh", "interaction_unit", extension_init_data, position, rotation)
+            local small_node = {
+                {
+                    target = 0,
+                    source = "LA_message_board_nail_01",
+                },
+            }
+            local medium_node = {
+                {
+                    target = 0,
+                    source = "LA_message_board_nail_02",
+                },
+            }
+            local large_node = {
+                {
+                    target = 0,
+                    source = "LA_message_board_nail_03",
+                },
+            }
+            AttachmentUtils.link(world, board_unit, small_unit, small_node)
+            AttachmentUtils.link(world, board_unit, medium_unit, medium_node)
+            AttachmentUtils.link(world, board_unit, large_unit, large_node)
+            
+
+
             if mod:get("sub_quest_05") then
                 local position = Vector3(-6.56431, 3.91166, 5.16261)
                 local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
-                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_storage_mesh", position, rotation)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
             end
             if mod:get("sub_quest_07") then
                 local position = Vector3(-6, 4.7, 6.3)
@@ -713,3 +652,18 @@ end
 
 -- 	func(self, dt, ...)
 -- end)
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- -- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+-- local position = Vector3(24.17, -5.96, 27.2681)
+-- local rotation = Quaternion.from_elements(0,0,0.376287, -0.926503)
+-- -- local rotation = Unit.local_rotation(player_unit, 0)
+-- mod:echo(position)
+-- mod:echo(rotation)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_message_board_mesh", position, rotation)
+
+
+-- Vector3(24.7861, -6.24515, 27.2681)
+-- Vector4(0, 0, 0.376287, -0.926503)

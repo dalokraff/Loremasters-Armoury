@@ -2,12 +2,12 @@ actors = [
 	{
 		enabled = true
 		mass = 1
-		name = "collision"
-		node = "collision"
+		name = "LA_loremaster_message_large"
+		node = "LA_loremaster_message_large"
 		shapes = [
 			{
 				material = "default"
-				shape = "collision"
+				shape = "LA_loremaster_message_large"
 				template = "default"
 				type = "convex_computed"
 			}

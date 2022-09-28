@@ -1,18 +1,19 @@
 data = {
     mat_slots = {
-        slot1 = "Tex_0103_0"
+        slot1 = "Tex_1431_0"
     }
 
     mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
     mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
 
     colors = {
-        slot1 = "textures/pickups/LA_MQ01_sub7_chronicle_diffuse"
+        slot1 = "textures/pickups/Loremaster_shipment_box_diffuse"
     }
     normals = {
-        slot1 = "textures/pickups/LA_MQ01_sub7_chronicle_normal"
+        slot1 = "textures/pickups/Loremaster_shipment_box_normal"
     }
     MABs = {
+        slot1 = "textures/pickups/Loremaster_shipment_box_combined"
     }
 
     color_slot = "texture_map_64cc5eb8" 
@@ -22,7 +23,7 @@ data = {
 }
 
 renderables = {
-    LA_MQ01_sub7_chronicle = {
+    Loremaster_shipment_box_stacked = {
 		always_keep = false
 		culling = "bounding_volume"
 		generate_uv_unwrap = false
@@ -31,13 +32,4 @@ renderables = {
 		surface_queries = false
 		viewport_visible = true
 	},
-    collision = {
-        always_keep = false
-		culling = "bounding_volume"
-		generate_uv_unwrap = false
-		occluder = false
-		shadow_caster = false
-		surface_queries = false
-		viewport_visible = false
-    }
 }
