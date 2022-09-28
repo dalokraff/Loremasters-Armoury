@@ -787,6 +787,14 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
 	func(self, dt, ...)
 end)
 
+--this is needed to prevent the OutlineSystem from crashing when remvoing the custom LA pickups
+mod:hook(OutlineSystem,"outline_unit", function (func, self, unit, flag, channel, do_outline, apply_method)
+    if not Unit.alive(unit) then
+        return 
+    end
+    return func(self, unit, flag, channel, do_outline, apply_method)
+end)
+
 
 -- mod:hook(HeroViewStateAchievements,"_create_entries", function ( func, self, entries, entry_type, entry_subtype)
 -- 	local quest_manager = self._quest_manager

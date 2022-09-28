@@ -8,7 +8,7 @@ actors = [
 			{
 				material = "default"
 				shape = "root_point"
-				template = "default"
+				template = "human_collision"
 				type = "convex_computed"
 			}
 		]

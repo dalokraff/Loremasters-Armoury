@@ -3,6 +3,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/test")
+mod:dofile("scripts/mods/Loremasters-Armoury/utils/outliner")
 
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
@@ -62,7 +63,8 @@ function mod.update()
         mod.preview_queue = {}
     end
     
-    
+    mod.outliner()
+
 end
 
 
