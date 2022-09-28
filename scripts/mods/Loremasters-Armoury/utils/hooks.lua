@@ -279,7 +279,14 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
             mod:echo(go_id)
             if mod.attached_units[go_id] then 
                 mod:echo(mod.attached_units[go_id].target)
-                Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+                
+                local player = Managers.player:local_player()
+                local player_unit = player.player_unit
+
+
+                if player_unit == interactor_unit then 
+                    Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
+                end
 
                 local level_name = Managers.state.game_mode:level_key()
                 local quest = level_quest_table[level_name]

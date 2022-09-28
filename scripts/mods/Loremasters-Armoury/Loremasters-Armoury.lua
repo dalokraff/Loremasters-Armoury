@@ -569,10 +569,10 @@ end)
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         
-        local level_name = Managers.state.game_mode:level_key() or "no level"
-        local current_level = Managers.level_transition_handler:get_current_level_keys()
+        -- local level_name = Managers.state.game_mode:level_key() or "no level"
+        local level_name = Managers.level_transition_handler:get_current_level_keys()
         mod:chat_broadcast(level_name)
-        mod:chat_broadcast(current_level)
+        -- mod:chat_broadcast(current_level)
         -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
