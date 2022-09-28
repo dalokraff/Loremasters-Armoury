@@ -907,6 +907,42 @@ mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, sel
 end)
 
 
+--used to replace the trophy UI sound for LA trophies and letters
+mod.parameters = nil
+mod:hook(HeroViewStateKeepDecorations, "_create_ui_elements", function(func, self, params)
+    
+    mod.parameters = params
+
+    mod:echo(mod.parameters)
+
+    return func(self, params)
+end)
+
+mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
+    
+    mod:echo(mod.parameters)
+    for k,v in pairs(mod.parameters) do 
+        mod:echo(tostring(k).."     "..tostring(v))
+    end
+
+    if mod.parameters then
+        local state_params = mod.parameters.state_params
+        if state_params then
+            local interactable_unit = state_params.interactable_unit
+            if interactable_unit then
+    
+	
+                mod:echo(interactable_unit)
+                local unit_name = Unit.get_data(interactable_unit, "unit_name")
+                if mod.LA_new_interactors[unit_name] then
+                    event = "Loremaster_shipment_pickup_sound"
+                end
+                mod:echo(unit_name)
+            end
+        end
+    end
+    return func(self, event)
+end)
 
 
 
