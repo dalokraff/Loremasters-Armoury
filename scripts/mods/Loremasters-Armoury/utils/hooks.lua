@@ -796,6 +796,124 @@ mod:hook(OutlineSystem,"outline_unit", function (func, self, unit, flag, channel
 end)
 
 
+
+
+
+
+
+-- NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = 1
+-- NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = 1
+-- NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = 1
+
+mod.LA_new_interactors = {
+    "units/pickups/LA_reikland_chronicle_mesh",
+    "units/pickups/LA_artifact_corrupted_mesh",
+    "units/pickups/LA_artifact_mesh",
+    "units/decorations/LA_message_board_mesh",
+    "units/decorations/LA_loremaster_message_large",
+    "units/decorations/LA_loremaster_message_medium",
+    "units/decorations/LA_loremaster_message_small",
+}
+
+
+--overloading the "1" key as I don't want the netlookup tables to be different across users 
+for k,v in pairs(mod.LA_new_interactors) do 
+    NetworkLookup.husks[v] = 1
+    mod.LA_new_interactors[v] = v
+end
+
+mod.approve_request = false
+mod.interactor_goid = nil
+
+mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
+	-- mod:echo(interaction_type_id)
+    local interactable_unit = self.unit_storage:unit(interactable_go_id)
+    mod:echo(Unit.get_data(interactable_unit, "unit_name"))
+    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+
+    if mod.LA_new_interactors[unit_name] then
+        local interactor_unit = self.unit_storage:unit(interactor_go_id)
+        local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
+        local interaction_type = NetworkLookup.interactions[interaction_type_id]
+        interactor_extension:interaction_approved(interaction_type, interactable_unit)
+
+        local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+
+        mod.approve_request = true
+        mod.interactor_goid = interactor_go_id
+
+        return 
+    end
+    return func(self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
+end)
+
+mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (func, self, interactor_unit, interaction_result)
+    
+    
+
+    if mod.approve_request then 
+        mod.approve_request = false
+        interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
+        mod.interactor_goid = nil
+        
+    end
+
+    if mod.unit_is_being_interacted_with then
+        
+        if not self.interactor_unit then
+            self.interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
+        else
+            interactor_unit = nil
+        end
+        mod.unit_is_being_interacted_with = false 
+    end
+    mod.unit_is_being_interacted_with = true
+
+    return func(self, interactor_unit, interaction_result)
+end)
+
+mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, self, hold_input, interactable_unit, interaction_type, forced)
+
+    local interaction_context = self.interaction_context
+    local network_manager = Managers.state.network
+    local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
+    local unit = self.unit
+
+    if interactable_go_id == nil then
+        if interactable_unit then 
+
+            local interaction_data = interaction_context.data
+            local interactor_data = interaction_data.interactor_data
+            local interaction_template = InteractionDefinitions[interaction_type]
+            local client_functions = interaction_template.client
+
+            table.clear(interactor_data)
+
+            if client_functions.set_interactor_data then
+                client_functions.set_interactor_data(unit, interactable_unit, interactor_data)
+            end
+
+            self.state = "waiting_for_confirmation"
+            return
+        end
+    end
+
+    return func(self, hold_input, interactable_unit, interaction_type, forced)
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- mod:hook(HeroViewStateAchievements,"_create_entries", function ( func, self, entries, entry_type, entry_subtype)
 -- 	local quest_manager = self._quest_manager
 -- 	local achievement_manager = self._achievement_manager
