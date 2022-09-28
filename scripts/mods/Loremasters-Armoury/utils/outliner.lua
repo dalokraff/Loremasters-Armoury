@@ -39,13 +39,16 @@ function mod.outliner()
 
             local closest_unit_hit = nil
             local closest_hit = 9999
-            for _, hit in ipairs(hits) do
-                local hit_distance = hit[2]
-                local actor = hit[4]
-                local unit = Actor.unit(actor)
-                if unit ~= player_unit and hit_distance <= closest_hit then
-                    closest_hit = hit_distance
-                    closest_unit_hit = unit
+            
+            if hits then
+                for _, hit in ipairs(hits) do
+                    local hit_distance = hit[2]
+                    local actor = hit[4]
+                    local unit = Actor.unit(actor)
+                    if unit ~= player_unit and hit_distance <= closest_hit then
+                        closest_hit = hit_distance
+                        closest_unit_hit = unit
+                    end
                 end
             end
 
