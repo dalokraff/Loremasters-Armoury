@@ -19,32 +19,16 @@ data = {
     color_slot = "texture_map_64cc5eb8" 
     norm_slot = "texture_map_861dbfdc"
     MAB_slot = "texture_map_b788717c"
-    
-
-    interaction_data = {
-            hud_description = "LA_loremaster_message_large"
-            camera_interaction_name = "LA_loremaster_message_large"
-            interaction_length = 0
-            interaction_type = "decoration"
-            interactor_animation = "interaction_start"
-            interactor_animation_time_variable = "revive_time"
-            only_once = false
-            hud_text_line_1 = "LA_loremaster_message_large"
-            hud_text_line_2 =  "LA_loremaster_message_large_desc"
-            hud_text_line_3 =  "LA_loremaster_message_large_footer"
-            
-        }
-
 }
 
 renderables = {
-    LA_loremaster_message_large = {
+    LA_loremaster_message_small = {
 		always_keep = false
 		culling = "bounding_volume"
 		generate_uv_unwrap = false
 		occluder = false
-		shadow_caster = false
+		shadow_caster = true
 		surface_queries = false
-		viewport_visible = false
+		viewport_visible = true
 	},
 }

@@ -521,6 +521,9 @@ mod.on_game_state_changed = function(status, state_name)
         
             local board_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_message_board_mesh", "interaction_unit", extension_init_data, position, rotation)
             local board_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_message_board_back_board", position, rotation)
+            local small_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_small_visable", position, rotation)
+            local medium_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_medium_visable", position, rotation)
+            local large_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_large_visable", position, rotation)
             local small_node = {
                 {
                     target = 0,
@@ -542,6 +545,9 @@ mod.on_game_state_changed = function(status, state_name)
             AttachmentUtils.link(world, board_unit, small_unit, small_node)
             AttachmentUtils.link(world, board_unit, medium_unit, medium_node)
             AttachmentUtils.link(world, board_unit, large_unit, large_node)
+            AttachmentUtils.link(world, board_unit, small_unit_visable, small_node)
+            AttachmentUtils.link(world, board_unit, medium_unit_visable, medium_node)
+            AttachmentUtils.link(world, board_unit, large_unit_visable, large_node)
             
 
 
