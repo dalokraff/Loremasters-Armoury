@@ -8,8 +8,8 @@ actors = [
 			{
 				material = "default"
 				shape = "LA_loremaster_message_large"
-				template = "default"
-				type = "sphere"
+				template = "human_collision"
+				type = "convex_computed"
 			}
 		]
 		template = "keyframed_no_collision"
