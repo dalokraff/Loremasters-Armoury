@@ -460,6 +460,11 @@ NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = 1
 
 mod:echo(InteractionHelper.interactions["decoration"].request_rpc)
 
+mod.LA_new_interactors = {
+    "units/pickups/LA_reikland_chronicle_mesh",
+    "units/pickups/LA_artifact_corrupted_mesh",
+    "units/pickups/LA_artifact_mesh",
+}
 
 mod.approve_request = false
 mod.interactor_goid = nil
@@ -470,7 +475,7 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
     mod:echo(Unit.get_data(interactable_unit, "unit_name"))
     local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
-    if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
+    if mod.LA_new_interactors[unit_name] then
         local interactor_unit = self.unit_storage:unit(interactor_go_id)
         local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
         local interaction_type = NetworkLookup.interactions[interaction_type_id]
@@ -511,6 +516,46 @@ mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",functio
     return func(self, interactor_unit, interaction_result)
 end)
 
+-- mod:hook(GenericUnitInteractorExtension,"can_interact", function (func, self, interactable_unit, interaction_type)
+
+--     local unit_name = Unit.get_data(interactable_unit, "unit_name")
+
+--     if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
+--         return true 
+--     end
+
+--     return func(self, interactable_unit, interaction_type)
+-- end)
+
+mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, self, hold_input, interactable_unit, interaction_type, forced)
+
+    local interaction_context = self.interaction_context
+    local network_manager = Managers.state.network
+    local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
+    local unit = self.unit
+
+    if interactable_go_id == nil then
+        if interactable_unit then 
+
+            local interaction_data = interaction_context.data
+            local interactor_data = interaction_data.interactor_data
+            local interaction_template = InteractionDefinitions[interaction_type]
+            local client_functions = interaction_template.client
+
+            table.clear(interactor_data)
+
+            if client_functions.set_interactor_data then
+                client_functions.set_interactor_data(unit, interactable_unit, interactor_data)
+            end
+
+            self.state = "waiting_for_confirmation"
+            return
+        end
+    end
+
+    return func(self, hold_input, interactable_unit, interaction_type, forced)
+end)
+
 -- mod:hook_safe(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (self, interactor_unit, interaction_result)
 --     local unit_name = Unit.get_data(interactable_unit, "unit_name")
 --     if unit_name == "units/pickups/LA_reikland_chronicle_mesh" then
@@ -523,8 +568,11 @@ end)
 
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
-        mod:chat_broadcast("Attention everyone, we are now entering the Rat Zone.")
-        local level_name = Managers.state.game_mode:level_key()
+        
+        local level_name = Managers.state.game_mode:level_key() or "no level"
+        local current_level = Managers.level_transition_handler:get_current_level_keys()
+        mod:chat_broadcast(level_name)
+        mod:chat_broadcast(current_level)
         -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
