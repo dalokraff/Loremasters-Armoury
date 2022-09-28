@@ -828,21 +828,24 @@ mod.interactor_goid = nil
 mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
 	-- mod:echo(interaction_type_id)
     local interactable_unit = self.unit_storage:unit(interactable_go_id)
-    mod:echo(Unit.get_data(interactable_unit, "unit_name"))
-    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+    
+    if Unit.has_data(interactable_unit, "unit_name") then
+        mod:echo(Unit.get_data(interactable_unit, "unit_name"))
+        local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
-    if mod.LA_new_interactors[unit_name] then
-        local interactor_unit = self.unit_storage:unit(interactor_go_id)
-        local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
-        local interaction_type = NetworkLookup.interactions[interaction_type_id]
-        interactor_extension:interaction_approved(interaction_type, interactable_unit)
+        if mod.LA_new_interactors[unit_name] then
+            local interactor_unit = self.unit_storage:unit(interactor_go_id)
+            local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
+            local interaction_type = NetworkLookup.interactions[interaction_type_id]
+            interactor_extension:interaction_approved(interaction_type, interactable_unit)
 
-        local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+            local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
 
-        mod.approve_request = true
-        mod.interactor_goid = interactor_go_id
+            mod.approve_request = true
+            mod.interactor_goid = interactor_go_id
 
-        return 
+            return 
+        end
     end
     return func(self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
 end)

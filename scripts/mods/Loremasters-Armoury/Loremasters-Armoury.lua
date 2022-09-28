@@ -520,6 +520,7 @@ mod.on_game_state_changed = function(status, state_name)
             
         
             local board_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_message_board_mesh", "interaction_unit", extension_init_data, position, rotation)
+            local board_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_message_board_back_board", position, rotation)
             local small_node = {
                 {
                     target = 0,
