@@ -41,6 +41,7 @@ data = {
 
     interaction_data = {
             hud_description = "magic_gem_nurgle"
+            hud_interaction_action = "interaction_action_view"
             camera_interaction_name = "magic_gem_nurgle"
             interaction_length = 0
             interaction_type = "decoration"

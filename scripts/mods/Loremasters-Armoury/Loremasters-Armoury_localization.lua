@@ -180,6 +180,24 @@ local mod_text_ids = {
 	magic_gem_nurgle_desc = {
 		en = "",
 	},
+	LA_read_action = {
+		en = "Read",
+	},
+	LA_message_board = {
+		en = "Letter Archive",
+	},
+	LA_message_board_action = {
+		en = "Search"
+	},
+	LA_loremaster_message_small = {
+		en = "Small Letter"
+	},
+	LA_loremaster_message_medium = {
+		en = "Medium Letter"
+	},
+	LA_loremaster_message_large = {
+		en = "Large Letter"
+	},
 
 }
 

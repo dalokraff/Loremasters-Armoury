@@ -23,7 +23,7 @@ data = {
 
     interaction_data = {
             hud_description = "LA_loremaster_message_large"
-            hud_interaction_action = "LA_loremaster_message_action"
+            hud_interaction_action = "LA_read_action"
             camera_interaction_name = "LA_loremaster_message_large"
             interaction_length = 0
             interaction_type = "decoration"
