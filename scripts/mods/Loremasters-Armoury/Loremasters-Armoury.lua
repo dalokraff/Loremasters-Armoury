@@ -534,7 +534,15 @@ mod.on_game_state_changed = function(status, state_name)
 
         if level_name == "inn_level" then
             
-            mod.spawn_message_board()
+            -- mod.spawn_message_board()
+
+            local board_pos = Vector3(24.17, -5.96, 27.2681)
+            local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
+            local world = Managers.world:world("level_world")
+            local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
+            local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
+            LetterBoard:init(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
+
 
             if mod:get("sub_quest_05") then
                 local position = Vector3(-6.56431, 3.91166, 5.16261)
