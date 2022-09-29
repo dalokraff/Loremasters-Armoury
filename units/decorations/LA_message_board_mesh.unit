@@ -24,19 +24,21 @@ data = {
     norm_slot = "texture_map_861dbfdc"
     MAB_slot = "texture_map_b788717c"
     
+	// decoration_settings_key = "keep_message_board"
 
     interaction_data = {
             hud_description = "LA_message_board"
             camera_interaction_name = "LA_message_board"
             interaction_length = 0
-            interaction_type = "decoration"
+            // interaction_type = "decoration"
+			interaction_type = "pictureframe"
             interactor_animation = "interaction_start"
             interactor_animation_time_variable = "revive_time"
             only_once = false
             hud_text_line_1 = "LA_message_board"
             hud_text_line_2 =  "LA_message_board_desc"
             hud_text_line_3 =  "LA_message_board_footer"
-            
+			// is_client_painting = true
         }
 
 }

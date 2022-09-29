@@ -276,9 +276,9 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
     if interactable_unit then 
         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
         if go_id then
-            mod:echo(go_id)
+            -- mod:echo(go_id)
             if mod.attached_units[go_id] then 
-                mod:echo(mod.attached_units[go_id].target)
+                -- mod:echo(mod.attached_units[go_id].target)
                 
                 local player = Managers.player:local_player()
                 local player_unit = player.player_unit
@@ -330,10 +330,10 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
     --for spawning the crate pickup
     if mod.list_of_LA_levels[level_name] then
         local LA_position = mod.list_of_LA_levels[level_name].position
-        mod:echo(LA_position:unbox())
-        mod:echo(position)
+        -- mod:echo(LA_position:unbox())
+        -- mod:echo(position)
         if Vector3.equal(position, LA_position:unbox()) then
-            mod:echo(pickup_name)
+            -- mod:echo(pickup_name)
             if pickup_name == "painting_scrap" then
                 local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
@@ -341,8 +341,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
                 
                 local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                mod:echo(scrap_go_id)
-                mod:echo(scrap_unit)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
@@ -359,7 +359,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                     source = scrap_unit, 
                     target = box_unit,
                 }
-                mod:echo(mod.attached_units[scrap_go_id].target)
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
 
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_crate_pickup")
@@ -373,18 +373,18 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
     --for spawning the book pickup
     if mod.list_of_LA_levels_books[level_name] then
         local LA_position = mod.list_of_LA_levels_books[level_name].position
-        mod:echo(LA_position:unbox())
-        mod:echo(position)
+        -- mod:echo(LA_position:unbox())
+        -- mod:echo(position)
         if Vector3.equal(position, LA_position:unbox()) then
-            mod:echo(pickup_name)
+            -- mod:echo(pickup_name)
             if pickup_name == "painting_scrap" then
                 local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
                 local pickup_settings = AllPickups[pickup_name]
                 local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
                 local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                mod:echo(scrap_go_id)
-                mod:echo(scrap_unit)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
@@ -402,7 +402,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                     source = scrap_unit, 
                     target = box_unit,
                 }
-                mod:echo(mod.attached_units[scrap_go_id].target)
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
                 Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
@@ -413,19 +413,19 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
     end
 
     --for spawning the gem pickup
-    mod:echo(Vector3Box(position))
-    mod:echo(mod.stored_vectors[Vector3Box(position)])
+    -- mod:echo(Vector3Box(position))
+    -- mod:echo(mod.stored_vectors[Vector3Box(position)])
     if mod.stored_vectors[level_name] then
         if Vector3.equal(position, mod.stored_vectors[level_name]:unbox()) then
-            mod:echo(pickup_name)
+            -- mod:echo(pickup_name)
             if pickup_name == "painting_scrap" then
                 local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
                 local pickup_settings = AllPickups[pickup_name]
                 local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
                 local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                mod:echo(scrap_go_id)
-                mod:echo(scrap_unit)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
@@ -443,7 +443,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                     source = scrap_unit, 
                     target = box_unit,
                 }
-                mod:echo(mod.attached_units[scrap_go_id].target)
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
 
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem_nurgle")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_magic_gem_pickup")
@@ -459,7 +459,7 @@ end)
 
 --checks if citadel expidition has been finished
 mod:hook(StatisticsUtil, "_register_completed_journey_difficulty", function (func, statistics_db, player, journey_name, dominant_god, difficulty_name)
-    mod:echo(journey_name)
+    -- mod:echo(journey_name)
 
     if string.find(journey_name, "citadel") and mod:get("sub_quest_08") then
         mod:set("sub_quest_09", true)
@@ -474,8 +474,8 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
 	if result == InteractionResult.SUCCESS and not data.is_husk and rawget(_G, "HeroViewStateKeepDecorations") then
 		local hud_description = Unit.get_data(interactable_unit, "interaction_data", "hud_description")
         local level_name = Managers.state.game_mode:level_key()
-        mod:echo(hud_description)
-        mod:echo(level_name)
+        -- mod:echo(hud_description)
+        -- mod:echo(level_name)
         if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") then
             if mod:get("sub_quest_09") then 
                 if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) then
@@ -544,16 +544,16 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
                         if quest_data then
                             if master_list_item then
                                 if master_list_item.name == item.ItemId then 
-                                    mod:echo(mod.current_skin[item.skin])
+                                    -- mod:echo(mod.current_skin[item.skin])
                                     local breed_killed = Unit.get_data(victim_unit, "breed")
                                     local breed_killed_name = breed_killed.name
                                     local killed_race_name = breed_killed.race
                                     for quest,enemy_types in pairs(quest_data) do
                                         
-                                        mod:echo(breed_killed_name)
-                                        mod:echo(killed_race_name)
+                                        -- mod:echo(breed_killed_name)
+                                        -- mod:echo(killed_race_name)
                                         for _,enemy in pairs(enemy_types) do 
-                                            mod:echo(quest.."       "..enemy)
+                                            -- mod:echo(quest.."       "..enemy)
                                             if (enemy == breed_killed_name) or (enemy == killed_race_name) then
                                                 local current_kills = mod:get(quest)
                                                 current_kills = current_kills + 1
@@ -582,14 +582,14 @@ mod:hook_safe(Unit, "animation_event", function(unit, event)
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_sorcerer" then
             local level_name = Managers.state.game_mode:level_key()
-            mod:echo(level_name)
+            -- mod:echo(level_name)
             if level_name == "ground_zero" then
                 if string.find(event, "death") or string.find(event, "ragdoll") then 
                     local position = Vector3(363.476, 50.4658, -13.7107) 
                     local rot = radians_to_quaternion(0, -math.pi/2, 0)
                     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                    mod:echo(position)
-                    mod:echo(unit)
+                    -- mod:echo(position)
+                    -- mod:echo(unit)
                     mod.stored_vectors[level_name] = Vector3Box(position)
                     Managers.state.network.network_transmit:send_rpc_server(
                             "rpc_spawn_pickup_with_physics",
@@ -822,6 +822,64 @@ for k,v in pairs(mod.LA_new_interactors) do
     mod.LA_new_interactors[v] = v
 end
 
+
+
+
+mod:hook(InteractionDefinitions.pictureframe.client, "can_interact", function (func, interactor_unit, interactable_unit, data, config)
+	
+    if Unit.has_data(interactable_unit, "unit_name") then
+        local unit_name = Unit.get_data(interactable_unit, "unit_name")
+        if mod.LA_new_interactors[unit_name] then
+            return true
+        end
+    end
+    return func(interactor_unit, interactable_unit, data, config)
+end)
+
+mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
+	
+    if Unit.has_data(interactable_unit, "unit_name") then
+        local unit_name = Unit.get_data(interactable_unit, "unit_name")
+        if mod.LA_new_interactors[unit_name] then
+            Managers.ui:handle_transition("hero_view_force", {
+                type = "painting",
+                menu_state_name = "keep_decorations",
+                use_fade = true,
+                interactable_unit = interactable_unit
+            })
+            
+            return
+        end
+    end
+    return func(world, interactor_unit, interactable_unit, data, config, t, result)
+end)
+
+mod:hook_safe(LevelEndView, "start", function(self)
+    for level,quest in pairs(level_quest_table) do 
+        if mod:get(quest.."_temp") then
+            if self.game_won then
+                mod:set(quest, true)
+                if mod.list_of_LA_levels[level] then
+                    mod.list_of_LA_levels[level].compelted = true
+                end
+                if mod.list_of_LA_levels_books[level] then
+                    mod.list_of_LA_levels_books[level].compelted = true
+                end
+            end
+        end
+    end
+end)
+
+mod:hook_safe(LevelTransitionHandler,"load_current_level", function (self)
+    for level,quest in pairs(level_quest_table) do 
+        mod:set(quest.."_temp", false)
+    end
+end)
+
+
+
+
+
 mod.approve_request = false
 mod.interactor_goid = nil
 
@@ -831,7 +889,7 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
     
     if interactable_unit then
         if Unit.has_data(interactable_unit, "unit_name") then
-            mod:echo(Unit.get_data(interactable_unit, "unit_name"))
+            -- mod:echo(Unit.get_data(interactable_unit, "unit_name"))
             local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
             if mod.LA_new_interactors[unit_name] then
@@ -913,17 +971,15 @@ mod:hook(HeroViewStateKeepDecorations, "_create_ui_elements", function(func, sel
     
     mod.parameters = params
 
-    mod:echo(mod.parameters)
-
     return func(self, params)
 end)
 
 mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
     
-    mod:echo(mod.parameters)
-    for k,v in pairs(mod.parameters) do 
-        mod:echo(tostring(k).."     "..tostring(v))
-    end
+    -- mod:echo(mod.parameters)
+    -- for k,v in pairs(mod.parameters) do 
+    --     mod:echo(tostring(k).."     "..tostring(v))
+    -- end
 
     if mod.parameters then
         local state_params = mod.parameters.state_params
@@ -932,12 +988,12 @@ mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event
             if interactable_unit then
     
 	
-                mod:echo(interactable_unit)
+                -- mod:echo(interactable_unit)
                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
                 if mod.LA_new_interactors[unit_name] then
                     event = "Loremaster_shipment_pickup_sound"
                 end
-                mod:echo(unit_name)
+                -- mod:echo(unit_name)
             end
         end
     end

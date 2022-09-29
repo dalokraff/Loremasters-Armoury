@@ -4,6 +4,14 @@ mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/test")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/outliner")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/LA_message_board")
+
+
+Managers.package:load("resource_packages/levels/dlcs/morris/slaanesh_common", "global")
+Managers.package:load("resource_packages/levels/dlcs/morris/nurgle_common", "global")
+Managers.package:load("resource_packages/levels/dlcs/morris/khorne_common", "global")
+Managers.package:load("resource_packages/levels/dlcs/morris/tzeentch_common", "global")
+Managers.package:load("resource_packages/levels/dlcs/morris/wastes_common", "global")
 
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
@@ -468,6 +476,26 @@ end
 --     end
 -- end)
 
+-- mod.already_got = {}
+-- mod:hook(Unit, "get_data", function(func, self, param, ...)
+
+--     if param == "unit_template" and not mod.already_got[self] then
+--         mod.already_got[self] = true
+--         mod:echo("==================================")
+--         mod:echo(Unit.get_data(self, "unit_template"))
+--         mod:echo("==================================")
+--     end
+
+--     return func(self, param, ...)
+-- end)
+
+-- mod:hook(UnitSpawner, "spawn_local_unit_with_extensions", function(func, self, unit_name, unit_template_name, ...)
+
+--     mod:echo(tostring(unit_name).."     "..tostring(unit_template_name))
+
+--     return func(self, unit_name, unit_template_name, ...)
+-- end)
+
 mod.on_game_state_changed = function(status, state_name)
     if status == "enter" and state_name == "StateIngame" then
         
@@ -506,56 +534,7 @@ mod.on_game_state_changed = function(status, state_name)
 
         if level_name == "inn_level" then
             
-            -- local player = Managers.player:local_player()
-            -- local player_unit = player.player_unit
-            -- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
-            -- local rotation = Unit.local_rotation(player_unit, 0)
-            local position = Vector3(24.17, -5.96, 27.2681)
-            local rotation = Quaternion.from_elements(0,0,0.376287, -0.926503)
-            local world = Managers.world:world("level_world")
-            local extension_init_data = {}
-            local small_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_small", "interaction_unit", extension_init_data, position, rotation)
-            local medium_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_medium", "interaction_unit", extension_init_data, position, rotation)
-            local large_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_loremaster_message_large", "interaction_unit", extension_init_data, position, rotation)
-            
-        
-            local board_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_message_board_mesh", "interaction_unit", extension_init_data, position, rotation)
-            local board_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_message_board_back_board", position, rotation)
-            local small_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_small_visable", position, rotation)
-            local medium_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_medium_visable", position, rotation)
-            local large_unit_visable = Managers.state.unit_spawner:spawn_local_unit("units/decorations/LA_loremaster_message_large_visable", position, rotation)
-            local small_node = {
-                {
-                    target = 0,
-                    source = "LA_message_board_nail_01",
-                },
-            }
-            local medium_node = {
-                {
-                    target = 0,
-                    source = "LA_message_board_nail_02",
-                },
-            }
-            local large_node = {
-                {
-                    target = 0,
-                    source = "LA_message_board_nail_03",
-                },
-            }
-            local root2root = {
-                {
-                    target = 0,
-                    source = 0,
-                },
-            }
-            AttachmentUtils.link(world, board_unit, small_unit, small_node)
-            AttachmentUtils.link(world, board_unit, medium_unit, medium_node)
-            AttachmentUtils.link(world, board_unit, large_unit, large_node)
-            AttachmentUtils.link(world, small_unit, small_unit_visable, root2root)
-            AttachmentUtils.link(world, medium_unit, medium_unit_visable, root2root)
-            AttachmentUtils.link(world, large_unit, large_unit_visable, root2root)
-            
-
+            mod.spawn_message_board()
 
             if mod:get("sub_quest_05") then
                 local position = Vector3(-6.56431, 3.91166, 5.16261)
@@ -680,3 +659,13 @@ end
 
 -- Vector3(24.7861, -6.24515, 27.2681)
 -- Vector4(0, 0, 0.376287, -0.926503)
+
+
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/khorne/deus_khorne_torch_01", position, rotation)
