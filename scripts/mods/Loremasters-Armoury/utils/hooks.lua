@@ -1005,6 +1005,7 @@ end)
 
 --swaps the background in the UI when intereacting with the listed units
 local letterUnits = {
+    "units/decorations/LA_message_board_mesh",
     "units/decorations/LA_loremaster_message_large",
     "units/decorations/LA_loremaster_message_medium",
     "units/decorations/LA_loremaster_message_small",
@@ -1013,19 +1014,54 @@ for k,v in pairs(letterUnits) do
     letterUnits[v] = v
 end
 
+-- local original_pass = {
+--     style_id = "background",
+--     pass_type = "rect",
+-- }
+mod.og_pass = nil
 mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
-    local unit = self._interactable_unit
+    local unit = self._interactable_unit    
+   
+    -- for k,v in pairs(self._widgets[4].element.passes[1]) do 
+    --     mod:echo(tostring(k).."     "..tostring(v))
+    -- end
     if Unit.has_data(unit, "unit_name") then
         local unit_name = Unit.get_data(unit, "unit_name")
+        mod.og_pass = table.clone(self._widgets[4].element, false)
         if letterUnits[unit_name] then
             self._widgets[4].content.texture_id = "paper_back"
             self._widgets[4].element.passes[1].pass_type = "texture"
             self._widgets[4].element.passes[1].texture_id = "texture_id"
             self._widgets[4].element.passes[1].style_id = "texture_id"
+        else
+            self._widgets[4].element.passes = table.clone(mod.og_pass, false)
         end
-    end
+    else 
+        if not mod.og_pass and self._widgets[4].element then
+            mod.og_pass = table.clone(self._widgets[4].element, false)
+        end
+        self._widgets[4].element.passes = table.clone(mod.og_pass, false)
+    end 
     return func(self, input_service, dt)
 end)
+
+
+
+
+
+
+
+-- mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
+--     local unit = self._interactable_unit
+--     -- mod.original_pass = self._widgets[4].element.passes[1]
+    
+--     for k,v in pairs(self._widgets[4].element.passes[1]) do 
+--         mod:echo(tostring(k).."     "..tostring(v))
+
+--     end
+--     mod:echo("=============================")
+--     return func(self, input_service, dt)
+-- end)
 
 
 
