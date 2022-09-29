@@ -542,12 +542,18 @@ mod.on_game_state_changed = function(status, state_name)
                     source = "LA_message_board_nail_03",
                 },
             }
+            local root2root = {
+                {
+                    target = 0,
+                    source = 0,
+                },
+            }
             AttachmentUtils.link(world, board_unit, small_unit, small_node)
             AttachmentUtils.link(world, board_unit, medium_unit, medium_node)
             AttachmentUtils.link(world, board_unit, large_unit, large_node)
-            AttachmentUtils.link(world, board_unit, small_unit_visable, small_node)
-            AttachmentUtils.link(world, board_unit, medium_unit_visable, medium_node)
-            AttachmentUtils.link(world, board_unit, large_unit_visable, large_node)
+            AttachmentUtils.link(world, small_unit, small_unit_visable, root2root)
+            AttachmentUtils.link(world, medium_unit, medium_unit_visable, root2root)
+            AttachmentUtils.link(world, large_unit, large_unit_visable, root2root)
             
 
 
