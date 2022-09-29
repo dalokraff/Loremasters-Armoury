@@ -28,6 +28,7 @@ data = {
 
     interaction_data = {
             hud_description = "LA_message_board"
+			hud_interaction_action = "LA_message_board_action"
             camera_interaction_name = "LA_message_board"
             interaction_length = 0
             // interaction_type = "decoration"

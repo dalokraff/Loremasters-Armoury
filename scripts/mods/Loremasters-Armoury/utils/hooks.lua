@@ -1047,7 +1047,7 @@ end)
 
 
 
-
+--temp fix for clients errors when using mod
 mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
     if (not self ) then
         math.randomseed(1)

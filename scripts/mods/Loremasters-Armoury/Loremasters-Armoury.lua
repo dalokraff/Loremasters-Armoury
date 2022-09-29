@@ -497,7 +497,7 @@ end
 -- end)
 
 mod.on_game_state_changed = function(status, state_name)
-    if status == "enter" and state_name == "StateIngame" then
+    if state_name == "StateIngame" then
         
         -- local level_name = Managers.state.game_mode:level_key() or "no level"
         local level_name = Managers.level_transition_handler:get_current_level_keys()
