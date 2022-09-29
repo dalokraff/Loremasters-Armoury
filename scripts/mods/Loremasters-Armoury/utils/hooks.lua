@@ -1003,9 +1003,29 @@ end)
 
 
 
+--swaps the background in the UI when intereacting with the listed units
+local letterUnits = {
+    "units/decorations/LA_loremaster_message_large",
+    "units/decorations/LA_loremaster_message_medium",
+    "units/decorations/LA_loremaster_message_small",
+}
+for k,v in pairs(letterUnits) do 
+    letterUnits[v] = v
+end
 
-
-
+mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
+    local unit = self._interactable_unit
+    if Unit.has_data(unit, "unit_name") then
+        local unit_name = Unit.get_data(unit, "unit_name")
+        if letterUnits[unit_name] then
+            self._widgets[4].content.texture_id = "paper_back"
+            self._widgets[4].element.passes[1].pass_type = "texture"
+            self._widgets[4].element.passes[1].texture_id = "texture_id"
+            self._widgets[4].element.passes[1].style_id = "texture_id"
+        end
+    end
+    return func(self, input_service, dt)
+end)
 
 
 

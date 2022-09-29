@@ -292,6 +292,38 @@ menu.custom_gui_textures = {
 			"ingame_ui",
 			"materials/Loremasters-Armoury/armoury_atlas",
 		},
+		{
+			"hero_view",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"loading_view",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"rcon_manager",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"chat_manager",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"popup_manager",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"splash_view",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"twitch_icon_view",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
+		{
+			"disconnect_indicator_view",
+			"materials/Loremasters-Armoury/armoury_atlas",
+		},
 	},
 }
 
