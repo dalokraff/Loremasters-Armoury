@@ -1048,7 +1048,13 @@ end)
 
 
 
-
+mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
+    if (not self ) then
+        math.randomseed(1)
+        return math.random(400, 500)
+    end
+    return func(self, type, fields)
+end)
 
 
 -- mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
