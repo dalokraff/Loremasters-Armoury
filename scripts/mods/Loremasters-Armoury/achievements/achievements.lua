@@ -250,7 +250,7 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	desc = "sub_quest_05_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_05") then
+		if mod:get("sub_quest_05") and mod:get("sub_quest_05".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
 			AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
 			AchievementTemplates.achievements.sub_quest_06.icon = "quest_icon_empty"
@@ -260,7 +260,20 @@ AchievementTemplates.achievements.sub_quest_05 = {
 		end
 
 		return false
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {}
+
+		if mod:get("sub_quest_05") then
+			table.insert(reqs, {
+				name = "read_new_message",
+				completed = mod:get("sub_quest_05".."_letter_read")
+			})
+		end
+
+		return reqs
 	end
+	
 }
 
 AchievementTemplates.achievements.sub_quest_06 = {
@@ -270,7 +283,7 @@ AchievementTemplates.achievements.sub_quest_06 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_06") then
+		if mod:get("sub_quest_06") and mod:get("sub_quest_06".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_07.name = "sub_quest_07"
 			AchievementTemplates.achievements.sub_quest_07.desc = "sub_quest_07_desc"
 			AchievementTemplates.achievements.sub_quest_07.icon = "quest_icon_empty"
@@ -280,6 +293,18 @@ AchievementTemplates.achievements.sub_quest_06 = {
 		end
 
 		return false
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {}
+
+		if mod:get("sub_quest_06") then
+			table.insert(reqs, {
+				name = "read_new_message",
+				completed = mod:get("sub_quest_06".."_letter_read")
+			})
+		end
+
+		return reqs
 	end
 }
 
@@ -290,7 +315,7 @@ AchievementTemplates.achievements.sub_quest_07 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_07") then
+		if mod:get("sub_quest_07") and mod:get("sub_quest_07".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_08.name = "sub_quest_08"
 			AchievementTemplates.achievements.sub_quest_08.desc = "sub_quest_08_desc"
 			AchievementTemplates.achievements.sub_quest_08.icon = "quest_icon_empty"
@@ -300,6 +325,18 @@ AchievementTemplates.achievements.sub_quest_07 = {
 		end
 
 		return false
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {}
+
+		if mod:get("sub_quest_07") then
+			table.insert(reqs, {
+				name = "read_new_message",
+				completed = mod:get("sub_quest_07".."_letter_read")
+			})
+		end
+
+		return reqs
 	end
 }
 
@@ -310,7 +347,7 @@ AchievementTemplates.achievements.sub_quest_08 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_08") then
+		if mod:get("sub_quest_08") and mod:get("sub_quest_08".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_09.name = "sub_quest_09"
 			AchievementTemplates.achievements.sub_quest_09.desc = "sub_quest_09_desc"
 			AchievementTemplates.achievements.sub_quest_09.icon = "quest_icon_empty"
@@ -320,6 +357,18 @@ AchievementTemplates.achievements.sub_quest_08 = {
 		end
 
 		return false
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {}
+
+		if mod:get("sub_quest_08") then
+			table.insert(reqs, {
+				name = "read_new_message",
+				completed = mod:get("sub_quest_08".."_letter_read")
+			})
+		end
+
+		return reqs
 	end
 }
 
@@ -330,7 +379,7 @@ AchievementTemplates.achievements.sub_quest_09 = {
 	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_09") then
+		if mod:get("sub_quest_09") and mod:get("sub_quest_09".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_10.name = "sub_quest_10"
 			AchievementTemplates.achievements.sub_quest_10.desc = "sub_quest_10_desc"
 			AchievementTemplates.achievements.sub_quest_10.icon = "quest_icon_empty"
@@ -340,6 +389,18 @@ AchievementTemplates.achievements.sub_quest_09 = {
 		end
 
 		return false
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {}
+
+		if mod:get("sub_quest_09") then
+			table.insert(reqs, {
+				name = "read_new_message",
+				completed = mod:get("sub_quest_09".."_letter_read")
+			})
+		end
+
+		return reqs
 	end
 }
 
