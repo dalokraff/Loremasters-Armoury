@@ -182,7 +182,7 @@ LetterBoard.mark_unread_letters = function(self)
         end
     end
     if mark_board then 
-        mod.render_marker(self.pos)
+        mod.render_marker(self.pos, 100)
     end
     
 end

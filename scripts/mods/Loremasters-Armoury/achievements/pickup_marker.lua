@@ -62,7 +62,7 @@ end
 --renders the LA waypoint marker at the given 3D position
 --takes Vector3box as param
 --returns nothing
-function mod.render_marker(pos_box)
+function mod.render_marker(pos_box, distance_view)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
     if player_unit then
@@ -71,7 +71,7 @@ function mod.render_marker(pos_box)
 
         local dist = Vector3.distance(player_pos, waypoint_position)
 
-        if (dist <= 5) and (dist > 1) then
+        if (dist <= distance_view) and (dist > 1) then
             
             local world = Managers.world:world("level_world")
             local viewport = ScriptWorld.viewport(world, player.viewport_name)

@@ -163,6 +163,7 @@ end
 mod:command("reset_sub_quests", "", function()
     for quest,_ in pairs(mod.main_quest) do
         mod.main_quest[quest] = false
+        mod:set(quest.."_letter_read", false)
     end
     mod:set("sub_quest_01", 0)
     mod:set("sub_quest_02", 0)
