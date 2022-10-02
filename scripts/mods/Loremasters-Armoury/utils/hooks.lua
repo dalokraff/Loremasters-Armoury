@@ -970,93 +970,6 @@ end)
 
 
 --swaps the background in the UI when intereacting with the listed units
-local letterUnits = {
-    "units/decorations/LA_message_board_mesh",
-    "units/decorations/LA_loremaster_message_large",
-    "units/decorations/LA_loremaster_message_medium",
-    "units/decorations/LA_loremaster_message_small",
-    "units/decorations/letters/LA_quest_message_stage01",
-    "units/decorations/letters/LA_quest_message_stage02",
-    "units/decorations/letters/LA_quest_message_stage03",
-    "units/decorations/letters/LA_quest_message_stage04",
-    "units/decorations/letters/LA_quest_message_stage05",
-    "units/decorations/letters/LA_quest_message_stage06",
-    "units/decorations/letters/LA_quest_message_stage07",
-    "units/decorations/letters/LA_quest_message_stage08",
-    "units/decorations/letters/LA_quest_message_stage09",
-    "units/decorations/letters/LA_quest_message_stage10",
-}
-for k,v in pairs(letterUnits) do 
-    letterUnits[v] = v
-end
-
-
-
-mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
-    
-    -- mod:echo(mod.parameters)
-    -- for k,v in pairs(mod.parameters) do 
-    --     mod:echo(tostring(k).."     "..tostring(v))
-    -- end
-
-    if mod.parameters then
-        local state_params = mod.parameters.state_params
-        if state_params then
-            local interactable_unit = state_params.interactable_unit
-            if interactable_unit then
-    
-	
-                -- mod:echo(interactable_unit)
-                local unit_name = Unit.get_data(interactable_unit, "unit_name")
-                if mod.LA_new_interactors[unit_name] then
-                    event = "Loremaster_letter_open_sound"
-                elseif letterUnits[unit_name] then
-                    event = "Loremaster_letter_open_sound"
-                end
-                -- mod:echo(unit_name)
-            end
-        end
-    end
-    return func(self, event)
-end)
-
-
-
-
-
--- local original_pass = {
---     style_id = "background",
---     pass_type = "rect",
--- }
-mod.og_pass = nil
-mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
-    local unit = self._interactable_unit    
-   
-    -- for k,v in pairs(self._widgets[4].element.passes[1]) do 
-    --     mod:echo(tostring(k).."     "..tostring(v))
-    -- end
-    if Unit.has_data(unit, "unit_name") then
-        local unit_name = Unit.get_data(unit, "unit_name")
-        mod.og_pass = table.clone(self._widgets[4].element, false)
-        if letterUnits[unit_name] then
-            self._widgets[4].content.texture_id = "paper_back"
-            self._widgets[4].element.passes[1].pass_type = "texture"
-            self._widgets[4].element.passes[1].texture_id = "texture_id"
-            self._widgets[4].element.passes[1].style_id = "texture_id"
-        else
-            self._widgets[4].element.passes = table.clone(mod.og_pass, false)
-        end
-    else 
-        if not mod.og_pass and self._widgets[4].element then
-            mod.og_pass = table.clone(self._widgets[4].element, false)
-        end
-        self._widgets[4].element.passes = table.clone(mod.og_pass, false)
-    end 
-    return func(self, input_service, dt)
-end)
-
-
-
 
 -- ================================================================================================================================
 -- ================================================================================================================================
@@ -1082,17 +995,10 @@ mod:hook(ScriptUnit, "extension", function (func, unit, system)
     return func(unit, system)
 end)
 
-local letterUnits = {
-    "units/decorations/LA_message_board_mesh",
-}
-for k,v in pairs(letterUnits) do 
-    letterUnits[v] = v
-end
-
 mod.list_order = {
     "test_painting",
     "test_quest_select",
-    "main_01,"
+    "main_01",
 }
 
 mod.painting = {
@@ -1145,6 +1051,95 @@ mod.painting = {
     },
 }
 
+
+local letterUnits = {
+    "units/decorations/LA_message_board_mesh",
+    "units/decorations/LA_loremaster_message_large",
+    "units/decorations/LA_loremaster_message_medium",
+    "units/decorations/LA_loremaster_message_small",
+    "units/decorations/letters/LA_quest_message_stage01",
+    "units/decorations/letters/LA_quest_message_stage02",
+    "units/decorations/letters/LA_quest_message_stage03",
+    "units/decorations/letters/LA_quest_message_stage04",
+    "units/decorations/letters/LA_quest_message_stage05",
+    "units/decorations/letters/LA_quest_message_stage06",
+    "units/decorations/letters/LA_quest_message_stage07",
+    "units/decorations/letters/LA_quest_message_stage08",
+    "units/decorations/letters/LA_quest_message_stage09",
+    "units/decorations/letters/LA_quest_message_stage10",
+}
+for k,v in pairs(letterUnits) do 
+    letterUnits[v] = v
+end
+
+
+
+mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
+    
+    -- mod:echo(mod.parameters)
+    -- for k,v in pairs(mod.parameters) do 
+    --     mod:echo(tostring(k).."     "..tostring(v))
+    -- end
+
+    if mod.parameters then
+        local state_params = mod.parameters.state_params
+        if state_params then
+            local interactable_unit = state_params.interactable_unit
+            if interactable_unit then
+    
+	
+                -- mod:echo(interactable_unit)
+                local unit_name = Unit.get_data(interactable_unit, "unit_name")
+                if mod.LA_new_interactors[unit_name] then
+                    event = "Loremaster_letter_open_sound"
+                elseif letterUnits[unit_name] then
+                    event = "Loremaster_letter_open_sound"
+                end
+                -- mod:echo(unit_name)
+            end
+        end
+    end
+    return func(self, event)
+end)
+
+
+mod.og_pass = nil
+mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
+    local unit = self._interactable_unit    
+   
+    -- for k,v in pairs(self._widgets[4].element.passes[1]) do 
+    --     mod:echo(tostring(k).."     "..tostring(v))
+    -- end
+    if Unit.has_data(unit, "unit_name") then
+        local unit_name = Unit.get_data(unit, "unit_name")
+        mod.og_pass = table.clone(self._widgets[4].element, false)
+        if letterUnits[unit_name] then
+            self._widgets[4].content.texture_id = "paper_back"
+            self._widgets[4].element.passes[1].pass_type = "texture"
+            self._widgets[4].element.passes[1].texture_id = "texture_id"
+            self._widgets[4].element.passes[1].style_id = "texture_id"
+        else
+            self._widgets[4].element.passes = table.clone(mod.og_pass, false)
+        end
+    else 
+        if not mod.og_pass and self._widgets[4].element then
+            mod.og_pass = table.clone(self._widgets[4].element, false)
+        end
+        self._widgets[4].element.passes = table.clone(mod.og_pass, false)
+    end 
+
+    -- if unit then
+    --     local unit_name = Unit.get_data(unit, "unit_name")
+    --     if unit_name then
+    --         if letterUnits[unit_name] then
+    --             local equipped_decoration = mod.letter_board:get_selected_decoration()
+    --             mod.letter_board:change_active_quest(equipped_decoration)
+    --         end
+    --     end
+    -- end
+
+    return func(self, input_service, dt)
+end)
 
 mod.parameters = nil
 mod:hook(HeroViewStateKeepDecorations, "_create_ui_elements", function(func, self, params)
@@ -1216,11 +1211,6 @@ mod:hook(HeroViewStateKeepDecorations, "on_enter", function (func, self, params)
                     self._ordered_table = TrophyOrder
                     self._empty_decoration_name = "hub_trophy_empty"
                 end
-
-                for k,v in pairs(self._main_table) do 
-                    mod:echo(tostring(k).."      "..tostring(v))
-                end
-
 
 
                 self._default_decorations = {}

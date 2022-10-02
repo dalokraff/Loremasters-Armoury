@@ -14,7 +14,7 @@ QuestLetters.test_painting = {
     sub_quest_09 = "units/decorations/LA_loremaster_message_large",
     sub_quest_10 = "units/decorations/LA_loremaster_message_small",
 }
-QuestLetters.main_01 = {
+QuestLetters.test_quest_select = {
     sub_quest_01 = "units/decorations/letters/LA_quest_message_stage01",
     sub_quest_02 = "units/decorations/letters/LA_quest_message_stage02",
     sub_quest_03 = "units/decorations/letters/LA_quest_message_stage03",
@@ -26,6 +26,15 @@ QuestLetters.main_01 = {
     sub_quest_09 = "units/decorations/letters/LA_quest_message_stage09",
     sub_quest_10 = "units/decorations/letters/LA_quest_message_stage10",
 }
+QuestLetters.main_01 = {
+    sub_quest_01 = "units/decorations/letters/LA_quest_message_stage01",
+    sub_quest_05 = "units/decorations/letters/LA_quest_message_stage05",
+    sub_quest_06 = "units/decorations/letters/LA_quest_message_stage06",
+    sub_quest_07 = "units/decorations/letters/LA_quest_message_stage07",
+    sub_quest_08 = "units/decorations/letters/LA_quest_message_stage08",
+    sub_quest_09 = "units/decorations/letters/LA_quest_message_stage09",
+}
+
 
 
 for quest, subs in pairs(QuestLetters) do 

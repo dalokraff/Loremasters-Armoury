@@ -89,8 +89,10 @@ function mod.outliner()
                         local unit_name = Unit.get_data(closest_unit_hit, "unit_name")
                         if mod.LA_outline_units[unit_name] then
                             local do_outline = true
-                            outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
-                            mod.current_outlined_unit = closest_unit_hit
+                            if Unit.alive(closest_unit_hit) then
+                                outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
+                                mod.current_outlined_unit = closest_unit_hit
+                            end
                         else
                             if mod.current_outlined_unit then
                                 local do_outline = false
@@ -109,8 +111,10 @@ function mod.outliner()
                     end
                 else
                     local do_outline = true
-                    outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
-                    mod.current_outlined_unit = closest_unit_hit
+                    if Unit.alive(closest_unit_hit) then
+                        outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
+                        mod.current_outlined_unit = closest_unit_hit
+                    end
                 end
             end
         end

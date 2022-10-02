@@ -13,9 +13,10 @@ LetterBoard.init = function (self, interactable_board_unit_name, visible_board_u
 
     self.board_path_name = board_unit_path
     self.pos = Vector3Box(board_pos)
-    self.rot = board_rot
+    self.rot = QuaternionBox(board_rot)
     self.world = world
     self.active_quest = "main_01"
+    
 
     self.render_menu = false
     self.params = nil
@@ -24,11 +25,12 @@ LetterBoard.init = function (self, interactable_board_unit_name, visible_board_u
     local extension_init_data = {}
     local board_unit_interactable = Managers.state.unit_spawner:spawn_network_unit(interactable_board_unit_name, "interaction_unit", extension_init_data, board_pos, board_rot)
     local board_unit_visible = Managers.state.unit_spawner:spawn_local_unit(visible_board_unit_name, board_pos, board_rot)
+    Unit.set_data(board_unit_interactable, "current_quest", self.active_quest)
 
     self.interactable_unit = board_unit_interactable
     self.visible_unit = board_unit_visible
     
-    self:spawn_letters()
+    self.active_letters = self:spawn_letters()
     self:add_lantern_light()
 
 end
@@ -40,39 +42,63 @@ end
 
 LetterBoard.spawn_letters = function(self)
     local position = self.pos:unbox()
-    local rotation = self.rot
+    local rotation = self.rot:unbox()
 
-    local active_quest = "main_01"
+    local active_quest = self.active_quest
     local active_letters = {}
 
-    for quest,letter_unit_name in pairs(QuestLetters[active_quest]) do
-        if mod:get(quest) then
-            local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter_unit_name, "interaction_unit", extension_init_data, position, rotation)
+    if QuestLetters[active_quest] then
+        for quest,letter_unit_name in pairs(QuestLetters[active_quest]) do
+            if mod:get(quest) then
+                local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter_unit_name, "interaction_unit", extension_init_data, position, rotation)
 
-            self:pin_to_board(quest, interactable_letter_unit)
+                self:pin_to_board(quest, interactable_letter_unit)
 
-            local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter_unit_name.."_visable", position, rotation)
+                local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter_unit_name.."_visable", position, rotation)
 
-            local root2root = {
-                {
-                    target = 0,
-                    source = 0,
-                },
-            }
+                local root2root = {
+                    {
+                        target = 0,
+                        source = 0,
+                    },
+                }
 
-            AttachmentUtils.link(self.world, interactable_letter_unit, visable_letter_unit, root2root)
+                AttachmentUtils.link(self.world, interactable_letter_unit, visable_letter_unit, root2root)
 
-            active_letters[quest] = {
-                interactable = interactable_letter_unit,
-                visable = visable_letter_unit,
-            }
+                active_letters[quest] = {
+                    interactable = interactable_letter_unit,
+                    visable = visable_letter_unit,
+                }
 
+            end
         end
     end
 
     return active_letters
 end
 
+LetterBoard.destroy_letters = function(self, active_letters)
+    local world = self.world
+    for quest, units in pairs(active_letters) do
+        
+
+
+        
+      
+        World.unlink_unit(world, units["interactable"])
+        World.unlink_unit(world, units["visable"])
+
+        local go_id_interactable = Managers.state.unit_storage:go_id(units["interactable"])
+        local go_id_visable = Managers.state.unit_storage:go_id(units["visable"])
+        Managers.state.unit_spawner:mark_for_deletion(units["interactable"])
+        Managers.state.unit_spawner:mark_for_deletion(units["visable"])
+        units["interactable"] = nil
+        units["visable"] = nil
+        active_letters[quest] = nil
+        
+    end
+
+end
 
 LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
     local source_node = string.gsub(quest, "sub_quest", "")
@@ -91,9 +117,18 @@ LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
     return
 end
 
+LetterBoard.change_active_quest = function(self, new_quest)
+    local active_letters = self.active_letters
+    if self.active_quest ~= new_quest then
+        self:destroy_letters(active_letters)
+        self.active_quest = new_quest
+        self.active_letters = self:spawn_letters()
+    end
+end
+
 LetterBoard.add_lantern_light = function(self)
     local position = self.pos:unbox()
-    local rotation = self.rot
+    local rotation = self.rot:unbox()
 
     local flame_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/lanterns/lantern_01/prop_lantern_01", position, rotation)
 

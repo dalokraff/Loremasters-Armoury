@@ -73,11 +73,12 @@ function mod.update(dt)
     
     mod.outliner()
 
-    -- if mod.letter_board then
-    --     if mod.letter_board:menu_up() then
-    --         mod.letter_board:draw_menu(dt)
-    --     end
-    -- end
+    if mod.letter_board then
+        if mod.letter_board:unit() then
+            local equipped_decoration = Unit.get_data(mod.letter_board:unit(), "current_quest")
+            mod.letter_board:change_active_quest(equipped_decoration)
+        end
+    end
 
 end
 
