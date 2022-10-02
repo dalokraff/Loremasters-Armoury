@@ -24,7 +24,8 @@ data = {
     norm_slot = "texture_map_861dbfdc"
     MAB_slot = "texture_map_b788717c"
     
-	// decoration_settings_key = "keep_message_board"
+	decoration_settings_key = "test_painting"
+	current_quest = "test_painting"
 
     interaction_data = {
             hud_description = "LA_message_board"
@@ -40,6 +41,7 @@ data = {
             hud_text_line_2 =  "LA_message_board_desc"
             hud_text_line_3 =  "LA_message_board_footer"
 			// is_client_painting = true
+			view_only = false
         }
 
 }

@@ -1,0 +1,51 @@
+data = {
+    mat_slots = {
+        slot1 = "LA_message_board_papers_texture"
+    }
+
+    mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
+
+    colors = {
+        slot1 = "textures/decorations/Papers/LA_message_board_papers_diffuse"
+    }
+    normals = {
+        slot1 = "textures/decorations/Papers/LA_message_board_papers_normal"
+    }
+    MABs = {
+        slot1 = "textures/decorations/Papers/LA_message_board_papers_combined"
+    }
+
+    color_slot = "texture_map_64cc5eb8" 
+    norm_slot = "texture_map_861dbfdc"
+    MAB_slot = "texture_map_b788717c"
+    
+
+    interaction_data = {
+            hud_description = "LA_loremaster_message_large"
+            hud_interaction_action = "LA_read_action"
+            camera_interaction_name = "LA_loremaster_message_large"
+            interaction_length = 0
+            interaction_type = "decoration"
+            interactor_animation = "interaction_start"
+            interactor_animation_time_variable = "revive_time"
+            only_once = false
+            hud_text_line_1 = "LA_loremaster_message_large"
+            hud_text_line_2 =  "LA_loremaster_message_large_desc"
+            hud_text_line_3 =  "LA_loremaster_message_large_footer"
+            
+        }
+
+}
+
+renderables = {
+    LA_quest_message_stage08 = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = false
+		surface_queries = false
+		viewport_visible = false
+	},
+}

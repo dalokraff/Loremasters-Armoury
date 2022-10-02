@@ -18,6 +18,8 @@ banks = {
 	}
 	Loremasters_Armoury = {
 		events = [
+			"Loremaster_book_pickup_sound"
+			"Loremaster_letter_open_sound"
 			"Loremaster_shipment_pickup_sound"
 		]
 	}
@@ -96,6 +98,20 @@ events = {
 		duration_min = 2
 		duration_type = "OneShot"
 		positioning = "3D"
+	}
+	Loremaster_book_pickup_sound = {
+		attenuation_max = 0
+		duration_max = 1.908792
+		duration_min = 1.908792
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	Loremaster_letter_open_sound = {
+		attenuation_max = 0
+		duration_max = 1.597188
+		duration_min = 1.597188
+		duration_type = "OneShot"
+		positioning = "2D"
 	}
 	Loremaster_shipment_pickup_sound = {
 		attenuation_max = 20

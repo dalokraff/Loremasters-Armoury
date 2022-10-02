@@ -1,0 +1,17 @@
+actors = [
+	{
+		enabled = true
+		mass = 1
+		name = "LA_quest_message_stage08"
+		node = "LA_quest_message_stage08"
+		shapes = [
+			{
+				material = "default"
+				shape = "LA_quest_message_stage08"
+				template = "human_collision"
+				type = "convex_computed"
+			}
+		]
+		template = "keyframed_no_collision"
+	},
+]

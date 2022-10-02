@@ -405,7 +405,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 -- mod:echo(mod.attached_units[scrap_go_id].target)
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
-                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_book_pickup_sound")
 
                 return 
             end
@@ -966,13 +966,7 @@ end)
 
 
 --used to replace the trophy UI sound for LA trophies and letters
-mod.parameters = nil
-mod:hook(HeroViewStateKeepDecorations, "_create_ui_elements", function(func, self, params)
-    
-    mod.parameters = params
 
-    return func(self, params)
-end)
 
 mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
     
@@ -991,7 +985,7 @@ mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event
                 -- mod:echo(interactable_unit)
                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
                 if mod.LA_new_interactors[unit_name] then
-                    event = "Loremaster_shipment_pickup_sound"
+                    event = "Loremaster_letter_open_sound"
                 end
                 -- mod:echo(unit_name)
             end
@@ -1001,14 +995,22 @@ mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event
 end)
 
 
-
-
 --swaps the background in the UI when intereacting with the listed units
 local letterUnits = {
     "units/decorations/LA_message_board_mesh",
     "units/decorations/LA_loremaster_message_large",
     "units/decorations/LA_loremaster_message_medium",
     "units/decorations/LA_loremaster_message_small",
+    "units/decorations/letters/LA_quest_message_stage01",
+    "units/decorations/letters/LA_quest_message_stage02",
+    "units/decorations/letters/LA_quest_message_stage03",
+    "units/decorations/letters/LA_quest_message_stage04",
+    "units/decorations/letters/LA_quest_message_stage05",
+    "units/decorations/letters/LA_quest_message_stage06",
+    "units/decorations/letters/LA_quest_message_stage07",
+    "units/decorations/letters/LA_quest_message_stage08",
+    "units/decorations/letters/LA_quest_message_stage09",
+    "units/decorations/letters/LA_quest_message_stage10",
 }
 for k,v in pairs(letterUnits) do 
     letterUnits[v] = v
@@ -1047,6 +1049,377 @@ end)
 
 
 
+
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+
+
+mod:hook(ScriptUnit, "extension", function (func, unit, system)
+    if system == "keep_decoration_system" then
+        if mod.letter_board then
+            if mod.letter_board:unit() == unit then
+                return mod.letter_board
+            end
+        end
+    end
+    return func(unit, system)
+end)
+
+local letterUnits = {
+    "units/decorations/LA_message_board_mesh",
+}
+for k,v in pairs(letterUnits) do 
+    letterUnits[v] = v
+end
+
+mod.list_order = {
+    "test_painting",
+    "test_quest_select",
+    "main_01,"
+}
+
+mod.painting = {
+    test_painting = {
+        -- sound_event = "painting_warriors_of_chaos_page_17_description",
+        sound_event = "Loremaster_letter_open_sound",
+        rarity = "common",
+        display_name = "test_quest",
+        icon = "icon_painting_2",
+        frame = "painted",
+        description = "test_quest_desc",
+        artist = "signature",
+        orientation = "vertical",
+        frames = {
+            gold = true,
+            paint = true,
+            wood = true
+        }
+    },
+    test_quest_select = {
+        -- sound_event = "painting_warriors_of_chaos_page_46_description",
+        sound_event = "Loremaster_letter_open_sound",
+        rarity = "common",
+        display_name = "test_quest_select",
+        icon = "icon_painting_2",
+        frame = "wood",
+        description = "test_quest_select_desc",
+        artist = "test_quest_select_signature",
+        orientation = "vertical",
+        frames = {
+            gold = true,
+            paint = true,
+            wood = true
+        }
+    },
+    main_01 = {
+        sound_event = "Loremaster_letter_open_sound",
+        rarity = "common",
+        display_name = "main_01",
+        icon = "icon_painting_2",
+        frame = "wood",
+        description = "main_01_desc",
+        artist = "main_01_signature",
+        orientation = "vertical",
+        frames = {
+            gold = true,
+            paint = true,
+            wood = true
+        }
+    },
+}
+
+
+mod.parameters = nil
+mod:hook(HeroViewStateKeepDecorations, "_create_ui_elements", function(func, self, params)
+    
+    mod.parameters = params
+    
+
+    return func(self, params)
+end)
+
+
+mod:hook(HeroViewStateKeepDecorations, "on_enter", function (func, self, params)
+    local state_params = params.state_params
+    local unit = state_params.interactable_unit
+    
+    if unit then
+        local unit_name = Unit.get_data(unit, "unit_name")
+        if unit_name then
+            if letterUnits[unit_name] then
+                
+                print("[HeroViewState] Enter Substate HeroViewStateKeepDecorations")
+
+                self.parent = params.parent
+                local ingame_ui_context = params.ingame_ui_context
+                self.ingame_ui_context = ingame_ui_context
+                self._ui_renderer = ingame_ui_context.ui_renderer
+                self._ui_top_renderer = ingame_ui_context.ui_top_renderer
+                self._input_manager = ingame_ui_context.input_manager
+                self._voting_manager = ingame_ui_context.voting_manager
+                self._render_settings = {
+                    snap_pixel_positions = true
+                }
+                self._wwise_world = params.wwise_world
+                self._is_server = ingame_ui_context.is_server
+                local input_service = self:input_service()
+                self._menu_input_description = MenuInputDescriptionUI:new(ingame_ui_context, self._ui_top_renderer, input_service, 3, 100, generic_input_actions)
+
+                self._menu_input_description:set_input_description(nil)
+
+                self._animations = {}
+                self._ui_animations = {}
+                -- self._decoration_system = Managers.state.entity:system("keep_decoration_system")
+                self._decoration_system = mod.letter_board
+                self._keep_decoration_backend_interface = Managers.backend:get_interface("keep_decorations")
+
+                self:_create_ui_elements(params)
+
+                if params.initial_state then
+                    params.initial_state = nil
+
+                    self:_start_transition_animation("on_enter", "on_enter")
+                end
+
+                self:_play_sound("Play_hud_trophy_open")
+
+                local state_params = params.state_params
+                local interactable_unit = state_params.interactable_unit
+                self._interactable_unit = interactable_unit
+                self._type = state_params.type
+
+                if self._type == "painting" then
+                    self._default_table = mod.painting
+                    self._main_table = mod.painting
+                    self._ordered_table = mod.list_order
+                    self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
+                elseif self._type == "trophy" then
+                    self._default_table = DefaultTrophies
+                    self._main_table = Trophies
+                    self._ordered_table = TrophyOrder
+                    self._empty_decoration_name = "hub_trophy_empty"
+                end
+
+                for k,v in pairs(self._main_table) do 
+                    mod:echo(tostring(k).."      "..tostring(v))
+                end
+
+
+
+                self._default_decorations = {}
+
+                table.append(self._default_decorations, DefaultPaintings)
+                table.append(self._default_decorations, DefaultTrophies)
+
+                local camera_interaction_name = Unit.get_data(interactable_unit, "interaction_data", "camera_interaction_name")
+                local hide_character = Unit.get_data(interactable_unit, "interaction_data", "hide_character")
+                self._hide_character = hide_character
+                local player = Managers.player:local_player()
+
+                if player then
+                    UISettings.map.camera_time_enter = Unit.get_data(interactable_unit, "interaction_data", "camera_transition_time_in") or 0.5
+                    UISettings.map.camera_time_exit = Unit.get_data(interactable_unit, "interaction_data", "camera_transition_time_out") or 0.5
+                    local params = {
+                        camera_interaction_name = camera_interaction_name
+                    }
+
+                    CharacterStateHelper.change_camera_state(player, "camera_state_interaction", params)
+
+                    local player_unit = player.player_unit
+
+                    if Unit.alive(player_unit) then
+                        local first_person_extension = ScriptUnit.extension(player_unit, "first_person_system")
+
+                        first_person_extension:abort_toggle_visibility_timer()
+                        first_person_extension:abort_first_person_units_visibility_timer()
+
+                        if hide_character then
+                            if not first_person_extension:first_person_mode_active() then
+                                first_person_extension:set_first_person_mode(true)
+                            end
+
+                            if first_person_extension:first_person_units_visible() then
+                                first_person_extension:toggle_first_person_units_visibility("third_person_mode")
+                            end
+                        elseif first_person_extension:first_person_mode_active() then
+                            first_person_extension:set_first_person_mode(false)
+                        end
+                    end
+                end
+
+                local decoration_settings_key = Unit.get_data(interactable_unit, "decoration_settings_key")
+
+                if decoration_settings_key then
+                    local keep_decoration_extension = ScriptUnit.extension(interactable_unit, "keep_decoration_system")
+                    local selected_decoration = keep_decoration_extension:get_selected_decoration()
+                    self._keep_decoration_extension = keep_decoration_extension
+                    local view_only = Unit.get_data(interactable_unit, "interaction_data", "view_only") or not self._is_server
+
+                    if view_only then
+                        self:_set_info_by_decoration_key(selected_decoration, false)
+                    else
+                        self._customizable_decoration = true
+
+                        self:_setup_decorations_list()
+
+                        local start_index = 1
+                        local widgets = self._list_widgets
+
+                        for i = 1, #widgets, 1 do
+                            if widgets[i].content.key == selected_decoration then
+                                start_index = i
+
+                                break
+                            end
+                        end
+
+                        self:_on_list_index_selected(start_index)
+
+                        local start_scroll_percentage = self:_get_scrollbar_percentage_by_index(start_index)
+
+                        self._scrollbar_logic:set_scroll_percentage(start_scroll_percentage)
+                    end
+                else
+                    self:_initialize_simple_decoration_preview()
+                end
+
+                if not self._customizable_decoration then
+                    self:_disable_list_widgets()
+                end
+
+
+
+
+
+
+                return
+
+            end
+        end
+    end
+
+    return func(self, params)
+end)
+
+
+
+local LIST_SPACING = 4
+local definitions = local_require("scripts/ui/views/hero_view/states/definitions/hero_view_state_keep_decorations_definitions")
+local widget_definitions = definitions.widgets_definitions
+local scenegraph_definition = definitions.scenegraph_definition
+local generic_input_actions = definitions.generic_input_actions
+local animation_definitions = definitions.animation_definitions
+local entry_widget_definition = definitions.entry_widget_definition
+local dummy_entry_widget_definition = definitions.dummy_entry_widget_definition
+local input_actions = definitions.input_actions
+mod:hook(HeroViewStateKeepDecorations, "_setup_decorations_list", function (func, self)
+    local unit = self._interactable_unit    
+    if unit then
+        local unit_name = Unit.get_data(unit, "unit_name")
+        if unit_name then
+            if letterUnits[unit_name] then
+                -- local backend_interface = self._keep_decoration_backend_interface
+                -- local unlocked_decorations = (backend_interface and backend_interface:get_unlocked_keep_decorations()) or {}
+                local widgets = {}
+                local index = 0
+                -- self._ordered_table
+                for _, key in ipairs(mod.list_order) do
+                    if true then
+                        local settings = self._main_table[key]
+                        -- local settings = mod.painting[key]
+                        if settings then
+                            -- local unlocked = table.contains(unlocked_decorations, key)
+                            local unlocked = true
+                            local display_name = Localize(settings.display_name)
+                            local new = ItemHelper.is_new_keep_decoration_id(key)
+                            if unlocked then
+                                local widget = UIWidget.init(entry_widget_definition)
+                                index = index + 1
+                                widgets[index] = widget
+                                local content = widget.content
+                                local style = widget.style
+                                local title = display_name
+                                local title_style = style.title
+                                local max_text_width = title_style.size[1] - 10
+                                content.title = UIRenderer.crop_text_width(self._ui_renderer, title, max_text_width, title_style)
+                                content.key = key
+                                content.locked = false
+                                content.new = new
+                                content.in_use = self._decoration_system:is_decoration_in_use(key)
+                                -- content.in_use = false
+                            end
+                        end
+                    end
+                end
+                table.sort(widgets, function (a, b)
+                    local a_content = a.content
+                    local b_content = b.content
+
+                    if a_content.new ~= b_content.new then
+                        return a_content.new
+                    end
+
+                    return Localize(a_content.title) < Localize(b_content.title)
+                end)
+                self._list_widgets = widgets
+                self._dummy_list_widgets = {}
+                self:_align_list_widgets()
+                local content_length = self._total_list_height
+                local list_scrollbar_size = scenegraph_definition.list_scrollbar.size
+                local scrollbar_length = list_scrollbar_size[2]
+                local dummy_list_widgets = {}
+                if content_length < scrollbar_length then
+                    local dummy_count = 0
+                    local dummy_height = LIST_SPACING
+
+                    while scrollbar_length > content_length + dummy_height do
+                        dummy_count = dummy_count + 1
+                        local widget = UIWidget.init(dummy_entry_widget_definition)
+
+                        table.insert(dummy_list_widgets, widget)
+
+                        local content = widget.content
+                        local size = content.size
+                        local height = size[2]
+                        dummy_height = dummy_height + height + LIST_SPACING
+                    end
+                end
+                self._dummy_list_widgets = dummy_list_widgets
+                self:_align_list_widgets()
+                self:_initialize_scrollbar()
+                self:_update_equipped_widget()
+
+                return
+            end
+        end
+    end 
+    return func(self)
+end)
+
+
+
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+-- ================================================================================================================================
+
+
 --temp fix for clients errors when using mod
 mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
     if (not self ) then
@@ -1055,103 +1428,3 @@ mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
     end
     return func(self, type, fields)
 end)
-
-
--- mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
---     local unit = self._interactable_unit
---     -- mod.original_pass = self._widgets[4].element.passes[1]
-    
---     for k,v in pairs(self._widgets[4].element.passes[1]) do 
---         mod:echo(tostring(k).."     "..tostring(v))
-
---     end
---     mod:echo("=============================")
---     return func(self, input_service, dt)
--- end)
-
-
-
-
-
--- mod:hook(HeroViewStateAchievements,"_create_entries", function ( func, self, entries, entry_type, entry_subtype)
--- 	local quest_manager = self._quest_manager
--- 	local achievement_manager = self._achievement_manager
--- 	self._claimable_challenge_widgets = {}
--- 	self._has_claimable_filtered_challenges = nil
--- 	local widget_definition, manager = nil
--- 	local can_close = false
-
--- 	if entry_type == "quest" then
--- 		widget_definition = quest_entry_definition
--- 		can_close = entry_subtype == "daily" and quest_manager:can_refresh_daily_quest()
--- 		manager = quest_manager
--- 	else
--- 		widget_definition = achievement_entry_definition
--- 		manager = achievement_manager
--- 	end
-
---     local needle = self._search_query
--- 	local query = self._search_widgets_by_name.filters.content.query
-
--- 	needle = SearchUtils.extract_queries(needle, UISettings.achievement_search_definitions, query)
--- 	local temp_content = {}
--- 	local claimable_achievement_widgets = {}
--- 	local unclaimable_achievement_widgets = {}
-
---     for i = 1, #entries, 1 do
--- 		local entry_id = entries[i]
--- 		local entry_data = manager:get_data_by_id(entry_id)
-
---         local claimed = entry_data.claimed
---         local quest_id = entry_data.id
---         if mod:get(quest_id) then 
---             entry_data.claimed = true
---         end
-
-
---         -- for k,v in pairs(entry_data) do 
---         --     mod:echo(tostring(k).."     "..tostring(v))
---         -- end
---     end
-
---     return func(self, entries, entry_type, entry_subtype)
-
--- end)
-
--- mod:hook(BackendInterfaceLootPlayfab, "achievement_rewards_claimed", function (func, self, achievement_id)
---     local lamod = get_mod("Loremasters-Armoury")
---     if lamod:get(achievement_id) then
---         return mod:get(achievement_id)
---     end
-
---     return func(self, achievement_id)
--- end)
-
--- mod:hook(HeroViewStateAchievements, "draw", function (func, self, input_service, dt)
-
---     for _, widget in ipairs(self._widgets) do
-		
-
-		
-
---         -- mod:echo(widget)
---         for k,v in pairs(widget) do 
---             mod:echo(tostring(k).."     "..tostring(v))
---             if type(v) == "table" then
---                 for i,j in pairs(v) do 
---                     mod:echo(tostring(i).."     "..tostring(j))
---                 end
---             end
---         end
-		
--- 	end
-
-
---     return func(self, input_service, dt)
--- end)
-
-
--- mod:hook_safe(UIRenderer,"draw_texture", function (self, material, position, size, color, masked, saturated, retained_id, point_sample)
---     mod:echo(material)
--- end)
-

@@ -31,7 +31,7 @@ mod.current_skin = {}
 --on mod update:
 --the level_queue and previe_queue are checked to see if the respective worlds have any units that need to be retextured
 --the SKIN_CHANGED table is updated with info from the vmf menu about which skins are currently being used by which weapons
-function mod.update()
+function mod.update(dt)
     local flush_preview = false
     local flush_level = false
 
@@ -72,6 +72,12 @@ function mod.update()
     end
     
     mod.outliner()
+
+    -- if mod.letter_board then
+    --     if mod.letter_board:menu_up() then
+    --         mod.letter_board:draw_menu(dt)
+    --     end
+    -- end
 
 end
 
@@ -541,7 +547,9 @@ mod.on_game_state_changed = function(status, state_name)
             local world = Managers.world:world("level_world")
             local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
             local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
-            LetterBoard:init(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
+            local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
+            mod.letter_board = letter_board
+
 
 
             if mod:get("sub_quest_05") then
@@ -606,8 +614,58 @@ end
 
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0)
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
 -- local rotation = Unit.local_rotation(player_unit, 0)
+
+-- local world = Managers.world:world("level_world")
+-- local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
+-- local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
+-- local board = Managers.state.unit_spawner:spawn_local_unit("units/decorations/letters/LA_quest_message_stage01_visable", position, rotation)
+
+--             local active_quest = "main_01"
+--             local active_letters = {}
+        
+--             for quest,letter_unit_name in pairs(QuestLetters[active_quest]) do
+--                 if true then
+--                     local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter_unit_name, "interaction_unit", extension_init_data, position, rotation)
+
+        
+--                     local source_node = string.gsub(quest, "sub_quest", "")
+--                     local visable_unit = board 
+
+--                     local nodes = {
+--                         {
+--                             target = 0,
+--                             source = "LA_message_board_nail"..source_node,
+--                         },
+--                     }
+                    
+--                     AttachmentUtils.link(world, visable_unit, interactable_letter_unit, nodes)
+
+
+--                     local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter_unit_name.."_visable", position, rotation)
+        
+--                     local root2root = {
+--                         {
+--                             target = 0,
+--                             source = 0,
+--                         },
+--                     }
+        
+--                     AttachmentUtils.link(world, interactable_letter_unit, visable_letter_unit, root2root)
+        
+--                     active_letters[quest] = {
+--                         interactable = interactable_letter_unit,
+--                         visable = visable_letter_unit,
+--                     }
+
+
+--                     -- Unit.set_local_position(visable_letter_unit, 0, Vector3(0,0,1))
+        
+--                 end
+--             end
+
+-- local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/letters/LA_quest_message_stage01".."_visable", position, rotation)
 -- mod:echo(position)
 -- mod:echo(rotation)
 
