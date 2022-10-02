@@ -69,6 +69,7 @@ LetterBoard.spawn_letters = function(self)
                     interactable = interactable_letter_unit,
                     visable = visable_letter_unit,
                 }
+                Unit.set_data(interactable_letter_unit, "quest", quest)
 
             end
         end
@@ -173,32 +174,15 @@ LetterBoard.input_service = function (self)
     return nil
 end
 
-LetterBoard.draw_menu = function(self, dt)
-
-    if self.render_menu then
-
-        
+LetterBoard.mark_unread_letters = function(self)
+    local mark_board = false
+    for quest, units in pairs(self.active_letters) do
+        if not mod:get(quest.."_letter_read") then
+            mark_board = true
+        end
+    end
+    if mark_board then 
         mod.render_marker(self.pos)
-
-        -- local ingame_ui_context = self.params.ingame_ui_context        
-
-        -- local ui_renderer = ingame_ui_context.ui_renderer
-        -- local ui_top_renderer = self._ui_top_renderer
-        -- local ui_scenegraph = UISceneGraph.init_scenegraph(Scenegraph_Definition)
-        -- -- local input_manager = self._input_manager
-        -- local render_settings = self._render_settings
-        -- -- local gamepad_active = input_manager:is_device_active("gamepad")
-
-        -- local input_service = self:input_service()
-
-        -- local render_settings = {
-        --     snap_pixel_positions = true
-        -- }
-
-
-
-        -- UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
-
     end
     
 end

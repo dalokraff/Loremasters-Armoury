@@ -77,6 +77,7 @@ function mod.update(dt)
         if Unit.alive(mod.letter_board:unit()) then
             local equipped_decoration = Unit.get_data(mod.letter_board:unit(), "current_quest")
             mod.letter_board:change_active_quest(equipped_decoration)
+            mod.letter_board:mark_unread_letters()
         end
     end
 

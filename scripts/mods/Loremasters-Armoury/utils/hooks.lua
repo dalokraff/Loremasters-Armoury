@@ -483,6 +483,10 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
                 end
             end
         end
+        if Unit.has_data(interactable_unit, "quest") then
+            local quest = Unit.get_data(interactable_unit, "quest")
+            mod:set(quest.."_letter_read", true)
+        end
 	end
     return func(world, interactor_unit, interactable_unit, data, config, t, result)
 end)
