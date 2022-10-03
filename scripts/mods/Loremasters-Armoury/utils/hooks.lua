@@ -1008,7 +1008,7 @@ mod.list_order = {
 mod.painting = {
     test_painting = {
         -- sound_event = "painting_warriors_of_chaos_page_17_description",
-        sound_event = "Loremaster_letter_open_sound",
+        sound_event = "Loremaster_letter_open_sound__1_",
         rarity = "common",
         display_name = "test_quest",
         icon = "icon_painting_2",
@@ -1024,7 +1024,7 @@ mod.painting = {
     },
     test_quest_select = {
         -- sound_event = "painting_warriors_of_chaos_page_46_description",
-        sound_event = "Loremaster_letter_open_sound",
+        sound_event = "Loremaster_letter_open_sound__1_",
         rarity = "common",
         display_name = "test_quest_select",
         icon = "icon_painting_2",
@@ -1039,7 +1039,7 @@ mod.painting = {
         }
     },
     main_01 = {
-        sound_event = "Loremaster_letter_open_sound",
+        sound_event = "Loremaster_letter_open_sound__1_",
         rarity = "common",
         display_name = "main_01",
         icon = "icon_painting_2",
@@ -1095,9 +1095,9 @@ mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event
                 -- mod:echo(interactable_unit)
                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
                 if mod.LA_new_interactors[unit_name] then
-                    event = "Loremaster_letter_open_sound"
+                    event = "Loremaster_letter_open_sound__1_"
                 elseif letterUnits[unit_name] then
-                    event = "Loremaster_letter_open_sound"
+                    event = "Loremaster_letter_open_sound__1_"
                 end
                 -- mod:echo(unit_name)
             end

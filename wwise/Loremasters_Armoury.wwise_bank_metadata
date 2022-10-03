@@ -2,5 +2,6 @@
 events = [
 	"Loremaster_book_pickup_sound"
 	"Loremaster_letter_open_sound"
+	"Loremaster_letter_open_sound__1_"
 	"Loremaster_shipment_pickup_sound"
 ]

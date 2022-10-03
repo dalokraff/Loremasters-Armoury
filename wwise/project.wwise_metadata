@@ -20,6 +20,7 @@ banks = {
 		events = [
 			"Loremaster_book_pickup_sound"
 			"Loremaster_letter_open_sound"
+			"Loremaster_letter_open_sound__1_"
 			"Loremaster_shipment_pickup_sound"
 		]
 	}
@@ -110,6 +111,13 @@ events = {
 		attenuation_max = 0
 		duration_max = 1.597188
 		duration_min = 1.597188
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	Loremaster_letter_open_sound__1_ = {
+		attenuation_max = 0
+		duration_max = 1.418208
+		duration_min = 1.418208
 		duration_type = "OneShot"
 		positioning = "2D"
 	}
