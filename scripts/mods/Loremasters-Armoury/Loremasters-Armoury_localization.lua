@@ -198,6 +198,9 @@ local mod_text_ids = {
 	LA_loremaster_message_large = {
 		en = "Large Letter"
 	},
+	letter_recieved = {
+		en = "Recieved a letter from\nthe Loremaster.\nRead it to advance the quest."
+	},
 
 }
 

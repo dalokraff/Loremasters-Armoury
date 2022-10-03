@@ -78,6 +78,15 @@ LetterBoard.spawn_letters = function(self)
     return active_letters
 end
 
+
+LetterBoard.active_letters_list = function(self)
+    if not self.active_letters then
+        return {}
+    end
+
+    return self.active_letters
+end
+
 LetterBoard.destroy_letters = function(self, active_letters)
     local world = self.world
     for quest, units in pairs(active_letters) do
