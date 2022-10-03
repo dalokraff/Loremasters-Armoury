@@ -348,7 +348,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local attach_nodes = {
                     {
                         target = 0,
-                        source = "root_point",
+                        source = 0,
                     },
                 }
                 AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
@@ -390,7 +390,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local attach_nodes = {
                     {
                         target = "LA_MQ01_sub7_chronicle",
-                        source = "root_point",
+                        source = 0,
                     },
                 }
                 AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
