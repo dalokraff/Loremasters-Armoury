@@ -1,18 +1,18 @@
 data = {
     mat_slots = {
-        slot1 = "shield",
+        slot1 = "KOTBS_sword_test_texture",
     }
 
     mat_to_use = "units/weapons/player/wpn_empire_handgun_02_t2/wpn_empire_handgun_02_t2"
 
     colors = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_diffuse"
+        // slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_diffuse"
     }
     normals = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_normal"
+        // slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_normal"
     }
     MABs = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_combined"
+        // slot1 = "textures/Kruber_empire_sword/KOTBS_01/Kruber_empire_sword_kotbs1_combined"
     }
 
     color_slot = "texture_map_c0ba2942" 
@@ -22,16 +22,7 @@ data = {
 }
 
 renderables = {
-    "Kruber_empire_sword_kotbs1_mesh" = {
-		always_keep = false
-		culling = "bounding_volume"
-		generate_uv_unwrap = false
-		occluder = false
-		shadow_caster = false
-		surface_queries = false
-		viewport_visible = true
-	},
-    "Kruber_Empire_shield02_mesh" = {
+   "KOTBS_sword_test" = {
 		always_keep = false
 		culling = "bounding_volume"
 		generate_uv_unwrap = false

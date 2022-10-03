@@ -84,6 +84,17 @@ function mod.update(dt)
 end
 
 
+mod:command("spawn_empire_sword", "", function()
+
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+end)
+
+
 mod.complete = 0
 
 mod:command("increase_count", "", function()
