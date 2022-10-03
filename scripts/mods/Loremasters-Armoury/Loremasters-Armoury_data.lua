@@ -38,6 +38,7 @@ menu.options.widgets = {
 			{text = "dwarf_axe_shield",   value = 7, show_widgets = {}},
 			{text = "dwarf_ham_shield",   value = 8, show_widgets = {}},
 			{text = "elf_bow",   value = 9, show_widgets = {}},
+			{text = "emp_sword",   value = 10, show_widgets = {}},
 		},
 		sub_widgets = {},
 	},
@@ -117,6 +118,19 @@ for _,skin in ipairs(mod.empire_sword_shield) do
 		local choice = {text = Amoury_key,   value = Amoury_key}
 		table.insert(widget.options, choice)
 	end
+
+
+	-- local sword_widget = table.clone(shield_sub_choice, true)
+	-- sword_widget.setting_id = 'lol'..skin
+	-- sword_widget.title= "lol"..skin
+	-- for Amoury_key,skin_name  in pairs(mod.empire_swords) do
+	-- 	local choice = {text = Amoury_key,   value = Amoury_key}
+	-- 	table.insert(sword_widget.options, choice)
+	-- end
+	-- table.insert(widget.sub_widgets, sword_widget)
+
+
+
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[4].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
@@ -194,6 +208,20 @@ for _,skin in ipairs(mod.elf_bow_skins) do
 	end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[9].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+for _,skin in ipairs(mod.empire_sword_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.empire_swords) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[10].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
 end
 

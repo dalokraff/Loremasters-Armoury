@@ -69,6 +69,7 @@ local desc_strings = {
     Kruber_SunsetBonnet_helm_Stirland = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
+    Kruber_KOTBS_empire_sword_01 = "Placeholder description.",
 }
 
 local name_strings = {}
@@ -191,6 +192,10 @@ mod.ker_armors = {
     Ker_Autumn_Weave_Armor = "Herald of Autumn",
 }
 
+mod.empire_swords = {
+    Kruber_KOTBS_empire_sword_01 = "Placeholder name.",
+}
+
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
 for k,v in pairs(mod.bret_shields) do
     name_strings[k] = v
@@ -227,6 +232,10 @@ end
 for k,v in pairs(mod.ker_armors) do
     name_strings[k] = v
 end
+for k,v in pairs(mod.empire_swords) do
+    name_strings[k] = v
+end
+
 --copies the name_strings table to be used in a mod table for the vmf menu localization
 mod.name_strings_id = {}
 for k,v in pairs(name_strings) do
@@ -239,9 +248,15 @@ local name = {}
 -- local skin_table = table.clone(WeaponSkins.skins)
 local skin_table = table.clone(ItemMasterList, true)
 
+local pattern = "_rightHand"
+
+
 for skin, data in pairs(mod.SKIN_CHANGED) do
-    local description = skin_table[skin].description
-    local heiss = skin_table[skin].display_name
+    
+    local new_name = string.gsub(skin, pattern, "")
+    
+    local description = skin_table[new_name].description
+    local heiss = skin_table[new_name].display_name
     
     desc[description] = skin
     name[heiss] = skin

@@ -118,27 +118,30 @@ end
 --this functions ensure that the local network lookup tables get update with repsective package paths,
 --to prevent sending clients/host a bad lookup key can causing them to crash
 local function swap_units_new(Armoury_key, skin)
+    local pattern = "_rightHand"
+    local new_name = string.gsub(skin, pattern, "")
+    
     local hand = mod.SKIN_LIST[Armoury_key].swap_hand
     if hand == "left_hand_unit" or hand == "right_hand_unit" then
-        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[WeaponSkins.skins[new_name][hand]]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[new_name][hand]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
 
-        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]] = NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[skin][hand].."_3p"]] = mod.SKIN_LIST[Armoury_key].new_units[2]
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]] = NetworkLookup.inventory_packages[WeaponSkins.skins[new_name][hand].."_3p"]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[WeaponSkins.skins[new_name][hand].."_3p"]] = mod.SKIN_LIST[Armoury_key].new_units[2]
 
         
-        WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
-        mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
+        WeaponSkins.skins[new_name][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        mod.SKIN_CHANGED[new_name].icon = ItemMasterList[new_name]['inventory_icon']
         if mod.SKIN_LIST[Armoury_key].icons then
-            WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or WeaponSkins.skins[skin]['inventory_icon']
+            WeaponSkins.skins[new_name]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[new_name] or WeaponSkins.skins[new_name]['inventory_icon']
         end
     elseif hand == "hat" then
-        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[new_name]["unit"]]
+        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[new_name]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
        
-        ItemMasterList[skin]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        ItemMasterList[new_name]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
         if mod.SKIN_LIST[Armoury_key].icons then
-            ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or ItemMasterList[skin]['inventory_icon']
+            ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[new_name] or ItemMasterList[new_name]['inventory_icon']
         end
     elseif hand == "armor" then
         -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
@@ -151,6 +154,9 @@ local function swap_units_new(Armoury_key, skin)
 end
 
 local function swap_units_old(Armoury_key, skin)
+    local pattern = "_rightHand"
+    local new_name = string.gsub(skin, pattern, "")
+
     if mod.SKIN_CHANGED[skin].changed_model then
         local hand = mod.SKIN_LIST[Armoury_key].swap_hand
         
@@ -162,7 +168,7 @@ local function swap_units_old(Armoury_key, skin)
             NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit.."_3p"] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]
             NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[2]]] = mod.SKIN_CHANGED[skin].unit.."_3p"
 
-            WeaponSkins.skins[skin][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
+            WeaponSkins.skins[new_name][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
             mod.SKIN_CHANGED[skin].changed_model = false
             WeaponSkins.skins[skin]['inventory_icon'] = mod.SKIN_CHANGED[skin].icon 
         end
@@ -170,11 +176,11 @@ local function swap_units_old(Armoury_key, skin)
         NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
         NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
 
-        ItemMasterList[skin]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
+        ItemMasterList[new_name]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
         if mod.SKIN_LIST[Armoury_key].icons then
-            ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin]
+            ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[new_name]
         end
-        mod.SKIN_CHANGED[skin].changed_model = false
+        mod.SKIN_CHANGED[new_name].changed_model = false
     elseif hand == "armor" then
         -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
         -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
@@ -188,6 +194,8 @@ end
 --function to re-equip weapons if the either weapon skin matches the passed in skin
 local function re_equip_weapons(skin, unit)
     local player = Managers.player:local_player()
+    local pattern = "_rightHand"
+    local new_name = string.gsub(skin, pattern, "")
     if player then 
         local player_unit = player.player_unit    
         local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
@@ -199,7 +207,7 @@ local function re_equip_weapons(skin, unit)
             local item_hat = BackendUtils.get_loadout_item(career_name, "slot_hat")
             local item_skin =  BackendUtils.get_loadout_item(career_name, "slot_skin")
 
-            if item_one.skin == skin or item_two.skin == skin then
+            if item_one.skin == new_name or item_two.skin == new_name then
                 BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
                 inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
                 BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
@@ -218,8 +226,11 @@ end
 --to have it's default unit retextured
 --to have it's default skin be given a new unit
 function mod.re_apply_illusion(Armoury_key, skin, unit)
+    local pattern = "_rightHand"
+    local new_name = string.gsub(skin, pattern, "")
+    
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then
-        if ItemMasterList[skin].item_type == "skin"  then
+        if ItemMasterList[new_name].item_type == "skin"  then
             mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
         end
         swap_units_old(mod.current_skin[skin], skin)

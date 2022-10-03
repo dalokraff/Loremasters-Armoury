@@ -738,3 +738,45 @@ end
 
 -- local rotation = Unit.local_rotation(player_unit, 0)
 -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/khorne/deus_khorne_torch_01", position, rotation)
+end
+
+mod.old_swap_unit = {}
+mod.new_swap_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh"
+mod:command("swap_sword", "", function()
+	
+    for _,skin in pairs(mod.empire_sword_shield) do
+        
+        if WeaponSkins.skins[skin]["right_hand_unit"] == mod.new_swap_unit then
+            WeaponSkins.skins[skin]["right_hand_unit"] = mod.old_swap_unit[skin]
+        else 
+            mod.old_swap_unit[skin] = WeaponSkins.skins[skin]["right_hand_unit"]
+            WeaponSkins.skins[skin]["right_hand_unit"] = mod.new_swap_unit
+        end
+
+        local player = Managers.player:local_player()
+        if player then 
+            local player_unit = player.player_unit    
+            local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
+            local career_extension = ScriptUnit.extension(player_unit, "career_system")
+            if career_extension then
+                local career_name = career_extension:career_name()
+                local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
+                local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
+                local item_hat = BackendUtils.get_loadout_item(career_name, "slot_hat")
+                local item_skin =  BackendUtils.get_loadout_item(career_name, "slot_skin")
+
+                if item_one.skin == skin or item_two.skin == skin then
+                    BackendUtils.set_loadout_item(item_two.backend_id, career_name, "slot_ranged")
+                    inventory_extension:create_equipment_in_slot("slot_ranged", item_two.backend_id)
+                    BackendUtils.set_loadout_item(item_one.backend_id, career_name, "slot_melee")
+                    inventory_extension:create_equipment_in_slot("slot_melee", item_one.backend_id)
+                end
+
+                local attachment_extension = ScriptUnit.extension(player_unit, "attachment_system")
+                attachment_extension:create_attachment_in_slot("slot_hat", item_hat.backend_id)
+
+            end
+        end
+        
+    end
+end)
