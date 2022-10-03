@@ -1488,7 +1488,7 @@ for _,skin in pairs(skins_to_change) do
         changed_model = false,
         unit = unit,
         -- cosmetic_table = Cosmetics[skin],
-        icon = ItemMasterList[skin]['inventory_icon'],
+        icon = ItemMasterList[new_name]['inventory_icon'],
         cosmetic_table = Cosmetics[new_name]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)

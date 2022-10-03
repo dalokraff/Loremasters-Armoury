@@ -738,7 +738,7 @@ end
 
 -- local rotation = Unit.local_rotation(player_unit, 0)
 -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/khorne/deus_khorne_torch_01", position, rotation)
-end
+
 
 mod.old_swap_unit = {}
 mod.new_swap_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh"
