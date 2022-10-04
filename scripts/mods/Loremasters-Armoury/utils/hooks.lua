@@ -389,7 +389,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
                     {
-                        target = "LA_MQ01_sub7_chronicle",
+                        target = 0,
                         source = 0,
                     },
                 }
@@ -430,8 +430,8 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 local world = Managers.world:world("level_world")
                 local attach_nodes = {
                     {
-                        target = "root_point",
-                        source = "root_point",
+                        target = 0,
+                        source = 0,
                     },
                 }
                 AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
