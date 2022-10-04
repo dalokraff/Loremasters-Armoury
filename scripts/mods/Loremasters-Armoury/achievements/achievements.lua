@@ -250,12 +250,18 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	desc = "sub_quest_05_desc",
 	completed = function (statistics_db, stats_id)
 		
-		if mod:get("sub_quest_05") and mod:get("sub_quest_05".."_letter_read") then
-			AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
-			AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
-			AchievementTemplates.achievements.sub_quest_06.icon = "quest_icon_empty"
-			mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
-			mod.main_quest.sub_quest_05 = true
+		if mod:get("sub_quest_05") then
+			if mod:get("sub_quest_05".."_letter_read") then
+				if mod:get("sub_quest_04") then
+					if mod:get("sub_quest_03") then
+						AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
+						AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
+						AchievementTemplates.achievements.sub_quest_06.icon = "quest_icon_empty"
+						mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
+						mod.main_quest.sub_quest_05 = true
+					end
+				end
+			end
 			return true
 		end
 

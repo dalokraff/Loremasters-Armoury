@@ -526,7 +526,7 @@ mod.on_game_state_changed = function(status, state_name)
         -- mod:echo(level_name)
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
-                if (level_name == "military") or (level_name == "catacombs" and mod:get("sub_quest_03")) or (level_name == "ussingen" and mod:get("sub_quest_04")) then
+                if (level_name == "military" and mod:get("sub_quest_01_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_01_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_01_letter_read")) then
                     Managers.state.network.network_transmit:send_rpc_server(
                         "rpc_spawn_pickup_with_physics",
                         NetworkLookup.pickup_names["painting_scrap"],
