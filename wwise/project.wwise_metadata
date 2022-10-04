@@ -19,6 +19,7 @@ banks = {
 	Loremasters_Armoury = {
 		events = [
 			"Loremaster_book_pickup_sound"
+			"Loremaster_book_pickup_sound__1_"
 			"Loremaster_letter_open_sound"
 			"Loremaster_letter_open_sound__1_"
 			"Loremaster_shipment_pickup_sound"
@@ -101,6 +102,13 @@ events = {
 		positioning = "3D"
 	}
 	Loremaster_book_pickup_sound = {
+		attenuation_max = 0
+		duration_max = 1.908792
+		duration_min = 1.908792
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	Loremaster_book_pickup_sound__1_ = {
 		attenuation_max = 0
 		duration_max = 1.908792
 		duration_min = 1.908792

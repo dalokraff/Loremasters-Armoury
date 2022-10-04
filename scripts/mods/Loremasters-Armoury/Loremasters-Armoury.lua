@@ -540,7 +540,7 @@ mod.on_game_state_changed = function(status, state_name)
 
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
-                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06") then
+                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
                     Managers.state.network.network_transmit:send_rpc_server(
                         "rpc_spawn_pickup_with_physics",
                         NetworkLookup.pickup_names["painting_scrap"],

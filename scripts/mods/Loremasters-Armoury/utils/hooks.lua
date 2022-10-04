@@ -405,7 +405,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
                 -- mod:echo(mod.attached_units[scrap_go_id].target)
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
-                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_book_pickup_sound")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_book_pickup_sound__1_")
 
                 return 
             end
@@ -946,6 +946,11 @@ mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, sel
 
     local interaction_context = self.interaction_context
     local network_manager = Managers.state.network
+    mod:echo(interaction_context.interactable_unit)
+    if not interaction_context.interactable_unit then
+        return func(self, hold_input, interactable_unit, interaction_type, forced)
+    end
+    mod:echo(interactable_unit)
     local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
     local unit = self.unit
 
