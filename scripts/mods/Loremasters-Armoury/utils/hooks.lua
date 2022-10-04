@@ -649,14 +649,17 @@ mod.LA_quest_rewards = {
     sub_quest_03 = {
         item_name = "sub_quest_03_reward",
         reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },
     sub_quest_04 = {
         item_name = "sub_quest_04_reward",
         reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },
     sub_quest_05 = {
         item_name = "sub_quest_05_reward",
         reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },
     sub_quest_06 = {
         item_name = "LA_locked_reward",
