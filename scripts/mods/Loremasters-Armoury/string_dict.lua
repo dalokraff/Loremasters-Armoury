@@ -70,6 +70,8 @@ local desc_strings = {
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Kruber_KOTBS_empire_sword_01 = "Placeholder description.",
+    Kruber_KOTBS_empire_zweihander_01 = "Placeholder description.",
+    Kruber_KOTBS_bret_sword_01 = "Placeholder description.",
 }
 
 local name_strings = {}
@@ -196,6 +198,18 @@ mod.empire_swords = {
     Kruber_KOTBS_empire_sword_01 = "Placeholder name.",
 }
 
+mod.zweihanders = {
+    Kruber_KOTBS_empire_zweihander_01 = "Placeholder name.",
+}
+
+mod.wizard_swords = {
+    Kruber_KOTBS_empire_sword_01 = "Placeholder name.",
+}
+
+mod.bretonian_longswords = {
+    Kruber_KOTBS_bret_sword_01 = "Placeholder name.",
+}
+
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
 for k,v in pairs(mod.bret_shields) do
     name_strings[k] = v
@@ -233,6 +247,15 @@ for k,v in pairs(mod.ker_armors) do
     name_strings[k] = v
 end
 for k,v in pairs(mod.empire_swords) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.zweihanders) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.wizard_swords) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.bretonian_longswords) do
     name_strings[k] = v
 end
 

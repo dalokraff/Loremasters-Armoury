@@ -39,6 +39,9 @@ menu.options.widgets = {
 			{text = "dwarf_ham_shield",   value = 8, show_widgets = {}},
 			{text = "elf_bow",   value = 9, show_widgets = {}},
 			{text = "emp_sword",   value = 10, show_widgets = {}},
+			{text = "emp_zweihander",   value = 11, show_widgets = {}},
+			{text = "wizard_sword",   value = 12, show_widgets = {}},
+			{text = "bret_sword",   value = 13, show_widgets = {}},
 		},
 		sub_widgets = {},
 	},
@@ -222,6 +225,48 @@ for _,skin in ipairs(mod.empire_sword_skins) do
 	end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[10].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+for _,skin in ipairs(mod.empire_zweihander_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.zweihanders) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[11].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+for _,skin in ipairs(mod.wizard_sword_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.wizard_swords) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[12].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
+for _,skin in ipairs(mod.bretonian_longsword_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.bretonian_longswords) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[13].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
 end
 

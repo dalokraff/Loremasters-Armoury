@@ -1326,6 +1326,24 @@ mod.SKIN_LIST = {
         swap_hand = "right_hand_unit",
         swap_skin = nil,
     },
+    Kruber_KOTBS_empire_zweihander_01 = {
+        kind = "unit",
+        new_units = {
+            "units/empire_zweihander/Kruber_kotbs_greatsword_mesh",
+            "units/empire_zweihander/Kruber_kotbs_greatsword_mesh_3p",
+        },
+        swap_hand = "right_hand_unit",
+        swap_skin = nil,
+    },
+    Kruber_KOTBS_bret_sword_01 = {
+        kind = "unit",
+        new_units = {
+            "units/bret_sword/Kruber_kotbs_longsword_mesh",
+            "units/bret_sword/Kruber_kotbs_longsword_mesh_3p",
+        },
+        swap_hand = "right_hand_unit",
+        swap_skin = nil,
+    },
 }
 
 local skin_table_weapons = table.clone(WeaponSkins.skins)
@@ -1447,6 +1465,41 @@ mod.empire_sword_skins = {
     "es_1h_sword_shield_skin_05_rightHand",
 }
 
+mod.empire_zweihander_skins = {
+    "es_2h_sword_skin_01",
+    "es_2h_sword_skin_02",
+    "es_2h_sword_skin_03",
+	"es_2h_sword_skin_04",
+	"es_2h_sword_skin_05",
+	"es_2h_sword_skin_06",
+    "es_2h_sword_skin_02_runed_01",
+    "es_2h_sword_skin_04_runed_01",
+    "es_2h_sword_skin_04_runed_02",
+}
+
+mod.wizard_sword_skins = {
+    "bw_1h_sword_skin_01",
+    "bw_1h_sword_skin_02",
+    "bw_1h_sword_skin_03",
+    "bw_1h_sword_skin_04",
+	"bw_1h_sword_skin_05",
+	"bw_1h_sword_skin_06",	
+	"bw_1h_sword_skin_07",
+	"bw_1h_sword_skin_08",
+	"bw_1h_sword_skin_01_runed_01",
+	"bw_1h_sword_skin_02_runed_01",
+	"bw_1h_sword_skin_02_runed_02",
+}
+
+mod.bretonian_longsword_skins = {
+    "es_bastard_sword_skin_01",
+    "es_bastard_sword_skin_02",
+    "es_bastard_sword_skin_03",
+    "es_bastard_sword_skin_04",
+    "es_bastard_sword_skin_03_runed_01",
+    "es_bastard_sword_skin_03_runed_02",
+}
+
 table.append(skins_to_change, mod.bret_skins)
 table.append(skins_to_change, mod.empire_spear_shield)
 table.append(skins_to_change, mod.empire_sword_shield)
@@ -1459,7 +1512,9 @@ table.append(skins_to_change, mod.elf_hat_skins)
 table.append(skins_to_change, mod.krub_hat_skins)
 table.append(skins_to_change, mod.krub_armor_skins)
 table.append(skins_to_change, mod.elf_armor_skins)
-table.append(skins_to_change, mod.empire_sword_skins)
+table.append(skins_to_change, mod.empire_zweihander_skins)
+table.append(skins_to_change, mod.wizard_sword_skins)
+table.append(skins_to_change, mod.bretonian_longsword_skins)
 
 --this mod table is used for the vmf menu localization
 mod.vanilla_game_strings = table.clone(skins_to_change, true)
