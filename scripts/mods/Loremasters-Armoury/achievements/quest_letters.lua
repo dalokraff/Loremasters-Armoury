@@ -27,7 +27,7 @@ QuestLetters.test_quest_select = {
     sub_quest_10 = "units/decorations/letters/LA_quest_message_stage10",
 }
 QuestLetters.main_01 = {
-    sub_quest_01 = "units/decorations/letters/LA_quest_message_stage01",
+    sub_quest_prologue = "units/decorations/letters/LA_quest_message_stage01",
     sub_quest_05 = "units/decorations/letters/LA_quest_message_stage05",
     sub_quest_06 = "units/decorations/letters/LA_quest_message_stage06",
     sub_quest_07 = "units/decorations/letters/LA_quest_message_stage07",

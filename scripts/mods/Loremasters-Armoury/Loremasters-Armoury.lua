@@ -131,6 +131,11 @@ if not mod:get("num_shields_collected") then
     mod:set("num_shields_collected", 0)
 end
 
+
+if mod:get("sub_quest_prologue") == nil then 
+    mod:set("sub_quest_prologue", false)
+end
+
 if not mod:get("sub_quest_01") then 
     mod:set("sub_quest_01", 0)
 end
@@ -176,6 +181,7 @@ mod:command("reset_sub_quests", "", function()
         mod.main_quest[quest] = false
         mod:set(quest.."_letter_read", false)
     end
+    mod:set("sub_quest_prologue", false)
     mod:set("sub_quest_01", 0)
     mod:set("sub_quest_02", 0)
     mod:set("sub_quest_03", false)

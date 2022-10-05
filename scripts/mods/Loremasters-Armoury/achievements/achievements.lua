@@ -72,6 +72,7 @@ AchievementTemplates.achievements.test_2 = {
 
 
 mod.main_quest = {
+	sub_quest_prologue = false,
 	sub_quest_01 = false,
 	sub_quest_02 = false, 
 	sub_quest_03 = false,
@@ -152,15 +153,49 @@ AchievementTemplates.achievements.main_quest = {
 -- end
 -- mod:echo(AchievementTemplates.achievements["sub_quest_01"])
 
-local num_shields_needed = 3
+AchievementTemplates.achievements.sub_quest_prologue = {
+	name = "sub_quest_prologue",
+	display_completion_ui = true,
+	icon = "quest_icon_empty",
+	desc = "sub_quest_prologue_desc",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_prologue".."_letter_read") then
+			AchievementTemplates.achievements.sub_quest_01.name = "sub_quest_01"
+			AchievementTemplates.achievements.sub_quest_01.desc = "sub_quest_02_desc"
+			AchievementTemplates.achievements.sub_quest_01.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_02.name = "sub_quest_02"
+			AchievementTemplates.achievements.sub_quest_02.desc = "sub_quest_02_desc"
+			AchievementTemplates.achievements.sub_quest_02.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_03.name = "sub_quest_03"
+			AchievementTemplates.achievements.sub_quest_03.desc = "sub_quest_03_desc"
+			AchievementTemplates.achievements.sub_quest_03.icon = "la_mq01_quest_sub3_icon"
+			AchievementTemplates.achievements.sub_quest_04.name = "sub_quest_04"
+			AchievementTemplates.achievements.sub_quest_04.desc = "sub_quest_04_desc"
+			AchievementTemplates.achievements.sub_quest_04.icon = "la_mq01_quest_sub3_icon"
+			AchievementTemplates.achievements.sub_quest_05.name = "sub_quest_05"
+			AchievementTemplates.achievements.sub_quest_05.desc = "sub_quest_05_desc"
+			AchievementTemplates.achievements.sub_quest_05.icon = "la_mq01_quest_sub3_icon"
+			mod.LA_quest_rewards.sub_quest_01.item_name = "sub_quest_01_reward"
+			mod.LA_quest_rewards.sub_quest_02.item_name = "sub_quest_02_reward"
+			mod.LA_quest_rewards.sub_quest_03.item_name = "sub_quest_03_reward"
+			mod.LA_quest_rewards.sub_quest_04.item_name = "sub_quest_04_reward"
+			mod.LA_quest_rewards.sub_quest_05.item_name = "sub_quest_05_reward"
+			mod.main_quest.sub_quest_prologue = true
+			return true
+		end
+
+		return false
+	end,
+}
 
 
 local total_kills_sub_quest_one = 500
 AchievementTemplates.achievements.sub_quest_01 = {
-	name = "sub_quest_01",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
-	desc = "sub_quest_01_desc",
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		--kill 500 rats with specific skin
@@ -172,9 +207,13 @@ AchievementTemplates.achievements.sub_quest_01 = {
 	end,
 	progress = function (statistics_db, stats_id)
 		local collected = mod:get("sub_quest_01")
-		if mod:get("sub_quest_01") > total_kills_sub_quest_one then
+		if mod:get("sub_quest_01") > total_kills_sub_quest_one and mod:get("sub_quest_prologue".."_letter_read") then
 			collected = total_kills_sub_quest_one
 		end
+
+		-- if not mod:get("sub_quest_01".."_letter_read") then
+		-- 	return { }
+		-- end
 
 		return {
 			collected,
@@ -185,10 +224,10 @@ AchievementTemplates.achievements.sub_quest_01 = {
 
 local total_kills_sub_quest_two = 500
 AchievementTemplates.achievements.sub_quest_02 = {
-	name = "sub_quest_02",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
-	desc = "sub_quest_02_desc",
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		--kill 500 nosrcans with specific skin
@@ -200,9 +239,13 @@ AchievementTemplates.achievements.sub_quest_02 = {
 	end,
 	progress = function (statistics_db, stats_id)
 		local collected = mod:get("sub_quest_02")
-		if mod:get("sub_quest_02") > total_kills_sub_quest_two then
+		if mod:get("sub_quest_02") > total_kills_sub_quest_two and mod:get("sub_quest_prologue".."_letter_read") then
 			collected = total_kills_sub_quest_two
 		end
+
+		-- if not mod:get("sub_quest_01".."_letter_read") then
+		-- 	return {}
+		-- end
 
 		return {
 			collected,
@@ -212,10 +255,10 @@ AchievementTemplates.achievements.sub_quest_02 = {
 }
 
 AchievementTemplates.achievements.sub_quest_03 = {
-	name = "sub_quest_03",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "la_mq01_quest_sub3_icon",
-	desc = "sub_quest_03_desc",
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_03") then
@@ -228,10 +271,10 @@ AchievementTemplates.achievements.sub_quest_03 = {
 }
 
 AchievementTemplates.achievements.sub_quest_04 = {
-	name = "sub_quest_04",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "la_mq01_quest_sub4_icon",
-	desc = "sub_quest_04_desc",
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_04") then
@@ -244,10 +287,10 @@ AchievementTemplates.achievements.sub_quest_04 = {
 }
 
 AchievementTemplates.achievements.sub_quest_05 = {
-	name = "sub_quest_05",
+	name = "locked",
 	display_completion_ui = true,
-	icon = "la_mq01_quest_sub5_icon",
-	desc = "sub_quest_05_desc",
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_05") then

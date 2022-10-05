@@ -334,6 +334,7 @@ local loremasters = {
 			sorting = 1,
 			name = "Main_Quest_log",
 			entries = {
+				"sub_quest_prologue",
 				"sub_quest_01",
 				"sub_quest_02",
 				"sub_quest_03",

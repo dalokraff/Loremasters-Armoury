@@ -638,26 +638,33 @@ mod.LA_quest_rewards = {
 		item_name = "main_quest_reward",
         reward_type = "item",
 	},
-    sub_quest_01 = {
-        item_name = "sub_quest_01_reward",
+    sub_quest_prologue = {
+		item_name = "sub_quest_prologue_reward",
         reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
+	},
+    sub_quest_01 = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
     },
     sub_quest_02 = {
-        item_name = "sub_quest_02_reward",
+        item_name = "LA_locked_reward",
         reward_type = "item",
+        unlocked_reward_icon = "quest_icon_empty",
     },
     sub_quest_03 = {
-        item_name = "sub_quest_03_reward",
+        item_name = "LA_locked_reward",
         reward_type = "item",
         unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },
     sub_quest_04 = {
-        item_name = "sub_quest_04_reward",
+        item_name = "LA_locked_reward",
         reward_type = "item",
         unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },
     sub_quest_05 = {
-        item_name = "sub_quest_05_reward",
+        item_name = "LA_locked_reward",
         reward_type = "item",
         unlocked_reward_icon = "la_mq01_reward_sub3_icon",
     },

@@ -49,7 +49,7 @@ LetterBoard.spawn_letters = function(self)
 
     if QuestLetters[active_quest] then
         for quest,letter_unit_name in pairs(QuestLetters[active_quest]) do
-            if mod:get(quest) then
+            if mod:get(quest) or (string.find(quest, "prologue")) then
                 local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter_unit_name, "interaction_unit", extension_init_data, position, rotation)
 
                 self:pin_to_board(quest, interactable_letter_unit)
@@ -112,6 +112,9 @@ end
 
 LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
     local source_node = string.gsub(quest, "sub_quest", "")
+    if string.find(quest, "prologue") then
+        source_node = "_03"
+    end
     local world = self.world
     local visable_unit = self.visible_unit
 
@@ -121,9 +124,12 @@ LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
             source = "LA_message_board_nail"..source_node,
         },
     }
-    
-    AttachmentUtils.link(world, visable_unit, interactable_letter_unit, nodes)
 
+    AttachmentUtils.link(world, visable_unit, interactable_letter_unit, nodes)
+    if string.find(quest, "prologue") then
+        Unit.set_local_position(interactable_letter_unit, 0, Vector3(0,-0.2,0))
+    end
+    
     return
 end
 

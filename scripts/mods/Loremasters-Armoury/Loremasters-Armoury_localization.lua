@@ -81,7 +81,7 @@ local mod_text_ids = {
 		en = "test description",
 	},
 	main_quest_desc = {
-		en = "Complete Sub Quests 1-10 to receive the reward.",
+		en = "Complete all relavent Sub Quests.",
 	},
 	main_quest = {
 		en = "Main Quest",
@@ -203,6 +203,15 @@ local mod_text_ids = {
 	},
 	letter_recieved = {
 		en = "Recieved a letter from\nthe Loremaster.\nRead it to advance the quest."
+	},
+	sub_quest_prologue = {
+		en = "Loremaster's Message"
+	},
+	sub_quest_prologue_desc = {
+		en = "Read the message at Loremaster's Armoury message board to learn more about the upcoming task."
+	},
+	sub_quest_prologue_reward = {
+		en = "",
 	},
 
 }
