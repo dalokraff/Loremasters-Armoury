@@ -1475,6 +1475,14 @@ mod.empire_zweihander_skins = {
     "es_2h_sword_skin_02_runed_01",
     "es_2h_sword_skin_04_runed_01",
     "es_2h_sword_skin_04_runed_02",
+    "wh_2h_sword_skin_01",
+    "wh_2h_sword_skin_02",
+    "wh_2h_sword_skin_03",
+    "wh_2h_sword_skin_04",
+    "wh_2h_sword_skin_05",
+    "wh_2h_sword_skin_02_runed_01",
+    "wh_2h_sword_skin_05_runed_01",
+    "wh_2h_sword_skin_05_runed_02",
 }
 
 mod.wizard_sword_skins = {
