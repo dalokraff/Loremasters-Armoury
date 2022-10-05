@@ -25,6 +25,7 @@ end)
 --thesse tables are used as queues that get filled and flushed as skins and their respective units are changed
 mod.level_queue = {}
 mod.preview_queue = {}
+mod.armory_preview_queue = {}
 mod.current_skin = {}
 
 
@@ -62,6 +63,16 @@ function mod.update(dt)
             end
             flush_preview = true
         end
+        if Managers.world:has_world("armory_preview") then
+            local world = Managers.world:world("armory_preview")
+            local Armoury_key = tisch.Armoury_key
+            local skin = tisch.skin
+            if Armoury_key ~= "default" and mod.SKIN_LIST[Armoury_key] then
+                mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
+                mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
+            end
+            flush_armory_preview = true
+        end
     end
 
     if flush_level then 
@@ -69,6 +80,9 @@ function mod.update(dt)
     end
     if flush_preview then 
         mod.preview_queue = {}
+    end
+    if flush_armory_preview then 
+        mod.armory_preview_queue = {}
     end
     
     mod.outliner()
@@ -85,13 +99,16 @@ end
 
 
 mod:command("spawn_empire_sword", "", function()
-
+    -- Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_sword_01_t2_3p", "global")
+    -- Managers.package:load("units/weapons/player/wpn_emp_sword_02_t2/wpn_emp_sword_02_t2_3p", "global")
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
     local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
 
     local rotation = Unit.local_rotation(player_unit, 0)
     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+    -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_sword_01_t2_3p", position+Vector3(0.5,0,0), rotation)
+    -- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/weapons/player/wpn_emp_sword_02_t2/wpn_emp_sword_02_t2_3p", position+Vector3(1,0,0), rotation)
 end)
 
 

@@ -151,6 +151,10 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                                                 Armoury_key = Armoury_key,
                                                 skin = skin,
                                             }
+                                            mod.armory_preview_queue[unit] = {
+                                                Armoury_key = Armoury_key,
+                                                skin = skin,
+                                            }
                                         end
                                     end
                                 end
@@ -160,6 +164,10 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                                     local Armoury_key = mod:get(skin)
                                     if unit then
                                         mod.preview_queue[unit] = {
+                                            Armoury_key = Armoury_key,
+                                            skin = skin,
+                                        }
+                                        mod.armory_preview_queue[unit] = {
                                             Armoury_key = Armoury_key,
                                             skin = skin,
                                         }
@@ -189,6 +197,10 @@ mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt)
                 mod.preview_queue[unit] = {
                     Armoury_key = Armoury_key,
                     skin = skin_name,
+                }
+                mod.armory_preview_queue[unit] = {
+                    Armoury_key = Armoury_key,
+                    skin = skin,
                 }
             end
         end
@@ -1459,7 +1471,7 @@ mod:hook(NewsFeedUI,"init", function (func, self, parent, ingame_ui_context)
             cooldown = -1,
             infinite = false,
             title = "LA_unread_letter",
-            icon = "la_waypoint_main_icon",
+            icon = "la_notification_icon",
             icon_offset = {
                 40,
                 20,
