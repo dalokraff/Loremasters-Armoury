@@ -688,7 +688,7 @@ mod.LA_quest_rewards = {
     sub_quest_07 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
-        unlocked_reward_icon = "la_mq01_quest_sub7_icon",
+        unlocked_reward_icon = "la_mq01_reward_sub7_icon",
     },
     sub_quest_08 = {
         item_name = "LA_locked_reward",

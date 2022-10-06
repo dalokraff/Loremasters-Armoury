@@ -156,26 +156,26 @@ AchievementTemplates.achievements.main_quest = {
 AchievementTemplates.achievements.sub_quest_prologue = {
 	name = "sub_quest_prologue",
 	display_completion_ui = true,
-	icon = "quest_icon_empty",
+	icon = "la_mq01_quest_prelude_icon",
 	desc = "sub_quest_prologue_desc",
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_prologue".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_01.name = "sub_quest_01"
 			AchievementTemplates.achievements.sub_quest_01.desc = "sub_quest_02_desc"
-			AchievementTemplates.achievements.sub_quest_01.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_01.icon = "la_mq01_quest_sub1_icon"
 			AchievementTemplates.achievements.sub_quest_02.name = "sub_quest_02"
 			AchievementTemplates.achievements.sub_quest_02.desc = "sub_quest_02_desc"
-			AchievementTemplates.achievements.sub_quest_02.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_02.icon = "la_mq01_quest_sub2_icon"
 			AchievementTemplates.achievements.sub_quest_03.name = "sub_quest_03"
 			AchievementTemplates.achievements.sub_quest_03.desc = "sub_quest_03_desc"
 			AchievementTemplates.achievements.sub_quest_03.icon = "la_mq01_quest_sub3_icon"
 			AchievementTemplates.achievements.sub_quest_04.name = "sub_quest_04"
 			AchievementTemplates.achievements.sub_quest_04.desc = "sub_quest_04_desc"
-			AchievementTemplates.achievements.sub_quest_04.icon = "la_mq01_quest_sub3_icon"
+			AchievementTemplates.achievements.sub_quest_04.icon = "la_mq01_quest_sub4_icon"
 			AchievementTemplates.achievements.sub_quest_05.name = "sub_quest_05"
 			AchievementTemplates.achievements.sub_quest_05.desc = "sub_quest_05_desc"
-			AchievementTemplates.achievements.sub_quest_05.icon = "la_mq01_quest_sub3_icon"
+			AchievementTemplates.achievements.sub_quest_05.icon = "la_mq01_quest_sub5_icon"
 			mod.LA_quest_rewards.sub_quest_01.item_name = "sub_quest_01_reward"
 			mod.LA_quest_rewards.sub_quest_02.item_name = "sub_quest_02_reward"
 			mod.LA_quest_rewards.sub_quest_03.item_name = "sub_quest_03_reward"
@@ -299,7 +299,7 @@ AchievementTemplates.achievements.sub_quest_05 = {
 					if mod:get("sub_quest_03") then
 						AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
 						AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
-						AchievementTemplates.achievements.sub_quest_06.icon = "quest_icon_empty"
+						AchievementTemplates.achievements.sub_quest_06.icon = "la_mq01_quest_sub6_icon"
 						mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
 						mod.main_quest.sub_quest_05 = true
 					end
@@ -335,7 +335,7 @@ AchievementTemplates.achievements.sub_quest_06 = {
 		if mod:get("sub_quest_06") and mod:get("sub_quest_06".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_07.name = "sub_quest_07"
 			AchievementTemplates.achievements.sub_quest_07.desc = "sub_quest_07_desc"
-			AchievementTemplates.achievements.sub_quest_07.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_07.icon = "la_mq01_quest_sub7_icon"
 			mod.LA_quest_rewards.sub_quest_07.item_name = "sub_quest_07_reward"
 			mod.main_quest.sub_quest_06 = true
 			return true
@@ -367,7 +367,7 @@ AchievementTemplates.achievements.sub_quest_07 = {
 		if mod:get("sub_quest_07") and mod:get("sub_quest_07".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_08.name = "sub_quest_08"
 			AchievementTemplates.achievements.sub_quest_08.desc = "sub_quest_08_desc"
-			AchievementTemplates.achievements.sub_quest_08.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_08.icon = "la_mq01_quest_sub8_icon"
 			mod.LA_quest_rewards.sub_quest_08.item_name = "sub_quest_08_reward"
 			mod.main_quest.sub_quest_07 = true
 			return true
@@ -399,7 +399,7 @@ AchievementTemplates.achievements.sub_quest_08 = {
 		if mod:get("sub_quest_08") and mod:get("sub_quest_08".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_09.name = "sub_quest_09"
 			AchievementTemplates.achievements.sub_quest_09.desc = "sub_quest_09_desc"
-			AchievementTemplates.achievements.sub_quest_09.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_09.icon = "la_mq01_quest_sub9_icon"
 			mod.LA_quest_rewards.sub_quest_09.item_name = "sub_quest_09_reward"
 			mod.main_quest.sub_quest_08 = true
 			return true
@@ -431,7 +431,7 @@ AchievementTemplates.achievements.sub_quest_09 = {
 		if mod:get("sub_quest_09") and mod:get("sub_quest_09".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_10.name = "sub_quest_10"
 			AchievementTemplates.achievements.sub_quest_10.desc = "sub_quest_10_desc"
-			AchievementTemplates.achievements.sub_quest_10.icon = "quest_icon_empty"
+			AchievementTemplates.achievements.sub_quest_10.icon = "la_mq01_quest_sub10_icon"
 			mod.LA_quest_rewards.sub_quest_10.item_name = "sub_quest_10_reward"
 			mod.main_quest.sub_quest_09 = true
 			return true
