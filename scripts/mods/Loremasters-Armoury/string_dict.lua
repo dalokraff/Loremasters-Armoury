@@ -70,6 +70,7 @@ local desc_strings = {
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Kruber_KOTBS_empire_sword_01 = "Placeholder description.",
+    Kruber_KOTBS_wizard_sword_01 = "Placeholder description.",
     Kruber_KOTBS_empire_zweihander_01 = "Placeholder description.",
     Kruber_KOTBS_bret_sword_01 = "Placeholder description.",
 }
@@ -203,7 +204,7 @@ mod.zweihanders = {
 }
 
 mod.wizard_swords = {
-    Kruber_KOTBS_empire_sword_01 = "Placeholder name.",
+    Kruber_KOTBS_wizard_sword_01 = "Placeholder name.",
 }
 
 mod.bretonian_longswords = {

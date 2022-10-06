@@ -1344,6 +1344,15 @@ mod.SKIN_LIST = {
         swap_hand = "right_hand_unit",
         swap_skin = nil,
     },
+    Kruber_KOTBS_wizard_sword_01 = {
+        kind = "unit",
+        new_units = {
+            "units/wizard_sword/Sienna_kotbs_sword_mesh",
+            "units/wizard_sword/Sienna_kotbs_sword_mesh_3p",
+        },
+        swap_hand = "right_hand_unit",
+        swap_skin = nil,
+    },
 }
 
 local skin_table_weapons = table.clone(WeaponSkins.skins)
@@ -1520,6 +1529,7 @@ table.append(skins_to_change, mod.elf_hat_skins)
 table.append(skins_to_change, mod.krub_hat_skins)
 table.append(skins_to_change, mod.krub_armor_skins)
 table.append(skins_to_change, mod.elf_armor_skins)
+table.append(skins_to_change, mod.empire_sword_skins)
 table.append(skins_to_change, mod.empire_zweihander_skins)
 table.append(skins_to_change, mod.wizard_sword_skins)
 table.append(skins_to_change, mod.bretonian_longsword_skins)
