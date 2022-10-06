@@ -801,9 +801,9 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
     
     for scrap_id, units in pairs(mod.attached_units) do 
         if Unit.alive(units.target) then
-            local position = Unit.local_position(units.target, 0)
+            local position = Unit.world_position(units.target, 0)
             local pos_box = Vector3Box(position)
-            mod.render_marker(pos_box, 5)
+            mod.render_marker(pos_box, 100)
         else 
             mod.attached_units[scrap_id] = nil
         end
