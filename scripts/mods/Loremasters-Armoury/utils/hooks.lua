@@ -658,12 +658,12 @@ mod.LA_quest_rewards = {
     sub_quest_01 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
-        unlocked_reward_icon = "quest_icon_empty",
+        unlocked_reward_icon = "la_mq01_reward_sub1_icon",
     },
     sub_quest_02 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
-        unlocked_reward_icon = "quest_icon_empty",
+        unlocked_reward_icon = "la_mq01_reward_sub1_icon",
     },
     sub_quest_03 = {
         item_name = "LA_locked_reward",
@@ -683,7 +683,7 @@ mod.LA_quest_rewards = {
     sub_quest_06 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
-        unlocked_reward_icon = "quest_icon_empty",
+        unlocked_reward_icon = "la_mq01_reward_sub1_icon",
     },
     sub_quest_07 = {
         item_name = "LA_locked_reward",
@@ -703,7 +703,7 @@ mod.LA_quest_rewards = {
     sub_quest_10 = {
         item_name = "LA_locked_reward",
         reward_type = "item",
-        unlocked_reward_icon = "quest_icon_empty",
+        unlocked_reward_icon = "la_mq01_reward_sub10_icon",
     },
 }
 
