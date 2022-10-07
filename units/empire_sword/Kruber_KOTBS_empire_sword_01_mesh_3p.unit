@@ -1,6 +1,6 @@
 data = {
     mat_slots = {
-        slot1 = "KOTBS_sword_test_texture",
+        slot1 = "LA_Sienna_kotbs_sword_texture",
     }
 
      mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01_3p"
@@ -30,7 +30,7 @@ data = {
 }
 
 renderables = {
-    "KOTBS_sword_test" = {
+    "KOTBS_shortsword" = {
 		always_keep = false
 		culling = "bounding_volume"
 		generate_uv_unwrap = false
