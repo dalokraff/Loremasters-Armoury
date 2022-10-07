@@ -48,14 +48,14 @@ LetterBoard.spawn_letters = function(self)
     local active_letters = {}
 
     if QuestLetters[active_quest] then
-        for quest,letter_unit_name in pairs(QuestLetters[active_quest]) do
+        for quest,letter in pairs(QuestLetters[active_quest]) do
             if mod:get(quest) or (string.find(quest, "prologue")) then
                 local extension_init_data = {}
-                local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter_unit_name, "interaction_unit", extension_init_data, position, rotation)
+                local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter.unit, "interaction_unit", extension_init_data, position, rotation)
 
                 self:pin_to_board(quest, interactable_letter_unit)
 
-                local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter_unit_name.."_visable", position, rotation)
+                local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter.unit.."_visable", position, rotation)
 
                 local root2root = {
                     {
@@ -71,6 +71,12 @@ LetterBoard.spawn_letters = function(self)
                     visable = visable_letter_unit,
                 }
                 Unit.set_data(interactable_letter_unit, "quest", quest)
+                Unit.set_data(interactable_letter_unit, "quest", quest)
+                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_description", letter.name)
+                Unit.set_data(interactable_letter_unit, "interaction_data", "camera_interaction_name", letter.name)
+                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_1", letter.name)
+                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_2", letter.desc)
+
 
             end
         end

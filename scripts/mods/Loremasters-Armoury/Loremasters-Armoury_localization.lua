@@ -98,6 +98,9 @@ local mod_text_ids = {
 	sub_quest_prologue_reward_desc = {
 		en = "Message from the Loremaster that sets you on your new journey. Blaze a trail.",
 	},
+	sub_quest_prologue_message = {
+		en = "Loremaster's Message",
+	},
 	sub_quest_01_desc = {
 		en = "On your travels slay 500 skaven.",
 	},
@@ -158,6 +161,9 @@ local mod_text_ids = {
 	sub_quest_05_reward_desc = {
 		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
 	},
+	sub_quest_05_message = {
+		en = "The Second Message",
+	},
 	sub_quest_06_desc = {
 		en = "Complete Athel Yelnuli after retrieving 3 Tomes and 2 Grimoires.",
 	},
@@ -170,8 +176,11 @@ local mod_text_ids = {
 	sub_quest_06_reward_desc = {
 		en = "The goddess of war, beauty and honour guides your path.",
 	},
+	sub_quest_06_message = {
+		en = "The Third Message",
+	},
 	sub_quest_07_desc = {
-		en = "Search Blood in the Darkness for The Chronica Reiklandorum.",
+		en = "Search Blood in the Darkness for the Chronica Reiklandorum.",
 	},
 	sub_quest_07 = {
 		en = "The Librarian",
@@ -181,6 +190,9 @@ local mod_text_ids = {
 	},
 	sub_quest_07_reward_desc = {
 		en = "This dust and mold covered chronicle contains records of significat events that took place between ages 2294 and 2471 I.C. in Grand Principality of Reikland. Though a great number of pages are no longer legible, there is still a lot of history preserved here.",
+	},
+	sub_quest_07_message = {
+		en = "The Fourth Message",
 	},
 	sub_quest_08_desc = {
 		en = "Retreive the mysterious artifact from Burblespue Halescourge.",
@@ -194,6 +206,9 @@ local mod_text_ids = {
 	sub_quest_08_reward_desc = {
 		en = "Ancient Power Stone corrupted by the Chaos sorcerer Burblespue Halescourge to serve his vile deeds, spreading illness and despair... not to mention the putrid smell.",
 	},
+	sub_quest_08_message = {
+		en = "The Fifth Message",
+	},
 	sub_quest_09_desc = {
 		en = "Cleanse the corrupted artifact at the altar in The Citadel of Eternity.",
 	},
@@ -205,6 +220,9 @@ local mod_text_ids = {
 	},
 	sub_quest_09_reward_desc = {
 		en = "Restored by the power of Gods, this ancient Power Stone hums calmly with the potent energy of Azyr once again.",
+	},
+	sub_quest_09_message = {
+		en = "The Final Message",
 	},
 	sub_quest_10_desc = {
 		en = "Pray at the Shrine of Myrmidia in Pilgrimage Chamber of Taal's Horn Keep.",
@@ -275,7 +293,13 @@ local mod_text_ids = {
 	},
 	letter_recieved = {
 		en = "Recieved a letter from\nthe Loremaster.\nRead it to advance the quest."
-	},	
+	},
+	LA_locked_reward_desc = {
+		en = "This reward is locked until the previous quest is completed.",
+	},
+	LA_locked_reward_name = {
+		en = "Locked",
+	},
 
 }
 
