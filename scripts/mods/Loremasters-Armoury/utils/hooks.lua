@@ -756,6 +756,281 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
 end)
 
 
+
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- mod:echo(Localize("achv_menu_reward_claimed_title"))
+
+
+
+-- mod:hook_safe(HeroViewStateAchievements,"create_ui_elements", function (self, params)
+--     local quest_manager = self._quest_manager
+-- 	local achievement_manager = self._achievement_manager
+--     -- mod:echo(entry_type)
+--     if entry_type == "quest" then
+		
+-- 		manager = quest_manager
+-- 	else
+		
+-- 		manager = achievement_manager
+-- 	end
+
+--     for i = 1, #entries, 1 do
+--         local entry_id = entries[i]
+--         local entry_data = manager:get_data_by_id(entry_id)
+--         entry_data.completed = true
+--         entry_data.claimed = true
+--         -- if entry_data.id then
+--         --     if lamod.LA_quest_rewards[entry_data.id] then 
+--         --         entry_data.reward = lamod.LA_quest_rewards[entry_data.id]
+--         --         entry_data.completed = true
+--         --         entry_data.claimed = true
+--         --     end
+--         -- end        
+--     end
+
+-- end)
+
+
+-- local lamod = get_mod("Loremasters-Armoury")
+-- mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
+--     local quest_manager = self._quest_manager
+-- 	local achievement_manager = self._achievement_manager
+
+    
+--     local needle = self._search_query
+--     local query = self._search_widgets_by_name.filters.content.query
+--     needle = SearchUtils.extract_queries(needle, UISettings.achievement_search_definitions, query)
+--     -- mod:echo(entry_type)
+--     if entry_type == "quest" then
+		
+-- 		manager = quest_manager
+-- 	else
+		
+-- 		manager = achievement_manager
+-- 	end
+    
+--     for i = 1, #entries, 1 do
+--         local entry_id = entries[i]
+--         -- mod:echo(entry_id)
+--         local entry_data = manager:get_data_by_id(entry_id)
+--         -- entry_data.completed = true
+--         -- entry_data.claimed = true
+--         if entry_data.id then
+--             if lamod.LA_quest_rewards[entry_data.id] then 
+--                 entry_data.reward = lamod.LA_quest_rewards[entry_data.id]
+--                 -- entry_data.completed = true
+--                 -- entry_data.claimed = true
+--                 -- self._widgets[4].content.texture_id = "paper_back"
+--                 -- self._widgets[4].element.passes[1].pass_type = "texture"
+--                 -- self._widgets[4].element.passes[1].texture_id = "texture_id"
+--                 -- self._widgets[4].element.passes[1].style_id = "texture_id"    
+
+--             end
+
+--             -- local reward = entry_data.reward
+--             -- if reward then
+--             --     mod:echo(tostring(type(reward)).."      "..tostring(reward))
+--             -- end
+--             -- if entry_data.completed then
+--             --     for k,v in pairs(entry_data.reward) do
+--             --         -- mod:echo(tostring(k).."     "..tostring(v))
+--             --         -- for i,j in pairs(self._achievement_widgets[1].content) do
+--             --         --     mod:echo(tostring(i).."     "..tostring(j))
+--             --         -- end
+--             --     end
+--             --     mod:echo("=====================================================")
+--             -- end
+--         end
+        
+
+
+--     end
+--     self._achievement_widgets[1].content.claimed = true
+--     for i,j in pairs(self._achievement_widgets[1].content) do
+--         mod:echo(tostring(i).."     "..tostring(j))
+--     end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[13]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[14]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[15]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[16]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[17]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[37]) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- mod:echo("=====================================================")
+
+--     return func(self, entries, entry_type, entry_subtype)
+-- end)
+
+
+-- local lamod = get_mod("Loremasters-Armoury")
+-- mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[43].passes) do
+--     --     mod:echo(tostring(i).."     "..tostring(j))
+--     -- end
+--     mod:echo(#self._achievement_widgets[1].element.pass_data[43].passes)
+--     for i,j in pairs(self._achievement_widgets[1].element.pass_data[43].passes) do
+--         mod:echo("=============      "..tostring(i).."     =================")
+--         for k,v in pairs(j.data) do
+--             if type(v) =="table" then
+--                 if v then
+--                     for g,h in pairs(v) do
+--                         mod:echo(tostring(g).."     "..tostring(h))
+--                     end
+--                 end
+--             end
+--             -- mod:echo(tostring(k).."     "..tostring(v))
+--         end
+--         mod:echo("=====================================================")
+--     end
+    
+--     mod:echo("=====================================================")
+--     mod:echo("=====================================================")
+--     mod:echo("=====================================================")
+--     mod:echo("=====================================================")
+
+--     return func(self, entries, entry_type, entry_subtype)
+-- end)
+
+-- local lamod = get_mod("Loremasters-Armoury")
+mod:hook(HeroViewStateAchievements,"draw", function (func, self, input_service, dt)
+    
+    if self._achievement_widgets then
+        for _,widget in pairs(self._achievement_widgets) do
+            for quest, status in pairs(mod.main_quest) do 
+                if widget.content.title == mod:localize(quest) then
+                    if status then
+                        widget.content.claimed = true
+                    end
+                end
+            end
+            if widget.content.title == mod:localize("main_quest") then
+                if mod.main_quest_completed then
+                    widget.content.claimed = true
+                end
+            end
+        end
+    end
+    -- self._achievement_widgets[1].content.progress_text
+    return func(self, input_service, dt)
+end)
+
+
+-- desc     Complete 200 deeds
+-- [MOD][ExecLua][ECHO] claimed     true
+-- [MOD][ExecLua][ECHO] icon     achievement_trophy_deeds_5
+-- [MOD][ExecLua][ECHO] id     complete_deeds_5
+-- [MOD][ExecLua][ECHO] progress     table: 000000000B599930
+-- [MOD][ExecLua][ECHO] completed     true
+-- [MOD][ExecLua][ECHO] name     Liber Mortis-Bubonica V
+-- [MOD][ExecLua][ECHO] reward     table: 0000000001505E00
+
+
+
+-- claimed     false
+-- [MOD][ExecLua][ECHO] icon     loremaster_test_icon
+-- [MOD][ExecLua][ECHO] id     main_quest
+-- [MOD][ExecLua][ECHO] requirements     table: 0000000009E2F500
+-- [MOD][ExecLua][ECHO] desc     Complete all relavent Sub Quests.
+-- [MOD][ExecLua][ECHO] completed     true
+-- [MOD][ExecLua][ECHO] progress     table: 000000000BE153D0
+-- [MOD][ExecLua][ECHO] name     Main Quest
+-- [MOD][ExecLua][ECHO] reward     table: 00000000065FA9A0
+
+
+-- local UIRenderer_draw_texture = UIRenderer.draw_texture
+-- mod:hook(UIPasses.texture, "draw", function(func, ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
+--     -- mod:echo("texture")
+--     -- mod:echo(pass_definition.texture_id)
+--     -- local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
+--     -- mod:echo(texture_name)
+--     -- mod:echo("=====================================================")
+
+
+--     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
+-- 	local color, masked, saturated, point_sample = nil
+
+-- 	if ui_style then
+-- 		local texture_size = ui_style.texture_size
+
+-- 		if texture_size then
+-- 			UIUtils.align_box_inplace(ui_style, position, size, texture_size)
+
+-- 			size = texture_size
+-- 		end
+
+-- 		color = ui_style.color
+-- 		masked = ui_style.masked
+-- 		saturated = ui_style.saturated
+-- 		point_sample = ui_style.point_sample
+-- 	end
+
+--     -- mod:echo(texture_name)
+-- 	if pass_definition.retained_mode then
+-- 		local retained_id = pass_definition.retained_mode and (pass_data.retained_id or true)
+-- 		retained_id = UIRenderer.draw_texture(ui_renderer, "paper_back", position, size, color, masked, saturated, retained_id, point_sample)
+-- 		pass_data.retained_id = retained_id or pass_data.retained_id
+-- 		pass_data.dirty = false
+-- 	else
+-- 		UIRenderer.draw_texture(ui_renderer, "paper_back", position, size, color, masked, saturated, nil, point_sample)
+-- 	end
+--     -- return func(ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
+--     return
+-- end)
+
+-- mod:hook(UIRenderer,"draw_texture", function (func, self, material, position, size, color, masked, saturated, retained_id, point_sample)
+--     local gui = self.gui
+
+-- 	if retained_id then
+-- 		gui = self.gui_retained
+
+-- 		if retained_id == true then
+-- 			retained_id = nil
+-- 		end
+-- 	end
+
+-- 	local scale = RESOLUTION_LOOKUP.scale
+
+-- 	return UIRenderer.script_draw_bitmap(gui, self.render_settings, material, Vector3(position[1] * scale, position[2] * scale, position[3] or 0), Vector3(size[1] * scale, size[2] * scale, size[3] or 0), color, masked, saturated, retained_id, point_sample)
+
+--     -- return func(self, material, position, size, color, masked, saturated, retained_id, point_sample)
+-- end)
+
+
+
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+-- =========================================================================================
+
+
+
 mod:hook(AchievementManager,"outline", function (func, self)
     if not self.initialized then
 		return nil, "AchievementManager not initialized"

@@ -325,8 +325,8 @@ local loremasters = {
 	name = "mod_name",
 	present_progression = true,
 	entries = {
-		"test_1",
-		"test_2",
+		-- "test_1",
+		-- "test_2",
 		"main_quest",
 	},
 	categories = {

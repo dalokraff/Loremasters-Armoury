@@ -24,51 +24,51 @@ mod.achievement_rewards = {
 	}, 
 }
 
-AchievementTemplates.achievements.test_1 = {
-	name = "test_1",
-	display_completion_ui = true,
-	icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
-	desc = "test_1_desc",
-	completed = function (statistics_db, stats_id)
+-- AchievementTemplates.achievements.test_1 = {
+-- 	name = "test_1",
+-- 	display_completion_ui = true,
+-- 	icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
+-- 	desc = "test_1_desc",
+-- 	completed = function (statistics_db, stats_id)
 		
-		local cheevo = "test_1_completed"
-		local finished = mod:get(cheevo)
+-- 		local cheevo = "test_1_completed"
+-- 		local finished = mod:get(cheevo)
 
-		if (mod.complete >= limit) or finished then
-			mod:set(cheevo, true)
-			mod:echo('COMPLETED!!!')
-			return true
-		end
+-- 		if (mod.complete >= limit) or finished then
+-- 			mod:set(cheevo, true)
+-- 			mod:echo('COMPLETED!!!')
+-- 			return true
+-- 		end
 
-		return false
-	end,
-	progress = function (statistics_db, stats_id)
-		local count = mod.complete
+-- 		return false
+-- 	end,
+-- 	progress = function (statistics_db, stats_id)
+-- 		local count = mod.complete
 
-		local cheevo = "test_1_completed"
-		local finished = mod:get(cheevo) 
-		if finished then
-			count = limit
-		end
+-- 		local cheevo = "test_1_completed"
+-- 		local finished = mod:get(cheevo) 
+-- 		if finished then
+-- 			count = limit
+-- 		end
 
-		count = math.min(count, limit)
+-- 		count = math.min(count, limit)
 
-		return {
-			count,
-			limit
-		}
-	end
-}
+-- 		return {
+-- 			count,
+-- 			limit
+-- 		}
+-- 	end
+-- }
 
-AchievementTemplates.achievements.test_2 = {
-	name = "test_2",
-	display_completion_ui = true,
-	icon = "achievement_trophy_helmgart_lord_1",
-	desc = "test_2_desc",
-	completed = function (statistics_db, stats_id)
-		return statistics_db:get_persistent_stat(stats_id, "killed_lord_as_last_player_standing") > 0
-	end
-}
+-- AchievementTemplates.achievements.test_2 = {
+-- 	name = "test_2",
+-- 	display_completion_ui = true,
+-- 	icon = "achievement_trophy_helmgart_lord_1",
+-- 	desc = "test_2_desc",
+-- 	completed = function (statistics_db, stats_id)
+-- 		return statistics_db:get_persistent_stat(stats_id, "killed_lord_as_last_player_standing") > 0
+-- 	end
+-- }
 
 
 mod.main_quest = {
@@ -84,6 +84,8 @@ mod.main_quest = {
 	sub_quest_09 = false,
 	sub_quest_10 = false,
 }
+
+mod.main_quest_completed = false
 -- mod:echo(#main_quest)
 -- local num_completed = 0
 -- for name, quest in pairs(main_quest) do
@@ -105,12 +107,13 @@ AchievementTemplates.achievements.main_quest = {
 		-- 	return true
 		-- end
 		for _, quest in pairs(mod.main_quest) do
-			if not quest then 
+			if not quest then
+				mod.main_quest_completed = false 
 				return false
 			end
 		end
 
-		
+		mod.main_quest_completed = true
 		return true
 	end,
 	progress = function (statistics_db, stats_id)
