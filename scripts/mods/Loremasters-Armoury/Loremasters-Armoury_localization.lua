@@ -86,17 +86,41 @@ local mod_text_ids = {
 	main_quest = {
 		en = "Main Quest",
 	},
+	sub_quest_prologue_desc = {
+		en = "Read the message at Loremaster's Armoury message board to learn more about the upcoming task."
+	},
+	sub_quest_prologue = {
+		en = "Loremaster's Message",
+	},
+	sub_quest_prologue_reward_name = {
+		en = "Loremaster's Message",
+	},
+	sub_quest_prologue_reward_desc = {
+		en = "Message from the Loremaster that sets you on your new journey. Blaze a trail.",
+	},
 	sub_quest_01_desc = {
-		en = "sub_quest_01_desc",
+		en = "On your travels slay 500 skaven.",
 	},
 	sub_quest_01 = {
 		en = "Fight against the Infestation",
 	},
+	sub_quest_01_reward_name = {
+		en = "Myrmidia's Favour",
+	},
+	sub_quest_01_reward_desc = {
+		en = "The goddess of war, beauty and honour guides your path.",
+	},
 	sub_quest_02_desc = {
-		en = "sub_quest_02_desc",
+		en = "On your travels slay 500 chaos worshippers.",
 	},
 	sub_quest_02 = {
 		en = "Fight against the Corruption",
+	},
+	sub_quest_02_reward_name = {
+		en = "Myrmidia's Favour",
+	},
+	sub_quest_02_reward_desc = {
+		en = "The goddess of war, beauty and honour guides your path.",
 	},
 	sub_quest_03_desc = {
 		en = "Find Loremaster's Armoury lost shipment in Righteous Stand.",
@@ -104,11 +128,23 @@ local mod_text_ids = {
 	sub_quest_03 = {
 		en = "A Favour for the Loremaster I",
 	},
+	sub_quest_03_reward_name = {
+		en = "Loremaster's Armoury Shipping Crate",
+	},
+	sub_quest_03_reward_desc = {
+		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
+	},
 	sub_quest_04_desc = {
 		en = "Find Loremaster's Armoury lost shipment in Convocation of Decay.",
 	},
 	sub_quest_04 = {
 		en = "A Favour for the Loremaster II",
+	},
+	sub_quest_04_reward_name = {
+		en = "Loremaster's Armoury Shipping Crate",
+	},
+	sub_quest_04_reward_desc = {
+		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
 	},
 	sub_quest_05_desc = {
 		en = "Find Loremaster's Armoury lost shipment in Empire in Flames.",
@@ -116,11 +152,23 @@ local mod_text_ids = {
 	sub_quest_05 = {
 		en = "A Favour for the Loremaster III",
 	},
+	sub_quest_05_reward_name = {
+		en = "Loremaster's Armoury Shipping Crate",
+	},
+	sub_quest_05_reward_desc = {
+		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
+	},
 	sub_quest_06_desc = {
 		en = "Complete Athel Yelnuli after retrieving 3 Tomes and 2 Grimoires.",
 	},
 	sub_quest_06 = {
 		en = "Calming the Winds",
+	},
+	sub_quest_06_reward_name = {
+		en = "Myrmidia's Favour",
+	},
+	sub_quest_06_reward_desc = {
+		en = "The goddess of war, beauty and honour guides your path.",
 	},
 	sub_quest_07_desc = {
 		en = "Search Blood in the Darkness for The Chronica Reiklandorum.",
@@ -128,11 +176,23 @@ local mod_text_ids = {
 	sub_quest_07 = {
 		en = "The Librarian",
 	},
+	sub_quest_07_reward_name = {
+		en = "Chronica Reiklandorum",
+	},
+	sub_quest_07_reward_desc = {
+		en = "This dust and mold covered chronicle contains records of significat events that took place between ages 2294 and 2471 I.C. in Grand Principality of Reikland. Though a great number of pages are no longer legible, there is still a lot of history preserved here.",
+	},
 	sub_quest_08_desc = {
 		en = "Retreive the mysterious artifact from Burblespue Halescourge.",
 	},
 	sub_quest_08 = {
 		en = "That Belongs in a Museum!",
+	},
+	sub_quest_08_reward_name = {
+		en = "Corrupted Power Stone",
+	},
+	sub_quest_08_reward_desc = {
+		en = "Ancient Power Stone corrupted by the Chaos sorcerer Burblespue Halescourge to serve his vile deeds, spreading illness and despair... not to mention the putrid smell.",
 	},
 	sub_quest_09_desc = {
 		en = "Cleanse the corrupted artifact at the altar in The Citadel of Eternity.",
@@ -140,11 +200,23 @@ local mod_text_ids = {
 	sub_quest_09 = {
 		en = "An Overdue Restoration",
 	},
+	sub_quest_09_reward_name = {
+		en = "Power Stone of Azyr",
+	},
+	sub_quest_09_reward_desc = {
+		en = "Restored by the power of Gods, this ancient Power Stone hums calmly with the potent energy of Azyr once again.",
+	},
 	sub_quest_10_desc = {
 		en = "Pray at the Shrine of Myrmidia in Pilgrimage Chamber of Taal's Horn Keep.",
 	},
 	sub_quest_10 = {
 		en = "Blessing of the Sun",
+	},
+	sub_quest_10_reward_name = {
+		en = "Myrmidia's Blessing",
+	},
+	sub_quest_10_reward_desc = {
+		en = "The goddess rewards your vailant and honourable deeds.",
 	},
 
 	locked_hidden_quest = {
@@ -157,10 +229,10 @@ local mod_text_ids = {
 		en = "Chronica Reiklandorum",
 	},
 	magic_gem = {
-		en = "Stone of X",
+		en = "Power Stone of Azyr",
 	},
 	magic_gem_nurgle = {
-		en = "Corrupted Stone of X",
+		en = "Corrupted Power Stone",
 	},
 	locked = {
 		en = "",
@@ -175,13 +247,13 @@ local mod_text_ids = {
 		en = "Picked up The Chronica Reiklandorum",
 	},
 	reikbuch_desc = {
-		en = "Fashion plays a more important role in a Reiklander's social life than in most other provinces. The peasantry, of course, care little for such fripperies, but amongst the growing middle classes the correct sleeves, shoes, and colours are matters of great import. The Reiklander nobility tend to set the fashion for a season, leaving it to the merchant and other 'grubby tradesmen' to copy their new styles as fast as they can. [1a]The presence of the Imperial Court in Altdorf has only served to exacerbate these tendencies. Recent vogues have included Bretonnian styles, the 'new rustic', and most recently a return to simple militaristic clothing reminiscent of an earlier era. Slashed sleeves, elaborate codpieces, and reliquary charms remain as fashionable as ever.[1a]	At their worst, Reiklanders are arrogant, overbearing, and drunken slaves to fashion. Notorious for their ability to celebrate at the drop of a hat, the image of the beribboned Reiklander sot is a popular stereotype amongst the rest of the Empire. In certain places the small black insects that plague an ill-kept taproom are known as 'Reikflies' as they can detect the smallest amount of ale unerringly.[1a] The people of many of the other Imperial provinces are suspicious of the fashionable, cosmopolitan nature of the Reikland men, claiming that they are effeminate and womanish for caring so much about what they wear. Curiously, Reiklander men also have a reputation as wife-stealing, pig-buggering philanderers.[1a] More than one Talabeclander husband has found his woman seduced by the charming words and dashing look of a Reiklander dandy. Reiklander women, meanwhile, are known for their beauty, as well as unbearably vain personality.[1a] Loud, outspoken, and often smug about the imagined superiority of their opinions, Reiklanders are traditionally known to be controlling and strongly opinionated. Their lack of stamina is also a welcome source for vituperative and malicious comments amongst the other peoples of the Empire. [1a]The Reiklander tendency to want to finish a task quickly and then come home is well known. Indeed, as war increasingly consumes the Empire, Reiklanders have flocked to the Emperor's banner, so much so that there have been worries that there would be no one be at home to tend to the fields and bring in the harvest.[1a] Although they honour all the gods, Reiklanders generally see Sigmar as their special patron, for he was once one of them. Other popular deities of the Old World Pantheon in Reikland include Dyrath, a regional name for Rhya, whom Reiklanders of Vorbergland honour as the goddess of fertility, and Shallya, whose temples and hospices are frequent recipients of gifts and bequests of wealthy Reiklanders.[1a] ",
+		en = "This dust and mold covered chronicle contains records of significat events that took place between ages 2294 and 2471 I.C. in Grand Principality of Reikland. Though a great number of pages are no longer legible, there is still a lot of history preserved here.",
 	},
 	magic_gem_desc = {
-		en = "",
+		en = "Restored by the power of Gods, this ancient Power Stone hums calmly with the potent energy of Azyr once again.",
 	},
 	magic_gem_nurgle_desc = {
-		en = "",
+		en = "Ancient Power Stone corrupted by the Chaos sorcerer Burblespue Halescourge to serve his vile deeds, spreading illness and despair... not to mention the putrid smell.",
 	},
 	LA_read_action = {
 		en = "Read",
@@ -203,16 +275,7 @@ local mod_text_ids = {
 	},
 	letter_recieved = {
 		en = "Recieved a letter from\nthe Loremaster.\nRead it to advance the quest."
-	},
-	sub_quest_prologue = {
-		en = "Loremaster's Message"
-	},
-	sub_quest_prologue_desc = {
-		en = "Read the message at Loremaster's Armoury message board to learn more about the upcoming task."
-	},
-	sub_quest_prologue_reward = {
-		en = "",
-	},
+	},	
 
 }
 
