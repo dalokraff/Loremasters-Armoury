@@ -539,35 +539,40 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         local attacker_unique_id = victim_damage_data.attacker_unique_id
         if attacker_unique_id then
             local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
-            local career_extension = ScriptUnit.extension(attacker_player.player_unit, "career_system")
-            if career_extension then
-                if career_extension.career_name then
-                    local career_name = career_extension:career_name()
-                    local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
-                    local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
+            local player = Managers.player:local_player()
+            local player_unit = player.player_unit 
+            if player_unit == attacker_player.player_unit then
 
-                    local tisch = {
-                        item_one, 
-                        item_two, 
-                    }
+                local career_extension = ScriptUnit.extension(attacker_player.player_unit, "career_system")
+                if career_extension then
+                    if career_extension.career_name then
+                        local career_name = career_extension:career_name()
+                        local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
+                        local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
-                    local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
-                    local master_list_item = rawget(ItemMasterList, damage_source)
+                        local tisch = {
+                            item_one, 
+                            item_two, 
+                        }
 
-                    for quest, reqs in pairs(skin_killQuest) do
-                        local breed_killed = Unit.get_data(victim_unit, "breed")
-                        local breed_killed_name = breed_killed.name
-                        local killed_race_name = breed_killed.race
+                        local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
+                        local master_list_item = rawget(ItemMasterList, damage_source)
 
-                        if reqs.kind == killed_race_name then
-                            local current_kills = mod:get(quest)
-                            current_kills = current_kills + 1
-                            mod:set(quest, current_kills)
+                        for quest, reqs in pairs(skin_killQuest) do
+                            local breed_killed = Unit.get_data(victim_unit, "breed")
+                            local breed_killed_name = breed_killed.name
+                            local killed_race_name = breed_killed.race
+
+                            if reqs.kind == killed_race_name then
+                                local current_kills = mod:get(quest)
+                                current_kills = current_kills + 1
+                                mod:set(quest, current_kills)
+                            end
+
                         end
-
                     end
-                end
 
+                end
             end
         end
 
