@@ -1,11 +1,12 @@
 local skin_killQuest = {
-    Kruber_empire_shield_hero1_Kotbs01 = {
-        sub_quest_01 = {
-            "skaven",
-        },
-        sub_quest_02 = {
-            "chaos",
-        },
+    
+    sub_quest_01 = {
+        kind = "skaven",
+        weapon = nil
+    },
+    sub_quest_02 = {
+        kind = "chaos",
+        weapon = nil
     },
 }
 

@@ -554,34 +554,48 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
                 local master_list_item = rawget(ItemMasterList, damage_source)
 
 
-                for _,item in pairs(tisch) do 
-                    if mod.current_skin[item.skin] then
-                        local quest_data = skin_killQuest[mod.current_skin[item.skin]]
-                        if quest_data then
-                            if master_list_item then
-                                if master_list_item.name == item.ItemId then 
-                                    -- mod:echo(mod.current_skin[item.skin])
-                                    local breed_killed = Unit.get_data(victim_unit, "breed")
-                                    local breed_killed_name = breed_killed.name
-                                    local killed_race_name = breed_killed.race
-                                    for quest,enemy_types in pairs(quest_data) do
+                -- for _,item in pairs(tisch) do 
+                --     if mod.current_skin[item.skin] then
+                --         local quest_data = skin_killQuest[mod.current_skin[item.skin]]
+                --         if quest_data then
+                --             if master_list_item then
+                --                 if master_list_item.name == item.ItemId then 
+                --                     -- mod:echo(mod.current_skin[item.skin])
+                --                     local breed_killed = Unit.get_data(victim_unit, "breed")
+                --                     local breed_killed_name = breed_killed.name
+                --                     local killed_race_name = breed_killed.race
+                --                     for quest,enemy_types in pairs(quest_data) do
                                         
-                                        -- mod:echo(breed_killed_name)
-                                        -- mod:echo(killed_race_name)
-                                        for _,enemy in pairs(enemy_types) do 
-                                            -- mod:echo(quest.."       "..enemy)
-                                            if (enemy == breed_killed_name) or (enemy == killed_race_name) then
-                                                local current_kills = mod:get(quest)
-                                                current_kills = current_kills + 1
-                                                mod:set(quest, current_kills)
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
+                --                         -- mod:echo(breed_killed_name)
+                --                         -- mod:echo(killed_race_name)
+                --                         for _,enemy in pairs(enemy_types) do 
+                --                             -- mod:echo(quest.."       "..enemy)
+                --                             if (enemy == breed_killed_name) or (enemy == killed_race_name) then
+                --                                 local current_kills = mod:get(quest)
+                --                                 current_kills = current_kills + 1
+                --                                 mod:set(quest, current_kills)
+                --                             end
+                --                         end
+                --                     end
+                --                 end
+                --             end
+                --         end
+                --     end
+                -- end
+
+                for quest, reqs in pairs(skin_killQuest) do
+                    local breed_killed = Unit.get_data(victim_unit, "breed")
+                    local breed_killed_name = breed_killed.name
+                    local killed_race_name = breed_killed.race
+
+                    if reqs.kind == killed_race_name then
+                        local current_kills = mod:get(quest)
+                        current_kills = current_kills + 1
+                        mod:set(quest, current_kills)
                     end
+
                 end
+
             end
         end
 

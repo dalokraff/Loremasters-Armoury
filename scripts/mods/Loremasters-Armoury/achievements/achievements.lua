@@ -165,7 +165,7 @@ AchievementTemplates.achievements.sub_quest_prologue = {
 		
 		if mod:get("sub_quest_prologue".."_letter_read") then
 			AchievementTemplates.achievements.sub_quest_01.name = "sub_quest_01"
-			AchievementTemplates.achievements.sub_quest_01.desc = "sub_quest_02_desc"
+			AchievementTemplates.achievements.sub_quest_01.desc = "sub_quest_01_desc"
 			AchievementTemplates.achievements.sub_quest_01.icon = "la_mq01_quest_sub1_icon"
 			AchievementTemplates.achievements.sub_quest_02.name = "sub_quest_02"
 			AchievementTemplates.achievements.sub_quest_02.desc = "sub_quest_02_desc"
@@ -193,7 +193,7 @@ AchievementTemplates.achievements.sub_quest_prologue = {
 }
 
 
-local total_kills_sub_quest_one = 500
+local total_kills_sub_quest_one = 1500
 AchievementTemplates.achievements.sub_quest_01 = {
 	name = "locked",
 	display_completion_ui = true,
@@ -225,7 +225,7 @@ AchievementTemplates.achievements.sub_quest_01 = {
 	end,
 }
 
-local total_kills_sub_quest_two = 500
+local total_kills_sub_quest_two = 1500
 AchievementTemplates.achievements.sub_quest_02 = {
 	name = "locked",
 	display_completion_ui = true,
