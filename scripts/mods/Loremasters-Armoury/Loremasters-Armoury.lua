@@ -595,12 +595,17 @@ mod.on_game_state_changed = function(status, state_name)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
             end
             if mod:get("sub_quest_07") then
-                local position = Vector3(-6, 4.7, 6.3)
-                local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
-                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                -- local position = Vector3(-6, 4.7, 6.3)
+                -- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
+                -- local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local position = Vector3(-6, 4.61, 6.28)
+                local rot = radians_to_quaternion(7*math.pi/18, 0, 0)
+                local rotation1 =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local rot2 = radians_to_quaternion(8*math.pi/4 + 0*math.pi/10,  math.pi/12, 7*math.pi/4)
+                local rotation2 =  Quaternion.multiply(rotation1, rot2)
                 -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
+                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation2)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
                 local position = Vector3(-5.9, 4.96421, 6.15258)
