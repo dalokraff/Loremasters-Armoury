@@ -527,7 +527,7 @@ end)
 
 
 --hook used to track an register kills made with specific skins for okri's challenges/achievments
-
+--need to add a check for if the attacking player is the local player
 local skin_killQuest = require("scripts/mods/Loremasters-Armoury/achievements/kill_quests")
 mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_data, statistics_db, is_server)
 	
@@ -540,60 +540,32 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         if attacker_unique_id then
             local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
             local career_extension = ScriptUnit.extension(attacker_player.player_unit, "career_system")
-            if career_extension.career_name then
-                local career_name = career_extension:career_name()
-                local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
-                local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
+            if career_extension then
+                if career_extension.career_name then
+                    local career_name = career_extension:career_name()
+                    local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
+                    local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
-                local tisch = {
-                    item_one, 
-                    item_two, 
-                }
+                    local tisch = {
+                        item_one, 
+                        item_two, 
+                    }
 
-                local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
-                local master_list_item = rawget(ItemMasterList, damage_source)
+                    local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
+                    local master_list_item = rawget(ItemMasterList, damage_source)
 
+                    for quest, reqs in pairs(skin_killQuest) do
+                        local breed_killed = Unit.get_data(victim_unit, "breed")
+                        local breed_killed_name = breed_killed.name
+                        local killed_race_name = breed_killed.race
 
-                -- for _,item in pairs(tisch) do 
-                --     if mod.current_skin[item.skin] then
-                --         local quest_data = skin_killQuest[mod.current_skin[item.skin]]
-                --         if quest_data then
-                --             if master_list_item then
-                --                 if master_list_item.name == item.ItemId then 
-                --                     -- mod:echo(mod.current_skin[item.skin])
-                --                     local breed_killed = Unit.get_data(victim_unit, "breed")
-                --                     local breed_killed_name = breed_killed.name
-                --                     local killed_race_name = breed_killed.race
-                --                     for quest,enemy_types in pairs(quest_data) do
-                                        
-                --                         -- mod:echo(breed_killed_name)
-                --                         -- mod:echo(killed_race_name)
-                --                         for _,enemy in pairs(enemy_types) do 
-                --                             -- mod:echo(quest.."       "..enemy)
-                --                             if (enemy == breed_killed_name) or (enemy == killed_race_name) then
-                --                                 local current_kills = mod:get(quest)
-                --                                 current_kills = current_kills + 1
-                --                                 mod:set(quest, current_kills)
-                --                             end
-                --                         end
-                --                     end
-                --                 end
-                --             end
-                --         end
-                --     end
-                -- end
+                        if reqs.kind == killed_race_name then
+                            local current_kills = mod:get(quest)
+                            current_kills = current_kills + 1
+                            mod:set(quest, current_kills)
+                        end
 
-                for quest, reqs in pairs(skin_killQuest) do
-                    local breed_killed = Unit.get_data(victim_unit, "breed")
-                    local breed_killed_name = breed_killed.name
-                    local killed_race_name = breed_killed.race
-
-                    if reqs.kind == killed_race_name then
-                        local current_kills = mod:get(quest)
-                        current_kills = current_kills + 1
-                        mod:set(quest, current_kills)
                     end
-
                 end
 
             end

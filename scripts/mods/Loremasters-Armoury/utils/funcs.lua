@@ -221,6 +221,16 @@ local function re_equip_weapons(skin, unit)
     end
 end
 
+
+
+mod.locked_skins = {
+    Kruber_KOTBS_empire_sword_01 = true, 
+    Kruber_KOTBS_empire_zweihander_01 = true, 
+    Kruber_KOTBS_bret_sword_01 = true, 
+    Kruber_KOTBS_wizard_sword_01 = true, 
+}
+
+
 --this function checks whether a skin from the vmf menu needs:
 --to be given the default unit; depending on the current state of the skin different actions are taken 
 --to have it's default unit retextured
@@ -229,6 +239,13 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
     local pattern = "_rightHand"
     local new_name = string.gsub(skin, pattern, "")
     
+
+    if mod.locked_skins[Armoury_key] then
+        mod:set(skin, "default")
+        goto continue_re_apply_illusion
+    end
+
+
     if Armoury_key == "default" and (mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model) then
         if ItemMasterList[new_name].item_type == "skin"  then
             mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
