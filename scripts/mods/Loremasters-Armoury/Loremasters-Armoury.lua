@@ -922,6 +922,24 @@ local trophies = {
 	"units/beings/player/witch_hunter/trophies/stake_pocket/trophie_wh_stake_pocket_t3",
 	"units/beings/player/witch_hunter/trophies/trophy_garlic/trophy_garlic",
 }
+
+
+
+local swords = {
+    "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p",
+	"units/weapons/player/wpn_emp_sword_02_t1/wpn_emp_sword_02_t1_3p",
+	"units/weapons/player/wpn_emp_sword_02_t1/wpn_emp_sword_02_t1_runed_01_3p",
+	"units/weapons/player/wpn_emp_sword_02_t2/wpn_emp_sword_02_t2_3p",
+	"units/weapons/player/wpn_emp_sword_02_t2/wpn_emp_sword_02_t2_runed_01_3p",
+	"units/weapons/player/wpn_emp_sword_03_t1/wpn_emp_sword_03_t1_3p",
+	"units/weapons/player/wpn_emp_sword_03_t2/wpn_emp_sword_03_t2_3p",
+	"units/weapons/player/wpn_emp_sword_04_t1/wpn_emp_sword_04_t1_3p",
+	"units/weapons/player/wpn_emp_sword_04_t1/wpn_emp_sword_04_t1_runed_01_3p",
+	"units/weapons/player/wpn_emp_sword_04_t2/wpn_emp_sword_04_t2_3p",
+	"units/weapons/player/wpn_emp_sword_04_t2/wpn_emp_sword_04_t2_runed_01_3p",
+	"units/weapons/player/wpn_emp_sword_05_t1/wpn_emp_sword_05_t1_3p",
+	"units/weapons/player/wpn_emp_sword_05_t2/wpn_emp_sword_05_t2_3p",
+}
 function spawn_package_to_player_offset(package_name, offset)
 	local player = Managers.player:local_player()
 	local world = Managers.world:world("level_world")
@@ -931,7 +949,7 @@ function spawn_package_to_player_offset(package_name, offset)
   
 	  local position = Unit.local_position(player_unit, 0) + Vector3(offset, 0, 1)
 	  local rotation = Unit.local_rotation(player_unit, 0)
-	  local unit = World.spawn_unit(world, package_name, position, rotation)
+	  local unit = Managers.state.unit_spawner:spawn_local_unit(package_name, position, rotation)
   
 	--   mod:chat_broadcast(#NetworkLookup.inventory_packages + 1)
 	  return unit
@@ -939,6 +957,17 @@ function spawn_package_to_player_offset(package_name, offset)
   
 	return nil
 end
+
+
+
+mod:command("swords", "", function()
+    for k,v in ipairs(swords) do
+        print(v)
+        Managers.package:load(v, "global")
+        spawn_package_to_player_offset(v, k*0.25)
+    end
+end)
+
 
 mod:command("trophies", "", function()
     for k,v in ipairs(trophies) do
