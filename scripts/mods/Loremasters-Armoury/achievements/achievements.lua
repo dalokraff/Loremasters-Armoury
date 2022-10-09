@@ -99,7 +99,7 @@ mod.main_quest_completed = false
 AchievementTemplates.achievements.main_quest = {
 	name = "main_quest",
 	-- display_completion_ui = true,
-	icon = "loremaster_test_icon",
+	icon = "la_mq01_quest_main_icon",
 	desc = "main_quest_desc",
 	completed = function (statistics_db, stats_id)
 		
