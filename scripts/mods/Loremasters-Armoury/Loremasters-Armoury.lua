@@ -15,6 +15,8 @@ Managers.package:load("resource_packages/levels/dlcs/morris/wastes_common", "glo
 
 Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_sword_01_t2", "global")
 Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_sword_01_t2_3p", "global")
+Managers.package:load("units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01", "global")
+Managers.package:load("units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01_3p", "global")
 
 
 -- Your mod code goes here.
@@ -100,19 +102,23 @@ function mod.update(dt)
     end
 
 
-    local player = Managers.player:local_player()
-    if player then
-        local player_unit = player.player_unit    
-        local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
-        local fp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_1p
-        -- local tp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_3p
-        if Unit.alive(fp_unit) then
-            local unit_name = Unit.get_data(fp_unit, "unit_name")
-            if unit_name == "units/wizard_sword/Sienna_kotbs_sword_mesh" then
-                if not Unit.get_data(fp_unit, "particles_added") then
-                    local world = Managers.world:world("level_world")
-                    ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
-                    Unit.set_data(fp_unit, "particles_added", true)
+    if Managers.player then
+        local player = Managers.player:local_player()
+        if player then
+            local player_unit = player.player_unit    
+            local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
+            local fp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_1p
+            -- local tp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_3p
+            if Unit.alive(fp_unit) then
+                local unit_name = Unit.get_data(fp_unit, "unit_name")
+                if unit_name == "units/wizard_sword/Sienna_kotbs_sword_mesh" then
+                    if not Unit.get_data(fp_unit, "particles_added") then
+                        local world = Managers.world:world("level_world")
+                        
+                        -- ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
+                        ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_dagger_1p", fp_unit, 1, "destroy")
+                        Unit.set_data(fp_unit, "particles_added", true)
+                    end
                 end
             end
         end
@@ -1023,7 +1029,7 @@ end)
 
 --     "fx/wpnfx_flaming_sword"
 
-
+-- wpnfx_staff_beam_trail_3p
 --     local player = Managers.player:local_player()
 --     local player_unit = player.player_unit    
 --     local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
@@ -1040,7 +1046,7 @@ end)
 --     local world = Managers.world:world("level_world")
     
 
---     ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
+--     ScriptWorld.create_particles_linked(world, "fx/cw_chain_lightning", fp_unit, 1, "destroy")
 --     ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword", tp_unit, 1, "destroy")
 
 

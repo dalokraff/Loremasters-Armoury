@@ -1370,34 +1370,35 @@ for k,v in pairs(letterUnits) do
 end
 
 
-
-mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
+--this is needed in the event we want sounds to play for the new trophies added in
+-- mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
     
-    -- mod:echo(mod.parameters)
-    -- for k,v in pairs(mod.parameters) do 
-    --     mod:echo(tostring(k).."     "..tostring(v))
-    -- end
+--     -- mod:echo(mod.parameters)
+--     -- for k,v in pairs(mod.parameters) do 
+--     --     mod:echo(tostring(k).."     "..tostring(v))
+--     -- end
 
-    if mod.parameters then
-        local state_params = mod.parameters.state_params
-        if state_params then
-            local interactable_unit = state_params.interactable_unit
-            if interactable_unit then
+--     if mod.parameters then
+--         local state_params = mod.parameters.state_params
+--         if state_params then
+--             local interactable_unit = state_params.interactable_unit
+--             if interactable_unit then
     
 	
-                -- mod:echo(interactable_unit)
-                local unit_name = Unit.get_data(interactable_unit, "unit_name")
-                if mod.LA_new_interactors[unit_name] then
-                    event = "Loremaster_letter_open_sound__1_"
-                elseif letterUnits[unit_name] then
-                    event = "Loremaster_letter_open_sound__1_"
-                end
-                -- mod:echo(unit_name)
-            end
-        end
-    end
-    return func(self, event)
-end)
+--                 -- mod:echo(interactable_unit)
+--                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
+--                 if mod.LA_new_interactors[unit_name] then
+--                     event = "Loremaster_letter_open_sound__1_"
+--                 elseif letterUnits[unit_name] then
+--                     event = "Loremaster_letter_open_sound__1_"
+--                 end
+--                 -- mod:echo(unit_name)
+--                 -- s
+--             end
+--         end
+--     end
+--     return func(self, event)
+-- end)
 
 
 mod.og_pass = nil
@@ -1490,7 +1491,7 @@ mod:hook(HeroViewStateKeepDecorations, "on_enter", function (func, self, params)
                     self:_start_transition_animation("on_enter", "on_enter")
                 end
 
-                self:_play_sound("Play_hud_trophy_open")
+                self:_play_sound("Loremaster_letter_open_sound__1_")
 
                 local state_params = params.state_params
                 local interactable_unit = state_params.interactable_unit
