@@ -115,8 +115,8 @@ function mod.update(dt)
                     if not Unit.get_data(fp_unit, "particles_added") then
                         local world = Managers.world:world("level_world")
                         
-                        -- ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
-                        ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_dagger_1p", fp_unit, 1, "destroy")
+                        ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
+                        -- ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_dagger_1p", fp_unit, 1, "destroy")
                         Unit.set_data(fp_unit, "particles_added", true)
                     end
                 end
