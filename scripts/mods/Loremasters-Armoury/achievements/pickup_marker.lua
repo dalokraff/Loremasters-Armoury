@@ -58,6 +58,18 @@ local get_floating_icon_position = function (screen_pos_x, screen_pos_y, forward
 end
 
 
+--gaussing function that handles size of waypoint based on distance from it
+local gaussian_size_decrease = function(current_distance, min_size, max_size, max_distance)
+
+    local lambda = -(100^2)/math.log(min_size/max_size)
+
+    local gaussian_size = max_size*math.exp(-(current_distance-max_distance)^2/lambda)
+
+    -- 150*math.exp(-(distance-100)^2/(1*10^4))
+
+    return gaussian_size
+end
+
 
 --renders the LA waypoint marker at the given 3D position
 --takes Vector3box as param
@@ -65,7 +77,7 @@ end
 function mod.render_marker(pos_box, distance_view)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
-    if player_unit then
+    if player_unit and not Managers.ui._ingame_ui.current_view then
         local player_pos = Unit.local_position(player_unit, 0)
         local waypoint_position = Vector3(pos_box[1], pos_box[2], pos_box[3])
 
@@ -89,8 +101,14 @@ function mod.render_marker(pos_box, distance_view)
             --             )
 
             -- local player_pos = ScriptCamera.position(camera)
-            local distance = Vector3.distance(player_pos, waypoint_position) / 5
-            local waypoint_size = math.max(64 / distance, 24)
+            local distance = Vector3.distance(player_pos, waypoint_position)
+
+            --gaussing function that handles size of waypoint based on distance from it
+            local min_size = 55
+            local max_size = 150
+            local max_distance = distance_view
+            local waypoint_size = gaussian_size_decrease(distance, min_size, max_size, max_distance)
+            
 
 
             local waypoint_size_behind = 32
@@ -128,27 +146,44 @@ function mod.render_marker(pos_box, distance_view)
             -- local uv00 = Vector2(uv00_table[1], uv00_table[2])
             -- local uv11 = Vector2(uv11_table[1], uv11_table[2])
 
-
+            -- local alpha = math.max(0, 255 - (255 * distance / 5))
+            local alpha = 100
 
             if is_clamped or is_behind then
                 if not waypoint_on_me then
-                        local arrow_size = Vector2(waypoint_size_behind,waypoint_size_behind)
-                        local icon_size = Vector2(waypoint_size_behind,waypoint_size_behind)
+                    local arrow_size = Vector2(waypoint_size_behind,waypoint_size_behind)
+                    local icon_size = Vector2(waypoint_size_behind,waypoint_size_behind)
 
-                        local icon_loc_x = 0
-                        local icon_loc_y = 0
+                    local icon_loc_x = 0
+                    local icon_loc_y = 0
 
-                        local alpha = math.max(0, 255 - (255 * distance / 5))
+                    -- local alpha = math.max(0, 255 - (255 * distance / 5))
 
-                        icon_loc_x = x
-                        icon_loc_y = y
+                    icon_loc_x = x
+                    icon_loc_y = y
 
-                        -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(icon_loc_x, icon_loc_y), Vector2(waypoint_size_behind, waypoint_size_behind), Color(alpha, 255, 255, 255))
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                    local mid_x = screen_width/2
+                    local mid_y = screen_height/2
+
+                    local side_check = mid_x - x
+
+                    local up_check = mid_y - y
+
+                    if up_check < -30 then
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size))
+                    elseif side_check > 0 then
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size))
+                    else
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size))
                     end
-                else
-                    -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
-                    Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
+
+                    -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(icon_loc_x, icon_loc_y), Vector2(waypoint_size_behind, waypoint_size_behind), Color(alpha, 255, 255, 255))
+                    -- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                    -- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(100, 100), Color(alpha, 255, 255, 255))
+                end
+            else
+                -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
+                Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
             end
 
 
