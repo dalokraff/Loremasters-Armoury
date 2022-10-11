@@ -6,6 +6,8 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/outliner")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/LA_message_board")
 
+mod:dofile("scripts/mods/Loremasters-Armoury/news/hooks")
+
 
 Managers.package:load("resource_packages/levels/dlcs/morris/slaanesh_common", "global")
 Managers.package:load("resource_packages/levels/dlcs/morris/nurgle_common", "global")
