@@ -18,7 +18,7 @@ data = {
 		slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_emission_color"
 	}
     emis_details = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_emission"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_shortsword_emission"
     }
 
     color_slot = "texture_map_c0ba2942" 
