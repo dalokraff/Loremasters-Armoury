@@ -3,7 +3,8 @@ data = {
         slot1 = "SKOTB_Sword_test_texture",
     }
 
-    mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01"
+    // mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01"
+    mat_to_use = "units/weapons/player/wpn_empire_2h_sword_01_t2/wpn_2h_sword_01_t2_runed_01"
     
     colors = {
         slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_diffuse"
@@ -24,8 +25,10 @@ data = {
     color_slot = "texture_map_c0ba2942" 
     norm_slot = "texture_map_59cd86b9"
     MAB_slot = "texture_map_0205ba86"
-    emis_col_slot = "texture_map_71d74d4d"
+    // emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_4617b8e0"
+
+    use_vanilla_glow = "golden_glow"
 
 }
 

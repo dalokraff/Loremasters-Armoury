@@ -79,6 +79,44 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     end
 
 
+    if data_melee and data_range then
+        local list_units = {
+            data_melee.right_unit_1p,
+            data_melee.right_unit_3p,
+            data_range.right_unit_1p,
+            data_range.right_unit_3p,
+            data_melee.left_unit_1p,
+            data_melee.left_unit_3p,
+            data_range.left_unit_1p,
+            data_range.left_unit_3p,
+        }
+
+        for _,unit in pairs(list_units) do
+            if Unit.alive(unit) then
+                if Unit.has_data(unit, "use_vanilla_glow") then
+                    local glow = Unit.get_data(unit, "use_vanilla_glow")
+                    GearUtils.apply_material_settings(unit, WeaponMaterialSettingsTemplates[glow])
+                end
+            end
+        end
+    end
+
+
+    return func(self, backend_id)
+end)
+
+
+
+mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
+    local data_melee = self.recently_acquired_list["slot_melee"]
+    local data_range = self.recently_acquired_list["slot_ranged"]
+    GearUtils.apply_material_settings(data_melee.right_unit_1p, WeaponMaterialSettingsTemplates.golden_glow)
+    mod:echo(data_melee.right_unit_1p)
+    -- for k,v in pairs(data_melee) do
+    --     mod:echo(k)
+    --     mod:echo(v)
+    -- end
+
     return func(self, backend_id)
 end)
 
@@ -1076,6 +1114,31 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
 
     end
 
+
+    if Managers.player then
+        local player = Managers.player:local_player()
+        if player then
+            local player_unit = player.player_unit    
+            local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
+            if inventory_extension then
+                local fp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_1p
+                -- local tp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_3p
+                if Unit.alive(fp_unit) then
+                    local unit_name = Unit.get_data(fp_unit, "unit_name")
+                    if unit_name == "units/wizard_sword/Sienna_kotbs_sword_mesh" then
+                        if not Unit.get_data(fp_unit, "particles_added") then
+                            local world = Managers.world:world("level_world")
+                            
+                            ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
+                            -- ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_dagger_1p", fp_unit, 1, "destroy")
+                            Unit.set_data(fp_unit, "particles_added", true)
+                        end
+                    end
+                end
+            end
+        end
+    end
+
 	func(self, dt, ...)
 end)
 
@@ -1105,6 +1168,16 @@ mod.LA_new_interactors = {
     "units/decorations/LA_loremaster_message_large",
     "units/decorations/LA_loremaster_message_medium",
     "units/decorations/LA_loremaster_message_small",
+    "units/decorations/letters/LA_quest_message_stage01",
+    "units/decorations/letters/LA_quest_message_stage02",
+    "units/decorations/letters/LA_quest_message_stage03",
+    "units/decorations/letters/LA_quest_message_stage04",
+    "units/decorations/letters/LA_quest_message_stage05",
+    "units/decorations/letters/LA_quest_message_stage06",
+    "units/decorations/letters/LA_quest_message_stage07",
+    "units/decorations/letters/LA_quest_message_stage08",
+    "units/decorations/letters/LA_quest_message_stage09",
+    "units/decorations/letters/LA_quest_message_stage10",
 }
 
 
@@ -1201,6 +1274,48 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
     end
     return func(self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
 end)
+
+
+local lamod = get_mod("Loremasters-Armoury")
+mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id, ...)
+	-- mod:echo(interaction_type_id)
+
+    
+    -- mod:echo(channel_id)
+
+    -- mod:echo(interactor_go_id)
+    -- mod:echo(interactable_go_id)
+    -- mod:echo(...)
+    if rpc_name == "rpc_generic_interaction_request" then
+        mod:echo("=========================")
+        mod:echo(rpc_name)
+        mod:echo(self_2)
+        mod:echo(channel_id)
+        mod:echo(interactor_go_id)
+        mod:echo(interactable_go_id)
+        mod:echo(interaction_type_id)
+        local interactable_unit = Managers.state.unit_storage:unit(channel_id)
+        mod:echo(interactable_unit)
+
+        local unit_name = Unit.get_data(interactable_unit, "unit_name")
+
+        if lamod.LA_new_interactors[unit_name] then
+            local interactor_unit = Managers.state.unit_storage:unit(interactor_go_id)
+            local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
+            local interaction_type = NetworkLookup.interactions[interaction_type_id]
+            interactor_extension:interaction_approved(interaction_type, interactable_unit)
+
+            local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+
+            lamod.approve_request = true
+            lamod.interactor_goid = interactor_go_id
+
+            return 
+        end
+    end
+    return func(self, rpc_name, self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id, ...)
+end)
+
 
 mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (func, self, interactor_unit, interaction_result)
     

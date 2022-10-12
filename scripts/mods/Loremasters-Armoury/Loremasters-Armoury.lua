@@ -103,29 +103,6 @@ function mod.update(dt)
         end
     end
 
-
-    if Managers.player then
-        local player = Managers.player:local_player()
-        if player then
-            local player_unit = player.player_unit    
-            local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
-            local fp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_1p
-            -- local tp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_3p
-            if Unit.alive(fp_unit) then
-                local unit_name = Unit.get_data(fp_unit, "unit_name")
-                if unit_name == "units/wizard_sword/Sienna_kotbs_sword_mesh" then
-                    if not Unit.get_data(fp_unit, "particles_added") then
-                        local world = Managers.world:world("level_world")
-                        
-                        ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
-                        -- ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_dagger_1p", fp_unit, 1, "destroy")
-                        Unit.set_data(fp_unit, "particles_added", true)
-                    end
-                end
-            end
-        end
-    end
-
 end
 
 
@@ -571,7 +548,7 @@ end
 -- end)
 
 mod.on_game_state_changed = function(status, state_name)
-    if state_name == "StateIngame" then
+    if state_name == "StateIngame" and status == "enter" then
         
         -- local level_name = Managers.state.game_mode:level_key() or "no level"
         local level_name = Managers.level_transition_handler:get_current_level_keys()

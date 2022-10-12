@@ -24,8 +24,10 @@ data = {
     color_slot = "texture_map_c0ba2942" 
     norm_slot = "texture_map_59cd86b9"
     MAB_slot = "texture_map_0205ba86"
-    emis_col_slot = "texture_map_71d74d4d"
+    // emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_ee282ea2"
+
+    use_vanilla_glow = "golden_glow"
 
 }
 
