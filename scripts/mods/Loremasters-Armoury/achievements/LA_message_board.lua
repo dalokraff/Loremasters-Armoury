@@ -23,7 +23,7 @@ LetterBoard.init = function (self, interactable_board_unit_name, visible_board_u
     
     
     local extension_init_data = {}
-    local board_unit_interactable = Managers.state.unit_spawner:spawn_network_unit(interactable_board_unit_name, "interaction_unit", extension_init_data, board_pos, board_rot)
+    local board_unit_interactable = Managers.state.unit_spawner:spawn_network_unit(interactable_board_unit_name, "interaction_unit", extension_init_data, self.pos:unbox(), self.rot:unbox())
     local board_unit_visible = Managers.state.unit_spawner:spawn_local_unit(visible_board_unit_name, board_pos, board_rot)
     Unit.set_data(board_unit_interactable, "current_quest", self.active_quest)
 

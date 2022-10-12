@@ -371,6 +371,8 @@ for _, dlc in pairs(DLCSettings) do
 				category = deeds
 			elseif category_name == "weaves" then
 				category = weaves
+			elseif category_name == "mod_name" then
+				category = loremasters
 			else
 				category = {}
 			end
