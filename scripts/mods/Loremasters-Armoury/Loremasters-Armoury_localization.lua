@@ -300,6 +300,9 @@ local mod_text_ids = {
 	LA_locked_reward_name = {
 		en = "Locked",
 	},
+	sub_quest_prologue_message_desc = {
+		en = "Aethyr yenlui,\n\nI hope you did not run into any trouble on your way back, one can never know what they may encounter in these trying times. I received news about the missing caravan that was transporting several Armoury's shipment crates from Altdorf, and though it saddens me to say this… what I feared the most turned out to be true.\n\nThe caravan was ambushed shortly after passing Osburg. No survivors, and from what was left after the ambush, I can say with certainty that Skaven were behind it. I am sure there is no need for me to say that arms and armour from Loremaster's Armoury in possession of these disgusting creatures is something I will not suffer, and neither should you. Since I am rather busy at the moment, I require your assistance in this matter.\n\nGo and search areas occupied by Skaven or their Northlander allies. Locate the missing shipping crates and take them back to your keep. Also, do not forget to kill as many of these abominations as you can. Gods know the world will be a better place without them.\n\n- go with Hoeth's blesings",
+	},
 
 }
 
