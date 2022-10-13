@@ -353,10 +353,10 @@ menu.custom_gui_textures = {
 			"armoury_atlas",
 			"armoury_atlas_masked",
 		},
-		{
-			"materials/Loremasters-Armoury/paper_back",
-			"paper_back",
-		},
+		-- {
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- 	"paper_back",
+		-- },
 	},
 
 	-- textures = {
@@ -401,42 +401,42 @@ menu.custom_gui_textures = {
 			"disconnect_indicator_view",
 			"materials/Loremasters-Armoury/armoury_atlas",
 		},
-		{
-			"ingame_ui",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"hero_view",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"loading_view",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"rcon_manager",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"chat_manager",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"popup_manager",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"splash_view",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"twitch_icon_view",
-			"materials/Loremasters-Armoury/paper_back",
-		},
-		{
-			"disconnect_indicator_view",
-			"materials/Loremasters-Armoury/paper_back",
-		},
+		-- {
+		-- 	"ingame_ui",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"hero_view",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"loading_view",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"rcon_manager",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"chat_manager",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"popup_manager",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"splash_view",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"twitch_icon_view",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
+		-- {
+		-- 	"disconnect_indicator_view",
+		-- 	"materials/Loremasters-Armoury/paper_back",
+		-- },
 	},
 }
 
