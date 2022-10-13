@@ -1359,7 +1359,7 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
 end)
 
 
-local lamod = get_mod("Loremasters-Armoury")
+-- local lamod = get_mod("Loremasters-Armoury")
 mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id, ...)
 	-- mod:echo(interaction_type_id)
 
@@ -1384,7 +1384,7 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
 
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
-        if lamod.LA_new_interactors[unit_name] then
+        if mod.LA_new_interactors[unit_name] then
             -- local interactor_unit = Managers.state.unit_storage:unit(interactor_go_id)
             -- local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
             -- local interaction_type = NetworkLookup.interactions[interaction_type_id]
