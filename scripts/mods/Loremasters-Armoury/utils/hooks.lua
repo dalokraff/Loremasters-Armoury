@@ -1363,9 +1363,9 @@ local lamod = get_mod("Loremasters-Armoury")
 mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id, ...)
 	-- mod:echo(interaction_type_id)
 
-    for k,v in pairs(NetworkLookup.interactions) do 
-        mod:echo(k)
-    end
+    -- for k,v in pairs(NetworkLookup.interactions) do 
+    --     mod:echo(k)
+    -- end
     -- mod:echo(channel_id)
 
     -- mod:echo(interactor_go_id)
