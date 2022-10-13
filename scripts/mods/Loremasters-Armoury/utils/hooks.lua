@@ -1389,11 +1389,11 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
             local interactor_unit = Managers.state.unit_storage:unit(self_2)
             mod:echo(interactor_unit)
             local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
-            local interaction_type = "decoration"--NetworkLookup.interactions[interaction_type_id]
+            local interaction_type = NetworkLookup.interactions[interactable_go_id]
             interactor_extension:interaction_approved(interaction_type, interactable_unit)
 
             local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
-            interactable_extension:set_is_being_interacted_with(interactor_unit)
+            -- interactable_extension:set_is_being_interacted_with(interactor_unit)
 
             mod.approve_request = true
             mod.interactor_goid = channel_id
