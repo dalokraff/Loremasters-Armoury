@@ -1352,6 +1352,29 @@ mod.SKIN_LIST = {
         },
         swap_hand = "right_hand_unit",
         swap_skin = nil,
+        particles = {
+			wield = {
+                {
+                    orphaned_policy = "destroy",
+                    effect = "fx/wpnfx_flaming_sword",
+                    third_person = true,
+                    link_target = "right_weapon",
+                    first_person = false,
+                    destroy_policy = "stop_spawning",
+                    link_node = 1,
+                },
+                {
+                    orphaned_policy = "destroy",
+                    effect = "fx/wpnfx_flaming_sword_1p",
+                    third_person = false,
+                    link_target = "right_weapon",
+                    first_person = true,
+                    destroy_policy = "stop_spawning",
+                    link_node = 1,
+                },
+            }
+        },
+       
     },
 }
 
