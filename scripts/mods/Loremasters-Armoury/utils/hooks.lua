@@ -1114,6 +1114,7 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
         end
 
     end
+end)
 
 
     
