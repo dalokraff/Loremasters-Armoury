@@ -1393,11 +1393,12 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
             interactor_extension:interaction_approved(interaction_type, interactable_unit)
 
             local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+            interactable_extension:set_is_being_interacted_with(interactor_unit)
 
             mod.approve_request = true
             mod.interactor_goid = interactor_go_id
 
-            InteractionHelper:request_approved(interaction_type, interactor_unit, interactable_unit)
+            -- InteractionHelper:request_approved(interaction_type, interactor_unit, interactable_unit)
 
             return 
         end
