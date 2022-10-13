@@ -1396,7 +1396,7 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
             interactable_extension:set_is_being_interacted_with(interactor_unit)
 
             mod.approve_request = true
-            mod.interactor_goid = interactor_go_id
+            mod.interactor_goid = channel_id
 
             -- InteractionHelper:request_approved(interaction_type, interactor_unit, interactable_unit)
 
