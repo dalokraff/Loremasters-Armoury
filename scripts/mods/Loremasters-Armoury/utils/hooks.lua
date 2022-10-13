@@ -1381,11 +1381,13 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
         mod:echo(interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
         mod:echo(interactable_unit)
+        
 
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
         if mod.LA_new_interactors[unit_name] then
-            local interactor_unit = Managers.state.unit_storage:unit(interactor_go_id)
+            local interactor_unit = Managers.state.unit_storage:unit(self_2)
+            mod:echo(interactor_unit)
             local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
             local interaction_type = "decoration"--NetworkLookup.interactions[interaction_type_id]
             interactor_extension:interaction_approved(interaction_type, interactable_unit)
