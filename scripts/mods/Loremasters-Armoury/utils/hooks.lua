@@ -1392,8 +1392,8 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
 
             -- local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
 
-            lamod.approve_request = true
-            lamod.interactor_goid = interactor_go_id
+            mod.approve_request = true
+            mod.interactor_goid = interactor_go_id
 
             return 
         end
