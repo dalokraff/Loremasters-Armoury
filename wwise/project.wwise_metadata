@@ -20,6 +20,8 @@ banks = {
 		events = [
 			"Loremaster_book_pickup_sound"
 			"Loremaster_book_pickup_sound__1_"
+			"Loremaster_Cleansed_Artifact_pickup_sound"
+			"Loremaster_Corrupted_Artifact_pickup_sound"
 			"Loremaster_letter_open_sound"
 			"Loremaster_letter_open_sound__1_"
 			"Loremaster_shipment_pickup_sound"
@@ -112,6 +114,20 @@ events = {
 		attenuation_max = 0
 		duration_max = 1.908792
 		duration_min = 1.908792
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	Loremaster_Cleansed_Artifact_pickup_sound = {
+		attenuation_max = 0
+		duration_max = 10.74702
+		duration_min = 10.74702
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	Loremaster_Corrupted_Artifact_pickup_sound = {
+		attenuation_max = 0
+		duration_max = 3.075667
+		duration_min = 3.075667
 		duration_type = "OneShot"
 		positioning = "2D"
 	}

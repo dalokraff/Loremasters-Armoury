@@ -497,7 +497,7 @@ mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, ch
 
                 Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem_nurgle")
                 Unit.set_data(scrap_unit, "pickup_message", "LA_magic_gem_pickup")
-                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_Corrupted_Artifact_pickup_sound")
 
                 return 
             end
@@ -1114,6 +1114,7 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
         end
 
     end
+    func(self, dt, ...)
 end)
 
 
