@@ -1380,25 +1380,40 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
         mod:echo(interactable_go_id)
         mod:echo(interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
-        mod:echo(interactable_unit)
+        mod:echo(tostring(interactable_unit).."     "..tostring(Unit.get_data(interactable_unit, "unit_name")))
         
 
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
         if mod.LA_new_interactors[unit_name] then
             local interactor_unit = Managers.state.unit_storage:unit(self_2)
-            mod:echo(interactor_unit)
+            mod:echo(tostring(interactor_unit).."     "..tostring(Unit.get_data(interactor_unit, "unit_name")))
             local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
             local interaction_type = NetworkLookup.interactions[interactable_go_id]
-            interactor_extension:interaction_approved(interaction_type, interactable_unit)
+            -- interactor_extension:interaction_approved(interaction_type, interactable_unit)
 
             local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
             -- interactable_extension:set_is_being_interacted_with(interactor_unit)
 
-            mod.approve_request = true
-            mod.interactor_goid = channel_id
+            interactor_extension:interaction_denied()
+                if Unit.has_data(interactable_unit, "unit_name") then
+                    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+                    if mod.LA_new_interactors[unit_name] then
+                        Managers.ui:handle_transition("hero_view_force", {
+                            type = "painting",
+                            menu_state_name = "keep_decorations",
+                            use_fade = true,
+                            interactable_unit = interactable_unit
+                        })
+                        
+                        return
+                    end
+                end
 
-            -- InteractionHelper:request_approved(interaction_type, interactor_unit, interactable_unit)
+            -- mod.approve_request = true
+            -- mod.interactor_goid = channel_id
+
+            -- -- InteractionHelper:request_approved(interaction_type, interactor_unit, interactable_unit)
 
             return 
         end
