@@ -224,10 +224,10 @@ end
 
 
 mod.locked_skins = {
-    Kruber_KOTBS_empire_sword_01 = true, 
-    Kruber_KOTBS_empire_zweihander_01 = true, 
-    Kruber_KOTBS_bret_sword_01 = true, 
-    Kruber_KOTBS_wizard_sword_01 = true, 
+    Kruber_KOTBS_empire_sword_01_gold = true, 
+    Kruber_KOTBS_empire_zweihander_01_gold = true, 
+    Kruber_KOTBS_bret_sword_01_gold = true, 
+    Kruber_KOTBS_wizard_sword_01_gold = true, 
 }
 
 

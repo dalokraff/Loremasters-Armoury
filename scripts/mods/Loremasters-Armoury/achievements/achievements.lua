@@ -113,10 +113,10 @@ AchievementTemplates.achievements.main_quest = {
 			end
 		end
 
-		mod.locked_skins.Kruber_KOTBS_empire_sword_01 = false
-		mod.locked_skins.Kruber_KOTBS_empire_zweihander_01 = false
-		mod.locked_skins.Kruber_KOTBS_bret_sword_01 = false
-		mod.locked_skins.Kruber_KOTBS_wizard_sword_01 = false
+		mod.locked_skins.Kruber_KOTBS_empire_sword_01_gold = false
+		mod.locked_skins.Kruber_KOTBS_empire_zweihander_01_gold = false
+		mod.locked_skins.Kruber_KOTBS_bret_sword_01_gold = false
+		mod.locked_skins.Kruber_KOTBS_wizard_sword_01_gold = false
 
 		mod.main_quest_completed = true
 		return true

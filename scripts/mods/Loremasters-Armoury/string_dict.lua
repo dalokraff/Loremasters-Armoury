@@ -69,10 +69,14 @@ local desc_strings = {
     Kruber_SunsetBonnet_helm_Stirland = "Remnant of a Stirland uniform, sported by a huntsman whose flamboyance outweigh his stealth.",
     Bardin_dwarf_shield_basicClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
     Bardin_dwarf_shield_heroClean_KarakNorn01 = "The uppermost levels of Karak Norn tower high above the Loren Forest, allowing the Dwarfs to monitor the activities of the Wood Elves, albeit from a considerable distance.",
-    Kruber_KOTBS_empire_sword_01 = "Placeholder description.",
-    Kruber_KOTBS_wizard_sword_01 = "Placeholder description.",
-    Kruber_KOTBS_empire_zweihander_01 = "Placeholder description.",
-    Kruber_KOTBS_bret_sword_01 = "Placeholder description.",
+    Kruber_KOTBS_empire_sword_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
+    Kruber_KOTBS_wizard_sword_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
+    Kruber_KOTBS_empire_zweihander_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
+    Kruber_KOTBS_bret_sword_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
+    Kruber_KOTBS_empire_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
+    Kruber_KOTBS_wizard_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
+    Kruber_KOTBS_empire_zweihander_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
+    Kruber_KOTBS_bret_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
 }
 
 local name_strings = {}
@@ -196,19 +200,23 @@ mod.ker_armors = {
 }
 
 mod.empire_swords = {
-    Kruber_KOTBS_empire_sword_01 = "Placeholder name.",
+    Kruber_KOTBS_empire_sword_01 = "Blade of the Forgotten Knight",
+    Kruber_KOTBS_empire_sword_01_gold = "Incandescens",
 }
 
 mod.zweihanders = {
-    Kruber_KOTBS_empire_zweihander_01 = "Placeholder name.",
+    Kruber_KOTBS_empire_zweihander_01 = "Blade of the Forgotten Knight",
+    Kruber_KOTBS_empire_zweihander_01_gold = "Incandescens",
 }
 
 mod.wizard_swords = {
-    Kruber_KOTBS_wizard_sword_01 = "Placeholder name.",
+    Kruber_KOTBS_wizard_sword_01 = "Blade of the Forgotten Knight",
+    Kruber_KOTBS_wizard_sword_01_gold = "Incandescens",
 }
 
 mod.bretonian_longswords = {
-    Kruber_KOTBS_bret_sword_01 = "Placeholder name.",
+    Kruber_KOTBS_bret_sword_01 = "Blade of the Forgotten Knight",
+    Kruber_KOTBS_bret_sword_01_gold = "Incandescens",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
