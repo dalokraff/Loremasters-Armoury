@@ -41,7 +41,8 @@ menu.options.widgets = {
 			{text = "emp_sword",   value = 10, show_widgets = {}},
 			{text = "emp_zweihander",   value = 11, show_widgets = {}},
 			{text = "wizard_sword",   value = 12, show_widgets = {}},
-			{text = "bret_sword",   value = 13, show_widgets = {}},
+			{text = "wizard_flame_sword",   value = 13, show_widgets = {}},
+			{text = "bret_sword",   value = 14, show_widgets = {}},
 		},
 		sub_widgets = {},
 	},
@@ -256,6 +257,20 @@ for _,skin in ipairs(mod.wizard_sword_skins) do
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
 end
 
+for _,skin in ipairs(mod.wizard_flame_sword_skins) do
+	local widget = table.clone(shield_sub_choice, true)
+	widget.setting_id = skin
+	widget.title = skin
+	local x = 1
+	for Amoury_key,skin_name  in pairs(mod.wizard_flame_swords) do
+		local choice = {text = Amoury_key,   value = Amoury_key}
+		table.insert(widget.options, choice)
+	end
+	num_skins = num_skins + 1
+	table.insert(menu.options.widgets[1].options[13].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].sub_widgets, widget)
+end
+
 for _,skin in ipairs(mod.bretonian_longsword_skins) do
 	local widget = table.clone(shield_sub_choice, true)
 	widget.setting_id = skin
@@ -266,7 +281,7 @@ for _,skin in ipairs(mod.bretonian_longsword_skins) do
 		table.insert(widget.options, choice)
 	end
 	num_skins = num_skins + 1
-	table.insert(menu.options.widgets[1].options[13].show_widgets, num_skins)
+	table.insert(menu.options.widgets[1].options[14].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
 end
 

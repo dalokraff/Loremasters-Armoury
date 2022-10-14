@@ -77,6 +77,7 @@ local desc_strings = {
     Kruber_KOTBS_wizard_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
     Kruber_KOTBS_empire_zweihander_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
     Kruber_KOTBS_bret_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
+    Kruber_KOTBS_wizard_sword_01_flame = "Flame Sword Description",
 }
 
 local name_strings = {}
@@ -219,6 +220,10 @@ mod.bretonian_longswords = {
     Kruber_KOTBS_bret_sword_01_gold = "Incandescens",
 }
 
+mod.wizard_flame_swords = {
+    Kruber_KOTBS_wizard_sword_01_flame = "Flame Sword Name",
+}
+
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
 for k,v in pairs(mod.bret_shields) do
     name_strings[k] = v
@@ -265,6 +270,9 @@ for k,v in pairs(mod.wizard_swords) do
     name_strings[k] = v
 end
 for k,v in pairs(mod.bretonian_longswords) do
+    name_strings[k] = v
+end
+for k,v in pairs(mod.wizard_flame_swords) do
     name_strings[k] = v
 end
 
