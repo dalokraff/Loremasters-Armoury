@@ -679,6 +679,8 @@ mod.LA_quest_rewards = {
 		item_name = "main_quest_reward",
         reward_type = "item",
         unlocked_reward_icon =  "la_mq01_reward_main_icon_veteran",
+        description = "la_mq01_reward_description",
+        information_text = "info_text_la_mq01_reward",
 	},
     sub_quest_prologue = {
 		item_name = "sub_quest_prologue_reward",
@@ -743,7 +745,10 @@ for quest,data in pairs(mod.LA_quest_rewards) do
         inventory_icon = data.unlocked_reward_icon or "quest_icon_empty",
         rarity = "plentiful",
         item_type = quest.."_reward_desc",
-        can_wield = CanWieldAllItemTemplates
+        can_wield = CanWieldAllItemTemplates,
+	    description = data.description,
+        information_text = data.information_text,
+
     }
 end
 

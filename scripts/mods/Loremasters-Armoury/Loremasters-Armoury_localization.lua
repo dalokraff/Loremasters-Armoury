@@ -236,7 +236,15 @@ local mod_text_ids = {
 	sub_quest_10_reward_desc = {
 		en = "The goddess rewards your vailant and honourable deeds.",
 	},
-
+	main_quest_reward_name = {
+		en = "Incandescens",
+	},
+	main_quest_reward_desc = {
+		en = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name."
+	},
+	la_mq01_reward_description = {
+		en = "add something here=================================================================================",
+	},
 	locked_hidden_quest = {
 		en = "This quest is locked until the previous one is compelted",
 	},
