@@ -3,7 +3,8 @@ data = {
         slot1 = "SKOTB_Sword_test_texture",
     }
 
-     mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01_3p"
+    // mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01"
+    mat_to_use = "units/weapons/player/wpn_empire_2h_sword_01_t2/wpn_2h_sword_01_t2_runed_01"
     
     colors = {
         slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_diffuse"
@@ -15,40 +16,28 @@ data = {
         slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_combined"
     }
     emis_colors = {
-		slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_emission"
+		slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_emission_color"
 	}
     emis_details = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_emission"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_shortsword_emission"
     }
 
     color_slot = "texture_map_c0ba2942" 
     norm_slot = "texture_map_59cd86b9"
     MAB_slot = "texture_map_0205ba86"
-    // emis_col_slot = "texture_map_71d74d4d"
-	emis_det_slot = "texture_map_ee282ea2"
-
-    use_vanilla_glow = "golden_glow"
+    emis_col_slot = "texture_map_71d74d4d"
+	emis_det_slot = "texture_map_4617b8e0"
 
 }
 
 renderables = {
-    "LA_Kruber_kotbs_shortsword" = {
+   "LA_Sienna_kotbs_sword" = {
 		always_keep = false
 		culling = "bounding_volume"
 		generate_uv_unwrap = false
 		occluder = false
-		shadow_caster = true
+		shadow_caster = false
 		surface_queries = false
 		viewport_visible = true
 	},
 }
-
-
-
-
-
-
-
-
-
-

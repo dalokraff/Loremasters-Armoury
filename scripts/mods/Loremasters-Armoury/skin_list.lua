@@ -1488,8 +1488,8 @@ mod.SKIN_LIST = {
     Kruber_KOTBS_wizard_sword_01_flame = {
         kind = "unit",
         new_units = {
-            "units/wizard_sword/Sienna_kotbs_sword_mesh",
-            "units/wizard_sword/Sienna_kotbs_sword_mesh_3p",
+            "units/wizard_flame_sword/Sienna_kotbs_flame_sword_mesh",
+            "units/wizard_flame_sword/Sienna_kotbs_flame_sword_mesh_3p",
         },
         swap_hand = "right_hand_unit",
         swap_skin = nil,
