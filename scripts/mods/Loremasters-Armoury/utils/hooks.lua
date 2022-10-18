@@ -376,131 +376,130 @@ end)
 mod:hook(PickupSystem, 'rpc_spawn_pickup_with_physics', function (func, self, channel_id, pickup_name_id, position, rotation, spawn_type_id)
     local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
     local level_name = Managers.state.game_mode:level_key()
-    if Vector3.is_valid(position) and Quaternion.is_valid(rotation) then
-        --for spawning the crate pickup
-        if mod.list_of_LA_levels[level_name] then
-            local LA_position = mod.list_of_LA_levels[level_name].position
-            -- mod:echo(LA_position:unbox())
-            -- mod:echo(position)
-            if Vector3.equal(position, LA_position:unbox()) then
-                -- mod:echo(pickup_name)
-                if pickup_name == "painting_scrap" then
-                    local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+    
+    --for spawning the crate pickup
+    if mod.list_of_LA_levels[level_name] then
+        local LA_position = mod.list_of_LA_levels[level_name].position
+        -- mod:echo(LA_position:unbox())
+        -- mod:echo(position)
+        if Vector3.equal(position, LA_position:unbox()) then
+            -- mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
-                    local pickup_settings = AllPickups[pickup_name]
-                    local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
-                    
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                    -- mod:echo(scrap_go_id)
-                    -- mod:echo(scrap_unit)
-                    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
-                    local world = Managers.world:world("level_world")
-                    local attach_nodes = {
-                        {
-                            target = 0,
-                            source = 0,
-                        },
-                    }
-                    AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
-                    Unit.set_data(box_unit, "unit_marker", scrap_go_id)
-                    Unit.set_data(scrap_unit, "is_LA_box", true)
-                    Unit.set_unit_visibility(scrap_unit, false)
-                    mod.attached_units[scrap_go_id] = {
-                        source = scrap_unit, 
-                        target = box_unit,
-                    }
-                    -- mod:echo(mod.attached_units[scrap_go_id].target)
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = 0,
+                        source = 0,
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
 
-                    Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
-                    Unit.set_data(scrap_unit, "pickup_message", "LA_crate_pickup")
-                    Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "LA_crate")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_crate_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_shipment_pickup_sound")
 
-                    return 
-                end
+                return 
             end
         end
-        
-        --for spawning the book pickup
-        if mod.list_of_LA_levels_books[level_name] then
-            local LA_position = mod.list_of_LA_levels_books[level_name].position
-            -- mod:echo(LA_position:unbox())
-            -- mod:echo(position)
-            if Vector3.equal(position, LA_position:unbox()) then
-                -- mod:echo(pickup_name)
-                if pickup_name == "painting_scrap" then
-                    local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+    end
+    
+    --for spawning the book pickup
+    if mod.list_of_LA_levels_books[level_name] then
+        local LA_position = mod.list_of_LA_levels_books[level_name].position
+        -- mod:echo(LA_position:unbox())
+        -- mod:echo(position)
+        if Vector3.equal(position, LA_position:unbox()) then
+            -- mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
-                    local pickup_settings = AllPickups[pickup_name]
-                    local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                    -- mod:echo(scrap_go_id)
-                    -- mod:echo(scrap_unit)
-                    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
-                    local world = Managers.world:world("level_world")
-                    local attach_nodes = {
-                        {
-                            target = 0,
-                            source = 0,
-                        },
-                    }
-                    AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
-                    Unit.set_data(box_unit, "unit_marker", scrap_go_id)
-                    Unit.set_data(scrap_unit, "is_LA_box", true)
-                    -- Unit.set_data(scrap_unit, "level", level_name)
-                    Unit.set_unit_visibility(scrap_unit, false)
-                    mod.attached_units[scrap_go_id] = {
-                        source = scrap_unit, 
-                        target = box_unit,
-                    }
-                    -- mod:echo(mod.attached_units[scrap_go_id].target)
-                    Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
-                    Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
-                    Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_book_pickup_sound__1_")
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = 0,
+                        source = 0,
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                -- Unit.set_data(scrap_unit, "level", level_name)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "reikbuch")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_reikbuch_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_book_pickup_sound__1_")
 
-                    return 
-                end
+                return 
             end
         end
+    end
 
-        --for spawning the gem pickup
-        -- mod:echo(Vector3Box(position))
-        -- mod:echo(mod.stored_vectors[Vector3Box(position)])
-        if mod.stored_vectors[level_name] then
-            if Vector3.equal(position, mod.stored_vectors[level_name]:unbox()) then
-                -- mod:echo(pickup_name)
-                if pickup_name == "painting_scrap" then
-                    local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
+    --for spawning the gem pickup
+    -- mod:echo(Vector3Box(position))
+    -- mod:echo(mod.stored_vectors[Vector3Box(position)])
+    if mod.stored_vectors[level_name] then
+        if Vector3.equal(position, mod.stored_vectors[level_name]:unbox()) then
+            -- mod:echo(pickup_name)
+            if pickup_name == "painting_scrap" then
+                local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
 
-                    local pickup_settings = AllPickups[pickup_name]
-                    local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
-                    -- mod:echo(scrap_go_id)
-                    -- mod:echo(scrap_unit)
-                    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
-                    local world = Managers.world:world("level_world")
-                    local attach_nodes = {
-                        {
-                            target = 0,
-                            source = 0,
-                        },
-                    }
-                    AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
-                    Unit.set_data(box_unit, "unit_marker", scrap_go_id)
-                    Unit.set_data(scrap_unit, "is_LA_box", true)
-                    -- Unit.set_data(scrap_unit, "level", level_name)
-                    Unit.set_unit_visibility(scrap_unit, false)
-                    mod.attached_units[scrap_go_id] = {
-                        source = scrap_unit, 
-                        target = box_unit,
-                    }
-                    -- mod:echo(mod.attached_units[scrap_go_id].target)
+                local pickup_settings = AllPickups[pickup_name]
+                local spawn_type = NetworkLookup.pickup_spawn_types[spawn_type_id]
+                local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, position, rotation, true, spawn_type)
+                -- mod:echo(scrap_go_id)
+                -- mod:echo(scrap_unit)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+                local world = Managers.world:world("level_world")
+                local attach_nodes = {
+                    {
+                        target = 0,
+                        source = 0,
+                    },
+                }
+                AttachmentUtils.link(world, scrap_unit, box_unit, attach_nodes)
+                Unit.set_data(box_unit, "unit_marker", scrap_go_id)
+                Unit.set_data(scrap_unit, "is_LA_box", true)
+                -- Unit.set_data(scrap_unit, "level", level_name)
+                Unit.set_unit_visibility(scrap_unit, false)
+                mod.attached_units[scrap_go_id] = {
+                    source = scrap_unit, 
+                    target = box_unit,
+                }
+                -- mod:echo(mod.attached_units[scrap_go_id].target)
 
-                    Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem_nurgle")
-                    Unit.set_data(scrap_unit, "pickup_message", "LA_magic_gem_pickup")
-                    Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_Corrupted_Artifact_pickup_sound")
+                Unit.set_data(scrap_unit, "interaction_data", "hud_description", "magic_gem_nurgle")
+                Unit.set_data(scrap_unit, "pickup_message", "LA_magic_gem_pickup")
+                Unit.set_data(scrap_unit, "pickup_sound", "Loremaster_Corrupted_Artifact_pickup_sound")
 
-                    return 
-                end
+                return 
             end
         end
     end
@@ -672,6 +671,14 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     end
 
     return func(self, game_won, quickplay, statistics_db, stats_id)
+end)
+
+
+mod:hook(GameMechanismManager, "generate_level_seed", function (func, self)
+    local current_level_key = Managers.level_transition_handler:get_current_level_key()
+    --for reset the indicator that LA units have been spawned on the level
+    mod.spawned_in_units[current_level_key] = false
+    return func(self)
 end)
 
 for k,v in pairs(ItemMasterList.dr_steam_pistol_skin_01) do 

@@ -553,100 +553,100 @@ end
 --     return func(self, unit_name, unit_template_name, ...)
 -- end)
 
-mod.on_game_state_changed = function(status, state_name)
-    if state_name == "StateIngame" then
-    --     -- local level_name = Managers.state.game_mode:level_key() or "no level"
-        local level_name = Managers.level_transition_handler:get_current_level_keys()
-        mod.spawned_in_units[level_name]  = false
-    --     mod:chat_broadcast(level_name)
-    --     -- mod:chat_broadcast(current_level)
-    --     -- mod:echo(level_name)
-    --     if mod.list_of_LA_levels[level_name] then 
-    --         if not mod.list_of_LA_levels[level_name].collected then
-    --             if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
-    --                 Managers.state.network.network_transmit:send_rpc_server(
-    --                     "rpc_spawn_pickup_with_physics",
-    --                     NetworkLookup.pickup_names["painting_scrap"],
-    --                     mod.list_of_LA_levels[level_name].position:unbox(),
-    --                     Quaternion.from_elements(0,0,0,0),
-    --                     NetworkLookup.pickup_spawn_types['dropped']
-    --                 )
-    --             end
-    --         end
-    --     end
+-- mod.on_game_state_changed = function(status, state_name)
+--     if state_name == "StateIngame" and status == "enter" then
+--     --     -- local level_name = Managers.state.game_mode:level_key() or "no level"
+--         local level_name = Managers.level_transition_handler:get_current_level_keys()
+--         mod.spawned_in_units[level_name]  = false
+--     --     mod:chat_broadcast(level_name)
+--     --     -- mod:chat_broadcast(current_level)
+--     --     -- mod:echo(level_name)
+--     --     if mod.list_of_LA_levels[level_name] then 
+--     --         if not mod.list_of_LA_levels[level_name].collected then
+--     --             if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
+--     --                 Managers.state.network.network_transmit:send_rpc_server(
+--     --                     "rpc_spawn_pickup_with_physics",
+--     --                     NetworkLookup.pickup_names["painting_scrap"],
+--     --                     mod.list_of_LA_levels[level_name].position:unbox(),
+--     --                     Quaternion.from_elements(0,0,0,0),
+--     --                     NetworkLookup.pickup_spawn_types['dropped']
+--     --                 )
+--     --             end
+--     --         end
+--     --     end
 
-    --     if mod.list_of_LA_levels_books[level_name] then
-    --         if not mod.list_of_LA_levels_books[level_name].collected then
-    --             if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
-    --                 Managers.state.network.network_transmit:send_rpc_server(
-    --                     "rpc_spawn_pickup_with_physics",
-    --                     NetworkLookup.pickup_names["painting_scrap"],
-    --                     mod.list_of_LA_levels_books[level_name].position:unbox(),
-    --                     mod.list_of_LA_levels_books[level_name].rotation:unbox(),
-    --                     NetworkLookup.pickup_spawn_types['dropped']
-    --                 )
-    --             end
-    --         end
-    --     end
+--     --     if mod.list_of_LA_levels_books[level_name] then
+--     --         if not mod.list_of_LA_levels_books[level_name].collected then
+--     --             if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
+--     --                 Managers.state.network.network_transmit:send_rpc_server(
+--     --                     "rpc_spawn_pickup_with_physics",
+--     --                     NetworkLookup.pickup_names["painting_scrap"],
+--     --                     mod.list_of_LA_levels_books[level_name].position:unbox(),
+--     --                     mod.list_of_LA_levels_books[level_name].rotation:unbox(),
+--     --                     NetworkLookup.pickup_spawn_types['dropped']
+--     --                 )
+--     --             end
+--     --         end
+--     --     end
 
-    --     if level_name == "inn_level" then
+--     --     if level_name == "inn_level" then
             
-    --         -- mod.spawn_message_board()
+--     --         -- mod.spawn_message_board()
 
-    --         local board_pos = Vector3(24.17, -5.96, 27.2681)
-    --         local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
-    --         local world = Managers.world:world("level_world")
-    --         local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
-    --         local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
-    --         local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
-    --         mod.letter_board = letter_board
+--     --         local board_pos = Vector3(24.17, -5.96, 27.2681)
+--     --         local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
+--     --         local world = Managers.world:world("level_world")
+--     --         local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
+--     --         local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
+--     --         local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
+--     --         mod.letter_board = letter_board
 
 
 
-    --         if mod:get("sub_quest_05") then
-    --             local position = Vector3(-6.56431, 3.91166, 5.16261)
-    --             local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
-    --             local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
-    --         end
-    --         if mod:get("sub_quest_07") then
-    --             -- local position = Vector3(-6, 4.7, 6.3)
-    --             -- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
-    --             -- local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-    --             local position = Vector3(-6, 4.61, 6.28)
-    --             local rot = radians_to_quaternion(7*math.pi/18, 0, 0)
-    --             local rotation1 =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-    --             local rot2 = radians_to_quaternion(8*math.pi/4 + 0*math.pi/10,  math.pi/12, 7*math.pi/4)
-    --             local rotation2 =  Quaternion.multiply(rotation1, rot2)
-    --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
-    --             local extension_init_data = {}
-    --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation2)
-    --         end
-    --         if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
-    --             local position = Vector3(-5.9, 4.96421, 6.15258)
-    --             local rot = radians_to_quaternion(0, math.pi, 0)
-    --             local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-    --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
-    --             local extension_init_data = {}
-    --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
-    --         end
-    --         if mod:get("sub_quest_09") then
-    --             local position = Vector3(-5.9, 4.96421, 6.15258)
-    --             local rot = radians_to_quaternion(0, math.pi, 0)
-    --             local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-    --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
-    --             local extension_init_data = {}
-    --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
-    --         end
-    --     end
+--     --         if mod:get("sub_quest_05") then
+--     --             local position = Vector3(-6.56431, 3.91166, 5.16261)
+--     --             local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
+--     --             local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
+--     --         end
+--     --         if mod:get("sub_quest_07") then
+--     --             -- local position = Vector3(-6, 4.7, 6.3)
+--     --             -- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
+--     --             -- local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+--     --             local position = Vector3(-6, 4.61, 6.28)
+--     --             local rot = radians_to_quaternion(7*math.pi/18, 0, 0)
+--     --             local rotation1 =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+--     --             local rot2 = radians_to_quaternion(8*math.pi/4 + 0*math.pi/10,  math.pi/12, 7*math.pi/4)
+--     --             local rotation2 =  Quaternion.multiply(rotation1, rot2)
+--     --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+--     --             local extension_init_data = {}
+--     --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation2)
+--     --         end
+--     --         if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
+--     --             local position = Vector3(-5.9, 4.96421, 6.15258)
+--     --             local rot = radians_to_quaternion(0, math.pi, 0)
+--     --             local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+--     --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+--     --             local extension_init_data = {}
+--     --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
+--     --         end
+--     --         if mod:get("sub_quest_09") then
+--     --             local position = Vector3(-5.9, 4.96421, 6.15258)
+--     --             local rot = radians_to_quaternion(0, math.pi, 0)
+--     --             local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+--     --             -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
+--     --             local extension_init_data = {}
+--     --             Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
+--     --         end
+--     --     end
 
-    --     if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08") then
-    --         local position = Vector3(0.6, 34.85, 13.56)
-    --         local rotation = Quaternion.from_elements(0,0,0,0)
-    --         local gem_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
-    --     end
+--     --     if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08") then
+--     --         local position = Vector3(0.6, 34.85, 13.56)
+--     --         local rotation = Quaternion.from_elements(0,0,0,0)
+--     --         local gem_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+--     --     end
 
-    end
-end
+--     end
+-- end
 -- mod:hook_safe(InteractionDefinitions.pickup_object.client, "stop", function(world, interactor_unit, interactable_unit, data, config, t, result)
 --     if interactable_unit then 
 --         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
