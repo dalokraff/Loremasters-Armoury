@@ -1558,7 +1558,7 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
                     local pickup_settings = AllPickups[pickup_name]
                     local spawn_type = NetworkLookup.pickup_spawn_types[interactable_go_id]
                     
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
+                    local scrap_unit, scrap_go_id = PickupSystem:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
                     -- mod:echo(scrap_go_id)
                     -- mod:echo(scrap_unit)
                     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", channel_id, interactor_go_id)
@@ -1600,7 +1600,7 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
     
                     local pickup_settings = AllPickups[pickup_name]
                     local spawn_type = NetworkLookup.pickup_spawn_types[interactable_go_id]
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
+                    local scrap_unit, scrap_go_id = PickupSystem:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
                     -- mod:echo(scrap_go_id)
                     -- mod:echo(scrap_unit)
                     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", channel_id, interactor_go_id)
@@ -1641,7 +1641,7 @@ mod:hook(NetworkTransmit, "send_rpc_server", function (func, self, rpc_name, sel
     
                     local pickup_settings = AllPickups[pickup_name]
                     local spawn_type = NetworkLookup.pickup_spawn_types[interactable_go_id]
-                    local scrap_unit, scrap_go_id = self:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
+                    local scrap_unit, scrap_go_id = interactable_go_id:_spawn_pickup(pickup_settings, pickup_name, channel_id, interactor_go_id, true, spawn_type)
                     -- mod:echo(scrap_go_id)
                     -- mod:echo(scrap_unit)
                     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", channel_id, interactor_go_id)
