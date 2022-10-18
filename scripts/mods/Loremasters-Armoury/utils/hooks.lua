@@ -673,14 +673,6 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
 
-
-mod:hook(GameMechanismManager, "generate_level_seed", function (func, self)
-    local current_level_key = Managers.level_transition_handler:get_current_level_key()
-    --for reset the indicator that LA units have been spawned on the level
-    mod.spawned_in_units[current_level_key] = false
-    return func(self)
-end)
-
 for k,v in pairs(ItemMasterList.dr_steam_pistol_skin_01) do 
     mod:echo(k)
 end
@@ -812,6 +804,14 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
 end)
 
 mod.spawned_in_units = {}
+
+mod:hook(GameMechanismManager, "handle_level_load", function (func, self, done_again_during_loading)
+    local current_level_key = Managers.level_transition_handler:get_current_level_key()
+    --for reset the indicator that LA units have been spawned on the level
+    mod.spawned_in_units[current_level_key] = nil
+    return func(self, done_again_during_loading)
+end)
+
 mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, unit_template_name, extension_init_data, position, rotation, material)
     local level_name = Managers.level_transition_handler:get_current_level_keys()
     if not mod.spawned_in_units[level_name] then
