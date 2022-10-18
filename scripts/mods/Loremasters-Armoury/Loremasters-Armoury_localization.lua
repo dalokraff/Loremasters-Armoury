@@ -240,10 +240,13 @@ local mod_text_ids = {
 		en = "Incandescens",
 	},
 	main_quest_reward_desc = {
-		en = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name."
+		en = "Loremaster's Armoury Skin"
+	},
+	info_text_la_mq01_reward = {
+		en = "Weapon Illusion that can be applied to any of the matching types. Use the Loremaster's Armoury mod menu to apply the illusion",
 	},
 	la_mq01_reward_description = {
-		en = "add something here=================================================================================",
+		en = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
 	},
 	locked_hidden_quest = {
 		en = "This quest is locked until the previous one is compelted",
