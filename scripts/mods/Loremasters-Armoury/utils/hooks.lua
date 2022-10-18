@@ -685,7 +685,11 @@ mod.LA_quest_rewards = {
         unlocked_reward_icon =  "la_mq01_reward_main_icon_veteran",
         description = "la_mq01_reward_description",
         information_text = "info_text_la_mq01_reward",
-        matching_item_key = "dr_2h_cog_hammer",
+        matching_item_key = "es_1h_sword_skin_02",
+        slot_type = "weapon_skin",
+        template = "es_1h_sword_skin_02",
+        item_type = "weapon_skin",
+        skin = 'es_1h_sword_skin_02',
 	},
     sub_quest_prologue = {
 		item_name = "sub_quest_prologue_reward",
@@ -749,10 +753,13 @@ for quest,data in pairs(mod.LA_quest_rewards) do
         display_name = quest.."_reward_name",
         inventory_icon = data.unlocked_reward_icon or "quest_icon_empty",
         rarity = "plentiful",
-        item_type = quest.."_reward_desc",
+        item_type = data.item_type or quest.."_reward_desc",
         can_wield = CanWieldAllItemTemplates,
 	    description = data.description,
         information_text = data.information_text,
+        slot_type = data.slot_type,
+        template = data.template,
+        skin = data.skin or 'es_1h_sword_skin_02',
         matching_item_key = data.matching_item_key, 
 
     }

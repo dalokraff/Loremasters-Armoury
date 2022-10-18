@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_shortsword_emission"
+    filename = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_emission"
   }
 
   output = {

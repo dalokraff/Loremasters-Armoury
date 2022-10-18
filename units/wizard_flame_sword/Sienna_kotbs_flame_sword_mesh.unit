@@ -7,19 +7,19 @@ data = {
     mat_to_use = "units/weapons/player/wpn_empire_2h_sword_01_t2/wpn_2h_sword_01_t2_runed_01"
     
     colors = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_diffuse"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_diffuse"
     }
     normals = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_normal"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_normal"
     }
     MABs = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Kruber_kotbs_shortsword_combined"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_combined"
     }
     emis_colors = {
 		slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_emission_color"
 	}
     emis_details = {
-        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_shortsword_emission"
+        slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_emission"
     }
 
     color_slot = "texture_map_c0ba2942" 
@@ -27,6 +27,8 @@ data = {
     MAB_slot = "texture_map_0205ba86"
     emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_4617b8e0"
+
+    use_vanilla_glow = "golden_glow"
 
 }
 
