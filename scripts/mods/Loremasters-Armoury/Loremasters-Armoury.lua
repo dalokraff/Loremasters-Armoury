@@ -554,9 +554,10 @@ end
 -- end)
 
 mod.on_game_state_changed = function(status, state_name)
-    -- if state_name == "StateIngame" and status == "enter" and Managers.state.network:in_game_session() then
+    if state_name == "StateIngame" then
     --     -- local level_name = Managers.state.game_mode:level_key() or "no level"
-    --     local level_name = Managers.level_transition_handler:get_current_level_keys()
+        local level_name = Managers.level_transition_handler:get_current_level_keys()
+        mod.spawned_in_units[level_name]  = false
     --     mod:chat_broadcast(level_name)
     --     -- mod:chat_broadcast(current_level)
     --     -- mod:echo(level_name)
@@ -644,7 +645,7 @@ mod.on_game_state_changed = function(status, state_name)
     --         local gem_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
     --     end
 
-    -- end
+    end
 end
 -- mod:hook_safe(InteractionDefinitions.pickup_object.client, "stop", function(world, interactor_unit, interactable_unit, data, config, t, result)
 --     if interactable_unit then 
