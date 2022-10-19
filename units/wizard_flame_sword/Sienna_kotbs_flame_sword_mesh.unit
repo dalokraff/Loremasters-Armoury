@@ -30,6 +30,22 @@ data = {
 
     use_vanilla_glow = "golden_glow"
 
+    particles = {
+        node_part_pairs = 1,
+        1 = {
+            node = 1,
+            fx = "fx/wpnfx_flaming_sword_1p",
+            package = "units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01",
+            offset = {
+                x = 0, 
+                y = 0.1,
+                z = 0,
+            },
+        }
+
+    }
+        
+
 }
 
 renderables = {

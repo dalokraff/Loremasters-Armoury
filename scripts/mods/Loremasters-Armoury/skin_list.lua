@@ -1505,30 +1505,7 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_01_runed_01 = "la_sienna_kotbs_firesword_icon",
             bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_icon",
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_icon",
-        },
-        particles = {
-			wield = {
-                {
-                    orphaned_policy = "destroy",
-                    effect = "fx/wpnfx_flaming_sword",
-                    third_person = true,
-                    link_target = "right_weapon",
-                    first_person = false,
-                    destroy_policy = "stop_spawning",
-                    link_node = 1,
-                },
-                {
-                    orphaned_policy = "destroy",
-                    effect = "fx/wpnfx_flaming_sword_1p",
-                    third_person = false,
-                    link_target = "right_weapon",
-                    first_person = true,
-                    destroy_policy = "stop_spawning",
-                    link_node = 1,
-                },
-            }
-        },
-       
+        },       
     },
 }
 

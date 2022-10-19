@@ -17,8 +17,6 @@ Managers.package:load("resource_packages/levels/dlcs/morris/wastes_common", "glo
 
 Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_sword_01_t2", "global")
 Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_sword_01_t2_3p", "global")
-Managers.package:load("units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01", "global")
-Managers.package:load("units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01_3p", "global")
 
 
 -- Your mod code goes here.
@@ -990,65 +988,5 @@ mod:command("trophies", "", function()
         spawn_package_to_player_offset(v, k*0.25)
     end
 end)
-
-
-
--- local player = Managers.player:local_player()
---     local player_unit = player.player_unit
---     local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
-
---     local rotation = Unit.local_rotation(player_unit, 0)
---     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
-
---     local world = Managers.world:world("level_world")
---     ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword", box_unit, 1, "destroy")
-
---     ScriptWorld.create_particles_linked = function (world, effect_name, unit, node, policy, pose)
---         local id = World.create_particles(world, effect_name, Vector3(0, 0, 0))
---         pose = pose or Matrix4x4.identity()
-    
---         World.link_particles(world, id, unit, node, pose, policy)
-    
---         return id
---     end
-
---     "fx/wpnfx_flaming_sword"
-
--- wpnfx_staff_beam_trail_3p
---     local player = Managers.player:local_player()
---     local player_unit = player.player_unit    
---     local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
---     local career_extension = ScriptUnit.extension(player_unit, "career_system")
---     local career_name = career_extension:career_name()
---     local item_one = BackendUtils.get_loadout_item(career_name, "slot_melee")
---     for k,v in pairs(inventory_extension.recently_acquired_list.slot_melee) do
---         mod:echo(k)
---     end
---     local fp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_1p
---     local tp_unit = inventory_extension.recently_acquired_list.slot_melee.right_unit_3p
---     mod:echo(tp_unit)
---     mod:echo(Unit.get_data(tp_unit, "unit_name"))
---     local world = Managers.world:world("level_world")
-    
-
---     ScriptWorld.create_particles_linked(world, "fx/cw_chain_lightning", fp_unit, 1, "destroy")
---     ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword", tp_unit, 1, "destroy")
-
-
--- mod:hook_safe(SimpleInventoryExtension, "add_equipment", function (self, slot_name, item_name, unit_template, extra_extension_data, ammo_percent)
---     local fp_unit = self.recently_acquired_list.slot_melee.right_unit_1p
---     local tp_unit = self.recently_acquired_list.slot_melee.right_unit_3p
-
---     if fp_unit then
---         if Unit.alive() then
---             local unit_name = Unit.get_data(fp_unit, "unit_name")
---             if unit_name == "units/wizard_sword/Sienna_kotbs_sword_mesh" then
---                 local world = Managers.world:world("level_world")
---                 ScriptWorld.create_particles_linked(world, "fx/wpnfx_flaming_sword_1p", fp_unit, 1, "destroy")
---             end
---         end
---     end
-
--- end)
 
   
