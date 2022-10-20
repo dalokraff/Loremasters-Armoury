@@ -71,6 +71,18 @@ local mod_text_ids = {
 	emp_sword = {
 		en = "Empire Sword",
 	},
+    emp_zweihander = {
+        en = "Empire Greatsword"
+    },
+    bret_sword = {
+        en = "Bretonnian Longsword"
+    },
+    wizard_sword = {
+        en = "Wizard's Sword"
+    },
+    wizard_flame_sword = {
+        en = "Fire Sword"
+    },
 	default = {
 		en = "default",
 	},
@@ -81,11 +93,23 @@ local mod_text_ids = {
 		en = "test description",
 	},
 	main_quest_desc = {
-		en = "Complete all relavent Sub Quests.",
+		en = "Complete the following quests to receive the reward.",
 	},
 	main_quest = {
-		en = "Main Quest",
+		en = "Where Does Thy Faith Lead",
 	},
+    main_quest_log = {
+        en = "Where Does Thy Faith Lead"
+    },
+    main_01 = {
+        en = "Where Does Thy Faith Lead"
+    },
+    main_01_desc = {
+        en = "Main Quest 01 description here"
+    },
+    read_new_message = {
+        en = "Read the latest message from the Loremaster to complete"
+    },
 	sub_quest_prologue_desc = {
 		en = "Read the message at Loremaster's Armoury message board to learn more about the upcoming task."
 	},
@@ -102,7 +126,7 @@ local mod_text_ids = {
 		en = "Loremaster's Message",
 	},
 	sub_quest_01_desc = {
-		en = "On your travels slay 500 skaven.",
+		en = "On your travels slay 1500 skaven.",
 	},
 	sub_quest_01 = {
 		en = "Fight against the Infestation",
@@ -114,7 +138,7 @@ local mod_text_ids = {
 		en = "The goddess of war, beauty and honour guides your path.",
 	},
 	sub_quest_02_desc = {
-		en = "On your travels slay 500 chaos worshippers.",
+		en = "On your travels slay 1500 chaos worshippers.",
 	},
 	sub_quest_02 = {
 		en = "Fight against the Corruption",
@@ -126,7 +150,7 @@ local mod_text_ids = {
 		en = "The goddess of war, beauty and honour guides your path.",
 	},
 	sub_quest_03_desc = {
-		en = "Find Loremaster's Armoury lost shipment in Righteous Stand.",
+		en = "Find Loremaster's Armoury stolen crate in Righteous Stand.",
 	},
 	sub_quest_03 = {
 		en = "A Favour for the Loremaster I",
@@ -138,7 +162,7 @@ local mod_text_ids = {
 		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
 	},
 	sub_quest_04_desc = {
-		en = "Find Loremaster's Armoury lost shipment in Convocation of Decay.",
+		en = "Find Loremaster's Armoury stolen crate in Convocation of Decay.",
 	},
 	sub_quest_04 = {
 		en = "A Favour for the Loremaster II",
@@ -150,7 +174,7 @@ local mod_text_ids = {
 		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
 	},
 	sub_quest_05_desc = {
-		en = "Find Loremaster's Armoury lost shipment in Empire in Flames.",
+		en = "Find Loremaster's Armoury stolen crate in Empire in Flames.",
 	},
 	sub_quest_05 = {
 		en = "A Favour for the Loremaster III",
@@ -195,7 +219,7 @@ local mod_text_ids = {
 		en = "The Fourth Message",
 	},
 	sub_quest_08_desc = {
-		en = "Retreive the mysterious artifact from Burblespue Halescourge.",
+		en = "Retreive the lost Power Stone from Burblespue Halescourge.",
 	},
 	sub_quest_08 = {
 		en = "That Belongs in a Museum!",
@@ -210,7 +234,7 @@ local mod_text_ids = {
 		en = "The Fifth Message",
 	},
 	sub_quest_09_desc = {
-		en = "Cleanse the corrupted artifact at the altar in The Citadel of Eternity.",
+		en = "Cleanse the corrupted Power Stone at the altar in The Citadel of Eternity.",
 	},
 	sub_quest_09 = {
 		en = "An Overdue Restoration",
@@ -267,13 +291,13 @@ local mod_text_ids = {
 		en = "",
 	},
 	LA_crate_pickup = {
-		en = "Picked up a missing Shipment Crate",
+		en = "Picked up the missing Shipping Crate",
 	},
 	LA_magic_gem_pickup = {
-		en = "Picked up The Lost Artifact",
+		en = "Picked up the Lost Artifact",
 	},
 	LA_reikbuch_pickup = {
-		en = "Picked up The Chronica Reiklandorum",
+		en = "Picked up the Chronica Reiklandorum",
 	},
 	reikbuch_desc = {
 		en = "This dust and mold covered chronicle contains records of significat events that took place between ages 2294 and 2471 I.C. in Grand Principality of Reikland. Though a great number of pages are no longer legible, there is still a lot of history preserved here.",

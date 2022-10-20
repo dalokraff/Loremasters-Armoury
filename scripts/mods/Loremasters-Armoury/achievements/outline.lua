@@ -332,7 +332,7 @@ local loremasters = {
 	categories = {
 		{
 			sorting = 1,
-			name = "Main_Quest_log",
+			name = "main_quest_log",
 			entries = {
 				"sub_quest_prologue",
 				"sub_quest_01",
