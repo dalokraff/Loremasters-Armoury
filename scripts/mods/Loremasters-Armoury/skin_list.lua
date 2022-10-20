@@ -1507,7 +1507,39 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_icon",
         },       
     },
+    Kruber_KOTBS_wizard_sword_01_flame_gold = {
+        kind = "unit",
+        new_units = {
+            "units/wizard_flame_sword/Sienna_kotbs_flame_sword_gold_mesh",
+            "units/wizard_flame_sword/Sienna_kotbs_flame_sword_gold_mesh_3p",
+        },
+        swap_hand = "right_hand_unit",
+        swap_skin = nil,
+        icons = {
+            bw_1h_flaming_sword_skin_01 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_02 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_03 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_04 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_05 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_06 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_07 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_08 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_01_runed_01 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_glow_icon",
+            bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_glow_icon",
+        },       
+    },
 }
+
+
+mod.locked_skins = {
+    Kruber_KOTBS_empire_sword_01_gold = true, 
+    Kruber_KOTBS_empire_zweihander_01_gold = true, 
+    Kruber_KOTBS_bret_sword_01_gold = true, 
+    Kruber_KOTBS_wizard_sword_01_gold = true, 
+    Kruber_KOTBS_wizard_sword_01_flame_gold = true,
+}
+
 
 local skin_table_weapons = table.clone(WeaponSkins.skins)
 local skin_table_items = table.clone(ItemMasterList, true)

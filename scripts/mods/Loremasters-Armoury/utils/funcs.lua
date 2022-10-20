@@ -222,15 +222,6 @@ local function re_equip_weapons(skin, unit)
 end
 
 
-
-mod.locked_skins = {
-    Kruber_KOTBS_empire_sword_01_gold = true, 
-    Kruber_KOTBS_empire_zweihander_01_gold = true, 
-    Kruber_KOTBS_bret_sword_01_gold = true, 
-    Kruber_KOTBS_wizard_sword_01_gold = true, 
-}
-
-
 --this function checks whether a skin from the vmf menu needs:
 --to be given the default unit; depending on the current state of the skin different actions are taken 
 --to have it's default unit retextured

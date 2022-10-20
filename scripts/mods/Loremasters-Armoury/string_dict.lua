@@ -73,11 +73,12 @@ local desc_strings = {
     Kruber_KOTBS_wizard_sword_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
     Kruber_KOTBS_empire_zweihander_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
     Kruber_KOTBS_bret_sword_01 = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
+    Kruber_KOTBS_wizard_sword_01_flame = "How and why exactly did this blade end up inside the vault of Eanith manor will forever remain a mystery. The Loremaster will surely never tell.",
     Kruber_KOTBS_empire_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
     Kruber_KOTBS_wizard_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
     Kruber_KOTBS_empire_zweihander_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
     Kruber_KOTBS_bret_sword_01_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
-    Kruber_KOTBS_wizard_sword_01_flame = "Flame Sword Description",
+    Kruber_KOTBS_wizard_sword_01_flame_gold = "With the power once lost now finally renewed again, in hands of worthy wielder, this blade shall cleanse its name.",
 }
 
 local name_strings = {}
@@ -221,7 +222,8 @@ mod.bretonian_longswords = {
 }
 
 mod.wizard_flame_swords = {
-    Kruber_KOTBS_wizard_sword_01_flame = "Flame Sword Name",
+    Kruber_KOTBS_wizard_sword_01_flame = "Blade of the Forgotten Knight",
+    Kruber_KOTBS_wizard_sword_01_flame_gold = "Incandescens",
 }
 
 --merges all the upbove tables together to be used for another mod table that is sent to the localization hook
