@@ -9,6 +9,9 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievements")
 
 mod:dofile("scripts/mods/Loremasters-Armoury/rpc_hooks/hooks")
 
+mod:dofile("scripts/mods/Loremasters-Armoury/unit_sounds/hooks")
+local unit_sound_map = require("scripts/mods/Loremasters-Armoury/unit_sounds/unit_sound_map")
+
 
 
 
@@ -107,6 +110,161 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
     return func(self, backend_id)
 end)
 
+
+-- mod:hook_safe(WeaponUnitExtension,'on_wield', function (self, ...)
+--     local tps_unit = self.owner_unit
+--     local unit = self.unit
+--     if Unit.alive(tps_unit) then
+--         local mod_skins = mod.current_skin
+--         local career_extension = ScriptUnit.extension(tps_unit, "career_system")
+--         if career_extension then
+--             local career_name = career_extension:career_name()
+            
+--             local inventory_extension = ScriptUnit.extension(tps_unit, "inventory_system")
+--             local slot_data = inventory_extension:get_wielded_slot_data()
+
+--             mod:echo(slot_data.right_hand_unit_name)
+--             -- if slot_data.right_unit_1p == unit then
+
+--             -- end
+            
+
+--             -- local unit_name = Unit.get_data(self.unit, "unit_name")
+--             -- mod:echo(unit_name)
+--             -- if mod_skins[item_one.skin] then
+--             --     mod:echo(mod_skins[item_one.skin].unit)
+--             -- end
+--             -- if mod_skins[item_two.skin] then
+--             --     mod:echo(mod_skins[item_two.skin].unit)
+--             -- end
+--             -- mod:echo('===============================')
+
+
+--             -- if mod_skins[item_one.skin].unit ==  unit_name then
+--             --     Unit.set_data(tps_unit, "LA_unit_wielded",  mod_skins[item_one.skin])
+--             -- elseif mod_skins[item_two.skin].unit == unit_name then
+--             --     Unit.set_data(tps_unit, "LA_unit_wielded", mod_skins[item_two.skin])
+--             -- else
+--             --     Unit.set_data(tps_unit, "LA_unit_wielded", nil)
+--             -- end
+--         end
+        
+--     end
+-- end)
+
+
+-- mod:hook_safe(WeaponUnitExtension, "on_wield", function (self, hand_name)
+--     -- mod:echo(sfx_array)
+--     -- local event = NetworkLookup.sound_events[event_id]
+--     -- mod:echo(event)
+--     for k,v in pairs(self.looping_audio_events) do
+--         mod:echo(tostring(k).."   "..tostring(v))
+--     end
+-- end)
+
+-- local traceb = debug.traceback()
+
+
+-- local sound_event_map = {
+    
+--     Play_ct_whoosh_heavy_screaming_metal = "rare_sword_2h_swing",
+--     Play_ct_creative_close_combat_build_swing = "flaming_sword_1h_swing",
+
+--     attack_swing_charge = "Play_fire_hand_charge_sword",
+    
+-- }
+-- -- local world = Managers.world:world("level_world")
+-- -- local wwise_world = Wwise.wwise_world(world)
+-- -- WwiseWorld.trigger_event(wwise_world, "Play_fire_hand_charge_sword" )
+
+-- mod:hook_safe(WwiseWorld, "trigger_event", function(self, event, ...)
+--     -- local sound = sound_event_map[event]
+--     -- if sound then
+        
+--     --     WwiseWorld.trigger_event(self, sound)
+--     -- end
+
+--     local args = {...}
+--     for k,v in ipairs(args) do
+--         if type(v) == 'userdata' then
+--             if Unit.alive(v) then
+--                 mod:echo('==========sound=========')
+--                 local name = Unit.get_data(v, "unit_name")
+--                 mod:echo(name)
+--                 mod:echo(event)
+--             end
+--         end
+        
+--     end
+    
+-- end)
+
+-- -- mod:hook(WwiseWorld, "trigger_event", function(func, self, ...)
+-- --     local args = {...}
+-- --     for k,v in ipairs(args) do
+-- --         -- if v == "weapon_foley_equip_sword_2h" then
+-- --         --     for k,v in ipairs(args) do
+-- --         --         mod:echo(v)
+-- --         --     end
+-- --         -- end
+-- --         mod:echo(v)
+-- --     end
+-- --     return func(self, ...)
+-- -- end)
+
+-- mod:hook(Unit, "animation_event", function(func, self, event, ...)
+--     -- local args = {...}
+--     -- for k,v in ipairs(args) do
+--     --     mod:echo(v)
+--     --     -- if v == "to_2h_sword" then
+--     --     --     mod:echo(v)
+--     --     --     local world = Managers.world:world("level_world")
+--     --     --     local wwise_world = Wwise.wwise_world(world)
+--     --     --     WwiseWorld.trigger_event(wwise_world, "weapon_foley_equip_sword_2h" )
+--     --     -- end
+--     -- end
+--     -- local sound = sound_event_map[event]
+--     -- if sound then
+--     --     local world = Managers.world:world("level_world")
+--     --     local wwise_world = Wwise.wwise_world(world)
+--     --     WwiseWorld.trigger_event(wwise_world, sound)
+--     -- end
+
+--     -- local name = Unit.get_data(self, "unit_name")
+--     -- if name then
+--     --     mod:echo('=========animation==========')
+--     --     mod:echo(name)
+--     --     mod:echo(event)
+--     -- end
+--     -- local lamod = get_mod("Loremasters-Armoury")
+--     -- local Armoury_key_melee = Unit.get_data(self, "slot_melee_LA")
+--     -- local Armoury_key_ranged = Unit.get_data(self, "slot_ranged_LA")
+--     -- local skin_list = lamod.SKIN_LIST
+--     -- if Armoury_key_melee then
+--     --     mod:echo(skin_list[Armoury_key_melee])
+--     -- end
+--     -- if Armoury_key_melee then
+--     --     mod:echo(skin_list[Armoury_key_ranged])
+--     -- end
+--     mod:echo(event)
+
+
+--     return func(self, event, ...)
+-- end)
+
+
+-- 1
+
+
+-- for k,v in pairs(SoundEvents) do
+--         mod:echo(k)
+--     end
+
+-- "rare_sword_2h_swing"
+-- "sword_2h_swing"
+-- local world = Managers.world:world("level_world")
+-- local wwise_world = Wwise.wwise_world(world)
+-- WwiseWorld.trigger_event(wwise_world, "weapon_foley_equip_sword_2h" )
 
 
 mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_buffs", function (func, self, backend_id)
@@ -488,10 +646,37 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
 	return func(victim_unit, damage_data, statistics_db, is_server)
 end)
 
+
+local sound_event_map = {
+    to_2h_sword = "weapon_foley_equip_sword_2h",
+    attack_swing_left_diagonal = "rare_sword_2h_swing",
+    attack_swing_right_diagonal = "rare_sword_2h_swing",
+    attack_swing_heavy_left_diagonal = "rare_sword_2h_charge_swing",
+    attack_swing_heavy_right_diagonal = "rare_sword_2h_charge_swing",
+
+    to_1h_sword = "weapon_foley_equip_sword_1h",
+    attack_swing_down = "rare_sword_1h_swing",
+    attack_swing_right = "rare_sword_1h_swing",
+    attack_swing_left = "rare_sword_1h_swing",
+    attack_swing_heavy_left = "rare_sword_1h_charge_swing",
+    attack_swing_heavy_right = "rare_sword_1h_charge_swing",
+
+
+    attack_swing_charge = "Play_weapon_emitter_flames",
+    fire_sword_special_swing = "Play_weapon_emitter_flames",
+    -- flaming_sword_1h_swing
+
+
+}
+
+-- local world = Managers.world:world("level_world")
+--         local wwise_world = Wwise.wwise_world(world)
+--         WwiseWorld.trigger_event(wwise_world, "rare_sword_1h_swing" )
+
 --used to register when bodvarr dies, so his collectable can be spawned
 mod.stored_vectors = {}
-mod:hook_safe(Unit, "animation_event", function(unit, event)
-
+mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
+    -- mod:echo("animation_event in general hooks")
     if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") then
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_sorcerer" then
@@ -516,6 +701,61 @@ mod:hook_safe(Unit, "animation_event", function(unit, event)
             end
         end
     end
+
+
+    local inventory_extension = ScriptUnit.extension(unit, "inventory_system")
+    if inventory_extension then
+        local slot_data = inventory_extension:get_wielded_slot_data()
+        local left_hand =  slot_data.left_hand_unit_name
+        local right_hand = slot_data.right_hand_unit_name
+
+
+        if right_hand then
+            local sound_table = unit_sound_map[right_hand]
+            if sound_table then
+                local sound_event = sound_table[event]
+                if sound_event then
+                    local world = Managers.world:world("level_world")
+                    local wwise_world = Wwise.wwise_world(world)
+                    WwiseWorld.trigger_event(wwise_world, sound_event)
+                end
+            end
+        end
+
+        if left_hand then
+            local sound_table = unit_sound_map[left_hand]
+            if sound_table then
+                local sound_event = sound_table[event]
+                if sound_event then
+                    local world = Managers.world:world("level_world")
+                    local wwise_world = Wwise.wwise_world(world)
+                    WwiseWorld.trigger_event(wwise_world, sound_event)
+                end
+            end
+        end
+
+
+    end
+
+
+    -- local unit_sound_map_key = Unit.get_data(unit, "LA_unit_wielded")
+    -- if unit_sound_map_key then
+    --     local sound_table = unit_sound_map[unit_sound_map_key]
+    --     local sound_event = sound_table[event]
+    --     if sound_event then
+    --         local world = Managers.world:world("level_world")
+    --         local wwise_world = Wwise.wwise_world(world)
+    --         WwiseWorld.trigger_event(wwise_world, sound_event)
+    --     end
+    -- end
+
+    -- local sound = sound_event_map[event]
+    -- if sound then
+    --     local world = Managers.world:world("level_world")
+    --     local wwise_world = Wwise.wwise_world(world)
+    --     WwiseWorld.trigger_event(wwise_world, sound )
+    -- end
+
 end)
 
 --for checking if the tomes and grims for sub quest 6 are collected
