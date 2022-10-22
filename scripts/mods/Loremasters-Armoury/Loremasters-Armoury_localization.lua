@@ -105,7 +105,10 @@ local mod_text_ids = {
         en = "Where Does Thy Faith Lead"
     },
     main_01_desc = {
-        en = "Main Quest 01 description here"
+        en = "The Loremaster reluctantly gave you an ancient looking sword with a mysterious history. Though you will probably never learn the true story of this blade, there may be a way to renew its once lost power and restore the honour so foolishly tainted by the sword's previous wielder."
+    },
+    main_01_signature = {
+        en = "Loremaster's Armoury"
     },
     read_new_message = {
         en = "Read the latest message from the Loremaster to complete"
@@ -219,7 +222,7 @@ local mod_text_ids = {
 		en = "The Fourth Message",
 	},
 	sub_quest_08_desc = {
-		en = "Retreive the lost Power Stone from Burblespue Halescourge.",
+		en = "Retrieve the lost Power Stone from Burblespue Halescourge.",
 	},
 	sub_quest_08 = {
 		en = "That Belongs in a Museum!",
