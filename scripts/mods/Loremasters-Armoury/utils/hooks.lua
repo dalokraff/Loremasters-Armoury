@@ -722,10 +722,13 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                     if not sound_event.delay then
                         local world = Managers.world:world("level_world")
                         local wwise_world = Wwise.wwise_world(world)
-                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name)
+                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.right_unit_1p)
                     else 
                         local time = mod.time + sound_event.delay 
-                        mod.delayed_sounds[sound_event.name] = time
+                        mod.delayed_sounds[sound_event.name] = {
+                            time = time, 
+                            unit = slot_data.right_unit_1p
+                        }
                     end
                 end
             end
@@ -739,10 +742,13 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                     if not sound_event.delay then
                         local world = Managers.world:world("level_world")
                         local wwise_world = Wwise.wwise_world(world)
-                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name)
+                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.left_unit_1p)
                     else 
                         local time = mod.time + sound_event.delay 
-                        mod.delayed_sounds[sound_event.name] = time
+                        mod.delayed_sounds[sound_event.name] = {
+                            time = time, 
+                            unit = slot_data.left_unit_1p
+                        }
                     end
                 end
             end
