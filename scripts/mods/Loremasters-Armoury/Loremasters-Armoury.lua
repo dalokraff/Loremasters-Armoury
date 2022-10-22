@@ -60,12 +60,6 @@ function mod.update(dt)
         end  
     end
     for unit,tisch in pairs(mod.preview_queue) do
-        if Unit.alive(unit) then
-            if Unit.has_data(unit, "use_vanilla_glow") then
-                local glow = Unit.get_data(unit, "use_vanilla_glow")
-                GearUtils.apply_material_settings(unit, WeaponMaterialSettingsTemplates[glow])
-            end
-        end
         if Managers.world:has_world("character_preview") then
             local world = Managers.world:world("character_preview")
             local Armoury_key = tisch.Armoury_key
