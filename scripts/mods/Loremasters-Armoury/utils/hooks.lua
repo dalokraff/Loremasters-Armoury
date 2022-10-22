@@ -199,18 +199,18 @@ end)
     
 -- end)
 
--- -- mod:hook(WwiseWorld, "trigger_event", function(func, self, ...)
--- --     local args = {...}
--- --     for k,v in ipairs(args) do
--- --         -- if v == "weapon_foley_equip_sword_2h" then
--- --         --     for k,v in ipairs(args) do
--- --         --         mod:echo(v)
--- --         --     end
--- --         -- end
--- --         mod:echo(v)
--- --     end
--- --     return func(self, ...)
--- -- end)
+-- mod:hook(WwiseWorld, "trigger_event", function(func, self, ...)
+--     local args = {...}
+--     for k,v in ipairs(args) do
+--         -- if v == "weapon_foley_equip_sword_2h" then
+--         --     for k,v in ipairs(args) do
+--         --         mod:echo(v)
+--         --     end
+--         -- end
+--         mod:echo(v)
+--     end
+--     return func(self, ...)
+-- end)
 
 -- mod:hook(Unit, "animation_event", function(func, self, event, ...)
 --     -- local args = {...}
@@ -252,6 +252,10 @@ end)
 --     return func(self, event, ...)
 -- end)
 
+-- mod:hook(Unit, "animation_event", function(func, self, event, ...)
+--     mod:echo(event)
+--     return func(self, event, ...)
+-- end)
 
 -- 1
 
@@ -715,9 +719,14 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
             if sound_table then
                 local sound_event = sound_table[event]
                 if sound_event then
-                    local world = Managers.world:world("level_world")
-                    local wwise_world = Wwise.wwise_world(world)
-                    WwiseWorld.trigger_event(wwise_world, sound_event)
+                    if not sound_event.delay then
+                        local world = Managers.world:world("level_world")
+                        local wwise_world = Wwise.wwise_world(world)
+                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name)
+                    else 
+                        local time = mod.time + sound_event.delay 
+                        mod.delayed_sounds[sound_event.name] = time
+                    end
                 end
             end
         end
@@ -727,9 +736,14 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
             if sound_table then
                 local sound_event = sound_table[event]
                 if sound_event then
-                    local world = Managers.world:world("level_world")
-                    local wwise_world = Wwise.wwise_world(world)
-                    WwiseWorld.trigger_event(wwise_world, sound_event)
+                    if not sound_event.delay then
+                        local world = Managers.world:world("level_world")
+                        local wwise_world = Wwise.wwise_world(world)
+                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name)
+                    else 
+                        local time = mod.time + sound_event.delay 
+                        mod.delayed_sounds[sound_event.name] = time
+                    end
                 end
             end
         end

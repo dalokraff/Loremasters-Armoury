@@ -33,7 +33,8 @@ mod.level_queue = {}
 mod.preview_queue = {}
 mod.armory_preview_queue = {}
 mod.current_skin = {}
-
+mod.time = 0
+mod.delayed_sounds = {}
 
 --on mod update:
 --the level_queue and previe_queue are checked to see if the respective worlds have any units that need to be retextured
@@ -107,6 +108,22 @@ function mod.update(dt)
         end
     end
 
+    local mod_time = mod.time
+    if Managers.world:has_world("level_world") then
+        local world = Managers.world:world("level_world")
+        local wwise_world = Wwise.wwise_world(world)
+        for sound_event_name,time in pairs(mod.delayed_sounds) do
+            mod:echo("sound id:         "..tostring(sound_event_name))
+            mod:echo("current time:     "..tostring(mod_time))
+            mod:echo("stop time:        "..tostring(time))
+            if mod_time >= time then
+                local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event_name)
+                mod.delayed_sounds[sound_event_name] = nil
+            end
+        end
+    end
+    mod.time = mod_time + dt
+    
 end
 
 
