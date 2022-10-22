@@ -267,7 +267,7 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_sword_mesh_gold"] = {
     },
 }
 
-unit_sound_map["units/wizard_sword/Sienna_kotbs_flame_sword_mesh"] = {
+unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_mesh"] = {
     to_1h_sword = {
         name = "weapon_foley_equip_sword_1h",
     },
@@ -301,17 +301,17 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_flame_sword_mesh"] = {
         name = "fire_sword_special_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "Play_fire_hand_charge_sword",
     },
     attack_swing_stab = {
-        name = "flaming_sword_1h_swing",
+        name = "Play_fire_hand_charge_sword",
     },
     attack_swing_charge = {
         name = "Play_fire_hand_charge_sword",
     },
 }
 
-unit_sound_map["units/wizard_sword/Sienna_kotbs_flame_sword_gold_mesh"] = {
+unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_gold_mesh"] = {
     to_1h_sword = {
         name = "weapon_foley_equip_sword_1h",
     },
@@ -345,10 +345,10 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_flame_sword_gold_mesh"] = {
         name = "fire_sword_special_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "Play_fire_hand_charge_sword",
     },
     attack_swing_stab = {
-        name = "flaming_sword_1h_swing",
+        name = "Play_fire_hand_charge_sword",
     },
     attack_swing_charge = {
         name = "Play_fire_hand_charge_sword",
