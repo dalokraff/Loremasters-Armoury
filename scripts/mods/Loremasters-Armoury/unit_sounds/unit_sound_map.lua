@@ -6,11 +6,11 @@ unit_sound_map["units/empire_zweihander/Kruber_kotbs_greatsword_mesh"] = {
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.4,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.4,
     },
     attack_swing_heavy_left_diagonal = {
         name = "rare_sword_2h_charge_swing",
@@ -20,7 +20,7 @@ unit_sound_map["units/empire_zweihander/Kruber_kotbs_greatsword_mesh"] = {
     },
     attack_swing_down_right = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.3,
     },
 }
 
@@ -30,11 +30,11 @@ unit_sound_map["units/empire_zweihander/Kruber_kotbs_greatsword_mesh_gold"] = {
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.4,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.4,
     },
     attack_swing_heavy_left_diagonal = {
         name = "rare_sword_2h_charge_swing",
@@ -44,7 +44,7 @@ unit_sound_map["units/empire_zweihander/Kruber_kotbs_greatsword_mesh_gold"] = {
     },
     attack_swing_down_right = {
         name = "rare_sword_2h_swing",
-        delay = 0.2,
+        delay = 0.3,
     },
 }
 
@@ -54,23 +54,23 @@ unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh"] = {
     },
     attack_swing_down = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "rare_sword_1h_charge_swing",
@@ -82,10 +82,12 @@ unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh"] = {
         name = "rare_sword_1h_charge_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
+        delay = 0.2,
     },
     attack_swing_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
+        delay = 0.2,
     },
     
 }
@@ -96,23 +98,23 @@ unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold"] = {
     },
     attack_swing_down = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "rare_sword_1h_charge_swing",
@@ -124,10 +126,12 @@ unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold"] = {
         name = "rare_sword_1h_charge_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
+        delay = 0.2,
     },
     attack_swing_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
+        delay = 0.2,
     },
 }
 
@@ -137,24 +141,31 @@ unit_sound_map["units/bret_sword/Kruber_kotbs_longsword_mesh"] = {
     },
     attack_swing_up_left = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_right = {
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
     attack_swing_down = {
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
     attack_swing_down_right ={
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
     attack_swing_heavy_left_diagonal = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_heavy_right_diagonal = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_heavy_down = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
 }
 
@@ -164,24 +175,31 @@ unit_sound_map["units/bret_sword/Kruber_kotbs_longsword_mesh_gold"] = {
     },
     attack_swing_up_left = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_right = {
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
     attack_swing_down = {
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
-    attack_swing_down_right ={
+    attack_swing_down_right = {
         name = "rare_sword_2h_swing",
+        delay = 0.2
     },
     attack_swing_heavy_left_diagonal = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_heavy_right_diagonal = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
     attack_swing_heavy_down = {
         name = "rare_sword_2h_swing",
+        delay = 0.1
     },
 }
 
@@ -191,23 +209,23 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_sword_mesh"] = {
     },
     attack_swing_down = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "rare_sword_1h_charge_swing",
@@ -219,10 +237,10 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_sword_mesh"] = {
         name = "rare_sword_1h_charge_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
     },
     attack_swing_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
     },
 }
 
@@ -232,23 +250,23 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_sword_mesh_gold"] = {
     },
     attack_swing_down = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right_diagonal = {
         name = "rare_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "rare_sword_1h_charge_swing",
@@ -260,10 +278,10 @@ unit_sound_map["units/wizard_sword/Sienna_kotbs_sword_mesh_gold"] = {
         name = "rare_sword_1h_charge_swing",
     },
     attack_swing_heavy_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
     },
     attack_swing_stab = {
-        name = "swing_1h_broadsword",
+        name = "rare_sword_1h_swing",
     },
 }
 
@@ -273,23 +291,23 @@ unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_mesh"] = {
     },
     attack_swing_down = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_right_diagonal = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "fire_sword_special_swing",
@@ -305,9 +323,11 @@ unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_mesh"] = {
     },
     attack_swing_stab = {
         name = "swing_1h_broadsword",
+        delay = 0.1,
     },
     attack_swing_charge = {
         name = "Play_fire_hand_charge_sword",
+        delay = 0.2,
     },
 }
 
@@ -317,23 +337,23 @@ unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_gold_mesh"] = 
     },
     attack_swing_down = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.3,
     },
     attack_swing_right = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_left_diagonal = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_right_diagonal = {
         name = "flaming_sword_1h_swing",
-        delay = 0.1,
+        delay = 0.2,
     },
     attack_swing_heavy = {
         name = "fire_sword_special_swing",
@@ -349,9 +369,11 @@ unit_sound_map["units/wizard_flame_sword/Sienna_kotbs_flame_sword_gold_mesh"] = 
     },
     attack_swing_stab = {
         name = "swing_1h_broadsword",
+        delay = 0.1,
     },
     attack_swing_charge = {
         name = "Play_fire_hand_charge_sword",
+        delay = 0.2,
     },
 }
 
