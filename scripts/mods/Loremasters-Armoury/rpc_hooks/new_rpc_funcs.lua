@@ -4,25 +4,25 @@ local rpc_table = {
     rpc_generic_interaction_request = function(self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id)
         mod:echo("=========================")
         -- mod:echo(rpc_name)
-        mod:echo(self_2)
-        mod:echo(channel_id)
-        mod:echo(interactor_go_id)
-        mod:echo(interactable_go_id)
-        mod:echo(interaction_type_id)
+        -- mod:echo(self_2)
+        -- mod:echo(channel_id)
+        -- mod:echo(interactor_go_id)
+        -- mod:echo(interactable_go_id)
+        -- mod:echo(interaction_type_id)
         -- mod:echo(channel_id)
         -- mod:echo(interactor_go_id)
         -- mod:echo(interactable_go_id)
         -- mod:echo(is_level_unit)
         -- mod:echo(interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
-        mod:echo(tostring(interactable_unit).."     "..tostring(Unit.get_data(interactable_unit, "unit_name")))
+        -- mod:echo(tostring(interactable_unit).."     "..tostring(Unit.get_data(interactable_unit, "unit_name")))
         
 
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
         if mod.LA_new_interactors[unit_name] then
             local interactor_unit = Managers.state.unit_storage:unit(self_2)
-            mod:echo(tostring(interactor_unit).."     "..tostring(Unit.get_data(interactor_unit, "unit_name")))
+            -- mod:echo(tostring(interactor_unit).."     "..tostring(Unit.get_data(interactor_unit, "unit_name")))
             local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
             local interaction_type = NetworkLookup.interactions[interactable_go_id]
             -- interactor_extension:interaction_approved(interaction_type, interactable_unit)
@@ -53,10 +53,10 @@ local rpc_table = {
     rpc_spawn_pickup_with_physics = function(pickup_name_id, position, rotation, spawn_type_id)
 
 
-        mod:echo(pickup_name_id)
-        mod:echo(position)
-        mod:echo(rotation)
-        mod:echo(spawn_type_id)
+        -- mod:echo(pickup_name_id)
+        -- mod:echo(position)
+        -- mod:echo(rotation)
+        -- mod:echo(spawn_type_id)
 
 
         local pickup_name = NetworkLookup.pickup_names[pickup_name_id]
@@ -194,3 +194,97 @@ local rpc_table = {
 }
 
 return rpc_table
+
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0)
+-- mod:echo(position)
+-- Vector3(4.05782, -9.37817, -2.09167)
+
+-- Vector3(5.4675, -9.22365, -2.13532)
+
+-- local function radians_to_quaternion(theta, ro, phi)
+--     local c1 =  math.cos(theta/2)
+--     local c2 = math.cos(ro/2)
+--     local c3 = math.cos(phi/2)
+--     local s1 = math.sin(theta/2)
+--     local s2 = math.sin(ro/2)
+--     local s3 = math.sin(phi/2)
+--     local x = (s1*s2*c3) + (c1*c2*s3)
+--     local y = (s1*c2*c3) + (c1*s2*s3)
+--     local z = (c1*s2*c3) - (s1*c2*s3)
+--     local w = (c1*c2*c3) - (s1*s2*s3)
+--     local rot = Quaternion.from_elements(x, y, z, w)
+--     return rot
+-- end
+
+-- local position = Vector3(5.2, -9, -2.15)
+-- local rotation = Quaternion.from_elements(0,0,0,0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+
+-- local position = Vector3(4.32, -9.075, -1.8)
+-- local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0)
+-- mod:echo(position)
+-- local rotation = radians_to_quaternion(0, 0, 0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+
+
+
+
+
+
+
+-- local function radians_to_quaternion(theta, ro, phi)
+--     local c1 =  math.cos(theta/2)
+--     local c2 = math.cos(ro/2)
+--     local c3 = math.cos(phi/2)
+--     local s1 = math.sin(theta/2)
+--     local s2 = math.sin(ro/2)
+--     local s3 = math.sin(phi/2)
+--     local x = (s1*s2*c3) + (c1*c2*s3)
+--     local y = (s1*c2*c3) + (c1*s2*s3)
+--     local z = (c1*s2*c3) - (s1*c2*s3)
+--     local w = (c1*c2*c3) - (s1*s2*s3)
+--     local rot = Quaternion.from_elements(x, y, z, w)
+--     return rot
+-- end
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Vector3(-7.1, 0.125946, -3.75)
+-- local rotation = Quaternion.from_elements(0, 0, 0.99738, 0.07234)
+-- local rot = radians_to_quaternion(0, math.pi/42, 0)
+-- local rotation1 =  Quaternion.multiply(rotation, rot)
+-- mod:echo(position)
+-- mod:echo(rotation1)
+-- local world = Managers.world:world("level_world")
+-- local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
+-- local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
+-- local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, position, rotation1, world)
+
+
+
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+-- local rotation = Quaternion.from_elements(0, 0, 0, 0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/candles/prop_candle_02", position, rotation)
+-- Unit.set_local_scale(box_unit, 1, Vector3(0.0001, 0.0001, 0.0001))
+
+-- "units/props/lanterns/lantern_01/prop_lantern_01"
+
+-- Managers.package:load("resource_packages/levels/honduras/fort_common", "global")
+-- local function is_available(type, name)
+-- 	printf("%s.%s : available? => %s", name, type, Application.can_get(type, name))
+-- end
+-- is_available("unit", "units/props/lanterns/lantern_02/prop_lantern_02")
+-- resource_packages/props/lanterns

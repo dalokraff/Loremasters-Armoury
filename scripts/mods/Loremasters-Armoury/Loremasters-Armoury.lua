@@ -23,10 +23,10 @@ Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_
 -- https://vmf-docs.verminti.de
 
 
-mod:hook_safe(StateIngame,'_setup_state_context', function (self, world, is_server, network_event_delegate)
-    Managers.state.achievement = AchievementManager:new(self.world, self.statistics_db)
-    mod:echo('inside out')
-end)
+-- mod:hook_safe(StateIngame,'_setup_state_context', function (self, world, is_server, network_event_delegate)
+--     Managers.state.achievement = AchievementManager:new(self.world, self.statistics_db)
+--     mod:echo('inside out')
+-- end)
 
 --thesse tables are used as queues that get filled and flushed as skins and their respective units are changed
 mod.level_queue = {}

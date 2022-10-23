@@ -617,9 +617,9 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
 
-for k,v in pairs(ItemMasterList.dr_steam_pistol_skin_01) do 
-    mod:echo(k)
-end
+-- for k,v in pairs(ItemMasterList.dr_steam_pistol_skin_01) do 
+--     mod:echo(k)
+-- end
 
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {
@@ -1356,11 +1356,11 @@ mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, sel
 
     local interaction_context = self.interaction_context
     local network_manager = Managers.state.network
-    mod:echo(interaction_context.interactable_unit)
+    -- mod:echo(interaction_context.interactable_unit)
     if not interaction_context.interactable_unit then
         return func(self, hold_input, interactable_unit, interaction_type, forced)
     end
-    mod:echo(interactable_unit)
+    -- mod:echo(interactable_unit)
     local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
     local unit = self.unit
 
