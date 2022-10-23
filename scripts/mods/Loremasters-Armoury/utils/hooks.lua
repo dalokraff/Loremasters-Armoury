@@ -789,6 +789,18 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             end
         end
 
+        if level_name == "morris_hub" then
+            if mod:get("sub_quest_09") then
+                local position = Vector3(5.2, -9, -2.15)
+                local rotation = Quaternion.from_elements(0,0,0,0)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
+
+                local position = Vector3(4.32, -9.075, -1.8)
+                local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+            end
+        end
+
         if level_name == "inn_level" then
             
             -- mod.spawn_message_board()
@@ -829,7 +841,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
-            if mod:get("sub_quest_09") then
+            if mod:get("sub_quest_10") then
                 local position = Vector3(-5.9, 4.96421, 6.15258)
                 local rot = radians_to_quaternion(0, math.pi, 0)
                 local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
