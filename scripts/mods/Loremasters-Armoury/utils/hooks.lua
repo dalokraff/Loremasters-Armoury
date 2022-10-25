@@ -798,6 +798,13 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local position = Vector3(4.32, -9.075, -1.8)
                 local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+            
+                
+                local position = Vector3(4.8, -9.15, -2.0465)
+                local rotation = radians_to_quaternion(0, math.pi/16, 0)
+                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
+                Unit.set_local_scale(box_unit, 0, Vector3(0.75, 0.75, 0.75))
+                            
             end
         end
 
