@@ -352,7 +352,18 @@ mod:command("spawn_crate", "", function()
     local player_unit = player.player_unit
     local position = Unit.local_position(player_unit, 0)
     local rotation = Unit.local_rotation(player_unit, 0)
+    mod:echo( tostring(position))
     local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_shipment_box_mesh_real", position, rotation)
+end)
+
+mod:command("spawn_spell_paper", "", function()
+    -- Managers.package:load("units/weapons/player/pup_wooden_sword_01/pup_wooden_sword_01", "global")
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) + Vector3(0,0,1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    mod:echo(tostring(position))
+    local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
 end)
 
 
@@ -731,8 +742,8 @@ end
 -- mod:echo(position)
 -- mod:echo(rotation)
 
--- [MOD][ExecLua][ECHO] Vector3(172.06, 255.759, -13.775)
--- [MOD][ExecLua][ECHO] Vector4(0, 0, -0.484305, -0.874899)
+-- Vector3(172.06, 255.759, -13.775)
+-- Vector4(0, 0, -0.484305, -0.874899)
 
 -- Managers.state.game_mode:start_specific_level("arena_citadel_slaanesh_path1")
 -- local level_name = Managers.state.game_mode:level_key()

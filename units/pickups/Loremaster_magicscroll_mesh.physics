@@ -1,0 +1,17 @@
+actors = [
+	// {
+	// 	enabled = true
+	// 	mass = 1
+	// 	name = "LA_magicscroll"
+	// 	node = "LA_magicscroll"
+	// 	shapes = [
+	// 		{
+	// 			material = "default"
+	// 			shape = "LA_magicscroll"
+	// 			template = "human_collision"
+	// 			type = "convex_computed"
+	// 		}
+	// 	]
+	// 	template = "static"
+	// },
+]
