@@ -50,34 +50,69 @@ LetterBoard.spawn_letters = function(self)
     if QuestLetters[active_quest] then
         for quest,letter in pairs(QuestLetters[active_quest]) do
             if mod:get(quest) or (string.find(quest, "prologue")) then
-                local extension_init_data = {}
-                local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter.unit, "interaction_unit", extension_init_data, position, rotation)
+                if letter.requires then
+                    local fulfilled = true
+                    for _,quest_reqs in pairs(letter.requires) do   
+                        if not mod:get(quest_reqs) then
+                            fulfilled = false
+                        end
+                    end
+                    if fulfilled then
+                        local extension_init_data = {}
+                        local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter.unit, "interaction_unit", extension_init_data, position, rotation)
 
-                self:pin_to_board(quest, interactable_letter_unit)
+                        self:pin_to_board(quest, interactable_letter_unit)
 
-                local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter.unit.."_visable", position, rotation)
+                        local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter.unit.."_visable", position, rotation)
 
-                local root2root = {
-                    {
-                        target = 0,
-                        source = 0,
-                    },
-                }
+                        local root2root = {
+                            {
+                                target = 0,
+                                source = 0,
+                            },
+                        }
 
-                AttachmentUtils.link(self.world, interactable_letter_unit, visable_letter_unit, root2root)
+                        AttachmentUtils.link(self.world, interactable_letter_unit, visable_letter_unit, root2root)
 
-                active_letters[quest] = {
-                    interactable = interactable_letter_unit,
-                    visable = visable_letter_unit,
-                }
-                Unit.set_data(interactable_letter_unit, "quest", quest)
-                Unit.set_data(interactable_letter_unit, "quest", quest)
-                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_description", letter.name)
-                Unit.set_data(interactable_letter_unit, "interaction_data", "camera_interaction_name", letter.name)
-                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_1", letter.name)
-                Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_2", letter.desc)
+                        active_letters[quest] = {
+                            interactable = interactable_letter_unit,
+                            visable = visable_letter_unit,
+                        }
+                        Unit.set_data(interactable_letter_unit, "quest", quest)
+                        Unit.set_data(interactable_letter_unit, "quest", quest)
+                        Unit.set_data(interactable_letter_unit, "interaction_data", "hud_description", letter.name)
+                        Unit.set_data(interactable_letter_unit, "interaction_data", "camera_interaction_name", letter.name)
+                        Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_1", letter.name)
+                        Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_2", letter.desc)
+                    end
+                elseif not letter.requires then
+                    local extension_init_data = {}
+                    local interactable_letter_unit = Managers.state.unit_spawner:spawn_network_unit(letter.unit, "interaction_unit", extension_init_data, position, rotation)
 
+                    self:pin_to_board(quest, interactable_letter_unit)
 
+                    local visable_letter_unit = Managers.state.unit_spawner:spawn_local_unit(letter.unit.."_visable", position, rotation)
+
+                    local root2root = {
+                        {
+                            target = 0,
+                            source = 0,
+                        },
+                    }
+
+                    AttachmentUtils.link(self.world, interactable_letter_unit, visable_letter_unit, root2root)
+
+                    active_letters[quest] = {
+                        interactable = interactable_letter_unit,
+                        visable = visable_letter_unit,
+                    }
+                    Unit.set_data(interactable_letter_unit, "quest", quest)
+                    Unit.set_data(interactable_letter_unit, "quest", quest)
+                    Unit.set_data(interactable_letter_unit, "interaction_data", "hud_description", letter.name)
+                    Unit.set_data(interactable_letter_unit, "interaction_data", "camera_interaction_name", letter.name)
+                    Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_1", letter.name)
+                    Unit.set_data(interactable_letter_unit, "interaction_data", "hud_text_line_2", letter.desc)
+                end
             end
         end
     end

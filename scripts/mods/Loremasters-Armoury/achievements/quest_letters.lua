@@ -116,6 +116,10 @@ QuestLetters.main_01 = {
         unit = "units/decorations/letters/LA_quest_message_stage02",
         name = "sub_quest_05_message",
         desc = "sub_quest_05_message_desc",
+        requires = {
+            "sub_quest_03",
+            "sub_quest_04",
+        },
     },
     sub_quest_06 = {
         unit = "units/decorations/letters/LA_quest_message_stage03",

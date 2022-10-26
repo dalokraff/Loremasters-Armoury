@@ -322,7 +322,7 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	requirements = function (statistics_db, stats_id)
 		local reqs = {}
 
-		if mod:get("sub_quest_05") then
+		if mod:get("sub_quest_05") and mod:get("sub_quest_04") and mod:get("sub_quest_03") then
 			table.insert(reqs, {
 				name = "read_new_message",
 				completed = mod:get("sub_quest_05".."_letter_read")
