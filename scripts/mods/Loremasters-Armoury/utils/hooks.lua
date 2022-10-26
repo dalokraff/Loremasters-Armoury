@@ -823,35 +823,34 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
 
 
             if mod:get("sub_quest_05") then
-                local position = Vector3(-6.56431, 3.91166, 5.16261)
-                local rotation = Quaternion.from_elements(0, 0, 0.924188, 0.15)
+                local position = Vector3(0.8, 7.7, 5.17543)
+                local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
+
+                local position = Vector3(0.996047, 8, 6.2)
+                local rotation = radians_to_quaternion(0,-math.pi/2,0)
+                local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", position, rotation)
+
+                local position = Vector3(1.8, 9.76, 7)
+                local rotation = radians_to_quaternion(math.pi,0,0)
+                local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+
             end
             if mod:get("sub_quest_07") then
-                -- local position = Vector3(-6, 4.7, 6.3)
-                -- local rot = radians_to_quaternion(7*math.pi/18, 10*math.pi/9, -3*math.pi/4)
-                -- local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                local position = Vector3(-6, 4.61, 6.28)
-                local rot = radians_to_quaternion(7*math.pi/18, 0, 0)
-                local rotation1 =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                local rot2 = radians_to_quaternion(8*math.pi/4 + 0*math.pi/10,  math.pi/12, 7*math.pi/4)
-                local rotation2 =  Quaternion.multiply(rotation1, rot2)
-                -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", position, rotation)
+                local position = Vector3(1, 6.835, 6.29282)
+                local rotation = radians_to_quaternion(math.pi/2,-math.pi/12,math.pi/2)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation2)
+                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
-                local position = Vector3(-5.9, 4.96421, 6.15258)
-                local rot = radians_to_quaternion(0, math.pi, 0)
-                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_corrupted_mesh", position, rotation)
+                local position = Vector3(1.5, 6.5, 6.1654)
+                local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_10") then
-                local position = Vector3(-5.9, 4.96421, 6.15258)
-                local rot = radians_to_quaternion(0, math.pi, 0)
-                local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
+                local position = Vector3(1.5, 6.5, 6.1654)
+                local rotation = radians_to_quaternion(0,math.pi/8,0)
                 -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
