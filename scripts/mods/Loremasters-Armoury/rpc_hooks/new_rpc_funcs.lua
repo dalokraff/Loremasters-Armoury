@@ -256,6 +256,33 @@ return rpc_table
 --     local rot = Quaternion.from_elements(x, y, z, w)
 --     return rot
 -- end
+
+
+-- local position = Vector3(1.8, 9.76, 7)
+-- local rotation = radians_to_quaternion(math.pi,0,0)
+-- Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+
+-- local position = Vector3(0.8, 7.7, 5.17543)
+-- local rotation = radians_to_quaternion(0,math.pi/8,0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
+
+-- local diff = Vector3(0.8, 7.7, 5.17543) - Vector3(-6.56431, 3.91166, 5.16261)
+
+-- -- Vector3(-6, 4.61, 6.28)
+-- mod:echo(Vector3(-6, 4.61, 6.28)+diff)
+
+-- local rotation = radians_to_quaternion(math.pi/2,-math.pi/12,math.pi/2)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_reikland_chronicle_mesh", Vector3(1, 6.835, 6.29282), rotation)
+
+-- -- Vector3(-5.9, 4.96421, 6.15258)
+-- mod:echo(Vector3(-5.9, 4.96421, 6.15258)+diff)
+-- local rotation = radians_to_quaternion(0,math.pi/8,0)
+-- local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", Vector3(1.3, 6.5, 6.1654), rotation)
+
+
+
+
+
 -- local player = Managers.player:local_player()
 -- local player_unit = player.player_unit
 -- local position = Vector3(-7.1, 0.125946, -3.75)

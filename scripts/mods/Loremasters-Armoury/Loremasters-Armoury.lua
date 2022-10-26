@@ -151,12 +151,12 @@ end)
 mod:command("complete_sub_quest_01", "", function()
 
     mod.main_quest.sub_quest_01 = true
-
+    mod:set("sub_quest_01", 1500)
 end)
 mod:command("complete_sub_quest_02", "", function()
 
     mod.main_quest.sub_quest_02 = true
-
+    mod:set("sub_quest_02", 1500)
 end)
 mod:command("complete_sub_quest_03", "", function()
 

@@ -376,6 +376,25 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
             if mod:get("sub_quest_09") then 
                 if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) then
                     mod:set("sub_quest_10", true)
+                    if Unit.alive(mod.sword_unit) then
+                        local position = Unit.local_position(mod.sword_unit, 0)
+                        local rotation = Unit.local_rotation(mod.sword_unit, 0)
+                        local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold_3p", position, rotation)                       
+                        if Unit.has_data(sword_unit, "use_vanilla_glow") then
+                            local glow = Unit.get_data(sword_unit, "use_vanilla_glow")
+                            GearUtils.apply_material_settings(sword_unit, WeaponMaterialSettingsTemplates[glow])
+                        end
+                        POSITION_LOOKUP[mod.sword_unit] = nil
+                        World.destroy_unit(world, mod.sword_unit)
+                    end
+                    if Unit.alive(mod.scroll_unit) then
+                        local position = Unit.local_position(mod.scroll_unit, 0)
+                        local rotation = Unit.local_rotation(mod.scroll_unit, 0)
+                        local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_used_mesh", position, rotation)
+                        Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
+                        POSITION_LOOKUP[mod.scroll_unit] = nil
+                        World.destroy_unit(world, mod.scroll_unit)
+                    end
                 end
             end
         end
@@ -795,20 +814,40 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local rotation = Quaternion.from_elements(0,0,0,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
 
+                if not mod:get("sub_quest_10") then
+                    local position = Vector3(4.32, -9.075, -1.8)
+                    local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
+                    local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+                    
+                    local position = Vector3(4.8, -9.15, -2.0465)
+                    local rotation = radians_to_quaternion(0, math.pi/16, 0)
+                    local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
+                    Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
+
+                    mod.scroll_unit = scroll_unit
+                    mod.sword_unit = sword_unit
+
+                end                            
+            end
+
+            if mod:get("sub_quest_10") then
                 local position = Vector3(4.32, -9.075, -1.8)
                 local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
-                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
-            
-                
+                local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold_3p", position, rotation)
+                if Unit.has_data(sword_unit, "use_vanilla_glow") then
+                    local glow = Unit.get_data(sword_unit, "use_vanilla_glow")
+                    GearUtils.apply_material_settings(sword_unit, WeaponMaterialSettingsTemplates[glow])
+                end
+
                 local position = Vector3(4.8, -9.15, -2.0465)
                 local rotation = radians_to_quaternion(0, math.pi/16, 0)
-                local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
-                Unit.set_local_scale(box_unit, 0, Vector3(0.75, 0.75, 0.75))
-                            
+                local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_used_mesh", position, rotation)
+                Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
             end
-        end
 
-        if level_name == "inn_level" then
+        end
+        
+        if string.find(level_name, "inn_level") then
             
             -- mod.spawn_message_board()
 
@@ -830,11 +869,13 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local position = Vector3(0.996047, 8, 6.2)
                 local rotation = radians_to_quaternion(0,-math.pi/2,0)
                 local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", position, rotation)
+                Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
 
-                local position = Vector3(1.8, 9.76, 7)
-                local rotation = radians_to_quaternion(math.pi,0,0)
-                local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
-
+                if not  mod:get("sub_quest_10") then
+                    local position = Vector3(1.8, 9.76, 7)
+                    local rotation = radians_to_quaternion(math.pi,0,0)
+                    local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+                end
             end
             if mod:get("sub_quest_07") then
                 local position = Vector3(1, 6.835, 6.29282)
@@ -848,12 +889,20 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
-            if mod:get("sub_quest_10") then
+            if mod:get("sub_quest_09") then
                 local position = Vector3(1.5, 6.5, 6.1654)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
-                -- local artifact_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_mesh", position, rotation)
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
+            end
+            if mod:get("sub_quest_10") then
+                local position = Vector3(1.8, 9.76, 7)
+                local rotation = radians_to_quaternion(math.pi,0,0)
+                local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold_3p", position, rotation)
+                if Unit.has_data(sword_unit, "use_vanilla_glow") then
+                    local glow = Unit.get_data(sword_unit, "use_vanilla_glow")
+                    GearUtils.apply_material_settings(sword_unit, WeaponMaterialSettingsTemplates[glow])
+                end
             end
         end
 
