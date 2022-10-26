@@ -8,12 +8,13 @@ mod.list_of_LA_levels = {
         collected = false, 
     },
     catacombs = {
-        position = stingray.Vector3Box(118.214, 217.793, 44),
+        -- position = stingray.Vector3Box(118.214, 217.793, 44),
+        position = stingray.Vector3Box(-46.1543, -41.9505, 2.13928),
         collected = false, 
     },
     ussingen = {
         -- position = stingray.Vector3Box(59.9726, -416.792, 6.50908),
-        position = stingray.Vector3Box(-52.6759, -331.995, -2.50406),
+        position = stingray.Vector3Box(-38.9252, -35.0012, 16.6595),
         collected = false, 
     },
 }
