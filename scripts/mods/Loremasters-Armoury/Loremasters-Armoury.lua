@@ -1,4 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
+mod:dofile("scripts/mods/Loremasters-Armoury/buffs/LA_buffs")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
@@ -106,6 +107,10 @@ function mod.update(dt)
     if mod.sword_ritual then
         mod.sword_ritual:update(dt)
     end
+    if mod.halescourge_buff then
+        mod.halescourge_buff:update(dt)
+    end
+    
 
     local mod_time = mod.time
     if Managers.world:has_world("level_world") then
@@ -171,6 +176,13 @@ function mod.update(dt)
 
     mod.time = mod_time + dt
     
+end
+
+
+mod.on_game_state_changed = function(status, state_name)
+    if state_name == "StateIngame" and status == "enter" then
+        mod.halescourge_buff_applied = false
+    end
 end
 
 

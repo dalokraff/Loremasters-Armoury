@@ -13,7 +13,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/unit_sounds/hooks")
 local unit_sound_map = require("scripts/mods/Loremasters-Armoury/unit_sounds/unit_sound_map")
 
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/sword_enchantment")
-
+mod:dofile("scripts/mods/Loremasters-Armoury/buffs/halescourge_buff")
 
 
 
@@ -769,6 +769,11 @@ end)
 
 mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, unit_template_name, extension_init_data, position, rotation, material)
     local level_name = Managers.level_transition_handler:get_current_level_keys()
+    mod:echo(level_name)
+    if level_name == "ground_zero" and not mod.halescourge_buff_applied then
+        mod.halescourge_buff = HalescourgeBuff:new(self.world)
+    end
+
     if not mod.spawned_in_units[level_name] then
         mod.spawned_in_units[level_name] = true
 
