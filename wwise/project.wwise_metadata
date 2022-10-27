@@ -22,8 +22,11 @@ banks = {
 			"Loremaster_book_pickup_sound__1_"
 			"Loremaster_Cleansed_Artifact_pickup_sound"
 			"Loremaster_Corrupted_Artifact_pickup_sound"
+			"Loremaster_enchanting_sound"
 			"Loremaster_letter_open_sound"
 			"Loremaster_letter_open_sound__1_"
+			"Loremaster_magicboon_sound"
+			"Loremaster_scroll_place_sound"
 			"Loremaster_shipment_pickup_sound"
 		]
 	}
@@ -131,6 +134,13 @@ events = {
 		duration_type = "OneShot"
 		positioning = "2D"
 	}
+	Loremaster_enchanting_sound = {
+		attenuation_max = 100
+		duration_max = 11.20853
+		duration_min = 11.20853
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
 	Loremaster_letter_open_sound = {
 		attenuation_max = 0
 		duration_max = 1.597188
@@ -144,6 +154,20 @@ events = {
 		duration_min = 1.418208
 		duration_type = "OneShot"
 		positioning = "2D"
+	}
+	Loremaster_magicboon_sound = {
+		attenuation_max = 100
+		duration_max = 13.38862
+		duration_min = 13.38862
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	Loremaster_scroll_place_sound = {
+		attenuation_max = 100
+		duration_max = 1.010583
+		duration_min = 1.010583
+		duration_type = "OneShot"
+		positioning = "3D"
 	}
 	Loremaster_shipment_pickup_sound = {
 		attenuation_max = 20

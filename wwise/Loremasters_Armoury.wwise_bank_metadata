@@ -4,7 +4,10 @@ events = [
 	"Loremaster_book_pickup_sound__1_"
 	"Loremaster_Cleansed_Artifact_pickup_sound"
 	"Loremaster_Corrupted_Artifact_pickup_sound"
+	"Loremaster_enchanting_sound"
 	"Loremaster_letter_open_sound"
 	"Loremaster_letter_open_sound__1_"
+	"Loremaster_magicboon_sound"
+	"Loremaster_scroll_place_sound"
 	"Loremaster_shipment_pickup_sound"
 ]

@@ -103,6 +103,10 @@ function mod.update(dt)
         end
     end
 
+    if mod.sword_ritual then
+        mod.sword_ritual:update(dt)
+    end
+
     local mod_time = mod.time
     if Managers.world:has_world("level_world") then
         local world = Managers.world:world("level_world")
@@ -114,7 +118,7 @@ function mod.update(dt)
             end
         end
     end
-    mod.time = mod_time + dt
+    
 
 
     --for displaying item reward after completing main quest, should be sent to it's own funciton or class
@@ -164,8 +168,24 @@ function mod.update(dt)
     elseif mod.reward_popup then
         mod.reward_popup:update(dt)
     end
+
+    mod.time = mod_time + dt
     
 end
+
+
+mod:command("start_enchant", "", function()
+    
+    mod.sword_ritual = SwordEnchantment:new()
+
+end)
+
+mod:command("stop_enchant", "", function()
+    
+    mod.sword_ritual:destroy()
+    mod.sword_ritual = nil
+
+end)
 
 
 mod:command("spawn_empire_sword", "", function()
@@ -207,11 +227,6 @@ mod:command("complete_sub_quest_02", "", function()
 
     mod.main_quest.sub_quest_02 = true
     mod:set("sub_quest_02", 1500)
-end)
-mod:command("complete_sub_quest_03", "", function()
-
-    mod.main_quest.sub_quest_03 = true
-
 end)
 
 if not mod:get("num_shields_collected") then 
@@ -298,14 +313,40 @@ mod:command("complete_sub_quests", "", function()
     mod:set("sub_quest_10", true)
 end)
 
+
+mod:command("complete_sub_quest_03", "", function()
+    mod.main_quest["sub_quest_03"] = true
+    mod:set("sub_quest_03", true)
+end)
+
+mod:command("complete_sub_quest_04", "", function()
+    mod.main_quest["sub_quest_04"] = true
+    mod:set("sub_quest_04", true)
+end)
+
+mod:command("complete_sub_quest_05", "", function()
+    mod.main_quest["sub_quest_05"] = true
+    mod:set("sub_quest_05", true)
+end)
+
 mod:command("complete_sub_quest_06", "", function()
     mod.main_quest["sub_quest_06"] = true
     mod:set("sub_quest_06", true)
 end)
 
+mod:command("complete_sub_quest_07", "", function()
+    mod.main_quest["sub_quest_07"] = true
+    mod:set("sub_quest_07", true)
+end)
+
 mod:command("complete_sub_quest_08", "", function()
     mod.main_quest["sub_quest_08"] = true
     mod:set("sub_quest_08", true)
+end)
+
+mod:command("complete_sub_quest_09", "", function()
+    mod.main_quest["sub_quest_09"] = true
+    mod:set("sub_quest_09", true)
 end)
 
 

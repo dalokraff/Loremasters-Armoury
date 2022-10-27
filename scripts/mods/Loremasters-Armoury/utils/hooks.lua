@@ -12,6 +12,8 @@ mod:dofile("scripts/mods/Loremasters-Armoury/rpc_hooks/hooks")
 mod:dofile("scripts/mods/Loremasters-Armoury/unit_sounds/hooks")
 local unit_sound_map = require("scripts/mods/Loremasters-Armoury/unit_sounds/unit_sound_map")
 
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/sword_enchantment")
+
 
 
 
@@ -374,29 +376,9 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
         -- mod:echo(level_name)
         if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") then
             if mod:get("sub_quest_09") then 
-                if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) then
+                if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) and (not mod:get("sub_quest_10")) then
                     mod:set("sub_quest_10", true)
-                    if Unit.alive(mod.sword_unit) then
-                        local position = Unit.local_position(mod.sword_unit, 0)
-                        local rotation = Unit.local_rotation(mod.sword_unit, 0)
-                        local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold_3p", position, rotation)                       
-                        if Unit.has_data(sword_unit, "use_vanilla_glow") then
-                            local glow = Unit.get_data(sword_unit, "use_vanilla_glow")
-                            GearUtils.apply_material_settings(sword_unit, WeaponMaterialSettingsTemplates[glow])
-                        end
-                        POSITION_LOOKUP[mod.sword_unit] = nil
-                        World.destroy_unit(world, mod.sword_unit)
-                    end
-                    if Unit.alive(mod.scroll_unit) then
-                        local position = Unit.local_position(mod.scroll_unit, 0)
-                        local rotation = Unit.local_rotation(mod.scroll_unit, 0)
-                        local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_used_mesh", position, rotation)
-                        Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
-                        POSITION_LOOKUP[mod.scroll_unit] = nil
-                        World.destroy_unit(world, mod.scroll_unit)
-                    end
-
-                    mod.show_reward = "main_quest_reward"
+                    mod.sword_ritual = SwordEnchantment:new(world)
                 end
             end
         end
@@ -829,12 +811,12 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
                     local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
                     
-                    local position = Vector3(4.8, -9.15, -2.0437)
-                    local rotation = radians_to_quaternion(0, math.pi/16, 0)
-                    local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
-                    Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
+                    -- local position = Vector3(4.8, -9.15, -2.0437)
+                    -- local rotation = radians_to_quaternion(0, math.pi/16, 0)
+                    -- local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
+                    -- Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
 
-                    mod.scroll_unit = scroll_unit
+                    -- mod.scroll_unit = scroll_unit
                     mod.sword_unit = sword_unit
 
                 end                            
