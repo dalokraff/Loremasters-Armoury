@@ -395,6 +395,8 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
                         POSITION_LOOKUP[mod.scroll_unit] = nil
                         World.destroy_unit(world, mod.scroll_unit)
                     end
+
+                    mod.show_reward = "main_quest_reward"
                 end
             end
         end
