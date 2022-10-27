@@ -648,11 +648,7 @@ mod.LA_quest_rewards = {
         unlocked_reward_icon =  "la_mq01_reward_main_icon_veteran",
         description = "la_mq01_reward_description",
         information_text = "info_text_la_mq01_reward",
-        matching_item_key = "es_1h_sword_skin_02",
-        slot_type = "weapon_skin",
-        template = "es_1h_sword_skin_02",
         item_type = "weapon_skin",
-        skin = 'es_1h_sword_skin_02',
 	},
     sub_quest_prologue = {
 		item_name = "sub_quest_prologue_reward",
@@ -734,6 +730,18 @@ ItemMasterList["LA_locked_reward"] = {
     item_type = "LA_locked_reward_desc",
     display_name = "LA_locked_reward_name",
     can_wield = CanWieldAllItemTemplates,
+}
+
+--this is needed to stop a crash from the reward item causign a crash in the okri's challenges UI
+WeaponSkins.skins["main_quest_reward"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "main_quest_reward_name",
+    inventory_icon = "la_mq01_reward_main_icon_veteran",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_mq01_reward_main_icon_veteran",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
 }
 
 --hook for showing proper item reward in okri's challenges
