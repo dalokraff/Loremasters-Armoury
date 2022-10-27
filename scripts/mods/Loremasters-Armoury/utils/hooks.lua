@@ -819,7 +819,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
                     local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
                     
-                    local position = Vector3(4.8, -9.15, -2.0465)
+                    local position = Vector3(4.8, -9.15, -2.0437)
                     local rotation = radians_to_quaternion(0, math.pi/16, 0)
                     local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_mesh", position, rotation)
                     Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
@@ -839,7 +839,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     GearUtils.apply_material_settings(sword_unit, WeaponMaterialSettingsTemplates[glow])
                 end
 
-                local position = Vector3(4.8, -9.15, -2.0465)
+                local position = Vector3(4.8, -9.15, -2.0437)
                 local rotation = radians_to_quaternion(0, math.pi/16, 0)
                 local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_used_mesh", position, rotation)
                 Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
@@ -866,8 +866,8 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
 
-                local position = Vector3(0.996047, 8, 6.2)
-                local rotation = radians_to_quaternion(0,-math.pi/2,0)
+                local position = Vector3(0.96, 6.55, 6.18)
+                local rotation = radians_to_quaternion(0,math.pi/4,0)
                 local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", position, rotation)
                 Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
 
@@ -884,13 +884,13 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
-                local position = Vector3(1.5, 6.5, 6.1654)
+                local position = Vector3(1.32, 6.5, 6.15)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_09") then
-                local position = Vector3(1.5, 6.5, 6.1654)
+                local position = Vector3(1.32, 6.5, 6.15)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local extension_init_data = {}
                 Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
