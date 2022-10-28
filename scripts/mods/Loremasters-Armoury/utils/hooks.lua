@@ -635,6 +635,7 @@ mod.LA_quest_rewards = {
         description = "la_mq01_reward_description",
         information_text = "info_text_la_mq01_reward",
         item_type = "weapon_skin",
+        rarity = "unique",
 	},
     sub_quest_prologue = {
 		item_name = "sub_quest_prologue_reward",
@@ -695,6 +696,7 @@ mod.LA_quest_rewards = {
         item_name = "LA_locked_reward",
         reward_type = "item",
         unlocked_reward_icon = "la_mq01_reward_sub10_icon",
+        rarity = "unique",
     },
 }
 
@@ -702,7 +704,7 @@ for quest,data in pairs(mod.LA_quest_rewards) do
     ItemMasterList[quest.."_reward"] = {
         display_name = quest.."_reward_name",
         inventory_icon = data.unlocked_reward_icon or "quest_icon_empty",
-        rarity = "plentiful",
+        rarity = data.rarity or "plentiful",
         item_type = data.item_type or quest.."_reward_desc",
         can_wield = CanWieldAllItemTemplates,
 	    description = data.description,
