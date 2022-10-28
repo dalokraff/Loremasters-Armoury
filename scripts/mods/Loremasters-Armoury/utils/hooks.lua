@@ -879,7 +879,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
 
 
 
-            if mod:get("sub_quest_05") then
+            if mod:get("sub_quest_crate_tracker") then
                 local position = Vector3(0.8, 7.7, 5.17543)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
