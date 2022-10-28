@@ -5,7 +5,7 @@ local test_buff_templates = {
 		buffs = {
 			{
 				max_stacks = 1,
-				icon = "loremaster_test_icon_old",
+				icon = "la_buff_01_icon",
 				multiplier = 1.25,
 				stat_buff = "cooldown_regen",
 			}
@@ -15,7 +15,7 @@ local test_buff_templates = {
 		buffs = {
 			{
 				max_stacks = 1,
-				icon = "loremaster_test_icon_old",
+				icon = "la_buff_01_icon",
 				stat_buff = "max_fatigue",
 				apply_on = "equip",
 				bonus = 2,
