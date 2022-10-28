@@ -810,6 +810,15 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         end
 
         if level_name == "morris_hub" then
+            
+            local board_pos = Vector3(0, 0, 300)
+            local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
+            local world = Managers.world:world("level_world")
+            local interactable_board_unit_name = "units/decorations/LA_message_board_mesh"
+            local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
+            local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
+            mod.letter_board = letter_board
+            
             if mod:get("sub_quest_09_letter_read") then
                 local position = Vector3(5.2, -9, -2.15)
                 local rotation = Quaternion.from_elements(0,0,0,0)
