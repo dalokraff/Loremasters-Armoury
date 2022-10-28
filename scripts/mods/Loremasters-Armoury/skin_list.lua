@@ -1701,6 +1701,14 @@ mod.bretonian_longsword_skins = {
     "es_bastard_sword_skin_04",
     "es_bastard_sword_skin_03_runed_01",
     "es_bastard_sword_skin_03_runed_02",
+
+    "es_sword_shield_breton_skin_01_rightHand",
+    "es_sword_shield_breton_skin_02_rightHand",
+    "es_sword_shield_breton_skin_03_rightHand",
+    "es_sword_shield_breton_skin_03_runed_01_rightHand",
+    "es_sword_shield_breton_skin_03_runed_02_rightHand",
+    "es_sword_shield_breton_skin_04_rightHand",
+    "es_sword_shield_breton_skin_05_rightHand",
 }
 
 mod.wizard_flame_sword_skins = {
