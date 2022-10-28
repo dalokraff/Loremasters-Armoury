@@ -77,7 +77,6 @@ InteractionDefinitions.sword_enchantment.client.stop = function (world, interact
 
 	if result == InteractionResult.SUCCESS and not data.is_husk then
 	    if interactable_unit then
-            mod:echo('successfull!!!')
             mod:set("sub_quest_10", true)
             mod.sword_ritual = SwordEnchantment:new(world)
         end

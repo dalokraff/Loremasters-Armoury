@@ -2,7 +2,7 @@ local mod = get_mod("Loremasters-Armoury")
 
 local rpc_table = {
     rpc_generic_interaction_request = function(self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id)
-        mod:echo("=========================")
+        -- mod:echo("=========================")
         -- mod:echo(rpc_name)
         -- mod:echo(self_2)
         -- mod:echo(channel_id)
@@ -34,7 +34,6 @@ local rpc_table = {
             if interaction_type == "sword_enchantment" then
                 if interactable_unit then
                     local world = Managers.world:world("level_world")
-                    mod:echo('successfull!!!')
                     mod:set("sub_quest_10", true)
                     mod.sword_ritual = SwordEnchantment:new(world)
                     return true
