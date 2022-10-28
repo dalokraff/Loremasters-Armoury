@@ -886,15 +886,16 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
 
-                local position = Vector3(0.96, 6.55, 6.18)
-                local rotation = radians_to_quaternion(0,math.pi/4,0)
-                local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", position, rotation)
-                Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
-
-                if not  mod:get("sub_quest_10") then
+                
+                if not mod:get("sub_quest_10") then
                     local position = Vector3(1.8, 9.76, 7)
                     local rotation = radians_to_quaternion(math.pi,0,0)
                     local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
+                    
+                    local position = Vector3(0.96, 6.55, 6.18)
+                    local rotation = radians_to_quaternion(0,math.pi/4,0)
+                    local scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", position, rotation)
+                    Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
                 end
             end
             if mod:get("sub_quest_07") then

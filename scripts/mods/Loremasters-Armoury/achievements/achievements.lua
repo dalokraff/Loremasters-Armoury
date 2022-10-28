@@ -334,8 +334,10 @@ AchievementTemplates.achievements.sub_quest_crate_tracker = {
 						AchievementTemplates.achievements.sub_quest_06.icon = "la_mq01_quest_sub6_icon"
 						mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
 						mod.main_quest.sub_quest_crate_tracker = true
+						mod:set("sub_quest_crate_tracker", true)
 						
 						mod.main_quest.sub_quest_05 = true
+						
 					end
 				end
 			end
