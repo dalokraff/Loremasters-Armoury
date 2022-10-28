@@ -1487,8 +1487,8 @@ mod:hook(ScriptUnit, "extension", function (func, unit, system)
 end)
 
 mod.list_order = {
-    "test_painting",
-    "test_quest_select",
+    -- "test_painting",
+    -- "test_quest_select",
     "main_01",
 }
 
