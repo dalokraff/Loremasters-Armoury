@@ -20,8 +20,14 @@ HalescourgeBuff.init = function (self, world)
 end
 
 HalescourgeBuff.update = function (self, dt)
-    if self.buff_extension:has_buff_type("sub_quest_08_cdr_buff") and self.buff_extension:has_buff_type("sub_quest_08_stamina_buff") then
-        self:destroy()
+    -- if self.buff_extension:has_buff_type("sub_quest_08_cdr_buff") and self.buff_extension:has_buff_type("sub_quest_08_stamina_buff") then
+    --     self:destroy()
+    -- end
+
+    if not self.buff_extension then
+        local player = Managers.player:local_player()
+        self.player_unit = player.player_unit
+        self.buff_extension = ScriptUnit.extension(self.player_unit, "buff_system")
     end
     
     self.current_time = self.current_time + dt

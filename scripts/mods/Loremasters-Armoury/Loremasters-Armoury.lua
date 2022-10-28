@@ -182,6 +182,7 @@ end
 mod.on_game_state_changed = function(status, state_name)
     if state_name == "StateIngame" and status == "enter" then
         mod.halescourge_buff_applied = false
+        mod.halescourge_buff = nil
     end
 end
 

@@ -769,9 +769,11 @@ end)
 
 mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, unit_template_name, extension_init_data, position, rotation, material)
     local level_name = Managers.level_transition_handler:get_current_level_keys()
-    mod:echo(level_name)
-    if level_name == "ground_zero" and not mod.halescourge_buff_applied then
-        mod.halescourge_buff = HalescourgeBuff:new(self.world)
+
+    if level_name == "ground_zero" and not mod.halescourge_buff_applied and not mod.halescourge_buff then
+        if mod:get("sub_quest_07") and not mod:get("sub_quest_08") then
+            mod.halescourge_buff = HalescourgeBuff:new(self.world)
+        end
     end
 
     if not mod.spawned_in_units[level_name] then
