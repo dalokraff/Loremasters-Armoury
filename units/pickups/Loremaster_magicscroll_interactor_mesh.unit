@@ -37,7 +37,7 @@ data = {
         "ElevatorOutlineExtension"
     ]
     interaction_data = {
-        hud_description = "sword_enchantment"
+        hud_description = "sword_enchantment_action"
         interaction_length = 0
         interaction_type = "sword_enchantment"
         interactor_animation = "interaction_start"

@@ -40,6 +40,14 @@ InteractionDefinitions.sword_enchantment.client.can_interact = function (interac
         return false
     end
 
+    if mod:get("sub_quest_01") < 1500 then
+        return false
+    end
+
+    if mod:get("sub_quest_02") < 1500 then
+        return false
+    end
+
     return (Unit.alive(interactable_unit) and Unit.alive(interactor_unit))
 end
 
@@ -53,7 +61,11 @@ InteractionDefinitions.sword_enchantment.server.can_interact = function (interac
         return false
     end
 
-    if not (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) then
+    if mod:get("sub_quest_01") < 1500 then
+        return false
+    end
+
+    if mod:get("sub_quest_02") < 1500 then
         return false
     end
 

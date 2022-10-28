@@ -49,21 +49,27 @@ end
 
 SwordEnchantment.stage_one = function(self)
     
-    self:update_scroll()
-    self:update_sword()
+    WwiseWorld.trigger_event(self.wwise_world, "Loremaster_enchanting_sound")    
+    self.wait_time = self.current_time + 7
     self.stage = "stage_two"
-    self.wait_time = self.current_time + 1
 end
 
 SwordEnchantment.stage_two = function(self)
+    self:update_scroll()
+    self:update_sword()
+    self.stage = "stage_three"
+    self.wait_time = self.current_time + 1
+end
+
+SwordEnchantment.stage_three = function(self)
     
     mod.show_reward = "main_quest_reward"
     self:destroy()
 end
 
 SwordEnchantment.play_enchanting_sound = function(self)
-    WwiseWorld.trigger_event(self.wwise_world, "Loremaster_enchanting_sound")    
-    self.wait_time = self.current_time + 7
+    WwiseWorld.trigger_event(self.wwise_world, "Loremaster_scroll_place_sound")    
+    self.wait_time = self.current_time + 1
 end
 
 SwordEnchantment.update_scroll = function(self)
