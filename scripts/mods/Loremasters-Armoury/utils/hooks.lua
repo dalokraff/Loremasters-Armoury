@@ -598,6 +598,23 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
 
 end)
 
+mod:hook_safe(BTLeaveHooks,"on_lord_intro_leave", function (unit, blackboard, t)
+    local bb = blackboard
+    if bb.breed then
+        local name = bb.breed.name
+        if name == "chaos_exalted_sorcerer" then
+            local current_level_key = Managers.level_transition_handler:get_current_level_keys()
+            if current_level_key == "ground_zero" then
+                local position = Unit.local_position(unit, 0)
+                local world = Managers.world:world("level_world")
+                local fx = "fx/magic_wind_heavens_lightning_strike_01"
+                local particle_id = World.create_particles(world, fx, position)
+            end
+        end
+    end
+end)
+
+
 --for checking if the tomes and grims for sub quest 6 are collected
 mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (func, self, game_won, quickplay, statistics_db, stats_id)
     local current_level_key = Managers.level_transition_handler:get_current_level_keys()
