@@ -5,7 +5,7 @@ mod.LA_outline_units = {
     "units/pickups/LA_reikland_chronicle_mesh",
     "units/pickups/LA_artifact_corrupted_mesh",
     "units/pickups/LA_artifact_mesh",
-    "units/pickups/Loremaster_shipment_box_mesh_real",
+    -- "units/pickups/Loremaster_shipment_box_mesh_real",
     "units/decorations/LA_message_board_mesh",
     "units/decorations/LA_loremaster_message_large",
     "units/decorations/LA_loremaster_message_medium",

@@ -104,8 +104,8 @@ function mod.render_marker(pos_box, distance_view)
             local distance = Vector3.distance(player_pos, waypoint_position)
 
             --gaussing function that handles size of waypoint based on distance from it
-            local min_size = 55
-            local max_size = 150
+            local min_size = 55*0.8
+            local max_size = 150*0.8
             local max_distance = distance_view
             local waypoint_size = gaussian_size_decrease(distance, min_size, max_size, max_distance)
             
