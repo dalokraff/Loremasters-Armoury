@@ -810,7 +810,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         end
 
         if level_name == "morris_hub" then
-            if mod:get("sub_quest_09") then
+            if mod:get("sub_quest_09_letter_read") then
                 local position = Vector3(5.2, -9, -2.15)
                 local rotation = Quaternion.from_elements(0,0,0,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
