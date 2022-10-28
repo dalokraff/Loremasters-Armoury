@@ -16,7 +16,8 @@ local rpc_table = {
         -- mod:echo(interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
         -- mod:echo(tostring(interactable_unit).."     "..tostring(Unit.get_data(interactable_unit, "unit_name")))
-        
+        local interaction = NetworkLookup.interactions[interaction_type_id]
+        mod:echo(interaction)
 
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
@@ -31,6 +32,17 @@ local rpc_table = {
             -- interactable_extension:set_is_being_interacted_with(interactor_unit)
 
             interactor_extension:interaction_denied()
+
+            if interaction == "sword_enchantment" then
+                if interactable_unit then
+                    local world = Managers.world:world("level_world")
+                    mod:echo('successfull!!!')
+                    mod:set("sub_quest_10", true)
+                    mod.sword_ritual = SwordEnchantment:new(world)
+                    return true
+                end
+            end
+
             if Unit.has_data(interactable_unit, "unit_name") then
                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
                 if mod.LA_new_interactors[unit_name] then

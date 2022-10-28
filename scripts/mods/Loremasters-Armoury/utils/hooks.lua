@@ -1289,6 +1289,7 @@ mod.LA_new_interactors = {
     "units/decorations/letters/LA_quest_message_stage08",
     "units/decorations/letters/LA_quest_message_stage09",
     "units/decorations/letters/LA_quest_message_stage10",
+    "units/pickups/Loremaster_magicscroll_interactor_mesh",
 }
 
 

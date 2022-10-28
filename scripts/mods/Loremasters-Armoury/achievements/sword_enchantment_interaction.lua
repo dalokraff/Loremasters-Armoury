@@ -21,7 +21,7 @@ end
 InteractionDefinitions["sword_enchantment"] = InteractionDefinitions.sword_enchantment or table.clone(InteractionDefinitions.smartobject)
 InteractionDefinitions.sword_enchantment.config.swap_to_3p = false
 
--- InteractionDefinitions.sword_enchantment.config.request_rpc = "rpc_generic_interaction_request"
+InteractionDefinitions.sword_enchantment.config.request_rpc = "rpc_generic_interaction_request"
 
 InteractionDefinitions.sword_enchantment.server.stop = function (world, interactor_unit, interactable_unit, data, config, t, result)
     if result == InteractionResult.SUCCESS then
