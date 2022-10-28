@@ -271,6 +271,10 @@ if mod:get("sub_quest_05") == nil then
     mod:set("sub_quest_05", false)
 end
 
+if mod:get("sub_quest_crate_tracker") == nil then 
+    mod:set("sub_quest_crate_tracker", false)
+end
+
 if mod:get("sub_quest_06") == nil then 
     mod:set("sub_quest_06", false)
 end

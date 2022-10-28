@@ -603,7 +603,7 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     local current_level_key = Managers.level_transition_handler:get_current_level_keys()
     local collection_levels = require("scripts/mods/Loremasters-Armoury/achievements/official_book_collector")
 
-    if mod:get("sub_quest_05") then
+    if mod:get("sub_quest_crate_tracker") then
         for level, tisch in pairs(collection_levels) do 
             if level == current_level_key then 
                 local mission_system = Managers.state.entity:system("mission_system")
@@ -665,6 +665,11 @@ mod.LA_quest_rewards = {
         item_name = "LA_locked_reward",
         reward_type = "item",
         unlocked_reward_icon = "la_mq01_reward_sub3_icon",
+    },
+    sub_quest_crate_tracker = {
+        item_name = "LA_locked_reward",
+        reward_type = "item",
+        unlocked_reward_icon = "la_mq01_reward_sub1_icon",
     },
     sub_quest_06 = {
         item_name = "LA_locked_reward",

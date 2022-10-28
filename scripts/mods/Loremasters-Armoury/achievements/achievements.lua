@@ -78,6 +78,7 @@ mod.main_quest = {
 	sub_quest_03 = false,
 	sub_quest_04 = false,
 	sub_quest_05 = false,
+	sub_quest_crate_tracker = false,
 	sub_quest_06 = false,
 	sub_quest_07 = false,
 	sub_quest_08 = false,
@@ -185,12 +186,19 @@ AchievementTemplates.achievements.sub_quest_prologue = {
 			AchievementTemplates.achievements.sub_quest_05.name = "sub_quest_05"
 			AchievementTemplates.achievements.sub_quest_05.desc = "sub_quest_05_desc"
 			AchievementTemplates.achievements.sub_quest_05.icon = "la_mq01_quest_sub5_icon"
+			AchievementTemplates.achievements.sub_quest_crate_tracker.name = "sub_quest_crate_tracker"
+			AchievementTemplates.achievements.sub_quest_crate_tracker.desc = "sub_quest_crate_tracker_desc"
+			AchievementTemplates.achievements.sub_quest_crate_tracker.icon = "la_mq01_quest_sub5_icon"
 			mod.LA_quest_rewards.sub_quest_01.item_name = "sub_quest_01_reward"
 			mod.LA_quest_rewards.sub_quest_02.item_name = "sub_quest_02_reward"
 			mod.LA_quest_rewards.sub_quest_03.item_name = "sub_quest_03_reward"
 			mod.LA_quest_rewards.sub_quest_04.item_name = "sub_quest_04_reward"
 			mod.LA_quest_rewards.sub_quest_05.item_name = "sub_quest_05_reward"
+			mod.LA_quest_rewards.sub_quest_crate_tracker.item_name = "sub_quest_crate_tracker_reward"
 			mod.main_quest.sub_quest_prologue = true
+
+
+			
 			return true
 		end
 
@@ -303,6 +311,21 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_05") then
+			return true
+		end
+
+		return false
+	end,	
+}
+
+AchievementTemplates.achievements.sub_quest_crate_tracker = {
+	name = "locked",
+	display_completion_ui = true,
+	icon = "la_quest_lock_icon",
+	desc = "locked_hidden_quest",
+	completed = function (statistics_db, stats_id)
+		
+		if mod:get("sub_quest_05") then
 			if mod:get("sub_quest_05".."_letter_read") then
 				if mod:get("sub_quest_04") then
 					if mod:get("sub_quest_03") then
@@ -310,6 +333,8 @@ AchievementTemplates.achievements.sub_quest_05 = {
 						AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
 						AchievementTemplates.achievements.sub_quest_06.icon = "la_mq01_quest_sub6_icon"
 						mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
+						mod.main_quest.sub_quest_crate_tracker = true
+						
 						mod.main_quest.sub_quest_05 = true
 					end
 				end
@@ -319,14 +344,43 @@ AchievementTemplates.achievements.sub_quest_05 = {
 
 		return false
 	end,
-	requirements = function (statistics_db, stats_id)
-		local reqs = {}
+	progress = function (statistics_db, stats_id)
+		local num_completed = 0
+		local num_quests = 3
+		
+		if mod:get("sub_quest_03") then
+			num_completed = num_completed + 1
+		end
+		if mod:get("sub_quest_04") then
+			num_completed = num_completed + 1
+		end
+		if mod:get("sub_quest_05") then
+			num_completed = num_completed + 1
+		end
 
-		if mod:get("sub_quest_05") and mod:get("sub_quest_04") and mod:get("sub_quest_03") then
-			table.insert(reqs, {
-				name = "read_new_message",
-				completed = mod:get("sub_quest_05".."_letter_read")
-			})
+		return {
+			num_completed,
+			num_quests,
+		}
+	end,
+	requirements = function (statistics_db, stats_id)
+		local reqs = {
+			{
+				name = "sub_quest_03",
+				completed = mod:get("sub_quest_03")
+			},
+			{
+				name = "sub_quest_04",
+				completed = mod:get("sub_quest_04")
+			},
+			{
+				name = "sub_quest_05",
+				completed = mod:get("sub_quest_05")
+			},
+		}
+
+		if not mod:get("sub_quest_prologue".."_letter_read") then
+			reqs = {}
 		end
 
 		return reqs
