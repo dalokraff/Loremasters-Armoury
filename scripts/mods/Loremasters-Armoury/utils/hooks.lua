@@ -615,6 +615,65 @@ mod:hook_safe(BTLeaveHooks,"on_lord_intro_leave", function (unit, blackboard, t)
 end)
 
 
+
+-- mod:hook(UIPasses.texture, "draw", function(func, ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
+    
+--     print("========================================================")
+--     print("========================================================")
+--     mod:echo(pass_definition.texture_id)
+--     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
+--     mod:echo(texture_name)
+--     for k,v in pairs(ui_content) do 
+--         print(tostring(k)..":       "..tostring(v))
+--     end
+--     print("========================================================")
+--     print("========================================================")
+
+--     return func(ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
+-- end)
+
+-- local UIRenderer_draw_texture = UIRenderer.draw_texture
+-- UIPasses.texture.draw = function (ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
+--     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
+--     local color, masked, saturated, point_sample = nil
+
+--     if ui_style then
+--         local texture_size = ui_style.texture_size
+
+--         if texture_size then
+--             UIUtils.align_box_inplace(ui_style, position, size, texture_size)
+
+--             size = texture_size
+--         end
+
+--         color = ui_style.color
+--         masked = ui_style.masked
+--         saturated = ui_style.saturated
+--         point_sample = ui_style.point_sample
+--     end
+--     print("========================================================")
+--     print("========================================================")
+--     mod:echo(ui_renderer)
+--     mod:echo(texture_name)
+--     mod:echo(position)
+--     mod:echo(size)
+--     mod:echo(color)
+--     mod:echo(masked)
+--     mod:echo(saturated)
+--     mod:echo(point_sample)
+--     if pass_definition.retained_mode then
+--         mod:echo(retained_id)
+    
+--         local retained_id = pass_definition.retained_mode and (pass_data.retained_id or true)
+--         retained_id = UIRenderer_draw_texture(ui_renderer, texture_name, position, size, color, masked, saturated, retained_id, point_sample)
+--         pass_data.retained_id = retained_id or pass_data.retained_id
+--         pass_data.dirty = false
+--     else
+--         UIRenderer_draw_texture(ui_renderer, texture_name, position, size, color, masked, saturated, nil, point_sample)
+--     end
+-- end
+
+
 --for checking if the tomes and grims for sub quest 6 are collected
 mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (func, self, game_won, quickplay, statistics_db, stats_id)
     local current_level_key = Managers.level_transition_handler:get_current_level_keys()
@@ -860,6 +919,8 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local extension_init_data = {}
                     local scroll_unit, go_id = Managers.state.unit_spawner:spawn_network_unit(scroll_path, unit_template_name, extension_init_data, position, rotation)
                     Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
+
+                    mod.marker_list[scroll_unit] = Vector3Box(position)
 
                     -- mod.scroll_unit = scroll_unit
                     mod.sword_unit = sword_unit
@@ -1280,7 +1341,14 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
         else 
             mod.attached_units[scrap_id] = nil
         end
+    end
 
+    for unit, position in pairs(mod.marker_list) do 
+        if Unit.alive(unit) then
+            mod.render_marker(position, 100)
+        else 
+            mod.marker_list[unit] = nil
+        end
     end
     func(self, dt, ...)
 end)

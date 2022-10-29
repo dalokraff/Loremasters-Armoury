@@ -37,6 +37,7 @@ mod.current_skin = {}
 mod.time = 0
 mod.delayed_sounds = {}
 mod.show_reward = nil
+mod.marker_list = {}
 
 --on mod update:
 --the level_queue and previe_queue are checked to see if the respective worlds have any units that need to be retextured
