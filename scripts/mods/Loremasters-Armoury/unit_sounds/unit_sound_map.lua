@@ -167,6 +167,14 @@ unit_sound_map["units/bret_sword/Kruber_kotbs_longsword_mesh"] = {
         name = "rare_sword_2h_swing",
         delay = 0.1
     },
+    attack_swing_stab = {
+        name = "rare_sword_2h_swing",
+        delay = 0.1,
+    },
+    attack_swing_heavy_stab = {
+        name = "rare_sword_2h_swing",
+        delay = 0.2,
+    },
 }
 
 unit_sound_map["units/bret_sword/Kruber_kotbs_longsword_mesh_gold"] = {
@@ -200,6 +208,14 @@ unit_sound_map["units/bret_sword/Kruber_kotbs_longsword_mesh_gold"] = {
     attack_swing_heavy_down = {
         name = "rare_sword_2h_swing",
         delay = 0.1
+    },
+    attack_swing_stab = {
+        name = "rare_sword_2h_swing",
+        delay = 0.1,
+    },
+    attack_swing_heavy_stab = {
+        name = "rare_sword_2h_swing",
+        delay = 0.2,
     },
 }
 
