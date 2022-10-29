@@ -362,7 +362,12 @@ local mod_text_ids = {
     sword_enchantment_action = {
         en = "Place"
     },
+	Loremaster_magicscroll_rolled = {
 
+	},
+	Loremaster_magicscroll_rolled_desc = {
+
+	},
 }
 
 for id,text in pairs(mod.name_strings_id) do

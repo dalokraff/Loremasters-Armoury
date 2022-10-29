@@ -30,6 +30,20 @@ data = {
     emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_ee282ea2"
 
+    interaction_data = {
+            hud_description = "Loremaster_magicscroll_rolled"
+            hud_interaction_action = "interaction_action_view"
+            camera_interaction_name = "Loremaster_magicscroll_rolled"
+            interaction_length = 0
+            interaction_type = "decoration"
+            interactor_animation = "interaction_start"
+            interactor_animation_time_variable = "revive_time"
+            only_once = false
+            hud_text_line_1 = "Loremaster_magicscroll_rolled"
+            hud_text_line_2 =  "Loremaster_magicscroll_rolled_desc"
+            
+        }
+
 }
 
 renderables = {

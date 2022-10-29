@@ -1,17 +1,17 @@
 actors = [
-	// {
-	// 	enabled = true
-	// 	mass = 1
-	// 	name = "LA_magicscroll"
-	// 	node = "LA_magicscroll"
-	// 	shapes = [
-	// 		{
-	// 			material = "default"
-	// 			shape = "LA_magicscroll"
-	// 			template = "human_collision"
-	// 			type = "convex_computed"
-	// 		}
-	// 	]
-	// 	template = "static"
-	// },
+	{
+		enabled = true
+		mass = 1
+		name = "LA_magicscroll_rolled"
+		node = "LA_magicscroll_rolled"
+		shapes = [
+			{
+				material = "default"
+				shape = "LA_magicscroll_rolled"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
 ]
