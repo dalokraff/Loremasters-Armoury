@@ -25,7 +25,7 @@ HalescourgeDebuff.update = function (self, dt)
     if not Unit.alive(self.unit) then
         self:destroy()
     end
-    if self.stage >= 4 then
+    if self.stage >= 5 then
         self:destroy()
     end
     self:health_check()
