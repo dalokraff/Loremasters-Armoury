@@ -48,6 +48,9 @@ InteractionDefinitions.sword_enchantment.client.can_interact = function (interac
         return false
     end
 
+    local position = Unit.local_position(interactable_unit, 0)
+    mod.render_marker(position, 100)
+
     return (Unit.alive(interactable_unit) and Unit.alive(interactor_unit))
 end
 
@@ -68,6 +71,9 @@ InteractionDefinitions.sword_enchantment.server.can_interact = function (interac
     if mod:get("sub_quest_02") < 1500 then
         return false
     end
+
+    local position = Unit.local_position(interactable_unit, 0)
+    mod.render_marker(position, 100)
 
     return (Unit.alive(interactable_unit) and Unit.alive(interactor_unit))
 end
