@@ -188,8 +188,8 @@ local mod_text_ids = {
 	sub_quest_05_reward_desc = {
 		en = "A sturdy wooden shipping crate sent from Loremaster's Armoury in Altdorf. Looks like some Imperial official took a great care in placing various purity seals all over it... just in case.",
 	},
-	sub_quest_05_message = {
-		en = "The Second Message",
+	sub_quest_crate_tracker_message = {
+		en = "Finders Keepers?",
 	},
 	sub_quest_06_desc = {
 		en = "Complete Athel Yenlui after retrieving 3 Tomes and 2 Grimoires.",
@@ -204,7 +204,7 @@ local mod_text_ids = {
 		en = "The goddess of war, beauty and honour guides your path.",
 	},
 	sub_quest_06_message = {
-		en = "The Third Message",
+		en = "Calming the Winds",
 	},
 	sub_quest_07_desc = {
 		en = "Search Blood in the Darkness for the Chronica Reiklandorum.",
@@ -219,7 +219,7 @@ local mod_text_ids = {
 		en = "This dust and mold covered chronicle contains records of significat events that took place between ages 2294 and 2471 I.C. in Grand Principality of Reikland. Though a great number of pages are no longer legible, there is still a lot of history preserved here.",
 	},
 	sub_quest_07_message = {
-		en = "The Fourth Message",
+		en = "The Librarian",
 	},
 	sub_quest_08_desc = {
 		en = "Retrieve the lost Power Stone from Burblespue Halescourge.",
@@ -234,7 +234,7 @@ local mod_text_ids = {
 		en = "Ancient Power Stone corrupted by the Chaos sorcerer Burblespue Halescourge to serve his vile deeds, spreading illness and despair... not to mention putrid smell.",
 	},
 	sub_quest_08_message = {
-		en = "The Fifth Message",
+		en = "That Belongs in a Museum!",
 	},
 	sub_quest_09_desc = {
 		en = "Cleanse the corrupted Power Stone at the grand altar in The Citadel of Eternity.",
@@ -249,7 +249,7 @@ local mod_text_ids = {
 		en = "Restored by the power of Gods, this ancient Power Stone hums calmly with the potent energy of Azyr once more.",
 	},
 	sub_quest_09_message = {
-		en = "The Final Message",
+		en = "An Overdue Restoration",
 	},
 	sub_quest_10_desc = {
 		en = "Perform the ritual at the Shrine of Myrmidia inside Pilgrimage Chamber of Taal's Horn Keep.",
@@ -341,7 +341,7 @@ local mod_text_ids = {
 	sub_quest_prologue_message_desc = {
 		en = "Aethyr yenlui,\n\nI hope you did not run into any trouble on your way back, one can never know what you may encounter in these trying times. I received news about the missing caravan that was transporting several of my shipping crates from Altdorf, and though it saddens me to say this… what I feared the most turned out to be true.\n\nThe caravan was ambushed shortly after passing Osburg. No survivors, and from what was left after the ambush, I can say with certainty that the Skaven were behind it. I am sure there is no need for me to say that arms and armour from Loremaster's Armoury in possession of these disgusting creatures is something I will not suffer, and neither should you. Since I am rather busy at the moment, I require your assistance in this matter.\n\nGo and search areas occupied by Skaven or their Northlander allies. Locate the missing shipping crates and take them back to your keep. Also, do not forget to kill as many of these abominations as you can. Gods know the world will be a better place without them.\n\n- go with Hoeth's blessings",
 	},
-    sub_quest_05_message_desc = {
+    sub_quest_crate_tracker_message_desc = {
         en = "I am pleased to know my crates made it safely to your keep, at least now will their contents be put into proper use.\n\nWith that taken care of, there is something I did not tell you when you were here. That sword I gave you… it used to have a potent magical enchantment flowing through it. The details explaining why it is no longer so are not important. What is important however, is that this enchantment was merely made dormant – meaning that it can still be revitalized… if you know how it was negated in the first place.\n\nI already prepared everything necesarry in the scroll I gave you, but there is one final task that must be performed by you: the blade’s new wielder. First, you will need to obtain a potent source of stable magical power. I gave it some thought and I believe there may be an artifact you could use. Unfortunately I was unable to locate its position.\n\nIt appears something is disturbing the flow of Aethyr around the waystone of Athel Yenlui, making it impossible to perform an accurate divination ritual. Go to the temple and see what is causing the disturbance, we need the Winds calm if I am to help you find the artifact. Also while you are there… recover any old scripts you can find, I would like to have a look at those."
     },
     sub_quest_06_message_desc = {
@@ -363,11 +363,20 @@ local mod_text_ids = {
         en = "Place"
     },
 	Loremaster_magicscroll_rolled = {
+        en = "Sealed Magical Scroll"
 
 	},
 	Loremaster_magicscroll_rolled_desc = {
+        en = "This magical scroll was given to you by the Loremaster during your last visit to the Armoury. For what purpose you do not know, and the glimmering seal is resisting your touch, preventing you from opening it... at least for now."
 
 	},
+    sub_quest_crate_tracker = {
+        en = "Finders Keepers?"
+    },
+    sub_quest_crate_tracker_desc = {
+        en = "Retrieve all the stolen shipping crates."
+    },
+    
 }
 
 for id,text in pairs(mod.name_strings_id) do
