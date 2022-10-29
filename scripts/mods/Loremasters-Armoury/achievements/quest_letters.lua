@@ -112,13 +112,14 @@ QuestLetters.main_01 = {
         name = "sub_quest_prologue_message",
         desc = "sub_quest_prologue_message_desc",
     },
-    sub_quest_05 = {
+    sub_quest_crate_tracker = {
         unit = "units/decorations/letters/LA_quest_message_stage02",
-        name = "sub_quest_05_message",
-        desc = "sub_quest_05_message_desc",
+        name = "sub_quest_crate_tracker_message",
+        desc = "sub_quest_crate_tracker_message_desc",
         requires = {
             "sub_quest_03",
             "sub_quest_04",
+            "sub_quest_05",
         },
     },
     sub_quest_06 = {

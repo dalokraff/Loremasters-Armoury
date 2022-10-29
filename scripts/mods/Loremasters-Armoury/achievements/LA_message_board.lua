@@ -49,7 +49,7 @@ LetterBoard.spawn_letters = function(self)
 
     if QuestLetters[active_quest] then
         for quest,letter in pairs(QuestLetters[active_quest]) do
-            if mod:get(quest) or (string.find(quest, "prologue")) then
+            if mod:get(quest) or (string.find(quest, "prologue")) or (string.find(quest, "crate")) then
                 if letter.requires then
                     local fulfilled = true
                     for _,quest_reqs in pairs(letter.requires) do   
@@ -156,6 +156,9 @@ LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
     local source_node = string.gsub(quest, "sub_quest", "")
     if string.find(quest, "prologue") then
         source_node = "_03"
+    end
+    if string.find(quest, "crate") then
+        source_node = "_05"
     end
     local world = self.world
     local visable_unit = self.visible_unit

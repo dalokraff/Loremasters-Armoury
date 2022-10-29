@@ -80,7 +80,6 @@ SwordEnchantment.update_scroll = function(self)
         self.scroll_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/Loremaster_magicscroll_used_mesh", position, rotation)
         Unit.set_local_scale(self.scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
         POSITION_LOOKUP[scroll_unit] = nil
-        mod.marker_list[scroll_unit] = nil
         World.destroy_unit(self.world, scroll_unit)
     end
 end

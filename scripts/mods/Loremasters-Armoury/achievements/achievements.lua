@@ -311,6 +311,7 @@ AchievementTemplates.achievements.sub_quest_05 = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_05") then
+			mod.main_quest.sub_quest_05 = true
 			return true
 		end
 
@@ -326,19 +327,16 @@ AchievementTemplates.achievements.sub_quest_crate_tracker = {
 	completed = function (statistics_db, stats_id)
 		
 		if mod:get("sub_quest_05") then
-			if mod:get("sub_quest_05".."_letter_read") then
-				if mod:get("sub_quest_04") then
-					if mod:get("sub_quest_03") then
+			if mod:get("sub_quest_04") then
+				if mod:get("sub_quest_03") then
+					if mod:get("sub_quest_crate_tracker".."_letter_read") then
 						AchievementTemplates.achievements.sub_quest_06.name = "sub_quest_06"
 						AchievementTemplates.achievements.sub_quest_06.desc = "sub_quest_06_desc"
 						AchievementTemplates.achievements.sub_quest_06.icon = "la_mq01_quest_sub6_icon"
 						mod.LA_quest_rewards.sub_quest_06.item_name = "sub_quest_06_reward"
-						mod.main_quest.sub_quest_crate_tracker = true
-						mod:set("sub_quest_crate_tracker", true)
-						
-						mod.main_quest.sub_quest_05 = true
-						
+						mod.main_quest.sub_quest_crate_tracker = true						
 					end
+					mod:set("sub_quest_crate_tracker", true)
 				end
 			end
 			return true
