@@ -348,8 +348,6 @@ mod:hook(string, "format", function(func, message, ...)
         if message == Localize("system_chat_player_picked_up_painting_chat") then
             local new_mesage = mod:localize(mod.replace_chat_message)
             mod.replace_chat_message = nil
-            -- message = string.format(new_mesage, ...)
-            -- message = new_mesage
             return new_mesage
         end
     end
@@ -360,8 +358,6 @@ end)
 
 --checks if citadel expidition has been finished
 mod:hook(StatisticsUtil, "_register_completed_journey_difficulty", function (func, statistics_db, player, journey_name, dominant_god, difficulty_name)
-    -- mod:echo(journey_name)
-
     if string.find(journey_name, "citadel") and mod:get("sub_quest_08") then
         mod:set("sub_quest_09", true)
     end
@@ -375,15 +371,6 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
 	if result == InteractionResult.SUCCESS and not data.is_husk and rawget(_G, "HeroViewStateKeepDecorations") then
 		local hud_description = Unit.get_data(interactable_unit, "interaction_data", "hud_description")
         local level_name = Managers.state.game_mode:level_key()
-        -- mod:echo(hud_description)
-        -- mod:echo(level_name)
-        -- if (hud_description == "deus_hub_lore_interact_myrmidia") and (level_name == "morris_hub") then
-        --     if mod:get("sub_quest_09") then 
-        --         if (mod:get("sub_quest_01") > 500) and (mod:get("sub_quest_02") > 500) and (not mod:get("sub_quest_10")) then
-        --             mod:set("sub_quest_10", true)
-        --         end
-        --     end
-        -- end
         if Unit.has_data(interactable_unit, "quest") then
             local quest = Unit.get_data(interactable_unit, "quest")
             mod:set(quest.."_letter_read", true)
@@ -470,33 +457,6 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
 	return func(victim_unit, damage_data, statistics_db, is_server)
 end)
 
-
-local sound_event_map = {
-    to_2h_sword = "weapon_foley_equip_sword_2h",
-    attack_swing_left_diagonal = "rare_sword_2h_swing",
-    attack_swing_right_diagonal = "rare_sword_2h_swing",
-    attack_swing_heavy_left_diagonal = "rare_sword_2h_charge_swing",
-    attack_swing_heavy_right_diagonal = "rare_sword_2h_charge_swing",
-
-    to_1h_sword = "weapon_foley_equip_sword_1h",
-    attack_swing_down = "rare_sword_1h_swing",
-    attack_swing_right = "rare_sword_1h_swing",
-    attack_swing_left = "rare_sword_1h_swing",
-    attack_swing_heavy_left = "rare_sword_1h_charge_swing",
-    attack_swing_heavy_right = "rare_sword_1h_charge_swing",
-
-
-    attack_swing_charge = "Play_weapon_emitter_flames",
-    fire_sword_special_swing = "Play_weapon_emitter_flames",
-    -- flaming_sword_1h_swing
-
-
-}
-
--- local world = Managers.world:world("level_world")
---         local wwise_world = Wwise.wwise_world(world)
---         WwiseWorld.trigger_event(wwise_world, "rare_sword_1h_swing" )
-
 --used to register when bodvarr dies, so his collectable can be spawned
 mod.stored_vectors = {}
 mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
@@ -511,8 +471,6 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                     local position = Vector3(363.476, 50.4658, -13.7107) 
                     local rot = radians_to_quaternion(0, -math.pi/2, 0)
                     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                    -- mod:echo(position)
-                    -- mod:echo(unit)
                     mod.stored_vectors[level_name] = Vector3Box(position)
                     Managers.state.network.network_transmit:send_rpc_server(
                             "rpc_spawn_pickup_with_physics",
@@ -577,25 +535,6 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
 
     end
 
-
-    -- local unit_sound_map_key = Unit.get_data(unit, "LA_unit_wielded")
-    -- if unit_sound_map_key then
-    --     local sound_table = unit_sound_map[unit_sound_map_key]
-    --     local sound_event = sound_table[event]
-    --     if sound_event then
-    --         local world = Managers.world:world("level_world")
-    --         local wwise_world = Wwise.wwise_world(world)
-    --         WwiseWorld.trigger_event(wwise_world, sound_event)
-    --     end
-    -- end
-
-    -- local sound = sound_event_map[event]
-    -- if sound then
-    --     local world = Managers.world:world("level_world")
-    --     local wwise_world = Wwise.wwise_world(world)
-    --     WwiseWorld.trigger_event(wwise_world, sound )
-    -- end
-
 end)
 
 mod:hook_safe(BTLeaveHooks,"on_lord_intro_leave", function (unit, blackboard, t)
@@ -613,66 +552,6 @@ mod:hook_safe(BTLeaveHooks,"on_lord_intro_leave", function (unit, blackboard, t)
         end
     end
 end)
-
-
-
--- mod:hook(UIPasses.texture, "draw", function(func, ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
-    
---     print("========================================================")
---     print("========================================================")
---     mod:echo(pass_definition.texture_id)
---     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
---     mod:echo(texture_name)
---     for k,v in pairs(ui_content) do 
---         print(tostring(k)..":       "..tostring(v))
---     end
---     print("========================================================")
---     print("========================================================")
-
---     return func(ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
--- end)
-
--- local UIRenderer_draw_texture = UIRenderer.draw_texture
--- UIPasses.texture.draw = function (ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
---     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
---     local color, masked, saturated, point_sample = nil
-
---     if ui_style then
---         local texture_size = ui_style.texture_size
-
---         if texture_size then
---             UIUtils.align_box_inplace(ui_style, position, size, texture_size)
-
---             size = texture_size
---         end
-
---         color = ui_style.color
---         masked = ui_style.masked
---         saturated = ui_style.saturated
---         point_sample = ui_style.point_sample
---     end
---     print("========================================================")
---     print("========================================================")
---     mod:echo(ui_renderer)
---     mod:echo(texture_name)
---     mod:echo(position)
---     mod:echo(size)
---     mod:echo(color)
---     mod:echo(masked)
---     mod:echo(saturated)
---     mod:echo(point_sample)
---     if pass_definition.retained_mode then
---         mod:echo(retained_id)
-    
---         local retained_id = pass_definition.retained_mode and (pass_data.retained_id or true)
---         retained_id = UIRenderer_draw_texture(ui_renderer, texture_name, position, size, color, masked, saturated, retained_id, point_sample)
---         pass_data.retained_id = retained_id or pass_data.retained_id
---         pass_data.dirty = false
---     else
---         UIRenderer_draw_texture(ui_renderer, texture_name, position, size, color, masked, saturated, nil, point_sample)
---     end
--- end
-
 
 --for checking if the tomes and grims for sub quest 6 are collected
 mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (func, self, game_won, quickplay, statistics_db, stats_id)
@@ -697,10 +576,6 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
 
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
-
--- for k,v in pairs(ItemMasterList.dr_steam_pistol_skin_01) do 
---     mod:echo(k)
--- end
 
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {
@@ -828,7 +703,6 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
     
     for i = 1, #entries, 1 do
         local entry_id = entries[i]
-        -- mod:echo(entry_id)
         local entry_data = manager:get_data_by_id(entry_id)
 
         if entry_data.id then
@@ -921,8 +795,6 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
 
                     mod.marker_list[scroll_unit] = Vector3Box(position)
-
-                    -- mod.scroll_unit = scroll_unit
                     mod.sword_unit = sword_unit
 
                 end                            
@@ -947,8 +819,6 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         
         if string.find(level_name, "inn_level") then
             
-            -- mod.spawn_message_board()
-
             local board_pos = Vector3(24.17, -5.96, 27.2681)
             local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
             local world = Managers.world:world("level_world")
@@ -1026,154 +896,7 @@ end)
 -- =========================================================================================
 -- =========================================================================================
 -- =========================================================================================
--- mod:echo(Localize("achv_menu_reward_claimed_title"))
 
-
-
--- mod:hook_safe(HeroViewStateAchievements,"create_ui_elements", function (self, params)
---     local quest_manager = self._quest_manager
--- 	local achievement_manager = self._achievement_manager
---     -- mod:echo(entry_type)
---     if entry_type == "quest" then
-		
--- 		manager = quest_manager
--- 	else
-		
--- 		manager = achievement_manager
--- 	end
-
---     for i = 1, #entries, 1 do
---         local entry_id = entries[i]
---         local entry_data = manager:get_data_by_id(entry_id)
---         entry_data.completed = true
---         entry_data.claimed = true
---         -- if entry_data.id then
---         --     if lamod.LA_quest_rewards[entry_data.id] then 
---         --         entry_data.reward = lamod.LA_quest_rewards[entry_data.id]
---         --         entry_data.completed = true
---         --         entry_data.claimed = true
---         --     end
---         -- end        
---     end
-
--- end)
-
-
--- local lamod = get_mod("Loremasters-Armoury")
--- mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
---     local quest_manager = self._quest_manager
--- 	local achievement_manager = self._achievement_manager
-
-    
---     local needle = self._search_query
---     local query = self._search_widgets_by_name.filters.content.query
---     needle = SearchUtils.extract_queries(needle, UISettings.achievement_search_definitions, query)
---     -- mod:echo(entry_type)
---     if entry_type == "quest" then
-		
--- 		manager = quest_manager
--- 	else
-		
--- 		manager = achievement_manager
--- 	end
-    
---     for i = 1, #entries, 1 do
---         local entry_id = entries[i]
---         -- mod:echo(entry_id)
---         local entry_data = manager:get_data_by_id(entry_id)
---         -- entry_data.completed = true
---         -- entry_data.claimed = true
---         if entry_data.id then
---             if lamod.LA_quest_rewards[entry_data.id] then 
---                 entry_data.reward = lamod.LA_quest_rewards[entry_data.id]
---                 -- entry_data.completed = true
---                 -- entry_data.claimed = true
---                 -- self._widgets[4].content.texture_id = "paper_back"
---                 -- self._widgets[4].element.passes[1].pass_type = "texture"
---                 -- self._widgets[4].element.passes[1].texture_id = "texture_id"
---                 -- self._widgets[4].element.passes[1].style_id = "texture_id"    
-
---             end
-
---             -- local reward = entry_data.reward
---             -- if reward then
---             --     mod:echo(tostring(type(reward)).."      "..tostring(reward))
---             -- end
---             -- if entry_data.completed then
---             --     for k,v in pairs(entry_data.reward) do
---             --         -- mod:echo(tostring(k).."     "..tostring(v))
---             --         -- for i,j in pairs(self._achievement_widgets[1].content) do
---             --         --     mod:echo(tostring(i).."     "..tostring(j))
---             --         -- end
---             --     end
---             --     mod:echo("=====================================================")
---             -- end
---         end
-        
-
-
---     end
---     self._achievement_widgets[1].content.claimed = true
---     for i,j in pairs(self._achievement_widgets[1].content) do
---         mod:echo(tostring(i).."     "..tostring(j))
---     end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[13]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[14]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[15]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[16]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[17]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[37]) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- mod:echo("=====================================================")
-
---     return func(self, entries, entry_type, entry_subtype)
--- end)
-
-
--- local lamod = get_mod("Loremasters-Armoury")
--- mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     -- for i,j in pairs(self._achievement_widgets[1].element.pass_data[43].passes) do
---     --     mod:echo(tostring(i).."     "..tostring(j))
---     -- end
---     mod:echo(#self._achievement_widgets[1].element.pass_data[43].passes)
---     for i,j in pairs(self._achievement_widgets[1].element.pass_data[43].passes) do
---         mod:echo("=============      "..tostring(i).."     =================")
---         for k,v in pairs(j.data) do
---             if type(v) =="table" then
---                 if v then
---                     for g,h in pairs(v) do
---                         mod:echo(tostring(g).."     "..tostring(h))
---                     end
---                 end
---             end
---             -- mod:echo(tostring(k).."     "..tostring(v))
---         end
---         mod:echo("=====================================================")
---     end
-    
---     mod:echo("=====================================================")
---     mod:echo("=====================================================")
---     mod:echo("=====================================================")
---     mod:echo("=====================================================")
-
---     return func(self, entries, entry_type, entry_subtype)
--- end)
-
--- local lamod = get_mod("Loremasters-Armoury")
 mod:hook(HeroViewStateAchievements,"draw", function (func, self, input_service, dt)
     
     if self._achievement_widgets then
@@ -1195,88 +918,6 @@ mod:hook(HeroViewStateAchievements,"draw", function (func, self, input_service, 
     -- self._achievement_widgets[1].content.progress_text
     return func(self, input_service, dt)
 end)
-
-
--- desc     Complete 200 deeds
--- [MOD][ExecLua][ECHO] claimed     true
--- [MOD][ExecLua][ECHO] icon     achievement_trophy_deeds_5
--- [MOD][ExecLua][ECHO] id     complete_deeds_5
--- [MOD][ExecLua][ECHO] progress     table: 000000000B599930
--- [MOD][ExecLua][ECHO] completed     true
--- [MOD][ExecLua][ECHO] name     Liber Mortis-Bubonica V
--- [MOD][ExecLua][ECHO] reward     table: 0000000001505E00
-
-
-
--- claimed     false
--- [MOD][ExecLua][ECHO] icon     loremaster_test_icon
--- [MOD][ExecLua][ECHO] id     main_quest
--- [MOD][ExecLua][ECHO] requirements     table: 0000000009E2F500
--- [MOD][ExecLua][ECHO] desc     Complete all relavent Sub Quests.
--- [MOD][ExecLua][ECHO] completed     true
--- [MOD][ExecLua][ECHO] progress     table: 000000000BE153D0
--- [MOD][ExecLua][ECHO] name     Main Quest
--- [MOD][ExecLua][ECHO] reward     table: 00000000065FA9A0
-
-
--- local UIRenderer_draw_texture = UIRenderer.draw_texture
--- mod:hook(UIPasses.texture, "draw", function(func, ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
---     -- mod:echo("texture")
---     -- mod:echo(pass_definition.texture_id)
---     -- local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
---     -- mod:echo(texture_name)
---     -- mod:echo("=====================================================")
-
-
---     local texture_name = ui_content[pass_definition.texture_id or "texture_id"]
--- 	local color, masked, saturated, point_sample = nil
-
--- 	if ui_style then
--- 		local texture_size = ui_style.texture_size
-
--- 		if texture_size then
--- 			UIUtils.align_box_inplace(ui_style, position, size, texture_size)
-
--- 			size = texture_size
--- 		end
-
--- 		color = ui_style.color
--- 		masked = ui_style.masked
--- 		saturated = ui_style.saturated
--- 		point_sample = ui_style.point_sample
--- 	end
-
---     -- mod:echo(texture_name)
--- 	if pass_definition.retained_mode then
--- 		local retained_id = pass_definition.retained_mode and (pass_data.retained_id or true)
--- 		retained_id = UIRenderer.draw_texture(ui_renderer, "paper_back", position, size, color, masked, saturated, retained_id, point_sample)
--- 		pass_data.retained_id = retained_id or pass_data.retained_id
--- 		pass_data.dirty = false
--- 	else
--- 		UIRenderer.draw_texture(ui_renderer, "paper_back", position, size, color, masked, saturated, nil, point_sample)
--- 	end
---     -- return func(ui_renderer, pass_data, ui_scenegraph, pass_definition, ui_style, ui_content, position, size, input_service, dt)
---     return
--- end)
-
--- mod:hook(UIRenderer,"draw_texture", function (func, self, material, position, size, color, masked, saturated, retained_id, point_sample)
---     local gui = self.gui
-
--- 	if retained_id then
--- 		gui = self.gui_retained
-
--- 		if retained_id == true then
--- 			retained_id = nil
--- 		end
--- 	end
-
--- 	local scale = RESOLUTION_LOOKUP.scale
-
--- 	return UIRenderer.script_draw_bitmap(gui, self.render_settings, material, Vector3(position[1] * scale, position[2] * scale, position[3] or 0), Vector3(size[1] * scale, size[2] * scale, size[3] or 0), color, masked, saturated, retained_id, point_sample)
-
---     -- return func(self, material, position, size, color, masked, saturated, retained_id, point_sample)
--- end)
-
 
 
 -- =========================================================================================
@@ -1344,13 +985,6 @@ mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
         end
     end
 
-    for unit, position in pairs(mod.marker_list) do 
-        if Unit.alive(unit) then
-            mod.render_marker(position, 100)
-        else 
-            mod.marker_list[unit] = nil
-        end
-    end
     func(self, dt, ...)
 end)
 
@@ -1364,15 +998,6 @@ mod:hook(OutlineSystem,"outline_unit", function (func, self, unit, flag, channel
     return func(self, unit, flag, channel, do_outline, apply_method)
 end)
 
-
-
-
-
-
-
--- NetworkLookup.husks["units/pickups/LA_reikland_chronicle_mesh"] = 1
--- NetworkLookup.husks["units/pickups/LA_artifact_corrupted_mesh"] = 1
--- NetworkLookup.husks["units/pickups/LA_artifact_mesh"] = 1
 
 mod.LA_new_interactors = {
     "units/pickups/LA_reikland_chronicle_mesh",
@@ -1658,45 +1283,10 @@ for k,v in pairs(letterUnits) do
     letterUnits[v] = v
 end
 
-
---this is needed in the event we want sounds to play for the new trophies added in
--- mod:hook(HeroViewStateKeepDecorations, "_play_sound", function(func, self, event)
-    
---     -- mod:echo(mod.parameters)
---     -- for k,v in pairs(mod.parameters) do 
---     --     mod:echo(tostring(k).."     "..tostring(v))
---     -- end
-
---     if mod.parameters then
---         local state_params = mod.parameters.state_params
---         if state_params then
---             local interactable_unit = state_params.interactable_unit
---             if interactable_unit then
-    
-	
---                 -- mod:echo(interactable_unit)
---                 local unit_name = Unit.get_data(interactable_unit, "unit_name")
---                 if mod.LA_new_interactors[unit_name] then
---                     event = "Loremaster_letter_open_sound__1_"
---                 elseif letterUnits[unit_name] then
---                     event = "Loremaster_letter_open_sound__1_"
---                 end
---                 -- mod:echo(unit_name)
---                 -- s
---             end
---         end
---     end
---     return func(self, event)
--- end)
-
-
 mod.og_pass = nil
 mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_service, dt)
     local unit = self._interactable_unit    
-   
-    -- for k,v in pairs(self._widgets[4].element.passes[1]) do 
-    --     mod:echo(tostring(k).."     "..tostring(v))
-    -- end
+
     if Unit.has_data(unit, "unit_name") then
         local unit_name = Unit.get_data(unit, "unit_name")
         mod.og_pass = table.clone(self._widgets[4].element, false)
@@ -1714,17 +1304,6 @@ mod:hook(HeroViewStateKeepDecorations, "draw", function (func, self, input_servi
         end
         self._widgets[4].element.passes = table.clone(mod.og_pass, false)
     end 
-
-    -- if unit then
-    --     local unit_name = Unit.get_data(unit, "unit_name")
-    --     if unit_name then
-    --         if letterUnits[unit_name] then
-    --             local equipped_decoration = mod.letter_board:get_selected_decoration()
-    --             mod.letter_board:change_active_quest(equipped_decoration)
-    --         end
-    --     end
-    -- end
-
     return func(self, input_service, dt)
 end)
 
@@ -1768,7 +1347,6 @@ mod:hook(HeroViewStateKeepDecorations, "on_enter", function (func, self, params)
 
                 self._animations = {}
                 self._ui_animations = {}
-                -- self._decoration_system = Managers.state.entity:system("keep_decoration_system")
                 self._decoration_system = mod.letter_board
                 self._keep_decoration_backend_interface = Managers.backend:get_interface("keep_decorations")
 
@@ -1912,17 +1490,12 @@ mod:hook(HeroViewStateKeepDecorations, "_setup_decorations_list", function (func
         local unit_name = Unit.get_data(unit, "unit_name")
         if unit_name then
             if letterUnits[unit_name] then
-                -- local backend_interface = self._keep_decoration_backend_interface
-                -- local unlocked_decorations = (backend_interface and backend_interface:get_unlocked_keep_decorations()) or {}
                 local widgets = {}
                 local index = 0
-                -- self._ordered_table
                 for _, key in ipairs(mod.list_order) do
                     if true then
                         local settings = self._main_table[key]
-                        -- local settings = mod.painting[key]
                         if settings then
-                            -- local unlocked = table.contains(unlocked_decorations, key)
                             local unlocked = true
                             local display_name = Localize(settings.display_name)
                             local new = ItemHelper.is_new_keep_decoration_id(key)
