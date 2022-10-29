@@ -376,6 +376,9 @@ local mod_text_ids = {
     sub_quest_crate_tracker_desc = {
         en = "Retrieve all the stolen shipping crates."
     },
+	halescourge_buff_chat_message = {
+		en = "The Loremaster channels supportive magic your way: +25% CDR, +4 Stamina",
+	},
     
 }
 

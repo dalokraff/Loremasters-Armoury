@@ -44,6 +44,8 @@ end
 HalescourgeBuff.stage_two = function(self)
     self.buff_extension:add_buff("sub_quest_08_cdr_buff", nil)
     self.buff_extension:add_buff("sub_quest_08_stamina_buff", nil)
+    local message = mod:localize("halescourge_buff_chat_message")
+    Managers.chat:add_local_system_message(1, "The Loremaster channels supportive magic your way: +25% CDR, +4 Stamina", true)
     self:destroy()
 end
 
