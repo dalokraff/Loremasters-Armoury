@@ -5,17 +5,6 @@ mod.achievement_list = {
 	test_1_completed = false, 
 }
 
--- for cheevo,finished in pairs(achievement_list) do
--- 	cheevo = mod:get(cheevo) or false
--- end
-
--- {
--- 	reward_type = item, hat, weapon_skin, currency, frame, skin, keep_decoration_painting
--- 	item_name = 
--- 	weapon_skin_name =
--- 	decoration_name = 
-
--- }
 
 mod.achievement_rewards = {
 	test_1 = {
@@ -23,52 +12,6 @@ mod.achievement_rewards = {
 		weapon_skin_name = "we_longbow_skin_06_runed_01",
 	}, 
 }
-
--- AchievementTemplates.achievements.test_1 = {
--- 	name = "test_1",
--- 	display_completion_ui = true,
--- 	icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
--- 	desc = "test_1_desc",
--- 	completed = function (statistics_db, stats_id)
-		
--- 		local cheevo = "test_1_completed"
--- 		local finished = mod:get(cheevo)
-
--- 		if (mod.complete >= limit) or finished then
--- 			mod:set(cheevo, true)
--- 			mod:echo('COMPLETED!!!')
--- 			return true
--- 		end
-
--- 		return false
--- 	end,
--- 	progress = function (statistics_db, stats_id)
--- 		local count = mod.complete
-
--- 		local cheevo = "test_1_completed"
--- 		local finished = mod:get(cheevo) 
--- 		if finished then
--- 			count = limit
--- 		end
-
--- 		count = math.min(count, limit)
-
--- 		return {
--- 			count,
--- 			limit
--- 		}
--- 	end
--- }
-
--- AchievementTemplates.achievements.test_2 = {
--- 	name = "test_2",
--- 	display_completion_ui = true,
--- 	icon = "achievement_trophy_helmgart_lord_1",
--- 	desc = "test_2_desc",
--- 	completed = function (statistics_db, stats_id)
--- 		return statistics_db:get_persistent_stat(stats_id, "killed_lord_as_last_player_standing") > 0
--- 	end
--- }
 
 
 mod.main_quest = {
@@ -87,16 +30,7 @@ mod.main_quest = {
 }
 
 mod.main_quest_completed = false
--- mod:echo(#main_quest)
--- local num_completed = 0
--- for name, quest in pairs(main_quest) do
--- 	if quest then
--- 		num_completed = num_completed + 1
-		
--- 	end
--- 	mod:echo(name)
-	
--- end
+
 AchievementTemplates.achievements.main_quest = {
 	name = "main_quest",
 	-- display_completion_ui = true,
@@ -104,9 +38,7 @@ AchievementTemplates.achievements.main_quest = {
 	desc = "main_quest_desc",
 	completed = function (statistics_db, stats_id)
 		
-		-- if mod.main_quest[sub_01] and mod.main_quest[sub_01] and mod.main_quest[sub_01] then
-		-- 	return true
-		-- end
+		
 		for _, quest in pairs(mod.main_quest) do
 			if not quest then
 				mod.main_quest_completed = false 
@@ -154,14 +86,6 @@ AchievementTemplates.achievements.main_quest = {
 
 
 }
-
-
--- AchievementManager._achievement_completed("sub_quest_01")
--- mod:echo(Managers.state.achievement:_achievement_completed("sub_quest_01"))
--- for k,v in pairs(AchievementTemplates.achievements) do 
--- 	mod:echo(k)
--- end
--- mod:echo(AchievementTemplates.achievements["sub_quest_01"])
 
 AchievementTemplates.achievements.sub_quest_prologue = {
 	name = "sub_quest_prologue",
@@ -228,10 +152,6 @@ AchievementTemplates.achievements.sub_quest_01 = {
 			collected = total_kills_sub_quest_one
 		end
 
-		-- if not mod:get("sub_quest_01".."_letter_read") then
-		-- 	return { }
-		-- end
-
 		return {
 			collected,
 			total_kills_sub_quest_one,
@@ -259,10 +179,6 @@ AchievementTemplates.achievements.sub_quest_02 = {
 		if mod:get("sub_quest_02") > total_kills_sub_quest_two and mod:get("sub_quest_prologue".."_letter_read") then
 			collected = total_kills_sub_quest_two
 		end
-
-		-- if not mod:get("sub_quest_01".."_letter_read") then
-		-- 	return {}
-		-- end
 
 		return {
 			collected,
@@ -531,5 +447,3 @@ AchievementTemplates.achievements.sub_quest_10 = {
 		return false
 	end
 }
-
---"locked_hidden_quest"
