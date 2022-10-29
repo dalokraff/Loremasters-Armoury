@@ -366,7 +366,10 @@ menu.custom_gui_textures = {
 		{
 			"materials/Loremasters-Armoury/armoury_atlas",
 			"armoury_atlas",
-			"armoury_atlas_masked",
+			"armoury_atlas",
+			"armoury_atlas",
+			"armoury_atlas",
+			"armoury_atlas",
 		},
 		-- {
 		-- 	"materials/Loremasters-Armoury/paper_back",
