@@ -94,13 +94,17 @@ end)
 
 --applies the vanilla material setting to custom units if specified in the unit
 mod:hook_safe(World, "link_unit", function(self, child, child_node_index, parent, parent_node_index )
-    if Unit.has_data(child, "use_vanilla_glow") then
-        local glow = Unit.get_data(child, "use_vanilla_glow")
-        GearUtils.apply_material_settings(child, WeaponMaterialSettingsTemplates[glow])
+    if type(child) == "userdata" then
+        if Unit.has_data(child, "use_vanilla_glow") then
+            local glow = Unit.get_data(child, "use_vanilla_glow")
+            GearUtils.apply_material_settings(child, WeaponMaterialSettingsTemplates[glow])
+        end
     end
-    if Unit.has_data(parent, "use_vanilla_glow") then
-        local glow = Unit.get_data(child, "use_vanilla_glow")
-        GearUtils.apply_material_settings(parent, WeaponMaterialSettingsTemplates[glow])
+    if type(parent) == "userdata" then 
+        if Unit.has_data(parent, "use_vanilla_glow") then
+            local glow = Unit.get_data(child, "use_vanilla_glow")
+            GearUtils.apply_material_settings(parent, WeaponMaterialSettingsTemplates[glow])
+        end
     end
 end)
 
@@ -535,22 +539,6 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
 
     end
 
-end)
-
-mod:hook_safe(BTLeaveHooks,"on_lord_intro_leave", function (unit, blackboard, t)
-    local bb = blackboard
-    if bb.breed then
-        local name = bb.breed.name
-        if name == "chaos_exalted_sorcerer" then
-            local current_level_key = Managers.level_transition_handler:get_current_level_keys()
-            if current_level_key == "ground_zero" then
-                local position = Unit.local_position(unit, 0)
-                local world = Managers.world:world("level_world")
-                local fx = "fx/magic_wind_heavens_lightning_strike_01"
-                local particle_id = World.create_particles(world, fx, position)
-            end
-        end
-    end
 end)
 
 --for checking if the tomes and grims for sub quest 6 are collected

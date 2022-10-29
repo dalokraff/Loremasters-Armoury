@@ -20,9 +20,6 @@ HalescourgeBuff.init = function (self, world)
 end
 
 HalescourgeBuff.update = function (self, dt)
-    -- if self.buff_extension:has_buff_type("sub_quest_08_cdr_buff") and self.buff_extension:has_buff_type("sub_quest_08_stamina_buff") then
-    --     self:destroy()
-    -- end
 
     if not self.buff_extension then
         local player = Managers.player:local_player()
@@ -31,7 +28,7 @@ HalescourgeBuff.update = function (self, dt)
     end
     
     self.current_time = self.current_time + dt
-    mod:echo(self.current_time)
+    
     if self.current_time >= self.wait_time then
         local stage = self[self.stage]
         stage(self)
