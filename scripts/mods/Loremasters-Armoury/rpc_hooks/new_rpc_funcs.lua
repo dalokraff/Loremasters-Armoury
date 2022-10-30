@@ -14,6 +14,7 @@ local rpc_table = {
 
             interactor_extension:interaction_denied()
 
+            mod:echo(interaction_type)
             if interaction_type == "sword_enchantment" then
                 if interactable_unit then
                     local world = Managers.world:world("level_world")
@@ -21,6 +22,10 @@ local rpc_table = {
                     mod.sword_ritual = SwordEnchantment:new(world)
                     return true
                 end
+            end
+            
+            if interaction_type == "la_pickup" then   
+                return true
             end
 
             if Unit.has_data(interactable_unit, "unit_name") then
@@ -36,8 +41,9 @@ local rpc_table = {
                     return true
                 end
             end
+
             return true
-        end
+        end       
 
         return false
     end,

@@ -729,13 +729,18 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
                 if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
-                    Managers.state.network.network_transmit:send_rpc_server(
-                        "rpc_spawn_pickup_with_physics",
-                        NetworkLookup.pickup_names["painting_scrap"],
-                        mod.list_of_LA_levels[level_name].position:unbox(),
-                        Quaternion.from_elements(0,0,0,0),
-                        NetworkLookup.pickup_spawn_types['dropped']
-                    )
+                    -- Managers.state.network.network_transmit:send_rpc_server(
+                    --     "rpc_spawn_pickup_with_physics",
+                    --     NetworkLookup.pickup_names["painting_scrap"],
+                    --     mod.list_of_LA_levels[level_name].position:unbox(),
+                    --     Quaternion.from_elements(0,0,0,0),
+                    --     NetworkLookup.pickup_spawn_types['dropped']
+                    -- )
+                    local unit_template_name = "interaction_unit"
+                    local extension_init_data = {}
+                    local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
+                        extension_init_data, mod.list_of_LA_levels[level_name].position:unbox(), Quaternion.from_elements(0,0,0,0))
+                    LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
                 end
             end
         end
@@ -1007,6 +1012,7 @@ mod.LA_new_interactors = {
     "units/decorations/letters/LA_quest_message_stage10",
     "units/pickups/Loremaster_magicscroll_rolled_mesh",
     "units/pickups/Loremaster_magicscroll_interactor_mesh",
+    "units/pickups/Loremaster_shipment_box_mesh_real",
 }
 
 
@@ -1576,4 +1582,12 @@ mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
 end)
 
 
+
+mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
+    if not string.find(mod:localize(text_id), "<") then
+        return mod:localize(text_id)
+    end
+
+	return func(self, text_id)
+end)
 

@@ -8,7 +8,7 @@ actors = [
 			{
 				material = "default"
 				shape = "Loremaster_shipment_box_real"
-				template = "human_collision"
+				template = "default"
 				type = "convex_computed"
 			}
 		]

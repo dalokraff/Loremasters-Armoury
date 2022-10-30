@@ -20,6 +20,22 @@ data = {
     norm_slot = "texture_map_861dbfdc"
     MAB_slot = "texture_map_b788717c"
 
+    extensions = [
+        "UnitSynchronizationExtension"
+        "PingTargetExtension"
+        "GenericUnitInteractableExtension"
+        "ElevatorOutlineExtension"
+    ]
+    interaction_data = {
+        la_interaction_type = "LA_crate"
+        hud_description = "la_pickup_message"
+        interaction_length = 0
+        interaction_type = "la_pickup"
+        interactor_animation = "interaction_start"
+        interactor_animation_time_variable = "revive_time"
+        only_once = true
+    }
+
 }
 
 renderables = {

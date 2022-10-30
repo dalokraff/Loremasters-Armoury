@@ -377,7 +377,9 @@ local mod_text_ids = {
 	halescourge_buff_chat_message = {
 		en = "The Loremaster channels supportive magic your way: +25% CDR, +4 Stamina",
 	},
-    
+	la_pickup_message = {
+		en = "Pickup",
+	},
 }
 
 for id,text in pairs(mod.name_strings_id) do

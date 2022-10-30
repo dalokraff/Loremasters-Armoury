@@ -3,7 +3,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/buffs/LA_buffs")
 mod:dofile("scripts/mods/Loremasters-Armoury/buffs/hooks")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
-mod:dofile("scripts/mods/Loremasters-Armoury/achievements/achievement_object")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/la_pickup_interaction")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/test")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/outliner")
 mod:dofile("scripts/mods/Loremasters-Armoury/achievements/LA_message_board")
@@ -29,6 +29,9 @@ Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_
 --     Managers.state.achievement = AchievementManager:new(self.world, self.statistics_db)
 --     mod:echo('inside out')
 -- end)
+
+
+LA_PICKUPS = {}
 
 --thesse tables are used as queues that get filled and flushed as skins and their respective units are changed
 mod.level_queue = {}
@@ -327,3 +330,16 @@ mod:command("complete_sub_quest_09", "", function()
     mod.main_quest["sub_quest_09"] = true
     mod:set("sub_quest_09", true)
 end)
+
+
+
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- local position = Unit.local_position(player_unit, 0)
+-- local rotation = Unit.local_rotation(player_unit, 0)
+-- local unit_template_name = "interaction_unit"
+-- local extension_init_data = {}
+-- local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
+--     extension_init_data, position, rotation)
+
+-- LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
