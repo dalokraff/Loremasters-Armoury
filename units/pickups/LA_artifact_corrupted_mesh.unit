@@ -39,20 +39,22 @@ data = {
     emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_ee282ea2"
 
+    extensions = [
+        "UnitSynchronizationExtension"
+        "PingTargetExtension"
+        "GenericUnitInteractableExtension"
+        "ElevatorOutlineExtension"
+    ]
     interaction_data = {
-            hud_description = "magic_gem_nurgle"
-            hud_interaction_action = "interaction_action_view"
-            camera_interaction_name = "magic_gem_nurgle"
-            interaction_length = 0
-            interaction_type = "decoration"
-            interactor_animation = "interaction_start"
-            interactor_animation_time_variable = "revive_time"
-            only_once = false
-            hud_text_line_1 = "magic_gem_nurgle"
-            hud_text_line_2 =  "magic_gem_nurgle_desc"
-            
-        }
-
+        la_interaction_type = "magic_gem_nurgle"
+        hud_description = "la_pickup_message"
+        pickup_sound = "Loremaster_Corrupted_Artifact_pickup_sound"
+        interaction_length = 0
+        interaction_type = "la_pickup"
+        interactor_animation = "interaction_start"
+        interactor_animation_time_variable = "revive_time"
+        only_once = true
+    }
 }
 
 renderables = {

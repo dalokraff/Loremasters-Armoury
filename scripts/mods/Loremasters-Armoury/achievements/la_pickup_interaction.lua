@@ -49,7 +49,11 @@ InteractionDefinitions.la_pickup.client.stop = function (world, interactor_unit,
 	if result == InteractionResult.SUCCESS and not data.is_husk then
 	    if interactable_unit then
 
-			-- Managers.state.unit_spawner:mark_for_deletion(interactable_unit)
+			local sound = Unit.get_data(interactable_unit, "interaction_data", "pickup_sound")
+            if sound then 
+                local wwise_world = Wwise.wwise_world(world)
+                WwiseWorld.trigger_event(wwise_world, sound)  
+            end
             local la_pickup_ext = LA_PICKUPS[interactable_unit]
             if la_pickup_ext then
                 la_pickup_ext:destroy()
@@ -59,9 +63,7 @@ InteractionDefinitions.la_pickup.client.stop = function (world, interactor_unit,
             local quest = level_quest_table[level_name]
             if quest then
                 mod:set(quest.."_temp", true)
-            end
-			local wwise_world = Wwise.wwise_world(world)
-			WwiseWorld.trigger_event(wwise_world, "Loremaster_shipment_pickup_sound")  
+            end			
 			
         end
 

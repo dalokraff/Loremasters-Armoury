@@ -29,6 +29,7 @@ data = {
     interaction_data = {
         la_interaction_type = "LA_crate"
         hud_description = "la_pickup_message"
+        pickup_sound = "Loremaster_shipment_pickup_sound"
         interaction_length = 0
         interaction_type = "la_pickup"
         interactor_animation = "interaction_start"

@@ -9,23 +9,23 @@ data = {
     // mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
     
     colors = {
-        slot1 = "textures/pickups/LA_artifact_gemstone_diffuse"
-        slot2 = "textures/pickups/LA_artifact_chest_diffuse"
+        slot1 = "textures/pickups/LA_artifact_gemstone_corrupted_diffuse"
+        slot2 = "textures/pickups/LA_artifact_chest_corrupted_diffuse"
     }
     normals = {
-        slot1 = "textures/pickups/LA_artifact_gemstone_normal"
-        slot2 = "textures/pickups/LA_artifact_chest_normal"
+        slot1 = "textures/pickups/LA_artifact_gemstone_corrupted_normal"
+        slot2 = "textures/pickups/LA_artifact_chest_corrupted_normal"
     }
     MABs = {
-        slot1 = "textures/pickups/LA_artifact_gemstone_combined"
-        slot2 = "textures/pickups/LA_artifact_chest_combined"
+        slot1 = "textures/pickups/LA_artifact_gemstone_corrupted_combined"
+        slot2 = "textures/pickups/LA_artifact_chest_corrupted_combined"
     }
     emis_colors = {
-		slot1 = "textures/pickups/LA_artifact_gemstone_emission_color"
+		slot1 = "textures/pickups/LA_artifact_gemstone_corrupted_emission_color"
         slot2 = "textures/blank_emis"
 	}
     emis_details = {
-        slot1 = "textures/pickups/LA_artifact_gemstone_emission"
+        slot1 = "textures/pickups/LA_artifact_gemstone_corrupted_emission"
         slot2 = "textures/blank_emis"
     }
 
@@ -38,22 +38,21 @@ data = {
     MAB_slot = "texture_map_0205ba86"
     emis_col_slot = "texture_map_71d74d4d"
 	emis_det_slot = "texture_map_ee282ea2"
-    
-    extensions = [
-        "UnitSynchronizationExtension"
-        "PingTargetExtension"
-        "GenericUnitInteractableExtension"
-        "ElevatorOutlineExtension"
-    ]
+
     interaction_data = {
-        la_interaction_type = "magic_gem"
-        hud_description = "la_pickup_message"
-        interaction_length = 0
-        interaction_type = "la_pickup"
-        interactor_animation = "interaction_start"
-        interactor_animation_time_variable = "revive_time"
-        only_once = true
-    }
+            hud_description = "magic_gem_nurgle"
+            hud_interaction_action = "interaction_action_view"
+            camera_interaction_name = "magic_gem_nurgle"
+            interaction_length = 0
+            interaction_type = "decoration"
+            interactor_animation = "interaction_start"
+            interactor_animation_time_variable = "revive_time"
+            only_once = false
+            hud_text_line_1 = "magic_gem_nurgle"
+            hud_text_line_2 =  "magic_gem_nurgle_desc"
+            
+        }
+
 }
 
 renderables = {

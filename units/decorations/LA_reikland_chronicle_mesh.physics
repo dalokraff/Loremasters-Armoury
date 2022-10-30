@@ -1,0 +1,17 @@
+actors = [
+	{
+		enabled = true
+		mass = 1
+		name = "collision"
+		node = "collision"
+		shapes = [
+			{
+				material = "default"
+				shape = "collision"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "keyframed_no_collision"
+	},
+]

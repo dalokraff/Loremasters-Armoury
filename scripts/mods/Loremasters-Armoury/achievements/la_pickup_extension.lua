@@ -20,6 +20,7 @@ end
 LaPickupExtension.link_units = function(self)
     local world = Managers.world:world("level_world")
     World.link_unit(world, self.visable_unit, self.unit, 0 )
+    Unit.disable_physics(self.visable_unit)
 end
 
 LaPickupExtension.update = function (self, dt)

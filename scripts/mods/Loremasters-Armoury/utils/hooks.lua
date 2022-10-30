@@ -475,14 +475,20 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                     local position = Vector3(363.476, 50.4658, -13.7107) 
                     local rot = radians_to_quaternion(0, -math.pi/2, 0)
                     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                    mod.stored_vectors[level_name] = Vector3Box(position)
-                    Managers.state.network.network_transmit:send_rpc_server(
-                            "rpc_spawn_pickup_with_physics",
-                            NetworkLookup.pickup_names["painting_scrap"],
-                            position,
-                            rotation,
-                            NetworkLookup.pickup_spawn_types['dropped']
-                        )
+                    -- mod.stored_vectors[level_name] = Vector3Box(position)
+                    -- Managers.state.network.network_transmit:send_rpc_server(
+                    --         "rpc_spawn_pickup_with_physics",
+                    --         NetworkLookup.pickup_names["painting_scrap"],
+                    --         position,
+                    --         rotation,
+                    --         NetworkLookup.pickup_spawn_types['dropped']
+                    --     )
+                    local unit_template_name = "interaction_unit"
+                    local extension_init_data = {}
+                    local artifact_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", unit_template_name, 
+                        extension_init_data, position, rotation)
+
+                    LA_PICKUPS[artifact_unit] = LaPickupExtension:new(artifact_unit)
                 end
             end
         end
@@ -748,13 +754,19 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
                 if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
-                    Managers.state.network.network_transmit:send_rpc_server(
-                        "rpc_spawn_pickup_with_physics",
-                        NetworkLookup.pickup_names["painting_scrap"],
-                        mod.list_of_LA_levels_books[level_name].position:unbox(),
-                        mod.list_of_LA_levels_books[level_name].rotation:unbox(),
-                        NetworkLookup.pickup_spawn_types['dropped']
-                    )
+                    -- Managers.state.network.network_transmit:send_rpc_server(
+                    --     "rpc_spawn_pickup_with_physics",
+                    --     NetworkLookup.pickup_names["painting_scrap"],
+                    --     mod.list_of_LA_levels_books[level_name].position:unbox(),
+                    --     mod.list_of_LA_levels_books[level_name].rotation:unbox(),
+                    --     NetworkLookup.pickup_spawn_types['dropped']
+                    -- )
+                    local unit_template_name = "interaction_unit"
+                    local extension_init_data = {}
+                    local book_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", unit_template_name, 
+                        extension_init_data, mod.list_of_LA_levels_books[level_name].position:unbox(), mod.list_of_LA_levels_books[level_name].rotation:unbox())
+
+                    LA_PICKUPS[book_unit] = LaPickupExtension:new(book_unit)
                 end
             end
         end
@@ -844,19 +856,19 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 local position = Vector3(1, 6.835, 6.29282)
                 local rotation = radians_to_quaternion(math.pi/2,-math.pi/12,math.pi/2)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
+                Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_reikland_chronicle_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
                 local position = Vector3(1.32, 6.5, 6.15)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
+                Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_artifact_corrupted_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_09") then
                 local position = Vector3(1.32, 6.5, 6.15)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local extension_init_data = {}
-                Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
+                Managers.state.unit_spawner:spawn_network_unit("units/decorations/LA_artifact_mesh", "interaction_unit", extension_init_data, position, rotation)
             end
             if mod:get("sub_quest_10") then
                 local position = Vector3(1.8, 9.76, 7)
@@ -994,8 +1006,11 @@ end)
 
 mod.LA_new_interactors = {
     "units/pickups/LA_reikland_chronicle_mesh",
+    "units/decorations/LA_reikland_chronicle_mesh",
     "units/pickups/LA_artifact_corrupted_mesh",
+    "units/decorations/LA_artifact_corrupted_mesh",
     "units/pickups/LA_artifact_mesh",
+    "units/decorations/LA_artifact_mesh",
     "units/decorations/LA_message_board_mesh",
     "units/decorations/LA_loremaster_message_large",
     "units/decorations/LA_loremaster_message_medium",
