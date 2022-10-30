@@ -1,5 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
-
+local level_quest_table = require("scripts/mods/Loremasters-Armoury/achievements/pickup_maps")
 local rpc_table = {
     rpc_generic_interaction_request = function(self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
