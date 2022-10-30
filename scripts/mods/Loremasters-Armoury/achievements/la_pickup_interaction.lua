@@ -10,9 +10,9 @@ local num_interacts = #NetworkLookup.interactions
 NetworkLookup.interactions["la_pickup"] = num_interacts+1
 NetworkLookup.interactions[num_interacts + 1] = "la_pickup"
 
-local box_path = "units/pickups/Loremaster_shipment_box_mesh_real"
-NetworkLookup.husks[num_husk +1] = box_path
-NetworkLookup.husks[box_path] = num_husk +1
+-- local box_path = "units/pickups/Loremaster_shipment_box_mesh_real"
+-- NetworkLookup.husks[num_husk +1] = box_path
+-- NetworkLookup.husks[box_path] = num_husk +1
 
 InteractionHelper = InteractionHelper or {}
 InteractionHelper.interactions.la_pickup = {}

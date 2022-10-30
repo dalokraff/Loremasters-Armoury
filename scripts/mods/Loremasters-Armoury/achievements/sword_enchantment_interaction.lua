@@ -7,9 +7,9 @@ local num_interacts = #NetworkLookup.interactions
 NetworkLookup.interactions["sword_enchantment"] = num_interacts+1
 NetworkLookup.interactions[num_interacts + 1] = "sword_enchantment"
 
-local scroll_path = "units/pickups/Loremaster_magicscroll_interactor_mesh"
-NetworkLookup.husks[num_husk +1] = scroll_path
-NetworkLookup.husks[scroll_path] = num_husk +1
+-- local scroll_path = "units/pickups/Loremaster_magicscroll_interactor_mesh"
+-- NetworkLookup.husks[num_husk +1] = scroll_path
+-- NetworkLookup.husks[scroll_path] = num_husk +1
 
 InteractionHelper = InteractionHelper or {}
 InteractionHelper.interactions.sword_enchantment = {}
