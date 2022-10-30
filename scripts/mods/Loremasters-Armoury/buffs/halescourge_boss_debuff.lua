@@ -16,19 +16,20 @@ HalescourgeDebuff.init = function (self, blackboard)
     self.world = Managers.world:world("level_world")
     self.bb = blackboard
     self.unit = blackboard.unit
+    self.is_server = Managers.player.is_server
 
     self.stage = 1
     
 end
 
 HalescourgeDebuff.update = function (self, dt)
+    self:health_check()
     if not Unit.alive(self.unit) then
         self:destroy()
     end
     if self.stage >= 5 then
         self:destroy()
     end
-    self:health_check()
 end
 
 HalescourgeDebuff.health_check = function(self)
@@ -41,13 +42,25 @@ end
 
 HalescourgeDebuff.lightning_strike = function(self)
 
+    
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
     local position = Unit.local_position(self.unit, 0)
-    local world = self.world
-    local wwise_world = Wwise.wwise_world(world)
-    local fx = "fx/magic_wind_heavens_lightning_strike_01"
+    local attacker_unit_id = Managers.state.unit_storage:go_id(player_unit)
+    local explosion_template_id = NetworkLookup.explosion_templates["lightning_strike"]
+    local damage_source = "buff"
+    local damage_source_id = NetworkLookup.damage_sources[damage_source]
+    
+    if Managers.player.is_server then
+		Managers.state.network.network_transmit:send_rpc_clients("rpc_create_explosion", attacker_unit_id, false, 
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+        Managers.state.network.network_transmit:send_rpc_server("rpc_create_explosion", attacker_unit_id, false, 
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+	else
+		Managers.state.network.network_transmit:send_rpc_server("rpc_create_explosion", attacker_unit_id, false, 
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+	end
 
-    local particle_id = World.create_particles(world, fx, position)
-    local sound_id = WwiseWorld.trigger_event(wwise_world, "Play_mutator_enemy_split_large", self.unit)
     self.stage = self.stage + 1
 end
 
