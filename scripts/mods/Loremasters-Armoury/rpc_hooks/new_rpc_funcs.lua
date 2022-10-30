@@ -25,6 +25,23 @@ local rpc_table = {
             end
             
             if interaction_type == "la_pickup" then   
+                
+                local sound = Unit.get_data(interactable_unit, "interaction_data", "pickup_sound")
+                if sound then 
+                    local wwise_world = Wwise.wwise_world(world)
+                    WwiseWorld.trigger_event(wwise_world, sound)  
+                end
+                local la_pickup_ext = LA_PICKUPS[interactable_unit]
+                if la_pickup_ext then
+                    la_pickup_ext:destroy()
+                end
+
+                local level_name = Managers.state.game_mode:level_key()
+                local quest = level_quest_table[level_name]
+                if quest then
+                    mod:set(quest.."_temp", true)
+                end
+                
                 return true
             end
 
