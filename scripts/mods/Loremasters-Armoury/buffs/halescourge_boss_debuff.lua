@@ -10,20 +10,42 @@ local health_stages = {
     0.1,
 }
 
+local lighting_delays = {
+    2.12,
+    1.17,
+    nil,
+    1.19,
+}
+
+local incantation_sounds = {
+    "LA_magic_effect_01_sound",
+    "LA_magic_effect_02_sound",
+    nil,
+    "LA_magic_effect_03_sound",
+}
+
 HalescourgeDebuff.init = function (self, blackboard)
     self.current_time = 0
-    self.wait_time = 0
+    self.wait_time = 999999
     self.world = Managers.world:world("level_world")
     self.bb = blackboard
     self.unit = blackboard.unit
     self.is_server = Managers.player.is_server
 
+    self.playing = false
+
     self.stage = 1
-    
+
 end
 
 HalescourgeDebuff.update = function (self, dt)
+    self.current_time = self.current_time + dt
     self:health_check()
+    
+    if self.current_time >= self.wait_time then
+        self:lightning_strike()
+    end
+    
     if not Unit.alive(self.unit) then
         self:destroy()
     end
@@ -34,11 +56,26 @@ end
 
 HalescourgeDebuff.health_check = function(self)
     local health = self.bb.current_health_percent
-    if health <= health_stages[self.stage] then
-        self:lightning_strike()
+    if health <= health_stages[self.stage] and not self.playing then
+        self:play_incantation()
     end
 end
 
+HalescourgeDebuff.play_incantation = function(self)
+    local sound = incantation_sounds[self.stage]
+    if sound then
+        local wwise_world = Wwise.wwise_world(self.world)
+        WwiseWorld.trigger_event(wwise_world, sound)
+        local delay = lighting_delays[self.stage]
+        if delay then
+            self.wait_time = delay + self.current_time
+            self.playing = true
+        end
+    else
+        self:lightning_strike()
+    end
+
+end
 
 HalescourgeDebuff.lightning_strike = function(self)
 
@@ -61,7 +98,14 @@ HalescourgeDebuff.lightning_strike = function(self)
             position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
 	end
 
+    self:update_stage()
+
+end
+
+HalescourgeDebuff.update_stage = function(self)
     self.stage = self.stage + 1
+    self.playing = false
+    self.wait_time = 999999
 end
 
 HalescourgeDebuff.destroy = function(self)
