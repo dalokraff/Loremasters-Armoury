@@ -15,7 +15,7 @@ local test_buff_templates = {
 		buffs = {
 			{
 				max_stacks = 1,
-				icon = "la_buff_01_icon",
+				-- icon = "la_buff_01_icon",
 				stat_buff = "max_fatigue",
 				apply_on = "equip",
 				bonus = 2,
@@ -26,7 +26,7 @@ local test_buff_templates = {
 		buffs = {
 			{
 				max_stacks = 1,
-				icon = "la_buff_01_icon",
+				-- icon = "la_buff_01_icon",
 				stat_buff = "reduced_overcharge",
 				multiplier = -0.3,
 			}
