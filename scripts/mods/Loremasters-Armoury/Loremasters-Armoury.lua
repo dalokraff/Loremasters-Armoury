@@ -122,6 +122,34 @@ function mod.update(dt)
         extension:update(dt)
     end
 
+    --dirty way to reapply buffs on player respawn for quest 08
+    local current_level_key = Managers.level_transition_handler:get_current_level_keys()
+    if current_level_key == "ground_zero" then
+        if mod:get("sub_quest_07") then
+            if Managers.player then
+                local player = Managers.player:local_player()
+                if player then
+                    local player_unit = player.player_unit
+                    if player_unit then
+                        local buff_extension = ScriptUnit.extension(player_unit, "buff_system")
+                        if buff_extension and mod.halescourge_buff_applied then
+                            if not buff_extension:has_buff_type("sub_quest_08_cdr_buff") then
+                                buff_extension:add_buff("sub_quest_08_cdr_buff", nil)
+                            end
+                            if not buff_extension:has_buff_type("sub_quest_08_stamina_buff") then
+                                buff_extension:add_buff("sub_quest_08_stamina_buff", nil)
+                            end
+                            if not buff_extension:has_buff_type("sub_quest_08_heatgen_buff") then
+                                buff_extension:add_buff("sub_quest_08_heatgen_buff", nil)
+                            end 
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+
     if mod.scroll_unit then
         local position = Vector3Box(Unit.local_position(mod.scroll_unit, 0))
         mod.render_marker(position, 100)
@@ -351,3 +379,58 @@ end)
 --     extension_init_data, position, rotation)
 
 -- LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
+
+-- local function radians_to_quaternion(theta, ro, phi)
+--     local c1 =  math.cos(theta/2)
+--     local c2 = math.cos(ro/2)
+--     local c3 = math.cos(phi/2)
+--     local s1 = math.sin(theta/2)
+--     local s2 = math.sin(ro/2)
+--     local s3 = math.sin(phi/2)
+--     local x = (s1*s2*c3) + (c1*c2*s3)
+--     local y = (s1*c2*c3) + (c1*s2*s3)
+--     local z = (c1*s2*c3) - (s1*c2*s3)
+--     local w = (c1*c2*c3) - (s1*s2*s3)
+--     local rot = Quaternion.from_elements(x, y, z, w)
+--     return rot
+-- end
+-- local player = Managers.player:local_player()
+-- local player_unit = player.player_unit
+-- mod:echo(Unit.local_position(player_unit, 0))
+-- local position = Vector3(-14.0746, -17, 13)
+-- local rot1 = Quaternion.from_elements(0, 0, 0.903278, -0.429056)
+-- local rot_apply = radians_to_quaternion(0, 0, 0)
+-- local rotation = Quaternion.multiply(rot1, rot_apply)
+-- local path = "units/props/tzeentch/deus_tzeentch_flag_01"
+-- local board_unit_visible = Managers.state.unit_spawner:spawn_local_unit(path, position, rot1)
+-- Unit.disable_physics(board_unit_visible)
+-- local num_meshes = Unit.num_meshes(board_unit_visible)
+-- local mesh = Unit.mesh(board_unit_visible, 3)
+-- local num_mats = Mesh.num_materials(mesh)
+-- for j = 0, num_mats - 1, 1 do
+--     local mater = Mesh.material(mesh, j)
+--     local map = "textures/flag"
+--     for _,tex_name in pairs(slot_list) do
+--         Material.set_texture(mater, tex_name, map)
+--     end
+-- end
+
+-- local mesh2 = Unit.mesh(board_unit_visible, 2)
+-- local mesh3 = Unit.mesh(board_unit_visible, 1)
+-- local mesh4 = Unit.mesh(board_unit_visible, 0)
+-- Mesh.set_local_position(mesh2, board_unit_visible, Vector3(0,0,-1))
+-- Mesh.set_local_position(mesh3, board_unit_visible, Vector3(0,0,-1))
+-- Mesh.set_local_position(mesh4, board_unit_visible, Vector3(0,0,-1))
+-- Mesh.set_local_position(mesh, board_unit_visible, Vector3(0,0,0))
+-- -- local num_mats = Mesh.num_materials(mesh)
+-- -- for j = 0, num_mats - 1, 1 do
+-- --     -- local mater = Mesh.material(mesh, j)
+-- --     local map = "textures/transparent"
+-- --     for _,tex_name in pairs(slot_list) do
+-- --         Material.set_texture(mater, tex_name, map)
+-- --     end
+-- -- end
+
+
+-- Vector3(-14.4497, -16.1263, 14.0184)
+-- Vector4(0, 0, 0.903278, -0.429056)
