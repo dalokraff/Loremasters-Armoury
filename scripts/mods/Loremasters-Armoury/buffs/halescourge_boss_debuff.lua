@@ -52,7 +52,7 @@ HalescourgeDebuff.update = function (self, dt)
     if self.stage >= 5 then
         self:destroy()
     end
-    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "Play_mutator_enemy_split_large"
+    
 end
 
 HalescourgeDebuff.health_check = function(self)
@@ -113,5 +113,6 @@ end
 
 HalescourgeDebuff.destroy = function(self)
     mod.halescourge_boss_debuff = nil
+    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "Play_mutator_enemy_split_large"
     return
 end
