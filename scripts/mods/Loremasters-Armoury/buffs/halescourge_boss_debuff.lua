@@ -89,7 +89,7 @@ HalescourgeDebuff.lightning_strike = function(self)
     local damage_source = "buff"
     local damage_source_id = NetworkLookup.damage_sources[damage_source]
     
-    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "LA_lightning_strike_01_sound"
+    ExplosionTemplates.lightning_strike_twitch.explosion.sound_event_name = "LA_lightning_strike_01_sound"
 
     if Managers.player.is_server then
 		Managers.state.network.network_transmit:send_rpc_clients("rpc_create_explosion", attacker_unit_id, false, 
@@ -113,6 +113,6 @@ end
 
 HalescourgeDebuff.destroy = function(self)
     mod.halescourge_boss_debuff = nil
-    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "Play_mutator_enemy_split_large"
+    ExplosionTemplates.lightning_strike_twitch.explosion.sound_event_name = "Play_mutator_enemy_split_large"
     return
 end
