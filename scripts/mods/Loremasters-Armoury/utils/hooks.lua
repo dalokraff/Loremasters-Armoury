@@ -848,7 +848,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local position = Vector3(0.96, 6.55, 6.18)
                     local rotation = radians_to_quaternion(0,math.pi/4,0)
                     local extension_init_data = {}
-                    local scroll_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_magicscroll_rolled_mesh", "interaction_unit", extension_init_data, position, rotation)
+                    local scroll_unit = Managers.state.unit_spawner:spawn_network_unit("units/decorations/Loremaster_magicscroll_rolled_mesh", "interaction_unit", extension_init_data, position, rotation)
                     Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
                 end
             end
@@ -1025,7 +1025,7 @@ mod.LA_new_interactors = {
     "units/decorations/letters/LA_quest_message_stage08",
     "units/decorations/letters/LA_quest_message_stage09",
     "units/decorations/letters/LA_quest_message_stage10",
-    "units/pickups/Loremaster_magicscroll_rolled_mesh",
+    "units/decorations/Loremaster_magicscroll_rolled_mesh",
     "units/pickups/Loremaster_magicscroll_interactor_mesh",
     "units/pickups/Loremaster_shipment_box_mesh_real",
 }
