@@ -118,6 +118,9 @@ function mod.update(dt)
     if mod.halescourge_boss_debuff then
         mod.halescourge_boss_debuff:update(dt)
     end
+    for unit,extension in pairs(LA_PICKUPS) do
+        extension:update(dt)
+    end
 
     local mod_time = mod.time
     if Managers.world:has_world("level_world") then
@@ -339,7 +342,7 @@ end)
 -- local rotation = Unit.local_rotation(player_unit, 0)
 -- local unit_template_name = "interaction_unit"
 -- local extension_init_data = {}
--- local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
+-- local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", unit_template_name, 
 --     extension_init_data, position, rotation)
 
 -- LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)

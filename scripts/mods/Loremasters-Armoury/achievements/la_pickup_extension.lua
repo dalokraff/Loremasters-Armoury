@@ -24,7 +24,8 @@ LaPickupExtension.link_units = function(self)
 end
 
 LaPickupExtension.update = function (self, dt)
-
+    local position = Unit.local_position(self.unit, 0)
+    mod.render_marker(position, 3)
 end
 
 LaPickupExtension.destroy = function(self)
