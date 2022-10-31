@@ -28,7 +28,8 @@ local rpc_table = {
             if interaction_type == "la_pickup" then   
                 
                 local sound = Unit.get_data(interactable_unit, "interaction_data", "pickup_sound")
-                if sound then 
+                if sound then
+                    local world = Managers.world:world("level_world")
                     local wwise_world = Wwise.wwise_world(world)
                     WwiseWorld.trigger_event(wwise_world, sound)  
                 end
