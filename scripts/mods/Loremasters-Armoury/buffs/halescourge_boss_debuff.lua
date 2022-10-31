@@ -52,6 +52,7 @@ HalescourgeDebuff.update = function (self, dt)
     if self.stage >= 5 then
         self:destroy()
     end
+    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "Play_mutator_enemy_split_large"
 end
 
 HalescourgeDebuff.health_check = function(self)
@@ -88,6 +89,8 @@ HalescourgeDebuff.lightning_strike = function(self)
     local damage_source = "buff"
     local damage_source_id = NetworkLookup.damage_sources[damage_source]
     
+    ExplosionTemplates.lightning_strike.explosion.sound_event_name = "LA_lightning_strike_01_sound"
+
     if Managers.player.is_server then
 		Managers.state.network.network_transmit:send_rpc_clients("rpc_create_explosion", attacker_unit_id, false, 
             position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
