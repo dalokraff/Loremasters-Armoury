@@ -6,7 +6,7 @@ local test_buff_templates = {
 			{
 				max_stacks = 1,
 				icon = "la_buff_01_icon",
-				multiplier = 1.25,
+				multiplier = 1.2,
 				stat_buff = "cooldown_regen",
 			}
 		}
@@ -28,7 +28,7 @@ local test_buff_templates = {
 				max_stacks = 1,
 				icon = "la_buff_01_icon",
 				stat_buff = "reduced_overcharge",
-				multiplier = -0.9,
+				multiplier = -0.3,
 			}
 		}
 	}
