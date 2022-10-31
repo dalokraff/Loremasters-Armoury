@@ -55,7 +55,10 @@ local rpc_table = {
                         use_fade = true,
                         interactable_unit = interactable_unit
                     })
-                    
+                    if Unit.has_data(interactable_unit, "quest") then
+                        local quest = Unit.get_data(interactable_unit, "quest")
+                        mod:set(quest.."_letter_read", true)
+                    end
                     return true
                 end
             end
