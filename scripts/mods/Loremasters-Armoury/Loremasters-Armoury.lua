@@ -24,13 +24,6 @@ Managers.package:load("units/weapons/player/wpn_brw_sword_01_t2/wpn_brw_flaming_
 -- Your mod code goes here.
 -- https://vmf-docs.verminti.de
 
-
--- mod:hook_safe(StateIngame,'_setup_state_context', function (self, world, is_server, network_event_delegate)
---     Managers.state.achievement = AchievementManager:new(self.world, self.statistics_db)
---     mod:echo('inside out')
--- end)
-
-
 LA_PICKUPS = {}
 
 --thesse tables are used as queues that get filled and flushed as skins and their respective units are changed
@@ -228,6 +221,11 @@ mod.on_game_state_changed = function(status, state_name)
         mod.halescourge_buff = nil
         mod.halescourge_boss_debuff = nil
     end
+    if state_name == "StateIngame" and status == "loading" then
+        for unit,extension in pairs(LA_PICKUPS) do
+            LA_PICKUPS[unit] = nil
+        end
+    end
 end
 
 mod:command("complete_sub_quest_01", "", function()
@@ -366,71 +364,3 @@ mod:command("complete_sub_quest_09", "", function()
     mod.main_quest["sub_quest_09"] = true
     mod:set("sub_quest_09", true)
 end)
-
-
-
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- local position = Unit.local_position(player_unit, 0)
--- local rotation = Unit.local_rotation(player_unit, 0)
--- local unit_template_name = "interaction_unit"
--- local extension_init_data = {}
--- local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_mesh", unit_template_name, 
---     extension_init_data, position, rotation)
-
--- LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
-
--- local function radians_to_quaternion(theta, ro, phi)
---     local c1 =  math.cos(theta/2)
---     local c2 = math.cos(ro/2)
---     local c3 = math.cos(phi/2)
---     local s1 = math.sin(theta/2)
---     local s2 = math.sin(ro/2)
---     local s3 = math.sin(phi/2)
---     local x = (s1*s2*c3) + (c1*c2*s3)
---     local y = (s1*c2*c3) + (c1*s2*s3)
---     local z = (c1*s2*c3) - (s1*c2*s3)
---     local w = (c1*c2*c3) - (s1*s2*s3)
---     local rot = Quaternion.from_elements(x, y, z, w)
---     return rot
--- end
--- local player = Managers.player:local_player()
--- local player_unit = player.player_unit
--- mod:echo(Unit.local_position(player_unit, 0))
--- local position = Vector3(-14.0746, -17, 13)
--- local rot1 = Quaternion.from_elements(0, 0, 0.903278, -0.429056)
--- local rot_apply = radians_to_quaternion(0, 0, 0)
--- local rotation = Quaternion.multiply(rot1, rot_apply)
--- local path = "units/props/tzeentch/deus_tzeentch_flag_01"
--- local board_unit_visible = Managers.state.unit_spawner:spawn_local_unit(path, position, rot1)
--- Unit.disable_physics(board_unit_visible)
--- local num_meshes = Unit.num_meshes(board_unit_visible)
--- local mesh = Unit.mesh(board_unit_visible, 3)
--- local num_mats = Mesh.num_materials(mesh)
--- for j = 0, num_mats - 1, 1 do
---     local mater = Mesh.material(mesh, j)
---     local map = "textures/flag"
---     for _,tex_name in pairs(slot_list) do
---         Material.set_texture(mater, tex_name, map)
---     end
--- end
-
--- local mesh2 = Unit.mesh(board_unit_visible, 2)
--- local mesh3 = Unit.mesh(board_unit_visible, 1)
--- local mesh4 = Unit.mesh(board_unit_visible, 0)
--- Mesh.set_local_position(mesh2, board_unit_visible, Vector3(0,0,-1))
--- Mesh.set_local_position(mesh3, board_unit_visible, Vector3(0,0,-1))
--- Mesh.set_local_position(mesh4, board_unit_visible, Vector3(0,0,-1))
--- Mesh.set_local_position(mesh, board_unit_visible, Vector3(0,0,0))
--- -- local num_mats = Mesh.num_materials(mesh)
--- -- for j = 0, num_mats - 1, 1 do
--- --     -- local mater = Mesh.material(mesh, j)
--- --     local map = "textures/transparent"
--- --     for _,tex_name in pairs(slot_list) do
--- --         Material.set_texture(mater, tex_name, map)
--- --     end
--- -- end
-
-
--- Vector3(-14.4497, -16.1263, 14.0184)
--- Vector4(0, 0, 0.903278, -0.429056)
