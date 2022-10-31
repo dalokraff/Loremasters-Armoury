@@ -498,51 +498,51 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
     local inventory_extension = ScriptUnit.extension(unit, "inventory_system")
     if inventory_extension then
         local slot_data = inventory_extension:get_wielded_slot_data()
-        local left_hand =  slot_data.left_hand_unit_name
-        local right_hand = slot_data.right_hand_unit_name
+        if slot_data then
+            local left_hand =  slot_data.left_hand_unit_name
+            local right_hand = slot_data.right_hand_unit_name
 
 
-        if right_hand then
-            local sound_table = unit_sound_map[right_hand]
-            if sound_table then
-                local sound_event = sound_table[event]
-                if sound_event then
-                    if not sound_event.delay then
-                        local world = Managers.world:world("level_world")
-                        local wwise_world = Wwise.wwise_world(world)
-                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.right_unit_1p)
-                    else 
-                        local time = mod.time + sound_event.delay 
-                        mod.delayed_sounds[sound_event.name] = {
-                            time = time, 
-                            unit = slot_data.right_unit_1p
-                        }
+            if right_hand then
+                local sound_table = unit_sound_map[right_hand]
+                if sound_table then
+                    local sound_event = sound_table[event]
+                    if sound_event then
+                        if not sound_event.delay then
+                            local world = Managers.world:world("level_world")
+                            local wwise_world = Wwise.wwise_world(world)
+                            local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.right_unit_1p)
+                        else 
+                            local time = mod.time + sound_event.delay 
+                            mod.delayed_sounds[sound_event.name] = {
+                                time = time, 
+                                unit = slot_data.right_unit_1p
+                            }
+                        end
+                    end
+                end
+            end
+
+            if left_hand then
+                local sound_table = unit_sound_map[left_hand]
+                if sound_table then
+                    local sound_event = sound_table[event]
+                    if sound_event then
+                        if not sound_event.delay then
+                            local world = Managers.world:world("level_world")
+                            local wwise_world = Wwise.wwise_world(world)
+                            local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.left_unit_1p)
+                        else 
+                            local time = mod.time + sound_event.delay 
+                            mod.delayed_sounds[sound_event.name] = {
+                                time = time, 
+                                unit = slot_data.left_unit_1p
+                            }
+                        end
                     end
                 end
             end
         end
-
-        if left_hand then
-            local sound_table = unit_sound_map[left_hand]
-            if sound_table then
-                local sound_event = sound_table[event]
-                if sound_event then
-                    if not sound_event.delay then
-                        local world = Managers.world:world("level_world")
-                        local wwise_world = Wwise.wwise_world(world)
-                        local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.left_unit_1p)
-                    else 
-                        local time = mod.time + sound_event.delay 
-                        mod.delayed_sounds[sound_event.name] = {
-                            time = time, 
-                            unit = slot_data.left_unit_1p
-                        }
-                    end
-                end
-            end
-        end
-
-
     end
 
 end)
