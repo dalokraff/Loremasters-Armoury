@@ -1,5 +1,9 @@
 
 events = [
+	"LA_lightning_strike_01_sound"
+	"LA_magic_effect_01_sound"
+	"LA_magic_effect_02_sound"
+	"LA_magic_effect_03_sound"
 	"Loremaster_book_pickup_sound"
 	"Loremaster_book_pickup_sound__1_"
 	"Loremaster_Cleansed_Artifact_pickup_sound"

@@ -18,6 +18,10 @@ banks = {
 	}
 	Loremasters_Armoury = {
 		events = [
+			"LA_lightning_strike_01_sound"
+			"LA_magic_effect_01_sound"
+			"LA_magic_effect_02_sound"
+			"LA_magic_effect_03_sound"
 			"Loremaster_book_pickup_sound"
 			"Loremaster_book_pickup_sound__1_"
 			"Loremaster_Cleansed_Artifact_pickup_sound"
@@ -103,6 +107,34 @@ events = {
 		attenuation_max = 500
 		duration_max = 2
 		duration_min = 2
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	LA_lightning_strike_01_sound = {
+		attenuation_max = 100
+		duration_max = 9.502676
+		duration_min = 9.502676
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	LA_magic_effect_01_sound = {
+		attenuation_max = 100
+		duration_max = 4.303424
+		duration_min = 4.303424
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	LA_magic_effect_02_sound = {
+		attenuation_max = 100
+		duration_max = 4.884036
+		duration_min = 4.884036
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	LA_magic_effect_03_sound = {
+		attenuation_max = 100
+		duration_max = 4.540204
+		duration_min = 4.540204
 		duration_type = "OneShot"
 		positioning = "3D"
 	}
