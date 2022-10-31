@@ -11,10 +11,10 @@ local health_stages = {
 }
 
 local lighting_delays = {
-    2.12,
-    1.17,
+    2.22,
+    1.27,
     nil,
-    1.19,
+    1.32,
 }
 
 local incantation_sounds = {
@@ -85,7 +85,7 @@ HalescourgeDebuff.lightning_strike = function(self)
     local player_unit = player.player_unit
     local position = Unit.local_position(self.unit, 0)
     local attacker_unit_id = Managers.state.unit_storage:go_id(player_unit)
-    local explosion_template_id = NetworkLookup.explosion_templates["lightning_strike"]
+    local explosion_template_id = NetworkLookup.explosion_templates["lightning_strike_twitch"]
     local damage_source = "buff"
     local damage_source_id = NetworkLookup.damage_sources[damage_source]
     
