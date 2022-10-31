@@ -123,18 +123,6 @@ for _,skin in ipairs(mod.empire_sword_shield) do
 		table.insert(widget.options, choice)
 	end
 
-
-	-- local sword_widget = table.clone(shield_sub_choice, true)
-	-- sword_widget.setting_id = 'lol'..skin
-	-- sword_widget.title= "lol"..skin
-	-- for Amoury_key,skin_name  in pairs(mod.empire_swords) do
-	-- 	local choice = {text = Amoury_key,   value = Amoury_key}
-	-- 	table.insert(sword_widget.options, choice)
-	-- end
-	-- table.insert(widget.sub_widgets, sword_widget)
-
-
-
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[1].options[4].show_widgets, num_skins)
 	table.insert(menu.options.widgets[1].sub_widgets, widget)
@@ -317,10 +305,6 @@ for _,skin in ipairs(mod.krub_hat_skins) do
 		local choice = {text = Amoury_key,   value = Amoury_key}
 		table.insert(widget.options, choice)
 	end
-	-- for Amoury_key,skin_name  in pairs(mod.krub_hats) do
-	-- 	local choice = {text = Amoury_key,   value = Amoury_key}
-	-- 	table.insert(widget.options, choice)
-	-- end
 	num_skins = num_skins + 1
 	table.insert(menu.options.widgets[2].options[2].show_widgets, num_skins)
 	table.insert(menu.options.widgets[2].sub_widgets, widget)
@@ -371,15 +355,7 @@ menu.custom_gui_textures = {
 			nil,
 			"armoury_atlas",
 		},
-		-- {
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- 	"paper_back",
-		-- },
 	},
-
-	-- textures = {
-	-- 	"textures/hud/amoury_atlas/amoury_atlas"
-	-- },
 
 	-- Injections
 	ui_renderer_injections = {
@@ -419,42 +395,6 @@ menu.custom_gui_textures = {
 			"disconnect_indicator_view",
 			"materials/Loremasters-Armoury/armoury_atlas",
 		},
-		-- {
-		-- 	"ingame_ui",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"hero_view",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"loading_view",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"rcon_manager",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"chat_manager",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"popup_manager",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"splash_view",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"twitch_icon_view",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
-		-- {
-		-- 	"disconnect_indicator_view",
-		-- 	"materials/Loremasters-Armoury/paper_back",
-		-- },
 	},
 }
 

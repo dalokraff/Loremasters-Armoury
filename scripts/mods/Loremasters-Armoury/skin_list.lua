@@ -325,7 +325,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_basicclean_saphery01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_saphery01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_saphery01_icon",
@@ -340,7 +339,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_basicclean_caledor01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_caledor01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_caledor01_icon",
@@ -355,7 +353,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_basicclean_chrace01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_chrace01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_chrace01_icon",
@@ -370,7 +367,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_heroclean_eataine01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_eataine01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_eataine01_icon",
@@ -385,7 +381,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_heroclean_chrace01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_chrace01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_chrace01_icon",
@@ -454,7 +449,6 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
             we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
@@ -489,7 +483,6 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
             we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
@@ -524,7 +517,6 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip1 = true, 
         },
-        -- icon = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
             we_longbow_skin_06_runed_01 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
