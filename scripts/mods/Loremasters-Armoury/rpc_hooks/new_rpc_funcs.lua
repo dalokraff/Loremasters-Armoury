@@ -20,6 +20,7 @@ local rpc_table = {
                     local world = Managers.world:world("level_world")
                     mod:set("sub_quest_10", true)
                     mod.sword_ritual = SwordEnchantment:new(world)
+                    mod.scroll_unit = nil
                     return true
                 end
             end

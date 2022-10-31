@@ -799,6 +799,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local scroll_unit, go_id = Managers.state.unit_spawner:spawn_network_unit(scroll_path, unit_template_name, extension_init_data, position, rotation)
                     Unit.set_local_scale(scroll_unit, 0, Vector3(0.75, 0.75, 0.75))
 
+                    mod.scroll_unit = scroll_unit
                     mod.marker_list[scroll_unit] = Vector3Box(position)
                     mod.sword_unit = sword_unit
 

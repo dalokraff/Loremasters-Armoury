@@ -122,6 +122,11 @@ function mod.update(dt)
         extension:update(dt)
     end
 
+    if mod.scroll_unit then
+        local position = Vector3Box(Unit.local_position(mod.scroll_unit, 0))
+        mod.render_marker(position, 100)
+    end
+
     local mod_time = mod.time
     if Managers.world:has_world("level_world") then
         local world = Managers.world:world("level_world")
