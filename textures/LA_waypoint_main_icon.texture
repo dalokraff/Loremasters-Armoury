@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/LA_waypoint_main_icon"
+    filename = "textures/LA_notification_icon"
   }
 
   output = {

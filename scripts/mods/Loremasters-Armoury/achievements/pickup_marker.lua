@@ -131,10 +131,11 @@ function mod.render_marker(pos_box, distance_view)
 
 
 
-            local alpha = 100
+            
 
             if is_clamped or is_behind then
                 if not waypoint_on_me then
+                    local alpha = 100
                     local arrow_size = Vector2(waypoint_size_behind,waypoint_size_behind)
                     local icon_size = Vector2(waypoint_size_behind,waypoint_size_behind)
 
@@ -152,17 +153,18 @@ function mod.render_marker(pos_box, distance_view)
                     local up_check = mid_y - y
 
                     if up_check < -30 then
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size))
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                     elseif side_check > 0 then
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size))
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                     else
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size))
+                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                     end
 
                    
                 end
             else
-                Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
+                local alpha = 255
+                Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
             end
         end
     end
