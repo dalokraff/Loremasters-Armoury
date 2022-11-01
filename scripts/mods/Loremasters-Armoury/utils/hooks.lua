@@ -314,9 +314,7 @@ mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, wo
     if interactable_unit then 
         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
         if go_id then
-            -- mod:echo(go_id)
-            if mod.attached_units[go_id] then 
-                -- mod:echo(mod.attached_units[go_id].target)
+            if mod.attached_units[go_id] then
                 
                 local player = Managers.player:local_player()
                 local player_unit = player.player_unit
@@ -464,25 +462,15 @@ end)
 --used to register when bodvarr dies, so his collectable can be spawned
 mod.stored_vectors = {}
 mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
-    -- mod:echo("animation_event in general hooks")
     if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") then
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_sorcerer" then
             local level_name = Managers.state.game_mode:level_key()
-            -- mod:echo(level_name)
             if level_name == "ground_zero" then
                 if string.find(event, "death") or string.find(event, "ragdoll") then 
                     local position = Vector3(363.476, 50.4658, -13.7107) 
                     local rot = radians_to_quaternion(0, -math.pi/2, 0)
                     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
-                    -- mod.stored_vectors[level_name] = Vector3Box(position)
-                    -- Managers.state.network.network_transmit:send_rpc_server(
-                    --         "rpc_spawn_pickup_with_physics",
-                    --         NetworkLookup.pickup_names["painting_scrap"],
-                    --         position,
-                    --         rotation,
-                    --         NetworkLookup.pickup_spawn_types['dropped']
-                    --     )
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
                     local artifact_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", unit_template_name, 
@@ -493,7 +481,6 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                 if string.find(event, "intro_lord") and not mod.halescourge_boss_debuff then 
                     mod.halescourge_boss_debuff = HalescourgeDebuff:new(unit)
                 end
-                mod:echo(event)
             end
         end
     end
@@ -690,7 +677,6 @@ WeaponSkins.skins["main_quest_reward"] = {
 mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)
     local quest_manager = self._quest_manager
 	local achievement_manager = self._achievement_manager
-    -- mod:echo(entry_type)
     if entry_type == "quest" then
 		
 		manager = quest_manager
@@ -1104,12 +1090,10 @@ mod.approve_request = false
 mod.interactor_goid = nil
 
 mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
-	-- mod:echo(interaction_type_id)
     local interactable_unit = self.unit_storage:unit(interactable_go_id)
     
     if interactable_unit then
         if Unit.has_data(interactable_unit, "unit_name") then
-            -- mod:echo(Unit.get_data(interactable_unit, "unit_name"))
             local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
             if mod.LA_new_interactors[unit_name] then
@@ -1159,11 +1143,9 @@ mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, sel
 
     local interaction_context = self.interaction_context
     local network_manager = Managers.state.network
-    -- mod:echo(interaction_context.interactable_unit)
     if not interaction_context.interactable_unit then
         return func(self, hold_input, interactable_unit, interaction_type, forced)
     end
-    -- mod:echo(interactable_unit)
     local interactable_go_id, is_level_unit = network_manager:game_object_or_level_id(interaction_context.interactable_unit)
     local unit = self.unit
 

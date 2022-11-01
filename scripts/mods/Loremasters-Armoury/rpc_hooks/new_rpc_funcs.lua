@@ -14,7 +14,6 @@ local rpc_table = {
 
             interactor_extension:interaction_denied()
 
-            mod:echo(interaction_type)
             if interaction_type == "sword_enchantment" then
                 if interactable_unit then
                     local world = Managers.world:world("level_world")

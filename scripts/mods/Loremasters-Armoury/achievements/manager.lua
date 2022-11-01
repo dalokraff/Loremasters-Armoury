@@ -18,8 +18,6 @@ AchievementManager = class(AchievementManager)
 local ACHIEVEMENT_CHECK_DELAY = 1
 
 AchievementManager.init = function (self, world, statistics_db)
-	mod:echo('outside in')
-    mod:echo(outline.categories)
     self.initialized = false
 	self.world = world
 	self._statistics_db = statistics_db
