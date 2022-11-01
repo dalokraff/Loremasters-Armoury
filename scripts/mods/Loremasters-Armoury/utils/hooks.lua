@@ -672,6 +672,78 @@ WeaponSkins.skins["main_quest_reward"] = {
     rarity = "plentiful",
     description = "la_mq01_reward_description",
 }
+WeaponSkins.skins["main_quest_reward_02"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "main_quest_reward_name",
+    inventory_icon = "la_kotbs_greatsword_glow_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_greatsword_glow_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+WeaponSkins.skins["main_quest_reward_03"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "main_quest_reward_name",
+    inventory_icon = "la_kotbs_wizardsword_glow_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_wizardsword_glow_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+WeaponSkins.skins["main_quest_reward_04"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "main_quest_reward_name",
+    inventory_icon = "la_kotbs_firesword_glow_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_firesword_glow_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+
+
+WeaponSkins.skins["quest_reward"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "main_quesub_quest_reward_namest_reward_name",
+    inventory_icon = "LA_Kotbs_sword_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "LA_Kotbs_sword_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+WeaponSkins.skins["quest_reward_02"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "sub_quest_reward_name",
+    inventory_icon = "la_kotbs_greatsword_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_greatsword_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+WeaponSkins.skins["quest_reward_03"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "sub_quest_reward_name",
+    inventory_icon = "la_kotbs_wizardsword_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_wizardsword_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
+WeaponSkins.skins["quest_reward_04"] = {
+    template = "one_handed_swords_template_1",
+    right_hand_unit = "units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh",
+    display_name = "sub_quest_reward_name",
+    inventory_icon = "la_kotbs_firesword_reward_icon",
+    display_unit = "units/weapons/weapon_display/display_1h_swords",
+    hud_icon = "la_kotbs_firesword_reward_icon",
+    rarity = "plentiful",
+    description = "la_mq01_reward_description",
+}
 
 --hook for showing proper item reward in okri's challenges
 mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entries, entry_type, entry_subtype)

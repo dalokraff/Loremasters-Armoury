@@ -263,6 +263,9 @@ local mod_text_ids = {
 	sub_quest_10_reward_desc = {
 		en = "The goddess rewards your vailant and honourable deeds.",
 	},
+	sub_quest_reward_name = {
+		en = "Blade of the Forgotten Knight",
+	},
 	main_quest_reward_name = {
 		en = "Incandescens",
 	},
