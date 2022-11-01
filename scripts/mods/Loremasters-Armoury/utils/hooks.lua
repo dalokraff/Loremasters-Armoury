@@ -462,7 +462,7 @@ end)
 --used to register when bodvarr dies, so his collectable can be spawned
 mod.stored_vectors = {}
 mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
-    if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") then
+    if Unit.has_data(unit, "breed") and mod:get("sub_quest_07") and not mod:get("sub_quest_08") then
         local name = Unit.get_data(unit, "breed").name
         if name == "chaos_exalted_sorcerer" then
             local level_name = Managers.state.game_mode:level_key()
@@ -725,18 +725,20 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
                 if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
-                    local unit_template_name = "interaction_unit"
-                    local extension_init_data = {}
-                    local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
-                        extension_init_data, mod.list_of_LA_levels[level_name].position:unbox(), Quaternion.from_elements(0,0,0,0))
-                    LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
+                    if not mod:get("sub_quest_crate_tracker") then
+                        local unit_template_name = "interaction_unit"
+                        local extension_init_data = {}
+                        local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
+                            extension_init_data, mod.list_of_LA_levels[level_name].position:unbox(), Quaternion.from_elements(0,0,0,0))
+                        LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
+                    end
                 end
             end
         end
 
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
-                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
+                if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") and not mod:get("sub_quest_07") then
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
                     local book_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", unit_template_name, 
@@ -858,7 +860,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             end
         end
 
-        if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08") then
+        if string.find(level_name, "arena_citadel") and mod:get("sub_quest_08") and not mod:get("sub_quest_09") then
             local position = Vector3(0.6, 34.85, 13.56)
             local rotation = Quaternion.from_elements(0,0,0,0)
             local gem_unit = Managers.state.unit_spawner:spawn_local_unit("units/pickups/LA_artifact_gemstone_mesh", position, rotation)
