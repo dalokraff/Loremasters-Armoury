@@ -93,20 +93,21 @@ HalescourgeDebuff.lightning_strike = function(self)
     local damage_source = "buff"
     local damage_source_id = NetworkLookup.damage_sources[damage_source]
     local is_husk = true
-    local world = Managers.world:world("level_world")
+    local power_level = 250
+    local world = self.world
 
     ExplosionTemplates.lightning_strike_twitch.explosion.sound_event_name = "LA_lightning_strike_01_sound"
 
     if Managers.player.is_server then
 		Managers.state.network.network_transmit:send_rpc_clients("rpc_create_explosion", attacker_unit_id, false, 
-            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, power_level, false, attacker_unit_id)
         Managers.state.network.network_transmit:send_rpc_server("rpc_create_explosion", attacker_unit_id, false, 
-            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, power_level, false, attacker_unit_id)
 	else
 		Managers.state.network.network_transmit:send_rpc_server("rpc_create_explosion", attacker_unit_id, false, 
-            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
+            position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, power_level, false, attacker_unit_id)
         DamageUtils.create_explosion(world, player_unit, position, rotation, explosion_template, 1, 
-            damage_source, false, is_husk, unit, 600, false, player_unit)
+            damage_source, false, is_husk, unit, power_level, false, player_unit)
 	end
 
     self:update_stage()
