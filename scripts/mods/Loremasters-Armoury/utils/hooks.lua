@@ -490,6 +490,10 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
 
                     LA_PICKUPS[artifact_unit] = LaPickupExtension:new(artifact_unit)
                 end
+                if string.find(event, "intro_lord") and not mod.halescourge_boss_debuff then 
+                    mod.halescourge_boss_debuff = HalescourgeDebuff:new(unit)
+                end
+                mod:echo(event)
             end
         end
     end
