@@ -84,8 +84,9 @@ end
 HalescourgeDebuff.lightning_strike = function(self)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
-    local position = Unit.local_position(player_unit, 0)
-    local rotation = Unit.local_rotation(player_unit, 0)
+    local unit = self.unit
+    local position = Unit.local_position(unit, 0)
+    local rotation = Unit.local_rotation(unit, 0)
     local attacker_unit_id = Managers.state.unit_storage:go_id(player_unit)
     local explosion_template_id = NetworkLookup.explosion_templates["lightning_strike_twitch"]
     local explosion_template = ExplosionTemplates["lightning_strike_twitch"]
@@ -105,7 +106,7 @@ HalescourgeDebuff.lightning_strike = function(self)
 		Managers.state.network.network_transmit:send_rpc_server("rpc_create_explosion", attacker_unit_id, false, 
             position, Quaternion.identity(), explosion_template_id, 1, damage_source_id, 600, false, attacker_unit_id)
         DamageUtils.create_explosion(world, player_unit, position, rotation, explosion_template, 1, 
-            damage_source, false, is_husk, player_unit, 600, false, player_unit)
+            damage_source, false, is_husk, unit, 600, false, player_unit)
 	end
 
     self:update_stage()
