@@ -29,8 +29,6 @@ HalescourgeDebuff.init = function (self, unit)
     self.wait_time = 999999
     self.world = Managers.world:world("level_world")
     self.HealthExtension = ScriptUnit.extension(unit, "health_system")
-    -- self.bb = blackboard
-    -- self.unit = blackboard.unit
     self.unit = unit
     self.is_server = Managers.player.is_server
 
@@ -58,7 +56,6 @@ HalescourgeDebuff.update = function (self, dt)
 end
 
 HalescourgeDebuff.health_check = function(self)
-    -- local health = self.bb.current_health_percent
     local health = self.HealthExtension:current_health_percent()
     if health <= health_stages[self.stage] and not self.playing then
         self:play_incantation()

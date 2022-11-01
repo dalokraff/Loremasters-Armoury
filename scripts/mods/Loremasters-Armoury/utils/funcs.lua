@@ -25,11 +25,9 @@ local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slo
                     else 
                         goto continue_apply_texture_to_all_world_units
                     end
-                    -- goto apply_new_textures
                 else
                     goto continue_apply_texture_to_all_world_units
                 end
-                -- goto continue_apply_texture_to_all_world_units
             end
             -- ::apply_new_textures::
             local mesh = Unit.mesh(unit, i)
@@ -242,7 +240,6 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
             mod:echo("[Loremaster's Armoury]: You will need to re-equip your character skin for this change to be updated.")
         end
         swap_units_old(mod.current_skin[skin], skin)
-        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = false
         mod.SKIN_CHANGED[skin].changed_model = false   
@@ -260,7 +257,6 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
             swap_units_new(Armoury_key, skin)
             mod.SKIN_CHANGED[skin].changed_model = true
         end
-        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_texture = true
         mod.has_old_texture = true
@@ -269,12 +265,10 @@ function mod.re_apply_illusion(Armoury_key, skin, unit)
         end
     elseif mod.SKIN_LIST[Armoury_key].kind == "unit" and not mod.SKIN_CHANGED[skin].changed_model then
         swap_units_new(Armoury_key, skin)
-        -- 
         re_equip_weapons(skin, unit)
         mod.SKIN_CHANGED[skin].changed_model = true
     end
     if mod.current_skin[skin] ~= Armoury_key then
-        -- 
         mod.SKIN_CHANGED[skin].changed_texture = false
         mod.SKIN_CHANGED[skin].changed_model = false
     end

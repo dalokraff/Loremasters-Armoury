@@ -7,7 +7,6 @@ local atlas = require("materials/Loremasters-Armoury/armoury_atlas")
 -- https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/9f98479071fe839dedf487ce8567e7d9492704c9/scripts/ui/hud_ui/floating_icon_ui.lua
 -- Line 224
 local get_floating_icon_position = function (screen_pos_x, screen_pos_y, forward_dot, right_dot)
-	-- local root_size = UISceneGraph.get_size_scaled(mod.ui_scenegraph, "screen")
 	local root_size = Vector2(RESOLUTION_LOOKUP.res_w, RESOLUTION_LOOKUP.res_h)
 	local scale = RESOLUTION_LOOKUP.scale
 	local scaled_root_size_x = root_size[1] * scale
@@ -65,8 +64,6 @@ local gaussian_size_decrease = function(current_distance, min_size, max_size, ma
 
     local gaussian_size = max_size*math.exp(-(current_distance-max_distance)^2/lambda)
 
-    -- 150*math.exp(-(distance-100)^2/(1*10^4))
-
     return gaussian_size
 end
 
@@ -88,7 +85,6 @@ function mod.render_marker(pos_box, distance_view)
             local world = Managers.world:world("level_world")
             local viewport = ScriptWorld.viewport(world, player.viewport_name)
             local camera = ScriptViewport.camera(viewport)
-            -- local scale = UIResolutionScale()
             local waypoint_position2d, depth = Camera.world_to_screen(camera, waypoint_position)
 
             local top_world = Managers.world:world("top_ingame_view")
@@ -96,11 +92,6 @@ function mod.render_marker(pos_box, distance_view)
             local mod_gui = World.create_screen_gui(top_world, "immediate",
                         "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
                         )
-            -- local mod_gui = World.create_screen_gui(top_world, "immediate",
-            --             "material", "materials/Loremasters-Armoury/armoury_atlas"
-            --             )
-
-            -- local player_pos = ScriptCamera.position(camera)
             local distance = Vector3.distance(player_pos, waypoint_position)
 
             --gaussing function that handles size of waypoint based on distance from it
@@ -140,13 +131,6 @@ function mod.render_marker(pos_box, distance_view)
 
 
 
-            -- local texture_settings = atlas["la_waypoint_main_icon"]
-            -- local uv00_table = texture_settings.uv00
-            -- local uv11_table = texture_settings.uv11
-            -- local uv00 = Vector2(uv00_table[1], uv00_table[2])
-            -- local uv11 = Vector2(uv11_table[1], uv11_table[2])
-
-            -- local alpha = math.max(0, 255 - (255 * distance / 5))
             local alpha = 100
 
             if is_clamped or is_behind then
@@ -156,8 +140,6 @@ function mod.render_marker(pos_box, distance_view)
 
                     local icon_loc_x = 0
                     local icon_loc_y = 0
-
-                    -- local alpha = math.max(0, 255 - (255 * distance / 5))
 
                     icon_loc_x = x
                     icon_loc_y = y
@@ -177,18 +159,11 @@ function mod.render_marker(pos_box, distance_view)
                         Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size))
                     end
 
-                    -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(icon_loc_x, icon_loc_y), Vector2(waypoint_size_behind, waypoint_size_behind), Color(alpha, 255, 255, 255))
-                    -- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
-                    -- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(100, 100), Color(alpha, 255, 255, 255))
+                   
                 end
             else
-                -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
                 Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
             end
-
-
-            -- Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
-            -- Gui.bitmap_uv(mod_gui, "armoury_atlas", uv00, uv11, Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size))
         end
     end
 end

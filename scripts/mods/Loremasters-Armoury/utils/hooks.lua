@@ -725,13 +725,6 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         if mod.list_of_LA_levels[level_name] then 
             if not mod.list_of_LA_levels[level_name].collected then
                 if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
-                    -- Managers.state.network.network_transmit:send_rpc_server(
-                    --     "rpc_spawn_pickup_with_physics",
-                    --     NetworkLookup.pickup_names["painting_scrap"],
-                    --     mod.list_of_LA_levels[level_name].position:unbox(),
-                    --     Quaternion.from_elements(0,0,0,0),
-                    --     NetworkLookup.pickup_spawn_types['dropped']
-                    -- )
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
                     local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
@@ -744,13 +737,6 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         if mod.list_of_LA_levels_books[level_name] then
             if not mod.list_of_LA_levels_books[level_name].collected then
                 if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") then
-                    -- Managers.state.network.network_transmit:send_rpc_server(
-                    --     "rpc_spawn_pickup_with_physics",
-                    --     NetworkLookup.pickup_names["painting_scrap"],
-                    --     mod.list_of_LA_levels_books[level_name].position:unbox(),
-                    --     mod.list_of_LA_levels_books[level_name].rotation:unbox(),
-                    --     NetworkLookup.pickup_spawn_types['dropped']
-                    -- )
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
                     local book_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", unit_template_name, 

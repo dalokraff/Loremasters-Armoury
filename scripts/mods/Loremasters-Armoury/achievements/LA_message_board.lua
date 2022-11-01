@@ -3,8 +3,6 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/quest_letters")
 
 local Definitions = require("scripts/mods/Loremasters-Armoury/achievements/LA_message_board_definitions")
 local Scenegraph_Definition = Definitions.scenegraph_definition
--- LetterBoard = {}
--- LetterBoard.__index = LetterBoard
 
 
 LetterBoard = class(LetterBoard)
@@ -252,65 +250,30 @@ end
 
 LetterBoard.get_selected_decoration = function(self)
     local unit = self.interactable_unit
-
-    -- if Unit.has_data(unit, "current_quest") then 
-    --     local current_quest = Unit.get_data(unit, "current_quest")
-    --     return current_quest
-    -- end
-
 	return Unit.get_data(unit, "current_quest")
-    
 end
 
 
 LetterBoard.reset_selection = function(self)
     local unit = self.interactable_unit
-    Unit.set_data(unit, "current_quest", self.current_painting)
-    -- if Unit.has_data(unit, "current_quest") then 
-    --     local current_quest = Unit.get_data(unit, "current_quest")
-    --     return current_quest
-    -- end
-    
+    Unit.set_data(unit, "current_quest", self.current_painting)    
 end
 
 LetterBoard.unequip_decoration = function(self, new_painting)
-    -- local unit = self.interactable_unit
-
-    -- local current_preview_painting = self._current_preview_painting
-	-- local keep_decoration_system = self.keep_decoration_system
-
-	-- keep_decoration_system:on_painting_set(current_preview_painting, self)
-	-- self:sync_decoration()
-
     self:_set_selected_painting(new_painting)
-    
 end
 
 LetterBoard.decoration_selected = function(self, current_painting)
     local unit = self.interactable_unit
-    self.current_painting = current_painting
-    -- self:_load_painting(current_painting, nil)
-    
+    self.current_painting = current_painting    
 end
 
 LetterBoard.confirm_selection = function (self)
 	local current_preview_painting = self._current_preview_painting
-	-- local keep_decoration_system = self.keep_decoration_system
-
-	-- keep_decoration_system:on_painting_set(current_preview_painting, self)
-	-- self:sync_decoration()
     self:_set_selected_painting(new_painting)
-    
 end
 
 LetterBoard._set_selected_painting = function (self, painting)
-	-- local backend_key = self._backend_key
-	-- local backend_manager = Managers.backend
-	-- local backend_interface = backend_manager:get_interface("keep_decorations")
-	-- self._currently_set_painting = painting
-
-	-- backend_interface:set_decoration(backend_key, painting)
-	-- backend_manager:commit()
     self._currently_set_painting = painting
     local unit = self.interactable_unit
     Unit.set_data(unit, "current_quest", current_preview_painting)
@@ -319,10 +282,6 @@ end
 
 LetterBoard.confirm_selection = function (self)
 	local current_preview_painting = self._current_preview_painting
-	-- local keep_decoration_system = self.keep_decoration_system
-
-	-- keep_decoration_system:on_painting_set(current_preview_painting, self)
-	-- self:sync_decoration()
     local unit = self.interactable_unit
     Unit.set_data(unit, "current_quest", current_preview_painting)
 end

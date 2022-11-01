@@ -190,7 +190,6 @@ mod.SKIN_LIST = {
         skip_meshes = {
             skip0 = true,
         },
-        -- icon = "kerillian_elf_shield_basic_avelorn01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic_avelorn01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic_avelorn01_icon",
@@ -226,7 +225,6 @@ mod.SKIN_LIST = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01_3p",
         },
         swap_hand = "left_hand_unit",
-        -- icon = "kerillian_elf_shield_basic2_griffongate01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic2_griffongate01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic2_griffongate01_icon",
@@ -250,7 +248,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_heroclean_saphery01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_saphery01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_saphery01_icon",
@@ -265,7 +262,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_heroclean_caledor01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_caledor01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_caledor01_icon",
@@ -280,7 +276,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_heroclean_avelorn02_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_heroclean_avelorn02_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_heroclean_avelorn02_icon",
@@ -295,7 +290,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_basicclean_eataine01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basicclean_eataine01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basicclean_eataine01_icon",
@@ -310,7 +304,6 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         swap_skin = nil,
-        -- icon = "kerillian_elf_shield_basic2_eaglegate01_icon",
         icons = {
             we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic2_eaglegate01_icon",
             we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic2_eaglegate01_icon",

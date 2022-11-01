@@ -52,7 +52,6 @@ function mod.outliner()
 
         local player = Managers.player:local_player()
         local player_unit = player.player_unit
-        -- local player_unit = Managers.player:local_player().player_unit
         
         if player_unit then
 
