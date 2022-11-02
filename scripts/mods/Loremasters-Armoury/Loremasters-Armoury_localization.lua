@@ -377,6 +377,12 @@ local mod_text_ids = {
     sub_quest_crate_tracker_desc = {
         en = "Retrieve all the stolen shipping crates.",
     },
+	sub_quest_crate_tracker_reward_name = {
+		en = "Myrmidia's Favour",
+    },
+	sub_quest_crate_tracker_reward_desc = {
+        en = "The goddess of war, beauty and honour guides your path.",
+    },
 	halescourge_buff_chat_message = {
 		en = "The Loremaster channels supportive magic your way: +25% CDR, +4 Stamina",
 	},
