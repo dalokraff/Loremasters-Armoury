@@ -562,6 +562,33 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     return func(self, game_won, quickplay, statistics_db, stats_id)
 end)
 
+
+--taken from the Casual Mode mod by Squatting Bear, these are used to run so the previously hooked function is ran and can check for tomes/grims
+--https://github.com/Squatting-Bear/vermintide-mods/blob/development/casual_mode/scripts/mods/casual_mode/casual_mode.lua#L794
+-- Pretend we are trusted so that the experience reward screen will be shown.
+mod:hook_safe(StateInGameRunning, "on_enter", function(self, params)
+	self._booted_eac_untrusted = false
+end)
+
+-- This hook is just to stop weaves crashing at the end screen.
+mod:hook(StateInGameRunning, "_submit_weave_scores", function (self)
+end)
+
+-- Pretend we are trusted so that the end-mission rewards will be computed.
+mod:hook(LevelEndViewBase, "init", function(orig_func, self, context)
+	local real_eac_untrusted = script_data["eac-untrusted"]
+	script_data["eac-untrusted"] = false
+	orig_func(self, context)
+	script_data["eac-untrusted"] = real_eac_untrusted
+end)
+
+-- Prevent the backend from being accessed, since we're not actually trusted.
+mod:hook(BackendInterfaceLootPlayfab, "generate_end_of_level_loot", function(orig_func, self, ...)
+	local fake_id = "loot!"
+	self._loot_requests[fake_id] = {}
+	return fake_id
+end)
+
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {
     main_quest = {
