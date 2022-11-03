@@ -3,67 +3,68 @@ local level_quest_table = require("scripts/mods/Loremasters-Armoury/achievements
 local rpc_table = {
     rpc_generic_interaction_request = function(self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
+        if interactable_unit then
+            local unit_name = Unit.get_data(interactable_unit, "unit_name")
 
-        local unit_name = Unit.get_data(interactable_unit, "unit_name")
+            if mod.LA_new_interactors[unit_name] then
+                local interactor_unit = Managers.state.unit_storage:unit(self_2)
+                local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
+                local interaction_type = NetworkLookup.interactions[interactable_go_id]
+                local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
 
-        if mod.LA_new_interactors[unit_name] then
-            local interactor_unit = Managers.state.unit_storage:unit(self_2)
-            local interactor_extension = ScriptUnit.extension(interactor_unit, "interactor_system")
-            local interaction_type = NetworkLookup.interactions[interactable_go_id]
-            local interactable_extension = ScriptUnit.extension(interactable_unit, "interactable_system")
+                interactor_extension:interaction_denied()
 
-            interactor_extension:interaction_denied()
+                if interaction_type == "sword_enchantment" then
+                    if interactable_unit then
+                        local world = Managers.world:world("level_world")
+                        mod:set("sub_quest_10", true)
+                        mod.sword_ritual = SwordEnchantment:new(world)
+                        mod.scroll_unit = nil
+                        return true
+                    end
+                end
+                
+                if interaction_type == "la_pickup" then   
+                    
+                    local sound = Unit.get_data(interactable_unit, "interaction_data", "pickup_sound")
+                    if sound then
+                        local world = Managers.world:world("level_world")
+                        local wwise_world = Wwise.wwise_world(world)
+                        WwiseWorld.trigger_event(wwise_world, sound)  
+                    end
+                    local la_pickup_ext = LA_PICKUPS[interactable_unit]
+                    if la_pickup_ext then
+                        la_pickup_ext:destroy()
+                    end
 
-            if interaction_type == "sword_enchantment" then
-                if interactable_unit then
-                    local world = Managers.world:world("level_world")
-                    mod:set("sub_quest_10", true)
-                    mod.sword_ritual = SwordEnchantment:new(world)
-                    mod.scroll_unit = nil
+                    local level_name = Managers.state.game_mode:level_key()
+                    local quest = level_quest_table[level_name]
+                    if quest then
+                        mod:set(quest.."_temp", true)
+                    end
+                    
                     return true
                 end
-            end
-            
-            if interaction_type == "la_pickup" then   
-                
-                local sound = Unit.get_data(interactable_unit, "interaction_data", "pickup_sound")
-                if sound then
-                    local world = Managers.world:world("level_world")
-                    local wwise_world = Wwise.wwise_world(world)
-                    WwiseWorld.trigger_event(wwise_world, sound)  
-                end
-                local la_pickup_ext = LA_PICKUPS[interactable_unit]
-                if la_pickup_ext then
-                    la_pickup_ext:destroy()
+
+                if Unit.has_data(interactable_unit, "unit_name") then
+                    local unit_name = Unit.get_data(interactable_unit, "unit_name")
+                    if mod.LA_new_interactors[unit_name] then
+                        Managers.ui:handle_transition("hero_view_force", {
+                            type = "painting",
+                            menu_state_name = "keep_decorations",
+                            use_fade = true,
+                            interactable_unit = interactable_unit
+                        })
+                        if Unit.has_data(interactable_unit, "quest") then
+                            local quest = Unit.get_data(interactable_unit, "quest")
+                            mod:set(quest.."_letter_read", true)
+                        end
+                        return true
+                    end
                 end
 
-                local level_name = Managers.state.game_mode:level_key()
-                local quest = level_quest_table[level_name]
-                if quest then
-                    mod:set(quest.."_temp", true)
-                end
-                
                 return true
             end
-
-            if Unit.has_data(interactable_unit, "unit_name") then
-                local unit_name = Unit.get_data(interactable_unit, "unit_name")
-                if mod.LA_new_interactors[unit_name] then
-                    Managers.ui:handle_transition("hero_view_force", {
-                        type = "painting",
-                        menu_state_name = "keep_decorations",
-                        use_fade = true,
-                        interactable_unit = interactable_unit
-                    })
-                    if Unit.has_data(interactable_unit, "quest") then
-                        local quest = Unit.get_data(interactable_unit, "quest")
-                        mod:set(quest.."_letter_read", true)
-                    end
-                    return true
-                end
-            end
-
-            return true
         end       
 
         return false
