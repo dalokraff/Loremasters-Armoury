@@ -33,8 +33,10 @@ LaPickupExtension.update = function (self, dt)
 end
 
 LaPickupExtension.destroy = function(self)
-    Managers.state.unit_spawner:mark_for_deletion(self.visable_unit)
-    Managers.state.unit_spawner:mark_for_deletion(self.unit)
+    if Managers.state.unit_spawner then
+        Managers.state.unit_spawner:mark_for_deletion(self.visable_unit)
+        Managers.state.unit_spawner:mark_for_deletion(self.unit)
+    end
     LA_PICKUPS[self.unit] = nil
     return
 end
