@@ -77,6 +77,21 @@ menu.options.widgets = {
 			{text = "wiz",   value = 6, show_widgets = {}},
 		},
 		sub_widgets = {},
+	},
+	{
+        setting_id = "open_custom_view",
+        type = "keybind",
+        keybind_type = "view_toggle",
+		keybind_trigger = "pressed",
+		default_value = {
+
+		},
+        view_name = "quest_board_letter_view",
+        transition_data = {
+          open_view_transition_name = "open_quest_board_letter_view",
+          close_view_transition_name = "close_quest_board_letter_view",
+          transition_fade = true
+        }
 	}
 }
 

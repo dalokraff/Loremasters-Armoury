@@ -311,6 +311,45 @@ mod:command("reset_sub_quests", "", function()
     mod:set("sub_quest_10", false)
 end)
 
+
+
+-- Managers.ui:handle_transition("hero_view_force", {
+--     menu_state_name = "keep_decorations",
+--     use_fade = true,
+--     interactable_unit = interactable_unit
+-- })
+
+
+mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/quest_board_letter_view")
+local view_data = {
+    view_name = "quest_board_letter_view",
+    view_settings = {
+      init_view_function = function(ingame_ui_context)
+        return QuestBoardLetterView:new(ingame_ui_context)
+      end,
+      active = {        -- Only enable in keep
+        inn = true,
+        ingame = false
+      },
+      blocked_transitions = {
+        inn = {},
+        ingame = {}
+      }
+    },
+    view_transitions = {
+      open_quest_board_letter_view = function(ingame_ui)
+        ingame_ui.current_view = "quest_board_letter_view"
+      end,
+      close_quest_board_letter_view = function(ingame_ui)
+        ingame_ui.current_view = nil
+      end
+    }
+  }
+mod:register_view(view_data)
+
+-- local lamod = get_mod("Loremasters-Armoury")
+-- lamod:handle_transition("close_quest_board_letter_view", true, true)
+
 -- mod:command("complete_sub_quests", "", function()
 
 --     for quest,_ in pairs(mod.main_quest) do
