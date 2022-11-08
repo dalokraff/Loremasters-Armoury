@@ -4,6 +4,11 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/quest_letters")
 local Definitions = require("scripts/mods/Loremasters-Armoury/achievements/LA_message_board_definitions")
 local Scenegraph_Definition = Definitions.scenegraph_definition
 
+local function is_available(type, name)
+	return Application.can_get(type, name)
+end
+
+
 
 LetterBoard = class(LetterBoard)
 
@@ -186,19 +191,22 @@ LetterBoard.change_active_quest = function(self, new_quest)
 end
 
 LetterBoard.add_lantern_light = function(self)
-    local position = self.pos:unbox()
-    local rotation = self.rot:unbox()
+    local lantern = "units/props/lanterns/lantern_01/prop_lantern_01"
+    if is_available("unit", lantern) then
+        local position = self.pos:unbox()
+        local rotation = self.rot:unbox()
 
-    local flame_unit = Managers.state.unit_spawner:spawn_local_unit("units/props/lanterns/lantern_01/prop_lantern_01", position, rotation)
+        local flame_unit = Managers.state.unit_spawner:spawn_local_unit(lantern, position, rotation)
 
-    local stuff = {
-        {
-            target = 0,
-            source = "LA_message_board_lantern",
-        },
-    }
-    AttachmentUtils.link(self.world, self.visible_unit, flame_unit, stuff)
-    Unit.set_local_scale(flame_unit, 0, Vector3(0.0001, 0.0001, 0.0001))
+        local stuff = {
+            {
+                target = 0,
+                source = "LA_message_board_lantern",
+            },
+        }
+        AttachmentUtils.link(self.world, self.visible_unit, flame_unit, stuff)
+        Unit.set_local_scale(flame_unit, 0, Vector3(0.0001, 0.0001, 0.0001))
+    end
 
     return
 
