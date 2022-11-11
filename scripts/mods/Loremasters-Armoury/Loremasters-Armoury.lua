@@ -320,12 +320,40 @@ end)
 -- })
 
 
-mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/quest_board_letter_view")
+-- mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/quest_board_letter_view")
+-- local view_data = {
+--     view_name = "quest_board_letter_view",
+--     view_settings = {
+--       init_view_function = function(ingame_ui_context)
+--         return QuestBoardLetterView:new(ingame_ui_context)
+--       end,
+--       active = {        -- Only enable in keep
+--         inn = true,
+--         ingame = false
+--       },
+--       blocked_transitions = {
+--         inn = {},
+--         ingame = {}
+--       }
+--     },
+--     view_transitions = {
+--       open_quest_board_letter_view = function(ingame_ui)
+--         ingame_ui.current_view = "quest_board_letter_view"
+--       end,
+--       close_quest_board_letter_view = function(ingame_ui)
+--         ingame_ui.current_view = nil
+--       end
+--     }
+--   }
+-- mod:register_view(view_data)
+
+
+mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/test_widget")
 local view_data = {
     view_name = "quest_board_letter_view",
     view_settings = {
       init_view_function = function(ingame_ui_context)
-        return QuestBoardLetterView:new(ingame_ui_context)
+        return TestWidgets:new(ingame_ui_context)
       end,
       active = {        -- Only enable in keep
         inn = true,
