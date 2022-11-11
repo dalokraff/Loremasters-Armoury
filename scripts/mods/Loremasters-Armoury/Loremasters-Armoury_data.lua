@@ -79,7 +79,7 @@ menu.options.widgets = {
 		sub_widgets = {},
 	},
 	{
-        setting_id = "open_custom_view",
+        setting_id = "quest_board_letter_view",
         type = "keybind",
         keybind_type = "view_toggle",
 		keybind_trigger = "pressed",

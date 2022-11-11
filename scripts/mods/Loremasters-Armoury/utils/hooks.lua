@@ -1134,12 +1134,13 @@ mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, wor
     if Unit.has_data(interactable_unit, "unit_name") then
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
         if mod.LA_new_interactors[unit_name] then
-            Managers.ui:handle_transition("hero_view_force", {
-                type = "painting",
-                menu_state_name = "keep_decorations",
-                use_fade = true,
-                interactable_unit = interactable_unit
-            })
+            -- Managers.ui:handle_transition("hero_view_force", {
+            --     type = "painting",
+            --     menu_state_name = "keep_decorations",
+            --     use_fade = true,
+            --     interactable_unit = interactable_unit
+            -- })
+            mod:handle_transition("open_quest_board_letter_view")
             
             return
         end
