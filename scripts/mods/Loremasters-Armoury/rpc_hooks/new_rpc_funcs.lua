@@ -23,6 +23,10 @@ local rpc_table = {
                         return true
                     end
                 end
+
+                if interaction_type == "letter_read" then
+                    return InteractionDefinitions[interaction_type].replacement_rpc(interactable_unit)
+                end
                 
                 if interaction_type == "la_pickup" then   
                     
