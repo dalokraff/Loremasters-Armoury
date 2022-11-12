@@ -24,7 +24,7 @@ local rpc_table = {
                     end
                 end
 
-                if interaction_type == "letter_read" then
+                if interaction_type == "letter_read"  or interaction_type == "archive_search" then
                     return InteractionDefinitions[interaction_type].replacement_rpc(interactable_unit)
                 end
                 

@@ -11,6 +11,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/achievements/LA_message_board")
 mod:dofile("scripts/mods/Loremasters-Armoury/news/hooks")
 
 mod:dofile("scripts/mods/Loremasters-Armoury/interactions/letter_interaction")
+mod:dofile("scripts/mods/Loremasters-Armoury/interactions/archive_interaction")
 
 
 Managers.package:load("resource_packages/levels/dlcs/morris/slaanesh_common", "global")
@@ -312,7 +313,7 @@ end)
 
 
 mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/quest_board_letter_view")
-local view_data = {
+local letter_view_data = {
     view_name = "quest_board_letter_view",
     view_settings = {
       init_view_function = function(ingame_ui_context)
@@ -336,8 +337,37 @@ local view_data = {
       end
     }
   }
-mod:register_view(view_data)
+mod:register_view(letter_view_data)
 
+
+
+
+mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/quest_board_archive_view")
+local archive_view_data = {
+    view_name = "quest_board_archive_view",
+    view_settings = {
+      init_view_function = function(ingame_ui_context)
+        return QuestBoardArchiveView:new(ingame_ui_context)
+      end,
+      active = {        -- Only enable in keep
+        inn = true,
+        ingame = false
+      },
+      blocked_transitions = {
+        inn = {},
+        ingame = {}
+      }
+    },
+    view_transitions = {
+      open_quest_board_archive_view = function(ingame_ui)
+        ingame_ui.current_view = "quest_board_archive_view"
+      end,
+      close_quest_board_archive_view = function(ingame_ui)
+        ingame_ui.current_view = nil
+      end
+    }
+  }
+mod:register_view(archive_view_data)
 
 -- mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/test_widget")
 -- local view_data = {
