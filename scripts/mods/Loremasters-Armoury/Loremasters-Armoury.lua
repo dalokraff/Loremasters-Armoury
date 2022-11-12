@@ -230,17 +230,6 @@ mod.on_game_state_changed = function(status, state_name)
     end
 end
 
--- mod:command("complete_sub_quest_01", "", function()
-
---     mod.main_quest.sub_quest_01 = true
---     mod:set("sub_quest_01", 1500)
--- end)
--- mod:command("complete_sub_quest_02", "", function()
-
---     mod.main_quest.sub_quest_02 = true
---     mod:set("sub_quest_02", 1500)
--- end)
-
 if not mod:get("num_shields_collected") then 
     mod:set("num_shields_collected", 0)
 end
@@ -380,56 +369,69 @@ mod:register_view(view_data)
 -- local lamod = get_mod("Loremasters-Armoury")
 -- lamod:handle_transition("close_quest_board_letter_view", true, true)
 
--- mod:command("complete_sub_quests", "", function()
+mod:command("complete_sub_quests", "", function()
 
---     for quest,_ in pairs(mod.main_quest) do
---         mod.main_quest[quest] = true
---     end
---     mod:set("sub_quest_01", 1500)
---     mod:set("sub_quest_02", 1500)
---     mod:set("sub_quest_03", true)
---     mod:set("sub_quest_04", true)
---     mod:set("sub_quest_05", true)
---     mod:set("sub_quest_crate_tracker", true)
---     mod:set("sub_quest_06", true)
---     mod:set("sub_quest_07", true)
---     mod:set("sub_quest_08", true)
---     mod:set("sub_quest_09", true)
---     mod:set("sub_quest_10", true)
--- end)
+    for quest,_ in pairs(mod.main_quest) do
+        mod.main_quest[quest] = true
+    end
+    mod:set("sub_quest_01", 1500)
+    mod:set("sub_quest_02", 1500)
+    mod:set("sub_quest_03", true)
+    mod:set("sub_quest_04", true)
+    mod:set("sub_quest_05", true)
+    mod:set("sub_quest_crate_tracker", true)
+    mod:set("sub_quest_06", true)
+    mod:set("sub_quest_07", true)
+    mod:set("sub_quest_08", true)
+    mod:set("sub_quest_09", true)
+    mod:set("sub_quest_10", true)
+end)
 
 
--- mod:command("complete_sub_quest_03", "", function()
---     mod.main_quest["sub_quest_03"] = true
---     mod:set("sub_quest_03", true)
--- end)
 
--- mod:command("complete_sub_quest_04", "", function()
---     mod.main_quest["sub_quest_04"] = true
---     mod:set("sub_quest_04", true)
--- end)
+mod:command("complete_sub_quest_01", "", function()
 
--- mod:command("complete_sub_quest_05", "", function()
---     mod.main_quest["sub_quest_05"] = true
---     mod:set("sub_quest_05", true)
--- end)
+    mod.main_quest.sub_quest_01 = true
+    mod:set("sub_quest_01", 1500)
+end)
 
--- mod:command("complete_sub_quest_06", "", function()
---     mod.main_quest["sub_quest_06"] = true
---     mod:set("sub_quest_06", true)
--- end)
+mod:command("complete_sub_quest_02", "", function()
 
--- mod:command("complete_sub_quest_07", "", function()
---     mod.main_quest["sub_quest_07"] = true
---     mod:set("sub_quest_07", true)
--- end)
+    mod.main_quest.sub_quest_02 = true
+    mod:set("sub_quest_02", 1500)
+end)
 
--- mod:command("complete_sub_quest_08", "", function()
---     mod.main_quest["sub_quest_08"] = true
---     mod:set("sub_quest_08", true)
--- end)
+mod:command("complete_sub_quest_03", "", function()
+    mod.main_quest["sub_quest_03"] = true
+    mod:set("sub_quest_03", true)
+end)
 
--- mod:command("complete_sub_quest_09", "", function()
---     mod.main_quest["sub_quest_09"] = true
---     mod:set("sub_quest_09", true)
--- end)
+mod:command("complete_sub_quest_04", "", function()
+    mod.main_quest["sub_quest_04"] = true
+    mod:set("sub_quest_04", true)
+end)
+
+mod:command("complete_sub_quest_05", "", function()
+    mod.main_quest["sub_quest_05"] = true
+    mod:set("sub_quest_05", true)
+end)
+
+mod:command("complete_sub_quest_06", "", function()
+    mod.main_quest["sub_quest_06"] = true
+    mod:set("sub_quest_06", true)
+end)
+
+mod:command("complete_sub_quest_07", "", function()
+    mod.main_quest["sub_quest_07"] = true
+    mod:set("sub_quest_07", true)
+end)
+
+mod:command("complete_sub_quest_08", "", function()
+    mod.main_quest["sub_quest_08"] = true
+    mod:set("sub_quest_08", true)
+end)
+
+mod:command("complete_sub_quest_09", "", function()
+    mod.main_quest["sub_quest_09"] = true
+    mod:set("sub_quest_09", true)
+end)
