@@ -57,6 +57,7 @@ function QuestBoardLetterView:on_enter(transition_params)
 
 
   self:_initialize_simple_decoration_preview()
+  self:play_sound("Loremaster_letter_open_sound__1_")
   
 end
 
