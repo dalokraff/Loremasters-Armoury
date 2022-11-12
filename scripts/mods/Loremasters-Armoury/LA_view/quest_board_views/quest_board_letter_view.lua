@@ -1,14 +1,11 @@
 local mod = get_mod("Loremasters-Armoury")
 
-local definitions = local_require("scripts/ui/views/hero_view/states/definitions/hero_view_state_keep_decorations_definitions")
 local definitions = local_require("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/definitions/quest_board_letter_definitions")
-local widget_definitions = definitions.widgets_definitions
+local widget_definitions = definitions.widgets
 local scenegraph_definition = definitions.scenegraph_definition
-local generic_input_actions = definitions.generic_input_actions
 local animation_definitions = definitions.animation_definitions
-local entry_widget_definition = definitions.entry_widget_definition
-local dummy_entry_widget_definition = definitions.dummy_entry_widget_definition
-local input_actions = definitions.input_actions
+
+local DO_RELOAD = true
 
 QuestBoardLetterView = class(QuestBoardLetterView)
 
@@ -20,11 +17,15 @@ function QuestBoardLetterView:init(ingame_ui_context)
   input_manager:map_device_to_service("custom_view_name", "keyboard")
   input_manager:map_device_to_service("custom_view_name", "mouse")
   input_manager:map_device_to_service("custom_view_name", "gamepad")
+
+  local world = Managers.world:world("level_world")
+  self.wwise_world = Managers.world:wwise_world(world)
   
   
   self.input_manager = input_manager
   self._ui_renderer = ingame_ui_context.ui_renderer
   self._ui_top_renderer = ingame_ui_context.ui_top_renderer
+  self.voting_manager = ingame_ui_context.voting_manager
 end
 
 -- Optional. Executed by `ingame_ui` after transitioning to your custom view.
@@ -41,21 +42,125 @@ function QuestBoardLetterView:on_enter(transition_params)
   self._render_settings = {
 	snap_pixel_positions = true
 	}
-  self:_create_ui_elements(transition_params)
+  self._animations = {}
+  self._ui_animations = {}
+  self._interactable_unit = mod.interactable_unit
+
+
+  self._default_table = mod.painting
+  self._main_table = mod.painting
+  self._ordered_table = mod.list_order
+  self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
+
+--   self:_initialize_simple_decoration_preview()
+  self:_create_ui_elements()
+
+
+  self:_initialize_simple_decoration_preview()
+  
 end
 
-QuestBoardLetterView._create_ui_elements = function (self, params)
+QuestBoardLetterView._initialize_simple_decoration_preview = function (self)
+	local interactable_unit = self._interactable_unit
+	local hud_text_line_1 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_1")
+	local hud_text_line_2 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
+	local sound_event = Unit.get_data(interactable_unit, "interaction_data", "sound_event")
+
+	-- if sound_event and sound_event ~= "" then
+	-- 	self._sound_event = sound_event
+	-- 	self._sound_event_delay = (self._sound_event and DIALOGUE_DELAY) or nil
+	-- end
+
+	local title = Localize(hud_text_line_1)
+	local description = Localize(hud_text_line_2)
+
+	self:_set_info_texts(title, description)
+end
+
+QuestBoardLetterView._set_info_texts = function (self, title_text, description_text, artist_text)
+	local title_height = self:_set_selected_title(title_text)
+	local description_height = self:_set_selected_description(description_text)
+	local artist_height = (artist_text and self:_set_selected_artist(artist_text)) or 0
+	local ui_scenegraph = self._ui_scenegraph
+	local title_scenegraph = ui_scenegraph.title_text
+	title_scenegraph.size[2] = title_height
+	local artist_scenegraph = ui_scenegraph.artist_text
+	artist_scenegraph.size[2] = artist_height
+	local window_scenegraph = ui_scenegraph.info_window
+	local window_position = window_scenegraph.position
+	local window_size = window_scenegraph.size
+	local available_description_height = window_size[2] - title_height - artist_height - 110
+	local description_scenegraph = ui_scenegraph.description_text
+	description_scenegraph.size[2] = available_description_height
+end
+
+QuestBoardLetterView._set_selected_title = function (self, title_text)
+	local widget = self._widgets_by_name.title_text
+	widget.content.text = title_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, title_text)
+
+	return text_height
+end
+
+QuestBoardLetterView._set_selected_description = function (self, description_text)
+	local widget = self._widgets_by_name.description_text
+	widget.content.text = description_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, description_text)
+
+	return text_height
+end
+
+QuestBoardLetterView._set_selected_artist = function (self, artist_text)
+	local widget = self._widgets_by_name.artist_text
+	widget.content.text = artist_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, artist_text)
+
+	return text_height
+end
+
+QuestBoardLetterView._set_info_by_decoration_key = function (self, key, locked)
+	local settings = self._main_table[key]
+	local display_name = settings.display_name
+	local description = settings.description
+	local artist = settings.artist
+	local description_text = (locked and Localize("interaction_unavailable")) or Localize(description)
+	local artist_text = (artist and not locked and Localize(artist)) or ""
+	self._selected_decoration = key
+
+	self:_set_info_texts(Localize(display_name), description_text, artist_text)
+	self:_play_sound("Stop_all_keep_decorations_desc_vo")
+
+	-- if not locked then
+	-- 	local sound_event = settings.sound_event
+	-- 	self._sound_event_delay = (sound_event and DIALOGUE_DELAY) or nil
+	-- end
+end
+
+
+QuestBoardLetterView._create_ui_elements = function (self)
 	self._ui_scenegraph = UISceneGraph.init_scenegraph(scenegraph_definition)
 	local widgets = {}
 	local widgets_by_name = {}
 
-	for name, widget_definition in pairs(widget_definitions) do
-		if widget_definition then
-			local widget = UIWidget.init(widget_definition)
-			widgets[#widgets + 1] = widget
-			widgets_by_name[name] = widget
-		end
+	for name, definition in pairs(widget_definitions) do
+		local widget = UIWidget.init(definition)
+		local num_widgets = #widgets
+		widgets[num_widgets + 1] = widget
+		widgets_by_name[name] = widget
 	end
+
 
 	self._widgets = widgets
 	self._widgets_by_name = widgets_by_name
@@ -63,57 +168,9 @@ QuestBoardLetterView._create_ui_elements = function (self, params)
 	UIRenderer.clear_scenegraph_queue(self._ui_renderer)
 
 	self.ui_animator = UIAnimator:new(self._ui_scenegraph, animation_definitions)
-	local scrollbar_widget = self._widgets_by_name.list_scrollbar
-	self._scrollbar_logic = ScrollBarLogic:new(scrollbar_widget)
-end
-
-QuestBoardLetterView._update_scroll_position = function (self)
-	local scrollbar_logic = self._scrollbar_logic
-	local length = scrollbar_logic:get_scrolled_length()
-
-	if length ~= self._scrolled_length then
-		self._ui_scenegraph.list_scroll_root.local_position[2] = math.round(length)
-		self._scrolled_length = length
-	end
-end
-
-QuestBoardLetterView._update_visible_list_entries = function (self)
-	local scrollbar_logic = self._scrollbar_logic
-	local enabled = scrollbar_logic:enabled()
-
-	if not enabled then
-		return
-	end
-
-	local scroll_percentage = scrollbar_logic:get_scroll_percentage()
-	local scrolled_length = scrollbar_logic:get_scrolled_length()
-	local scroll_length = scrollbar_logic:get_scroll_length()
-	local list_window_size = scenegraph_definition.list_window.size
-	local draw_padding = LIST_SPACING * 2
-	local draw_length = list_window_size[2] + draw_padding
-	local widgets = self._list_widgets
-	local num_widgets = #widgets
-
-	for index, widget in ipairs(widgets) do
-		local offset = widget.offset
-		local content = widget.content
-		local size = content.size
-		local widget_position = math.abs(offset[2]) + size[2]
-		local is_outside = false
-
-		if widget_position < scrolled_length - draw_padding then
-			is_outside = true
-		elseif draw_length < math.abs(offset[2]) - scrolled_length then
-			is_outside = true
-		end
-
-		content.visible = not is_outside
-	end
 end
 
 QuestBoardLetterView.draw = function (self, input_service, dt)
-	self:_update_visible_list_entries()
-
 	local ui_renderer = self._ui_renderer
 	local ui_top_renderer = self._ui_top_renderer
 	local ui_scenegraph = self._ui_scenegraph
@@ -121,37 +178,14 @@ QuestBoardLetterView.draw = function (self, input_service, dt)
 	local render_settings = self._render_settings
 	local gamepad_active = input_manager:is_device_active("gamepad")
 
+	local widgets = self._widgets
+
 	UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
 
-	local snap_pixel_positions = render_settings.snap_pixel_positions
-	local alpha_multiplier = render_settings.alpha_multiplier or 1
-	local list_widgets = self._list_widgets
-
-	if list_widgets then
-		for _, widget in ipairs(list_widgets) do
-			UIRenderer.draw_widget(ui_renderer, widget)
-		end
-	end
-
-	local dummy_list_widgets = self._dummy_list_widgets
-
-	if dummy_list_widgets then
-		for _, widget in ipairs(dummy_list_widgets) do
-			UIRenderer.draw_widget(ui_renderer, widget)
-		end
-	end
-
-	for _, widget in ipairs(self._widgets) do
-		if widget.snap_pixel_positions ~= nil then
-			render_settings.snap_pixel_positions = widget.snap_pixel_positions
-		end
-
-		render_settings.alpha_multiplier = widget.alpha_multiplier or alpha_multiplier
-
+	for i,widget in pairs(widgets) do 
 		UIRenderer.draw_widget(ui_renderer, widget)
-
-		render_settings.snap_pixel_positions = snap_pixel_positions
 	end
+	-- UIRenderer.draw_widget(ui_renderer, self._widgets[1])
 
 	UIRenderer.end_pass(ui_renderer)
 
@@ -162,17 +196,81 @@ QuestBoardLetterView.draw = function (self, input_service, dt)
 	end
 end
 
+function QuestBoardLetterView:play_sound(event)
+	WwiseWorld.trigger_event(self.wwise_world, event)
+  end
+
+QuestBoardLetterView._handle_input = function (self, dt, t)
+    local esc_pressed = self:input_service():get("toggle_menu")
+    local widgets = self._widgets
+	local widgets_by_name = self._widgets_by_name
+
+    if self:_is_button_pressed(widgets_by_name["close_button"]) then
+		self:play_sound("Play_hud_select")
+		mod:handle_transition("close_quest_board_letter_view")
+		return
+    end
+
+	-- if self:_is_button_pressed(widgets_by_name["my_button"]) then
+	-- 	self:play_sound("Play_hud_select")
+	-- 	mod:handle_transition("close_quest_board_letter_view")
+	-- 	return
+    -- end
+
+    if esc_pressed then
+
+        mod:handle_transition("close_quest_board_letter_view")
+
+        return
+    end
+end
+
+QuestBoardLetterView._has_active_level_vote = function (self)
+    local voting_manager = self.voting_manager
+    local active_vote_name = voting_manager:vote_in_progress()
+    local is_mission_vote = active_vote_name == "game_settings_vote" or active_vote_name == "game_settings_deed_vote"
+
+    return is_mission_vote and not voting_manager:has_voted(Network.peer_id())
+end
+
+
+QuestBoardLetterView._is_button_pressed = function (self, widget)
+    local content = widget.content
+    local hotspot = content.button_hotspot or content.hotspot
+	if hotspot ~= nil then
+		if hotspot.on_release then
+			hotspot.on_release = false
+
+			return true
+		end
+	end
+
+end
+
+
+QuestBoardLetterView.post_update = function (self, dt, t)	
+	self.ui_animator:update(dt)
+	self:_update_animations(dt)
+end
+
+QuestBoardLetterView._update_animations = function (self, dt)
+	local widgets_by_name = self._widgets_by_name
+	local close_button = widgets_by_name.close_button
+
+	UIWidgetUtils.animate_default_button(close_button, dt)
+end
 
 -- Required. Executed by `ingame_ui` every tick.
-function QuestBoardLetterView:update(dt, t)
-	if DO_RELOAD then
-		DO_RELOAD = false
-
-		self:_create_ui_elements()
-	end
-	self:_update_scroll_position()
+function QuestBoardLetterView:update(dt, t)	
 	self:draw(self:input_service(), dt)
+
+	if self:_has_active_level_vote() then
+        mod:handle_transition("close_quest_board_letter_view")
+    else
+        self:_handle_input(dt, t)
+    end
 end
+
 
 -- Required. Return our custom input service here.
 function QuestBoardLetterView:input_service()
@@ -180,9 +278,11 @@ function QuestBoardLetterView:input_service()
 end
 
 function QuestBoardLetterView:on_exit()
+	self.ui_animator = nil
+	
 	self.input_manager:device_unblock_all_services("keyboard", 1)
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
   
 	ShowCursorStack.pop()
-  end
+end

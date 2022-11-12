@@ -1140,8 +1140,9 @@ mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, wor
             --     use_fade = true,
             --     interactable_unit = interactable_unit
             -- })
+            -- mod:handle_transition("open_quest_board_letter_view")
             mod:handle_transition("open_quest_board_letter_view")
-            
+            mod.interactable_unit = interactable_unit
             return
         end
     end

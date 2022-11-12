@@ -42,8 +42,145 @@ function TestWidgets:on_enter(transition_params)
 	}
   self._animations = {}
   self._ui_animations = {}
+  self._interactable_unit = mod.interactable_unit
+
+
+  self._default_table = mod.painting
+  self._main_table = mod.painting
+  self._ordered_table = mod.list_order
+  self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
+
+--   self:_initialize_simple_decoration_preview()
+  
   self:_create_ui_elements()
+
+  local decoration_settings_key = Unit.get_data(interactable_unit, "decoration_settings_key")
+
+    if decoration_settings_key then
+        local keep_decoration_extension = ScriptUnit.extension(interactable_unit, "keep_decoration_system")
+        local selected_decoration = keep_decoration_extension:get_selected_decoration()
+        self._keep_decoration_extension = keep_decoration_extension
+        local view_only = Unit.get_data(interactable_unit, "interaction_data", "view_only") or not self._is_server
+
+        if view_only then
+            self:_set_info_by_decoration_key(selected_decoration, false)
+        -- else
+        --     self._customizable_decoration = true
+
+        --     self:_setup_decorations_list()
+
+        --     local start_index = 1
+        --     local widgets = self._list_widgets
+
+        --     for i = 1, #widgets, 1 do
+        --     if widgets[i].content.key == selected_decoration then
+        --         start_index = i
+
+        --         break
+        --         end
+        --     end
+
+        -- 	self:_on_list_index_selected(start_index)
+
+        -- 	local start_scroll_percentage = self:_get_scrollbar_percentage_by_index(start_index)
+
+        -- 	self._scrollbar_logic:set_scroll_percentage(start_scroll_percentage)
+        end
+    else
+        self:_initialize_simple_decoration_preview()
+    end
+
+  
 end
+
+TestWidgets._initialize_simple_decoration_preview = function (self)
+	local interactable_unit = self._interactable_unit
+	local hud_text_line_1 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_1")
+	local hud_text_line_2 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
+	local sound_event = Unit.get_data(interactable_unit, "interaction_data", "sound_event")
+
+	-- if sound_event and sound_event ~= "" then
+	-- 	self._sound_event = sound_event
+	-- 	self._sound_event_delay = (self._sound_event and DIALOGUE_DELAY) or nil
+	-- end
+
+	local title = Localize(hud_text_line_1)
+	local description = Localize(hud_text_line_2)
+
+	self:_set_info_texts(title, description)
+end
+
+TestWidgets._set_info_texts = function (self, title_text, description_text, artist_text)
+	local title_height = self:_set_selected_title(title_text)
+	local description_height = self:_set_selected_description(description_text)
+	local artist_height = (artist_text and self:_set_selected_artist(artist_text)) or 0
+	local ui_scenegraph = self._ui_scenegraph
+	local title_scenegraph = ui_scenegraph.title_text
+	title_scenegraph.size[2] = title_height
+	local artist_scenegraph = ui_scenegraph.artist_text
+	artist_scenegraph.size[2] = artist_height
+	local window_scenegraph = ui_scenegraph.info_window
+	local window_position = window_scenegraph.position
+	local window_size = window_scenegraph.size
+	local available_description_height = window_size[2] - title_height - artist_height - 110
+	local description_scenegraph = ui_scenegraph.description_text
+	description_scenegraph.size[2] = available_description_height
+end
+
+TestWidgets._set_selected_title = function (self, title_text)
+	local widget = self._widgets_by_name.title_text
+	widget.content.text = title_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, title_text)
+
+	return text_height
+end
+
+TestWidgets._set_selected_description = function (self, description_text)
+	local widget = self._widgets_by_name.description_text
+	widget.content.text = description_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, description_text)
+
+	return text_height
+end
+
+TestWidgets._set_selected_artist = function (self, artist_text)
+	local widget = self._widgets_by_name.artist_text
+	widget.content.text = artist_text
+	local scenegraph_id = widget.scenegraph_id
+	local text_style = widget.style.text
+	local default_scenegraph = scenegraph_definition[scenegraph_id]
+	local default_size = default_scenegraph.size
+	local text_height = UIUtils.get_text_height(self._ui_renderer, default_size, text_style, artist_text)
+
+	return text_height
+end
+
+TestWidgets._set_info_by_decoration_key = function (self, key, locked)
+	local settings = self._main_table[key]
+	local display_name = settings.display_name
+	local description = settings.description
+	local artist = settings.artist
+	local description_text = (locked and Localize("interaction_unavailable")) or Localize(description)
+	local artist_text = (artist and not locked and Localize(artist)) or ""
+	self._selected_decoration = key
+
+	self:_set_info_texts(Localize(display_name), description_text, artist_text)
+	self:_play_sound("Stop_all_keep_decorations_desc_vo")
+
+	-- if not locked then
+	-- 	local sound_event = settings.sound_event
+	-- 	self._sound_event_delay = (sound_event and DIALOGUE_DELAY) or nil
+	-- end
+end
+
 
 TestWidgets._create_ui_elements = function (self)
 	self._ui_scenegraph = UISceneGraph.init_scenegraph(scenegraph_definition)
