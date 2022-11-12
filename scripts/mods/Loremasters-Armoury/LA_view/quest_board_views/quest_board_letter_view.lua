@@ -64,12 +64,6 @@ QuestBoardLetterView._initialize_simple_decoration_preview = function (self)
 	local interactable_unit = self._interactable_unit
 	local hud_text_line_1 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_1")
 	local hud_text_line_2 = Unit.get_data(interactable_unit, "interaction_data", "hud_text_line_2")
-	local sound_event = Unit.get_data(interactable_unit, "interaction_data", "sound_event")
-
-	-- if sound_event and sound_event ~= "" then
-	-- 	self._sound_event = sound_event
-	-- 	self._sound_event_delay = (self._sound_event and DIALOGUE_DELAY) or nil
-	-- end
 
 	local title = Localize(hud_text_line_1)
 	local description = Localize(hud_text_line_2)
@@ -129,25 +123,6 @@ QuestBoardLetterView._set_selected_artist = function (self, artist_text)
 
 	return text_height
 end
-
-QuestBoardLetterView._set_info_by_decoration_key = function (self, key, locked)
-	local settings = self._main_table[key]
-	local display_name = settings.display_name
-	local description = settings.description
-	local artist = settings.artist
-	local description_text = (locked and Localize("interaction_unavailable")) or Localize(description)
-	local artist_text = (artist and not locked and Localize(artist)) or ""
-	self._selected_decoration = key
-
-	self:_set_info_texts(Localize(display_name), description_text, artist_text)
-	self:_play_sound("Stop_all_keep_decorations_desc_vo")
-
-	-- if not locked then
-	-- 	local sound_event = settings.sound_event
-	-- 	self._sound_event_delay = (sound_event and DIALOGUE_DELAY) or nil
-	-- end
-end
-
 
 QuestBoardLetterView._create_ui_elements = function (self)
 	self._ui_scenegraph = UISceneGraph.init_scenegraph(scenegraph_definition)
