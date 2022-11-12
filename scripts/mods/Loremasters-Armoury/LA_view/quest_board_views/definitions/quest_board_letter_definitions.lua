@@ -1,16 +1,20 @@
 local mod = get_mod("Loremasters-Armoury")
 
 local disable_with_gamepad = true
-local list_window_size = {
-	480,
-	700
-}
 local info_window_size = {
-	450,
-	list_window_size[2] + 20
+	-- 450,
+	-- 720
+	600,
+	900
+}
+
+local info_corner_size = {
+	244 * 4/3,
+	95 * 5/4,
 }
 
 local scenegraph_definition = {
+	--size of the enitre UI menu
 	root = {
 	  scale = "fit",
 	  size = { 1920, 1080 },
@@ -23,6 +27,7 @@ local scenegraph_definition = {
 	--   size = { 150, 50 },
 	--   position = { 0, 0, 0 }
 	-- },
+	--the close button
 	close_button = {
 		vertical_alignment = "bottom",
 		parent = "root",
@@ -37,6 +42,7 @@ local scenegraph_definition = {
 			10
 		}
 	},
+	--the window containing the letter
 	info_window = {
 		vertical_alignment = "center",
 		parent = "root",
@@ -48,14 +54,13 @@ local scenegraph_definition = {
 			0
 		}
 	},
+	--=========================================
+	--the gold borders capping the top and bottom of the letter
 	info_top_left = {
 		vertical_alignment = "top",
 		parent = "info_window",
 		horizontal_alignment = "left",
-		size = {
-			244,
-			95
-		},
+		size = info_corner_size,
 		position = {
 			0,
 			40,
@@ -66,10 +71,7 @@ local scenegraph_definition = {
 		vertical_alignment = "top",
 		parent = "info_window",
 		horizontal_alignment = "right",
-		size = {
-			244,
-			95
-		},
+		size = info_corner_size,
 		position = {
 			0,
 			40,
@@ -80,10 +82,7 @@ local scenegraph_definition = {
 		vertical_alignment = "bottom",
 		parent = "info_window",
 		horizontal_alignment = "left",
-		size = {
-			244,
-			95
-		},
+		size = info_corner_size,
 		position = {
 			0,
 			-40,
@@ -94,16 +93,14 @@ local scenegraph_definition = {
 		vertical_alignment = "bottom",
 		parent = "info_window",
 		horizontal_alignment = "right",
-		size = {
-			244,
-			95
-		},
+		size = info_corner_size,
 		position = {
 			0,
 			-40,
 			2
 		}
 	},
+	--=========================================
 	title_text = {
 		vertical_alignment = "top",
 		parent = "info_window",
