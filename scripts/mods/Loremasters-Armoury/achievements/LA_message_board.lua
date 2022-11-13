@@ -190,6 +190,14 @@ LetterBoard.change_active_quest = function(self, new_quest)
     end
 end
 
+LetterBoard.is_quest_active = function(self, new_quest)
+    local active_quest = self.active_quest
+    if active_quest == new_quest then
+        return true
+    end
+    return false
+end
+
 LetterBoard.add_lantern_light = function(self)
     local lantern = "units/props/lanterns/lantern_01/prop_lantern_01"
     if is_available("unit", lantern) then

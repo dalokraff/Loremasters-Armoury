@@ -23,6 +23,9 @@ data = {
     color_slot = "texture_map_64cc5eb8" 
     norm_slot = "texture_map_861dbfdc"
     MAB_slot = "texture_map_b788717c"
+
+	decoration_settings_key = "test_painting"
+	current_quest = "test_painting"
     
 
     interaction_data = {

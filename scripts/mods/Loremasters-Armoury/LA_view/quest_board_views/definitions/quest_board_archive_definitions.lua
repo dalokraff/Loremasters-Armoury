@@ -13,6 +13,13 @@ local info_window_size = {
 	450,
 	list_window_size[2] + 20
 }
+local IS_PC = IS_WINDOWS
+local entry_height = (IS_PC and 35) or 50
+local entry_font_size = (IS_PC and 22) or 28
+local list_entry_size = {
+	400,
+	entry_height
+}
 
 local scenegraph_definition = {
 	root = {
@@ -26,6 +33,81 @@ local scenegraph_definition = {
 	  horizontal_alignment = "center",
 	  size = { 150, 50 },
 	  position = { 0, 0, 0 }
+	},
+	list_window = {
+		vertical_alignment = "top",
+		parent = "root",
+		horizontal_alignment = "left",
+		size = list_window_size,
+		position = {
+			120,
+			-140,
+			10
+		}
+	},
+	list_scrollbar = {
+		vertical_alignment = "top",
+		parent = "list_window",
+		horizontal_alignment = "left",
+		size = list_scrollbar_size,
+		position = {
+			-30,
+			-10,
+			10
+		}
+	},
+	list_scroll_root = {
+		vertical_alignment = "top",
+		parent = "list_window",
+		horizontal_alignment = "left",
+		size = {
+			0,
+			0
+		},
+		position = {
+			0,
+			0,
+			0
+		}
+	},
+	list_entry = {
+		vertical_alignment = "top",
+		parent = "list_scroll_root",
+		horizontal_alignment = "left",
+		size = list_entry_size,
+		position = {
+			25,
+			0,
+			0
+		}
+	},
+	list_detail_top = {
+		vertical_alignment = "top",
+		parent = "list_scrollbar",
+		horizontal_alignment = "left",
+		size = {
+			488,
+			95
+		},
+		position = {
+			-45,
+			60,
+			2
+		}
+	},
+	list_detail_bottom = {
+		vertical_alignment = "bottom",
+		parent = "list_scrollbar",
+		horizontal_alignment = "left",
+		size = {
+			488,
+			95
+		},
+		position = {
+			-45,
+			-60,
+			2
+		}
 	},
 	close_button = {
 		vertical_alignment = "bottom",
@@ -517,6 +599,532 @@ local function create_list_mask(scenegraph_id, size, fade_height)
 	return widget
 end
 
+local function create_entry_widget()
+	local masked = true
+	local hover_frame_settings = UIFrameSettings.frame_outer_glow_04
+	local hover_frame_spacing = hover_frame_settings.texture_sizes.horizontal[2]
+	local new_frame_settings = UIFrameSettings.frame_outer_glow_01
+	local new_frame_spacing = new_frame_settings.texture_sizes.horizontal[2]
+	local pulse_frame_name = "frame_outer_glow_04_big"
+	local pulse_frame_settings = UIFrameSettings[pulse_frame_name]
+	local pulse_frame_spacing = pulse_frame_settings.texture_sizes.horizontal[2]
+	local scenegraph_id = "list_entry"
+	local size = scenegraph_definition[scenegraph_id].size
+	local passes = {
+		{
+			style_id = "background",
+			pass_type = "hotspot",
+			content_id = "button_hotspot"
+		},
+		{
+			style_id = "title",
+			pass_type = "text",
+			text_id = "title",
+			content_check_function = function (content)
+				return not content.locked
+			end
+		},
+		{
+			style_id = "locked_title",
+			pass_type = "text",
+			text_id = "title",
+			content_check_function = function (content)
+				return content.locked
+			end
+		},
+		{
+			style_id = "title_shadow",
+			pass_type = "text",
+			text_id = "title"
+		},
+		{
+			pass_type = "texture",
+			style_id = "background",
+			texture_id = "background"
+		},
+		{
+			pass_type = "texture",
+			style_id = "edge_fade",
+			texture_id = "edge_fade"
+		},
+		{
+			pass_type = "texture_frame",
+			style_id = "hover_frame",
+			texture_id = "hover_frame"
+		},
+		{
+			style_id = "new_frame",
+			texture_id = "new_frame",
+			pass_type = "texture_frame",
+			content_check_function = function (content)
+				return content.new and not content.button_hotspot.is_hover
+			end,
+			content_change_function = function (content, style)
+				local progress = 0.5 + math.sin(Managers.time:time("ui") * 5) * 0.5
+				style.color[1] = 55 + progress * 200
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "dot_texture",
+			texture_id = "dot_texture",
+			content_check_function = function (content)
+				local locked = content.locked
+				local equipped = content.equipped
+				local new = content.new
+				local in_use = content.in_use
+
+				return not locked and not equipped and not new and not in_use
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "lock_texture",
+			texture_id = "lock_texture",
+			content_check_function = function (content)
+				return content.locked
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "equipped_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.equipped
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "equipped_shadow_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.equipped
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "in_use_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.in_use and not content.equipped
+			end
+		},
+		{
+			style_id = "new_texture",
+			texture_id = "new_texture",
+			pass_type = "texture",
+			content_check_function = function (content)
+				return content.new
+			end,
+			content_change_function = function (content, style)
+				local progress = 0.5 + math.sin(Managers.time:time("ui") * 5) * 0.5
+				style.color[1] = 55 + progress * 200
+			end
+		},
+		{
+			pass_type = "texture_frame",
+			style_id = "pulse_frame",
+			texture_id = "pulse_frame"
+		}
+	}
+	local content = {
+		background = "rect_masked",
+		locked = false,
+		title = "",
+		lock_texture = "achievement_symbol_lock",
+		equipped = false,
+		equipped_texture = "matchmaking_checkbox",
+		new_texture = "list_item_tag_new",
+		edge_fade = "playername_bg_02",
+		new = false,
+		dot_texture = "tooltip_marker",
+		button_hotspot = {},
+		hover_frame = hover_frame_settings.texture,
+		new_frame = new_frame_settings.texture,
+		pulse_frame = pulse_frame_settings.texture,
+		size = size
+	}
+	local style = {
+		title = {
+			localize = false,
+			horizontal_alignment = "left",
+			vertical_alignment = "center",
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = Colors.get_color_table_with_alpha("font_default", 255),
+			hover_text_color = Colors.get_color_table_with_alpha("white", 255),
+			default_text_color = Colors.get_color_table_with_alpha("font_default", 255),
+			offset = {
+				40,
+				0,
+				2
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		locked_title = {
+			localize = false,
+			horizontal_alignment = "left",
+			vertical_alignment = "center",
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			hover_text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			default_text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			offset = {
+				40,
+				0,
+				2
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		title_shadow = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			localize = false,
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = Colors.get_color_table_with_alpha("black", 255),
+			offset = {
+				41,
+				-1,
+				1
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		background = {
+			masked = masked,
+			size = {
+				size[1] - 20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		edge_fade = {
+			vertical_alignment = "center",
+			horizontal_alignment = "right",
+			masked = masked,
+			texture_size = {
+				20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		hover_frame = {
+			masked = masked,
+			texture_size = hover_frame_settings.texture_size,
+			texture_sizes = hover_frame_settings.texture_sizes,
+			color = {
+				0,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				6
+			},
+			size = {
+				size[1],
+				size[2]
+			},
+			frame_margins = {
+				-hover_frame_spacing,
+				-hover_frame_spacing
+			}
+		},
+		pulse_frame = {
+			horizontal_alignment = "left",
+			vertical_alignment = "bottom",
+			masked = masked,
+			area_size = size,
+			texture_size = pulse_frame_settings.texture_size,
+			texture_sizes = pulse_frame_settings.texture_sizes,
+			frame_margins = {
+				-pulse_frame_spacing,
+				-pulse_frame_spacing
+			},
+			color = {
+				0,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				12
+			}
+		},
+		new_frame = {
+			masked = masked,
+			texture_size = new_frame_settings.texture_size,
+			texture_sizes = new_frame_settings.texture_sizes,
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				6
+			},
+			size = {
+				size[1],
+				size[2]
+			},
+			frame_margins = {
+				-new_frame_spacing,
+				-new_frame_spacing
+			}
+		},
+		dot_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				13,
+				13
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				11,
+				-1,
+				5
+			}
+		},
+		lock_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				56,
+				40
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				-10,
+				0,
+				2
+			}
+		},
+		equipped_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("green", 255),
+			offset = {
+				4,
+				0,
+				3
+			}
+		},
+		equipped_shadow_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("black", 255),
+			offset = {
+				5,
+				-1,
+				2
+			}
+		},
+		new_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				113.4,
+				45.9
+			},
+			color = Colors.get_color_table_with_alpha("white", 255),
+			offset = {
+				-64,
+				0,
+				2
+			}
+		},
+		in_use_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("gray", 255),
+			offset = {
+				4,
+				0,
+				3
+			}
+		}
+	}
+	local widget = {}
+	local element = {
+		passes = passes
+	}
+	widget.element = element
+	widget.content = content
+	widget.style = style
+	widget.offset = {
+		0,
+		0,
+		0
+	}
+	widget.scenegraph_id = scenegraph_id
+
+	return widget
+end
+
+local function create_dummy_entry_widget()
+	local masked = true
+	local scenegraph_id = "list_entry"
+	local size = scenegraph_definition[scenegraph_id].size
+	local passes = {
+		{
+			pass_type = "texture",
+			style_id = "background",
+			texture_id = "background"
+		},
+		{
+			pass_type = "texture",
+			style_id = "edge_fade",
+			texture_id = "edge_fade"
+		}
+	}
+	local content = {
+		title = "",
+		locked = false,
+		background = "rect_masked",
+		edge_fade = "playername_bg_02",
+		new = false,
+		equipped = false,
+		button_hotspot = {},
+		size = size
+	}
+	local style = {
+		background = {
+			masked = masked,
+			size = {
+				size[1] - 20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		edge_fade = {
+			vertical_alignment = "center",
+			horizontal_alignment = "right",
+			masked = masked,
+			texture_size = {
+				20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		}
+	}
+	local widget = {}
+	local element = {
+		passes = passes
+	}
+	widget.element = element
+	widget.content = content
+	widget.style = style
+	widget.offset = {
+		0,
+		0,
+		0
+	}
+	widget.scenegraph_id = scenegraph_id
+
+	return widget
+end
+
 
 
 
@@ -662,9 +1270,40 @@ local animation_definitions = {
 	}
 }
 
+local generic_input_actions = {
+	{
+		input_action = "back",
+		priority = 3,
+		description_text = "input_description_close"
+	}
+}
+local input_actions = {
+	default = {
+		actions = {
+			{
+				input_action = "confirm",
+				priority = 2,
+				description_text = "input_description_apply"
+			}
+		}
+	},
+	remove = {
+		actions = {
+			{
+				input_action = "confirm",
+				priority = 2,
+				description_text = "input_description_remove"
+			}
+		}
+	}
+}
 
 return {
 	scenegraph_definition = scenegraph_definition,
+	entry_widget_definition = create_entry_widget(),
+	dummy_entry_widget_definition = create_dummy_entry_widget(),
 	widgets = widgets_definitions,
 	animation_definitions = animation_definitions, 
+	generic_input_actions = generic_input_actions,
+	input_actions = input_actions,
 }
