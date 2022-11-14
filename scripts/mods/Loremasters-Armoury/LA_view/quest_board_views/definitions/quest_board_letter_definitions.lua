@@ -306,11 +306,11 @@ local scenegraph_definition = {
 	reward_display = {
 		vertical_alignment = "top",
 		parent = "info_window_left_side",
-		horizontal_alignment = "center",
+		horizontal_alignment = "left",
 		size = reward_display_size,
 		position = {
-			0,
-			-50,
+			50,
+			100,
 			2
 		}
 	},
@@ -499,7 +499,7 @@ local function create_trait_option(scenegraph_id, title_text, description_text, 
 				}
 			},
 			description_text = {
-				-- word_wrap = true,
+				word_wrap = true,
 				upper_case = false,
 				localize = false,
 				font_size = 20,
@@ -519,7 +519,7 @@ local function create_trait_option(scenegraph_id, title_text, description_text, 
 				}
 			},
 			description_text_shadow = {
-				-- word_wrap = true,
+				word_wrap = true,
 				upper_case = false,
 				localize = false,
 				font_size = 20,

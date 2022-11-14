@@ -46,8 +46,8 @@ function QuestBoardLetterView:on_enter(transition_params)
 	}
   self._animations = {}
   self._ui_animations = {}
+  self.quest_board = mod.letter_board
   self._interactable_unit = mod.interactable_unit
-
 
   self._default_table = mod.painting
   self._main_table = mod.painting
@@ -151,11 +151,19 @@ end
 
 QuestBoardLetterView.setup_reward_display = function (self, title_text, description_text, icon)
 	local widgets = self._widgets
-	local name = "reward"
-	local trait_advanced_description = name.."_description_adv"
-	local trait_icon = "la_mq01_reward_sub9_icon"
+	local unit_name = Unit.get_data(self._interactable_unit, "unit_name")
+	local quest_board = self.quest_board
+	local active_quest = quest_board.active_quest
+	local main_quest = QuestLetters[active_quest]
+	local sub_quest_data = main_quest[unit_name]
+	local sub_quest_name = sub_quest_data.sub_quest_name
+	local reward_data = ItemMasterList[sub_quest_name.."_reward"]
+	local name = reward_data.display_name or ""
+	local trait_advanced_description = reward_data.information_text or ""
+	local trait_icon = reward_data.inventory_icon
 	local title_text = Localize(name)
-	local description_text = name.."_desc"
+	-- local description_text = reward_data.description or ""
+	local description_text = Localize(reward_data.description or reward_data.item_type or "")
 	local widget, additional_height = self:_create_reward_display(title_text, description_text, trait_icon)
 	widgets[#widgets + 1] = widget
 
