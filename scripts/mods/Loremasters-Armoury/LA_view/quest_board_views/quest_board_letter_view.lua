@@ -5,6 +5,7 @@ local widget_definitions = definitions.widgets
 local scenegraph_definition = definitions.scenegraph_definition
 local animation_definitions = definitions.animation_definitions
 local create_trait_option = definitions.create_trait_option
+local create_reward_option = definitions.create_reward_option
 
 
 local DO_RELOAD = true
@@ -136,7 +137,7 @@ end
 QuestBoardLetterView._create_reward_display = function (self, title_text, description_text, icon)
 	local ui_top_renderer = self._ui_top_renderer
 	local scenegraph_id = "reward_display"
-	local definition = create_trait_option(scenegraph_id, title_text, description_text, icon)
+	local definition = create_reward_option(scenegraph_id, title_text, description_text, icon)
 	local widget = UIWidget.init(definition)
 	local content = widget.content
 	local style = widget.style

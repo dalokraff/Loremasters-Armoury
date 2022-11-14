@@ -19,15 +19,15 @@ local info_window_right_side_size = {
 }
 
 local info_window_left_side_size = {
-	500,
+	550,
 	400,
 }
 
 
 
 local reward_display_size = {
-	300,
-	150
+	413,
+	300
 }
 
 local reward_display_corner_size = {
@@ -548,6 +548,158 @@ local function create_trait_option(scenegraph_id, title_text, description_text, 
 	}
 end
 
+local function create_reward_option(scenegraph_id, title_text, description_text, icon)
+	local masked = false
+
+	return {
+		element = {
+			passes = {
+				{
+					pass_type = "texture",
+					style_id = "texture_id",
+					texture_id = "texture_id"
+				},
+				{
+					style_id = "title_text",
+					pass_type = "text",
+					text_id = "title_text"
+				},
+				{
+					style_id = "title_text_shadow",
+					pass_type = "text",
+					text_id = "title_text"
+				},
+				{
+					style_id = "description_text",
+					pass_type = "text",
+					text_id = "description_text"
+				},
+				{
+					style_id = "description_text_shadow",
+					pass_type = "text",
+					text_id = "description_text"
+				}
+			}
+		},
+		content = {
+			title_text = title_text,
+			description_text = description_text,
+			texture_id = icon
+		},
+		style = {
+			texture_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				masked = masked,
+				texture_size = {
+					100,
+					100
+				},
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					-- 0,
+					-- 0,
+					-- 1
+					0,
+					-50,
+					0,
+				}
+			},
+			title_text = {
+				-- word_wrap = true,
+				upper_case = true,
+				localize = false,
+				font_size = 20,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				dynamic_font_size = true,
+				size = {
+					400,
+					50
+				},
+				font_type = (masked and "hell_shark_masked") or "hell_shark",
+				text_color = Colors.get_color_table_with_alpha("font_title", 255),
+				offset = {
+					40,
+					-5,
+					3
+				}
+			},
+			title_text_shadow = {
+				-- word_wrap = true,
+				upper_case = true,
+				localize = false,
+				font_size = 20,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				dynamic_font_size = true,
+				size = {
+					400,
+					50
+				},
+				font_type = (masked and "hell_shark_masked") or "hell_shark",
+				text_color = Colors.get_color_table_with_alpha("black", 255),
+				offset = {
+					41,
+					-6,
+					2
+				}
+			},
+			description_text = {
+				word_wrap = true,
+				upper_case = false,
+				localize = false,
+				font_size = 20,
+				horizontal_alignment = "left",
+				vertical_alignment = "top",
+				dynamic_font_size = false,
+				size = {
+					400,
+					50
+				},
+				font_type = (masked and "hell_shark_masked") or "hell_shark",
+				text_color = Colors.get_color_table_with_alpha("font_default", 255),
+				offset = {
+					40,
+					-47,
+					3
+				}
+			},
+			description_text_shadow = {
+				word_wrap = true,
+				upper_case = false,
+				localize = false,
+				font_size = 20,
+				horizontal_alignment = "left",
+				vertical_alignment = "top",
+				dynamic_font_size = false,
+				size = {
+					400,
+					50
+				},
+				font_type = (masked and "hell_shark_masked") or "hell_shark",
+				text_color = Colors.get_color_table_with_alpha("black", 255),
+				offset = {
+					41,
+					-48,
+					2
+				}
+			}
+		},
+		offset = {
+			0,
+			0,
+			0
+		},
+		scenegraph_id = scenegraph_id
+	}
+end
+
 
 local function create_rect_with_frame(scenegraph_id, size, rect_color)
 	local widget = {
@@ -898,4 +1050,5 @@ return {
 	widgets = widgets_definitions,
 	animation_definitions = animation_definitions, 
 	create_trait_option = create_trait_option,
+	create_reward_option = create_reward_option,
 }
