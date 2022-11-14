@@ -79,17 +79,17 @@ menu.options.widgets = {
 		sub_widgets = {},
 	},
 	{
-        setting_id = "quest_board_letter_view",
+        setting_id = "armoury_view",
         type = "keybind",
         keybind_type = "view_toggle",
 		keybind_trigger = "pressed",
 		default_value = {
 
 		},
-        view_name = "quest_board_letter_view",
+        view_name = "armoury_view",
         transition_data = {
-          open_view_transition_name = "open_quest_board_letter_view",
-          close_view_transition_name = "close_quest_board_letter_view",
+          open_view_transition_name = "open_armoury_view",
+          close_view_transition_name = "close_armoury_view",
           transition_fade = true
         }
 	}

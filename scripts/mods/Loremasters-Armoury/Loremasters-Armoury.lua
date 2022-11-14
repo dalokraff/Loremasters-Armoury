@@ -369,6 +369,35 @@ local archive_view_data = {
   }
 mod:register_view(archive_view_data)
 
+
+
+mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/armoury_view")
+local armoury_view_data = {
+    view_name = "armoury_view",
+    view_settings = {
+      init_view_function = function(ingame_ui_context)
+        return ArmouryView:new(ingame_ui_context)
+      end,
+      active = {        -- Only enable in keep
+        inn = true,
+        ingame = false
+      },
+      blocked_transitions = {
+        inn = {},
+        ingame = {}
+      }
+    },
+    view_transitions = {
+      open_armoury_view = function(ingame_ui)
+        ingame_ui.current_view = "armoury_view"
+      end,
+      close_armoury_view = function(ingame_ui)
+        ingame_ui.current_view = nil
+      end
+    }
+  }
+mod:register_view(armoury_view_data)
+
 -- mod:dofile("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/test_widget")
 -- local view_data = {
 --     view_name = "quest_board_letter_view",
