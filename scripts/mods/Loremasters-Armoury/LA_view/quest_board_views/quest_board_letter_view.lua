@@ -201,14 +201,10 @@ QuestBoardLetterView._setup_modifier_list = function (self)
 	local main_quest = QuestLetters[active_quest]
 	local sub_quest_data = main_quest[unit_name]
 	local sub_quest_name = sub_quest_data.sub_quest_name
-
 	local modifiers = mod.sub_quest_modifiers[active_quest][sub_quest_name] or {}
-	
-	mod:echo(mod.sub_quest_modifiers[sub_quest_name])
-	mod:echo(sub_quest_name)
+
 	for _,modifier_data in pairs(modifiers) do
 		local approved = false
-		mod:echo(modifier_data)
 		local trait_name = modifier_data.name or ""
 		local trait_advanced_description = modifier_data.desc or ""
 		local trait_icon = modifier_data.icon
