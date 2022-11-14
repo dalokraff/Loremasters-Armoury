@@ -4,6 +4,8 @@ local definitions = local_require("scripts/mods/Loremasters-Armoury/LA_view/ques
 local widget_definitions = definitions.widgets
 local scenegraph_definition = definitions.scenegraph_definition
 local animation_definitions = definitions.animation_definitions
+local create_trait_option = definitions.create_trait_option
+
 
 local DO_RELOAD = true
 
@@ -49,7 +51,12 @@ function QuestBoardLetterView:on_enter(transition_params)
 
   self._default_table = mod.painting
   self._main_table = mod.painting
-  self._ordered_table = mod.list_order
+  self._ordered_table = {
+	"place",
+	"holder",
+	"hello",
+	"world",
+  }
   self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
 
 --   self:_initialize_simple_decoration_preview()
@@ -125,6 +132,75 @@ QuestBoardLetterView._set_selected_artist = function (self, artist_text)
 	return text_height
 end
 
+
+QuestBoardLetterView._create_reward_display = function (self, title_text, description_text, icon)
+	local ui_top_renderer = self._ui_top_renderer
+	local scenegraph_id = "reward_display"
+	local definition = create_trait_option(scenegraph_id, title_text, description_text, icon)
+	local widget = UIWidget.init(definition)
+	local content = widget.content
+	local style = widget.style
+	local text_style = style.text
+	local description_text_style = style.description_text
+	local description_text_size = description_text_style.size
+	local text_height = math.floor(UIUtils.get_text_height(ui_top_renderer, description_text_size, description_text_style, description_text))
+	local additional_height = math.floor(text_height)
+
+	return widget, additional_height
+end
+
+QuestBoardLetterView.setup_reward_display = function (self, title_text, description_text, icon)
+	local widgets = self._widgets
+	local name = "reward"
+	local trait_advanced_description = name.."_description_adv"
+	local trait_icon = "la_mq01_reward_sub9_icon"
+	local title_text = Localize(name)
+	local description_text = name.."_desc"
+	local widget, additional_height = self:_create_reward_display(title_text, description_text, trait_icon)
+	widgets[#widgets + 1] = widget
+
+	
+end
+
+
+QuestBoardLetterView._create_trait_option_entry = function (self, title_text, description_text, icon)
+	local ui_top_renderer = self._ui_top_renderer
+	local scenegraph_id = "trait_options"
+	local definition = create_trait_option(scenegraph_id, title_text, description_text, icon)
+	local widget = UIWidget.init(definition)
+	local content = widget.content
+	local style = widget.style
+	local text_style = style.text
+	local description_text_style = style.description_text
+	local description_text_size = description_text_style.size
+	local text_height = math.floor(UIUtils.get_text_height(ui_top_renderer, description_text_size, description_text_style, description_text))
+	local additional_height = math.floor(text_height)
+
+	return widget, additional_height
+end
+
+QuestBoardLetterView._setup_modifier_list = function (self)
+	local widgets = self._widgets
+	local edge_spacing = 45
+	local spacing = 30
+	local y_offset = edge_spacing
+	for _, name in pairs(self._ordered_table) do
+		local approved = false
+
+		local trait_name = name
+		local trait_advanced_description = name.."_description_adv"
+		local trait_icon = "la_mq01_reward_sub9_icon"
+		local title_text = Localize(trait_name)
+		local description_text = name.."_desc"
+		local widget, additional_height = self:_create_trait_option_entry(title_text, description_text, trait_icon)
+		widgets[#widgets + 1] = widget
+		widget.offset[2] = -y_offset
+		y_offset = y_offset + spacing + additional_height
+		
+	end
+	
+end
+
 QuestBoardLetterView._create_ui_elements = function (self)
 	self._ui_scenegraph = UISceneGraph.init_scenegraph(scenegraph_definition)
 	local widgets = {}
@@ -138,8 +214,15 @@ QuestBoardLetterView._create_ui_elements = function (self)
 	end
 
 
+	
+
+
 	self._widgets = widgets
 	self._widgets_by_name = widgets_by_name
+
+	self:_setup_modifier_list()
+
+	self:setup_reward_display()
 
 	UIRenderer.clear_scenegraph_queue(self._ui_renderer)
 
