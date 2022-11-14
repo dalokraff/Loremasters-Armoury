@@ -6,6 +6,7 @@ local scenegraph_definition = definitions.scenegraph_definition
 local animation_definitions = definitions.animation_definitions
 local create_trait_option = definitions.create_trait_option
 local create_reward_option = definitions.create_reward_option
+local create_sub_quest_option = definitions.create_sub_quest_option
 
 
 local DO_RELOAD = true
@@ -193,20 +194,69 @@ QuestBoardLetterView._setup_modifier_list = function (self)
 	local edge_spacing = 45
 	local spacing = 30
 	local y_offset = edge_spacing
-	for _, name in pairs(self._ordered_table) do
-		local approved = false
 
-		local trait_name = name
-		local trait_advanced_description = name.."_description_adv"
-		local trait_icon = "la_mq01_reward_sub9_icon"
+	local unit_name = Unit.get_data(self._interactable_unit, "unit_name")
+	local quest_board = self.quest_board
+	local active_quest = quest_board.active_quest
+	local main_quest = QuestLetters[active_quest]
+	local sub_quest_data = main_quest[unit_name]
+	local sub_quest_name = sub_quest_data.sub_quest_name
+
+	local modifiers = mod.sub_quest_modifiers[active_quest][sub_quest_name] or {}
+	
+	mod:echo(mod.sub_quest_modifiers[sub_quest_name])
+	mod:echo(sub_quest_name)
+	for _,modifier_data in pairs(modifiers) do
+		local approved = false
+		mod:echo(modifier_data)
+		local trait_name = modifier_data.name or ""
+		local trait_advanced_description = modifier_data.desc or ""
+		local trait_icon = modifier_data.icon
 		local title_text = Localize(trait_name)
-		local description_text = name.."_desc"
+		local description_text = modifier_data.desc or ""
 		local widget, additional_height = self:_create_trait_option_entry(title_text, description_text, trait_icon)
 		widgets[#widgets + 1] = widget
 		widget.offset[2] = -y_offset
 		y_offset = y_offset + spacing + additional_height
 		
 	end
+	
+end
+
+QuestBoardLetterView._create_sub_quest_display = function (self, title_text, description_text, icon)
+	local ui_top_renderer = self._ui_top_renderer
+	local scenegraph_id = "sub_quest_display"
+	local definition = create_sub_quest_option(scenegraph_id, title_text, description_text, icon)
+	local widget = UIWidget.init(definition)
+	local content = widget.content
+	local style = widget.style
+	local text_style = style.text
+	local description_text_style = style.description_text
+	local description_text_size = description_text_style.size
+	local text_height = math.floor(UIUtils.get_text_height(ui_top_renderer, description_text_size, description_text_style, description_text))
+	local additional_height = math.floor(text_height)
+
+	return widget, additional_height
+end
+
+QuestBoardLetterView.setup_sub_quest_display = function (self, title_text, description_text, icon)
+	local widgets = self._widgets
+	local unit_name = Unit.get_data(self._interactable_unit, "unit_name")
+	local quest_board = self.quest_board
+	local active_quest = quest_board.active_quest
+	local main_quest = QuestLetters[active_quest]
+	local sub_quest_data = main_quest[unit_name]
+	local sub_quest_name = sub_quest_data.sub_quest_name
+	local achievement_data = AchievementTemplates.achievements[sub_quest_name]
+	local name = achievement_data.name or ""
+	local trait_advanced_description = achievement_data.desc or ""
+	local trait_icon = achievement_data.icon
+	local title_text = Localize(name)
+
+	local description_text = Localize(achievement_data.desc or "")
+	local widget, additional_height = self:_create_sub_quest_display(title_text, description_text, trait_icon)
+	widgets[#widgets + 1] = widget
+
 	
 end
 
@@ -229,6 +279,7 @@ QuestBoardLetterView._create_ui_elements = function (self)
 	self._widgets = widgets
 	self._widgets_by_name = widgets_by_name
 
+	self:setup_sub_quest_display()
 	self:_setup_modifier_list()
 
 	self:setup_reward_display()
