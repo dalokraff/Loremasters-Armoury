@@ -19,6 +19,11 @@ local window_frame_name = "menu_frame_11"
 local window_frame = UIFrameSettings[window_frame_name]
 local window_frame_width = window_frame.texture_sizes.vertical[1]
 
+local original_skins_frame_size = {
+    400,
+    900
+}
+
 local scenegraph_definition = {
     root = {
 		is_root = true,
@@ -94,9 +99,52 @@ local scenegraph_definition = {
 		position = {
 			0,
 			0,
-			1
+			0
 		}
 	},
+    window_title = {
+		vertical_alignment = "top",
+		parent = "window",
+		horizontal_alignment = "center",
+		size = {
+			window_size[1]/2.2,
+			70
+		},
+		position = {
+			0,
+			45,
+			31
+		}
+	},
+	window_title_bg = {
+		vertical_alignment = "top",
+		parent = "window_title",
+		horizontal_alignment = "center",
+		size = {
+			410,
+			40
+		},
+		position = {
+			0,
+			-15,
+			-1
+		}
+	},
+	window_title_text = {
+		vertical_alignment = "center",
+		parent = "window_title",
+		horizontal_alignment = "center",
+		size = {
+			350,
+			50
+		},
+		position = {
+			0,
+			-8,
+			31
+		}
+	},
+
 	window_frame = {
 		vertical_alignment = "center",
 		parent = "screen",
@@ -119,6 +167,34 @@ local scenegraph_definition = {
 		position = {
 			0,
 			0,
+			-1
+		}
+	},
+    LA_preview = {
+		vertical_alignment = "bottom",
+		parent = "window_background",
+		horizontal_alignment = "center",
+		size = {
+			400,
+			600
+		},
+		position = {
+			0,
+			20,
+			0
+		}
+	},
+    window_bg_fill = {
+		vertical_alignment = "center",
+		parent = "window_background",
+		horizontal_alignment = "center",
+		size = {
+			window_size[1] - 5,
+			window_size[2] - 5
+		},
+		position = {
+			0,
+			0,
 			0
 		}
 	},
@@ -133,17 +209,138 @@ local scenegraph_definition = {
 			-1
 		}
 	},
+
+    original_skins_frame = {
+        vertical_alignment = "center",
+		parent = "window_background",
+		horizontal_alignment = "left",
+		size = original_skins_frame_size,
+		position = {
+			20,
+			0,
+			30
+		}
+    },
+    original_skins_title_text = {
+		vertical_alignment = "top",
+		parent = "original_skins_frame",
+		horizontal_alignment = "center",
+		size = {
+			original_skins_frame_size[1] - 40,
+			300
+		},
+		position = {
+			0,
+			-30,
+			31
+		}
+	},
+	original_skins_title_divider = {
+		vertical_alignment = "top",
+		parent = "original_skins_frame",
+		horizontal_alignment = "center",
+		size = {
+			100,
+			35
+		},
+		position = {
+			0,
+			-50,
+			31
+		}
+	},
+
     my_button = {
-      parent = "root",
+      parent = "window_background",
       vertical_alignment = "center",
       horizontal_alignment = "center",
       size = { 50, 35 },
-      position = { 0, 0, 0 }
+      position = { 0, 0, 2 },
     }
-  }
+}
+
+local viewport_definition = {
+    scenegraph_id = "LA_preview",
+    element = UIElements.Viewport,
+    style = {
+            viewport = {
+                layer = 900,
+                scenegraph_id = "LA_preview",
+                viewport_name = "LA_armoury_preview_viewport",
+                shading_environment = "environment/ui_end_screen",
+                level_name = "levels/end_screen/world",
+                viewport_type = "default_forward",
+                clear_screen_on_create = true,
+                enable_sub_gui = false,
+                fov = 80,
+                world_name = "LA_armoury_preview",
+                world_flags = {
+                    Application.DISABLE_SOUND,
+                    Application.DISABLE_ESRAM,
+                    Application.ENABLE_VOLUMETRICS
+                },
+                camera_position = { 1, 0, 1 },
+                camera_lookat = { 0, 0, 1 },
+            }
+        },
+    content = {
+        button_hotspot = {
+            allow_multi_hover = true
+        }
+    }
+}
+
+
+local window_title_text_style = {
+	dynamic_height = false,
+	upper_case = true,
+	localize = true,
+	word_wrap = true,
+	font_size = 28,
+	vertical_alignment = "top",
+	horizontal_alignment = "center",
+	use_shadow = true,
+	dynamic_font_size = false,
+	font_type = "hell_shark_header",
+	-- text_color = Colors.get_color_table_with_alpha("font_title", 255),
+    text_color = {255,247,170,6},
+	offset = {
+		0,
+		0,
+		2
+	}
+}
+
+local original_skins_title_text_style = {
+	dynamic_height = false,
+	upper_case = true,
+	localize = true,
+	word_wrap = true,
+	font_size = 28,
+	vertical_alignment = "top",
+	horizontal_alignment = "center",
+	use_shadow = true,
+	dynamic_font_size = false,
+	font_type = "hell_shark_header",
+    text_color = {255,247,170,6},
+	offset = {
+		0,
+		0,
+		2
+	}
+}
+
   
 local widgets_definitions = {    
     window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
+    window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "menu_frame_bg_02"),
+    window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
+	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
+    window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
+
+    original_skins_title_text = UIWidgets.create_simple_text("original_skin", "original_skins_title_text", nil, nil, original_skins_title_text_style),
+	original_skins_title_divider = UIWidgets.create_simple_texture("keep_decorations_divider_02", "original_skins_title_divider"),
+
     loading_icon = {
 		scenegraph_id = "loading_icon",
 		element = {
@@ -251,7 +448,7 @@ local widgets_definitions = {
 		  }
 		},
 		scenegraph_id = "my_button",
-		offset = { 0, 0, 0 }
+		offset = { 0, 0, 2 }
 	},
 }
 
@@ -322,4 +519,5 @@ return {
     console_cursor_definition = UIWidgets.create_console_cursor("console_cursor"),
     animation_definitions = animation_definitions,
     generic_input_actions = generic_input_actions,
+    viewport_definition = viewport_definition,
 }

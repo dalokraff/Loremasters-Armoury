@@ -6,6 +6,7 @@ local scenegraph_definition = definitions.scenegraph_definition
 local console_cursor_definition = definitions.console_cursor_definition
 local animation_definitions = definitions.animation_definitions
 local generic_input_actions = definitions.generic_input_actions
+local viewport_definition = definitions.viewport_definition
 
 
 local DO_RELOAD = false
@@ -61,7 +62,18 @@ ArmouryView.create_ui_elements = function (self, params)
 	local widgets = {}
 	local widgets_by_name = {}
 
-	for name, widget_definition in pairs(widget_definitions) do
+	-- if self.viewport_widget then
+    --     UIWidget.destroy(self.ui_renderer, self.viewport_widget)
+    --     self.viewport_widget = nil
+    -- end
+
+    if self.viewport_widget then
+        UIWidget.destroy(self.ui_renderer, self.viewport_widget) 
+        self.viewport_widget = nil
+    end
+
+    
+    for name, widget_definition in pairs(widget_definitions) do
 		if widget_definition then
 			local widget = UIWidget.init(widget_definition)
 			widgets[#widgets + 1] = widget
@@ -153,13 +165,25 @@ ArmouryView.draw = function (self, input_service, dt)
 	UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
 
 	for i,widget in pairs(widgets) do 
-		UIRenderer.draw_widget(ui_renderer, widget)
+		render_settings.alpha_multiplier = widget.alpha_multiplier or alpha_multiplier
+        UIRenderer.draw_widget(ui_renderer, widget)
 	end
 	-- UIRenderer.draw_widget(ui_renderer, self._widgets[1])
 
 	UIRenderer.end_pass(ui_renderer)
 
-	render_settings.alpha_multiplier = alpha_multiplier
+	
+
+    UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
+    -- local viewport_data = self._viewport_data
+    local viewport_widget = self.viewport_widget
+	if viewport_widget then
+		render_settings.alpha_multiplier = viewport_widget.alpha_multiplier or alpha_multiplier
+        UIRenderer.draw_widget(ui_renderer, viewport_widget)
+	end
+
+    UIRenderer.end_pass(ui_renderer)
+
 
 	if gamepad_active then
 		self._menu_input_description:draw(ui_top_renderer, dt)
@@ -168,7 +192,13 @@ end
 
 -- Required. Executed by `ingame_ui` every tick.
 function ArmouryView:update(dt, t)	
-	self:draw(self:input_service(), dt)
+	if not self.viewport_widget then
+        -- Managers.package:load("resource_packages/levels/ui_inventory_preview", "global")
+        self.viewport_widget = UIWidget.init(definitions.viewport_definition)
+        -- self.viewport_widget.style.viewport.camera_position = self.params.background.camera_position
+    end
+    
+    self:draw(self:input_service(), dt)
 
 	if self:_has_active_level_vote() then
         mod:handle_transition("close_quest_board_letter_view")
@@ -189,5 +219,10 @@ function ArmouryView:on_exit()
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
   
+    if self.viewport_widget then
+        UIWidget.destroy(self.ui_renderer, self.viewport_widget )    
+        self.viewport_widget = nil
+    end
+
 	ShowCursorStack.pop()
 end
