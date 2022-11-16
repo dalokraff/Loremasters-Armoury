@@ -19,10 +19,26 @@ local window_frame_name = "menu_frame_11"
 local window_frame = UIFrameSettings[window_frame_name]
 local window_frame_width = window_frame.texture_sizes.vertical[1]
 
+local list_window_size = {
+	400*0.9,
+	700*0.9
+}
+local list_scrollbar_size = {
+	16,
+	list_window_size[2] - 20
+}
+local entry_height = (IS_PC and 35) or 50
+local entry_font_size = (IS_PC and 22) or 28
+local list_entry_size = {
+	400,
+	entry_height
+}
+
 local original_skins_frame_size = {
     400,
     900
 }
+
 
 local scenegraph_definition = {
     root = {
@@ -113,7 +129,7 @@ local scenegraph_definition = {
 		position = {
 			0,
 			45,
-			31
+			30
 		}
 	},
 	window_title_bg = {
@@ -144,6 +160,34 @@ local scenegraph_definition = {
 			31
 		}
 	},
+    window_title_banner_left = {
+        vertical_alignment = "bottom",
+		parent = "window_title",
+		horizontal_alignment = "left",
+		size = {
+			200,
+			200
+		},
+		position = {
+			-60,
+			-170,
+			-1
+		}
+    },
+    window_title_banner_right = {
+        vertical_alignment = "bottom",
+		parent = "window_title",
+		horizontal_alignment = "right",
+		size = {
+			200,
+			200
+		},
+		position = {
+			60,
+			-170,
+			-1
+		}
+    },
 
 	window_frame = {
 		vertical_alignment = "center",
@@ -180,8 +224,64 @@ local scenegraph_definition = {
 		},
 		position = {
 			0,
-			20,
+			80,
 			0
+		}
+	},
+    sword_left_bottom = {
+		vertical_alignment = "bottom",
+		parent = "LA_preview",
+		horizontal_alignment = "center",
+		size = {
+			161,
+			47
+		},
+		position = {
+			-120,
+			-40,
+			32
+		}
+	},
+	sword_right_bottom = {
+		vertical_alignment = "bottom",
+		parent = "LA_preview",
+		horizontal_alignment = "center",
+		size = {
+			161,
+			47
+		},
+		position = {
+			120,
+			-40,
+			32
+		}
+	},
+    sword_left_top = {
+		vertical_alignment = "top",
+		parent = "LA_preview",
+		horizontal_alignment = "center",
+		size = {
+			161,
+			47
+		},
+		position = {
+			-120,
+			40,
+			32
+		}
+	},
+	sword_right_top = {
+		vertical_alignment = "top",
+		parent = "LA_preview",
+		horizontal_alignment = "center",
+		size = {
+			161,
+			47
+		},
+		position = {
+			120,
+			40,
+			32
 		}
 	},
     window_bg_fill = {
@@ -226,27 +326,196 @@ local scenegraph_definition = {
 		parent = "original_skins_frame",
 		horizontal_alignment = "center",
 		size = {
-			original_skins_frame_size[1] - 40,
+			list_window_size[1] - 40,
 			300
 		},
 		position = {
-			0,
-			-30,
+			80,
+			-100,
 			31
 		}
 	},
-	original_skins_title_divider = {
+    original_skins_list_window = {
 		vertical_alignment = "top",
 		parent = "original_skins_frame",
-		horizontal_alignment = "center",
+		horizontal_alignment = "left",
+		size = list_window_size,
+		position = {
+			-- 120,
+			-- -140,
+			-- 10
+            100,
+			-180,
+			10
+		}
+	},
+	original_skins_list_scrollbar = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_window",
+		horizontal_alignment = "left",
+		size = list_scrollbar_size,
+		position = {
+			-30,
+			-10,
+			10
+		}
+	},
+	original_skins_list_scroll_root = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_window",
+		horizontal_alignment = "left",
 		size = {
-			100,
-			35
+			0,
+			0
 		},
 		position = {
 			0,
-			-50,
+			0,
+			0
+		}
+	},
+	original_skins_list_entry = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = list_entry_size,
+		position = {
+			25,
+			0,
+			0
+		}
+	},
+	original_skins_list_detail_top = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scrollbar",
+		horizontal_alignment = "left",
+		size = {
+			488,
+			95
+		},
+		position = {
+			-45,
+			60,
+			2
+		}
+	},
+	original_skins_list_detail_bottom = {
+		vertical_alignment = "bottom",
+		parent = "original_skins_list_scrollbar",
+		horizontal_alignment = "left",
+		size = {
+			488,
+			95
+		},
+		position = {
+			-45,
+			-60,
+			2
+		}
+	},
+
+
+    LA_skins_frame = {
+        vertical_alignment = "center",
+		parent = "window_background",
+		horizontal_alignment = "right",
+		size = LA_skins_frame_size,
+		position = {
+			-20,
+			0,
+			30
+		}
+    },
+    LA_skins_title_text = {
+		vertical_alignment = "top",
+		parent = "LA_skins_frame",
+		horizontal_alignment = "right",
+		size = {
+			list_window_size[1] - 40,
+			300
+		},
+		position = {
+			-80,
+			-100,
 			31
+		}
+	},
+    LA_skins_list_window = {
+		vertical_alignment = "top",
+		parent = "LA_skins_frame",
+		horizontal_alignment = "right",
+		size = list_window_size,
+		position = {
+			-- 120,
+			-- -140,
+			-- 10
+            -100,
+			-180,
+			10
+		}
+	},
+	LA_skins_list_scrollbar = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_window",
+		horizontal_alignment = "right",
+		size = list_scrollbar_size,
+		position = {
+			30,
+			-10,
+			10
+		}
+	},
+	LA_skins_list_scroll_root = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_window",
+		horizontal_alignment = "right",
+		size = {
+			0,
+			0
+		},
+		position = {
+			0,
+			0,
+			0
+		}
+	},
+	LA_skins_list_entry = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "right",
+		size = list_entry_size,
+		position = {
+			25,
+			0,
+			0
+		}
+	},
+	LA_skins_list_detail_top = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_scrollbar",
+		horizontal_alignment = "right",
+		size = {
+			488,
+			95
+		},
+		position = {
+			45,
+			60,
+			2
+		}
+	},
+	LA_skins_list_detail_bottom = {
+		vertical_alignment = "bottom",
+		parent = "LA_skins_list_scrollbar",
+		horizontal_alignment = "right",
+		size = {
+			488,
+			95
+		},
+		position = {
+			45,
+			-60,
+			2
 		}
 	},
 
@@ -279,7 +548,7 @@ local viewport_definition = {
                     Application.DISABLE_ESRAM,
                     Application.ENABLE_VOLUMETRICS
                 },
-                camera_position = { 1, 0, 1 },
+                camera_position = { -1, 0, 1 },
                 camera_lookat = { 0, 0, 1 },
             }
         },
@@ -330,16 +599,770 @@ local original_skins_title_text_style = {
 	}
 }
 
+local LA_skins_title_text_style = {
+	dynamic_height = false,
+	upper_case = true,
+	localize = true,
+	word_wrap = true,
+	font_size = 28,
+	vertical_alignment = "top",
+	horizontal_alignment = "center",
+	use_shadow = true,
+	dynamic_font_size = false,
+	font_type = "hell_shark_header",
+    text_color = {255,247,170,6},
+	offset = {
+		0,
+		0,
+		2
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+local function create_list_mask(scenegraph_id, size, fade_height)
+	fade_height = fade_height or 20
+	local element = {
+		passes = {
+			{
+				pass_type = "hotspot",
+				content_id = "hotspot"
+			},
+			{
+				pass_type = "texture",
+				style_id = "mask",
+				texture_id = "mask_texture"
+			},
+			{
+				pass_type = "texture",
+				style_id = "mask_top",
+				texture_id = "mask_edge"
+			},
+			{
+				pass_type = "rotated_texture",
+				style_id = "mask_bottom",
+				texture_id = "mask_edge"
+			}
+		}
+	}
+	local content = {
+		mask_texture = "mask_rect",
+		mask_edge = "mask_rect_edge_fade",
+		hotspot = {}
+	}
+	local style = {
+		mask = {
+			vertical_alignment = "center",
+			horizontal_alignment = "center",
+			texture_size = {
+				size[1],
+				size[2]
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		mask_top = {
+			vertical_alignment = "top",
+			horizontal_alignment = "center",
+			texture_size = {
+				size[1],
+				fade_height
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				fade_height,
+				0
+			}
+		},
+		mask_bottom = {
+			vertical_alignment = "bottom",
+			horizontal_alignment = "center",
+			texture_size = {
+				size[1],
+				fade_height
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				-fade_height,
+				0
+			},
+			angle = math.pi,
+			pivot = {
+				size[1] / 2,
+				fade_height / 2
+			}
+		}
+	}
+	local widget = {
+		element = element,
+		content = content,
+		style = style,
+		offset = {
+			0,
+			0,
+			0
+		},
+		scenegraph_id = scenegraph_id
+	}
+
+	return widget
+end
+
+local function create_entry_widget()
+	local masked = true
+	local hover_frame_settings = UIFrameSettings.frame_outer_glow_04
+	local hover_frame_spacing = hover_frame_settings.texture_sizes.horizontal[2]
+	local new_frame_settings = UIFrameSettings.frame_outer_glow_01
+	local new_frame_spacing = new_frame_settings.texture_sizes.horizontal[2]
+	local pulse_frame_name = "frame_outer_glow_04_big"
+	local pulse_frame_settings = UIFrameSettings[pulse_frame_name]
+	local pulse_frame_spacing = pulse_frame_settings.texture_sizes.horizontal[2]
+	local scenegraph_id = "list_entry"
+	local size = scenegraph_definition[scenegraph_id].size
+	local passes = {
+		{
+			style_id = "background",
+			pass_type = "hotspot",
+			content_id = "button_hotspot"
+		},
+		{
+			style_id = "title",
+			pass_type = "text",
+			text_id = "title",
+			content_check_function = function (content)
+				return not content.locked
+			end
+		},
+		{
+			style_id = "locked_title",
+			pass_type = "text",
+			text_id = "title",
+			content_check_function = function (content)
+				return content.locked
+			end
+		},
+		{
+			style_id = "title_shadow",
+			pass_type = "text",
+			text_id = "title"
+		},
+		{
+			pass_type = "texture",
+			style_id = "background",
+			texture_id = "background"
+		},
+		{
+			pass_type = "texture",
+			style_id = "edge_fade",
+			texture_id = "edge_fade"
+		},
+		{
+			pass_type = "texture_frame",
+			style_id = "hover_frame",
+			texture_id = "hover_frame"
+		},
+		{
+			style_id = "new_frame",
+			texture_id = "new_frame",
+			pass_type = "texture_frame",
+			content_check_function = function (content)
+				return content.new and not content.button_hotspot.is_hover
+			end,
+			content_change_function = function (content, style)
+				local progress = 0.5 + math.sin(Managers.time:time("ui") * 5) * 0.5
+				style.color[1] = 55 + progress * 200
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "dot_texture",
+			texture_id = "dot_texture",
+			content_check_function = function (content)
+				local locked = content.locked
+				local equipped = content.equipped
+				local new = content.new
+				local in_use = content.in_use
+
+				return not locked and not equipped and not new and not in_use
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "lock_texture",
+			texture_id = "lock_texture",
+			content_check_function = function (content)
+				return content.locked
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "equipped_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.equipped
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "equipped_shadow_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.equipped
+			end
+		},
+		{
+			pass_type = "texture",
+			style_id = "in_use_texture",
+			texture_id = "equipped_texture",
+			content_check_function = function (content)
+				return content.in_use and not content.equipped
+			end
+		},
+		{
+			style_id = "new_texture",
+			texture_id = "new_texture",
+			pass_type = "texture",
+			content_check_function = function (content)
+				return content.new
+			end,
+			content_change_function = function (content, style)
+				local progress = 0.5 + math.sin(Managers.time:time("ui") * 5) * 0.5
+				style.color[1] = 55 + progress * 200
+			end
+		},
+		{
+			pass_type = "texture_frame",
+			style_id = "pulse_frame",
+			texture_id = "pulse_frame"
+		}
+	}
+	local content = {
+		background = "rect_masked",
+		locked = false,
+		title = "",
+		lock_texture = "achievement_symbol_lock",
+		equipped = false,
+		equipped_texture = "matchmaking_checkbox",
+		new_texture = "list_item_tag_new",
+		edge_fade = "playername_bg_02",
+		new = false,
+		dot_texture = "tooltip_marker",
+		button_hotspot = {},
+		hover_frame = hover_frame_settings.texture,
+		new_frame = new_frame_settings.texture,
+		pulse_frame = pulse_frame_settings.texture,
+		size = size
+	}
+	local style = {
+		title = {
+			localize = false,
+			horizontal_alignment = "left",
+			vertical_alignment = "center",
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = Colors.get_color_table_with_alpha("font_default", 255),
+			hover_text_color = Colors.get_color_table_with_alpha("white", 255),
+			default_text_color = Colors.get_color_table_with_alpha("font_default", 255),
+			offset = {
+				40,
+				0,
+				2
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		locked_title = {
+			localize = false,
+			horizontal_alignment = "left",
+			vertical_alignment = "center",
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			hover_text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			default_text_color = {
+				255,
+				80,
+				80,
+				80
+			},
+			offset = {
+				40,
+				0,
+				2
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		title_shadow = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			localize = false,
+			font_size = entry_font_size,
+			font_type = (masked and "hell_shark_masked") or "hell_shark",
+			text_color = Colors.get_color_table_with_alpha("black", 255),
+			offset = {
+				41,
+				-1,
+				1
+			},
+			size = {
+				size[1] - 55,
+				size[2]
+			}
+		},
+		background = {
+			masked = masked,
+			size = {
+				size[1] - 20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		edge_fade = {
+			vertical_alignment = "center",
+			horizontal_alignment = "right",
+			masked = masked,
+			texture_size = {
+				20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		hover_frame = {
+			masked = masked,
+			texture_size = hover_frame_settings.texture_size,
+			texture_sizes = hover_frame_settings.texture_sizes,
+			color = {
+				0,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				6
+			},
+			size = {
+				size[1],
+				size[2]
+			},
+			frame_margins = {
+				-hover_frame_spacing,
+				-hover_frame_spacing
+			}
+		},
+		pulse_frame = {
+			horizontal_alignment = "left",
+			vertical_alignment = "bottom",
+			masked = masked,
+			area_size = size,
+			texture_size = pulse_frame_settings.texture_size,
+			texture_sizes = pulse_frame_settings.texture_sizes,
+			frame_margins = {
+				-pulse_frame_spacing,
+				-pulse_frame_spacing
+			},
+			color = {
+				0,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				12
+			}
+		},
+		new_frame = {
+			masked = masked,
+			texture_size = new_frame_settings.texture_size,
+			texture_sizes = new_frame_settings.texture_sizes,
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				0,
+				0,
+				6
+			},
+			size = {
+				size[1],
+				size[2]
+			},
+			frame_margins = {
+				-new_frame_spacing,
+				-new_frame_spacing
+			}
+		},
+		dot_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				13,
+				13
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				11,
+				-1,
+				5
+			}
+		},
+		lock_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				56,
+				40
+			},
+			color = {
+				255,
+				255,
+				255,
+				255
+			},
+			offset = {
+				-10,
+				0,
+				2
+			}
+		},
+		equipped_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("green", 255),
+			offset = {
+				4,
+				0,
+				3
+			}
+		},
+		equipped_shadow_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("black", 255),
+			offset = {
+				5,
+				-1,
+				2
+			}
+		},
+		new_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				113.4,
+				45.9
+			},
+			color = Colors.get_color_table_with_alpha("white", 255),
+			offset = {
+				-64,
+				0,
+				2
+			}
+		},
+		in_use_texture = {
+			vertical_alignment = "center",
+			horizontal_alignment = "left",
+			masked = masked,
+			texture_size = {
+				37,
+				31
+			},
+			color = Colors.get_color_table_with_alpha("gray", 255),
+			offset = {
+				4,
+				0,
+				3
+			}
+		}
+	}
+	local widget = {}
+	local element = {
+		passes = passes
+	}
+	widget.element = element
+	widget.content = content
+	widget.style = style
+	widget.offset = {
+		0,
+		0,
+		0
+	}
+	widget.scenegraph_id = scenegraph_id
+
+	return widget
+end
+
+local function create_dummy_entry_widget()
+	local masked = true
+	local scenegraph_id = "list_entry"
+	local size = scenegraph_definition[scenegraph_id].size
+	local passes = {
+		{
+			pass_type = "texture",
+			style_id = "background",
+			texture_id = "background"
+		},
+		{
+			pass_type = "texture",
+			style_id = "edge_fade",
+			texture_id = "edge_fade"
+		}
+	}
+	local content = {
+		title = "",
+		locked = false,
+		background = "rect_masked",
+		edge_fade = "playername_bg_02",
+		new = false,
+		equipped = false,
+		button_hotspot = {},
+		size = size
+	}
+	local style = {
+		background = {
+			masked = masked,
+			size = {
+				size[1] - 20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		},
+		edge_fade = {
+			vertical_alignment = "center",
+			horizontal_alignment = "right",
+			masked = masked,
+			texture_size = {
+				20,
+				size[2]
+			},
+			color = {
+				180,
+				0,
+				0,
+				0
+			},
+			offset = {
+				0,
+				0,
+				0
+			}
+		}
+	}
+	local widget = {}
+	local element = {
+		passes = passes
+	}
+	widget.element = element
+	widget.content = content
+	widget.style = style
+	widget.offset = {
+		0,
+		0,
+		0
+	}
+	widget.scenegraph_id = scenegraph_id
+
+	return widget
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 local widgets_definitions = {    
+    original_skins_title_text = UIWidgets.create_simple_text("original_skin", "original_skins_title_text", nil, nil, original_skins_title_text_style),
+    original_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+		{
+			0,
+			0
+		},
+		{
+			1,
+			1
+		}
+	}, "original_skins_list_detail_top"),
+	original_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+		{
+			0,
+			1
+		},
+		{
+			1,
+			0
+		}
+	}, "original_skins_list_detail_bottom"),
+	original_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("original_skins_list_scrollbar", "original_skins_list_window", scenegraph_definition.original_skins_list_scrollbar.size, "gold"),
+	original_skins_list_mask = create_list_mask("original_skins_list_window", scenegraph_definition.original_skins_list_window.size, 10),
+
+
+    LA_skins_title_text = UIWidgets.create_simple_text("LA_skin", "LA_skins_title_text", nil, nil, LA_skins_title_text_style),
+    LA_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+		{
+			1,
+			0
+		},
+		{
+			0,
+			1
+		}
+	}, "LA_skins_list_detail_top"),
+	LA_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+		{
+			1,
+			1
+		},
+		{
+			0,
+			0
+		}
+	}, "LA_skins_list_detail_bottom"),
+	LA_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("LA_skins_list_scrollbar", "LA_skins_list_window", scenegraph_definition.LA_skins_list_scrollbar.size, "gold"),
+	LA_skins_list_mask = create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
+
     window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
     window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "menu_frame_bg_02"),
     window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
-    original_skins_title_text = UIWidgets.create_simple_text("original_skin", "original_skins_title_text", nil, nil, original_skins_title_text_style),
-	original_skins_title_divider = UIWidgets.create_simple_texture("keep_decorations_divider_02", "original_skins_title_divider"),
+    window_title_banner_left = UIWidgets.create_simple_texture("la_notification_icon", "window_title_banner_left"),
+    window_title_banner_right = UIWidgets.create_simple_texture("la_notification_icon", "window_title_banner_right"),
+    
+    sword_left_bottom = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_bottom"),
+	sword_right_bottom = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
+		{
+			1,
+			0
+		},
+		{
+			0,
+			1
+		}
+	}, "sword_right_bottom"),
+    sword_left_top = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_top"),
+	sword_right_top = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
+		{
+			1,
+			0
+		},
+		{
+			0,
+			1
+		}
+	}, "sword_right_top"),
 
     loading_icon = {
 		scenegraph_id = "loading_icon",
