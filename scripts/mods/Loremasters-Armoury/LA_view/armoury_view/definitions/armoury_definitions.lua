@@ -611,6 +611,20 @@ local scenegraph_definition = {
 			32 
 		},
 	},
+	hero_select_divider = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			430, 
+			20 
+		},
+		position = { 
+			0,
+			-50, 
+			32 
+		},
+	},
 	melee_item_select = {
 		parent = "hero_selection",
 		vertical_alignment = "center",
@@ -1501,6 +1515,8 @@ local widgets_definitions = {
 	ws_hero_select = UIWidgets.create_icon_button("ws_hero_select", scenegraph_definition.ws_hero_select.size, nil, nil, "tabs_class_icon_way_watcher_normal"),
 	wh_hero_select = UIWidgets.create_icon_button("wh_hero_select", scenegraph_definition.wh_hero_select.size, nil, nil, "tabs_class_icon_witch_hunter_normal"),
 	bw_hero_select = UIWidgets.create_icon_button("bw_hero_select", scenegraph_definition.bw_hero_select.size, nil, nil, "tabs_class_icon_bright_wizard_normal"),
+
+	hero_select_divider = UIWidgets.create_simple_texture("small_divider", "hero_select_divider"),
 
 	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
