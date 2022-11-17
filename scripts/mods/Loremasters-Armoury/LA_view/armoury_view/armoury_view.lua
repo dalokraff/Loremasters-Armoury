@@ -30,6 +30,19 @@ function ArmouryView:init(ingame_ui_context)
     self.ui_renderer = ingame_ui_context.ui_renderer
     self.ui_top_renderer = ingame_ui_context.ui_top_renderer
     self.voting_manager = ingame_ui_context.voting_manager
+
+    self.selected_hero = "es_select"
+    self.selected_item = "melee_select"
+    self.buttons = {
+        "es_hero_select",
+        "rv_hero_select",
+        "ws_hero_select",
+        "wh_hero_select",
+        "bw_hero_select",
+        "melee_item_select",
+        "ranged_item_select",
+        "skin_item_select",
+    }
 end
 
 -- Optional. Executed by `ingame_ui` after transitioning to your custom view.
@@ -115,6 +128,21 @@ ArmouryView._handle_input = function (self, dt, t)
 		return
     end
 
+    for _,name in pairs(self.buttons) do
+        if self:_is_button_pressed(widgets_by_name[name]) then
+            self:play_sound("Play_hud_select")
+            
+            if string.find(name, "hero_select") then
+                self.selected_hero = name
+
+            elseif string.find(name, "item_select") then
+                self.selected_item = name
+
+            end
+            
+            return
+        end
+    end
 
     if esc_pressed then
 
@@ -148,7 +176,17 @@ end
 
 
 ArmouryView.post_update = function (self, dt, t)	
+	self.ui_animator:update(dt)
+	self:_update_animations(dt)
+end
+
+ArmouryView._update_animations = function (self, dt)
+	local widgets_by_name = self._widgets_by_name
 	
+    for _,name in pairs(self.buttons) do
+        local button = widgets_by_name[name]
+	    UIWidgetUtils.animate_icon_button(button, dt)
+    end
 end
 
 

@@ -525,7 +525,137 @@ local scenegraph_definition = {
       horizontal_alignment = "center",
       size = { 50, 35 },
       position = { 0, 0, 2 },
-    }
+    },
+
+	hero_selection = {
+		parent = "window_background",
+		vertical_alignment = "top",
+		horizontal_alignment = "center",
+		size = { 
+			200, 
+			100 
+		},
+		position = { 
+			0,
+			0, 
+			2 
+		},
+	},
+	es_hero_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			-150,
+			0, 
+			32 
+		},
+	},
+	rv_hero_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			-75,
+			0, 
+			32 
+		},
+	},
+	ws_hero_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			0,
+			0, 
+			32 
+		},
+	},
+	wh_hero_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			75,
+			0, 
+			32 
+		},
+	},
+	bw_hero_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			150,
+			0, 
+			32 
+		},
+	},
+	melee_item_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			-90,
+			-100, 
+			32 
+		},
+	},
+	ranged_item_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			0,
+			-100, 
+			32 
+		},
+	},
+	skin_item_select = {
+		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			90,
+			-100, 
+			32 
+		},
+	},
+	
+
+
 }
 
 local viewport_definition = {
@@ -1363,6 +1493,19 @@ local widgets_definitions = {
 			1
 		}
 	}, "sword_right_top"),
+
+
+
+	es_hero_select = UIWidgets.create_icon_button("es_hero_select", scenegraph_definition.es_hero_select.size, nil, nil, "tabs_class_icon_empire_soldier_normal"),
+	rv_hero_select = UIWidgets.create_icon_button("rv_hero_select", scenegraph_definition.rv_hero_select.size, nil, nil, "tabs_class_icon_dwarf_ranger_normal"),
+	ws_hero_select = UIWidgets.create_icon_button("ws_hero_select", scenegraph_definition.ws_hero_select.size, nil, nil, "tabs_class_icon_way_watcher_normal"),
+	wh_hero_select = UIWidgets.create_icon_button("wh_hero_select", scenegraph_definition.wh_hero_select.size, nil, nil, "tabs_class_icon_witch_hunter_normal"),
+	bw_hero_select = UIWidgets.create_icon_button("bw_hero_select", scenegraph_definition.bw_hero_select.size, nil, nil, "tabs_class_icon_bright_wizard_normal"),
+
+	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
+	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
+	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
+
 
     loading_icon = {
 		scenegraph_id = "loading_icon",
