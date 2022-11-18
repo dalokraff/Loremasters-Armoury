@@ -494,3 +494,95 @@ mod:command("complete_sub_quest_09", "", function()
     mod.main_quest["sub_quest_09"] = true
     mod:set("sub_quest_09", true)
 end)
+
+
+--sort all items into better categories 
+
+mod.items_by_hero = {
+    es = {
+        melee = {},
+        ranged = {},
+        skin = {},
+    },
+    dr = {
+        melee = {},
+        ranged = {},
+        skin = {},
+    },
+    we = {
+        melee = {},
+        ranged = {},
+        skin = {},
+    },
+    wh = {
+        melee = {},
+        ranged = {},
+        skin = {},
+    },
+    bw = {
+        melee = {},
+        ranged = {},
+        skin = {},
+    },
+}
+
+for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
+    local base_skin = skin_list.common[1] or skin_list.rare[1] or skin_list.plentiful[1]
+    if base_skin then
+        local item_data = ItemMasterList[base_skin]
+        local matching_item_key = item_data.matching_item_key
+        local slot_type = ItemMasterList[matching_item_key].slot_type
+        local can_wield_tisch = item_data.can_wield or {}
+        for _,career in pairs(can_wield_tisch) do
+            local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)   
+            if slot_type then 
+                local item_key = slot_type
+            --    mod:echo(slot_type)
+                -- if slot_type == "hat" or slot_type == "skin" then
+                --     item_key = "skin"
+                -- end
+                    
+                    -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
+                if mod.items_by_hero[char] then
+                    if mod.items_by_hero[char][item_key] then
+                        if not mod.items_by_hero[char][item_key][base_skin] then
+                            -- mod:echo(base_skin.."_"..char)
+                            mod.items_by_hero[char][item_key][base_skin] = base_skin   
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+-- local mod = get_mod("Loremasters-Armoury")
+-- for k,v in pairs(mod.items_by_hero.es.melee) do
+--     mod:echo(v)
+-- end
+
+
+-- for item_name, item_data in pairs(ItemMasterList) do
+--     if item_name
+--     local can_wield_tisch = item_data.can_wield or {}
+--     for _,career in pairs(can_wield_tisch) do
+--         local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
+--         if item_data then
+--             local slot_type = item_data.slot_type
+--             if slot_type then 
+--                 local item_key = slot_type
+
+--                 if slot_type == "hat" or slot_type == "skin" then
+--                     item_key = "skin"
+--                 end
+                
+--                 -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
+--                 if mod.items_by_hero[char] then
+--                     if mod.items_by_hero[char][item_key] then
+--                         table.insert(mod.items_by_hero[char][item_key], item_name)
+--                     end
+--                 end
+--             end
+--         end
+--     end
+-- end

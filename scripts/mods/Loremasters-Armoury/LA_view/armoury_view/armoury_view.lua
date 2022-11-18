@@ -31,18 +31,22 @@ function ArmouryView:init(ingame_ui_context)
     self.ui_top_renderer = ingame_ui_context.ui_top_renderer
     self.voting_manager = ingame_ui_context.voting_manager
 
-    self.selected_hero = "es_select"
-    self.selected_item = "melee_select"
+    self.selected_hero = "es_hero_select"
+    self.selected_item = "melee_item_select"
     self.buttons = {
         "es_hero_select",
-        "rv_hero_select",
-        "ws_hero_select",
+        "dr_hero_select",
+        "we_hero_select",
         "wh_hero_select",
         "bw_hero_select",
         "melee_item_select",
         "ranged_item_select",
         "skin_item_select",
+        -- "original_skins_list_entry",
     }
+
+    self.items_by_hero = mod.items_by_hero
+
 end
 
 -- Optional. Executed by `ingame_ui` after transitioning to your custom view.
@@ -129,17 +133,26 @@ ArmouryView._handle_input = function (self, dt, t)
     end
 
     for _,name in pairs(self.buttons) do
-        if self:_is_button_pressed(widgets_by_name[name]) then
+        local button_widget = widgets_by_name[name]
+        if self:_is_button_pressed(button_widget) then
             self:play_sound("Play_hud_select")
             
             if string.find(name, "hero_select") then
                 self.selected_hero = name
-
+                self:unselect_buttons(widgets_by_name, "hero_select")
+                self:toggle_button(button_widget)
+                self:update_original_skin_list()
             elseif string.find(name, "item_select") then
                 self.selected_item = name
-
+                self:unselect_buttons(widgets_by_name, "item_select")
+                self:toggle_button(button_widget)
+                self:update_original_skin_list()
+            elseif string.find(name, "_original_skin") then
+                -- self.selected_item = name
+                self:unselect_buttons(widgets_by_name, "_original_skin")
+                self:toggle_button(button_widget)
+                -- self:update_original_skin_list()
             end
-            
             return
         end
     end
@@ -149,6 +162,69 @@ ArmouryView._handle_input = function (self, dt, t)
         mod:handle_transition("close_quest_board_letter_view")
 
         return
+    end
+end
+
+ArmouryView.unselect_buttons = function (self, widgets_by_name, category)
+    for _,name in pairs(self.buttons) do
+        local button_widget = widgets_by_name[name]
+        if string.find(name, category) then
+            button_widget.content.button_hotspot.is_selected = false
+        end
+    end
+end
+
+ArmouryView.toggle_button = function (self, button_widget)
+    button_widget.content.button_hotspot.is_selected = not button_widget.content.button_hotspot.is_selected
+end
+
+ArmouryView.update_original_skin_list = function (self)
+    local widgets = self._widgets
+	local widgets_by_name = self._widgets_by_name
+    local buttons = self.buttons
+    local original_skin_list_widgets = {}
+    self:clear_original_skin_list_widgets()
+    local selected_hero = string.gsub(self.selected_hero, "_hero_select", "")
+    local selected_item = string.gsub(self.selected_item, "_item_select", "")
+    local item_list = self.items_by_hero[selected_hero][selected_item]
+
+    local i = 0
+    for _,item_name in pairs(item_list) do
+        local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
+        local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
+        local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
+        new_widget_def.offset = {
+            0,
+            i*-60,
+            32
+        }
+        new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
+        i = i + 1
+        local widget = UIWidget.init(new_widget_def)
+        local widget_number = #widgets + 1
+        local button_number = #buttons + 1
+        local new_widget_name = item_name.."_original_skin"
+		widgets[widget_number] = widget
+		widgets_by_name[new_widget_name] = widget
+        original_skin_list_widgets[widget_number] = {
+            widget_name = new_widget_name,
+            button_number = button_number,
+        }
+        buttons[button_number] = new_widget_name
+    end
+
+    self._original_skin_list_widgets = original_skin_list_widgets
+end
+
+ArmouryView.clear_original_skin_list_widgets = function (self)
+    local original_skin_list_widgets = self._original_skin_list_widgets or {}
+    local widgets = self._widgets
+    local buttons = self.buttons
+	local widgets_by_name = self._widgets_by_name
+    for widget_number, data in pairs(original_skin_list_widgets) do
+        widgets[widget_number] = nil
+		widgets_by_name[data.widget_name] = nil
+        buttons[data.button_number] = nil
     end
 end
 

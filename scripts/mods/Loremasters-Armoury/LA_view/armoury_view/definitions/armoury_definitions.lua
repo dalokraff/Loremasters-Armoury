@@ -30,8 +30,8 @@ local list_scrollbar_size = {
 local entry_height = (IS_PC and 35) or 50
 local entry_font_size = (IS_PC and 22) or 28
 local list_entry_size = {
-	400,
-	entry_height
+	50,
+	50
 }
 
 local original_skins_frame_size = {
@@ -124,11 +124,11 @@ local scenegraph_definition = {
 		horizontal_alignment = "center",
 		size = {
 			window_size[1]/2.2,
-			70
+			60
 		},
 		position = {
 			0,
-			45,
+			34,
 			30
 		}
 	},
@@ -161,31 +161,31 @@ local scenegraph_definition = {
 		}
 	},
     window_title_banner_left = {
-        vertical_alignment = "bottom",
-		parent = "window_title",
-		horizontal_alignment = "left",
+        vertical_alignment = "top",
+		parent = "screen",
+		horizontal_alignment = "center",
 		size = {
-			95,
-			190
+			90,
+			180
 		},
 		position = {
-			60,
-			-170,
-			-1
+			342,
+			-90,
+			35
 		}
     },
     window_title_banner_right = {
-        vertical_alignment = "bottom",
-		parent = "window_title",
-		horizontal_alignment = "right",
+        vertical_alignment = "top",
+		parent = "screen",
+		horizontal_alignment = "center",
 		size = {
-			95, --528x1060
-			190
+			90, --528x1060
+			180
 		},
 		position = {
-			-60,
-			-170,
-			-1
+			-342,
+			-90,
+			35
 		}
     },
 
@@ -197,7 +197,7 @@ local scenegraph_definition = {
 		position = {
 			0,
 			0,
-			30
+			5
 		}
 	},
 	window_background = {
@@ -380,9 +380,9 @@ local scenegraph_definition = {
 		horizontal_alignment = "left",
 		size = list_entry_size,
 		position = {
-			25,
 			0,
-			0
+			0,
+			32
 		}
 	},
 	original_skins_list_detail_top = {
@@ -555,7 +555,7 @@ local scenegraph_definition = {
 			32 
 		},
 	},
-	rv_hero_select = {
+	dr_hero_select = {
 		parent = "hero_selection",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
@@ -569,7 +569,7 @@ local scenegraph_definition = {
 			32 
 		},
 	},
-	ws_hero_select = {
+	we_hero_select = {
 		parent = "hero_selection",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
@@ -692,7 +692,7 @@ local viewport_definition = {
                     Application.DISABLE_ESRAM,
                     Application.ENABLE_VOLUMETRICS
                 },
-                camera_position = { -1, 0, 1 },
+                camera_position = { 1, 0, 1 },
                 camera_lookat = { 0, 0, 1 },
             }
         },
@@ -1511,8 +1511,8 @@ local widgets_definitions = {
 
 
 	es_hero_select = UIWidgets.create_icon_button("es_hero_select", scenegraph_definition.es_hero_select.size, nil, nil, "tabs_class_icon_empire_soldier_normal"),
-	rv_hero_select = UIWidgets.create_icon_button("rv_hero_select", scenegraph_definition.rv_hero_select.size, nil, nil, "tabs_class_icon_dwarf_ranger_normal"),
-	ws_hero_select = UIWidgets.create_icon_button("ws_hero_select", scenegraph_definition.ws_hero_select.size, nil, nil, "tabs_class_icon_way_watcher_normal"),
+	dr_hero_select = UIWidgets.create_icon_button("dr_hero_select", scenegraph_definition.dr_hero_select.size, nil, nil, "tabs_class_icon_dwarf_ranger_normal"),
+	we_hero_select = UIWidgets.create_icon_button("we_hero_select", scenegraph_definition.we_hero_select.size, nil, nil, "tabs_class_icon_way_watcher_normal"),
 	wh_hero_select = UIWidgets.create_icon_button("wh_hero_select", scenegraph_definition.wh_hero_select.size, nil, nil, "tabs_class_icon_witch_hunter_normal"),
 	bw_hero_select = UIWidgets.create_icon_button("bw_hero_select", scenegraph_definition.bw_hero_select.size, nil, nil, "tabs_class_icon_bright_wizard_normal"),
 
@@ -1522,6 +1522,8 @@ local widgets_definitions = {
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
 	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 
+
+	-- original_skins_list_entry = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition.original_skins_list_entry.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 
     loading_icon = {
 		scenegraph_id = "loading_icon",
