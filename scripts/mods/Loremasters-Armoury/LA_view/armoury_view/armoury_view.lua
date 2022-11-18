@@ -338,5 +338,12 @@ function ArmouryView:on_exit()
         self.viewport_widget = nil
     end
 
+    self:clear_original_skin_list_widgets()
+
+    local widgets_by_name = self._widgets_by_name
+    self:unselect_buttons(widgets_by_name, "_original_skin")
+    self:unselect_buttons(widgets_by_name, "item_select")
+    self:unselect_buttons(widgets_by_name, "hero_select")
+
 	ShowCursorStack.pop()
 end
