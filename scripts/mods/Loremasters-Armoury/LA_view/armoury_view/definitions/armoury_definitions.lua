@@ -1636,6 +1636,17 @@ local widgets_definitions = {
 	},
 }
 
+
+--gaussing function that handles size of waypoint based on distance from it
+local gaussian_size_decrease = function(current_distance, min_size, max_size, max_distance)
+
+    local lambda = -(1^2)/math.log(min_size/max_size)
+
+    local gaussian_size = max_size*math.exp(-(current_distance-max_distance)^2/lambda)
+
+    return gaussian_size
+end
+
 local animation_definitions = {
 	on_enter = {
 		{
@@ -1652,7 +1663,19 @@ local animation_definitions = {
 			on_complete = function (ui_scenegraph, scenegraph_definition, widgets, params)
 				return
 			end
-		}
+		},
+		{
+			name = "detail_extend",
+			start_progress = 0,
+			end_progress = 1,
+			init = NOP,
+			update = function(ui_scenegraph, scenegraph_def, widgets, progress, params)
+			  local anim_progress = math.easeOutCubic(progress)
+			  ui_scenegraph.original_skins_list_entry.position[1] = scenegraph_def.original_skins_list_entry.position[1] -10* anim_progress
+			  ui_scenegraph.original_skins_list_entry.position[2] = scenegraph_def.original_skins_list_entry.position[2] -10* anim_progress
+			end,
+			on_complete = NOP
+		  }
 	},
 	on_exit = {
 		{
@@ -1669,8 +1692,57 @@ local animation_definitions = {
 			on_complete = function (ui_scenegraph, scenegraph_definition, widgets, params)
 				return
 			end
+		},
+	},
+	on_list_initialized = {
+		{
+		  name = "delay",
+		  start_progress = 0,
+		  end_progress = 0.3,
+		  init = NOP,
+		  update = NOP,
+		  on_complete = NOP
+		},
+		{
+		  name = "fade_and_slide_in",
+		  start_progress = 0,
+		  end_progress = 0.6,
+		  init = function(ui_scenegraph, scenegraph_definition, widgets, params)
+			params.render_settings.list_alpha_multiplier = 0
+			local list_widget = widgets.list_widget
+			local style = list_widget.style
+			local mask_style = style.mask
+			local mask_default_width = mask_style.texture_size[1]
+			params.mask_default_width = mask_default_width
+		  end,
+		  update = function(ui_scenegraph, scenegraph_definition, widgets, progress, params)
+			local anim_progress = math.easeOutCubic(progress)
+			params.render_settings.list_alpha_multiplier = anim_progress
+			local list_widgets = widgets.list_items
+			local longest_anim_distance = 0
+	
+			for index, widget in ipairs(list_widgets) do
+			  local content = widget.content
+			  local offset = widget.offset
+			  local default_offset = widget.default_offset
+			  local row = content.row
+			  local column = content.col
+			  local anim_offset = math.min(row * 50 + (4 - column) * 20, 300)
+			  offset[1] = math.floor(default_offset[1] - anim_offset + anim_offset * anim_progress)
+			  longest_anim_distance = math.max(longest_anim_distance, anim_offset)
+			end
+	
+			local mask_default_width = params.mask_default_width
+			local mask_size = math.floor((mask_default_width + longest_anim_distance) - longest_anim_distance * anim_progress)
+			local list_widget = widgets.list_widget
+			local style = list_widget.style
+			style.mask.texture_size[1] = mask_size
+			style.mask_top.texture_size[1] = mask_size
+			style.mask_bottom.texture_size[1] = mask_size
+		  end,
+		  on_complete = NOP
 		}
-	}
+	  },
 }
 
 local generic_input_actions = {

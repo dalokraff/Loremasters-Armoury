@@ -184,6 +184,9 @@ ArmouryView.update_original_skin_list = function (self)
     local buttons = self.buttons
     local original_skin_list_widgets = {}
     self:clear_original_skin_list_widgets()
+
+	local cur_button_num = #buttons
+
     local selected_hero = string.gsub(self.selected_hero, "_hero_select", "")
     local selected_item = string.gsub(self.selected_item, "_item_select", "")
     local item_list = self.items_by_hero[selected_hero][selected_item]
@@ -211,10 +214,33 @@ ArmouryView.update_original_skin_list = function (self)
             button_number = button_number,
         }
         buttons[button_number] = new_widget_name
+		self:_start_transition_animation("on_enter", widget, button_number-cur_button_num)
     end
 
     self._original_skin_list_widgets = original_skin_list_widgets
+	
 end
+
+function ArmouryView:_start_transition_animation(animation_name, widget, delay_num)
+
+	local params = {
+	  render_settings = self._render_settings,
+	}
+
+	if delay_num then
+		params.delay_num = delay_num
+	end
+  
+	-- local widgets = {
+	--   list_widget = self.list,
+	--   list_items = self.list_items,
+	--   list_detail_widget = self.list_detail_widgets[2]
+	-- }
+  
+	local anim_id = self.ui_animator:start_animation(animation_name, widget, scenegraph_definition, params)
+	self._ui_animations[animation_name] = anim_id
+  
+  end
 
 ArmouryView.clear_original_skin_list_widgets = function (self)
     local original_skin_list_widgets = self._original_skin_list_widgets or {}
@@ -263,6 +289,20 @@ ArmouryView._update_animations = function (self, dt)
         local button = widgets_by_name[name]
 	    UIWidgetUtils.animate_icon_button(button, dt)
     end
+
+	local animations = self._ui_animations
+	local ui_animator = self.ui_animator
+
+	for anim_name, anim_id in pairs(animations) do
+		if ui_animator:is_animation_completed(anim_id) then
+
+		if anim_name == "on_exit" then
+			self.on_exit_completed = true
+		end
+
+		animations[anim_name] = nil
+		end
+	end
 end
 
 
