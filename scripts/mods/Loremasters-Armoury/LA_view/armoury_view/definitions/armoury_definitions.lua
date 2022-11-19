@@ -385,6 +385,20 @@ local scenegraph_definition = {
 			32
 		}
 	},
+	original_skins_list_divider = {
+		parent = "original_skins_list_scroll_root",
+		vertical_alignment = "center",
+		horizontal_alignment = "right",
+		size = { 
+			430, 
+			20 
+		},
+		position = { 
+			430,
+			0, 
+			32 
+		},
+	},
 	original_skins_list_detail_top = {
 		vertical_alignment = "top",
 		parent = "original_skins_list_scrollbar",
@@ -685,15 +699,15 @@ local viewport_definition = {
                 viewport_type = "default_forward",
                 clear_screen_on_create = true,
                 enable_sub_gui = false,
-                fov = 80,
+                fov = 70,
                 world_name = "LA_armoury_preview",
                 world_flags = {
                     Application.DISABLE_SOUND,
                     Application.DISABLE_ESRAM,
                     Application.ENABLE_VOLUMETRICS
                 },
-                camera_position = { 1, 0, 1 },
-                camera_lookat = { 0, 0, 1 },
+                camera_position = { -2, 0, 2 },
+                camera_lookat = { 0, 0, 2 },
             }
         },
     content = {
@@ -1451,6 +1465,7 @@ local widgets_definitions = {
 	original_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("original_skins_list_scrollbar", "original_skins_list_window", scenegraph_definition.original_skins_list_scrollbar.size, "gold"),
 	original_skins_list_mask = create_list_mask("original_skins_list_window", scenegraph_definition.original_skins_list_window.size, 10),
 
+	-- original_skins_list_divider = UIWidgets.create_simple_texture("small_divider", "original_skins_list_divider"),
 
     LA_skins_title_text = UIWidgets.create_simple_text("LA_skin", "LA_skins_title_text", nil, nil, LA_skins_title_text_style),
     LA_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
@@ -1671,8 +1686,9 @@ local animation_definitions = {
 			init = NOP,
 			update = function(ui_scenegraph, scenegraph_def, widgets, progress, params)
 			  local anim_progress = math.easeOutCubic(progress)
-			  ui_scenegraph.original_skins_list_entry.position[1] = scenegraph_def.original_skins_list_entry.position[1] -10* anim_progress
-			  ui_scenegraph.original_skins_list_entry.position[2] = scenegraph_def.original_skins_list_entry.position[2] -10* anim_progress
+			  local scenegraph_id = widgets.scenegraph_id
+			--   ui_scenegraph.original_skins_list_entry.position[1] = scenegraph_def.original_skins_list_entry.position[1] -10* anim_progress
+			  ui_scenegraph[scenegraph_id].position[2] = scenegraph_def[scenegraph_id].position[2] -10* anim_progress
 			end,
 			on_complete = NOP
 		  }

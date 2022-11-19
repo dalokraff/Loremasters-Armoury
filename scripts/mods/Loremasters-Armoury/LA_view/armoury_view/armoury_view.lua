@@ -11,6 +11,22 @@ local viewport_definition = definitions.viewport_definition
 
 local DO_RELOAD = false
 
+
+local function radians_to_quaternion(theta, ro, phi)
+    local c1 =  math.cos(theta/2)
+    local c2 = math.cos(ro/2)
+    local c3 = math.cos(phi/2)
+    local s1 = math.sin(theta/2)
+    local s2 = math.sin(ro/2)
+    local s3 = math.sin(phi/2)
+    local x = (s1*s2*c3) + (c1*c2*s3)
+    local y = (s1*c2*c3) + (c1*s2*s3)
+    local z = (c1*s2*c3) - (s1*c2*s3)
+    local w = (c1*c2*c3) - (s1*s2*s3)
+    local rot = Quaternion.from_elements(x, y, z, w)
+    return rot
+end
+
 ArmouryView = class(ArmouryView)
 
 -- Optional. Executed when instantiating your custom view with `CustomView:new`
@@ -152,6 +168,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:unselect_buttons(widgets_by_name, "_original_skin")
                 self:toggle_button(button_widget)
                 -- self:update_original_skin_list()
+				self:spawn_item_in_viewport(name)
             end
             return
         end
@@ -163,6 +180,50 @@ ArmouryView._handle_input = function (self, dt, t)
 
         return
     end
+end
+
+ArmouryView.spawn_item_in_viewport = function (self, widget_name)
+    self:remove_units_from_viewport()
+	local unit_spawner = self._unit_spawner
+
+	local item_key = string.gsub(widget_name, "_original_skin", "")
+	local item_data = ItemMasterList[item_key]
+	local item_unit_name_right = item_data.right_hand_unit
+	local item_unit_name_left = item_data.left_hand_unit
+
+	Managers.package:load(item_unit_name_right, "global")
+	Managers.package:load(item_unit_name_left, "global")
+
+	if item_unit_name_right then 
+		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
+		self.viewport_right_hand = right_unit
+		POSITION_LOOKUP[right_unit] = nil
+	end
+	if item_unit_name_left then 
+		local left_unit = unit_spawner:spawn_local_unit(item_unit_name_left, Vector3(0,0,2), radians_to_quaternion(0,0,math.pi/6))
+		self.viewport_left_hand = left_unit
+		POSITION_LOOKUP[left_unit] = nil
+	end
+
+end
+
+ArmouryView.remove_units_from_viewport = function (self, widget_name)
+	local unit_spawner = self._unit_spawner
+	local world = unit_spawner.world
+	local viewport_right_hand = self.viewport_right_hand
+	local viewport_left_hand = self.viewport_left_hand
+
+	if viewport_right_hand then
+		World.destroy_unit(world, viewport_right_hand)
+		-- unit_spawner:mark_for_deletion(viewport_right_hand)
+		self.viewport_right_hand = nil
+	end
+	if viewport_left_hand then 
+		World.destroy_unit(world, viewport_left_hand)
+		-- unit_spawner:mark_for_deletion(viewport_left_hand)
+		self.viewport_left_hand = nil
+	end
+	-- unit_spawner:remove_units_marked_for_deletion()
 end
 
 ArmouryView.unselect_buttons = function (self, widgets_by_name, category)
@@ -192,17 +253,24 @@ ArmouryView.update_original_skin_list = function (self)
     local item_list = self.items_by_hero[selected_hero][selected_item]
 
     local i = 0
+	local j = 0
     for _,item_name in pairs(item_list) do
         local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
         local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
         local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
-        new_widget_def.offset = {
-            0,
-            i*-60,
+        
+		if i > 5 then
+			i = 0
+			j = j + 1
+		end
+		new_widget_def.offset = {
+            i*60,
+            j*-60,
             32
         }
         new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
         i = i + 1
+
         local widget = UIWidget.init(new_widget_def)
         local widget_number = #widgets + 1
         local button_number = #buttons + 1
@@ -214,14 +282,29 @@ ArmouryView.update_original_skin_list = function (self)
             button_number = button_number,
         }
         buttons[button_number] = new_widget_name
-		self:_start_transition_animation("on_enter", widget, button_number-cur_button_num)
+		self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
     end
+
+	local skin_divider_def = UIWidgets.create_simple_texture("small_divider", "original_skins_list_divider")
+	skin_divider_def.offset[2] = (j+1)*-60 - 15
+	local skin_divider_widget = UIWidget.init(skin_divider_def)
+
+	local widget_number = #widgets + 1
+	widgets[widget_number] = skin_divider_widget
+	widgets_by_name["original_skins_list_divider"] = skin_divider_widget
+	original_skin_list_widgets[widget_number] = {
+		widget_name = "original_skins_list_divider",
+		button_number = 9999,
+	}
+	
+	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
+
 
     self._original_skin_list_widgets = original_skin_list_widgets
 	
 end
 
-function ArmouryView:_start_transition_animation(animation_name, widget, delay_num)
+function ArmouryView:_start_transition_animation(animation_name, widget, scenegraph_id, delay_num)
 
 	local params = {
 	  render_settings = self._render_settings,
@@ -348,7 +431,10 @@ end
 function ArmouryView:update(dt, t)	
 	if not self.viewport_widget then
         -- Managers.package:load("resource_packages/levels/ui_inventory_preview", "global")
-        self.viewport_widget = UIWidget.init(definitions.viewport_definition)
+        self.viewport_widget = UIWidget.init(viewport_definition)
+		local world = Managers.world:world(viewport_definition.style.viewport.world_name)
+		local unit_spawner = UnitSpawner:new(world, StateIngame.entity_manager, StateIngame.is_server)
+		self._unit_spawner = unit_spawner
         -- self.viewport_widget.style.viewport.camera_position = self.params.background.camera_position
     end
     
@@ -384,6 +470,10 @@ function ArmouryView:on_exit()
     self:unselect_buttons(widgets_by_name, "_original_skin")
     self:unselect_buttons(widgets_by_name, "item_select")
     self:unselect_buttons(widgets_by_name, "hero_select")
+
+	self._unit_spawner = nil
+	self.viewport_right_hand = nil
+	self.viewport_left_hand = nil
 
 	ShowCursorStack.pop()
 end
