@@ -382,9 +382,20 @@ local scenegraph_definition = {
 		position = {
 			0,
 			0,
-			32
+			-1
 		}
 	},
+	original_skins_list_skin_entry = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = list_entry_size,
+		position = {
+			0,
+			0,
+			-1
+		}
+	},	
 	original_skins_list_divider = {
 		parent = "original_skins_list_scroll_root",
 		vertical_alignment = "center",
@@ -410,7 +421,7 @@ local scenegraph_definition = {
 		position = {
 			-45,
 			60,
-			2
+			32
 		}
 	},
 	original_skins_list_detail_bottom = {
@@ -424,7 +435,7 @@ local scenegraph_definition = {
 		position = {
 			-45,
 			-60,
-			2
+			32
 		}
 	},
 

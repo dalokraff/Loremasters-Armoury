@@ -526,6 +526,9 @@ mod.items_by_hero = {
     },
 }
 
+mod.list_of_base_skins = {}
+local list_of_base_skins = mod.list_of_base_skins
+
 for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
     local base_skin = skin_list.common[1] or skin_list.rare[1] or skin_list.plentiful[1]
     if base_skin then
@@ -547,7 +550,10 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
                     if mod.items_by_hero[char][item_key] then
                         if not mod.items_by_hero[char][item_key][base_skin] then
                             -- mod:echo(base_skin.."_"..char)
-                            mod.items_by_hero[char][item_key][base_skin] = base_skin   
+                            mod.items_by_hero[char][item_key][base_skin] = base_skin  
+                            
+                            local default_skin_key = string.gsub(base_skin, "_skin.+", "")
+                            list_of_base_skins[default_skin_key] = {}
                         end
                     end
                 end
@@ -556,9 +562,53 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
     end
 end
 
--- local mod = get_mod("Loremasters-Armoury")
--- for k,v in pairs(mod.items_by_hero.es.melee) do
+
+for skin_name,skin_tisch in pairs(WeaponSkins.skins) do 
+
+    local skin_name = skin_name
+    if skin_name then
+        local default_skin_key = string.gsub(skin_name, "_skin.+", "")
+
+        if list_of_base_skins[default_skin_key] then
+            list_of_base_skins[default_skin_key][#list_of_base_skins[default_skin_key] + 1] = skin_name
+        end
+    end
+
+end
+
+-- for k,v in pairs(list_of_base_skins["wh_1h_axe"]) do
 --     mod:echo(v)
+-- end
+
+-- local str = string.gsub("es_1h_mace_shield_skin_01", "_skin.+", "")
+-- mod:echo(str)
+
+-- local mod = get_mod("Loremasters-Armoury")
+-- for k,v in pairs(mod.list_of_base_skins["we_2h_sword"]) do
+--     mod:echo(k)
+-- end
+
+-- for skin_name,skin_tisch in pairs(WeaponSkins.skins) do 
+
+--     local skin_name = skin_name
+--     if skin_name then
+--         local default_skin_key = string.gsub(skin_name, "_skin.+", "")
+--         mod:echo(default_skin_key)
+
+--         if mod.list_of_base_skins[default_skin_key] then
+--             mod.list_of_base_skins[default_skin_key][#mod.list_of_base_skins[default_skin_key] + 1] = skin_name
+--         end
+--     end
+
+-- end
+
+-- for i,skin_tisch in pairs(WeaponSkins.skins) do 
+--     mod:echo(i)
+-- --    for k,v in pairs(skin_tisch) do 
+-- --         mod:echo(k)
+-- --    end
+--     -- mod:echo(skin_tisch)
+
 -- end
 
 

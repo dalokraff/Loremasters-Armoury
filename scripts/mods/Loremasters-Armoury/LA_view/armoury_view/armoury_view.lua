@@ -7,7 +7,7 @@ local console_cursor_definition = definitions.console_cursor_definition
 local animation_definitions = definitions.animation_definitions
 local generic_input_actions = definitions.generic_input_actions
 local viewport_definition = definitions.viewport_definition
-
+math.randomseed(os.time())
 
 local DO_RELOAD = false
 
@@ -47,21 +47,9 @@ function ArmouryView:init(ingame_ui_context)
     self.ui_top_renderer = ingame_ui_context.ui_top_renderer
     self.voting_manager = ingame_ui_context.voting_manager
 
-    self.selected_hero = "es_hero_select"
-    self.selected_item = "melee_item_select"
-    self.buttons = {
-        "es_hero_select",
-        "dr_hero_select",
-        "we_hero_select",
-        "wh_hero_select",
-        "bw_hero_select",
-        "melee_item_select",
-        "ranged_item_select",
-        "skin_item_select",
-        -- "original_skins_list_entry",
-    }
-
     self.items_by_hero = mod.items_by_hero
+
+	self.list_of_base_skins = mod.list_of_base_skins
 
 end
 
@@ -82,6 +70,19 @@ function ArmouryView:on_enter(transition_params)
     self._animations = {}
     self._ui_animations = {}
 
+	self.selected_hero = "es_hero_select"
+    self.selected_item = "melee_item_select"
+    self.buttons = {
+        "es_hero_select",
+        "dr_hero_select",
+        "we_hero_select",
+        "wh_hero_select",
+        "bw_hero_select",
+        "melee_item_select",
+        "ranged_item_select",
+        "skin_item_select",
+        -- "original_skins_list_entry",
+    }
 
     self:create_ui_elements(params)
 
@@ -109,7 +110,7 @@ ArmouryView.create_ui_elements = function (self, params)
     for name, widget_definition in pairs(widget_definitions) do
 		if widget_definition then
 			local widget = UIWidget.init(widget_definition)
-			widgets[#widgets + 1] = widget
+			widgets[math.random(10,10^9)] = widget
 			widgets_by_name[name] = widget
 		end
 	end
@@ -157,11 +158,13 @@ ArmouryView._handle_input = function (self, dt, t)
                 self.selected_hero = name
                 self:unselect_buttons(widgets_by_name, "hero_select")
                 self:toggle_button(button_widget)
+				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
             elseif string.find(name, "item_select") then
                 self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "item_select")
                 self:toggle_button(button_widget)
+				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
             elseif string.find(name, "_original_skin") then
                 -- self.selected_item = name
@@ -169,6 +172,14 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
                 -- self:update_original_skin_list()
 				self:spawn_item_in_viewport(name)
+				self:update_original_skin_list_skin_entries(name)
+			elseif string.find(name, "_original_entry_skin") then
+                -- self.selected_item = name
+                self:unselect_buttons(widgets_by_name, "_original_entry_skin")
+                self:toggle_button(button_widget)
+                -- self:update_original_skin_list() update LA skins
+				self:spawn_item_in_viewport(name)
+				-- self:update_original_skin_list_skin_entries(name)
             end
             return
         end
@@ -187,6 +198,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 	local unit_spawner = self._unit_spawner
 
 	local item_key = string.gsub(widget_name, "_original_skin", "")
+	item_key = string.gsub(item_key, "_original_entry_skin", "")
 	local item_data = ItemMasterList[item_key]
 	local item_unit_name_right = item_data.right_hand_unit
 	local item_unit_name_left = item_data.left_hand_unit
@@ -239,6 +251,118 @@ ArmouryView.toggle_button = function (self, button_widget)
     button_widget.content.button_hotspot.is_selected = not button_widget.content.button_hotspot.is_selected
 end
 
+ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name)
+    local widgets = self._widgets
+	local widgets_by_name = self._widgets_by_name
+    local buttons = self.buttons
+	self:clear_original_skin_list_skin_entry_widgets()
+
+	local cur_button_num = #buttons
+    local original_skin_list_skin_entry_widgets = {}
+
+	local list_of_base_skins = self.list_of_base_skins
+	local item_master_list = ItemMasterList
+
+	local default_item_name = string.gsub(widget_name, "_original_skin", "")
+	local default_skin_key = string.gsub(default_item_name, "_skin.+", "")
+
+	local selected_hero = string.gsub(self.selected_hero, "_hero_select", "")
+    local selected_item = string.gsub(self.selected_item, "_item_select", "")
+	local item_list = self.items_by_hero[selected_hero][selected_item]
+	local i = 0
+	local j =  0 --2*math.ceil(#item_list/5)
+	local divider_offset = widgets_by_name["original_skins_list_divider"].offset[2] - 10
+	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
+		local item_data = item_master_list[item_name]
+		
+		local scenegraph_definition_size = scenegraph_definition.original_skins_list_skin_entry.size
+		local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
+		local new_widget_def = UIWidgets.create_icon_button("original_skins_list_skin_entry",scenegraph_definition_size , nil, nil, icon)
+
+		if i > 5 then
+			i = 0
+			j = j + 1
+		end
+		new_widget_def.offset = {
+            i*60,
+            j*-60 + divider_offset,
+            32
+        }
+		new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
+
+		local num_passes = #new_widget_def.element.passes
+		new_widget_def.element.passes[num_passes+1] = {
+			pass_type = "hotspot",
+			content_id = "tooltip_hotspot",
+			content_check_function = function (ui_content)
+				return not ui_content.disabled
+			end
+		}
+		new_widget_def.element.passes[num_passes+2] = {
+			style_id = "tooltip_text",
+			pass_type = "tooltip_text",
+			text_id = "tooltip_text",
+			content_check_function = function (ui_content)
+				return ui_content.tooltip_hotspot.is_hover
+			end
+		}
+
+		new_widget_def.content["tooltip_hotspot"] = {}
+		new_widget_def.content["tooltip_text"] = item_data.display_name
+
+		new_widget_def.style["tooltip_text"] = {
+			dynamic_height = false,
+			upper_case = false,
+			localize = true,
+			word_wrap = false,
+			font_size = 16,
+			max_width = 500,
+			vertical_alignment = "top",
+			horizontal_alignment = "center",
+			use_shadow = true,
+			dynamic_font_size = false,
+			font_type = "hell_shark",
+			text_color = {255,247,170,6},
+			offset = {
+				0,
+				0,
+				2
+			}
+		}
+
+        i = i + 1
+
+		local widget = UIWidget.init(new_widget_def)
+        local widget_number = math.random(10,10^9)
+        local button_number = math.random(10,10^9)
+        local new_widget_name = item_name.."_original_entry_skin"
+		widgets[widget_number] = widget
+		widgets_by_name[new_widget_name] = widget
+        original_skin_list_skin_entry_widgets[widget_number] = {
+            widget_name = new_widget_name,
+            button_number = button_number,
+        }
+        buttons[button_number] = new_widget_name
+		self:_start_transition_animation("on_enter", widget, new_widget_name)
+		
+	end
+    
+	self.original_skin_list_skin_entry_widgets = original_skin_list_skin_entry_widgets
+end
+
+ArmouryView.clear_original_skin_list_skin_entry_widgets = function (self)
+    local original_skin_list_skin_entry_widgets = self.original_skin_list_skin_entry_widgets or {}
+	local widgets = self._widgets
+    local buttons = self.buttons
+	local widgets_by_name = self._widgets_by_name
+    for widget_number, data in pairs(original_skin_list_skin_entry_widgets) do
+        widgets[widget_number] = nil
+		widgets_by_name[data.widget_name] = nil
+        buttons[data.button_number] = nil
+    end
+	original_skin_list_skin_entry_widgets = {}
+end
+
 ArmouryView.update_original_skin_list = function (self)
     local widgets = self._widgets
 	local widgets_by_name = self._widgets_by_name
@@ -272,8 +396,8 @@ ArmouryView.update_original_skin_list = function (self)
         i = i + 1
 
         local widget = UIWidget.init(new_widget_def)
-        local widget_number = #widgets + 1
-        local button_number = #buttons + 1
+        local widget_number =math.random(10,10^9)
+        local button_number = math.random(10,10^9)
         local new_widget_name = item_name.."_original_skin"
 		widgets[widget_number] = widget
 		widgets_by_name[new_widget_name] = widget
@@ -289,12 +413,12 @@ ArmouryView.update_original_skin_list = function (self)
 	skin_divider_def.offset[2] = (j+1)*-60 - 15
 	local skin_divider_widget = UIWidget.init(skin_divider_def)
 
-	local widget_number = #widgets + 1
+	local widget_number = math.random(10,10^9)
 	widgets[widget_number] = skin_divider_widget
 	widgets_by_name["original_skins_list_divider"] = skin_divider_widget
 	original_skin_list_widgets[widget_number] = {
 		widget_name = "original_skins_list_divider",
-		button_number = 9999,
+		button_number = math.random(10,10^9),
 	}
 	
 	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
@@ -326,7 +450,8 @@ function ArmouryView:_start_transition_animation(animation_name, widget, scenegr
   end
 
 ArmouryView.clear_original_skin_list_widgets = function (self)
-    local original_skin_list_widgets = self._original_skin_list_widgets or {}
+    self:clear_original_skin_list_skin_entry_widgets()
+	local original_skin_list_widgets = self._original_skin_list_widgets or {}
     local widgets = self._widgets
     local buttons = self.buttons
 	local widgets_by_name = self._widgets_by_name
@@ -335,6 +460,7 @@ ArmouryView.clear_original_skin_list_widgets = function (self)
 		widgets_by_name[data.widget_name] = nil
         buttons[data.button_number] = nil
     end
+	original_skin_list_widgets = {}
 end
 
 ArmouryView._has_active_level_vote = function (self)
@@ -464,12 +590,18 @@ function ArmouryView:on_exit()
         self.viewport_widget = nil
     end
 
-    self:clear_original_skin_list_widgets()
+    
 
     local widgets_by_name = self._widgets_by_name
     self:unselect_buttons(widgets_by_name, "_original_skin")
     self:unselect_buttons(widgets_by_name, "item_select")
     self:unselect_buttons(widgets_by_name, "hero_select")
+
+	self._original_skin_list_widgets = nil
+	self.original_skin_list_skin_entry_widgets = nil
+	self.buttons = nil
+	self._widgets_by_name = nil
+	self._widgets = nil
 
 	self._unit_spawner = nil
 	self.viewport_right_hand = nil
