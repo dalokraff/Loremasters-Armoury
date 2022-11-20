@@ -2,563 +2,568 @@
 armoury_atlas = { 
 	la_ui_quest_modificator02_icon = { 
 		size = { 42, 42, },
-		uv00 = { 0.230469, 0.845703, },
-		uv11 = { 0.250977, 0.866211, },
+		uv00 = { 0.089355, 0.963379, },
+		uv11 = { 0.099609, 0.983887, },
 	},
 	la_ui_quest_modificator01_icon = { 
 		size = { 42, 42, },
-		uv00 = { 0.209961, 0.845703, },
-		uv11 = { 0.230469, 0.866211, },
-	},
-	kruber_bret_shield_basic1_reynard01_blueglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.585938, 0.238770, },
-		uv11 = { 0.626953, 0.279785, },
-	},
-	kruber_bret_shield_basic3_lothar01_purpleglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.544922, 0.238770, },
-		uv11 = { 0.585938, 0.279785, },
-	},
-	kruber_bret_shield_basic2_luidhard01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.503906, 0.238770, },
-		uv11 = { 0.544922, 0.279785, },
-	},
-	la_kotbs_firesword_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.462891, 0.238770, },
-		uv11 = { 0.503906, 0.279785, },
-	},
-	kerillian_elf_shield_basicclean_caledor01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.421875, 0.238770, },
-		uv11 = { 0.462891, 0.279785, },
-	},
-	la_reward_lock_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.380859, 0.238770, },
-		uv11 = { 0.421875, 0.279785, },
-	},
-	la_kotbs_wizardsword_glow_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.339844, 0.238770, },
-		uv11 = { 0.380859, 0.279785, },
-	},
-	la_sienna_kotbs_sword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.298828, 0.238770, },
-		uv11 = { 0.339844, 0.279785, },
-	},
-	la_kotbs_sword_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.257813, 0.238770, },
-		uv11 = { 0.298828, 0.279785, },
-	},
-	la_mq01_reward_prelude_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.955078, 0.197754, },
-		uv11 = { 0.996094, 0.238770, },
-	},
-	la_kruber_kotbs_shortsword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.914063, 0.197754, },
-		uv11 = { 0.955078, 0.238770, },
-	},
-	la_kotbs_greatsword_glow_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.873047, 0.197754, },
-		uv11 = { 0.914063, 0.238770, },
-	},
-	la_kotbs_firesword_glow_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.832031, 0.197754, },
-		uv11 = { 0.873047, 0.238770, },
-	},
-	la_sienna_kotbs_firesword_glow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.791016, 0.197754, },
-		uv11 = { 0.832031, 0.238770, },
-	},
-	kruber_bret_shield_basic1_reynard01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.750000, 0.197754, },
-		uv11 = { 0.791016, 0.238770, },
-	},
-	la_kotbs_greatsword_reward_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.708984, 0.197754, },
-		uv11 = { 0.750000, 0.238770, },
-	},
-	la_sienna_kotbs_firesword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.667969, 0.197754, },
-		uv11 = { 0.708984, 0.238770, },
-	},
-	la_mq01_reward_sub3_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.626953, 0.197754, },
-		uv11 = { 0.667969, 0.238770, },
-	},
-	kruber_bret_shield_basic2_luidhard01_purpleglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.585938, 0.197754, },
-		uv11 = { 0.626953, 0.238770, },
-	},
-	la_mq01_reward_sub9_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.544922, 0.197754, },
-		uv11 = { 0.585938, 0.238770, },
-	},
-	la_buff_01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.503906, 0.197754, },
-		uv11 = { 0.544922, 0.238770, },
-	},
-	bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.462891, 0.197754, },
-		uv11 = { 0.503906, 0.238770, },
-	},
-	kruber_bret_shield_hero1_alberic01_blueglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.421875, 0.197754, },
-		uv11 = { 0.462891, 0.238770, },
-	},
-	kerillian_elf_shield_basic2_griffongate01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.380859, 0.197754, },
-		uv11 = { 0.421875, 0.238770, },
-	},
-	kruber_empire_shield_hero1_ostermark01_sword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.339844, 0.197754, },
-		uv11 = { 0.380859, 0.238770, },
-	},
-	la_mq01_reward_main_icon_veteran = { 
-		size = { 84, 84, },
-		uv00 = { 0.298828, 0.197754, },
-		uv11 = { 0.339844, 0.238770, },
-	},
-	kruber_bret_shield_basic3_lothar01_blueglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.257813, 0.197754, },
-		uv11 = { 0.298828, 0.238770, },
-	},
-	bardin_dwarf_shield_heroclean_karaknorn01_axe_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.955078, 0.156738, },
-		uv11 = { 0.996094, 0.197754, },
-	},
-	kruber_bret_shield_basic3_lothar01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.914063, 0.156738, },
-		uv11 = { 0.955078, 0.197754, },
-	},
-	kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.873047, 0.156738, },
-		uv11 = { 0.914063, 0.197754, },
+		uv00 = { 0.089355, 0.942871, },
+		uv11 = { 0.099609, 0.963379, },
 	},
 	kruber_bret_shield_hero1_bastonne01_blueglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.832031, 0.156738, },
-		uv11 = { 0.873047, 0.197754, },
-	},
-	la_mq01_reward_sub10_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.791016, 0.156738, },
-		uv11 = { 0.832031, 0.197754, },
-	},
-	kruber_empire_shield_hero1_ostermark01_spear_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.750000, 0.156738, },
-		uv11 = { 0.791016, 0.197754, },
-	},
-	la_mq01_reward_sub1_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.708984, 0.156738, },
-		uv11 = { 0.750000, 0.197754, },
-	},
-	kruber_bret_shield_basic1_reynard01_purpleglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.667969, 0.156738, },
-		uv11 = { 0.708984, 0.197754, },
-	},
-	kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.626953, 0.156738, },
-		uv11 = { 0.667969, 0.197754, },
-	},
-	kruber_bret_shield_basic2_luidhard01_blueglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.585938, 0.156738, },
-		uv11 = { 0.626953, 0.197754, },
-	},
-	kruber_bret_shield_hero1_alberic01_purpleglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.544922, 0.156738, },
-		uv11 = { 0.585938, 0.197754, },
-	},
-	kruber_bret_shield_hero1_bastonne01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.503906, 0.156738, },
-		uv11 = { 0.544922, 0.197754, },
-	},
-	la_mq01_reward_sub7_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.462891, 0.156738, },
-		uv11 = { 0.503906, 0.197754, },
-	},
-	bardin_dwarf_shield_basicclean_karaknorn01_axe_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.421875, 0.156738, },
-		uv11 = { 0.462891, 0.197754, },
-	},
-	bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.380859, 0.156738, },
-		uv11 = { 0.421875, 0.197754, },
-	},
-	kerillian_elf_shield_basic2_eaglegate01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.339844, 0.156738, },
-		uv11 = { 0.380859, 0.197754, },
-	},
-	kruber_bret_shield_hero1_bastonne01_purpleglow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.298828, 0.156738, },
-		uv11 = { 0.339844, 0.197754, },
-	},
-	la_mq01_reward_sub8_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.257813, 0.156738, },
-		uv11 = { 0.298828, 0.197754, },
-	},
-	la_kruber_kotbs_greatsword_glow_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.955078, 0.115723, },
-		uv11 = { 0.996094, 0.156738, },
+		uv00 = { 0.276367, 0.896484, },
+		uv11 = { 0.296875, 0.937500, },
 	},
 	kerillian_elf_bow_antlersong_limbs_autumn_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.914063, 0.115723, },
-		uv11 = { 0.955078, 0.156738, },
+		uv00 = { 0.276367, 0.855469, },
+		uv11 = { 0.296875, 0.896484, },
 	},
-	la_kruber_kotbs_greatsword_icon = { 
+	kruber_bret_shield_hero1_bastonne01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.873047, 0.115723, },
-		uv11 = { 0.914063, 0.156738, },
+		uv00 = { 0.276367, 0.814453, },
+		uv11 = { 0.296875, 0.855469, },
 	},
-	la_kruber_kotbs_shortsword_glow_icon = { 
+	kruber_bret_shield_basic1_reynard01_blueglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.832031, 0.115723, },
-		uv11 = { 0.873047, 0.156738, },
+		uv00 = { 0.276367, 0.773438, },
+		uv11 = { 0.296875, 0.814453, },
 	},
-	la_mq01_reward_main_icon = { 
+	kruber_bret_shield_basic3_lothar01_blueglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.791016, 0.115723, },
-		uv11 = { 0.832031, 0.156738, },
+		uv00 = { 0.276367, 0.732422, },
+		uv11 = { 0.296875, 0.773438, },
 	},
-	la_waypoint_main_icon = { 
+	kruber_bret_shield_basic3_lothar01_purpleglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.750000, 0.115723, },
-		uv11 = { 0.791016, 0.156738, },
+		uv00 = { 0.276367, 0.691406, },
+		uv11 = { 0.296875, 0.732422, },
+	},
+	kruber_bret_shield_basic1_reynard01_purpleglow_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.276367, 0.650391, },
+		uv11 = { 0.296875, 0.691406, },
+	},
+	kruber_bret_shield_basic2_luidhard01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.440430, 0.609375, },
+		uv11 = { 0.460938, 0.650391, },
+	},
+	kerillian_elf_shield_basic2_griffongate01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.419922, 0.609375, },
+		uv11 = { 0.440430, 0.650391, },
+	},
+	la_kotbs_greatsword_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.399414, 0.609375, },
+		uv11 = { 0.419922, 0.650391, },
 	},
 	la_sienna_kotbs_sword_glow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.708984, 0.115723, },
-		uv11 = { 0.750000, 0.156738, },
+		uv00 = { 0.378906, 0.609375, },
+		uv11 = { 0.399414, 0.650391, },
 	},
-	la_kotbs_wizardsword_reward_icon = { 
+	kerillian_elf_shield_basicclean_caledor01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.667969, 0.115723, },
-		uv11 = { 0.708984, 0.156738, },
+		uv00 = { 0.358398, 0.609375, },
+		uv11 = { 0.378906, 0.650391, },
 	},
-	kruber_bret_shield_hero1_alberic01_icon = { 
+	kruber_bret_shield_basic3_lothar01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.626953, 0.115723, },
-		uv11 = { 0.667969, 0.156738, },
+		uv00 = { 0.337891, 0.609375, },
+		uv11 = { 0.358398, 0.650391, },
 	},
-	kerillian_elf_shield_basicclean_saphery01_icon = { 
+	la_mq01_reward_sub10_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.585938, 0.115723, },
-		uv11 = { 0.626953, 0.156738, },
+		uv00 = { 0.317383, 0.609375, },
+		uv11 = { 0.337891, 0.650391, },
 	},
-	kruber_empire_shield_basic2_ostland01_mace_icon = { 
+	bardin_dwarf_shield_basicclean_karaknorn01_hammer_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.544922, 0.115723, },
-		uv11 = { 0.585938, 0.156738, },
-	},
-	kruber_empire_shield_hero1_kotbs01_sword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.503906, 0.115723, },
-		uv11 = { 0.544922, 0.156738, },
-	},
-	kruber_empire_shield_basic1_reiland01_sword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.462891, 0.115723, },
-		uv11 = { 0.503906, 0.156738, },
+		uv00 = { 0.296875, 0.609375, },
+		uv11 = { 0.317383, 0.650391, },
 	},
 	kerillian_elf_shield_basicclean_chrace01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.421875, 0.115723, },
-		uv11 = { 0.462891, 0.156738, },
+		uv00 = { 0.276367, 0.609375, },
+		uv11 = { 0.296875, 0.650391, },
 	},
-	kerillian_elf_shield_heroclean_eataine01_icon = { 
+	kruber_bret_shield_basic2_luidhard01_blueglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.380859, 0.115723, },
-		uv11 = { 0.421875, 0.156738, },
+		uv00 = { 0.255859, 0.937500, },
+		uv11 = { 0.276367, 0.978516, },
+	},
+	la_kotbs_firesword_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.896484, },
+		uv11 = { 0.276367, 0.937500, },
+	},
+	bardin_dwarf_shield_basicclean_karaknorn01_axe_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.855469, },
+		uv11 = { 0.276367, 0.896484, },
+	},
+	kerillian_elf_shield_basic2_eaglegate01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.814453, },
+		uv11 = { 0.276367, 0.855469, },
+	},
+	la_mq01_reward_prelude_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.773438, },
+		uv11 = { 0.276367, 0.814453, },
+	},
+	la_mq01_reward_sub9_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.732422, },
+		uv11 = { 0.276367, 0.773438, },
+	},
+	kruber_bret_shield_hero1_alberic01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.691406, },
+		uv11 = { 0.276367, 0.732422, },
+	},
+	la_kotbs_wizardsword_glow_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.650391, },
+		uv11 = { 0.276367, 0.691406, },
+	},
+	la_kruber_kotbs_shortsword_glow_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.609375, },
+		uv11 = { 0.276367, 0.650391, },
+	},
+	la_kotbs_sword_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.440430, 0.568359, },
+		uv11 = { 0.460938, 0.609375, },
+	},
+	bardin_dwarf_shield_heroclean_karaknorn01_axe_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.419922, 0.568359, },
+		uv11 = { 0.440430, 0.609375, },
 	},
 	kerillian_elf_shield_heroclean_avelorn02_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.339844, 0.115723, },
-		uv11 = { 0.380859, 0.156738, },
+		uv00 = { 0.399414, 0.568359, },
+		uv11 = { 0.419922, 0.609375, },
 	},
-	kruber_empire_shield_basic1_reiland01_spear_icon = { 
+	kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.298828, 0.115723, },
-		uv11 = { 0.339844, 0.156738, },
+		uv00 = { 0.378906, 0.568359, },
+		uv11 = { 0.399414, 0.609375, },
 	},
-	kruber_empire_shield_basic2_middenheim01_mace_icon = { 
+	la_sienna_kotbs_sword_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.257813, 0.115723, },
-		uv11 = { 0.298828, 0.156738, },
+		uv00 = { 0.358398, 0.568359, },
+		uv11 = { 0.378906, 0.609375, },
+	},
+	la_mq01_reward_sub1_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.337891, 0.568359, },
+		uv11 = { 0.358398, 0.609375, },
+	},
+	kruber_bret_shield_basic1_reynard01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.317383, 0.568359, },
+		uv11 = { 0.337891, 0.609375, },
+	},
+	la_mq01_reward_sub3_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.296875, 0.568359, },
+		uv11 = { 0.317383, 0.609375, },
+	},
+	la_kotbs_greatsword_glow_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.276367, 0.568359, },
+		uv11 = { 0.296875, 0.609375, },
+	},
+	kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.568359, },
+		uv11 = { 0.276367, 0.609375, },
+	},
+	la_kotbs_firesword_glow_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.937500, },
+		uv11 = { 0.255859, 0.978516, },
+	},
+	kruber_bret_shield_hero1_alberic01_purpleglow_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.896484, },
+		uv11 = { 0.255859, 0.937500, },
+	},
+	kerillian_elf_shield_basicclean_saphery01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.855469, },
+		uv11 = { 0.255859, 0.896484, },
+	},
+	la_reward_lock_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.814453, },
+		uv11 = { 0.255859, 0.855469, },
+	},
+	kruber_bret_shield_basic2_luidhard01_purpleglow_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.773438, },
+		uv11 = { 0.255859, 0.814453, },
 	},
 	kerillian_elf_shield_basic_avelorn01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.946289, 0.063965, },
-		uv11 = { 0.987305, 0.104980, },
+		uv00 = { 0.235352, 0.732422, },
+		uv11 = { 0.255859, 0.773438, },
 	},
-	kerillian_elf_shield_heroclean_chrace01_icon = { 
+	la_mq01_reward_main_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.905273, 0.063965, },
-		uv11 = { 0.946289, 0.104980, },
+		uv00 = { 0.235352, 0.691406, },
+		uv11 = { 0.255859, 0.732422, },
 	},
-	kruber_empire_shield_basic1_ostermark01_sword_icon = { 
+	kruber_bret_shield_hero1_bastonne01_purpleglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.864258, 0.063965, },
-		uv11 = { 0.905273, 0.104980, },
+		uv00 = { 0.235352, 0.650391, },
+		uv11 = { 0.255859, 0.691406, },
 	},
-	kruber_empire_shield_basic2_kotbs01_mace_icon = { 
+	la_buff_01_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.823242, 0.063965, },
-		uv11 = { 0.864258, 0.104980, },
+		uv00 = { 0.235352, 0.609375, },
+		uv11 = { 0.255859, 0.650391, },
 	},
-	kruber_empire_shield_basic1_ostermark01_mace_icon = { 
+	la_kruber_kotbs_shortsword_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.782227, 0.063965, },
-		uv11 = { 0.823242, 0.104980, },
+		uv00 = { 0.235352, 0.568359, },
+		uv11 = { 0.255859, 0.609375, },
 	},
-	kruber_empire_shield_basic2_kotbs01_spear_icon = { 
+	bardin_dwarf_shield_heroclean_karaknorn01_hammer_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.741211, 0.063965, },
-		uv11 = { 0.782227, 0.104980, },
+		uv00 = { 0.440430, 0.527344, },
+		uv11 = { 0.460938, 0.568359, },
 	},
-	kruber_empire_shield_basic2_kotbs01_sword_icon = { 
+	la_sienna_kotbs_firesword_glow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.700195, 0.063965, },
-		uv11 = { 0.741211, 0.104980, },
+		uv00 = { 0.419922, 0.527344, },
+		uv11 = { 0.440430, 0.568359, },
 	},
-	kruber_empire_shield_basic2_middenheim01_sword_icon = { 
+	kruber_bret_shield_hero1_alberic01_blueglow_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.659180, 0.063965, },
-		uv11 = { 0.700195, 0.104980, },
+		uv00 = { 0.399414, 0.527344, },
+		uv11 = { 0.419922, 0.568359, },
 	},
-	kerillian_elf_shield_heroclean_caledor01_icon = { 
+	la_sienna_kotbs_firesword_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.618164, 0.063965, },
-		uv11 = { 0.659180, 0.104980, },
+		uv00 = { 0.378906, 0.527344, },
+		uv11 = { 0.399414, 0.568359, },
 	},
-	kruber_empire_shield_basic2_ostland01_spear_icon = { 
+	la_mq01_reward_sub8_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.577148, 0.063965, },
-		uv11 = { 0.618164, 0.104980, },
+		uv00 = { 0.358398, 0.527344, },
+		uv11 = { 0.378906, 0.568359, },
 	},
-	kruber_empire_shield_basic1_ostermark01_spear_icon = { 
+	la_waypoint_main_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.536133, 0.063965, },
-		uv11 = { 0.577148, 0.104980, },
+		uv00 = { 0.337891, 0.527344, },
+		uv11 = { 0.358398, 0.568359, },
+	},
+	la_mq01_reward_main_icon_veteran = { 
+		size = { 84, 84, },
+		uv00 = { 0.317383, 0.527344, },
+		uv11 = { 0.337891, 0.568359, },
+	},
+	la_kotbs_wizardsword_reward_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.296875, 0.527344, },
+		uv11 = { 0.317383, 0.568359, },
+	},
+	la_mq01_reward_sub7_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.276367, 0.527344, },
+		uv11 = { 0.296875, 0.568359, },
+	},
+	la_kruber_kotbs_greatsword_glow_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.255859, 0.527344, },
+		uv11 = { 0.276367, 0.568359, },
+	},
+	kruber_empire_shield_hero1_ostermark01_spear_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.235352, 0.527344, },
+		uv11 = { 0.255859, 0.568359, },
+	},
+	kruber_empire_shield_basic2_ostland01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.937500, },
+		uv11 = { 0.235352, 0.978516, },
+	},
+	kruber_empire_shield_basic1_reiland01_spear_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.896484, },
+		uv11 = { 0.235352, 0.937500, },
 	},
 	kruber_empire_shield_basic2_middenheim01_spear_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.495117, 0.063965, },
-		uv11 = { 0.536133, 0.104980, },
-	},
-	kruber_empire_shield_basic2_ostland01_sword_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.454102, 0.063965, },
-		uv11 = { 0.495117, 0.104980, },
-	},
-	kruber_empire_shield_basic3_middenheim01_mace_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.413086, 0.063965, },
-		uv11 = { 0.454102, 0.104980, },
-	},
-	kruber_empire_shield_basic1_reiland01_mace_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.209961, 0.804688, },
-		uv11 = { 0.250977, 0.845703, },
-	},
-	kruber_empire_shield_hero1_ostermark01_mace_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.209961, 0.763672, },
-		uv11 = { 0.250977, 0.804688, },
-	},
-	kerillian_elf_shield_basicclean_eataine01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.209961, 0.722656, },
-		uv11 = { 0.250977, 0.763672, },
-	},
-	kerillian_elf_shield_heroclean_saphery01_icon = { 
-		size = { 84, 84, },
-		uv00 = { 0.209961, 0.681641, },
-		uv11 = { 0.250977, 0.722656, },
+		uv00 = { 0.214844, 0.855469, },
+		uv11 = { 0.235352, 0.896484, },
 	},
 	kruber_empire_shield_basic3_middenheim01_spear_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.209961, 0.640625, },
-		uv11 = { 0.250977, 0.681641, },
+		uv00 = { 0.214844, 0.814453, },
+		uv11 = { 0.235352, 0.855469, },
 	},
-	kruber_empire_shield_basic3_middenheim01_sword_icon = { 
+	kruber_empire_shield_basic1_ostermark01_mace_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.209961, 0.599609, },
-		uv11 = { 0.250977, 0.640625, },
+		uv00 = { 0.214844, 0.773438, },
+		uv11 = { 0.235352, 0.814453, },
 	},
-	kruber_empire_shield_hero1_kotbs01_mace_icon = { 
+	kruber_empire_shield_basic2_ostland01_sword_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.209961, 0.558594, },
-		uv11 = { 0.250977, 0.599609, },
+		uv00 = { 0.214844, 0.732422, },
+		uv11 = { 0.235352, 0.773438, },
+	},
+	kruber_empire_shield_hero1_ostermark01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.691406, },
+		uv11 = { 0.235352, 0.732422, },
+	},
+	kruber_empire_shield_basic2_middenheim01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.650391, },
+		uv11 = { 0.235352, 0.691406, },
+	},
+	la_kruber_kotbs_greatsword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.609375, },
+		uv11 = { 0.235352, 0.650391, },
 	},
 	kruber_empire_shield_hero1_kotbs01_spear_icon = { 
 		size = { 84, 84, },
-		uv00 = { 0.209961, 0.517578, },
-		uv11 = { 0.250977, 0.558594, },
+		uv00 = { 0.214844, 0.568359, },
+		uv11 = { 0.235352, 0.609375, },
 	},
-	la_kruber_button_icon = { 
-		size = { 106, 106, },
-		uv00 = { 0.361328, 0.063965, },
-		uv11 = { 0.413086, 0.115723, },
+	kruber_empire_shield_basic1_reiland01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.214844, 0.527344, },
+		uv11 = { 0.235352, 0.568359, },
 	},
-	la_sienna_button_icon = { 
-		size = { 106, 106, },
-		uv00 = { 0.309570, 0.063965, },
-		uv11 = { 0.361328, 0.115723, },
+	kruber_empire_shield_basic2_middenheim01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.937500, },
+		uv11 = { 0.214844, 0.978516, },
 	},
-	la_saltzpyre_button_icon = { 
-		size = { 106, 106, },
-		uv00 = { 0.257813, 0.063965, },
-		uv11 = { 0.309570, 0.115723, },
+	kruber_empire_shield_basic1_ostermark01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.896484, },
+		uv11 = { 0.214844, 0.937500, },
+	},
+	kruber_empire_shield_basic3_middenheim01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.855469, },
+		uv11 = { 0.214844, 0.896484, },
+	},
+	kerillian_elf_shield_heroclean_chrace01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.814453, },
+		uv11 = { 0.214844, 0.855469, },
+	},
+	kruber_empire_shield_basic1_ostermark01_spear_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.773438, },
+		uv11 = { 0.214844, 0.814453, },
+	},
+	kruber_empire_shield_basic2_ostland01_spear_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.732422, },
+		uv11 = { 0.214844, 0.773438, },
+	},
+	kerillian_elf_shield_heroclean_eataine01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.691406, },
+		uv11 = { 0.214844, 0.732422, },
+	},
+	kruber_empire_shield_basic2_kotbs01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.650391, },
+		uv11 = { 0.214844, 0.691406, },
+	},
+	kruber_empire_shield_hero1_kotbs01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.609375, },
+		uv11 = { 0.214844, 0.650391, },
+	},
+	kruber_empire_shield_basic1_reiland01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.568359, },
+		uv11 = { 0.214844, 0.609375, },
+	},
+	kerillian_elf_shield_heroclean_saphery01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.194336, 0.527344, },
+		uv11 = { 0.214844, 0.568359, },
+	},
+	kerillian_elf_shield_heroclean_caledor01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.928711, },
+		uv11 = { 0.188965, 0.969727, },
+	},
+	kruber_empire_shield_basic2_kotbs01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.887695, },
+		uv11 = { 0.188965, 0.928711, },
+	},
+	kerillian_elf_shield_basicclean_eataine01_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.846680, },
+		uv11 = { 0.188965, 0.887695, },
+	},
+	kruber_empire_shield_basic2_kotbs01_spear_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.805664, },
+		uv11 = { 0.188965, 0.846680, },
+	},
+	kruber_empire_shield_basic3_middenheim01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.764648, },
+		uv11 = { 0.188965, 0.805664, },
+	},
+	kruber_empire_shield_hero1_ostermark01_mace_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.723633, },
+		uv11 = { 0.188965, 0.764648, },
+	},
+	kruber_empire_shield_hero1_kotbs01_sword_icon = { 
+		size = { 84, 84, },
+		uv00 = { 0.168457, 0.682617, },
+		uv11 = { 0.188965, 0.723633, },
 	},
 	la_kerillian_button_icon = { 
 		size = { 106, 106, },
-		uv00 = { 0.934570, 0.000000, },
-		uv11 = { 0.986328, 0.051758, },
+		uv00 = { 0.168457, 0.630859, },
+		uv11 = { 0.194336, 0.682617, },
+	},
+	la_sienna_button_icon = { 
+		size = { 106, 106, },
+		uv00 = { 0.168457, 0.579102, },
+		uv11 = { 0.194336, 0.630859, },
+	},
+	la_kruber_button_icon = { 
+		size = { 106, 106, },
+		uv00 = { 0.168457, 0.527344, },
+		uv11 = { 0.194336, 0.579102, },
+	},
+	la_saltzpyre_button_icon = { 
+		size = { 106, 106, },
+		uv00 = { 0.063477, 0.942871, },
+		uv11 = { 0.089355, 0.994629, },
 	},
 	la_bardin_button_icon = { 
 		size = { 106, 106, },
-		uv00 = { 0.882813, 0.000000, },
-		uv11 = { 0.934570, 0.051758, },
+		uv00 = { 0.031738, 0.942871, },
+		uv11 = { 0.057617, 0.994629, },
 	},
 	la_notification_icon = { 
 		size = { 113, 113, },
-		uv00 = { 0.827637, 0.000000, },
-		uv11 = { 0.882813, 0.055176, },
+		uv00 = { 0.000000, 0.942871, },
+		uv11 = { 0.027588, 0.998047, },
 	},
 	quest_icon_empty = { 
 		size = { 127, 128, },
-		uv00 = { 0.765625, 0.000000, },
-		uv11 = { 0.827637, 0.062500, },
-	},
-	loremaster_test_icon_old = { 
-		size = { 130, 131, },
-		uv00 = { 0.702148, 0.000000, },
-		uv11 = { 0.765625, 0.063965, },
-	},
-	la_quest_lock_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.638672, 0.000000, },
-		uv11 = { 0.702148, 0.063965, },
-	},
-	loremaster_test_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.575195, 0.000000, },
-		uv11 = { 0.638672, 0.063965, },
-	},
-	la_mq01_quest_sub10_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.511719, 0.000000, },
-		uv11 = { 0.575195, 0.063965, },
-	},
-	la_mq01_quest_prelude_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.448242, 0.000000, },
-		uv11 = { 0.511719, 0.063965, },
+		uv00 = { 0.136719, 0.911133, },
+		uv11 = { 0.167725, 0.973633, },
 	},
 	la_mq01_quest_sub1_icon = { 
 		size = { 130, 131, },
-		uv00 = { 0.384766, 0.000000, },
-		uv11 = { 0.448242, 0.063965, },
-	},
-	la_mq01_quest_sub9_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.321289, 0.000000, },
-		uv11 = { 0.384766, 0.063965, },
-	},
-	la_mq01_quest_sub8_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.257813, 0.000000, },
-		uv11 = { 0.321289, 0.063965, },
-	},
-	la_mq01_quest_sub7_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.190430, 0.933105, },
-		uv11 = { 0.253906, 0.997070, },
-	},
-	la_mq01_quest_sub3_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.190430, 0.869141, },
-		uv11 = { 0.253906, 0.933105, },
-	},
-	la_mq01_quest_sub4_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.126953, 0.933105, },
-		uv11 = { 0.190430, 0.997070, },
-	},
-	la_mq01_quest_sub6_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.126953, 0.869141, },
-		uv11 = { 0.190430, 0.933105, },
-	},
-	la_mq01_quest_sub5_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.063477, 0.933105, },
-		uv11 = { 0.126953, 0.997070, },
-	},
-	la_mq01_quest_main_icon = { 
-		size = { 130, 131, },
-		uv00 = { 0.063477, 0.869141, },
-		uv11 = { 0.126953, 0.933105, },
+		uv00 = { 0.136719, 0.847168, },
+		uv11 = { 0.168457, 0.911133, },
 	},
 	la_mq01_quest_sub2_icon = { 
 		size = { 130, 131, },
-		uv00 = { 0.000000, 0.933105, },
-		uv11 = { 0.063477, 0.997070, },
+		uv00 = { 0.136719, 0.783203, },
+		uv11 = { 0.168457, 0.847168, },
+	},
+	la_mq01_quest_prelude_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.136719, 0.719238, },
+		uv11 = { 0.168457, 0.783203, },
+	},
+	la_mq01_quest_sub4_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.136719, 0.655273, },
+		uv11 = { 0.168457, 0.719238, },
+	},
+	loremaster_test_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.136719, 0.591309, },
+		uv11 = { 0.168457, 0.655273, },
+	},
+	la_quest_lock_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.136719, 0.527344, },
+		uv11 = { 0.168457, 0.591309, },
+	},
+	la_mq01_quest_sub9_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.911133, },
+		uv11 = { 0.136719, 0.975098, },
+	},
+	la_mq01_quest_sub7_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.847168, },
+		uv11 = { 0.136719, 0.911133, },
+	},
+	la_mq01_quest_sub10_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.783203, },
+		uv11 = { 0.136719, 0.847168, },
+	},
+	loremaster_test_icon_old = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.719238, },
+		uv11 = { 0.136719, 0.783203, },
+	},
+	la_mq01_quest_sub8_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.655273, },
+		uv11 = { 0.136719, 0.719238, },
+	},
+	la_mq01_quest_sub6_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.591309, },
+		uv11 = { 0.136719, 0.655273, },
+	},
+	la_mq01_quest_sub5_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.104980, 0.527344, },
+		uv11 = { 0.136719, 0.591309, },
 	},
 	la_mq01_quest_cratetracker_icon = { 
 		size = { 130, 131, },
-		uv00 = { 0.000000, 0.869141, },
-		uv11 = { 0.063477, 0.933105, },
+		uv00 = { 0.063477, 0.878906, },
+		uv11 = { 0.095215, 0.942871, },
+	},
+	la_mq01_quest_sub3_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.031738, 0.878906, },
+		uv11 = { 0.063477, 0.942871, },
+	},
+	la_mq01_quest_main_icon = { 
+		size = { 130, 131, },
+		uv00 = { 0.000000, 0.878906, },
+		uv11 = { 0.031738, 0.942871, },
 	},
 	paper_back = { 
 		size = { 430, 720, },
-		uv00 = { 0.000000, 0.517578, },
-		uv11 = { 0.209961, 0.869141, },
+		uv00 = { 0.000000, 0.527344, },
+		uv11 = { 0.104980, 0.878906, },
 	},
 	loremasters_armoury_banner2 = { 
 		size = { 528, 1060, },
+		uv00 = { 0.468750, 0.000000, },
+		uv11 = { 0.597656, 0.517578, },
+	},
+	la_ui_background_01 = { 
+		size = { 1920, 1080, },
 		uv00 = { 0.000000, 0.000000, },
-		uv11 = { 0.257813, 0.517578, },
+		uv11 = { 0.468750, 0.527344, },
 	},
 }
 
