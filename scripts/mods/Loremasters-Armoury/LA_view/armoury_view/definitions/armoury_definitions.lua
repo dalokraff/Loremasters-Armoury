@@ -575,8 +575,8 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			-150,
-			0, 
+			-220,
+			-15, 
 			32 
 		},
 	},
@@ -589,8 +589,8 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			-75,
-			0, 
+			-110,
+			-15, 
 			32 
 		},
 	},
@@ -604,7 +604,7 @@ local scenegraph_definition = {
 		},
 		position = { 
 			0,
-			0, 
+			-15, 
 			32 
 		},
 	},
@@ -617,8 +617,8 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			75,
-			0, 
+			110,
+			-15, 
 			32 
 		},
 	},
@@ -631,8 +631,8 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			150,
-			0, 
+			220,
+			-15, 
 			32 
 		},
 	},
@@ -646,7 +646,7 @@ local scenegraph_definition = {
 		},
 		position = { 
 			0,
-			-50, 
+			-75, 
 			32 
 		},
 	},
@@ -660,7 +660,7 @@ local scenegraph_definition = {
 		},
 		position = { 
 			-90,
-			-100, 
+			-110, 
 			32 
 		},
 	},
@@ -674,7 +674,7 @@ local scenegraph_definition = {
 		},
 		position = { 
 			0,
-			-100, 
+			-110, 
 			32 
 		},
 	},
@@ -688,7 +688,7 @@ local scenegraph_definition = {
 		},
 		position = { 
 			90,
-			-100, 
+			-110, 
 			32 
 		},
 	},
@@ -1433,19 +1433,412 @@ local function create_dummy_entry_widget()
 	return widget
 end
 
+--taken and modified from Vermintide-2-Source-Code\scripts\ui\ui_widgets_honduras.lua line #15646 "UIWidgets.create_icon_and_name_button()"
+--as is this function is broken. Seems that some typos were made with "texture_hover_id" vs "texture_hover" and "texture_icon_id" vs "texture_icon"
+--also they were missing some hover colors for a couple styles
+local function create_icon_and_remove_name_button(scenegraph_id, icon, text)
 
+	return {
+		element = {
+			passes = {
+				{
+					style_id = "button_hotspot",
+					pass_type = "hotspot",
+					content_id = "button_hotspot"
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_id",
+					texture_id = "texture_id",
+					content_check_function = function (content)
+						return not content.button_hotspot.disable_button
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_disabled_id",
+					texture_id = "texture_id",
+					content_check_function = function (content)
+						return content.button_hotspot.disable_button
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_hover",
+					texture_id = "texture_hover",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
 
+						return not button_hotspot.disable_button and (button_hotspot.is_selected or button_hotspot.is_hover)
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_icon",
+					texture_id = "texture_icon",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
 
+						return not button_hotspot.disable_button
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_icon_hover_id",
+					texture_id = "texture_icon",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
 
+						return not button_hotspot.disable_button
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_icon_disabled_id",
+					texture_id = "texture_icon",
+					content_check_function = function (content)
+						return content.button_hotspot.disable_button
+					end
+				},
+				-- {
+				-- 	pass_type = "texture",
+				-- 	style_id = "texture_text_bg_id",
+				-- 	texture_id = "texture_text_bg_id"
+				-- },
+				-- {
+				-- 	pass_type = "texture",
+				-- 	style_id = "texture_text_bg_effect_id",
+				-- 	texture_id = "texture_text_bg_effect_id"
+				-- },
+				-- {
+				-- 	style_id = "text",
+				-- 	pass_type = "text",
+				-- 	text_id = "text",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
 
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "text_hover",
+				-- 	pass_type = "text",
+				-- 	text_id = "text",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
 
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "text_disabled",
+				-- 	pass_type = "text",
+				-- 	text_id = "text",
+				-- 	content_check_function = function (content)
+				-- 		return content.button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "text_shadow",
+				-- 	pass_type = "text",
+				-- 	text_id = "text"
+				-- }
+			}
+		},
+		content = {
+			texture_id = "button_small",
+			texture_text_bg_id = "item_slot_side_fade",
+			texture_hover = "button_small_glow",
+			texture_text_bg_effect_id = "item_slot_side_effect",
+			text = text or "n/a",
+			texture_icon = icon or "icons_placeholder",
+			button_hotspot = {}
+		},
+		style = {
+			button_hotspot = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				size = {
+					80,
+					80
+				},
+				offset = {
+					0,
+					7,
+					0
+				}
+			},
+			texture_icon = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					50,
+					50
+				},
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				default_color = {
+					0,
+					255,
+					255,
+					255
+				},
+				hover_color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					5,
+					3
+				}
+			},
+			-- texture_icon = {
+			-- 	vertical_alignment = "center",
+			-- 	horizontal_alignment = "center",
+			-- 	texture_size = {
+			-- 		50,
+			-- 		50
+			-- 	},
+			-- 	color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+			-- 	offset = {
+			-- 		0,
+			-- 		5,
+			-- 		3
+			-- 	}
+			-- },
+			texture_icon_hover_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					50,
+					50
+				},
+				color = Colors.get_color_table_with_alpha("white", 255),
+				offset = {
+					0,
+					5,
+					4
+				}
+			},
+			texture_icon_disabled_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					50,
+					50
+				},
+				color = {
+					255,
+					70,
+					70,
+					70
+				},
+				offset = {
+					0,
+					5,
+					4
+				}
+			},
+			texture_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					113,
+					114
+				},
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					2
+				}
+			},
+			texture_disabled_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					113,
+					114
+				},
+				color = {
+					255,
+					120,
+					120,
+					120
+				},
+				offset = {
+					0,
+					0,
+					2
+				}
+			},
+			texture_hover = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = {
+					113,
+					114
+				},
+				color = {
+					0,
+					255,
+					255,
+					255
+				},
+				default_color = {
+					0,
+					255,
+					255,
+					255
+				},
+				hover_color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					3
+				}
+			},
+			texture_text_bg_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "left",
+				texture_size = {
+					300,
+					72
+				},
+				color = {
+					255,
+					0,
+					0,
+					0
+				},
+				offset = {
+					0,
+					5,
+					0
+				}
+			},
+			texture_text_bg_effect_id = {
+				vertical_alignment = "center",
+				horizontal_alignment = "left",
+				texture_size = {
+					300,
+					76
+				},
+				color = Colors.get_color_table_with_alpha("font_title", 0),
+				offset = {
+					0,
+					5,
+					1
+				}
+			},
+			text = {
+				font_size = 52,
+				upper_case = true,
+				localize = false,
+				word_wrap = true,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				font_type = "hell_shark",
+				size = {
+					300,
+					50
+				},
+				text_color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+				offset = {
+					60,
+					-28,
+					3
+				}
+			},
+			text_hover = {
+				font_size = 52,
+				upper_case = true,
+				localize = false,
+				word_wrap = true,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				font_type = "hell_shark",
+				size = {
+					300,
+					50
+				},
+				text_color = Colors.get_color_table_with_alpha("white", 0),
+				offset = {
+					60,
+					-28,
+					4
+				}
+			},
+			text_disabled = {
+				font_size = 52,
+				upper_case = true,
+				localize = false,
+				word_wrap = true,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				font_type = "hell_shark",
+				size = {
+					300,
+					50
+				},
+				text_color = {
+					255,
+					70,
+					70,
+					70
+				},
+				offset = {
+					60,
+					-28,
+					3
+				}
+			},
+			text_shadow = {
+				font_size = 52,
+				upper_case = true,
+				localize = false,
+				word_wrap = true,
+				horizontal_alignment = "left",
+				vertical_alignment = "bottom",
+				font_type = "hell_shark",
+				size = {
+					300,
+					50
+				},
+				text_color = Colors.get_color_table_with_alpha("black", 255),
+				offset = {
+					62,
+					-30,
+					2
+				}
+			}
+		},
+		offset = {
+			0,
+			0,
+			0
+		},
+		scenegraph_id = scenegraph_id
+	}
 
-
-
-
-
-
-
+end
 
 
 
@@ -1536,11 +1929,11 @@ local widgets_definitions = {
 
 
 
-	es_hero_select = UIWidgets.create_icon_button("es_hero_select", scenegraph_definition.es_hero_select.size, nil, nil, "tabs_class_icon_empire_soldier_normal"),
-	dr_hero_select = UIWidgets.create_icon_button("dr_hero_select", scenegraph_definition.dr_hero_select.size, nil, nil, "tabs_class_icon_dwarf_ranger_normal"),
-	we_hero_select = UIWidgets.create_icon_button("we_hero_select", scenegraph_definition.we_hero_select.size, nil, nil, "tabs_class_icon_way_watcher_normal"),
-	wh_hero_select = UIWidgets.create_icon_button("wh_hero_select", scenegraph_definition.wh_hero_select.size, nil, nil, "tabs_class_icon_witch_hunter_normal"),
-	bw_hero_select = UIWidgets.create_icon_button("bw_hero_select", scenegraph_definition.bw_hero_select.size, nil, nil, "tabs_class_icon_bright_wizard_normal"),
+	es_hero_select = create_icon_and_remove_name_button("es_hero_select", "la_kruber_button_icon", "es"),
+	dr_hero_select = create_icon_and_remove_name_button("dr_hero_select", "la_bardin_button_icon", "dr"),
+	we_hero_select = create_icon_and_remove_name_button("we_hero_select", "la_kerillian_button_icon", "we"),
+	wh_hero_select = create_icon_and_remove_name_button("wh_hero_select", "la_saltzpyre_button_icon", "wh"),
+	bw_hero_select = create_icon_and_remove_name_button("bw_hero_select", "la_sienna_button_icon", "bw"),
 
 	hero_select_divider = UIWidgets.create_simple_texture("small_divider", "hero_select_divider"),
 
