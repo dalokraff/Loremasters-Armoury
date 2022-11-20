@@ -298,6 +298,20 @@ local scenegraph_definition = {
 			0
 		}
 	},
+	window_bg_vignette = {
+		vertical_alignment = "center",
+		parent = "window_background",
+		horizontal_alignment = "center",
+		size = {
+			window_size[1] - 5,
+			window_size[2] - 5
+		},
+		position = {
+			0,
+			0,
+			1
+		}
+	},
     loading_icon = {
 		vertical_alignment = "center",
 		parent = "window_frame",
@@ -641,7 +655,7 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			430, 
+			530, 
 			20 
 		},
 		position = { 
@@ -1896,7 +1910,8 @@ local widgets_definitions = {
 	LA_skins_list_mask = create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
 
     window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
-    window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01"),
+    window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01darker"),
+	window_bg_vignette = UIWidgets.create_background("window_bg_vignette", scenegraph_definition.window_bg_vignette.size, "la_ui_background_vignette"),
     window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
