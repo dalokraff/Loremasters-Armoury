@@ -182,6 +182,13 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
                 self:update_LA_skin_list(name) --update LA skins
 				self:spawn_item_in_viewport(name)
+				self.original_skin_chosen = name
+			elseif string.find(name, "_LA_skins_entry_skin") then
+                -- self.selected_item = name
+                self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
+                self:toggle_button(button_widget)
+                self:set_armoury_key(name) --update LA skins
+				-- self:spawn_item_in_viewport(name)
             end
             return
         end
@@ -193,6 +200,20 @@ ArmouryView._handle_input = function (self, dt, t)
 
         return
     end
+end
+
+ArmouryView.set_armoury_key = function (self, widget_name)
+    
+	local original_skin = self.original_skin_chosen
+	local LA_skin = widget_name
+
+	local mod_setting_id = string.gsub(original_skin, "_original_entry_skin", "")
+	local Armoury_key = string.gsub(LA_skin, "_LA_skins_entry_skin", "")
+
+	mod:echo(mod_setting_id)
+	mod:echo(Armoury_key)
+	mod:set(mod_setting_id, Armoury_key)
+
 end
 
 ArmouryView.spawn_item_in_viewport = function (self, widget_name)
@@ -458,7 +479,7 @@ ArmouryView.update_LA_skin_list = function (self, widget_name)
 			local widget = UIWidget.init(new_widget_def)
 			local widget_number = math.random(10,10^9)
 			local button_number = math.random(10,10^9)
-			local new_widget_name = armoury_name.."_LA_skins_entry_skin"
+			local new_widget_name = Armoury_key.."_LA_skins_entry_skin"
 			widgets[widget_number] = widget
 			widgets_by_name[new_widget_name] = widget
 			LA_skins_list_entry_widgets[widget_number] = {
