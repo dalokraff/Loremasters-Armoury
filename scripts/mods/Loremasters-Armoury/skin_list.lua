@@ -204,6 +204,11 @@ mod.SKIN_LIST = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_heroClean_mesh_Avelorn01_3p",
         },
         swap_hand = "left_hand_unit",
+        icons = {
+            we_1h_spears_shield_skin_01 = "kerillian_elf_shield_basic_avelorn01_icon",
+            we_1h_spears_shield_skin_01_runed_01 = "kerillian_elf_shield_basic_avelorn01_icon",
+            we_1h_spears_shield_skin_02 = "kerillian_elf_shield_basic_avelorn01_icon",
+        },
     },
     Kerillian_elf_shield_basic2 = {
         kind = "texture",

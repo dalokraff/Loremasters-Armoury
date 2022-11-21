@@ -524,9 +524,9 @@ local scenegraph_definition = {
 		horizontal_alignment = "right",
 		size = list_entry_size,
 		position = {
-			25,
 			0,
-			0
+			0,
+			-1
 		}
 	},
 	LA_skins_list_detail_top = {

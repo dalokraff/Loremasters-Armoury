@@ -584,8 +584,8 @@ end
 -- mod:echo(str)
 
 -- local mod = get_mod("Loremasters-Armoury")
--- for k,v in pairs(mod.list_of_base_skins["we_2h_sword"]) do
---     mod:echo(k)
+-- for k,v in pairs(mod.list_of_base_skins) do
+--     print(k.." = {},")
 -- end
 
 -- for skin_name,skin_tisch in pairs(WeaponSkins.skins) do 
