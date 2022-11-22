@@ -518,7 +518,8 @@ local scenegraph_definition = {
 			0
 		}
 	},
-	LA_skins_list_entry = {
+
+	LA_skins_list_entry_main_hand = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
 		horizontal_alignment = "right",
@@ -529,6 +530,47 @@ local scenegraph_definition = {
 			-1
 		}
 	},
+	LA_skins_main_hand_text = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "center",
+		size = {
+			list_window_size[1] - 40,
+			300
+		},
+		position = {
+			0,
+			0,
+			31
+		}
+	},
+
+	LA_skins_list_entry_off_hand = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "right",
+		size = list_entry_size,
+		position = {
+			0,
+			0,
+			-1
+		}
+	},
+	LA_skins_off_hand_text = {
+		vertical_alignment = "top",
+		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "center",
+		size = {
+			list_window_size[1] - 40,
+			300
+		},
+		position = {
+			0,
+			0,
+			31
+		}
+	},
+
 	LA_skins_list_detail_top = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scrollbar",

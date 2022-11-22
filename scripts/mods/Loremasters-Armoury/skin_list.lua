@@ -1322,6 +1322,7 @@ mod.SKIN_LIST = {
             es_1h_sword_skin_02_runed_01 = "la_kruber_kotbs_shortsword_icon",
             es_1h_sword_skin_03 = "la_kruber_kotbs_shortsword_icon",
             es_1h_sword_skin_04 = "la_kruber_kotbs_shortsword_icon",
+            default = "la_kruber_kotbs_shortsword_icon",
         },
     },
     Kruber_KOTBS_empire_sword_01_gold = {
@@ -1339,6 +1340,7 @@ mod.SKIN_LIST = {
             es_1h_sword_skin_02_runed_01 = "la_kruber_kotbs_shortsword_glow_icon",
             es_1h_sword_skin_03 = "la_kruber_kotbs_shortsword_glow_icon",
             es_1h_sword_skin_04 = "la_kruber_kotbs_shortsword_glow_icon",
+            default = "la_kruber_kotbs_shortsword_glow_icon",
         },
     },
     Kruber_KOTBS_empire_zweihander_01 = {
@@ -1367,6 +1369,7 @@ mod.SKIN_LIST = {
             wh_2h_sword_skin_02_runed_01 = "la_kruber_kotbs_greatsword_icon",
             wh_2h_sword_skin_05_runed_01 = "la_kruber_kotbs_greatsword_icon",
             wh_2h_sword_skin_05_runed_02 = "la_kruber_kotbs_greatsword_icon",
+            default = "la_kruber_kotbs_greatsword_icon",
         },
     },
     Kruber_KOTBS_empire_zweihander_01_gold = {
@@ -1395,6 +1398,7 @@ mod.SKIN_LIST = {
             wh_2h_sword_skin_02_runed_01 = "la_kruber_kotbs_greatsword_glow_icon",
             wh_2h_sword_skin_05_runed_01 = "la_kruber_kotbs_greatsword_glow_icon",
             wh_2h_sword_skin_05_runed_02 = "la_kruber_kotbs_greatsword_glow_icon",
+            default = "la_kruber_kotbs_greatsword_glow_icon",
         },
     },
     Kruber_KOTBS_bret_sword_01 = {
@@ -1412,6 +1416,7 @@ mod.SKIN_LIST = {
             es_bastard_sword_skin_04 = "la_kruber_kotbs_shortsword_icon",
             es_bastard_sword_skin_03_runed_01 = "la_kruber_kotbs_shortsword_icon",
             es_bastard_sword_skin_03_runed_02 = "la_kruber_kotbs_shortsword_icon",
+            default = "la_kruber_kotbs_shortsword_icon",
         },
     },
     Kruber_KOTBS_bret_sword_01_gold = {
@@ -1429,6 +1434,7 @@ mod.SKIN_LIST = {
             es_bastard_sword_skin_04 = "la_kruber_kotbs_shortsword_glow_icon",
             es_bastard_sword_skin_03_runed_01 = "la_kruber_kotbs_shortsword_glow_icon",
             es_bastard_sword_skin_03_runed_02 = "la_kruber_kotbs_shortsword_glow_icon",
+            default = "la_kruber_kotbs_shortsword_glow_icon",
         },
     },
     Kruber_KOTBS_wizard_sword_01 = {
@@ -1451,6 +1457,7 @@ mod.SKIN_LIST = {
             bw_1h_sword_skin_01_runed_01 = "la_sienna_kotbs_sword_icon",
             bw_1h_sword_skin_02_runed_01 = "la_sienna_kotbs_sword_icon",
             bw_1h_sword_skin_02_runed_02 = "la_sienna_kotbs_sword_icon",
+            default = "la_sienna_kotbs_sword_icon",
         },       
     },
     Kruber_KOTBS_wizard_sword_01_gold = {
@@ -1473,6 +1480,7 @@ mod.SKIN_LIST = {
             bw_1h_sword_skin_01_runed_01 = "la_sienna_kotbs_sword_glow_icon",
             bw_1h_sword_skin_02_runed_01 = "la_sienna_kotbs_sword_glow_icon",
             bw_1h_sword_skin_02_runed_02 = "la_sienna_kotbs_sword_glow_icon",
+            default = "la_sienna_kotbs_sword_glow_icon",
         },       
     },
     Kruber_KOTBS_wizard_sword_01_flame = {
@@ -1495,6 +1503,7 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_01_runed_01 = "la_sienna_kotbs_firesword_icon",
             bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_icon",
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_icon",
+            default = "la_sienna_kotbs_firesword_icon",
         },       
     },
     Kruber_KOTBS_wizard_sword_01_flame_gold = {
@@ -1517,6 +1526,7 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_01_runed_01 = "la_sienna_kotbs_firesword_glow_icon",
             bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_glow_icon",
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_glow_icon",
+            default = "la_sienna_kotbs_firesword_glow_icon",
         },       
     },
 }
