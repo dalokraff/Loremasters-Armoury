@@ -8,6 +8,12 @@ local mod_text_ids = {
 	mod_name = {
 		en = "Loremaster's Armoury",
 	},
+	off_hand = {
+		en = "Off Hand",
+	},
+	main_hand = {
+		en = "Main Hand",
+	},
 	choose_char_hat = {
 		en = "Choose Hat for Character",
 	},

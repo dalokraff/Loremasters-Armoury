@@ -283,6 +283,11 @@ mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
         end
     end
 
+    if string.find(text_id, "_LA_menu_widget") then
+        
+        return func(self, string.gsub(text_id, "_LA_menu_widget", ""))
+    end
+
     if not string.find(mod:localize(text_id), "<") then
         return mod:localize(text_id)
     end

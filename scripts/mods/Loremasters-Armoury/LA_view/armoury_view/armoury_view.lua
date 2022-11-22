@@ -293,7 +293,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 	local item_list = self.items_by_hero[selected_hero][selected_item]
 	local i = 0
 	local j =  0 --2*math.ceil(#item_list/5)
-	local divider_offset = widgets_by_name["original_skins_list_divider"].offset[2] - 10
+	local divider_offset = widgets_by_name["original_skins_list_divider"].offset[2] - 30
 	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
 		local item_data = item_master_list[item_name]
 		
@@ -330,7 +330,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		}
 
 		new_widget_def.content["tooltip_hotspot"] = {}
-		new_widget_def.content["tooltip_text"] = item_data.display_name
+		new_widget_def.content["tooltip_text"] = item_data.display_name.."_LA_menu_widget"
 
 		new_widget_def.style["tooltip_text"] = {
 			dynamic_height = false,
@@ -338,7 +338,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 			localize = true,
 			word_wrap = false,
 			font_size = 16,
-			max_width = 500,
+			max_width = 200,
 			vertical_alignment = "top",
 			horizontal_alignment = "left",
 			use_shadow = true,
@@ -448,13 +448,13 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 		word_wrap = true,
 		font_size = 18,
 		vertical_alignment = "top",
-		horizontal_alignment = "center",
+		horizontal_alignment = "left",
 		use_shadow = true,
 		dynamic_font_size = false,
 		font_type = "hell_shark_header",
 		text_color = {255,247,170,6},
 		offset = {
-			0,
+			-100,
 			0+down_shift,
 			32
 		}
@@ -491,7 +491,7 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 			end
 			new_widget_def.offset = {
 				i*-60,
-				j*-60 + down_shift,
+				j*-60 + down_shift - 40,
 				-1
 			}
 			new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
