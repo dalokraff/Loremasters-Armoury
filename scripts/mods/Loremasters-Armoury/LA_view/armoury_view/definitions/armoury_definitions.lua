@@ -20,8 +20,10 @@ local window_frame = UIFrameSettings[window_frame_name]
 local window_frame_width = window_frame.texture_sizes.vertical[1]
 
 local list_window_size = {
-	400*0.9,
-	700*0.9
+	-- 400*0.9,
+	-- 700*0.9
+	400,
+    600
 }
 local list_scrollbar_size = {
 	16,
@@ -359,7 +361,7 @@ local scenegraph_definition = {
 			-- -140,
 			-- 10
             100,
-			-180,
+			-230,
 			10
 		}
 	},
@@ -423,6 +425,31 @@ local scenegraph_definition = {
 			0, 
 			32 
 		},
+	},
+	original_equipped_skins_title_text = {
+		vertical_alignment = "bottom",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = {
+			200,
+			50
+		},
+		position = {
+			0,
+			-550,
+			32
+		}
+	},
+	original_skins_equiped_skin = {
+		vertical_alignment = "bottom",
+		parent = "original_equipped_skins_title_text",
+		horizontal_alignment = "center",
+		size = list_entry_size,
+		position = {
+			150,
+			-100,
+			32
+		}
 	},
 	original_skins_list_detail_top = {
 		vertical_alignment = "top",
@@ -489,7 +516,7 @@ local scenegraph_definition = {
 			-- -140,
 			-- 10
             -100,
-			-180,
+			-230,
 			10
 		}
 	},

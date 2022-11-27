@@ -8,6 +8,12 @@ local mod_text_ids = {
 	mod_name = {
 		en = "Loremaster's Armoury",
 	},
+	original_skin = {
+		en = "Official Realm Skins",
+	},
+	LA_skin = {
+		en = "Loremaster's Armoury Skins",
+	},
 	off_hand = {
 		en = "Off Hand",
 	},
