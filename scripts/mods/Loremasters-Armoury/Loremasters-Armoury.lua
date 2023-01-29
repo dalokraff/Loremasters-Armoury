@@ -646,7 +646,7 @@ mod:command("gk_body_mesh", "", function(diffuse, normal, combined)
     local player_unit = player.player_unit
     local position = Unit.local_position(player_unit, 0)
     local rotation = Unit.local_rotation(player_unit, 0)
-    local altered_mesh = RetextureMesh:new("units/beings/player/empire_soldier_knight/third_person_base/chr_third_person_mesh", Managers.state.unit_spawner, position, rotation)
+    local altered_mesh = RetextureMesh:new("units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh", Managers.state.unit_spawner, position, rotation)
     altered_mesh:set_texture("texture_map_64cc5eb8", diffuse)
     altered_mesh:set_texture("texture_map_861dbfdc", normal)
     altered_mesh:set_texture("texture_map_abb81538", combined)
