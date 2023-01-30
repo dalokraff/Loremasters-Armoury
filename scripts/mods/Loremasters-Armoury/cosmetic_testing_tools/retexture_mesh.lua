@@ -24,7 +24,9 @@ RetextureMesh.set_texture = function(self, text_slot, texture_file, meshes_to_sk
                 local num_mats = Mesh.num_materials(mesh)
                 for j = 0, num_mats - 1, 1 do
                     local mat = Mesh.material(mesh, j)
-                    Material.set_texture(mat, text_slot, texture_file)
+                    if texture_file ~= "nil" then
+                        Material.set_texture(mat, text_slot, texture_file)
+                    end
                 end
             end
         end
