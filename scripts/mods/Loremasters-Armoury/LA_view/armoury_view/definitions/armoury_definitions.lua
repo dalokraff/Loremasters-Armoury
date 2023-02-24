@@ -40,7 +40,22 @@ local original_skins_frame_size = {
     400,
     900
 }
-
+local LA_UI_frame_size = {
+    585*0.9,
+    779*0.9
+}
+local LA_preview_background_size = {
+	524,
+	784
+}
+local la_ui_headerlarge_size = {
+	503*0.9,
+	87*0.9
+}
+local la_ui_separator = {
+	509*0.9,
+	34*0.9
+}
 
 local scenegraph_definition = {
     root = {
@@ -230,6 +245,20 @@ local scenegraph_definition = {
 			0
 		}
 	},
+	LA_preview_background = {
+		vertical_alignment = "center",
+		parent = "LA_preview",
+		horizontal_alignment = "center",
+		size = {
+			LA_preview_background_size[1]*0.9,
+			LA_preview_background_size[2]*0.9
+		},
+		position = {
+			0,
+			0,
+			80
+		}
+	},
     sword_left_bottom = {
 		vertical_alignment = "bottom",
 		parent = "LA_preview",
@@ -337,18 +366,40 @@ local scenegraph_definition = {
 			30
 		}
     },
-    original_skins_title_text = {
+	original_skins_frame_texture = {
+        vertical_alignment = "center",
+		parent = "original_skins_frame",
+		horizontal_alignment = "left",
+		size = LA_UI_frame_size,
+		position = {
+			20,
+			-50,
+			30
+		}
+    },
+	original_skins_title_bg = {
 		vertical_alignment = "top",
 		parent = "original_skins_frame",
+		horizontal_alignment = "center",
+		size = la_ui_headerlarge_size,
+		position = {
+			100,
+			-50,
+			31
+		}
+	},
+	original_skins_title_text = {
+		vertical_alignment = "top",
+		parent = "original_skins_title_bg",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
 			300
 		},
 		position = {
-			80,
-			-100,
-			31
+			0,
+			-10,
+			32
 		}
 	},
     original_skins_list_window = {
@@ -416,10 +467,7 @@ local scenegraph_definition = {
 		parent = "original_skins_list_scroll_root",
 		vertical_alignment = "center",
 		horizontal_alignment = "right",
-		size = { 
-			430, 
-			20 
-		},
+		size = la_ui_separator,
 		position = { 
 			430,
 			0, 
@@ -448,6 +496,17 @@ local scenegraph_definition = {
 		position = {
 			150,
 			-100,
+			32
+		}
+	},
+	original_skins_equiped_skin_hand_title = {
+		vertical_alignment = "bottom",
+		parent = "original_skins_equiped_skin",
+		horizontal_alignment = "center",
+		size = list_entry_size,
+		position = {
+			0,
+			0,
 			32
 		}
 	},
@@ -485,25 +544,47 @@ local scenegraph_definition = {
         vertical_alignment = "center",
 		parent = "window_background",
 		horizontal_alignment = "right",
-		size = LA_skins_frame_size,
+		size = original_skins_frame_size,
 		position = {
 			-20,
 			0,
 			30
 		}
     },
-    LA_skins_title_text = {
-		vertical_alignment = "top",
+	LA_skins_frame_texture = {
+        vertical_alignment = "center",
 		parent = "LA_skins_frame",
 		horizontal_alignment = "right",
+		size = LA_UI_frame_size,
+		position = {
+			-20,
+			-50,
+			30
+		}
+    },
+	LA_skins_title_bg = {
+		vertical_alignment = "top",
+		parent = "LA_skins_frame",
+		horizontal_alignment = "center",
+		size = la_ui_headerlarge_size,
+		position = {
+			-100,
+			-50,
+			31
+		}
+	},
+    LA_skins_title_text = {
+		vertical_alignment = "top",
+		parent = "LA_skins_title_bg",
+		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
 			300
 		},
 		position = {
-			-80,
-			-100,
-			31
+			0,
+			-10,
+			32
 		}
 	},
     LA_skins_list_window = {
@@ -628,11 +709,11 @@ local scenegraph_definition = {
 	},
 
     my_button = {
-      parent = "window_background",
-      vertical_alignment = "center",
+      parent = "window",
+      vertical_alignment = "bottom",
       horizontal_alignment = "center",
-      size = { 50, 35 },
-      position = { 0, 0, 2 },
+      size = { 438, 44 },
+      position = { 0, -25, 50 },
     },
 
 	hero_selection = {
@@ -733,8 +814,22 @@ local scenegraph_definition = {
 			32 
 		},
 	},
-	melee_item_select = {
+	gear_icon_frame = {
 		parent = "hero_selection",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			366, 
+			64 
+		},
+		position = { 
+			0,
+			-110, 
+			31
+		},
+	},
+	melee_item_select = {
+		parent = "gear_icon_frame",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
@@ -742,13 +837,13 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			-90,
-			-110, 
+			-100,
+			0, 
 			32 
 		},
 	},
 	ranged_item_select = {
-		parent = "hero_selection",
+		parent = "gear_icon_frame",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
@@ -757,12 +852,12 @@ local scenegraph_definition = {
 		},
 		position = { 
 			0,
-			-110, 
+			0, 
 			32 
 		},
 	},
 	skin_item_select = {
-		parent = "hero_selection",
+		parent = "gear_icon_frame",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
@@ -770,8 +865,8 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			90,
-			-110, 
+			100,
+			0, 
 			32 
 		},
 	},
@@ -847,7 +942,7 @@ local original_skins_title_text_style = {
 	offset = {
 		0,
 		0,
-		2
+		32
 	}
 }
 
@@ -866,7 +961,7 @@ local LA_skins_title_text_style = {
 	offset = {
 		0,
 		0,
-		2
+		32
 	}
 }
 
@@ -1929,53 +2024,56 @@ end
   
 local widgets_definitions = {    
     original_skins_title_text = UIWidgets.create_simple_text("original_skin", "original_skins_title_text", nil, nil, original_skins_title_text_style),
-    original_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
-		{
-			0,
-			0
-		},
-		{
-			1,
-			1
-		}
-	}, "original_skins_list_detail_top"),
-	original_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
-		{
-			0,
-			1
-		},
-		{
-			1,
-			0
-		}
-	}, "original_skins_list_detail_bottom"),
-	original_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("original_skins_list_scrollbar", "original_skins_list_window", scenegraph_definition.original_skins_list_scrollbar.size, "gold"),
+	original_skins_title_bg = UIWidgets.create_simple_texture("la_ui_headerlarge", "original_skins_title_bg"),
+    -- original_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+	-- 	{
+	-- 		0,
+	-- 		0
+	-- 	},
+	-- 	{
+	-- 		1,
+	-- 		1
+	-- 	}
+	-- }, "original_skins_list_detail_top"),
+	-- original_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+	-- 	{
+	-- 		0,
+	-- 		1
+	-- 	},
+	-- 	{
+	-- 		1,
+	-- 		0
+	-- 	}
+	-- }, "original_skins_list_detail_bottom"),
+	-- original_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("original_skins_list_scrollbar", "original_skins_list_window", scenegraph_definition.original_skins_list_scrollbar.size, "gold"),
 	original_skins_list_mask = create_list_mask("original_skins_list_window", scenegraph_definition.original_skins_list_window.size, 10),
 
 	-- original_skins_list_divider = UIWidgets.create_simple_texture("small_divider", "original_skins_list_divider"),
 
+	LA_skins_title_bg = UIWidgets.create_simple_texture("la_ui_headerlarge", "LA_skins_title_bg"),
     LA_skins_title_text = UIWidgets.create_simple_text("LA_skin", "LA_skins_title_text", nil, nil, LA_skins_title_text_style),
-    LA_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
-		{
-			1,
-			0
-		},
-		{
-			0,
-			1
-		}
-	}, "LA_skins_list_detail_top"),
-	LA_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
-		{
-			1,
-			1
-		},
-		{
-			0,
-			0
-		}
-	}, "LA_skins_list_detail_bottom"),
-	LA_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("LA_skins_list_scrollbar", "LA_skins_list_window", scenegraph_definition.LA_skins_list_scrollbar.size, "gold"),
+	
+    -- LA_skins_list_detail_top = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+	-- 	{
+	-- 		1,
+	-- 		0
+	-- 	},
+	-- 	{
+	-- 		0,
+	-- 		1
+	-- 	}
+	-- }, "LA_skins_list_detail_top"),
+	-- LA_skins_list_detail_bottom = UIWidgets.create_simple_uv_texture("keep_decorations_01", {
+	-- 	{
+	-- 		1,
+	-- 		1
+	-- 	},
+	-- 	{
+	-- 		0,
+	-- 		0
+	-- 	}
+	-- }, "LA_skins_list_detail_bottom"),
+	-- LA_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("LA_skins_list_scrollbar", "LA_skins_list_window", scenegraph_definition.LA_skins_list_scrollbar.size, "gold"),
 	LA_skins_list_mask = create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
 
     window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
@@ -1988,28 +2086,30 @@ local widgets_definitions = {
     window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
     window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),
     
-    sword_left_bottom = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_bottom"),
-	sword_right_bottom = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
-		{
-			1,
-			0
-		},
-		{
-			0,
-			1
-		}
-	}, "sword_right_bottom"),
-    sword_left_top = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_top"),
-	sword_right_top = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
-		{
-			1,
-			0
-		},
-		{
-			0,
-			1
-		}
-	}, "sword_right_top"),
+    -- sword_left_bottom = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_bottom"),
+	-- sword_right_bottom = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
+	-- 	{
+	-- 		1,
+	-- 		0
+	-- 	},
+	-- 	{
+	-- 		0,
+	-- 		1
+	-- 	}
+	-- }, "sword_right_bottom"),
+    -- sword_left_top = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_top"),
+	-- sword_right_top = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
+	-- 	{
+	-- 		1,
+	-- 		0
+	-- 	},
+	-- 	{
+	-- 		0,
+	-- 		1
+	-- 	}
+	-- }, "sword_right_top"),
+
+	LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe", "LA_preview_background"),
 
 
 
@@ -2019,8 +2119,11 @@ local widgets_definitions = {
 	wh_hero_select = create_icon_and_remove_name_button("wh_hero_select", "la_saltzpyre_button_icon", "wh"),
 	bw_hero_select = create_icon_and_remove_name_button("bw_hero_select", "la_sienna_button_icon", "bw"),
 
-	hero_select_divider = UIWidgets.create_simple_texture("small_divider", "hero_select_divider"),
+	hero_select_divider = UIWidgets.create_simple_texture("la_ui_separatorcenter", "hero_select_divider"),
+	original_skins_frame_texture = UIWidgets.create_simple_texture("la_ui_frameleft", "original_skins_frame_texture"),
+	LA_skins_frame_texture = UIWidgets.create_simple_texture("la_ui_frameright", "LA_skins_frame_texture"),
 
+	gear_icon_frame = UIWidgets.create_simple_texture("la_ui_geariconframe", "gear_icon_frame"),
 	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
 	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
@@ -2098,45 +2201,7 @@ local widgets_definitions = {
 			0
 		}
 	},
-    my_button = {
-		element = {
-		  passes = {
-			{
-			  pass_type = "hotspot",
-			  content_id = "button_hotspot"
-			},
-			{
-			  pass_type = "rect",
-			  style_id = "rect"
-			},
-			{
-			  pass_type = "text",
-			  text_id = "text",
-			  style_id = "text"
-			}
-		  }
-		},
-		content = {
-		  button_hotspot = {},
-		  text = "Click to Close"
-		},
-		style = {
-		  rect = {
-			color = { 255, 0, 0, 0 },
-			offset = { 0, 0, 0 }
-		  },
-		  text = {
-			text_color = { 255, 255, 255, 255 },
-			font_type = "hell_shark",
-			font_size = 18,
-			vertical_alignment = "center",
-			horizontal_alignment = "center",
-			offset = { 0, 0, 1 }
-		  }
-		},
-		scenegraph_id = "my_button",
-		offset = { 0, 0, 2 }
-	},
+	my_button = UIWidgets.create_default_button("my_button", scenegraph_definition.my_button.size, "menu_frame_bg_06", "la_ui_closebutton", Localize("interaction_action_close"), 28, nil, "la_ui_closebutton", nil, true)
 }
 
 
