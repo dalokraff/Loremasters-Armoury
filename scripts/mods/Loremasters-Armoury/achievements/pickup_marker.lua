@@ -2,6 +2,23 @@ local mod = get_mod("Loremasters-Armoury")
 local atlas = require("materials/Loremasters-Armoury/armoury_atlas")
 
 
+local quat_forward = Quaternion.forward
+local quat_right = Quaternion.right
+local vec3_norm = Vector3.normalize
+local vec3_flat = Vector3.flat
+local vec3_dot = Vector3.dot
+local vec3_dist = Vector3.distance
+
+local unit_local_pos = Unit.local_position
+
+local gui_bitmap = Gui.bitmap
+local gui_update_bitmap = Gui.update_bitmap
+
+local world_create_screen_gui = World.create_screen_gui
+
+local math_abs = math.abs
+local math_log = math.log
+local math_ex = math.exp
 
 
 -- https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/9f98479071fe839dedf487ce8567e7d9492704c9/scripts/ui/hud_ui/floating_icon_ui.lua
@@ -22,11 +39,11 @@ local get_floating_icon_position = function (screen_pos_x, screen_pos_y, forward
 	local is_x_clamped = false
 	local is_y_clamped = false
 
-	if math.abs(x_diff) > scaled_root_size_x_half * 0.9 then
+	if math_abs(x_diff) > scaled_root_size_x_half * 0.9 then
 		is_x_clamped = true
 	end
 
-	if math.abs(y_diff) > scaled_root_size_y_half * 0.9 then
+	if math_abs(y_diff) > scaled_root_size_y_half * 0.9 then
 		is_y_clamped = true
 	end
 
@@ -60,9 +77,9 @@ end
 --gaussing function that handles size of waypoint based on distance from it
 local gaussian_size_decrease = function(current_distance, min_size, max_size, max_distance)
 
-    local lambda = -(100^2)/math.log(min_size/max_size)
+    local lambda = -(100^2)/math_log(min_size/max_size)
 
-    local gaussian_size = max_size*math.exp(-(current_distance-max_distance)^2/lambda)
+    local gaussian_size = max_size*math_ex(-(current_distance-max_distance)^2/lambda)
 
     return gaussian_size
 end
@@ -75,10 +92,10 @@ function mod.render_marker(pos_box, distance_view)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
     if player_unit and not Managers.ui._ingame_ui.current_view then
-        local player_pos = Unit.local_position(player_unit, 0)
+        local player_pos = unit_local_pos(player_unit, 0)
         local waypoint_position = Vector3(pos_box[1], pos_box[2], pos_box[3])
 
-        local dist = Vector3.distance(player_pos, waypoint_position)
+        local dist = vec3_dist(player_pos, waypoint_position)
 
         if (dist <= distance_view) and (dist > 1) then
             
@@ -89,10 +106,18 @@ function mod.render_marker(pos_box, distance_view)
 
             local top_world = Managers.world:world("top_ingame_view")
 
-            local mod_gui = World.create_screen_gui(top_world, "immediate",
+            local mod_gui = nil
+            if not mod.mod_gui then
+                mod_gui = world_create_screen_gui(top_world, "immediate",
                         "material", "materials/Loremasters-Armoury/LA_waypoint_main_icon"
                         )
-            local distance = Vector3.distance(player_pos, waypoint_position)
+                mod.mod_gui = mod_gui
+                mod.gui = nil
+            else
+                mod_gui = mod.mod_gui
+            end
+
+            local distance = vec3_dist(player_pos, waypoint_position)
 
             --gaussing function that handles size of waypoint based on distance from it
             local min_size = 55*0.8
@@ -112,18 +137,18 @@ function mod.render_marker(pos_box, distance_view)
 			local first_person_extension = ScriptUnit.extension(player.player_unit, "first_person_system")
 			local player_rotation = first_person_extension:current_rotation()
 
-			local player_direction_forward = Quaternion.forward(player_rotation)
-			player_direction_forward = Vector3.normalize(Vector3.flat(player_direction_forward))
+			local player_direction_forward = quat_forward(player_rotation)
+			player_direction_forward = vec3_norm(vec3_flat(player_direction_forward))
 
-			local player_direction_right = Quaternion.right(player_rotation)
-			player_direction_right = Vector3.normalize(Vector3.flat(player_direction_right))
+			local player_direction_right = quat_right(player_rotation)
+			player_direction_right = vec3_norm(vec3_flat(player_direction_right))
 
 			local offset = waypoint_position - player_pos
 
-			local direction = Vector3.normalize(Vector3.flat(offset))
+			local direction = vec3_norm(vec3_flat(offset))
 
-			local player_forward_dot = Vector3.dot(player_direction_forward, direction)
-			local player_right_dot = Vector3.dot(player_direction_right, direction)
+			local player_forward_dot = vec3_dot(player_direction_forward, direction)
+			local player_right_dot = vec3_dot(player_direction_right, direction)
 
 			local is_behind = (player_forward_dot < 0 and true) or false
 
@@ -153,18 +178,34 @@ function mod.render_marker(pos_box, distance_view)
                     local up_check = mid_y - y
 
                     if up_check < -30 then
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        if not mod.gui then
+                            mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        else
+                            gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(screen_width/2, screen_height - screen_height/8), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        end
                     elseif side_check > 0 then
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        if not mod.gui then
+                            mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        else
+                            gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        end
                     else
-                        Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        if not mod.gui then 
+                            mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        else
+                            gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                        end
                     end
 
                    
                 end
             else
                 local alpha = 255
-                Gui.bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                if not mod.gui then  
+                    mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                else
+                    gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
+                end
             end
         end
     end

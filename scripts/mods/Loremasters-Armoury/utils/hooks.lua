@@ -111,9 +111,20 @@ end)
 
 mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
     local unit_name = nil
+    local unit_skin_name = nil
+    local unit_hand = nil
     if Unit.has_data(target, 'unit_name') then
         unit_name = Unit.get_data(target, 'unit_name')
     end
+
+    if Unit.has_data(target, "skin_name") then
+        unit_skin_name = Unit.get_data(target, 'skin_name')
+    end
+
+    if Unit.has_data(target, "hand_unit") then
+        unit_hand = Unit.get_data(target, "hand_unit")
+    end
+
     for skin,tisch in pairs(mod.SKIN_CHANGED) do
         local Armoury_key = mod:get(skin)
         if tisch.changed_texture then
@@ -125,7 +136,19 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
                         Armoury_key = Armoury_key,
                         skin = skin,
                     }
-                end
+                elseif (unit_skin_name == skin) and (unit_hand == mod.SKIN_LIST[Armoury_key].swap_hand) then
+                    mod.SKIN_CHANGED[skin].changed_texture = true
+                        mod.level_queue[target] = {
+                            Armoury_key = Armoury_key,
+                            skin = skin,
+                        }
+                end  
+            elseif (unit_skin_name == skin) and (unit_hand == mod.SKIN_LIST[Armoury_key].swap_hand) then
+                mod.SKIN_CHANGED[skin].changed_texture = true
+                mod.level_queue[target] = {
+                    Armoury_key = Armoury_key,
+                    skin = skin,
+                }          
             end
             if mod.SKIN_LIST[Armoury_key].fps_units then
                 if unit_name == mod.SKIN_LIST[Armoury_key].fps_units[1] then
