@@ -49,7 +49,7 @@ function QuestBoardLetterView:on_enter(transition_params)
   self._animations = {}
   self._ui_animations = {}
   self.quest_board = mod.letter_board
-  self._interactable_unit = mod.interactable_unit
+  self._interactable_unit = mod.interactable_letter_unit
 
   self._default_table = mod.painting
   self._main_table = mod.painting
@@ -59,7 +59,8 @@ function QuestBoardLetterView:on_enter(transition_params)
 	"hello",
 	"world",
   }
-  self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
+  self._empty_decoration_name = Unit.get_data(mod.interactable_letter_unit, "quest")
+  self:set_letter_read()
 
 --   self:_initialize_simple_decoration_preview()
   self:_create_ui_elements()
@@ -67,7 +68,13 @@ function QuestBoardLetterView:on_enter(transition_params)
 
   self:_initialize_simple_decoration_preview()
   self:play_sound("Loremaster_letter_open_sound__1_")
+  self:set_letter_read()
   
+end
+
+QuestBoardLetterView.set_letter_read = function (self)
+	local quest = self._empty_decoration_name
+	mod:set(quest.."_letter_read", true)
 end
 
 QuestBoardLetterView._initialize_simple_decoration_preview = function (self)

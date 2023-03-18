@@ -42,7 +42,7 @@ InteractionDefinitions.archive_search.client.stop = function (world, interactor_
 
 	if result == InteractionResult.SUCCESS and not data.is_husk then
 	    if interactable_unit then
-            mod.interactable_unit = interactable_unit
+            mod.interactable_questboard_unit = interactable_unit
 			mod:handle_transition("open_quest_board_archive_view")
         end
 
@@ -52,7 +52,7 @@ end
 
 InteractionDefinitions.archive_search.replacement_rpc = function(interactable_unit)
     if interactable_unit then
-        mod.interactable_unit = interactable_unit
+        mod.interactable_questboard_unit = interactable_unit
         mod:handle_transition("open_quest_board_archive_view")
         return true  
     end

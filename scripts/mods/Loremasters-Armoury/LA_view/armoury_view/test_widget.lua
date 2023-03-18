@@ -42,13 +42,13 @@ function TestWidgets:on_enter(transition_params)
 	}
   self._animations = {}
   self._ui_animations = {}
-  self._interactable_unit = mod.interactable_unit
+  self._interactable_unit = mod.interactable_questboard_unit
 
 
   self._default_table = mod.painting
   self._main_table = mod.painting
   self._ordered_table = mod.list_order
-  self._empty_decoration_name = Unit.get_data(interactable_unit, "current_quest")
+  self._empty_decoration_name = Unit.get_data(mod.interactable_questboard_unit, "current_quest")
 
 --   self:_initialize_simple_decoration_preview()
   

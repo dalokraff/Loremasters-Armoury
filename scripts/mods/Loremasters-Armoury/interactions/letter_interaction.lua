@@ -42,7 +42,7 @@ InteractionDefinitions.letter_read.client.stop = function (world, interactor_uni
 
 	if result == InteractionResult.SUCCESS and not data.is_husk then
 	    if interactable_unit then
-            mod.interactable_unit = interactable_unit
+            mod.interactable_letter_unit = interactable_unit
 			mod:handle_transition("open_quest_board_letter_view")
         end
 
@@ -52,7 +52,7 @@ end
 
 InteractionDefinitions.letter_read.replacement_rpc = function(interactable_unit)
     if interactable_unit then
-        mod.interactable_unit = interactable_unit
+        mod.interactable_letter_unit = interactable_unit
         mod:handle_transition("open_quest_board_letter_view")
         return true  
     end
