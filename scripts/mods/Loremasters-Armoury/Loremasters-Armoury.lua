@@ -640,7 +640,6 @@ end
 
 mod:dofile("scripts/mods/Loremasters-Armoury/cosmetic_testing_tools/retexture_mesh")
 
-
 mod:command("gk_body_mesh", "", function(diffuse, normal, combined)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
@@ -652,6 +651,16 @@ mod:command("gk_body_mesh", "", function(diffuse, normal, combined)
     altered_mesh:set_texture("texture_map_b788717c", combined)
 end)
 
+mod:command("url_gk_body_mesh", "", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local altered_mesh = RetextureMesh:new("units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh", Managers.state.unit_spawner, position, rotation)
+    altered_mesh:set_texture_from_url("texture_map_64cc5eb8", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_861dbfdc", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_b788717c", tostring(combined), nil, combined)
+end)
 
 Managers.package:load("units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03", "global")
 mod:command("gk_hat_mesh", "", function(diffuse, normal, combined)
@@ -663,4 +672,15 @@ mod:command("gk_hat_mesh", "", function(diffuse, normal, combined)
     altered_mesh:set_texture("texture_map_c0ba2942", diffuse)
     altered_mesh:set_texture("texture_map_59cd86b9", normal)
     altered_mesh:set_texture("texture_map_0205ba86", combined)
+end)
+
+mod:command("url_gk_hat_mesh", "", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local position = Unit.local_position(player_unit, 0) +Vector3(0,0,1)
+    local rotation = Unit.local_rotation(player_unit, 0)
+    local altered_mesh = RetextureMesh:new("units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03", Managers.state.unit_spawner, position, rotation)
+    altered_mesh:set_texture_from_url("texture_map_c0ba2942", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_59cd86b9", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_0205ba86", tostring(combined), nil, combined)
 end)

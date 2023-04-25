@@ -56,7 +56,8 @@ RetextureMesh.set_texture_resoruce = function(self, text_slot, meshes_to_skip, t
     end    
 end
 
-RetextureMesh.set_texture_from_url = function(self, text_slot, texture_file_key, meshes_to_skip, texture_url)
+RetextureMesh.set_texture_from_url = function(self, text_slot, texture_file_key, meshes_to_skip, url)
+    local texture_url = tostring(url)
     local cb = callback(self, "set_texture_resoruce", text_slot, meshes_to_skip, texture_file_key)
     Managers.url_loader:load_resource(
     texture_file_key,
