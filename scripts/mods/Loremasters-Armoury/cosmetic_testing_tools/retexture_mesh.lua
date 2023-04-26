@@ -2,12 +2,16 @@ local mod = get_mod("Loremasters-Armoury")
 
 RetextureMesh = class(RetextureMesh)
 
-RetextureMesh.init = function (self, unit_path, unit_spawner, pos, rot)
+RetextureMesh.init = function (self, unit, unit_spawner, pos, rot)
     self.texture_resources = {}
     self.world = Managers.world:world("level_world")
-    self.unit_path = unit_path
     self.unit_spawner = unit_spawner
-    self.unit = unit_spawner:spawn_local_unit(unit_path, pos, rot)
+    self.unit = nil
+    if type(unit) == "string" then
+        self.unit = unit_spawner:spawn_local_unit(unit, pos, rot)
+    elseif type(unit) == "userdata" then
+        self.unit = unit    
+    end
     
 end
 

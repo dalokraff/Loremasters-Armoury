@@ -651,7 +651,7 @@ mod:command("gk_body_mesh", "", function(diffuse, normal, combined)
     altered_mesh:set_texture("texture_map_b788717c", combined)
 end)
 
-mod:command("url_gk_body_mesh", "", function(diffuse, normal, combined)
+mod:command("url_gk_body_mesh", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
     local position = Unit.local_position(player_unit, 0)
@@ -674,7 +674,7 @@ mod:command("gk_hat_mesh", "", function(diffuse, normal, combined)
     altered_mesh:set_texture("texture_map_0205ba86", combined)
 end)
 
-mod:command("url_gk_hat_mesh", "", function(diffuse, normal, combined)
+mod:command("url_gk_hat_mesh", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
     local player = Managers.player:local_player()
     local player_unit = player.player_unit
     local position = Unit.local_position(player_unit, 0) +Vector3(0,0,1)
@@ -683,4 +683,64 @@ mod:command("url_gk_hat_mesh", "", function(diffuse, normal, combined)
     altered_mesh:set_texture_from_url("texture_map_c0ba2942", tostring(diffuse), nil, diffuse)
     altered_mesh:set_texture_from_url("texture_map_59cd86b9", tostring(normal), nil, normal)
     altered_mesh:set_texture_from_url("texture_map_0205ba86", tostring(combined), nil, combined)
+end)
+
+
+mod:command("url_body", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local cosmetic_extension = ScriptUnit.has_extension(player_unit, "cosmetic_system")
+    local tp_mesh = cosmetic_extension._tp_unit_mesh
+    local altered_mesh = RetextureMesh:new(tp_mesh, Managers.state.unit_spawner)
+    altered_mesh:set_texture_from_url("texture_map_64cc5eb8", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_861dbfdc", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_b788717c", tostring(combined), nil, combined)
+end)
+
+mod:command("url_hat", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local cosmetic_extension = ScriptUnit.has_extension(player_unit, "cosmetic_system")
+    local attachment_extension = cosmetic_extension["_attachment_extension"]
+    local hat_data = attachment_extension:get_slot_data("slot_hat")
+    local hat_unit = hat_data.unit
+    local altered_mesh = RetextureMesh:new(hat_unit, Managers.state.unit_spawner)
+    altered_mesh:set_texture_from_url("texture_map_c0ba2942", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_59cd86b9", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_0205ba86", tostring(combined), nil, combined)
+end)
+
+mod:command("url_left_hand", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local inventory_extension = ScriptUnit.has_extension(player_unit, "inventory_system")
+    local equipment = inventory_extension["_equipment"]
+    local left_hand_unit = equipment.left_hand_wielded_unit
+    local altered_mesh = RetextureMesh:new(left_hand_unit, Managers.state.unit_spawner)
+    altered_mesh:set_texture_from_url("texture_map_c0ba2942", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_59cd86b9", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_0205ba86", tostring(combined), nil, combined)
+end)
+
+mod:command("url_right_hand", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local inventory_extension = ScriptUnit.has_extension(player_unit, "inventory_system")
+    local equipment = inventory_extension["_equipment"]
+    local right_hand_unit = equipment.right_hand_wielded_unit
+    local altered_mesh = RetextureMesh:new(right_hand_unit, Managers.state.unit_spawner)
+    altered_mesh:set_texture_from_url("texture_map_c0ba2942", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_59cd86b9", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_0205ba86", tostring(combined), nil, combined)
+end)
+
+mod:command("url_fps", "Parameters: url_to_diffuse url_to_normal url_to_combined", function(diffuse, normal, combined)
+    local player = Managers.player:local_player()
+    local player_unit = player.player_unit
+    local first_person_extension = ScriptUnit.has_extension(player_unit, "first_person_system")
+    local first_person_unit = first_person_extension:get_first_person_mesh_unit()
+    local altered_mesh = RetextureMesh:new(first_person_unit, Managers.state.unit_spawner)
+    altered_mesh:set_texture_from_url("texture_map_64cc5eb8", tostring(diffuse), nil, diffuse)
+    altered_mesh:set_texture_from_url("texture_map_861dbfdc", tostring(normal), nil, normal)
+    altered_mesh:set_texture_from_url("texture_map_b788717c", tostring(combined), nil, combined)
 end)
