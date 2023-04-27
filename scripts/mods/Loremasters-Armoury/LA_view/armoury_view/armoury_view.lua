@@ -444,6 +444,13 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
     local buttons = self.buttons
 	
 	local equipped_skin_widgets = self.equipped_skin_widgets or {}
+
+	local check_left_hand = (not item_data.right_hand_unit) and hand == "off_hand"
+	local check_right_hand = (not item_data.left_hand_unit) and hand == "main_hand"
+	if check_left_hand or check_right_hand then
+		return
+	end
+
 	local vanilla_to_modded_table_handed = VANILLA_TO_MODDED_TABLE[hand]
 
 	local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
@@ -456,14 +463,14 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 			local Amoury_data = self.SKIN_LIST[Armoury_key]
 			local Armoury_data_right = self.SKIN_LIST[Armoury_key_right]
 
-			if Amoury_data or Armoury_data_right then
+			-- if Amoury_data or Armoury_data_right then
 				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
 				if hand == 'main_hand' and Armoury_data_right then 
 					icon = Armoury_data_right.icons[chosen_skin_name] or Armoury_data_right.icons["default"] or secondary_icon or "la_notification_icon"
-				else
+				elseif Amoury_data then
 					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
 				end
-			end
+			-- end
 			
 
 		end
