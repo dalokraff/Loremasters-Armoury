@@ -2,9 +2,10 @@ local mod = get_mod("Loremasters-Armoury")
 -- for k,v in pairs(mod.SKIN_CHANGED) do
 -- 	mod:echo(k)
 -- end
-mod:echo(mod.current_skin["es_1h_sword_shield_skin_03_runed_01_rightHand"])
+-- mod:echo(mod.current_skin["es_1h_sword_shield_skin_03_runed_01_rightHand"])
 
 local VANILLA_TO_MODDED_TABLE = local_require("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/definitions/vanilla_to_modded_table")
+local ARMOURY_TABLE = local_require("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/armoury_db")
 local definitions = local_require("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/definitions/armoury_definitions")
 local widget_definitions = definitions.widgets
 local scenegraph_definition = definitions.scenegraph_definition
@@ -58,7 +59,22 @@ function ArmouryView:init(ingame_ui_context)
 
 	self.SKIN_LIST =  mod.SKIN_LIST
 	self.SKIN_CHANGED = mod.SKIN_CHANGED
+	self.armoury_db = table.clone(ARMOURY_TABLE, true)
 
+	self:init_armoury_db()
+end
+
+function ArmouryView:init_armoury_db()
+	--populates UI table that tracks which skin is equipped.
+	local armoury_db = self.armoury_db
+	
+	for weapon_type, weapon_data in pairs(armoury_db) do
+		for item_name, hand_data in pairs(weapon_data) do
+			hand_data.right = mod:get(item_name.."_rightHand") or "default"
+			hand_data.left = mod:get(item_name) or "default"
+			
+		end
+	end
 end
 
 -- Optional. Executed by `ingame_ui` after transitioning to your custom view.
@@ -144,7 +160,7 @@ end
 
 function ArmouryView:play_sound(event)
 	WwiseWorld.trigger_event(self.wwise_world, event)
-  end
+end
 
 ArmouryView._handle_input = function (self, dt, t)
     local esc_pressed = self:input_service():get("toggle_menu")
@@ -163,6 +179,7 @@ ArmouryView._handle_input = function (self, dt, t)
             self:play_sound("Play_hud_select")
             
             if string.find(name, "hero_select") then
+				--selects hero
                 self.selected_hero = name
                 self:unselect_buttons(widgets_by_name, "hero_select")
                 self:toggle_button(button_widget)
@@ -170,6 +187,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
             elseif string.find(name, "item_select") then
+				--selects which weapon/item type (ranged, melee, char skin)
                 self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "item_select")
                 self:toggle_button(button_widget)
@@ -177,6 +195,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
             elseif string.find(name, "_original_skin") then
+				--selects which of the base game items to modify
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_skin")
                 self:toggle_button(button_widget)
@@ -185,6 +204,7 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:update_original_skin_list_skin_entries(name)
 				self:clear_equipped_skin_widgets()
 			elseif string.find(name, "_original_entry_skin") then
+				--selects which of the base game skins to modify
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_entry_skin")
                 self:toggle_button(button_widget)
@@ -193,14 +213,16 @@ ArmouryView._handle_input = function (self, dt, t)
 				self.original_skin_chosen = name
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_LA_skins_entry_skin") then
-                -- self.selected_item = name
+                --selects which LA skin to equip
+				-- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
                 self:toggle_button(button_widget)
                 self:set_armoury_key(name) --update LA skins
 				-- self:spawn_item_in_viewport(name)
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_original_equipped_skin") then
-                -- self.selected_item = name
+                --for reseting the skin to default
+				-- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_equipped_skin")
                 self:toggle_button(button_widget)
 				self:reset_hand_to_default(name)
@@ -219,20 +241,42 @@ ArmouryView._handle_input = function (self, dt, t)
 end
 
 ArmouryView.set_armoury_key = function (self, widget_name)
-    
+    local armoury_db = self.armoury_db
 	local original_skin = self.original_skin_chosen
 	local LA_skin = widget_name
 
-	local mod_setting_id = string.gsub(original_skin, "_original_entry_skin", "")
-	if string.find(mod_setting_id, "shield") then
-		mod_setting_id = mod_setting_id.."_rightHand"
-	end
+	-- mod:echo(original_skin) --item type and skin name
+	-- mod:echo(LA_skin) --hand data and amoruykey
+
+	local right_count = 0
+	local left_count = 0
+	local skin_name = string.gsub(original_skin, "_original_entry_skin", "")
+	local weapon_type = string.gsub(skin_name, "_skin.+", "")
+	local mod_setting_id = string.rep(skin_name, 1)
+	-- if string.find(skin_name, "shield") then
+	-- 	mod_setting_id = skin_name.."_rightHand"
+	-- end
 
 	local Armoury_key_hand = string.gsub(LA_skin, "_LA_skins_entry_skin", "")
-	local Armoury_key = string.gsub(Armoury_key_hand, "_off_hand", "")
-	Armoury_key = string.gsub(Armoury_key, "_main_hand", "")
-	mod:set(mod_setting_id, Armoury_key)
+	local Armoury_key, left_count  = string.gsub(Armoury_key_hand, "_off_hand", "")
+	Armoury_key, right_count = string.gsub(Armoury_key, "_main_hand", "")
 
+	local hand = ""
+	if right_count > left_count then
+		hand = "right"
+		if string.find(skin_name, "shield") or string.find(skin_name, "dual") or string.find(skin_name, "_and") then
+			mod_setting_id = skin_name.."_rightHand"
+		end
+	elseif right_count < left_count then
+		hand = "left"
+	end
+	mod:set(mod_setting_id, Armoury_key)
+	armoury_db[weapon_type][skin_name][hand] = Armoury_key
+
+	mod:echo(mod_setting_id)
+	mod:echo(weapon_type.."."..skin_name.."."..hand..":	"..
+			armoury_db[weapon_type][skin_name][hand])
+	
 end
 
 ArmouryView.spawn_item_in_viewport = function (self, widget_name)
@@ -295,22 +339,34 @@ end
 
 
 ArmouryView.reset_hand_to_default = function (self, widget_name)
-    
-	local original_skin = self.original_skin_chosen
-	
-	-- local mod_setting_id = string.gsub(original_skin, "_original_entry_skin", "")
+	local armoury_db = self.armoury_db
 
-	local mod_setting_id = string.gsub(widget_name, "_original_equipped_skin", "")
-	mod_setting_id = string.gsub(mod_setting_id, "_off_hand", "")
-	
-	local main_hand = ""
-	if self.SKIN_CHANGED[string.gsub(original_skin, "_original_entry_skin", "").."_rightHand"] then
-		main_hand = "_rightHand"
+	local right_count = 0
+	local left_count = 0
+	local skin_name = string.gsub(widget_name, "_original_equipped_skin", "")
+	skin_name, right_count = string.gsub(skin_name, "_main_hand", "")
+	skin_name, left_count = string.gsub(skin_name, "_off_hand", "")
+	local weapon_type = string.gsub(skin_name, "_skin.+", "")
+	local mod_setting_id = string.rep(skin_name, 1)
+	-- if string.find(skin_name, "shield") then
+	-- 	mod_setting_id = skin_name.."_rightHand"
+	-- end
+
+	local hand = ""
+	if right_count > left_count then
+		hand = "right"
+		if string.find(skin_name, "shield") or string.find(skin_name, "dual") or string.find(skin_name, "_and") then
+			mod_setting_id = skin_name.."_rightHand"
+		end
+	elseif right_count < left_count then
+		hand = "left"
 	end
-	mod_setting_id = string.gsub(mod_setting_id, "_main_hand", main_hand)
-	local Armoury_key = "default"
+
+	armoury_db[weapon_type][skin_name][hand] = "default"
+	mod:set(mod_setting_id, "default")
 	mod:echo(mod_setting_id)
-	mod:set(mod_setting_id, Armoury_key)
+	mod:echo(weapon_type.."."..skin_name.."."..hand..":	"..
+			armoury_db[weapon_type][skin_name][hand])
 
 end
 
@@ -396,12 +452,12 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 	local equipped_skin_widgets = self.equipped_skin_widgets or {}
 	local vanilla_to_modded_table_handed = VANILLA_TO_MODDED_TABLE[hand]
 	
-	mod:echo("========")
-	mod:echo(Armoury_skin_data)
-	mod:echo(Armoury_skin_data.changed_model)
-	mod:echo(chosen_skin_name)
-	mod:echo(chosen_skin_name.."_rightHand")
-	mod:echo(hand)
+	-- mod:echo("========")
+	-- mod:echo(Armoury_skin_data)
+	-- mod:echo(Armoury_skin_data.changed_model)
+	-- mod:echo(chosen_skin_name)
+	-- mod:echo(chosen_skin_name.."_rightHand")
+	-- mod:echo(hand)
 
 	local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 	local display_name = item_data.display_name
@@ -414,8 +470,8 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 			if Amoury_data or Armoury_data_right then
 				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
 				if hand == 'main_hand' then 
-					mod:echo( Amoury_data.icons[chosen_skin_name.."_rightHand"])
-					mod:echo(chosen_skin_name.."_rightHand")
+					-- mod:echo( Amoury_data.icons[chosen_skin_name.."_rightHand"])
+					-- mod:echo(chosen_skin_name.."_rightHand")
 					icon = Amoury_data.icons[chosen_skin_name.."_rightHand"] or Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
 				else
 					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
@@ -484,7 +540,7 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 		}
 	}
 
-	i = i + 1
+	-- i = i + 1
 
 	local widget = UIWidget.init(new_widget_def)
 	local widget_number = math.random(10,10^9)
@@ -1047,3 +1103,12 @@ function ArmouryView:on_exit()
 
 	ShowCursorStack.pop()
 end
+
+
+-- need to simplify database structure
+-- + have a pregenned table of all valid options for each vanilla weapon 
+-- + weapon -> hand -> skin
+
+-- then a second table to keep track of which weapons are currently equipped
+-- + weapon -> hand -> skin
+-- this will lead to redundant data in the user config but should be worth it for simplicity
