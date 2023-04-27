@@ -272,10 +272,6 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 	end
 	mod:set(mod_setting_id, Armoury_key)
 	armoury_db[weapon_type][skin_name][hand] = Armoury_key
-
-	mod:echo(mod_setting_id)
-	mod:echo(weapon_type.."."..skin_name.."."..hand..":	"..
-			armoury_db[weapon_type][skin_name][hand])
 	
 end
 
@@ -364,9 +360,6 @@ ArmouryView.reset_hand_to_default = function (self, widget_name)
 
 	armoury_db[weapon_type][skin_name][hand] = "default"
 	mod:set(mod_setting_id, "default")
-	mod:echo(mod_setting_id)
-	mod:echo(weapon_type.."."..skin_name.."."..hand..":	"..
-			armoury_db[weapon_type][skin_name][hand])
 
 end
 
@@ -444,6 +437,7 @@ ArmouryView.create_equipped_skin_title = function (self, display_name)
 	self.equipped_skin_widgets = equipped_skin_widgets
 end
 
+--this function needs to be revisted and simplified to better handle the retrieval of icons based off of handedness.
 ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, item_data, chosen_skin_name, display_name, hand)
 	local widgets = self._widgets
 	local widgets_by_name = self._widgets_by_name
@@ -451,13 +445,6 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 	
 	local equipped_skin_widgets = self.equipped_skin_widgets or {}
 	local vanilla_to_modded_table_handed = VANILLA_TO_MODDED_TABLE[hand]
-	
-	-- mod:echo("========")
-	-- mod:echo(Armoury_skin_data)
-	-- mod:echo(Armoury_skin_data.changed_model)
-	-- mod:echo(chosen_skin_name)
-	-- mod:echo(chosen_skin_name.."_rightHand")
-	-- mod:echo(hand)
 
 	local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 	local display_name = item_data.display_name
@@ -465,22 +452,21 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 		local skin_changed = Armoury_skin_data.changed_texture or Armoury_skin_data.changed_model
 		if skin_changed then
 			local Armoury_key = mod:get(chosen_skin_name)
+			local Armoury_key_right = mod:get(chosen_skin_name.."_rightHand")
 			local Amoury_data = self.SKIN_LIST[Armoury_key]
-			local Armoury_data_right = self.SKIN_LIST[Armoury_key.."_rightHand"]
+			local Armoury_data_right = self.SKIN_LIST[Armoury_key_right]
+
 			if Amoury_data or Armoury_data_right then
 				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
-				if hand == 'main_hand' then 
-					-- mod:echo( Amoury_data.icons[chosen_skin_name.."_rightHand"])
-					-- mod:echo(chosen_skin_name.."_rightHand")
-					icon = Amoury_data.icons[chosen_skin_name.."_rightHand"] or Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
+				if hand == 'main_hand' and Armoury_data_right then 
+					icon = Armoury_data_right.icons[chosen_skin_name] or Armoury_data_right.icons["default"] or secondary_icon or "la_notification_icon"
 				else
 					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
 				end
 			end
-		-- else
+			
 
 		end
-	-- else
 
 	end
 
@@ -539,8 +525,6 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 			2
 		}
 	}
-
-	-- i = i + 1
 
 	local widget = UIWidget.init(new_widget_def)
 	local widget_number = math.random(10,10^9)
