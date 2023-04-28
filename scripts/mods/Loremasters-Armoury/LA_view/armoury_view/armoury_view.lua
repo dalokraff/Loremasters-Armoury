@@ -295,19 +295,49 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 	local item_data = ItemMasterList[item_key]
 	local item_unit_name_right = item_data.right_hand_unit
 	local item_unit_name_left = item_data.left_hand_unit
-
-	Managers.package:load(item_unit_name_right, "global")
-	Managers.package:load(item_unit_name_left, "global")
+	local item_unit_name = item_data.unit
+	local item_type = item_data.item_type
+	
+	if item_type == "skin" then
+		local cosmetic_data = Cosmetics[item_data.name]
+		local unit_name = cosmetic_data.third_person_attachment.unit
+		local package_lookup_id = NetworkLookup.inventory_packages[unit_name]
+		local new_mtrs = nil
+		if package_lookup_id then
+			Managers.package:load(unit_name, "global")
+		end
+		if cosmetic_data.material_changes then
+			local mtr_package_name = cosmetic_data.material_changes.package_name
+			Managers.package:load(mtr_package_name, "global")
+			new_mtrs = table.clone(cosmetic_data.material_changes.third_person)
+		end
+		local skin_unit = unit_spawner:spawn_local_unit(unit_name, Vector3(0,0,1), radians_to_quaternion(0,math.pi/2,0))
+		if new_mtrs then
+			for mtr_slot, mtr in pairs(new_mtrs) do
+				Unit.set_material(skin_unit, mtr_slot, mtr)
+			end
+		end
+		self.viewport_skin = skin_unit
+		POSITION_LOOKUP[skin_unit] = nil
+	end
 
 	if item_unit_name_right then 
+		Managers.package:load(item_unit_name_right, "global")
 		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
 		self.viewport_right_hand = right_unit
 		POSITION_LOOKUP[right_unit] = nil
 	end
 	if item_unit_name_left then 
+		Managers.package:load(item_unit_name_left, "global")
 		local left_unit = unit_spawner:spawn_local_unit(item_unit_name_left, Vector3(0,0,2), radians_to_quaternion(0,0,math.pi/6))
 		self.viewport_left_hand = left_unit
 		POSITION_LOOKUP[left_unit] = nil
+	end
+	if item_unit_name then 
+		Managers.package:load(item_unit_name, "global")
+		local hat_unit = unit_spawner:spawn_local_unit(item_unit_name, Vector3(0,0,2), radians_to_quaternion(0,math.pi/2,0))
+		self.viewport_hat = hat_unit
+		POSITION_LOOKUP[hat_unit] = nil
 	end
 
 end
@@ -317,6 +347,8 @@ ArmouryView.remove_units_from_viewport = function (self, widget_name)
 	local world = unit_spawner.world
 	local viewport_right_hand = self.viewport_right_hand
 	local viewport_left_hand = self.viewport_left_hand
+	local viewport_hat = self.viewport_hat
+	local viewport_skin = self.viewport_skin
 
 	if viewport_right_hand then
 		World.destroy_unit(world, viewport_right_hand)
@@ -327,6 +359,16 @@ ArmouryView.remove_units_from_viewport = function (self, widget_name)
 		World.destroy_unit(world, viewport_left_hand)
 		-- unit_spawner:mark_for_deletion(viewport_left_hand)
 		self.viewport_left_hand = nil
+	end
+	if viewport_hat then 
+		World.destroy_unit(world, viewport_hat)
+		-- unit_spawner:mark_for_deletion(viewport_hat)
+		self.viewport_hat = nil
+	end
+	if viewport_skin then 
+		World.destroy_unit(world, viewport_skin)
+		-- unit_spawner:mark_for_deletion(viewport_hat)
+		self.viewport_skin = nil
 	end
 	-- unit_spawner:remove_units_marked_for_deletion()
 end
@@ -1138,7 +1180,8 @@ function ArmouryView:on_exit()
 	self._unit_spawner = nil
 	self.viewport_right_hand = nil
 	self.viewport_left_hand = nil
-
+	self.viewport_hat = nil
+	self.viewport_skin = nil
 	self.original_skin_list_page_offset = nil
 
 	ShowCursorStack.pop()
