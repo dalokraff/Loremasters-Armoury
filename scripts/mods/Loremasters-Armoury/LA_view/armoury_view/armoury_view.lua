@@ -105,8 +105,11 @@ function ArmouryView:on_enter(transition_params)
         "melee_item_select",
         "ranged_item_select",
         "skin_item_select",
+		"hat_item_select",
         -- "original_skins_list_entry",
     }
+
+	self.original_skin_list_page_offset = 0
 
     self:create_ui_elements(params)
 
@@ -183,6 +186,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self.selected_hero = name
                 self:unselect_buttons(widgets_by_name, "hero_select")
                 self:toggle_button(button_widget)
+				self.original_skin_list_page_offset = 0
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
@@ -191,6 +195,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "item_select")
                 self:toggle_button(button_widget)
+				self.original_skin_list_page_offset = 0
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
@@ -227,6 +232,12 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
 				self:reset_hand_to_default(name)
 				self:create_equipped_skins_display()
+			elseif string.find(name, "original_skins_equiped_skin_page_button") then
+				self:unselect_buttons(widgets_by_name, "original_skins_equiped_skin_page_button")
+				self:toggle_button(button_widget)
+				self.original_skin_list_page_offset = self.original_skin_list_page_offset + 22
+				self:update_original_skin_list()
+				self:clear_equipped_skin_widgets()
             end
             return
         end
@@ -859,15 +870,33 @@ ArmouryView.update_original_skin_list = function (self)
 
     local i = 0
 	local j = 0
-    for _,item_name in pairs(item_list) do
-        local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
-        local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
-        local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
-        
+	-- local items_per_page = mod.items_per_page_original_skin_entry
+	local items_per_page = 23
+	local num_pages = math.ceil((#item_list)/(items_per_page+1))
+	local displayed_items = 0
+	local page_offset = self.original_skin_list_page_offset
+
+	--checks if you cycle past last page and resets to page 1
+	if math.ceil(page_offset/items_per_page +1) > num_pages then
+		self.original_skin_list_page_offset = 0
+		page_offset = 0
+	end
+
+    for index,item_name in ipairs(item_list) do
+        if index-page_offset > items_per_page  or (index < page_offset) then
+			goto pageOver
+		end
+
 		if i > 5 then
 			i = 0
 			j = j + 1
 		end
+
+		local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
+        local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
+        local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
+        
+		
 		new_widget_def.offset = {
             i*60,
             j*-60,
@@ -875,6 +904,7 @@ ArmouryView.update_original_skin_list = function (self)
         }
         new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
         i = i + 1
+		displayed_items = displayed_items + 1
 
         local widget = UIWidget.init(new_widget_def)
         local widget_number =math.random(10,10^9)
@@ -888,7 +918,10 @@ ArmouryView.update_original_skin_list = function (self)
         }
         buttons[button_number] = new_widget_name
 		self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
+		::pageOver::
     end
+
+	
 
 	local skin_divider_def = UIWidgets.create_simple_texture("la_ui_separatorleft", "original_skins_list_divider")
 	skin_divider_def.offset[2] = (j+1)*-60 - 15
@@ -903,6 +936,20 @@ ArmouryView.update_original_skin_list = function (self)
 	}
 	
 	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
+
+	local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
+	local page_button_def = UIWidgets.create_icon_button("original_skins_equiped_skin_page_button", page_button_size , nil, nil, "tabs_icon_all_selected")
+	
+	local page_button_widget = UIWidget.init(page_button_def)
+	local page_button_widget_number = math.random(10,10^9)
+	local page_button_number = math.random(10,10^9)
+	widgets[page_button_widget_number] = page_button_widget
+	widgets_by_name["original_skins_equiped_skin_page_button"] = page_button_widget
+	original_skin_list_widgets[page_button_widget_number] = {
+		widget_name = "original_skins_equiped_skin_page_button",
+		button_number = page_button_number,
+	}
+	buttons[page_button_number] = "original_skins_equiped_skin_page_button"
 
 
     self._original_skin_list_widgets = original_skin_list_widgets
@@ -1091,6 +1138,8 @@ function ArmouryView:on_exit()
 	self._unit_spawner = nil
 	self.viewport_right_hand = nil
 	self.viewport_left_hand = nil
+
+	self.original_skin_list_page_offset = nil
 
 	ShowCursorStack.pop()
 end

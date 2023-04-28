@@ -462,7 +462,18 @@ local scenegraph_definition = {
 			0,
 			-1
 		}
-	},	
+	},
+	original_skins_equiped_skin_page_button = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = list_entry_size,
+		position = {
+			380,
+			-70,
+			32
+		}
+	},
 	original_skins_list_divider = {
 		parent = "original_skins_list_scroll_root",
 		vertical_alignment = "center",
@@ -837,7 +848,7 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			-100,
+			-150,
 			0, 
 			32 
 		},
@@ -851,7 +862,7 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			0,
+			-50,
 			0, 
 			32 
 		},
@@ -865,7 +876,21 @@ local scenegraph_definition = {
 			50 
 		},
 		position = { 
-			100,
+			50,
+			0, 
+			32 
+		},
+	},
+	hat_item_select = {
+		parent = "gear_icon_frame",
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		size = { 
+			50, 
+			50 
+		},
+		position = { 
+			150,
 			0, 
 			32 
 		},
@@ -2126,8 +2151,9 @@ local widgets_definitions = {
 	gear_icon_frame = UIWidgets.create_simple_texture("la_ui_geariconframe", "gear_icon_frame"),
 	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
-	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
-
+	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_trinkets_normal"),
+	hat_item_select = UIWidgets.create_icon_button("hat_item_select", scenegraph_definition.hat_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
+	
 
 	-- original_skins_list_entry = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition.original_skins_list_entry.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 
