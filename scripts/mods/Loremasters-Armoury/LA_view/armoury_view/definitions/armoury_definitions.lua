@@ -844,11 +844,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			45, 
+			45 
 		},
 		position = { 
-			-150,
+			-117.5,
 			0, 
 			32 
 		},
@@ -858,11 +858,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			45, 
+			45 
 		},
 		position = { 
-			-50,
+			-39.5,
 			0, 
 			32 
 		},
@@ -872,11 +872,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			45, 
+			45 
 		},
 		position = { 
-			50,
+			39.5,
 			0, 
 			32 
 		},
@@ -886,11 +886,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			45, 
+			45 
 		},
 		position = { 
-			150,
+			117.5,
 			0, 
 			32 
 		},
@@ -2148,7 +2148,7 @@ local widgets_definitions = {
 	original_skins_frame_texture = UIWidgets.create_simple_texture("la_ui_frameleft", "original_skins_frame_texture"),
 	LA_skins_frame_texture = UIWidgets.create_simple_texture("la_ui_frameright", "LA_skins_frame_texture"),
 
-	gear_icon_frame = UIWidgets.create_simple_texture("la_ui_geariconframe", "gear_icon_frame"),
+	gear_icon_frame = UIWidgets.create_simple_texture("la_ui_geariconframe_new", "gear_icon_frame"),
 	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
 	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_trinkets_normal"),

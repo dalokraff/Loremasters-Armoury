@@ -13,6 +13,7 @@ local console_cursor_definition = definitions.console_cursor_definition
 local animation_definitions = definitions.animation_definitions
 local generic_input_actions = definitions.generic_input_actions
 local viewport_definition = definitions.viewport_definition
+local ItemMasterList = ItemMasterList
 math.randomseed(os.time())
 
 local DO_RELOAD = false
@@ -217,6 +218,11 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:spawn_item_in_viewport(name)
 				self.original_skin_chosen = name
 				self:create_equipped_skins_display()
+			elseif string.find(name, "_original_entry_outfit_skin") then
+				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
+                self:toggle_button(button_widget)
+                self:update_LA_skin_list(name) --update LA skins
+				self:spawn_item_in_viewport(name)
 			elseif string.find(name, "_LA_skins_entry_skin") then
                 --selects which LA skin to equip
 				-- self.selected_item = name
@@ -292,6 +298,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 
 	local item_key = string.gsub(widget_name, "_original_skin", "")
 	item_key = string.gsub(item_key, "_original_entry_skin", "")
+	item_key = string.gsub(item_key, "_original_entry_outfit_skin", "")
 	local item_data = ItemMasterList[item_key]
 	local item_unit_name_right = item_data.right_hand_unit
 	local item_unit_name_left = item_data.left_hand_unit
@@ -754,7 +761,10 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 	local skin_list = self.SKIN_LIST
 
 	local default_item_name = string.gsub(widget_name, "_original_entry_skin", "")
-	local default_skin_key = string.gsub(widget_name, "_skin.+", "")
+	local default_skin_key = string.gsub(widget_name, "_original_entry_skin", "")
+	default_skin_key = string.gsub(widget_name, "_original_entry_outfit_skin", "")
+	default_skin_key = string.gsub(default_skin_key, "_skin.+", "")
+	
 
 	local list_of_possible_skins = vanilla_to_modded_table_handed[default_skin_key]
 
@@ -948,10 +958,55 @@ ArmouryView.update_original_skin_list = function (self)
         i = i + 1
 		displayed_items = displayed_items + 1
 
-        local widget = UIWidget.init(new_widget_def)
+		local widget_suffix = "_original_skin"
+		if string.find(item_name, "_hat") or string.find(item_name, "skin_[%a][%a]_") then
+			widget_suffix = "_original_entry_outfit_skin"
+			local num_passes = #new_widget_def.element.passes
+			new_widget_def.element.passes[num_passes+1] = {
+				pass_type = "hotspot",
+				content_id = "tooltip_hotspot",
+				content_check_function = function (ui_content)
+					return not ui_content.disabled
+				end
+			}
+			new_widget_def.element.passes[num_passes+2] = {
+				style_id = "tooltip_text",
+				pass_type = "tooltip_text",
+				text_id = "tooltip_text",
+				content_check_function = function (ui_content)
+					return ui_content.tooltip_hotspot.is_hover
+				end
+			}
+
+			new_widget_def.content["tooltip_hotspot"] = {}
+			new_widget_def.content["tooltip_text"] = ItemMasterList[item_name].display_name
+
+			new_widget_def.style["tooltip_text"] = {
+				dynamic_height = false,
+				upper_case = false,
+				localize = true,
+				word_wrap = true,
+				font_size = 16,
+				max_width = 150,
+				vertical_alignment = "top",
+				horizontal_alignment = "left",
+				use_shadow = true,
+				dynamic_font_size = false,
+				font_type = "hell_shark",
+				text_color = {255,247,170,6},
+				offset = {
+					0,
+					0,
+					2
+				}
+			}
+		end
+
+		local widget = UIWidget.init(new_widget_def)
         local widget_number =math.random(10,10^9)
         local button_number = math.random(10,10^9)
-        local new_widget_name = item_name.."_original_skin"
+
+        local new_widget_name = item_name..widget_suffix
 		widgets[widget_number] = widget
 		widgets_by_name[new_widget_name] = widget
         original_skin_list_widgets[widget_number] = {
@@ -1195,3 +1250,5 @@ end
 -- then a second table to keep track of which weapons are currently equipped
 -- + weapon -> hand -> skin
 -- this will lead to redundant data in the user config but should be worth it for simplicity
+
+--tooltip wideget definitions need to be seperated into their own funcitons

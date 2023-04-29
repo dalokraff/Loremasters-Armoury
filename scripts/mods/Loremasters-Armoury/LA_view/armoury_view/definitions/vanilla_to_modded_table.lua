@@ -254,4 +254,12 @@ local vanilla_to_modded_skins = {
     },
 }
 
+
+for item_name, item_data in pairs(ItemMasterList) do
+    if item_data.item_type == "skin" or item_data.item_type == "hat" then
+        vanilla_to_modded_skins.off_hand[item_name] = {} 
+        vanilla_to_modded_skins.main_hand[item_name] = {} 
+    end
+end
+
 return vanilla_to_modded_skins
