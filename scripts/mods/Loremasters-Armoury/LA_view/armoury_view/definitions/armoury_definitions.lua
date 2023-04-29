@@ -2151,7 +2151,7 @@ local widgets_definitions = {
 	gear_icon_frame = UIWidgets.create_simple_texture("la_ui_geariconframe_new", "gear_icon_frame"),
 	melee_item_select = UIWidgets.create_icon_button("melee_item_select", scenegraph_definition.melee_item_select.size, nil, nil, "tabs_inventory_icon_melee_normal"),
 	ranged_item_select = UIWidgets.create_icon_button("ranged_item_select", scenegraph_definition.ranged_item_select.size, nil, nil, "tabs_inventory_icon_ranged_normal"),
-	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "tabs_inventory_icon_trinkets_normal"),
+	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "store_tag_icon_skin_exotic"),
 	hat_item_select = UIWidgets.create_icon_button("hat_item_select", scenegraph_definition.hat_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 	
 
