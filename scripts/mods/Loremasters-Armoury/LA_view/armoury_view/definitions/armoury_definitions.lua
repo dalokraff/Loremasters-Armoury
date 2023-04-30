@@ -56,6 +56,10 @@ local la_ui_separator = {
 	509*0.9,
 	34*0.9
 }
+local la_ui_gear_icon = {
+	462*0.9, 
+	63*0.9
+}
 
 local scenegraph_definition = {
     root = {
@@ -856,10 +860,7 @@ local scenegraph_definition = {
 		parent = "hero_selection",
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
-		size = { 
-			366, 
-			64 
-		},
+		size = la_ui_gear_icon,
 		position = { 
 			0,
 			-110, 
@@ -871,11 +872,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			45, 
-			45 
+			50, 
+			50
 		},
 		position = { 
-			-117.5,
+			-135,
 			0, 
 			32 
 		},
@@ -885,11 +886,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			45, 
-			45 
+			50, 
+			50 
 		},
 		position = { 
-			-39.5,
+			-45,
 			0, 
 			32 
 		},
@@ -899,11 +900,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			45, 
-			45 
+			50, 
+			50 
 		},
 		position = { 
-			39.5,
+			45,
 			0, 
 			32 
 		},
@@ -913,11 +914,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			45, 
-			45 
+			50, 
+			50 
 		},
 		position = { 
-			117.5,
+			135,
 			0, 
 			32 
 		},
