@@ -223,12 +223,19 @@ local armoury = {
 
 
 local item_master_list = ItemMasterList
+
+for item_name, item_data in pairs(item_master_list) do
+    if item_data.item_type == "skin" or item_data.item_type == "hat" then
+        armoury[item_name] = {}
+    end
+end
+
 for weapon_name, weapon_data in pairs(armoury) do
     
     for item_name, item_data in pairs(item_master_list) do
         local display_name = item_data.display_name
         if display_name then
-            if weapon_name == string.gsub(display_name, "_skin.+", "") then
+            if weapon_name == string.gsub(item_name, "_skin.+", "") then
                 weapon_data[item_name] = {
                     right = "default",
                     left = "default",

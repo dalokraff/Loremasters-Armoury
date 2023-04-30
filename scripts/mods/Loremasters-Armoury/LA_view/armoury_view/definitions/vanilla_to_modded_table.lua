@@ -1,3 +1,5 @@
+local mod = get_mod("Loremasters-Armoury")
+
 local vanilla_to_modded_skins = {
     main_hand = {
         we_sword = {},
@@ -254,12 +256,42 @@ local vanilla_to_modded_skins = {
     },
 }
 
-
+vanilla_to_modded_skins["outfits"] = {}
 for item_name, item_data in pairs(ItemMasterList) do
     if item_data.item_type == "skin" or item_data.item_type == "hat" then
-        vanilla_to_modded_skins.off_hand[item_name] = {} 
-        vanilla_to_modded_skins.main_hand[item_name] = {} 
+        vanilla_to_modded_skins.outfits[item_name] = {} 
     end
 end
+
+-- vanilla_to_modded_skins.outfits.maidenguard_hat_1001 = {
+--     Kerillian_elf_hat_Windrunner_Avelorn = "Knight helm of Avelorn",
+--     Kerillian_elf_hat_Windrunner_Caledor = "Knight helm of Caledor",
+--     Kerillian_elf_hat_Windrunner_Chrace = "Knight helm of Chrace",
+--     Kerillian_elf_hat_Windrunner_Cothique = "Knight helm of Cothique",
+--     Kerillian_elf_hat_Windrunner_Eataine = "Knight helm of Eataine",
+--     Kerillian_elf_hat_Windrunner_Ellyrion = "Knight helm of Ellyrion",
+--     Kerillian_elf_hat_Windrunner_Nagarythe = "Knight helm of Nagarythe",
+--     Kerillian_elf_hat_Windrunner_Saphery = "Knight helm of Saphery",
+--     Kerillian_elf_hat_Windrunner_Tiranoc = "Knight helm of Tiranoc",
+--     Kerillian_elf_hat_Windrunner_Yvresse = "Knight helm of Yvresse",
+-- }
+
+-- vanilla_to_modded_skins.outfits.knight_hat_1001 = {
+--     Kruber_KOTBS_hat = "Blessed Helm of the Blazing Sun",
+-- }
+
+for hat_name,hat_data in pairs(mod.elf_hats) do
+    vanilla_to_modded_skins.outfits[hat_name] = table.clone(hat_data, false)
+end
+for hat_name,hat_data in pairs(mod.krub_hats) do
+    vanilla_to_modded_skins.outfits[hat_name] = table.clone(hat_data, false)
+end
+
+vanilla_to_modded_skins.outfits.skin_es_knight_black_and_gold = {
+    Kruber_KOTBS_armor = "Blessed Plate of the Blazing Sun",
+}
+vanilla_to_modded_skins.outfits.skin_ww_waywatcher_1001 = {
+    Ker_Autumn_Weave_Armor = "Herald of Autumn",
+}
 
 return vanilla_to_modded_skins

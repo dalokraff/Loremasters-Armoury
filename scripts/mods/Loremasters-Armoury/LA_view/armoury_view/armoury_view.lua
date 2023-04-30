@@ -181,7 +181,6 @@ ArmouryView._handle_input = function (self, dt, t)
         local button_widget = widgets_by_name[name]
         if self:_is_button_pressed(button_widget) then
             self:play_sound("Play_hud_select")
-            
             if string.find(name, "hero_select") then
 				--selects hero
                 self.selected_hero = name
@@ -214,15 +213,17 @@ ArmouryView._handle_input = function (self, dt, t)
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_entry_skin")
                 self:toggle_button(button_widget)
-                self:update_LA_skin_list(name) --update LA skins
+                self:update_LA_skin_list(name, "weapon") --update LA skins
 				self:spawn_item_in_viewport(name)
 				self.original_skin_chosen = name
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_original_entry_outfit_skin") then
 				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
                 self:toggle_button(button_widget)
-                self:update_LA_skin_list(name) --update LA skins
+                self:update_LA_skin_list(name, "outfits") --update LA skins
 				self:spawn_item_in_viewport(name)
+				self.original_skin_chosen = name
+				self:create_equipped_skins_display()
 			elseif string.find(name, "_LA_skins_entry_skin") then
                 --selects which LA skin to equip
 				-- self.selected_item = name
@@ -267,8 +268,11 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 
 	local right_count = 0
 	local left_count = 0
+	local outfits_count = 0
 	local skin_name = string.gsub(original_skin, "_original_entry_skin", "")
+	skin_name = string.gsub(skin_name, "_original_entry_outfit_skin", "")
 	local weapon_type = string.gsub(skin_name, "_skin.+", "")
+	weapon_type = string.gsub(weapon_type, "_original_entry_outfit_skin", "")
 	local mod_setting_id = string.rep(skin_name, 1)
 	-- if string.find(skin_name, "shield") then
 	-- 	mod_setting_id = skin_name.."_rightHand"
@@ -277,6 +281,7 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 	local Armoury_key_hand = string.gsub(LA_skin, "_LA_skins_entry_skin", "")
 	local Armoury_key, left_count  = string.gsub(Armoury_key_hand, "_off_hand", "")
 	Armoury_key, right_count = string.gsub(Armoury_key, "_main_hand", "")
+	Armoury_key, outfits_count = string.gsub(Armoury_key, "_outfits", "")
 
 	local hand = ""
 	if right_count > left_count then
@@ -284,7 +289,7 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 		if string.find(skin_name, "shield") or string.find(skin_name, "dual") or string.find(skin_name, "_and") then
 			mod_setting_id = skin_name.."_rightHand"
 		end
-	elseif right_count < left_count then
+	elseif right_count < left_count or outfits_count>0 then
 		hand = "left"
 	end
 	mod:set(mod_setting_id, Armoury_key)
@@ -399,9 +404,11 @@ ArmouryView.reset_hand_to_default = function (self, widget_name)
 
 	local right_count = 0
 	local left_count = 0
+	local outfits_count = 0
 	local skin_name = string.gsub(widget_name, "_original_equipped_skin", "")
 	skin_name, right_count = string.gsub(skin_name, "_main_hand", "")
 	skin_name, left_count = string.gsub(skin_name, "_off_hand", "")
+	skin_name, outfits_count = string.gsub(skin_name, "_outfits", "")
 	local weapon_type = string.gsub(skin_name, "_skin.+", "")
 	local mod_setting_id = string.rep(skin_name, 1)
 	-- if string.find(skin_name, "shield") then
@@ -414,7 +421,7 @@ ArmouryView.reset_hand_to_default = function (self, widget_name)
 		if string.find(skin_name, "shield") or string.find(skin_name, "dual") or string.find(skin_name, "_and") then
 			mod_setting_id = skin_name.."_rightHand"
 		end
-	elseif right_count < left_count then
+	elseif right_count < left_count or outfits_count > 0 then
 		hand = "left"
 	end
 
@@ -441,6 +448,7 @@ ArmouryView.create_equipped_skins_display = function (self)
 	-- local chosen_skin_name = string.gsub(original_skin_chosen, "_original_skin", "")
 	local chosen_skin_name = string.gsub(original_skin_chosen, "_original_entry_skin", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_original_equipped_skin", "")
+	chosen_skin_name = string.gsub(chosen_skin_name, "_original_entry_outfit_skin", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_off_hand", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_main_hand", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_name", "")
@@ -455,6 +463,7 @@ ArmouryView.create_equipped_skins_display = function (self)
 	self:clear_equipped_skin_widgets()
 	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "off_hand")
 	self:update_equipped_skin_display(Armoury_skin_data_main_hand, item_data, chosen_skin_name, display_name, "main_hand")
+	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "outfits")
 	self:create_equipped_skin_title(display_name)
 end
 
@@ -507,7 +516,8 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 
 	local check_left_hand = (not item_data.right_hand_unit) and hand == "off_hand"
 	local check_right_hand = (not item_data.left_hand_unit) and hand == "main_hand"
-	if check_left_hand or check_right_hand then
+	local check_outfit = (not item_data.unit) and  (not (item_data.item_type == "skin")) and hand == "outfits" 
+	if check_left_hand or check_right_hand or check_outfit then
 		return
 	end
 
@@ -522,13 +532,16 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 			local Armoury_key_right = mod:get(chosen_skin_name.."_rightHand")
 			local Amoury_data = self.SKIN_LIST[Armoury_key]
 			local Armoury_data_right = self.SKIN_LIST[Armoury_key_right]
-
+			mod:echo(Armoury_key)
+			mod:echo(Armoury_data_right)
 			-- if Amoury_data or Armoury_data_right then
 				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
 				if hand == 'main_hand' and Armoury_data_right then 
 					icon = Armoury_data_right.icons[chosen_skin_name] or Armoury_data_right.icons["default"] or secondary_icon or "la_notification_icon"
-				elseif Amoury_data then
+				elseif hand == 'off_hand' and Amoury_data then
 					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
+				elseif hand == 'outfits' and Amoury_data then
+					icon = "la_notification_icon"
 				end
 			-- end
 			
@@ -721,13 +734,17 @@ ArmouryView.clear_original_skin_list_skin_entry_widgets = function (self)
 	original_skin_list_skin_entry_widgets = {}
 end
 
-ArmouryView.update_LA_skin_list = function (self, widget_name)
+ArmouryView.update_LA_skin_list = function (self, widget_name, skin_type)
     
 	
 	self:clear_LA_skin_widgets()
 
-	self:update_LA_skin_hand(widget_name, "main_hand")
-	self:update_LA_skin_hand(widget_name, "off_hand")
+	if skin_type == "weapon" then
+		self:update_LA_skin_hand(widget_name, "main_hand")
+		self:update_LA_skin_hand(widget_name, "off_hand")
+	elseif skin_type == "outfits" then
+		self:update_LA_skin_hand(widget_name, "outfits")
+	end
 
 end
 
@@ -742,7 +759,12 @@ ArmouryView.look_for_other_hands_icons = function (self, default_skin_key, vanil
 	local list_of_possible_skins = vanilla_to_modded_table_handed[new_skin_key]
 	if list_of_possible_skins then
 		local armoury_data = skin_list[Armoury_key]
-		local icon = armoury_data.icons["default"]
+		local icon = "la_notification_icon" 
+		if armoury_data then
+			if armoury_data.icons then
+				icon = armoury_data.icons["default"] or icon
+			end
+		end
 		return icon
 	end
 
@@ -819,7 +841,11 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 			
 			local scenegraph_definition_size = scenegraph_definition["LA_skins_list_entry_"..hand].size
 			local secondary_icon = self:look_for_other_hands_icons(default_skin_key, vanilla_to_modded_table_handed, Armoury_key)
-			local icon = armoury_data.icons[default_item_name] or secondary_icon or "la_notification_icon"
+			local icon = secondary_icon or "la_notification_icon"
+			if armoury_data.icons then
+				icon = armoury_data.icons[default_item_name] or icon
+			end
+			
 			
 			local new_widget_def = UIWidgets.create_icon_button("LA_skins_list_entry_"..hand, scenegraph_definition_size , nil, nil, icon)
 
