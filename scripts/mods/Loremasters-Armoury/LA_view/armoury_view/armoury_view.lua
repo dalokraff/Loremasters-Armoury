@@ -532,8 +532,6 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 			local Armoury_key_right = mod:get(chosen_skin_name.."_rightHand")
 			local Amoury_data = self.SKIN_LIST[Armoury_key]
 			local Armoury_data_right = self.SKIN_LIST[Armoury_key_right]
-			mod:echo(Armoury_key)
-			mod:echo(Armoury_data_right)
 			-- if Amoury_data or Armoury_data_right then
 				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
 				if hand == 'main_hand' and Armoury_data_right then 
