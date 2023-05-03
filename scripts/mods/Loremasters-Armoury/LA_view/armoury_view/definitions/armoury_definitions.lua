@@ -2136,8 +2136,8 @@ local widgets_definitions = {
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
-    window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
-    window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),
+    -- window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
+    -- window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),
     
     -- sword_left_bottom = UIWidgets.create_simple_texture("frame_detail_sword", "sword_left_bottom"),
 	-- sword_right_bottom = UIWidgets.create_simple_uv_texture("frame_detail_sword", {
