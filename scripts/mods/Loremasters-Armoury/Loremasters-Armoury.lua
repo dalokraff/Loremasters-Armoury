@@ -33,6 +33,7 @@ LA_PICKUPS = {}
 mod.level_queue = {}
 mod.preview_queue = {}
 mod.armory_preview_queue = {}
+mod.LA_armoury_preview ={}
 mod.current_skin = {}
 mod.time = 0
 mod.delayed_sounds = {}
@@ -85,6 +86,21 @@ function mod.update(dt)
         end
     end
 
+    
+    for unit,tisch in pairs(mod.LA_armoury_preview) do
+        if Managers.world:has_world("LA_armoury_preview") then
+            local world = Managers.world:world("LA_armoury_preview")
+            local Armoury_key = tisch.Armoury_key
+            local skin = tisch.skin
+            if Armoury_key ~= "default" and mod.SKIN_LIST[Armoury_key] then
+                mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
+                mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
+            end
+            flush_LA_armoury_preview = true
+        end
+    end
+
+
     if flush_level then 
         mod.level_queue = {}
     end
@@ -93,6 +109,9 @@ function mod.update(dt)
     end
     if flush_armory_preview then 
         mod.armory_preview_queue = {}
+    end
+    if flush_LA_armoury_preview then 
+        mod.LA_armoury_preview = {}
     end
     
     mod.outliner()

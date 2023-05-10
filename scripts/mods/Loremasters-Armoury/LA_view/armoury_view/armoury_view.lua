@@ -297,6 +297,22 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 	
 end
 
+ArmouryView.add_item_to_texture_swap_queue = function(self, skin_name, unit)
+	local Armoury_key = mod:get(skin_name)
+	local skin_list = mod.SKIN_LIST[Armoury_key]
+	if skin_list then
+		local hand = skin_list.swap_hand
+		local hand_key = hand:gsub("_hand_unit", "")
+
+		if unit then
+			mod.LA_armoury_preview[unit] = {
+				Armoury_key = Armoury_key,
+				skin = skin_name,
+			}
+		end
+	end
+end
+
 ArmouryView.spawn_item_in_viewport = function (self, widget_name)
     self:remove_units_from_viewport()
 	local unit_spawner = self._unit_spawner
@@ -304,9 +320,15 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 	local item_key = string.gsub(widget_name, "_original_skin", "")
 	item_key = string.gsub(item_key, "_original_entry_skin", "")
 	item_key = string.gsub(item_key, "_original_entry_outfit_skin", "")
+	local skin_data = WeaponSkins.skins[item_key]
 	local item_data = ItemMasterList[item_key]
 	local item_unit_name_right = item_data.right_hand_unit
 	local item_unit_name_left = item_data.left_hand_unit
+	if skin_data then
+		item_unit_name_right = skin_data.right_hand_unit or item_data.right_hand_unit
+		item_unit_name_left = skin_data.left_hand_unit or item_data.left_hand_unit
+	end
+
 	local item_unit_name = item_data.unit
 	local item_type = item_data.item_type
 	
@@ -330,6 +352,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 			end
 		end
 		self.viewport_skin = skin_unit
+		self:add_item_to_texture_swap_queue(item_key, skin_unit)
 		POSITION_LOOKUP[skin_unit] = nil
 	end
 
@@ -337,18 +360,21 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		Managers.package:load(item_unit_name_right, "global")
 		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
 		self.viewport_right_hand = right_unit
+		self:add_item_to_texture_swap_queue(item_key, right_unit)
 		POSITION_LOOKUP[right_unit] = nil
 	end
 	if item_unit_name_left then 
 		Managers.package:load(item_unit_name_left, "global")
 		local left_unit = unit_spawner:spawn_local_unit(item_unit_name_left, Vector3(0,0,2), radians_to_quaternion(0,0,math.pi/6))
 		self.viewport_left_hand = left_unit
+		self:add_item_to_texture_swap_queue(item_key, left_unit)
 		POSITION_LOOKUP[left_unit] = nil
 	end
 	if item_unit_name then 
 		Managers.package:load(item_unit_name, "global")
 		local hat_unit = unit_spawner:spawn_local_unit(item_unit_name, Vector3(0,0,2), radians_to_quaternion(0,math.pi/2,0))
 		self.viewport_hat = hat_unit
+		self:add_item_to_texture_swap_queue(item_key, hat_unit)
 		POSITION_LOOKUP[hat_unit] = nil
 	end
 

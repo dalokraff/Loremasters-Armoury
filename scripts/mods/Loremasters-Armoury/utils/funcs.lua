@@ -73,6 +73,9 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
         if Managers.world:has_world("character_preview") then
             preview_world = Managers.world:world("character_preview")
         end
+        if Managers.world:has_world("LA_armoury_preview") then
+            preview_world = Managers.world:world("LA_armoury_preview")
+        end
         if preview_world ~= world then
             if Unit.get_data(unit, 'unit_name') == mod.SKIN_LIST[Armoury_key].fps_units[1] then
                 diff_slot = "texture_map_64cc5eb8"
