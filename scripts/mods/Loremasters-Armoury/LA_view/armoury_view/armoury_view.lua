@@ -295,6 +295,7 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 	mod:set(mod_setting_id, Armoury_key)
 	armoury_db[weapon_type][skin_name][hand] = Armoury_key
 	
+	self:spawn_item_in_viewport(skin_name)
 end
 
 ArmouryView.add_item_to_texture_swap_queue = function(self, skin_name, unit)

@@ -96,8 +96,8 @@ function mod.update(dt)
                 mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
                 mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             end
-            flush_LA_armoury_preview = true
         end
+        flush_LA_armoury_preview = true
     end
 
 
