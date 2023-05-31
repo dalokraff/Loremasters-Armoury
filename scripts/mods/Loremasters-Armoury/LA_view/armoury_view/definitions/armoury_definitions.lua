@@ -347,6 +347,28 @@ local scenegraph_definition = {
 			1
 		}
 	},
+	tutorial_overlay = {
+		vertical_alignment = "center",
+		parent = "window_background",
+		horizontal_alignment = "center",
+		size = inner_window_size,
+		position = {
+			0,
+			0,
+			100
+		}
+	},
+	tutorial_overlay_toggle = {
+		vertical_alignment = "top",
+		parent = "window_background",
+		horizontal_alignment = "right",
+		size = list_entry_size,
+		position = {
+			0,
+			0,
+			50
+		}
+	},
     loading_icon = {
 		vertical_alignment = "center",
 		parent = "window_frame",
@@ -2135,6 +2157,8 @@ local widgets_definitions = {
     window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
+
+	tutorial_overlay_toggle = UIWidgets.create_icon_button("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "tabs_icon_all_selected"),
 
     -- window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
     -- window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),

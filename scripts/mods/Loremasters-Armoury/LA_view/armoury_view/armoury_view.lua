@@ -108,11 +108,14 @@ function ArmouryView:on_enter(transition_params)
         "skin_item_select",
 		"hat_item_select",
         -- "original_skins_list_entry",
+		"tutorial_overlay_toggle",
     }
 
 	self.original_skin_list_page_offset = 0
 
     self:create_ui_elements(params)
+
+	self.tutorial_toggled = false
 
 end
 
@@ -245,6 +248,10 @@ ArmouryView._handle_input = function (self, dt, t)
 				self.original_skin_list_page_offset = self.original_skin_list_page_offset + 22
 				self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
+			elseif string.find(name, "tutorial_overlay_toggle") then
+				self:unselect_buttons(widgets_by_name, "tutorial_overlay_toggle")
+				self:toggle_button(button_widget)
+				self:toggle_tutorial_overlay()
             end
             return
         end
@@ -256,6 +263,29 @@ ArmouryView._handle_input = function (self, dt, t)
 
         return
     end
+end
+
+ArmouryView.toggle_tutorial_overlay = function(self)
+
+	local widgets = self._widgets
+	local widgets_by_name = self._widgets_by_name
+
+	self.tutorial_toggled = not self.tutorial_toggled
+
+	if self.tutorial_toggled then
+		local overlay_size = scenegraph_definition.tutorial_overlay.size
+		local overlay_widget = UIWidgets.create_background("tutorial_overlay", overlay_size, "la_ui_overlay")
+		local overlay_widget_name = "tutorial_widget"
+		local widget = UIWidget.init(overlay_widget)
+		local widget_number = math.random(10,10^9)
+		self.tutorial_widget_number = widget_number
+		widgets[widget_number] = widget
+		widgets_by_name[overlay_widget_name] = widget
+	elseif self.tutorial_widget_number then
+		widgets[self.tutorial_widget_number] = nil
+		widgets_by_name["tutorial_widget"] = nil
+	end
+
 end
 
 ArmouryView.set_armoury_key = function (self, widget_name)
@@ -1289,6 +1319,8 @@ function ArmouryView:on_exit()
 	self.viewport_hat = nil
 	self.viewport_skin = nil
 	self.original_skin_list_page_offset = nil
+
+	self.tutorial_widget_number = nil
 
 	ShowCursorStack.pop()
 end
