@@ -18,6 +18,27 @@ local window_size = {
 local window_frame_name = "menu_frame_11"
 local window_frame = UIFrameSettings[window_frame_name]
 local window_frame_width = window_frame.texture_sizes.vertical[1]
+UIFrameSettings["la_ui_border_test"] = {
+	texture = "la_ui_border_test",
+	texture_size = {
+		400 - 40,
+		300
+	},
+	texture_sizes = {
+		corner = {
+			22,
+			22
+		},
+		vertical = {
+			22,
+			1
+		},
+		horizontal = {
+			1,
+			22
+		}
+	}
+}
 
 local list_window_size = {
 	-- 400*0.9,
@@ -57,9 +78,10 @@ local la_ui_separator = {
 	34*0.9
 }
 local la_ui_gear_icon = {
-	462*0.9, 
-	63*0.9
+	462*0.85, 
+	63*0.85
 }
+local gear_icon_seperation_factor = 0.85/0.90
 
 local scenegraph_definition = {
     root = {
@@ -885,7 +907,7 @@ local scenegraph_definition = {
 		size = la_ui_gear_icon,
 		position = { 
 			0,
-			-110, 
+			-107.5, 
 			31
 		},
 	},
@@ -894,11 +916,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50
+			42.5, 
+			42.5
 		},
 		position = { 
-			-135,
+			-135*gear_icon_seperation_factor,
 			0, 
 			32 
 		},
@@ -908,11 +930,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			42.5, 
+			42.5
 		},
 		position = { 
-			-45,
+			-45*gear_icon_seperation_factor,
 			0, 
 			32 
 		},
@@ -922,11 +944,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			42.5, 
+			42.5
 		},
 		position = { 
-			45,
+			45*gear_icon_seperation_factor,
 			0, 
 			32 
 		},
@@ -936,11 +958,11 @@ local scenegraph_definition = {
 		vertical_alignment = "center",
 		horizontal_alignment = "center",
 		size = { 
-			50, 
-			50 
+			42.5, 
+			42.5
 		},
 		position = { 
-			135,
+			135*gear_icon_seperation_factor,
 			0, 
 			32 
 		},
@@ -2151,7 +2173,8 @@ local widgets_definitions = {
 	-- LA_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("LA_skins_list_scrollbar", "LA_skins_list_window", scenegraph_definition.LA_skins_list_scrollbar.size, "gold"),
 	LA_skins_list_mask = create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
 
-    window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
+    -- window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
+	window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_border_test", nil, nil, nil, nil, true, true, true),
     window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01darker"),
 	window_bg_vignette = UIWidgets.create_background("window_bg_vignette", scenegraph_definition.window_bg_vignette.size, "la_ui_background_vignette"),
     window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
