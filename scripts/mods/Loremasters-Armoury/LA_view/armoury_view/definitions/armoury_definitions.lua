@@ -2118,6 +2118,273 @@ end
 
 
 
+
+
+local create_simple_window_button = function (scenegraph_id, size, text, font_size, background_texture)
+	background_texture = background_texture or "button_bg_01"
+	local background_texture_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(background_texture)
+
+	return {
+		element = {
+			passes = {
+				{
+					style_id = "background",
+					pass_type = "hotspot",
+					content_id = "button_hotspot"
+				},
+				{
+					style_id = "background",
+					pass_type = "texture_uv",
+					content_id = "background"
+				},
+				-- {
+				-- 	texture_id = "background_fade",
+				-- 	style_id = "background_fade",
+				-- 	pass_type = "texture"
+				-- },
+				-- {
+				-- 	texture_id = "hover_glow",
+				-- 	style_id = "hover_glow",
+				-- 	pass_type = "texture"
+				-- },
+				-- {
+				-- 	pass_type = "rect",
+				-- 	style_id = "clicked_rect"
+				-- },
+				-- {
+				-- 	style_id = "disabled_rect",
+				-- 	pass_type = "rect",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return button_hotspot.disable_button
+				-- 	end
+				-- },
+				{
+					style_id = "title_text",
+					pass_type = "text",
+					text_id = "title_text",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+
+						return not button_hotspot.disable_button
+					end
+				},
+				{
+					style_id = "title_text_disabled",
+					pass_type = "text",
+					text_id = "title_text",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+
+						return button_hotspot.disable_button
+					end
+				},
+				{
+					style_id = "title_text_shadow",
+					pass_type = "text",
+					text_id = "title_text"
+				},
+				-- {
+				-- 	texture_id = "glass",
+				-- 	style_id = "glass_top",
+				-- 	pass_type = "texture"
+				-- },
+				-- {
+				-- 	texture_id = "glass",
+				-- 	style_id = "glass_bottom",
+				-- 	pass_type = "texture"
+				-- }
+			}
+		},
+		content = {
+			-- glass = "button_glass_02",
+			-- hover_glow = "button_state_default",
+			-- background_fade = "button_bg_fade",
+			button_hotspot = {},
+			title_text = text or "n/a",
+			background = {
+				uvs = {
+					{
+						0,
+						1 - size[2] / background_texture_settings.size[2]
+					},
+					{
+						size[1] / background_texture_settings.size[1],
+						1
+					}
+				},
+				texture_id = background_texture
+			}
+		},
+		style = {
+			background = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					0
+				}
+			},
+			-- background_fade = {
+			-- 	color = {
+			-- 		200,
+			-- 		255,
+			-- 		255,
+			-- 		255
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		0,
+			-- 		2
+			-- 	},
+			-- 	size = {
+			-- 		size[1],
+			-- 		size[2]
+			-- 	}
+			-- },
+			-- hover_glow = {
+			-- 	color = {
+			-- 		0,
+			-- 		255,
+			-- 		255,
+			-- 		255
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		0,
+			-- 		3
+			-- 	},
+			-- 	size = {
+			-- 		size[1],
+			-- 		math.min(size[2] - 5, 80)
+			-- 	}
+			-- },
+			-- clicked_rect = {
+			-- 	color = {
+			-- 		0,
+			-- 		0,
+			-- 		0,
+			-- 		0
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		0,
+			-- 		7
+			-- 	}
+			-- },
+			-- disabled_rect = {
+			-- 	color = {
+			-- 		150,
+			-- 		20,
+			-- 		20,
+			-- 		20
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		0,
+			-- 		1
+			-- 	}
+			-- },
+			title_text = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+				default_text_color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+				select_text_color = Colors.get_color_table_with_alpha("white", 255),
+				offset = {
+					0,
+					3,
+					6
+				}
+			},
+			title_text_disabled = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("gray", 255),
+				default_text_color = Colors.get_color_table_with_alpha("gray", 255),
+				offset = {
+					0,
+					3,
+					6
+				}
+			},
+			title_text_shadow = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("black", 255),
+				default_text_color = Colors.get_color_table_with_alpha("black", 255),
+				offset = {
+					2,
+					1,
+					5
+				}
+			},
+			-- glass_top = {
+			-- 	color = {
+			-- 		255,
+			-- 		255,
+			-- 		255,
+			-- 		255
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		size[2] - 11,
+			-- 		4
+			-- 	},
+			-- 	size = {
+			-- 		size[1],
+			-- 		11
+			-- 	}
+			-- },
+			-- glass_bottom = {
+			-- 	color = {
+			-- 		100,
+			-- 		255,
+			-- 		255,
+			-- 		255
+			-- 	},
+			-- 	offset = {
+			-- 		0,
+			-- 		-3,
+			-- 		4
+			-- 	},
+			-- 	size = {
+			-- 		size[1],
+			-- 		11
+			-- 	}
+			-- }
+		},
+		scenegraph_id = scenegraph_id,
+		offset = {
+			0,
+			0,
+			0
+		}
+	}
+end
+
+
+
+
+
   
 local widgets_definitions = {    
     original_skins_title_text = UIWidgets.create_simple_text("original_skin", "original_skins_title_text", nil, nil, original_skins_title_text_style),
@@ -2177,7 +2444,7 @@ local widgets_definitions = {
 	window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_border_test", nil, nil, nil, nil, true, true, true),
     window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01darker"),
 	window_bg_vignette = UIWidgets.create_background("window_bg_vignette", scenegraph_definition.window_bg_vignette.size, "la_ui_background_vignette"),
-    window_title = UIWidgets.create_simple_texture("frame_title_bg", "window_title"),
+    window_title = UIWidgets.create_simple_texture("la_ui_headerlarge", "window_title"),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
@@ -2302,7 +2569,8 @@ local widgets_definitions = {
 			0
 		}
 	},
-	my_button = UIWidgets.create_default_button("my_button", scenegraph_definition.my_button.size, "menu_frame_bg_06", "la_ui_closebutton", Localize("interaction_action_close"), 28, nil, "la_ui_closebutton", nil, true)
+	my_button = create_simple_window_button("my_button", scenegraph_definition.my_button.size, Localize("interaction_action_close"), 28, "la_ui_closebutton")
+	-- my_button = UIWidgets.create_default_button("my_button", scenegraph_definition.my_button.size, "menu_frame_16_white", "la_ui_closebutton", Localize("interaction_action_close"), 28, nil, nil, nil, true)
 }
 
 
