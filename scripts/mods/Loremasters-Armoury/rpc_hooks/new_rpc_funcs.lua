@@ -1,5 +1,12 @@
 local mod = get_mod("Loremasters-Armoury")
 local level_quest_table = require("scripts/mods/Loremasters-Armoury/achievements/pickup_maps")
+
+local interaction_replacements = {
+    letter_read = "letter_read",
+    archive_search = "archive_search",
+    catalog_view = "catalog_view"
+}
+
 local rpc_table = {
     rpc_generic_interaction_request = function(self_2, channel_id, interactor_go_id, interactable_go_id, interaction_type_id)
         local interactable_unit = Managers.state.unit_storage:unit(channel_id)
@@ -24,7 +31,7 @@ local rpc_table = {
                     end
                 end
 
-                if interaction_type == "letter_read"  or interaction_type == "archive_search" then
+                if interaction_replacements[interaction_type] then
                     return InteractionDefinitions[interaction_type].replacement_rpc(interactable_unit)
                 end
                 

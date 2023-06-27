@@ -838,6 +838,7 @@ mod:hook(GameMechanismManager, "handle_level_load", function (func, self, done_a
     return func(self, done_again_during_loading)
 end)
 
+--this function needs to have a lot of it's settings spunoff into config files
 mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, unit_template_name, extension_init_data, position, rotation, material)
     local level_name = Managers.level_transition_handler:get_current_level_keys()
 
@@ -939,8 +940,12 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
             mod.letter_board = letter_board
 
-
-
+            local catalog_pos = Vector3(0.956541, 4.97626, 6.61555) + Vector3(0.3,0.5,0)
+            local catalog_rot = radians_to_quaternion(0,-math.pi/4,math.pi/2)
+            local catalog_unit_name = "units/decorations/Loremaster_catalog_mesh"
+            local catalog_init_data = {}
+            local interactable_catalog_unit = Managers.state.unit_spawner:spawn_network_unit(catalog_unit_name, "interaction_unit", catalog_init_data, catalog_pos, catalog_rot)
+            
             if mod:get("sub_quest_crate_tracker") then
                 local position = Vector3(0.8, 7.7, 5.17543)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
@@ -1135,6 +1140,7 @@ mod.LA_new_interactors = {
     "units/decorations/Loremaster_magicscroll_rolled_mesh",
     "units/pickups/Loremaster_magicscroll_interactor_mesh",
     "units/pickups/Loremaster_shipment_box_mesh_real",
+    "units/decorations/Loremaster_catalog_mesh"
 }
 
 

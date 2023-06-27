@@ -12,6 +12,7 @@ mod:dofile("scripts/mods/Loremasters-Armoury/news/hooks")
 
 mod:dofile("scripts/mods/Loremasters-Armoury/interactions/letter_interaction")
 mod:dofile("scripts/mods/Loremasters-Armoury/interactions/archive_interaction")
+mod:dofile("scripts/mods/Loremasters-Armoury/interactions/catalog_interaction")
 
 
 Managers.package:load("resource_packages/levels/dlcs/morris/slaanesh_common", "global")
