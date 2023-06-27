@@ -40,6 +40,29 @@ UIFrameSettings["la_ui_border_test"] = {
 	}
 }
 
+
+UIFrameSettings["la_ui_framecorners"] = {
+	texture = "la_ui_framecorners",
+	texture_size = {
+		400,
+		400
+	},
+	texture_sizes = {
+		corner = {
+			120/270 * 400,
+			120/270 * 400
+		},
+		vertical = {
+			22/270 * 400,
+			1
+		},
+		horizontal = {
+			1,
+			22/270 * 400
+		}
+	}
+}
+
 local list_window_size = {
 	-- 400*0.9,
 	-- 700*0.9
@@ -167,11 +190,11 @@ local scenegraph_definition = {
 		horizontal_alignment = "center",
 		size = {
 			window_size[1]/2.2,
-			60
+			58
 		},
 		position = {
 			0,
-			34,
+			30,
 			30
 		}
 	},
@@ -243,6 +266,63 @@ local scenegraph_definition = {
 			5
 		}
 	},
+	window_frame_left = {
+		vertical_alignment = "center",
+		parent = "window_frame",
+		horizontal_alignment = "left",
+		size = {
+			30,
+			window_size[2]
+		},
+		position = {
+			0,
+			0,
+			5
+		}
+	},
+	window_frame_right = {
+		vertical_alignment = "center",
+		parent = "window_frame",
+		horizontal_alignment = "right",
+		size = {
+			30,
+			window_size[2]
+		},
+		position = {
+			0,
+			0,
+			5
+		}
+	},
+	window_frame_bottom = {
+		vertical_alignment = "bottom",
+		parent = "window_frame",
+		horizontal_alignment = "center",
+		size = {
+			window_size[1],
+			30
+		},
+		position = {
+			0,
+			0,
+			5
+		}
+	},
+	window_frame_top = {
+		vertical_alignment = "top",
+		parent = "window_frame",
+		horizontal_alignment = "center",
+		size = {
+			window_size[1],
+			30
+		},
+		position = {
+			0,
+			0,
+			5
+		}
+	},
+
 	window_background = {
 		vertical_alignment = "center",
 		parent = "window",
@@ -2440,11 +2520,16 @@ local widgets_definitions = {
 	-- LA_skins_list_scrollbar = UIWidgets.create_chain_scrollbar("LA_skins_list_scrollbar", "LA_skins_list_window", scenegraph_definition.LA_skins_list_scrollbar.size, "gold"),
 	LA_skins_list_mask = create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
 
-    -- window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "menu_frame_11"),
-	window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_border_test", nil, nil, nil, nil, true, true, true),
+    -- window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_framecorners"),
+	window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_framecorners", nil, nil, {0,0}, nil, true, true, true),
+	-- window_frame_left = UIWidgets.create_simple_texture("la_ui_frame_left_side", "window_frame_left"),
+	-- window_frame_right = UIWidgets.create_simple_texture("la_ui_frame_right_side", "window_frame_right"),
+	-- window_frame_bottom = UIWidgets.create_simple_texture("la_ui_frame_bottom_side", "window_frame_bottom"),
+	-- window_frame_top = UIWidgets.create_simple_texture("la_ui_frame_top_side", "window_frame_top"),
+
     window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01darker"),
 	window_bg_vignette = UIWidgets.create_background("window_bg_vignette", scenegraph_definition.window_bg_vignette.size, "la_ui_background_vignette"),
-    window_title = UIWidgets.create_simple_texture("la_ui_headerlarge", "window_title"),
+    window_title = UIWidgets.create_simple_texture("la_ui_frameheader", "window_title"),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
