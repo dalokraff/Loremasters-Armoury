@@ -641,7 +641,7 @@ QuestBoardArchiveView._setup_decorations_list = function (self)
 		if not table.contains(self._default_table, key) then
 			local settings = self._main_table[key]
 			local display_name = Localize(settings.display_name)
-			local widget = UIWidget.init(entry_widget_definition)
+			local widget = UIWidget.init(entry_widget_definition(scenegraph_definition, 22))
 			index = index + 1
 			widgets[index] = widget
 			local content = widget.content
@@ -684,7 +684,7 @@ QuestBoardArchiveView._setup_decorations_list = function (self)
 
 		while scrollbar_length > content_length + dummy_height do
 			dummy_count = dummy_count + 1
-			local widget = UIWidget.init(dummy_entry_widget_definition)
+			local widget = UIWidget.init(dummy_entry_widget_definition(scenegraph_definition))
 
 			table.insert(dummy_list_widgets, widget)
 

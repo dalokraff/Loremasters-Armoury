@@ -1,4 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
+local LAWidgetUtils = local_require("scripts/mods/Loremasters-Armoury/LA_view/la_widget_utils")
 
 local disable_with_gamepad = true
 local list_window_size = {
@@ -1042,7 +1043,7 @@ local function create_entry_widget()
 	return widget
 end
 
-local function create_dummy_entry_widget()
+local function create_dummy_entry_widget(scenegraph_definition)
 	local masked = true
 	local scenegraph_id = "list_entry"
 	local size = scenegraph_definition[scenegraph_id].size
@@ -1152,13 +1153,13 @@ local widgets_definitions = {
 		}
 	}, "list_detail_bottom"),
 	list_scrollbar = UIWidgets.create_chain_scrollbar("list_scrollbar", "list_window", scenegraph_definition.list_scrollbar.size, "gold"),
-	list_mask = create_list_mask("list_window", scenegraph_definition.list_window.size, 10),
+	list_mask = LAWidgetUtils.create_list_mask("list_window", scenegraph_definition.list_window.size, 10),
 	title_text = UIWidgets.create_simple_text("n/a", "title_text", nil, nil, title_text_style),
 	title_divider = UIWidgets.create_simple_texture("keep_decorations_divider_02", "title_divider"),
 	description_text = UIWidgets.create_simple_text("n/a", "description_text", nil, nil, description_text_style),
 	artist_text = UIWidgets.create_simple_text("n/a", "artist_text", nil, nil, artist_text_style),
 	background = UIWidgets.create_simple_texture("options_window_fade_01", "root"),
-	info_window = create_rect_with_frame("info_window", {
+	info_window = LAWidgetUtils.create_rect_with_frame("info_window", {
 		info_window_size[1] - 20,
 		info_window_size[2]
 	}, rect_color),
@@ -1300,8 +1301,8 @@ local input_actions = {
 
 return {
 	scenegraph_definition = scenegraph_definition,
-	entry_widget_definition = create_entry_widget(),
-	dummy_entry_widget_definition = create_dummy_entry_widget(),
+	entry_widget_definition = LAWidgetUtils.create_entry_widget,
+	dummy_entry_widget_definition = LAWidgetUtils.create_dummy_entry_widget,
 	widgets = widgets_definitions,
 	animation_definitions = animation_definitions, 
 	generic_input_actions = generic_input_actions,
