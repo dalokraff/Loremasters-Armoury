@@ -1962,4 +1962,116 @@ LAWidgetUtils.create_list_mask = function(scenegraph_id, size, fade_height)
 	return widget
 end
 
+LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, size, frame_name, background_texture, icon_name)
+	background_texture = background_texture or "menu_frame_bg_06"
+	local background_texture_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(background_texture)
+	local frame_settings = frame_name and UIFrameSettings[frame_name] or UIFrameSettings.menu_frame_06
+	local frame_width = frame_settings.texture_sizes.corner[1]
+	local icon_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(icon_name)
+	local icon_size = icon_settings.size
+
+	return {
+		element = {
+			passes = {
+				{
+					style_id = "texture_icon",
+					pass_type = "hotspot",
+					content_id = "button_hotspot"
+				},
+				{
+					texture_id = "texture_hover",
+					style_id = "texture_hover",
+					pass_type = "texture",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+
+						return not button_hotspot.disable_button and (button_hotspot.is_selected or button_hotspot.is_hover)
+					end
+				},
+				{
+					pass_type = "texture",
+					style_id = "texture_icon",
+					texture_id = "texture_icon",
+					-- content_check_function = function (content)
+					-- 	local button_hotspot = content.button_hotspot
+
+					-- 	return not button_hotspot.disable_button and (button_hotspot.is_selected or button_hotspot.is_hover)
+					-- end
+				}
+			}
+		},
+		content = {
+			background_fade = "button_bg_fade",
+			texture_hover = icon_name,
+			texture_icon = icon_name,
+			button_hotspot = {},
+		},
+		style = {
+			texture_hover = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				default_color = {
+					0,
+					255,
+					255,
+					255
+				},
+				hover_color = {
+					0,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					frame_width - 2,
+					3
+				},
+				size = {
+					size[1],
+					math.min(size[2] - 5, 80)
+				}
+			},
+			texture_icon = {
+				vertical_alignment = "center",
+				horizontal_alignment = "center",
+				texture_size = icon_size,
+				color = {
+					150,
+					255,
+					255,
+					255
+				},
+				default_color = {
+					150,
+					255,
+					255,
+					255
+				},
+				hover_color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					4
+				}
+			}
+		},
+		scenegraph_id = scenegraph_id,
+		offset = {
+			0,
+			0,
+			0
+		}
+	}
+end
+
 return LAWidgetUtils

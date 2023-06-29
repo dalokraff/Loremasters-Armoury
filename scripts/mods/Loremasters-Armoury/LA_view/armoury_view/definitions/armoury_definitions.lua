@@ -1211,7 +1211,8 @@ local widgets_definitions = {
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
-	tutorial_overlay_toggle = UIWidgets.create_icon_button("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "tabs_icon_all_selected"),
+	-- tutorial_overlay_toggle = UIWidgets.create_icon_button("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "la_questionmark_icon"),
+	tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "la_questionmark_icon"),
 
     -- window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
     -- window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),

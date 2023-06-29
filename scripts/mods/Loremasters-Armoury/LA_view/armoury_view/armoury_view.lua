@@ -1,4 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
+local LAWidgetUtils = local_require("scripts/mods/Loremasters-Armoury/LA_view/la_widget_utils")
 -- for k,v in pairs(mod.SKIN_CHANGED) do
 -- 	mod:echo(k)
 -- end
@@ -1115,19 +1116,21 @@ ArmouryView.update_original_skin_list = function (self)
 	
 	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
 
-	local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
-	local page_button_def = UIWidgets.create_icon_button("original_skins_equiped_skin_page_button", page_button_size , nil, nil, "tabs_icon_all_selected")
-	
-	local page_button_widget = UIWidget.init(page_button_def)
-	local page_button_widget_number = math.random(10,10^9)
-	local page_button_number = math.random(10,10^9)
-	widgets[page_button_widget_number] = page_button_widget
-	widgets_by_name["original_skins_equiped_skin_page_button"] = page_button_widget
-	original_skin_list_widgets[page_button_widget_number] = {
-		widget_name = "original_skins_equiped_skin_page_button",
-		button_number = page_button_number,
-	}
-	buttons[page_button_number] = "original_skins_equiped_skin_page_button"
+	if num_pages > 1 then
+		local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
+		local page_button_def = LAWidgetUtils.create_button_with_hover_highlight("original_skins_equiped_skin_page_button", page_button_size , nil, nil, "la_ui_arrowright_large")
+		
+		local page_button_widget = UIWidget.init(page_button_def)
+		local page_button_widget_number = math.random(10,10^9)
+		local page_button_number = math.random(10,10^9)
+		widgets[page_button_widget_number] = page_button_widget
+		widgets_by_name["original_skins_equiped_skin_page_button"] = page_button_widget
+		original_skin_list_widgets[page_button_widget_number] = {
+			widget_name = "original_skins_equiped_skin_page_button",
+			button_number = page_button_number,
+		}
+		buttons[page_button_number] = "original_skins_equiped_skin_page_button"
+	end
 
 
     self._original_skin_list_widgets = original_skin_list_widgets
