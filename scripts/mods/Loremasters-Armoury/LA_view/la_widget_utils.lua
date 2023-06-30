@@ -2074,4 +2074,593 @@ LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, size
 	}
 end
 
+LAWidgetUtils.create_simple_animated_texture = function (scenegraph_id, size, text, font_size, disable_with_gamepad)
+	local button_color_name = nil
+	local optional_color_name = "green"
+
+	if optional_color_name then
+		button_color_name = "button_" .. optional_color_name
+	else
+		button_color_name = "button_normal"
+	end
+
+	local background_color = Colors.get_color_table_with_alpha(button_color_name, 255)
+	local background_texture = "button_bg_01"
+	local background_texture_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(background_texture)
+	local frame_settings = UIFrameSettings.menu_frame_08
+	local side_detail_glow = "button_detail_05_glow"
+	local side_detail_glow_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(side_detail_glow)
+	local side_detail_glow_size = side_detail_glow_settings.size
+
+	return {
+		element = {
+			passes = {
+				{
+					style_id = "frame",
+					pass_type = "hotspot",
+					content_id = "button_hotspot"
+				},
+				{
+					texture_id = "frame",
+					style_id = "frame",
+					pass_type = "texture_frame"
+				},
+				{
+					style_id = "background",
+					pass_type = "texture_uv",
+					content_id = "background"
+				},
+				{
+					style_id = "clicked_rect",
+					pass_type = "rect",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+						local is_clicked = button_hotspot.is_clicked
+
+						return not is_clicked or is_clicked == 0
+					end
+				},
+				{
+					style_id = "disabled_rect",
+					pass_type = "rect",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+
+						return button_hotspot.disable_button
+					end
+				},
+				-- {
+				-- 	texture_id = "side_detail_right",
+				-- 	style_id = "side_detail_right",
+				-- 	pass_type = "texture",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	texture_id = "side_detail_left",
+				-- 	style_id = "side_detail_left",
+				-- 	pass_type = "texture",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	texture_id = "side_detail_right",
+				-- 	style_id = "side_detail_right_disabled",
+				-- 	pass_type = "texture",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	texture_id = "side_detail_left",
+				-- 	style_id = "side_detail_left_disabled",
+				-- 	pass_type = "texture",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "side_detail_glow_right",
+				-- 	pass_type = "texture_uv",
+				-- 	content_id = "side_detail_glow",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.parent.button_hotspot
+
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	texture_id = "texture_id",
+				-- 	style_id = "side_detail_glow_left",
+				-- 	pass_type = "texture",
+				-- 	content_id = "side_detail_glow",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.parent.button_hotspot
+
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "title_text",
+				-- 	pass_type = "text",
+				-- 	text_id = "title_text",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return not button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "title_text_disabled",
+				-- 	pass_type = "text",
+				-- 	text_id = "title_text",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return button_hotspot.disable_button
+				-- 	end
+				-- },
+				-- {
+				-- 	style_id = "title_text_shadow",
+				-- 	pass_type = "text",
+				-- 	text_id = "title_text"
+				-- },
+				-- {
+				-- 	texture_id = "glass_top",
+				-- 	style_id = "glass_top",
+				-- 	pass_type = "texture"
+				-- },
+				{
+					texture_id = "glow",
+					style_id = "glow",
+					pass_type = "texture"
+				},
+				{
+					texture_id = "effect",
+					style_id = "effect",
+					pass_type = "texture",
+					-- content_check_function = function (content)
+					-- 	local button_hotspot = content.button_hotspot
+
+					-- 	return not button_hotspot.disable_button
+					-- end
+				},
+				-- {
+				-- 	texture_id = "hover_glow",
+				-- 	style_id = "hover_glow",
+				-- 	pass_type = "texture",
+				-- 	content_check_function = function (content)
+				-- 		local button_hotspot = content.button_hotspot
+
+				-- 		return not button_hotspot.disable_button and (button_hotspot.is_selected or button_hotspot.is_hover)
+				-- 	end
+				-- }
+			}
+		},
+		content = {
+			side_detail_right = "button_detail_05_right",
+			effect = "play_button_passive_glow",
+			hover_glow = "button_state_hover_green",
+			side_detail_left = "button_detail_05_left",
+			glow = "button_state_normal_green",
+			glass_top = "button_glass_01",
+			side_detail_glow = {
+				uvs = {
+					{
+						1,
+						0
+					},
+					{
+						0,
+						1
+					}
+				},
+				texture_id = side_detail_glow
+			},
+			button_hotspot = {},
+			title_text = text or "n/a",
+			frame = frame_settings.texture,
+			disable_with_gamepad = disable_with_gamepad,
+			background = {
+				uvs = {
+					{
+						0,
+						1 - size[2] / background_texture_settings.size[2]
+					},
+					{
+						size[1] / background_texture_settings.size[1],
+						1
+					}
+				},
+				texture_id = background_texture
+			}
+		},
+		style = {
+			background = {
+				color = background_color,
+				offset = {
+					0,
+					0,
+					0
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			clicked_rect = {
+				color = {
+					100,
+					0,
+					0,
+					0
+				},
+				offset = {
+					0,
+					0,
+					7
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			disabled_rect = {
+				color = {
+					150,
+					5,
+					5,
+					5
+				},
+				offset = {
+					0,
+					0,
+					7
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			title_text = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+				default_text_color = Colors.get_color_table_with_alpha("font_button_normal", 255),
+				select_text_color = Colors.get_color_table_with_alpha("white", 255),
+				offset = {
+					0,
+					0,
+					9
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			title_text_disabled = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("gray", 255),
+				default_text_color = Colors.get_color_table_with_alpha("gray", 255),
+				offset = {
+					0,
+					0,
+					9
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			title_text_shadow = {
+				upper_case = true,
+				word_wrap = true,
+				horizontal_alignment = "center",
+				vertical_alignment = "center",
+				font_type = "hell_shark",
+				font_size = font_size or 24,
+				text_color = Colors.get_color_table_with_alpha("black", 255),
+				offset = {
+					2,
+					-2,
+					8
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			frame = {
+				texture_size = frame_settings.texture_size,
+				texture_sizes = frame_settings.texture_sizes,
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					8
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			hover_glow = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					frame_settings.texture_sizes.horizontal[2],
+					1
+				},
+				size = {
+					size[1],
+					math.min(60, size[2] - frame_settings.texture_sizes.horizontal[2] * 2)
+				}
+			},
+			glass_top = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					size[2] - frame_settings.texture_sizes.horizontal[2] - 4,
+					6
+				},
+				size = {
+					size[1],
+					5
+				}
+			},
+			glow = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					frame_settings.texture_sizes.horizontal[2] - 1,
+					3
+				},
+				size = {
+					size[1],
+					math.min(60, size[2] - frame_settings.texture_sizes.horizontal[2] * 2)
+				}
+			},
+			effect = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					5
+				},
+				size = {
+					size[1],
+					size[2]
+				}
+			},
+			side_detail_left = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					size[2] / 2 - 36,
+					9
+				},
+				size = {
+					88,
+					72
+				}
+			},
+			side_detail_right = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					size[1] - 88,
+					size[2] / 2 - 36,
+					9
+				},
+				size = {
+					88,
+					72
+				}
+			},
+			side_detail_left_disabled = {
+				color = {
+					255,
+					200,
+					200,
+					200
+				},
+				offset = {
+					0,
+					size[2] / 2 - 36,
+					9
+				},
+				size = {
+					88,
+					72
+				}
+			},
+			side_detail_right_disabled = {
+				color = {
+					255,
+					200,
+					200,
+					200
+				},
+				offset = {
+					size[1] - 88,
+					size[2] / 2 - 36,
+					9
+				},
+				size = {
+					88,
+					72
+				}
+			},
+			side_detail_glow_left = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					size[2] / 2 - side_detail_glow_size[2] / 2,
+					10
+				},
+				size = {
+					side_detail_glow_size[1],
+					side_detail_glow_size[2]
+				}
+			},
+			side_detail_glow_right = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					size[1] - side_detail_glow_size[1],
+					size[2] / 2 - side_detail_glow_size[2] / 2,
+					10
+				},
+				size = {
+					side_detail_glow_size[1],
+					side_detail_glow_size[2]
+				}
+			}
+		},
+		scenegraph_id = scenegraph_id,
+		offset = {
+			0,
+			0,
+			0
+		}
+	}
+end
+
+LAWidgetUtils.create_simple_texture = function (texture, scenegraph_id, masked, retained, color, offset, texture_size, disable_with_gamepad)
+	if type(offset) ~= "table" then
+		offset = {
+			0,
+			0,
+			offset or 0
+		}
+	end
+
+	if texture_size == "native" then
+		local texture_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(texture)
+		local settings_size = texture_settings.size
+		texture_size = {
+			settings_size[1],
+			settings_size[2]
+		}
+	end
+
+	return {
+		element = {
+			passes = {
+				{
+					texture_id = "texture_id",
+					style_id = "texture_id",
+					pass_type = "texture",
+					retained_mode = retained
+				},
+				{
+					texture_id = "effect",
+					style_id = "effect",
+					pass_type = "texture",
+				},
+			}
+		},
+		content = {
+			texture_id = texture,
+			disable_with_gamepad = disable_with_gamepad,
+			effect = "play_button_passive_glow",
+		},
+		style = {
+			texture_id = {
+				color = color or {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					0
+				},
+				masked = masked,
+				texture_size = texture_size
+			},
+			effect = {
+				color = {
+					255,
+					255,
+					255,
+					255
+				},
+				offset = {
+					0,
+					0,
+					5
+				},
+				size = settings_size,
+			},
+		},
+		offset = offset,
+		scenegraph_id = scenegraph_id
+	}
+end
+
 return LAWidgetUtils

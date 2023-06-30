@@ -199,6 +199,25 @@ local scenegraph_definition = {
 			30
 		}
 	},
+	-- gem_header = {
+	-- 	vertical_alignment = "top",
+	-- 	parent = "window",
+	-- 	horizontal_alignment = "center",
+	-- 	size = {
+	-- 		27,
+	-- 		22
+	-- 	},
+	-- 	-- position = {
+	-- 	-- 	-240,
+	-- 	-- 	4,
+	-- 	-- 	29
+	-- 	-- }
+	-- 	position = {
+	-- 		-245,
+	-- 		12,
+	-- 		15
+	-- 	}
+	-- },
 	window_title_bg = {
 		vertical_alignment = "top",
 		parent = "window_title",
@@ -357,8 +376,8 @@ local scenegraph_definition = {
 		parent = "LA_preview",
 		horizontal_alignment = "center",
 		size = {
-			LA_preview_background_size[1]*0.9,
-			LA_preview_background_size[2]*0.9
+			LA_preview_background_size[1]*1.14,
+			LA_preview_background_size[2]*1.14
 		},
 		position = {
 			0,
@@ -609,7 +628,7 @@ local scenegraph_definition = {
 		horizontal_alignment = "right",
 		size = la_ui_separator,
 		position = { 
-			430,
+			440,
 			0, 
 			32 
 		},
@@ -880,7 +899,7 @@ local scenegraph_definition = {
       vertical_alignment = "bottom",
       horizontal_alignment = "center",
       size = { 438, 44 },
-      position = { 0, -25, 50 },
+      position = { 12.5, -25, 50 },
     },
 
 	hero_selection = {
@@ -1208,6 +1227,8 @@ local widgets_definitions = {
     window_bg_fill = UIWidgets.create_background("window_bg_fill", scenegraph_definition.window_bg_fill.size, "la_ui_background_01darker"),
 	window_bg_vignette = UIWidgets.create_background("window_bg_vignette", scenegraph_definition.window_bg_vignette.size, "la_ui_background_vignette"),
     window_title = UIWidgets.create_simple_texture("la_ui_frameheader", "window_title"),
+	-- gem_header = LAWidgetUtils.create_simple_texture("gem_blue", "gem_header"),
+	-- window_title = LAWidgetUtils.create_simple_animated_texture("window_title", scenegraph_definition.window_title.size),
 	window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
@@ -1240,7 +1261,11 @@ local widgets_definitions = {
 	-- 	}
 	-- }, "sword_right_top"),
 
-	LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe", "LA_preview_background"),
+	LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe_armour_recenter", "LA_preview_background"),
+	-- LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe_armour_recenter", "LA_preview_background", nil, nil, nil, nil, {
+	-- 	LA_preview_background_size[1]*1.1,
+	-- 	LA_preview_background_size[2]*1.1
+	-- }),
 
 
 
