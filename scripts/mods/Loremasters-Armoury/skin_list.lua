@@ -735,6 +735,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_avelorn_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Caledor = {
         kind = "texture",
@@ -749,6 +752,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_caledor_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Chrace = {
         kind = "texture",
@@ -763,6 +769,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_chrace_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Cothique = {
         kind = "texture",
@@ -777,6 +786,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_cothique_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Eataine = {
         kind = "texture",
@@ -791,6 +803,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_eataine_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Ellyrion = {
         kind = "texture",
@@ -805,6 +820,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_ellyrion_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Nagarythe = {
         kind = "texture",
@@ -819,6 +837,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_nagarythe_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Saphery = {
         kind = "texture",
@@ -833,6 +854,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_saphery_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Tiranoc = {
         kind = "texture",
@@ -847,6 +871,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_tiranoc_icon",
+        },
     },
     Kerillian_elf_hat_Windrunner_Yvresse = {
         kind = "texture",
@@ -861,6 +888,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_wildrunner_helm_yvresse_icon",
+        },
     },
     Kerillian_Evercrown_helm_AutumnHerald = {
         kind = "texture",
@@ -875,6 +905,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_evercrown_helm_autumnherald_icon",
+        },
     },
     Kerillian_Evercrown_helm_GreenHerald = {
         kind = "texture",
@@ -889,6 +922,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kerillian_evercrown_helm_greenherald_icon",
+        },
     },
     Kerillian_HornOfKurnous_helm_Beaststalker = {
         kind = "texture",
@@ -906,6 +942,9 @@ mod.SKIN_LIST = {
             skip1 = true,
             skip2 = true,
             skip3 = true,
+        },
+        icons = {
+            default = "kerillian_hornofkurnous_helm_beaststalker_icon",
         },
     },
     Kerillian_HornOfKurnous_helm_Frostwatcher = {
@@ -925,6 +964,9 @@ mod.SKIN_LIST = {
             skip2 = true,
             skip3 = true,
         },
+        icons = {
+            default = "kerillian_hornofkurnous_helm_frostwatcher_icon",
+        },
     },
     Kerillian_HornOfKurnous_helm_Nightstalker = {
         kind = "texture",
@@ -942,6 +984,9 @@ mod.SKIN_LIST = {
             skip1 = true,
             skip2 = true,
             skip3 = true,
+        },
+        icons = {
+            default = "kerillian_hornofkurnous_helm_nightstalker_icon",
         },
     },
     Kerillian_HornOfKurnous_helm_Purified = {
@@ -971,6 +1016,9 @@ mod.SKIN_LIST = {
             skip1 = true,
             skip2 = true,
             skip3 = true,
+        },
+        icons = {
+            default = "kerillian_hornofkurnous_helm_purified_icon",
         },
     },
     Kruber_KOTBS_hat = {
@@ -1059,6 +1107,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_black_icon",
+        },
     },
     Kruber_Worthy_helm_red = {
         kind = "texture",
@@ -1073,6 +1124,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_red_icon",
+        },
     },
     Kruber_Worthy_helm_white = {
         kind = "texture",
@@ -1087,6 +1141,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_white_icon",
+        },
     },
     Kruber_Worthy_helm_yellow = {
         kind = "texture",
@@ -1101,6 +1158,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_yellow_icon",
+        },
     },
     Kruber_Pureheart_helm_black = {
         kind = "texture",
@@ -1115,6 +1175,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_black_icon",
+        },
     },
     Kruber_Pureheart_helm_red = {
         kind = "texture",
@@ -1129,6 +1192,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_red_icon",
+        },
     },
     Kruber_Pureheart_helm_white = {
         kind = "texture",
@@ -1143,6 +1209,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_white_icon",
+        },
     },
     Kruber_Pureheart_helm_yellow = {
         kind = "texture",
@@ -1157,6 +1226,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_yellow_icon",
+        },
     }, 
     Kruber_Hippogryph_helm_black = {
         kind = "texture",
@@ -1171,6 +1243,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_black_icon",
+        },
     },
     Kruber_Hippogryph_helm_blue = {
         kind = "texture",
@@ -1185,6 +1260,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_blue_icon",
+        },
     },
     Kruber_Hippogryph_helm_red = {
         kind = "texture",
@@ -1199,6 +1277,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_red_icon",
+        },
     },
     Kruber_Hippogryph_helm_white = {
         kind = "texture",
@@ -1213,6 +1294,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_red_icon",
+        },
     },
     Kruber_SunsetBonnet_helm_Middenland = {
         kind = "texture",
@@ -1226,6 +1310,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_sunsetbonnet_helm_middenland_icon",
+        },
     },
     Kruber_SunsetBonnet_helm_Nuln = {
         kind = "texture",
@@ -1239,6 +1326,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_sunsetbonnet_helm_nunl_icon",
+        },
     },
     Kruber_SunsetBonnet_helm_Reikwald = {
         kind = "texture",
@@ -1252,6 +1342,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_sunsetbonnet_helm_reikwald_icon",
+        },
     },
     Kruber_SunsetBonnet_helm_Stirland = {
         kind = "texture",
@@ -1265,6 +1358,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_sunsetbonnet_helm_stirland_icon",
+        },
     },
     Bardin_dwarf_shield_basicClean_KarakNorn01 = {
         kind = "unit",
