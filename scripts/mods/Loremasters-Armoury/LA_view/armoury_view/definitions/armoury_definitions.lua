@@ -554,13 +554,16 @@ local scenegraph_definition = {
 		vertical_alignment = "top",
 		parent = "original_skins_frame",
 		horizontal_alignment = "left",
-		size = list_window_size,
+		size = {
+			list_window_size[1]*1.1,
+			list_window_size[2]
+		},
 		position = {
 			-- 120,
 			-- -140,
 			-- 10
             100,
-			-230,
+			-200,
 			10
 		}
 	},
@@ -628,7 +631,7 @@ local scenegraph_definition = {
 		horizontal_alignment = "right",
 		size = la_ui_separator,
 		position = { 
-			440,
+			450,
 			0, 
 			32 
 		},
@@ -750,13 +753,16 @@ local scenegraph_definition = {
 		vertical_alignment = "top",
 		parent = "LA_skins_frame",
 		horizontal_alignment = "right",
-		size = list_window_size,
+		size = {
+			list_window_size[1]*1.1,
+			list_window_size[2]
+		},
 		position = {
 			-- 120,
 			-- -140,
 			-- 10
             -100,
-			-230,
+			-200,
 			10
 		}
 	},
@@ -1285,6 +1291,17 @@ local widgets_definitions = {
 	skin_item_select = UIWidgets.create_icon_button("skin_item_select", scenegraph_definition.skin_item_select.size, nil, nil, "store_tag_icon_skin_exotic"),
 	hat_item_select = UIWidgets.create_icon_button("hat_item_select", scenegraph_definition.hat_item_select.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 	
+	background_rect_original_skins = UIWidgets.create_rect_with_outer_frame("original_skins_list_window", 
+			scenegraph_definition.original_skins_list_window.size, 
+			"frame_outer_fade_02", 
+			nil, 
+			Colors.get_color_table_with_alpha("console_menu_rect", 100)),
+
+	background_rect_LA_skins = UIWidgets.create_rect_with_outer_frame("LA_skins_list_window", 
+			scenegraph_definition.LA_skins_list_window.size, 
+			"frame_outer_fade_02", 
+			nil, 
+			Colors.get_color_table_with_alpha("console_menu_rect", 100)),
 
 	-- original_skins_list_entry = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition.original_skins_list_entry.size, nil, nil, "tabs_inventory_icon_hats_normal"),
 

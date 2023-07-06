@@ -597,7 +597,7 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 				elseif hand == 'off_hand' and Amoury_data then
 					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
 				elseif hand == 'outfits' and Amoury_data then
-					icon = "la_notification_icon"
+					icon = secondary_icon or "la_notification_icon"		
 				end
 			-- end
 			
@@ -700,9 +700,10 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 	local divider_offset = widgets_by_name["original_skins_list_divider"].offset[2] - 30
 	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
 		local item_data = item_master_list[item_name]
+		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
 		
 		local scenegraph_definition_size = scenegraph_definition.original_skins_list_skin_entry.size
-		local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
+		local icon = amoury_change_data.icon or item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 		local new_widget_def = UIWidgets.create_icon_button("original_skins_list_skin_entry",scenegraph_definition_size , nil, nil, icon)
 
 		if i > 5 then
@@ -815,7 +816,7 @@ ArmouryView.look_for_other_hands_icons = function (self, default_skin_key, vanil
 	local list_of_possible_skins = vanilla_to_modded_table_handed[new_skin_key]
 	if list_of_possible_skins then
 		local armoury_data = skin_list[Armoury_key]
-		local icon = "la_notification_icon" 
+		local icon = "la_notification_icon"
 		if armoury_data then
 			if armoury_data.icons then
 				icon = armoury_data.icons["default"] or icon
@@ -1026,8 +1027,10 @@ ArmouryView.update_original_skin_list = function (self)
 			j = j + 1
 		end
 
+		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
+
 		local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
-        local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
+        local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
         local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
         
 		

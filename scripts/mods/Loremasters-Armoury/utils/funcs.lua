@@ -109,7 +109,11 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
     end
 
     if ItemMasterList[skin] and mod.SKIN_LIST[Armoury_key].icons then
-        mod.SKIN_CHANGED[skin].icon = ItemMasterList[skin]['inventory_icon']
+        local old_icon = tostring(ItemMasterList[skin]['inventory_icon'])
+        ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons["default"] or ItemMasterList[skin]['inventory_icon']
+        if old_icon ~= ItemMasterList[skin]['inventory_icon'] then
+            mod.SKIN_CHANGED[skin].icon = old_icon
+        end  
         ItemMasterList[skin]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin] or ItemMasterList[skin]['inventory_icon']
     end
 
@@ -149,6 +153,13 @@ local function swap_units_new(Armoury_key, skin)
         -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
        
         -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]\
+        if mod.SKIN_LIST[Armoury_key].icons then
+            local old_icon = tostring(ItemMasterList[new_name]['inventory_icon'])
+            ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons["default"] or ItemMasterList[new_name]['inventory_icon']
+            if old_icon ~= ItemMasterList[new_name]['inventory_icon'] then
+                mod.SKIN_CHANGED[new_name].icon = old_icon
+            end
+        end
         local y = 1
     end
 
@@ -172,22 +183,24 @@ local function swap_units_old(Armoury_key, skin)
             WeaponSkins.skins[new_name][mod.SKIN_LIST[Armoury_key].swap_hand] = mod.SKIN_CHANGED[skin].unit
             mod.SKIN_CHANGED[skin].changed_model = false
             WeaponSkins.skins[new_name]['inventory_icon'] = mod.SKIN_CHANGED[skin].icon 
-        end
-    elseif hand == "hat" then
-        NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
-        NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
+        
+        elseif hand == "hat" then
+            NetworkLookup.inventory_packages[mod.SKIN_CHANGED[skin].unit] = NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]
+            NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]]] = mod.SKIN_CHANGED[skin].unit
 
-        ItemMasterList[new_name]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
-        if mod.SKIN_LIST[Armoury_key].icons then
-            ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_LIST[Armoury_key].icons[skin]
+            ItemMasterList[new_name]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]--needs to be unit if new mesh hat is added
+            if mod.SKIN_LIST[Armoury_key].icons then
+                ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_CHANGED[skin].icon
+            end
+            mod.SKIN_CHANGED[new_name].changed_model = false
+        elseif hand == "armor" then
+            -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
+            -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
+        
+            -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
+            ItemMasterList[new_name]['inventory_icon'] = mod.SKIN_CHANGED[skin].icon
+            mod.SKIN_CHANGED[skin].changed_model = false
         end
-        mod.SKIN_CHANGED[new_name].changed_model = false
-    elseif hand == "armor" then
-        -- NetworkLookup.inventory_packages[mod.SKIN_LIST[Armoury_key].new_units[1]] = NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]
-        -- NetworkLookup.inventory_packages[NetworkLookup.inventory_packages[ItemMasterList[skin]["third_person_attachment"]["unit"]]] = mod.SKIN_LIST[Armoury_key].new_units[1]
-       
-        -- ItemMasterList[skin]["third_person_attachment"]['unit'] = mod.SKIN_LIST[Armoury_key].new_units[1]
-        mod.SKIN_CHANGED[skin].changed_model = false
     end
 
 end

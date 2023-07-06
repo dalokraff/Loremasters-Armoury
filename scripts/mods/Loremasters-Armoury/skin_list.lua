@@ -418,6 +418,9 @@ mod.SKIN_LIST = {
             skip17 = true,
             -- skip18 = true,
         },
+        icons = {
+            default = "kerillian_heraldoftheweave_body_autumn_icon",
+        },
     },
     Kerillian_elf_bow_Antlersong_Autumn = {
         kind = "texture",
@@ -984,6 +987,9 @@ mod.SKIN_LIST = {
         is_vanilla_unit = true, 
         swap_hand = "hat",
         skip_meshes = {},
+        icons = {
+            default = "kruber_empiresoldier_kotbs_helm_icon",
+        },
     },
     Kruber_KOTBS_armor = {
         kind = "texture",
@@ -1035,6 +1041,9 @@ mod.SKIN_LIST = {
             skip24 = true,
             skip25 = true,
             skip26 = true,
+        },
+        icons = {
+            default = "kruber_empiresoldier_kotbs_body_icon",
         },
     },
     Kruber_Worthy_helm_black = {
@@ -1770,7 +1779,7 @@ for _,skin in pairs(skins_to_change) do
         changed_model = false,
         unit = unit,
         -- cosmetic_table = Cosmetics[skin],
-        icon = ItemMasterList[new_name]['inventory_icon'],
+        icon = tostring(ItemMasterList[new_name]['inventory_icon']),
         cosmetic_table = Cosmetics[new_name]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)
