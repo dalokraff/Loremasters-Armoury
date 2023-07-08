@@ -1876,6 +1876,7 @@ for _,skin in pairs(skins_to_change) do
         unit = unit,
         -- cosmetic_table = Cosmetics[skin],
         icon = tostring(ItemMasterList[new_name]['inventory_icon']),
+        display_name = tostring(ItemMasterList[new_name]['display_name']).."_LA_vanilla_game_name",
         cosmetic_table = Cosmetics[new_name]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)
