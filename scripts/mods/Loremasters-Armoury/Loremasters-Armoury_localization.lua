@@ -426,10 +426,15 @@ for _,skin in pairs(mod.vanilla_game_strings) do
     local new_name = string.gsub(skin, pattern, "")
 	
 	local skin_name = tostring(skin).."_name"
+	
+	local display_name_id = ItemMasterList[new_name].display_name
+	local translation = game_localize:_base_lookup(display_name_id)
+
 	if not mod_text_ids[skin] then
 		mod_text_ids[skin] = {}
+		mod_text_ids[display_name_id.."_LA_vanilla_game_name"] = {}
 	end
-	local translation = game_localize:_base_lookup(ItemMasterList[new_name].display_name)--game_localize:_base_lookup(skin_name) or game_localize:_base_lookup("display_name_"..tostring(skin)) or game_localize:_base_lookup(tostring(skin))
+
 	mod_text_ids[skin]['zh'] = translation
 	mod_text_ids[skin]['en'] = translation
 	mod_text_ids[skin]['fr'] = translation
@@ -439,6 +444,17 @@ for _,skin in pairs(mod.vanilla_game_strings) do
 	mod_text_ids[skin]['br-pt'] = translation
 	mod_text_ids[skin]['ru'] = translation
 	mod_text_ids[skin]['es'] = translation
+
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['zh'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['en'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['fr'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['de'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['it'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['pl'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['br-pt'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['ru'] = translation
+	mod_text_ids[display_name_id.."_LA_vanilla_game_name"]['es'] = translation
+
 end
 
 

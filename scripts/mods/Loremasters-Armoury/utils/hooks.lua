@@ -1403,14 +1403,3 @@ mod:hook(GameSession, "create_game_object", function( func, self, type, fields)
     end
     return func(self, type, fields)
 end)
-
-
-
-mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
-    if not string.find(mod:localize(text_id), "<") then
-        return mod:localize(text_id)
-    end
-
-	return func(self, text_id)
-end)
-

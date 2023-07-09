@@ -735,7 +735,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		}
 
 		new_widget_def.content["tooltip_hotspot"] = {}
-		new_widget_def.content["tooltip_text"] = item_data.display_name.."_LA_menu_widget"
+		new_widget_def.content["tooltip_text"] = amoury_change_data.display_name or item_data.display_name.."_LA_menu_widget"
 
 		new_widget_def.style["tooltip_text"] = {
 			dynamic_height = false,
@@ -1064,7 +1064,7 @@ ArmouryView.update_original_skin_list = function (self)
 			}
 
 			new_widget_def.content["tooltip_hotspot"] = {}
-			new_widget_def.content["tooltip_text"] = ItemMasterList[item_name].display_name
+			new_widget_def.content["tooltip_text"] = amoury_change_data.display_name or ItemMasterList[item_name].display_name
 
 			new_widget_def.style["tooltip_text"] = {
 				dynamic_height = false,
