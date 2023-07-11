@@ -290,6 +290,28 @@ end
 vanilla_to_modded_skins.outfits.skin_es_knight_black_and_gold = {
     Kruber_KOTBS_armor = "Blessed Plate of the Blazing Sun",
 }
+
+vanilla_to_modded_skins.outfits.skin_es_questingknight = {
+    Kruber_GK_devoted_armor = "Coat of the Devoted Knight",
+    Kruber_GK_valiant_armor = "Coat of the Valiant Knight",
+}
+vanilla_to_modded_skins.outfits.skin_es_questingknight_black_and_gold = {
+    Kruber_GK_devoted_armor = "Coat of the Devoted Knight",
+    Kruber_GK_valiant_armor = "Coat of the Valiant Knight",
+}
+vanilla_to_modded_skins.outfits.skin_es_questingknight_black_and_yellow = {
+    Kruber_GK_devoted_armor = "Coat of the Devoted Knight",
+    Kruber_GK_valiant_armor = "Coat of the Valiant Knight",
+}
+vanilla_to_modded_skins.outfits.skin_es_questingknight_blue_and_white = {
+    Kruber_GK_devoted_armor = "Coat of the Devoted Knight",
+    Kruber_GK_valiant_armor = "Coat of the Valiant Knight",
+}
+vanilla_to_modded_skins.outfits.skin_es_questingknight_yellow_and_white = {
+    Kruber_GK_devoted_armor = "Coat of the Devoted Knight",
+    Kruber_GK_valiant_armor = "Coat of the Valiant Knight",
+}
+
 vanilla_to_modded_skins.outfits.skin_ww_waywatcher_1001 = {
     Ker_Autumn_Weave_Armor = "Herald of Autumn",
 }

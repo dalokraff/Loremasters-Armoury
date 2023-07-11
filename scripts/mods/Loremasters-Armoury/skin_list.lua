@@ -1094,6 +1094,124 @@ mod.SKIN_LIST = {
             default = "kruber_empiresoldier_kotbs_body_icon",
         },
     },
+    Kruber_GK_devoted_armor = {
+        kind = "texture",
+        swap_skin = nil,
+        cosmetic_key = "skin_es_questingknight",
+        skin_to_swap = {
+            skin_es_questingknight = "skin_es_questingknight",
+            skin_es_questingknight_black_and_gold = "skin_es_questingknight_black_and_gold",
+            skin_es_questingknight_black_and_yellow = "skin_es_questingknight_black_and_yellow",
+            skin_es_questingknight_blue_and_white = "skin_es_questingknight_blue_and_white",
+            skin_es_questingknight_yellow_and_white = "skin_es_questingknight_yellow_and_white",
+        },
+        textures = {
+            "textures/Kruber_Grail_Knight_Body/Devoted/Kruber_GrailKnight_body_devoted_diffuse",
+            "textures/Kruber_Grail_Knight_Body/Devoted/Kruber_GrailKnight_body_devoted_combined",
+            "textures/Kruber_Grail_Knight_Body/Devoted/Kruber_GrailKnight_body_devoted_normal",
+        },
+        textures_fps = {
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_diffuse_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal_1p",
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh",
+        },
+        fps_units = {
+            "units/beings/player/empire_soldier_breton/first_person_base/chr_first_person_mesh",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "armor",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+            skip4 = true,
+            skip5 = true,
+            skip6 = true,
+            skip10= true,
+            skip11 = true, 
+            skip12 = true,
+            skip13 = true,
+            skip14 = true,
+            skip15 = true,
+            skip16 = true,
+            skip17 = true,
+            skip18 = true,
+            skip19 = true,
+            skip20 = true,
+            skip21 = true,
+            skip22 = true,
+            skip23 = true,
+            skip24 = true,
+            skip25 = true,
+            skip26 = true,
+        },
+        icons = {
+            default = "kruber_grailknight_body_devoted_icon",
+        },
+    },
+    Kruber_GK_valiant_armor = {
+        kind = "texture",
+        swap_skin = nil,
+        cosmetic_key = "skin_es_questingknight",
+        skin_to_swap = {
+            skin_es_questingknight = "skin_es_questingknight",
+            skin_es_questingknight_black_and_gold = "skin_es_questingknight_black_and_gold",
+            skin_es_questingknight_black_and_yellow = "skin_es_questingknight_black_and_yellow",
+            skin_es_questingknight_blue_and_white = "skin_es_questingknight_blue_and_white",
+            skin_es_questingknight_yellow_and_white = "skin_es_questingknight_yellow_and_white",
+        },
+        textures = {
+            "textures/Kruber_Grail_Knight_Body/Valiant/Kruber_GrailKnight_body_valiant_diffuse",
+            "textures/Kruber_Grail_Knight_Body/Valiant/Kruber_GrailKnight_body_valiant_combined",
+            "textures/Kruber_Grail_Knight_Body/Valiant/Kruber_GrailKnight_body_valiant_normal",
+        },
+        textures_fps = {
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_diffuse_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined_1p",
+            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal_1p",
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh",
+        },
+        fps_units = {
+            "units/beings/player/empire_soldier_breton/first_person_base/chr_first_person_mesh",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "armor",
+        skip_meshes = {
+            skip0 = true,
+            skip1 = true,
+            skip2 = true,
+            skip3 = true,
+            skip4 = true,
+            skip5 = true,
+            skip6 = true,
+            skip10= true,
+            skip11 = true, 
+            skip12 = true,
+            skip13 = true,
+            skip14 = true,
+            skip15 = true,
+            skip16 = true,
+            skip17 = true,
+            skip18 = true,
+            skip19 = true,
+            skip20 = true,
+            skip21 = true,
+            skip22 = true,
+            skip23 = true,
+            skip24 = true,
+            skip25 = true,
+            skip26 = true,
+        },
+        icons = {
+            default = "kruber_grailknight_body_valiant_icon",
+        },
+    },
     Kruber_Worthy_helm_black = {
         kind = "texture",
         swap_skin = nil,
@@ -1160,6 +1278,57 @@ mod.SKIN_LIST = {
         skip_meshes = {},
         icons = {
             default = "kruber_worthy_helm_yellow_icon",
+        },
+    },
+    Kruber_Worthy_helm_devoted = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_devaoted_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_devoted_icon",
+        },
+    },
+    Kruber_Worthy_helm_faithful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_faithful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_faithful_icon",
+        },
+    },
+    Kruber_Worthy_helm_merciful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_merciful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_worthy_helm_merciful_icon",
         },
     },
     Kruber_Pureheart_helm_black = {
@@ -1230,6 +1399,57 @@ mod.SKIN_LIST = {
             default = "kruber_pureheart_helm_yellow_icon",
         },
     }, 
+    Kruber_Pureheart_helm_devoted = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_devoted_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_devoted_icon",
+        },
+    },
+    Kruber_Pureheart_helm_merciful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_merciful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_merciful_icon",
+        },
+    },
+    Kruber_Pureheart_helm_faithful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_faithful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_pureheart_helm_failtful_icon",
+        },
+    },
     Kruber_Hippogryph_helm_black = {
         kind = "texture",
         swap_skin = nil,
@@ -1295,7 +1515,58 @@ mod.SKIN_LIST = {
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
-            default = "kruber_hippogryph_helm_red_icon",
+            default = "kruber_hippogryph_helm_white_icon",
+        },
+    },
+    Kruber_Hippogryph_helm_devoted = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_devoted_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_devoted_icon",
+        },
+    },
+    Kruber_Hippogryph_helm_faithful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_faithful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_faithful_icon",
+        },
+    },
+    Kruber_Hippogryph_helm_merciful = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_merciful_diffuse",
+             
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
+        },
+        is_vanilla_unit = true, 
+        swap_hand = "hat",
+        skip_meshes = {},
+        icons = {
+            default = "kruber_hippogryph_helm_merciful_icon",
         },
     },
     Kruber_SunsetBonnet_helm_Middenland = {
@@ -1741,6 +2012,11 @@ mod.krub_hat_skins = {
 
 mod.krub_armor_skins = {
 	"skin_es_knight_black_and_gold",
+    "skin_es_questingknight",
+    "skin_es_questingknight_black_and_gold",
+    "skin_es_questingknight_black_and_yellow",
+    "skin_es_questingknight_blue_and_white",
+    "skin_es_questingknight_yellow_and_white",
 }
 
 mod.elf_armor_skins = {
@@ -1880,6 +2156,11 @@ for _,skin in pairs(skins_to_change) do
         cosmetic_table = Cosmetics[new_name]
     }
     mod.SKIN_CHANGED[skin] = table.clone(tisch, true)
+
+    --initalizes all skins to use the default skin
+    if not mod:get(skin) then
+        mod:set(skin, "default")
+    end
 end
 
 mod.has_old_texture = false

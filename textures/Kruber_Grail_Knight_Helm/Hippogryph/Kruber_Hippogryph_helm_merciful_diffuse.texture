@@ -1,6 +1,6 @@
 common = {
   input = {
-    filename = "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_black_diffuse"
+    filename = "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_merciful_diffuse"
   }
   output = {
     format = "DXT5"
