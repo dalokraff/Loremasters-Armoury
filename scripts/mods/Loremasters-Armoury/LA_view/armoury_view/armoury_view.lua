@@ -89,6 +89,8 @@ function ArmouryView:on_enter(transition_params)
     input_manager:block_device_except_service("custom_view_name", "mouse", 1)
     input_manager:block_device_except_service("custom_view_name", "gamepad", 1)
 
+	self:play_sound("Play_hud_button_open")
+
     self._on_enter_transition_params = transition_params
     self._render_settings = {
         snap_pixel_positions = true
@@ -1307,6 +1309,8 @@ function ArmouryView:on_exit()
 	self.input_manager:device_unblock_all_services("keyboard", 1)
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
+
+	self:play_sound("Play_hud_button_close")
   
     if self.viewport_widget then
         UIWidget.destroy(self.ui_renderer, self.viewport_widget )    

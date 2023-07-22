@@ -401,6 +401,13 @@ local mod_text_ids = {
 	la_pickup_message = {
 		en = "Pickup",
 	},
+	la_catalog = {
+		en = "Loremaster's Catalog"
+	},
+	la_catalog_browse = {
+		en = "Browse"
+	},
+
 }
 
 for id,text in pairs(mod.name_strings_id) do

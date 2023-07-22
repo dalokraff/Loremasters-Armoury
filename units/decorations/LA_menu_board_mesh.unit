@@ -1,0 +1,79 @@
+data = {
+    mat_slots = {
+        slot1 = "LA_message_board_texture"
+        slot2 = "LA_message_board_papers_texture"
+		slot3= "LA_gold_material_texture"
+    }
+
+    mat_to_use = "units/beings/player/empire_soldier_breton/skins/black_and_gold/mtr_outfit_black_and_gold_3p"
+    mat_package = "units/beings/player/empire_soldier_breton/skins/black_and_gold/chr_empire_soldier_breton_black_and_gold"
+
+    colors = {
+        slot1 = "textures/decorations/Board/LA_message_board_diffuse"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_diffuse"
+		slot3 = "textures/decorations/Board/LA_gold_material_diffuse"
+    }
+    normals = {
+        slot1 = "textures/decorations/Board/LA_message_board_normal"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_normal"
+		slot3 = "textures/decorations/Board/LA_gold_material_normal"
+    }
+    MABs = {
+        slot1 = "textures/decorations/Board/LA_message_board_combined"
+        slot2 = "textures/decorations/Papers/LA_message_board_papers_combined"
+		slot3 = "textures/decorations/Board/LA_gold_material_combined"
+    }
+
+    color_slot = "texture_map_64cc5eb8" 
+    norm_slot = "texture_map_861dbfdc"
+    MAB_slot = "texture_map_b788717c"
+    
+	decoration_settings_key = "test_painting"
+	current_quest = "test_painting"
+
+     interaction_data = {
+            hud_description = "la_catalog"
+            hud_interaction_action = "la_catalog_browse"
+            camera_interaction_name = "la_catalog"
+            interaction_length = 0
+            interaction_type = "catalog_view"
+            interactor_animation = "interaction_start"
+            interactor_animation_time_variable = "revive_time"
+            only_once = false
+            hud_text_line_1 = "la_catalog"
+            hud_text_line_2 =  "la_catalog_desc"
+            hud_text_line_3 =  "la_catalog_footer"
+        }
+
+}
+
+renderables = {
+    root_point = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = false
+		surface_queries = false
+		viewport_visible = true
+	},
+    LA_menu_board_papers = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+	LA_gold_accessories = {
+		always_keep = false
+		culling = "bounding_volume"
+		generate_uv_unwrap = false
+		occluder = false
+		shadow_caster = true
+		surface_queries = false
+		viewport_visible = true
+	},
+    
+}

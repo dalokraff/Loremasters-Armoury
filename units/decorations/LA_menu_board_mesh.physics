@@ -1,0 +1,17 @@
+actors = [
+	{
+		enabled = true
+		mass = 1
+		name = "LA_menu_board_papers"
+		node = "LA_menu_board_papers"
+		shapes = [
+			{
+				material = "default"
+				shape = "LA_menu_board_papers"
+				template = "default"
+				type = "convex_computed"
+			}
+		]
+		template = "static"
+	},
+]

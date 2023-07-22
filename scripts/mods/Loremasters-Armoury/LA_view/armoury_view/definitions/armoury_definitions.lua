@@ -803,9 +803,23 @@ local scenegraph_definition = {
 			-1
 		}
 	},
-	LA_skins_main_hand_text = {
+	LA_skins_main_hand_bg = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "center",
+		size = {
+			list_window_size[1] - 40,
+			300
+		},
+		position = {
+			0,
+			0,
+			31
+		}
+	},
+	LA_skins_main_hand_text = {
+		vertical_alignment = "center",
+		parent = "LA_skins_main_hand_bg",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
@@ -829,9 +843,23 @@ local scenegraph_definition = {
 			-1
 		}
 	},
-	LA_skins_off_hand_text = {
+	LA_skins_off_hand_bg = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "center",
+		size = {
+			list_window_size[1] - 40,
+			300
+		},
+		position = {
+			0,
+			0,
+			31
+		}
+	},
+	LA_skins_off_hand_text = {
+		vertical_alignment = "center",
+		parent = "LA_skins_off_hand_bg",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
