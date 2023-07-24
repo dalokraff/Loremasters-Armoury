@@ -1064,11 +1064,16 @@ LAWidgetUtils.create_simple_window_button = function (scenegraph_id, size, text,
 				-- 	style_id = "background_fade",
 				-- 	pass_type = "texture"
 				-- },
-				-- {
-				-- 	texture_id = "hover_glow",
-				-- 	style_id = "hover_glow",
-				-- 	pass_type = "texture"
-				-- },
+				{
+					texture_id = "hover_glow",
+					style_id = "hover_glow",
+					pass_type = "texture",
+					content_check_function = function (content)
+						local button_hotspot = content.button_hotspot
+
+						return not button_hotspot.disable_button and (button_hotspot.is_selected or button_hotspot.is_hover)
+					end
+				},
 				-- {
 				-- 	pass_type = "rect",
 				-- 	style_id = "clicked_rect"
@@ -1121,7 +1126,7 @@ LAWidgetUtils.create_simple_window_button = function (scenegraph_id, size, text,
 		},
 		content = {
 			-- glass = "button_glass_02",
-			-- hover_glow = "button_state_default",
+			hover_glow = "la_ui_closebutton_active",
 			-- background_fade = "button_bg_fade",
 			button_hotspot = {},
 			title_text = text or "n/a",
@@ -1170,36 +1175,40 @@ LAWidgetUtils.create_simple_window_button = function (scenegraph_id, size, text,
 			-- 		size[2]
 			-- 	}
 			-- },
-			-- hover_glow = {
-			-- 	color = {
-			-- 		0,
-			-- 		255,
-			-- 		255,
-			-- 		255
-			-- 	},
-			-- 	offset = {
-			-- 		0,
-			-- 		0,
-			-- 		3
-			-- 	},
-			-- 	size = {
-			-- 		size[1],
-			-- 		math.min(size[2] - 5, 80)
-			-- 	}
-			-- },
-			-- clicked_rect = {
-			-- 	color = {
-			-- 		0,
-			-- 		0,
-			-- 		0,
-			-- 		0
-			-- 	},
-			-- 	offset = {
-			-- 		0,
-			-- 		0,
-			-- 		7
-			-- 	}
-			-- },
+			hover_glow = {
+				-- color = {
+				-- 	255,
+				-- 	0,
+				-- 	0,
+				-- 	255
+				-- },
+				texture_size = {
+					426,
+					44
+				},
+				offset = {
+					0,
+					0,
+					32
+				},
+				-- size = {
+				-- 	size[1],
+				-- 	math.min(size[2] - 5, 80)
+				-- }
+			},
+			clicked_rect = {
+				color = {
+					0,
+					0,
+					0,
+					0
+				},
+				offset = {
+					0,
+					0,
+					7
+				}
+			},
 			-- disabled_rect = {
 			-- 	color = {
 			-- 		150,
