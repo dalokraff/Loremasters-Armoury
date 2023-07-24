@@ -523,6 +523,24 @@ ArmouryView.create_equipped_skins_display = function (self)
 
 	self:clear_equipped_skin_widgets()
 	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "off_hand")
+
+	local skin_divider_def = UIWidgets.create_simple_texture("la_ui_separatorright", "LA_skins_list_divider")
+	-- skin_divider_def.offset[2] = (j+1)*-60 - 15
+	local skin_divider_widget = UIWidget.init(skin_divider_def)
+
+	local widgets = self._widgets
+	local widgets_by_name = self._widgets_by_name
+	local LA_skins_list_entry_widgets = self.LA_skins_list_entry_widgets or {}
+	local widget_number = math.random(10,10^9)
+	widgets[widget_number] = skin_divider_widget
+	widgets_by_name["LA_skins_list_divider"] = skin_divider_widget
+	LA_skins_list_entry_widgets[widget_number] = {
+		widget_name = "LA_skins_list_divider",
+		button_number = math.random(10,10^9),
+	}
+	
+	self:_start_transition_animation("on_enter", skin_divider_widget, "LA_skins_list_divider")
+
 	self:update_equipped_skin_display(Armoury_skin_data_main_hand, item_data, chosen_skin_name, display_name, "main_hand")
 	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "outfits")
 	self:create_equipped_skin_title(display_name)
@@ -701,6 +719,50 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 	local i = 0
 	local j =  0 --2*math.ceil(#item_list/5)
 	local divider_offset = widgets_by_name["original_skins_list_divider"].offset[2] - 30
+
+	local sub_title_bg_widget_def = UIWidgets.create_simple_texture("la_ui_headersmall", "original_skins_list_skin_title_bg")
+	sub_title_bg_widget_def.offset[2] = sub_title_bg_widget_def.offset[2] + divider_offset
+	local sub_title_bg_widget = UIWidget.init(sub_title_bg_widget_def)
+	local bg_widget_number = math.random(10,10^9)
+	local sub_title_bg_widget_name = "original_skins_list_skin_title_bg"
+	widgets[bg_widget_number] = sub_title_bg_widget
+	widgets_by_name[sub_title_bg_widget_name] = sub_title_bg_widget
+	original_skin_list_skin_entry_widgets[bg_widget_number] = {
+		widget_name = sub_title_bg_widget_name,
+		button_number = math.random(10,10^9),
+	}
+	self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
+
+	local title_style = {
+		dynamic_height = false,
+		upper_case = true,
+		localize = true,
+		word_wrap = true,
+		font_size = 24,
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		use_shadow = true,
+		dynamic_font_size = false,
+		font_type = "hell_shark_header",
+		text_color = {255,247,170,6},
+		offset = {
+			0,
+			divider_offset + 10,
+			32
+		}
+	}
+	local sub_title_widget_def = UIWidgets.create_simple_text("illusions", "original_skins_list_skin_sub_title", nil, nil, title_style)
+	local sub_title_widget = UIWidget.init(sub_title_widget_def)
+	local widget_number = math.random(10,10^9)
+	local sub_title_widget_name = "original_skins_list_skin_sub_title"
+	widgets[widget_number] = sub_title_widget
+	widgets_by_name[sub_title_widget_name] = sub_title_widget
+	original_skin_list_skin_entry_widgets[widget_number] = {
+		widget_name = sub_title_widget_name,
+		button_number = math.random(10,10^9),
+	}
+	self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
+
 	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
 		local item_data = item_master_list[item_name]
 		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
@@ -715,7 +777,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		end
 		new_widget_def.offset = {
             i*60,
-            j*-60 + divider_offset,
+            j*-60 + divider_offset- 45,
             32
         }
 		new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
@@ -861,12 +923,24 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 		down_shift = -300
 	end
 
+
+	local hand_title_bg_widget_def = UIWidgets.create_simple_texture("la_ui_headersmall", "LA_skins_"..hand.."_bg")
+	local hand_title_bg_widget = UIWidget.init(hand_title_bg_widget_def)
+	local bg_widget_number = math.random(10,10^9)
+	local hand_title_bg_widget_name = hand.."_title_bg_widget"
+	widgets[bg_widget_number] = hand_title_bg_widget
+	widgets_by_name[hand_title_bg_widget_name] = hand_title_bg_widget
+	LA_skins_list_entry_widgets[bg_widget_number] = {
+		widget_name = hand_title_bg_widget_name,
+		button_number = math.random(10,10^9),
+	}
+
 	local title_style = {
 		dynamic_height = false,
 		upper_case = true,
 		localize = true,
 		word_wrap = true,
-		font_size = 18,
+		font_size = 24,
 		vertical_alignment = "top",
 		horizontal_alignment = "left",
 		use_shadow = true,
@@ -875,7 +949,7 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 		text_color = {255,247,170,6},
 		offset = {
 			-100,
-			0+down_shift,
+			0,
 			32
 		}
 	}
@@ -889,7 +963,7 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 		widget_name = hand_title_widget_name,
 		button_number = math.random(10,10^9),
 	}
-	self:_start_transition_animation("on_enter", hand_title_widget, hand_title_widget_name)
+	-- self:_start_transition_animation("on_enter", hand_title_widget, hand_title_widget_name)
 
 
 	if list_of_possible_skins[default_item_name] then
@@ -1002,9 +1076,51 @@ ArmouryView.update_original_skin_list = function (self)
 
 	local cur_button_num = #buttons
 
+	local sub_title_bg_widget_def = UIWidgets.create_simple_texture("la_ui_headersmall", "original_skins_sub_title_bg")
+	local sub_title_bg_widget = UIWidget.init(sub_title_bg_widget_def)
+	local bg_widget_number = math.random(10,10^9)
+	local sub_title_bg_widget_name = "original_skins_sub_title_bg"
+	widgets[bg_widget_number] = sub_title_bg_widget
+	widgets_by_name[sub_title_bg_widget_name] = sub_title_bg_widget
+	original_skin_list_widgets[bg_widget_number] = {
+		widget_name = sub_title_bg_widget_name,
+		button_number = math.random(10,10^9),
+	}
+	self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
+
     local selected_hero = string.gsub(self.selected_hero, "_hero_select", "")
     local selected_item = string.gsub(self.selected_item, "_item_select", "")
     local item_list = self.items_by_hero[selected_hero][selected_item]
+
+	local title_style = {
+		dynamic_height = false,
+		upper_case = true,
+		localize = true,
+		word_wrap = true,
+		font_size = 24,
+		vertical_alignment = "center",
+		horizontal_alignment = "center",
+		use_shadow = true,
+		dynamic_font_size = false,
+		font_type = "hell_shark_header",
+		text_color = {255,247,170,6},
+		offset = {
+			0,
+			10,
+			32
+		}
+	}
+	local sub_title_widget_def = UIWidgets.create_simple_text(selected_item, "original_skins_sub_title", nil, nil, title_style)
+	local sub_title_widget = UIWidget.init(sub_title_widget_def)
+	local widget_number = math.random(10,10^9)
+	local sub_title_widget_name = "original_skins_sub_title"
+	widgets[widget_number] = sub_title_widget
+	widgets_by_name[sub_title_widget_name] = sub_title_widget
+	original_skin_list_widgets[widget_number] = {
+		widget_name = sub_title_widget_name,
+		button_number = math.random(10,10^9),
+	}
+	self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
 
     local i = 0
 	local j = 0
@@ -1039,7 +1155,7 @@ ArmouryView.update_original_skin_list = function (self)
 		
 		new_widget_def.offset = {
             i*60,
-            j*-60,
+            j*-60 - 35,
             32
         }
         new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
@@ -1116,7 +1232,7 @@ ArmouryView.update_original_skin_list = function (self)
 	
 
 	local skin_divider_def = UIWidgets.create_simple_texture("la_ui_separatorleft", "original_skins_list_divider")
-	skin_divider_def.offset[2] = (j+1)*-60 - 15
+	skin_divider_def.offset[2] = (j+1)*-60 - 15 - 50
 	local skin_divider_widget = UIWidget.init(skin_divider_def)
 
 	local widget_number = math.random(10,10^9)

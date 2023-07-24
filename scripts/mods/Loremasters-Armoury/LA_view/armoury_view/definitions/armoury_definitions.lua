@@ -97,6 +97,10 @@ local la_ui_headerlarge_size = {
 	503*0.9,
 	87*0.9
 }
+local la_ui_headersmall_size = {
+	245*1.2,
+	28*1.2
+}
 local la_ui_separator = {
 	509*0.9,
 	34*0.9
@@ -592,6 +596,28 @@ local scenegraph_definition = {
 			0
 		}
 	},
+	original_skins_sub_title_bg = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = la_ui_headersmall_size,
+		position = {
+			0,
+			15,
+			30
+		}
+	},
+	original_skins_sub_title = {
+		vertical_alignment = "center",
+		parent = "original_skins_sub_title_bg",
+		horizontal_alignment = "center",
+		size = la_ui_headersmall_size,
+		position = {
+			0,
+			0,
+			32
+		}
+	},
 	original_skins_list_entry = {
 		vertical_alignment = "top",
 		parent = "original_skins_list_scroll_root",
@@ -601,6 +627,28 @@ local scenegraph_definition = {
 			0,
 			0,
 			-1
+		}
+	},
+	original_skins_list_skin_title_bg = {
+		vertical_alignment = "top",
+		parent = "original_skins_list_scroll_root",
+		horizontal_alignment = "left",
+		size = la_ui_headersmall_size,
+		position = {
+			0,
+			5,
+			30
+		}
+	},
+	original_skins_list_skin_sub_title = {
+		vertical_alignment = "center",
+		parent = "original_skins_list_skin_title_bg",
+		horizontal_alignment = "center",
+		size = la_ui_headersmall_size,
+		position = {
+			0,
+			0,
+			32
 		}
 	},
 	original_skins_list_skin_entry = {
@@ -636,6 +684,17 @@ local scenegraph_definition = {
 			32 
 		},
 	},
+	-- original_skins_equiped_skin_hand_bg = {
+	-- 	vertical_alignment = "bottom",
+	-- 	parent = "original_skins_list_scroll_root",
+	-- 	horizontal_alignment = "left",
+	-- 	size = la_ui_headersmall_size,
+	-- 	position = {
+	-- 		0,
+	-- 		-550,
+	-- 		30
+	-- 	}
+	-- },
 	original_equipped_skins_title_text = {
 		vertical_alignment = "bottom",
 		parent = "original_skins_list_scroll_root",
@@ -803,23 +862,34 @@ local scenegraph_definition = {
 			-1
 		}
 	},
-	LA_skins_main_hand_bg = {
+	LA_skins_main_hand_header_root = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
 		horizontal_alignment = "center",
 		size = {
-			list_window_size[1] - 40,
+			300,
 			300
 		},
 		position = {
 			0,
 			0,
-			31
+			30
+		}
+	},
+	LA_skins_main_hand_bg = {
+		vertical_alignment = "top",
+		parent = "LA_skins_main_hand_header_root",
+		horizontal_alignment = "center",
+		size = la_ui_headersmall_size,
+		position = {
+			-225,
+			2.5,
+			-1
 		}
 	},
 	LA_skins_main_hand_text = {
 		vertical_alignment = "center",
-		parent = "LA_skins_main_hand_bg",
+		parent = "LA_skins_main_hand_header_root",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
@@ -832,6 +902,7 @@ local scenegraph_definition = {
 		}
 	},
 
+	
 	LA_skins_list_entry_off_hand = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
@@ -843,23 +914,34 @@ local scenegraph_definition = {
 			-1
 		}
 	},
-	LA_skins_off_hand_bg = {
+	LA_skins_off_hand_header_root = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
 		horizontal_alignment = "center",
 		size = {
-			list_window_size[1] - 40,
+			300,
 			300
 		},
 		position = {
 			0,
-			0,
-			31
+			-300,
+			30
+		}
+	},
+	LA_skins_off_hand_bg = {
+		vertical_alignment = "top",
+		parent = "LA_skins_off_hand_header_root",
+		horizontal_alignment = "center",
+		size = la_ui_headersmall_size,
+		position = {
+			-225,
+			2.5,
+			30
 		}
 	},
 	LA_skins_off_hand_text = {
 		vertical_alignment = "center",
-		parent = "LA_skins_off_hand_bg",
+		parent = "LA_skins_off_hand_header_root",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
@@ -884,9 +966,35 @@ local scenegraph_definition = {
 			-1
 		}
 	},
-	LA_skins_outfits_text = {
+	
+	LA_skins_outfits_header_root = {
 		vertical_alignment = "top",
 		parent = "LA_skins_list_scroll_root",
+		horizontal_alignment = "center",
+		size = {
+			300,
+			300
+		},
+		position = {
+			0,
+			0,
+			30
+		}
+	},
+	LA_skins_outfits_bg = {
+		vertical_alignment = "top",
+		parent = "LA_skins_outfits_header_root",
+		horizontal_alignment = "center",
+		size = la_ui_headersmall_size,
+		position = {
+			-225,
+			2.5,
+			30
+		}
+	},
+	LA_skins_outfits_text = {
+		vertical_alignment = "center",
+		parent = "LA_skins_outfits_header_root",
 		horizontal_alignment = "center",
 		size = {
 			list_window_size[1] - 40,
@@ -897,6 +1005,18 @@ local scenegraph_definition = {
 			0,
 			31
 		}
+	},
+
+	LA_skins_list_divider = {
+		parent = "LA_skins_list_scroll_root",
+		vertical_alignment = "center",
+		horizontal_alignment = "left",
+		size = la_ui_separator,
+		position = { 
+			-450,
+			-265, 
+			32 
+		},
 	},
 
 	LA_skins_list_detail_top = {
