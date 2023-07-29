@@ -882,7 +882,7 @@ local scenegraph_definition = {
 		horizontal_alignment = "center",
 		size = la_ui_headersmall_size,
 		position = {
-			-225,
+			-142.5,
 			2.5,
 			-1
 		}
@@ -896,7 +896,7 @@ local scenegraph_definition = {
 			300
 		},
 		position = {
-			0,
+			82.5,
 			0,
 			31
 		}
@@ -934,7 +934,7 @@ local scenegraph_definition = {
 		horizontal_alignment = "center",
 		size = la_ui_headersmall_size,
 		position = {
-			-225,
+			-142.5,
 			2.5,
 			30
 		}
@@ -948,7 +948,7 @@ local scenegraph_definition = {
 			300
 		},
 		position = {
-			0,
+			82.5,
 			0,
 			31
 		}
@@ -1387,7 +1387,7 @@ local widgets_definitions = {
     window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
 	-- tutorial_overlay_toggle = UIWidgets.create_icon_button("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "la_questionmark_icon"),
-	tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, nil, "la_questionmark_icon"),
+	tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, "la_questionmark_icon", "la_questionmark_icon", "la_questionmark_icon"),
 
     -- window_title_banner_left = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_left"),
     -- window_title_banner_right = UIWidgets.create_simple_texture("loremasters_armoury_banner2", "window_title_banner_right"),
@@ -1523,7 +1523,7 @@ local widgets_definitions = {
 			0
 		}
 	},
-	my_button = LAWidgetUtils.create_simple_window_button("my_button", scenegraph_definition.my_button.size, Localize("interaction_action_close"), 28, "la_ui_closebutton")
+	my_button = LAWidgetUtils.create_simple_window_button("my_button", scenegraph_definition.my_button.size, Localize("interaction_action_close"), 28, "la_ui_closebutton", "la_ui_closebutton_active")
 	-- my_button = UIWidgets.create_default_button("my_button", scenegraph_definition.my_button.size, "menu_frame_16_white", "la_ui_closebutton", Localize("interaction_action_close"), 28, nil, nil, nil, true)
 }
 

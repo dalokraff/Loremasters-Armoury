@@ -1247,7 +1247,7 @@ ArmouryView.update_original_skin_list = function (self)
 
 	if num_pages > 1 then
 		local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
-		local page_button_def = LAWidgetUtils.create_button_with_hover_highlight("original_skins_equiped_skin_page_button", page_button_size , nil, nil, "la_ui_arrowright_large")
+		local page_button_def = LAWidgetUtils.create_button_with_hover_highlight("original_skins_equiped_skin_page_button", page_button_size , nil, "la_ui_arrowright_large", "la_ui_arrowright_large", "la_ui_arrowright_large_active")
 		
 		local page_button_widget = UIWidget.init(page_button_def)
 		local page_button_widget_number = math.random(10,10^9)
