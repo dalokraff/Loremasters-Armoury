@@ -635,6 +635,7 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 
 	local scenegraph_definition_size = scenegraph_definition.original_skins_equiped_skin.size
 	local new_widget_def = UIWidgets.create_icon_button("original_skins_equiped_skin",scenegraph_definition_size , nil, nil, icon)
+	new_widget_def.content.texture_hover = "la_ui_icon_active"
 
 	new_widget_def.offset = {
 		0 + offset,
@@ -770,6 +771,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		local scenegraph_definition_size = scenegraph_definition.original_skins_list_skin_entry.size
 		local icon = amoury_change_data.icon or item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 		local new_widget_def = UIWidgets.create_icon_button("original_skins_list_skin_entry",scenegraph_definition_size , nil, nil, icon)
+		new_widget_def.content.texture_hover = "la_ui_icon_active"
 
 		if i > 5 then
 			i = 0
@@ -982,6 +984,7 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 			
 			
 			local new_widget_def = UIWidgets.create_icon_button("LA_skins_list_entry_"..hand, scenegraph_definition_size , nil, nil, icon)
+			new_widget_def.content.texture_hover = "la_ui_icon_active"
 
 			if i > 5 then
 				i = 0
@@ -1151,7 +1154,7 @@ ArmouryView.update_original_skin_list = function (self)
 		local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
         local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
         local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
-        
+        new_widget_def.content.texture_hover = "la_ui_icon_active"
 		
 		new_widget_def.offset = {
             i*60,
