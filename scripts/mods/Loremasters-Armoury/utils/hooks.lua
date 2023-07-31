@@ -109,6 +109,19 @@ mod:hook_safe(World, "link_unit", function(self, child, child_node_index, parent
 end)
 
 
+--hook to set the vanilla skin name so meshes that just change materials can be properly discerned when swapping textures
+mod:hook_safe(PlayerUnitCosmeticExtension, "_init_mesh_attachment", function(self, world, unit, skin_name, profile, career)
+    local tp_unit = self._tp_unit_mesh 
+
+    local first_person_extension = ScriptUnit.has_extension(unit, "first_person_system")
+    if first_person_extension then
+        local first_person_unit = first_person_extension:get_first_person_mesh_unit()
+        Unit.set_data(first_person_unit, "vanilla_skin", skin_name)
+        Unit.set_data(tp_unit, "vanilla_skin", skin_name)
+    end
+  
+end)
+
 mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
     local unit_name = nil
     local unit_skin_name = nil
@@ -594,6 +607,7 @@ end)
 
 --taken from the Casual Mode mod by Squatting Bear, these are used to run so the previously hooked function is ran and can check for tomes/grims
 --https://github.com/Squatting-Bear/vermintide-mods/blob/development/casual_mode/scripts/mods/casual_mode/casual_mode.lua#L794
+--=======================================================================================================================
 -- Pretend we are trusted so that the experience reward screen will be shown.
 mod:hook_safe(StateInGameRunning, "on_enter", function(self, params)
 	self._booted_eac_untrusted = false
@@ -617,6 +631,7 @@ mod:hook(BackendInterfaceLootPlayfab, "generate_end_of_level_loot", function(ori
 	self._loot_requests[fake_id] = {}
 	return fake_id
 end)
+--=======================================================================================================================
 
 --setting up tables that contain data for the reward info of chalenges in Okri's Book
 mod.LA_quest_rewards = {

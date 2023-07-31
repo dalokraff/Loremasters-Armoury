@@ -1,57 +1,62 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/string_dict")
 
-local function apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
+local function apply_texture_to_all_world_units(world, unit, skin, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     if Unit.alive(unit) then
-        
-        local num_meshes = Unit.num_meshes(unit)
-        for i = 0, num_meshes - 1, 1 do
-            local new_diff = diff
-            local new_MAB = MAB
-            local new_norm = norm
-            --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
-            if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] and not is_fps_unit then
-                if mod.SKIN_LIST[Armoury_key].textures_other_mesh then 
-                    if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)] then
-                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1] then
-                            new_diff = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1]
+        --value is set by hook for units who change skins by material changes
+        --PlayerUnitCosmeticExtension._init_mesh_attachment
+        local vanilla_skin = Unit.get_data(unit, "vanilla_skin") or skin
+
+        if vanilla_skin == skin then
+            local num_meshes = Unit.num_meshes(unit)
+            for i = 0, num_meshes - 1, 1 do
+                local new_diff = diff
+                local new_MAB = MAB
+                local new_norm = norm
+                --some units like the elf spear and shield have meshes that need to be skipped as they don't use the "main" diffuse map 
+                if mod.SKIN_LIST[Armoury_key].skip_meshes["skip"..tostring(i)] and not is_fps_unit then
+                    if mod.SKIN_LIST[Armoury_key].textures_other_mesh then 
+                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)] then
+                            if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1] then
+                                new_diff = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][1]
+                            end
+                            if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2] then
+                                new_MAB = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2]
+                            end
+                            if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3] then
+                                new_norm = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3]
+                            end
+                        else 
+                            goto continue_apply_texture_to_all_world_units
                         end
-                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2] then
-                            new_MAB = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][2]
-                        end
-                        if mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3] then
-                            new_norm = mod.SKIN_LIST[Armoury_key].textures_other_mesh["skip"..tostring(i)][3]
-                        end
-                    else 
+                    else
                         goto continue_apply_texture_to_all_world_units
                     end
-                else
-                    goto continue_apply_texture_to_all_world_units
                 end
-            end
-            -- ::apply_new_textures::
-            local mesh = Unit.mesh(unit, i)
-            local num_mats = Mesh.num_materials(mesh)
-            for j = 0, num_mats - 1, 1 do
-                local mat = Mesh.material(mesh, j)
-                if new_diff then
-                    Material.set_texture(mat, diff_slot, new_diff)
-                end
-                if new_MAB then 
-                    Material.set_texture(mat, pack_slot, new_MAB)
-                end
-                if new_norm then
-                    Material.set_texture(mat, norm_slot, new_norm)
-                end
-                if mod.SKIN_LIST[Armoury_key].special_textures then 
-                    if not mod.SKIN_LIST[Armoury_key].mat_to_skip["skip"..tostring(j)] then 
-                        for _,text_tisch in ipairs(mod.SKIN_LIST[Armoury_key].special_textures) do 
-                            Material.set_texture(mat, text_tisch.slot, text_tisch.texture)
+                -- ::apply_new_textures::
+                local mesh = Unit.mesh(unit, i)
+                local num_mats = Mesh.num_materials(mesh)
+                for j = 0, num_mats - 1, 1 do
+                    local mat = Mesh.material(mesh, j)
+                    if new_diff then
+                        Material.set_texture(mat, diff_slot, new_diff)
+                    end
+                    if new_MAB then 
+                        Material.set_texture(mat, pack_slot, new_MAB)
+                    end
+                    if new_norm then
+                        Material.set_texture(mat, norm_slot, new_norm)
+                    end
+                    if mod.SKIN_LIST[Armoury_key].special_textures then 
+                        if not mod.SKIN_LIST[Armoury_key].mat_to_skip["skip"..tostring(j)] then 
+                            for _,text_tisch in ipairs(mod.SKIN_LIST[Armoury_key].special_textures) do 
+                                Material.set_texture(mat, text_tisch.slot, text_tisch.texture)
+                            end
                         end
                     end
                 end
+                ::continue_apply_texture_to_all_world_units::
             end
-            ::continue_apply_texture_to_all_world_units::
         end
     end    
 end
@@ -94,13 +99,13 @@ function mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
 
         local hand = mod.SKIN_LIST[Armoury_key].swap_hand
         
-        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
+        apply_texture_to_all_world_units(world, unit, skin, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     elseif mod.SKIN_LIST[Armoury_key].textures_fps and is_fps_unit then 
         local diff = mod.SKIN_LIST[Armoury_key].textures_fps[1]
         local MAB = mod.SKIN_LIST[Armoury_key].textures_fps[2]
         local norm = mod.SKIN_LIST[Armoury_key].textures_fps[3]
         
-        apply_texture_to_all_world_units(world, unit, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
+        apply_texture_to_all_world_units(world, unit, skin, diff_slot, pack_slot, norm_slot, diff, MAB, norm, Armoury_key, is_fps_unit)
     end
 
     if WeaponSkins.skins[skin] and mod.SKIN_LIST[Armoury_key].icons then
