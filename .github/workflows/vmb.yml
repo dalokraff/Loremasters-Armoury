@@ -12,19 +12,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-
-      # - name: Download artifact
-      #   id: download-artifact
-      #   uses: dawidd6/action-download-artifact@v2
-      #   with:
-      #     name: VMB v1.8.2.1
-      #     repo: Vermintide-Mod-Framework/Vermintide-Mod-Builder
-      #     workflow: nodejs.yml
-      #     path: ./
-      #     search_artifacts: true
-
       - name: Download VMB Release
         uses: robinraju/release-downloader@v1.8
         with:
@@ -36,24 +23,42 @@ jobs:
       - name: Extract VMB
         run: 7z x vmb-1.8.2.zip -aou
 
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
-      #     cache: 'npm'
-      # - run: npm ci
-      # - run: npm run build --if-present
+      - uses: suisei-cn/actions-download-file@v1.3.0
+        id: SDK  # Remember to give an ID if you need the output filename
+        name: Download the file
+        with:
+          url: "https://cdn.jsdelivr.net/npm/workbox-sw@5.1.3/build/workbox-sw.min.js"
+          target: public/
 
       - name: Setup Dirs
-        run: New-Item -ItemType Directory -Force -Path "mods/loremasters-armoury" 
+        run: |
+          New-Item -ItemType Directory -Force -Path "mods/loremasters-armoury"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/2789506353"
+          New-Item -ItemType Directory -Force -Path "VT2-SDK" 
+
+      - name: Checkout SDK
+        uses: actions/checkout@v3
+        with:
+          repository: dalokraff/Vermintide-Mod-Builder
+          ref: ci-test
+          path: sdk
+          sparse-checkout: ''
+
+      - name: Extract SDK
+        run: |
+          7z x sdk/VT2-SDK -o VT2-SDK
+                        
+      - name: Check VMB
+        run: |
+          .\vmb.exe --version
 
       - name: Checkout
         uses: actions/checkout@v3
         with:
           path: mods/loremasters-armoury
           sparse-checkout: ''
-                        
-      - name: Build Mod
+
+      - name: Build MOd
         run: |
-          .\vmb.exe --version
+          .\vmb.exe build loremasters-armoury --verbose
       
