@@ -23,7 +23,8 @@ jobs:
       #     Start-Process -FilePath "vcredist_x864.exe" -ArgumentList "/passive" -Wait -Passthru;
       - name: wait for DL
         run: |
-          Start-Sleep -s 10
+          Start-Sleep -s 5
+          ls
       - name: extract redist
         run: |
           7z x vcredist_x864.exe -ox64
