@@ -61,15 +61,12 @@ jobs:
         with:
           path: mods/loremasters-armoury
           sparse-checkout: ''
-
-      - name: Build MOd
-        run: |
-          $pwd
-          cd VT2-SDK
-          ls
-          cd ..
           
       - name: Build Mod
+        run: |
+          .\vmb.exe build loremasters-armoury --verbose
+
+      - name: Build Mod 2
         run: |
           .\vmb.exe build loremasters-armoury --verbose
       
