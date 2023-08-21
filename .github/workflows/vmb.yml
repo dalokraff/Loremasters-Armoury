@@ -1,0 +1,44 @@
+name: VMB build
+
+on:
+  push:
+    branches: [ "master" , "ci-test" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build_n_release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: vmb-files
+          repo: Vermintide-Mod-Framework/Vermintide-Mod-Builder
+          workflow: nodejs.yml
+          path: ./
+          search_artifacts: true
+
+      - name: Extract VMB
+        run: 7z x vmb-1.8.2.zip
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+                        
+      - name: Build Mod
+        id: tag
+        run: |
+          vmb --version 
+         
+      
