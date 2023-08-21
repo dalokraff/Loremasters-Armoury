@@ -21,8 +21,7 @@ jobs:
           7z x vcredist_x64.exe -ox64 -aou
           
       - name: install redist
-        run: |
-          Start-Process -FilePath "x64/Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
+        run: Start-Process -FilePath "x64/Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
           
       - name: Download VMB Release
         uses: robinraju/release-downloader@v1.8
@@ -56,8 +55,7 @@ jobs:
           ls
           
       - name: Extract SDK
-        run: |
-          7z x sdk/VT2-SDK.zip -aou
+        run: 7z x sdk/VT2-SDK.zip -aou
 
       - name: Copy .vmbrc
         run: |
@@ -66,8 +64,7 @@ jobs:
           
                         
       - name: Check VMB
-        run: |
-          .\vmb.exe --version
+        run: .\vmb.exe --version
 
       - name: Checkout Mod Files
         uses: actions/checkout@v3
@@ -76,15 +73,14 @@ jobs:
           sparse-checkout: ''
           
       - name: Build Mod
-        run: |
-          .\vmb.exe build $MOD_NAME --verbose
+        run: .\vmb.exe build $MOD_NAME --verbose
 
       - name: Release
         if: contains(fromJSON('["push"]'), github.event_name)
         uses: softprops/action-gh-release@v1
         with:
-          name: ci-test
-          tag_name: ci-test
+          name: ${{ vars.MOD_NAME }}-${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
           generate_release_notes: True
           files: |
             mods/${{ vars.MOD_NAME }}/bundleV2/*
