@@ -38,7 +38,7 @@ jobs:
           zipBall: true
 
       - name: Extract VMB
-        run: echo $MOD_NAME
+        run: echo ${{ MOD_NAME }}
 
       - name: Extract VMB
         run: 7z x vmb-1.8.2.zip -aou
@@ -80,7 +80,7 @@ jobs:
       - name: Checkout Mod Files
         uses: actions/checkout@v3
         with:
-          path: mods/$vars:MOD_NAME
+          path: mods/${{ MOD_NAME }}
           sparse-checkout: ''
           
       - name: Build Mod
