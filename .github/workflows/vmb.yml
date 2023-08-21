@@ -38,15 +38,15 @@ jobs:
       - name: Setup Dirs
         run: |
           New-Item -ItemType Directory -Force -Path "mods/.temp"
-          New-Item -ItemType Directory -Force -Path "mods/${{ vars.MOD_NAME }}"
-          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ vars.WORKSHOP_ID }}"
+          New-Item -ItemType Directory -Force -Path "mods/${{ env.MOD_NAME }}"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ env.WORKSHOP_ID }}"
           New-Item -ItemType Directory -Force -Path "VT2-SDK" 
 
       - name: Checkout SDK
         uses: actions/checkout@v3
         with:
-          repository: dalokraff/Vermintide-Mod-Builder
-          ref: ci-test
+          repository: ${{ env.SDK_REPO }}
+          ref: ${{ env.SDK_BRANCH }}
           path: sdk
           sparse-checkout: ''
 
@@ -72,12 +72,12 @@ jobs:
       - name: Checkout Mod Files
         uses: actions/checkout@v3
         with:
-          path: mods/${{ vars.MOD_NAME }}
+          path: mods/${{ env.MOD_NAME }}
           sparse-checkout: ''
           
       - name: Build Mod
         run: |
-          .\vmb.exe build loremasters-armoury --verbose
+          .\vmb.exe build ${{ env.MOD_NAME }} --verbose
 
       - name: Release
         if: contains(fromJSON('["push"]'), github.event_name)
@@ -87,5 +87,5 @@ jobs:
           tag_name: ci-test
           generate_release_notes: True
           files: |
-            mods/${{ vars.MOD_NAME }}/bundleV2/*
+            mods/${{ env.MOD_NAME }}/bundleV2/*
       
