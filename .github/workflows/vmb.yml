@@ -32,6 +32,7 @@ jobs:
 
       - name: Setup Dirs
         run: |
+          New-Item -ItemType Directory -Force -Path "mods/.temp"
           New-Item -ItemType Directory -Force -Path "mods/loremasters-armoury"
           New-Item -ItemType Directory -Force -Path "workshop/content/552500/2789506353"
           New-Item -ItemType Directory -Force -Path "VT2-SDK" 
@@ -69,6 +70,6 @@ jobs:
 
       - name: Build Mod
         run: |
-          cd mods/.temp//
+          cd mods/.temp/
           ls
       
