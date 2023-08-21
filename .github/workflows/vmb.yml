@@ -46,7 +46,7 @@ jobs:
 
       - name: Extract SDK
         run: |
-          7z x sdk/VT2-SDK.zip -o./VT2-SDK
+          7z x sdk/VT2-SDK.zip
 
       - name: Copy .vmbrc
         run: Copy-Item "sdk\.vmbrc" -Destination ""
