@@ -2,9 +2,9 @@ name: VMB build
 
 on:
   push:
-    branches: [ "master" , "ci-test" ]
+    branches: [ "main" , "new-menu", "ci-test" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build_n_release:
@@ -29,24 +29,24 @@ jobs:
         with:
           repository: "Vermintide-Mod-Framework/Vermintide-Mod-Builder"
           latest: true
-          fileName: "vmb-1.8.2.zip"
+          fileName: "vmb.zip"
           zipBall: true
 
       - name: Extract VMB
-        run: 7z x vmb-1.8.2.zip -aou
+        run: 7z x vmb.zip -aou
 
       - name: Setup Dirs
         run: |
           New-Item -ItemType Directory -Force -Path "mods/.temp"
-          New-Item -ItemType Directory -Force -Path "mods/loremasters-armoury"
-          New-Item -ItemType Directory -Force -Path "workshop/content/552500/2789506353"
+          New-Item -ItemType Directory -Force -Path "mods/${MOD_NAME}"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${WORKSHOP_ID}"
           New-Item -ItemType Directory -Force -Path "VT2-SDK" 
 
       - name: Checkout SDK
         uses: actions/checkout@v3
         with:
-          repository: dalokraff/Vermintide-Mod-Builder
-          ref: ci-test
+          repository: ${SDK_REPO}
+          ref: ${SDK_BRANCH}
           path: sdk
           sparse-checkout: ''
 
@@ -67,7 +67,7 @@ jobs:
       - name: Checkout Mod Files
         uses: actions/checkout@v3
         with:
-          path: mods/loremasters-armoury
+          path: mods/${MOD_NAME}
           sparse-checkout: ''
           
       - name: Build Mod
@@ -82,5 +82,5 @@ jobs:
           tag_name: ci-test
           generate_release_notes: True
           files: |
-            mods/loremasters-armoury/bundleV2/*
+            mods/${MOD_NAME}/bundleV2/*
       
