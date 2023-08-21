@@ -69,6 +69,6 @@ jobs:
 
       - name: Build Mod
         run: |
-          cd mods/.temp/loremasters-armouryV2/compile
+          cd mods/.temp//
           ls
       
