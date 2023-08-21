@@ -23,7 +23,7 @@ jobs:
       #     Start-Process -FilePath "vcredist_x864.exe" -ArgumentList "/passive" -Wait -Passthru;
       - name: install redist
         run: |
-          Start-Process -FilePath "x64\Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
+          Start-Process -FilePath "vcredist_x864.exe" -ArgumentList "/passive" -Wait -Passthru;
           
       - name: Download VMB Release
         uses: robinraju/release-downloader@v1.8
