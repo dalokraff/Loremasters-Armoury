@@ -5,6 +5,11 @@ on:
     branches: [ "main" , "new-menu", "ci-test" ]
   pull_request:
     branches: [ "main" ]
+env:
+  MOD_NAME: ${vars.MOD_NAME}
+  MOD_ID: ${vars.MOD_ID}
+  SDK_REPO: ${vars.SDK_REPO}
+  SDK_BRANCH: ${vars.SDK_BRANCH}
 
 jobs:
   build_n_release:
@@ -33,20 +38,23 @@ jobs:
           zipBall: true
 
       - name: Extract VMB
+        run: echo $MOD_NAME
+
+      - name: Extract VMB
         run: 7z x vmb-1.8.2.zip -aou
 
       - name: Setup Dirs
         run: |
           New-Item -ItemType Directory -Force -Path "mods/.temp"
-          New-Item -ItemType Directory -Force -Path "mods/$vars:MOD_NAME"
-          New-Item -ItemType Directory -Force -Path "workshop/content/552500/$vars:WORKSHOP_ID"
+          New-Item -ItemType Directory -Force -Path "mods/${{ MOD_NAME }}"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ WORKSHOP_ID }}"
           New-Item -ItemType Directory -Force -Path "VT2-SDK" 
 
       - name: Checkout SDK
         uses: actions/checkout@v3
         with:
-          repository: $env:SDK_REPO
-          ref: $env:SDK_BRANCH
+          repository: ${{ SDK_REPO }}
+          ref: ${{ SDK_BRANCH }}
           path: sdk
           sparse-checkout: ''
 
@@ -77,7 +85,7 @@ jobs:
           
       - name: Build Mod
         run: |
-          .\vmb.exe build $vars:MOD_NAME --verbose
+          .\vmb.exe build $MOD_NAME --verbose
 
       - name: Release
         if: contains(fromJSON('["push"]'), github.event_name)
@@ -87,5 +95,5 @@ jobs:
           tag_name: ci-test
           generate_release_notes: True
           files: |
-            mods/$vars:MOD_NAME/bundleV2/*
+            mods/${{ MOD_NAME }}/bundleV2/*
       
