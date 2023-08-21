@@ -5,12 +5,7 @@ on:
     branches: [ "main" , "new-menu", "ci-test" ]
   pull_request:
     branches: [ "main" ]
-env:
-  MOD_NAME: ${vars.MOD_NAME}
-  MOD_ID: ${vars.MOD_ID}
-  SDK_REPO: ${vars.SDK_REPO}
-  SDK_BRANCH: ${vars.SDK_BRANCH}
-
+    
 jobs:
   build_n_release:
     runs-on: windows-latest
@@ -46,15 +41,15 @@ jobs:
       - name: Setup Dirs
         run: |
           New-Item -ItemType Directory -Force -Path "mods/.temp"
-          New-Item -ItemType Directory -Force -Path "mods/${{ MOD_NAME }}"
-          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ WORKSHOP_ID }}"
+          New-Item -ItemType Directory -Force -Path "mods/${{ vars.MOD_NAME }}"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ vars.WORKSHOP_ID }}"
           New-Item -ItemType Directory -Force -Path "VT2-SDK" 
 
       - name: Checkout SDK
         uses: actions/checkout@v3
         with:
-          repository: ${{ SDK_REPO }}
-          ref: ${{ SDK_BRANCH }}
+          repository: ${{ vars.SDK_REPO }}
+          ref: ${{ vars.SDK_BRANCH }}
           path: sdk
           sparse-checkout: ''
 
@@ -80,7 +75,7 @@ jobs:
       - name: Checkout Mod Files
         uses: actions/checkout@v3
         with:
-          path: mods/${{ MOD_NAME }}
+          path: mods/${{ vars.MOD_NAME }}
           sparse-checkout: ''
           
       - name: Build Mod
@@ -95,5 +90,5 @@ jobs:
           tag_name: ci-test
           generate_release_notes: True
           files: |
-            mods/${{ MOD_NAME }}/bundleV2/*
+            mods/${{ vars.MOD_NAME }}/bundleV2/*
       
