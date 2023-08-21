@@ -15,15 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Download artifact
-        id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
+      # - name: Download artifact
+      #   id: download-artifact
+      #   uses: dawidd6/action-download-artifact@v2
+      #   with:
+      #     name: VMB v1.8.2.1
+      #     repo: Vermintide-Mod-Framework/Vermintide-Mod-Builder
+      #     workflow: nodejs.yml
+      #     path: ./
+      #     search_artifacts: true
+
+      - name: Download VMB Release
+        uses: robinraju/release-downloader@v1.8
         with:
-          name: VMB v1.8.2.1
-          repo: Vermintide-Mod-Framework/Vermintide-Mod-Builder
-          workflow: nodejs.yml
-          path: ./
-          search_artifacts: true
+          repository: "Vermintide-Mod-Framework/Vermintide-Mod-Builder"
+          latest: true
+          fileName: "vmb-1.8.2.zip"
+          zipBall: true
 
       - name: Extract VMB
         run: 7z x vmb-1.8.2.zip
