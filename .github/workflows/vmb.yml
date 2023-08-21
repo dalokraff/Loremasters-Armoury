@@ -34,7 +34,7 @@ jobs:
           zipBall: true
 
       - name: Extract VMB
-        run: 7z x vmb-1.8.2.zip
+        run: 7z x -u vmb-1.8.2.zip
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
