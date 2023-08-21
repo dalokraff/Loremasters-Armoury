@@ -45,7 +45,7 @@ jobs:
       - name: Checkout SDK
         uses: actions/checkout@v3
         with:
-          repository: ${{ vars.SDK_REPO }}
+          repository: dalokraff/Vermintide-Mod-Builder
           ref: ${{ vars.SDK_BRANCH }}
           path: sdk
           sparse-checkout: ''
