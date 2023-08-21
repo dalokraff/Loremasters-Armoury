@@ -74,8 +74,13 @@ jobs:
         run: |
           .\vmb.exe build loremasters-armoury --verbose
 
-      # - name: Build Mod
-      #   run: |
-      #     cd mods/.temp/
-      #     ls
+      - name: Release
+        if: contains(fromJSON('["push"]'), github.event_name)
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ci-test
+          tag_name: ci-test
+          generate_release_notes: True
+          files: |
+            mods/loremasters-armoury/bundleV2/*
       
