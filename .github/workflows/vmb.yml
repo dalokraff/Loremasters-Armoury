@@ -64,5 +64,10 @@ jobs:
 
       - name: Build MOd
         run: |
+          $pwd
+          ls
+          
+      - name: Build Mod
+        run: |
           .\vmb.exe build loremasters-armoury --verbose
       
