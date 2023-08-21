@@ -50,7 +50,9 @@ jobs:
           7z x sdk/VT2-SDK.zip
 
       - name: Copy .vmbrc
-        run: Copy-Item "sdk\.vmbrc" -Destination ""
+        run: |
+          .\vmb.exe config
+          Copy-Item "sdk\.vmbrc" -Destination ".vmbrc"
           
                         
       - name: Check VMB
