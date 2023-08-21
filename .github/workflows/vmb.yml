@@ -46,6 +46,6 @@ jobs:
                         
       - name: Build Mod
         run: |
-          vmb.exe --version
+          .\vmb.exe --version
          
       
