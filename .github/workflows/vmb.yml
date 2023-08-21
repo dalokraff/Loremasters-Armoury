@@ -46,7 +46,7 @@ jobs:
 
       - name: Extract SDK
         run: |
-          7z x sdk/VT2-SDK -oVT2-SDK
+          7z x sdk/VT2-SDK.zip -oVT2-SDK
                         
       - name: Check VMB
         run: |
