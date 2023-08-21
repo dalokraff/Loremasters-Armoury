@@ -1,0 +1,77 @@
+name: VMB build
+
+on:
+  push:
+    branches: [ "main" , "new-menu" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build_n_release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      # Microsoft Visual C++ 2010 Service Pack needs to be installed for VT2 SDK to run
+      - name: get redist
+        run: |
+          Invoke-WebRequest -URI https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe -Outfile vcredist_x64.exe
+      - name: extract redist setup
+        run: |
+          7z x vcredist_x64.exe -ox64 -aou          
+      - name: install redist
+        run: Start-Process -FilePath "x64/Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
+
+      # Downloads latest VMB release and setsup folders needed to build mods
+      - name: Download VMB Release
+        uses: robinraju/release-downloader@v1.8
+        with:
+          repository: "Vermintide-Mod-Framework/Vermintide-Mod-Builder"
+          latest: true
+          fileName: "vmb-1.8.2.zip"
+          zipBall: true
+      - name: Extract VMB
+        run: 7z x vmb-1.8.2.zip -aou
+      - name: Setup Mod-Build Dirs
+        run: |
+          New-Item -ItemType Directory -Force -Path "mods/.temp"
+          New-Item -ItemType Directory -Force -Path "mods/${{ vars.MOD_NAME }}"
+          New-Item -ItemType Directory -Force -Path "workshop/content/552500/${{ vars.WORKSHOP_ID }}"
+          New-Item -ItemType Directory -Force -Path "VT2-SDK" 
+
+      # get and setup VT2 SDK
+      - name: Checkout SDK
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ vars.SDK_REPO }}
+          ref: ${{ vars.SDK_BRANCH }}
+          path: sdk
+          sparse-checkout: ''        
+      - name: Extract SDK
+        run: 7z x sdk/VT2-SDK.zip -aou
+      - name: Copy .vmbrc
+        run: |
+          .\vmb.exe config
+          Copy-Item "sdk\.vmbrc" -Destination ".vmbrc"                    
+      - name: Check VMB
+        run: .\vmb.exe --version
+
+      # Builds Mod
+      - name: Checkout Mod Files
+        uses: actions/checkout@v3
+        with:
+          path: mods/${{ vars.MOD_NAME }}
+          sparse-checkout: ''
+      - name: Build Mod
+        run: .\vmb.exe build ${{ vars.MOD_NAME }} --verbose
+
+      - name: Release
+        if: contains(fromJSON('["push"]'), github.event_name)
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ vars.MOD_NAME }}-${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: True
+          files: |
+            mods/${{ vars.MOD_NAME }}/bundleV2/*
+      
