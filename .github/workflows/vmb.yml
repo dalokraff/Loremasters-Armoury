@@ -12,6 +12,16 @@ jobs:
     permissions:
       contents: write
     steps:
+
+      - name: get redist
+        run: |
+          Invoke-WebRequest -URI https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x64.exe -Outfile vcredist_x64.exe
+      
+      - name: install redist
+        run: |
+          vcredist_x864.exe /extract:x64 /q
+          Start-Process -FilePath "x64\Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
+          
       - name: Download VMB Release
         uses: robinraju/release-downloader@v1.8
         with:
