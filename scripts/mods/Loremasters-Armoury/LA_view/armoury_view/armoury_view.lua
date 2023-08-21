@@ -506,7 +506,7 @@ end
 
 ArmouryView.create_equipped_skins_display = function (self)
     local original_skin_chosen = self.original_skin_chosen
-	-- local chosen_skin_name = string.gsub(original_skin_chosen, "_original_skin", "")
+
 	local chosen_skin_name = string.gsub(original_skin_chosen, "_original_entry_skin", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_original_equipped_skin", "")
 	chosen_skin_name = string.gsub(chosen_skin_name, "_original_entry_outfit_skin", "")
@@ -521,182 +521,41 @@ ArmouryView.create_equipped_skins_display = function (self)
 	local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 	local display_name = item_data.display_name
 
-	self:clear_equipped_skin_widgets()
+	-- self:clear_equipped_skin_widgets()
 	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "off_hand")
-
-	local skin_divider_def = UIWidgets.create_simple_texture("la_ui_separatorright", "LA_skins_list_divider")
-	-- skin_divider_def.offset[2] = (j+1)*-60 - 15
-	local skin_divider_widget = UIWidget.init(skin_divider_def)
-
-	local widgets = self._widgets
-	local widgets_by_name = self._widgets_by_name
-	local LA_skins_list_entry_widgets = self.LA_skins_list_entry_widgets or {}
-	local widget_number = math.random(10,10^9)
-	widgets[widget_number] = skin_divider_widget
-	widgets_by_name["LA_skins_list_divider"] = skin_divider_widget
-	LA_skins_list_entry_widgets[widget_number] = {
-		widget_name = "LA_skins_list_divider",
-		button_number = math.random(10,10^9),
-	}
-	
-	self:_start_transition_animation("on_enter", skin_divider_widget, "LA_skins_list_divider")
+	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "main_hand")
 
 	self:update_equipped_skin_display(Armoury_skin_data_main_hand, item_data, chosen_skin_name, display_name, "main_hand")
 	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "outfits")
-	self:create_equipped_skin_title(display_name)
-end
-
-ArmouryView.create_equipped_skin_title = function (self, display_name)
-	local widgets = self._widgets
-	local widgets_by_name = self._widgets_by_name
-	local equipped_skin_widgets = self.equipped_skin_widgets or {}
-
-	local title_style = {
-		dynamic_height = false,
-		upper_case = true,
-		localize = false,
-		word_wrap = true,
-		font_size = 18,
-		vertical_alignment = "top",
-		horizontal_alignment = "left",
-		use_shadow = true,
-		dynamic_font_size = false,
-		font_type = "hell_shark_header",
-		text_color = {255,247,170,6},
-		offset = {
-			0,
-			0,
-			32
-		}
-	}
-
-	local text = "Equiped Skin for:\n"..Localize(display_name.."_LA_menu_widget")
-	local title_widget_def = UIWidgets.create_simple_text(text, "original_equipped_skins_title_text", nil, nil, title_style)
-	local title_widget = UIWidget.init(title_widget_def)
-	local widget_number = math.random(10,10^9)
-	local title_widget_name = display_name.."_equiped_title_widget"
-	widgets[widget_number] = title_widget
-	widgets_by_name[title_widget_name] = title_widget
-	equipped_skin_widgets[widget_number] = {
-		widget_name = title_widget_name,
-		button_number = math.random(10,10^9),
-	}
-	self:_start_transition_animation("on_enter", title_widget, title_widget_name)
-	self.equipped_skin_widgets = equipped_skin_widgets
 end
 
 --this function needs to be revisted and simplified to better handle the retrieval of icons based off of handedness.
 ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, item_data, chosen_skin_name, display_name, hand)
-	local widgets = self._widgets
+	local lamod = get_mod("Loremasters-Armoury")
 	local widgets_by_name = self._widgets_by_name
-    local buttons = self.buttons
-	
-	local equipped_skin_widgets = self.equipped_skin_widgets or {}
 
-	local check_left_hand = (not item_data.right_hand_unit) and hand == "off_hand"
-	local check_right_hand = (not item_data.left_hand_unit) and hand == "main_hand"
-	local check_outfit = (not item_data.unit) and  (not (item_data.item_type == "skin")) and hand == "outfits" 
-	if check_left_hand or check_right_hand or check_outfit then
-		return
-	end
-
-	local vanilla_to_modded_table_handed = VANILLA_TO_MODDED_TABLE[hand]
-
-	local icon = item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
-	local display_name = item_data.display_name
 	if Armoury_skin_data then
 		local skin_changed = Armoury_skin_data.changed_texture or Armoury_skin_data.changed_model
+		
 		if skin_changed then
-			local Armoury_key = mod:get(chosen_skin_name)
-			local Armoury_key_right = mod:get(chosen_skin_name.."_rightHand")
-			local Amoury_data = self.SKIN_LIST[Armoury_key]
-			local Armoury_data_right = self.SKIN_LIST[Armoury_key_right]
-			-- if Amoury_data or Armoury_data_right then
-				local secondary_icon = self:look_for_other_hands_icons(chosen_skin_name, vanilla_to_modded_table_handed, Armoury_key)
-				if hand == 'main_hand' and Armoury_data_right then 
-					icon = Armoury_data_right.icons[chosen_skin_name] or Armoury_data_right.icons["default"] or secondary_icon or "la_notification_icon"
-				elseif hand == 'off_hand' and Amoury_data then
-					icon = Amoury_data.icons[chosen_skin_name] or secondary_icon or "la_notification_icon"
-				elseif hand == 'outfits' and Amoury_data then
-					icon = secondary_icon or "la_notification_icon"		
+			local Armoury_key = lamod:get(chosen_skin_name) or "/"
+			local Armoury_key_right = lamod:get(chosen_skin_name.."_rightHand") or "/"
+			mod:echo(Armoury_key_right)
+			for k,v in pairs(self.buttons) do
+				local main_hand_widget = tostring(Armoury_key).."_LA_skins_entry_skin_"..hand
+				local off_hand_widget = tostring(Armoury_key_right).."_LA_skins_entry_skin_"..hand
+				
+				if string.find(v, Armoury_key) or string.find(v, Armoury_key_right) then
+					mod:echo(v)
+					if string.find(v, main_hand_widget) or string.find(v, off_hand_widget) then
+						local widget = widgets_by_name[v]
+						mod:echo(v)						
+						widget.content.button_hotspot.is_selected = true
+					end					
 				end
-			-- end
-			
-
+			end
 		end
-
 	end
-
-	local offset = 0
-	if hand == "off_hand" then
-		offset = 150
-	end
-	-- self:create_equipped_skin_title(display_name)
-
-	local scenegraph_definition_size = scenegraph_definition.original_skins_equiped_skin.size
-	local new_widget_def = UIWidgets.create_icon_button("original_skins_equiped_skin",scenegraph_definition_size , nil, nil, icon)
-	new_widget_def.content.texture_hover = "la_ui_icon_active"
-
-	new_widget_def.offset = {
-		0 + offset,
-		100,
-		32
-	}
-	new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
-
-	local num_passes = #new_widget_def.element.passes
-	new_widget_def.element.passes[num_passes+1] = {
-		pass_type = "hotspot",
-		content_id = "tooltip_hotspot",
-		content_check_function = function (ui_content)
-			return not ui_content.disabled
-		end
-	}
-	new_widget_def.element.passes[num_passes+2] = {
-		style_id = "tooltip_text",
-		pass_type = "tooltip_text",
-		text_id = "tooltip_text",
-		content_check_function = function (ui_content)
-			return ui_content.tooltip_hotspot.is_hover
-		end
-	}
-
-	new_widget_def.content["tooltip_hotspot"] = {}
-	new_widget_def.content["tooltip_text"] = display_name
-
-	new_widget_def.style["tooltip_text"] = {
-		dynamic_height = false,
-		upper_case = false,
-		localize = true,
-		word_wrap = false,
-		font_size = 16,
-		max_width = 200,
-		vertical_alignment = "top",
-		horizontal_alignment = "left",
-		use_shadow = true,
-		dynamic_font_size = false,
-		font_type = "hell_shark",
-		text_color = {255,247,170,6},
-		offset = {
-			0,
-			0,
-			2
-		}
-	}
-
-	local widget = UIWidget.init(new_widget_def)
-	local widget_number = math.random(10,10^9)
-	local button_number = math.random(10,10^9)
-	local new_widget_name = chosen_skin_name.."_"..hand.."_original_equipped_skin"
-	widgets[widget_number] = widget
-	widgets_by_name[new_widget_name] = widget
-	equipped_skin_widgets[widget_number] = {
-		widget_name = new_widget_name,
-		button_number = button_number,
-	}
-	buttons[button_number] = new_widget_name
-	self:_start_transition_animation("on_enter", widget, new_widget_name)
-
 end
 
 ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name)
@@ -1013,6 +872,17 @@ ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
 					return ui_content.tooltip_hotspot.is_hover
 				end
 			}
+
+			
+			local style_item_name = default_item_name
+			local style_Armoury_key = Armoury_key
+			if hand == "main_hand" then
+				style_Armoury_key = mod:get(default_item_name.."_rightHand")
+			end
+
+			new_widget_def.style.texture_hover.og_skin_name = style_item_name
+			new_widget_def.style.texture_hover.la_skin_name = style_Armoury_key
+			
 
 			new_widget_def.content["tooltip_hotspot"] = {}
 			new_widget_def.content["tooltip_text"] = armoury_name or "missing_name"
