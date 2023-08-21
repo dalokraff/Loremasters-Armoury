@@ -46,6 +46,8 @@ jobs:
                         
       - name: Build Mod
         run: |
+          New-Item -ItemType Directory -Force -Path "mods/loremasters-armoury" 
+          ls
           .\vmb.exe --version
          
       
