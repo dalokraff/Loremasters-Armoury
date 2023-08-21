@@ -21,12 +21,12 @@ jobs:
       #   run: |
       #     7z x vcredist_x864.exe 'x64' -r
       #     Start-Process -FilePath "vcredist_x864.exe" -ArgumentList "/passive" -Wait -Passthru;
-      - name: wait for DL
-        run: |
-          Start-Sleep -s 5
+      # - name: wait for DL
+      #   run: |
+      #     Start-Sleep -s 5
       - name: extract redist
         run: |
-          7z x vcredist_x64.exe -ox64
+          7z x vcredist_x64.exe -ox64 -aou
       - name: install redist
         run: |
           Start-Process -FilePath "x64/Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
