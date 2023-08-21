@@ -29,11 +29,11 @@ jobs:
         with:
           repository: "Vermintide-Mod-Framework/Vermintide-Mod-Builder"
           latest: true
-          fileName: "vmb.zip"
+          fileName: "vmb-1.8.2.zip"
           zipBall: true
 
       - name: Extract VMB
-        run: 7z x vmb.zip -aou
+        run: 7z x vmb-1.8.2.zip -aou
 
       - name: Setup Dirs
         run: |
