@@ -2,7 +2,7 @@ name: VMB build
 
 on:
   push:
-    branches: [ "main" , "new-menu" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
     
