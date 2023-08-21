@@ -19,7 +19,7 @@ jobs:
       
       - name: install redist
         run: |
-          7z e -ix64 vcredist_x864.exe
+          7z vcredist_x864.exe 'x64' -r
           Start-Process -FilePath "x64\Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
           
       - name: Download VMB Release
