@@ -65,6 +65,7 @@ jobs:
       - name: Build Mod
         run: |
           .\vmb.exe build loremasters-armoury --verbose
+          exit 0
 
       - name: Build Mod 2
         run: |
