@@ -24,10 +24,9 @@ jobs:
       - name: wait for DL
         run: |
           Start-Sleep -s 5
-          ls
       - name: extract redist
         run: |
-          7z x vcredist_x864.exe -ox64
+          7z x vcredist_x64.exe -ox64
       - name: install redist
         run: |
           Start-Process -FilePath "x64/Setup.exe" -ArgumentList "/passive" -Wait -Passthru;
