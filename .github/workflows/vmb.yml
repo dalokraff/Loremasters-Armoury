@@ -82,5 +82,5 @@ jobs:
           tag_name: ci-test
           generate_release_notes: True
           files: |
-            mods/${{MOD_NAME}}/bundleV2/*
+            mods/${{ vars.MOD_NAME }}/bundleV2/*
       
