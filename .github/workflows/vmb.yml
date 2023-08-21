@@ -19,7 +19,7 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          name: vmb-files
+          name: VMB v1.8.2.1
           repo: Vermintide-Mod-Framework/Vermintide-Mod-Builder
           workflow: nodejs.yml
           path: ./
