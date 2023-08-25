@@ -309,6 +309,10 @@ end)
 
 --replaces item skin name and descritpion
 mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
+    if text_id == nil then
+        text_id = "LA: text_id not found"
+    end
+
     local word = mod.dict[text_id]
     local skin = mod.helper_dict[text_id]
     local Armoury_key = mod:get(skin)
