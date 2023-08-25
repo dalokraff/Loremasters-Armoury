@@ -1,9 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
 local LAWidgetUtils = local_require("scripts/mods/Loremasters-Armoury/LA_view/la_widget_utils")
--- for k,v in pairs(mod.SKIN_CHANGED) do
--- 	mod:echo(k)
--- end
--- mod:echo(mod.current_skin["es_1h_sword_shield_skin_03_runed_01_rightHand"])
 
 local VANILLA_TO_MODDED_TABLE = local_require("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/definitions/vanilla_to_modded_table")
 local ARMOURY_TABLE = local_require("scripts/mods/Loremasters-Armoury/LA_view/armoury_view/armoury_db")
@@ -62,6 +58,8 @@ function ArmouryView:init(ingame_ui_context)
 	self.SKIN_LIST =  mod.SKIN_LIST
 	self.SKIN_CHANGED = mod.SKIN_CHANGED
 	self.armoury_db = table.clone(ARMOURY_TABLE, true)
+
+	self.currently_selected_original_skin_widget = {}
 
 	self:init_armoury_db()
 end
@@ -185,9 +183,10 @@ ArmouryView._handle_input = function (self, dt, t)
 
     for _,name in pairs(self.buttons) do
         local button_widget = widgets_by_name[name]
-        if self:_is_button_pressed(button_widget) then
-			mod:echo(name)
-            self:play_sound("Play_hud_select")
+		local is_pressed = self:_is_button_pressed(button_widget)
+        if is_pressed then
+            button_widget.toggled = not button_widget.toggled
+			self:play_sound("Play_hud_select")
             if string.find(name, "hero_select") then
 				--selects hero
                 self.selected_hero = name
@@ -235,10 +234,17 @@ ArmouryView._handle_input = function (self, dt, t)
                 --selects which LA skin to equip
 				-- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
-                self:toggle_button(button_widget)
-                self:set_armoury_key(name) --update LA skins
-				-- self:spawn_item_in_viewport(name)
+                -- self:toggle_button(button_widget)
+				if button_widget.toggled then
+					-- self:reset_hand_to_default(name)
+					self:set_armoury_key(name, "default")
+				else
+					self:set_armoury_key(name)
+				end
+				self:clear_equipped_skin_widgets()
+                 --update LA skins
 				self:create_equipped_skins_display()
+				-- self:update_LA_skin_list()
 			elseif string.find(name, "_original_equipped_skin") then
                 --for reseting the skin to default
 				-- self.selected_item = name
@@ -292,13 +298,10 @@ ArmouryView.toggle_tutorial_overlay = function(self)
 
 end
 
-ArmouryView.set_armoury_key = function (self, widget_name)
+ArmouryView.set_armoury_key = function (self, widget_name, forced_Armoury_key)
     local armoury_db = self.armoury_db
 	local original_skin = self.original_skin_chosen
 	local LA_skin = widget_name
-
-	-- mod:echo(original_skin) --item type and skin name
-	-- mod:echo(LA_skin) --hand data and amoruykey
 
 	local right_count = 0
 	local left_count = 0
@@ -316,6 +319,10 @@ ArmouryView.set_armoury_key = function (self, widget_name)
 	local Armoury_key, left_count  = string.gsub(Armoury_key_hand, "_off_hand", "")
 	Armoury_key, right_count = string.gsub(Armoury_key, "_main_hand", "")
 	Armoury_key, outfits_count = string.gsub(Armoury_key, "_outfits", "")
+
+	if forced_Armoury_key then
+		Armoury_key = forced_Armoury_key
+	end 
 
 	local hand = ""
 	if right_count > left_count then
@@ -456,7 +463,9 @@ ArmouryView.unselect_buttons = function (self, widgets_by_name, category)
 end
 
 ArmouryView.toggle_button = function (self, button_widget)
-    button_widget.content.button_hotspot.is_selected = not button_widget.content.button_hotspot.is_selected
+    local toggled_value = not button_widget.content.button_hotspot.is_selected 
+	button_widget.content.button_hotspot.is_selected = toggled_value
+	return toggled_value
 end
 
 
@@ -467,10 +476,12 @@ ArmouryView.reset_hand_to_default = function (self, widget_name)
 	local left_count = 0
 	local outfits_count = 0
 	local skin_name = string.gsub(widget_name, "_original_equipped_skin", "")
+	skin_name = string.gsub(skin_name, "_LA_skins_entry_skin", "")
 	skin_name, right_count = string.gsub(skin_name, "_main_hand", "")
 	skin_name, left_count = string.gsub(skin_name, "_off_hand", "")
 	skin_name, outfits_count = string.gsub(skin_name, "_outfits", "")
 	local weapon_type = string.gsub(skin_name, "_skin.+", "")
+	weapon_type = string.gsub(weapon_type, "_basic.+", "")
 	local mod_setting_id = string.rep(skin_name, 1)
 	-- if string.find(skin_name, "shield") then
 	-- 	mod_setting_id = skin_name.."_rightHand"
@@ -487,7 +498,7 @@ ArmouryView.reset_hand_to_default = function (self, widget_name)
 	end
 
 	armoury_db[weapon_type][skin_name][hand] = "default"
-	mod:set(mod_setting_id, "default")
+	-- mod:set(mod_setting_id, "default")
 
 end
 
@@ -540,16 +551,13 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 		if skin_changed then
 			local Armoury_key = lamod:get(chosen_skin_name) or "/"
 			local Armoury_key_right = lamod:get(chosen_skin_name.."_rightHand") or "/"
-			mod:echo(Armoury_key_right)
 			for k,v in pairs(self.buttons) do
 				local main_hand_widget = tostring(Armoury_key).."_LA_skins_entry_skin_"..hand
 				local off_hand_widget = tostring(Armoury_key_right).."_LA_skins_entry_skin_"..hand
 				
 				if string.find(v, Armoury_key) or string.find(v, Armoury_key_right) then
-					mod:echo(v)
 					if string.find(v, main_hand_widget) or string.find(v, off_hand_widget) then
-						local widget = widgets_by_name[v]
-						mod:echo(v)						
+						local widget = widgets_by_name[v]				
 						widget.content.button_hotspot.is_selected = true
 					end					
 				end
@@ -754,10 +762,17 @@ ArmouryView.look_for_other_hands_icons = function (self, default_skin_key, vanil
 	return nil
 end
 
-ArmouryView.update_LA_skin_hand = function (self, widget_name, hand)
+ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_hand)
     local widgets = self._widgets
 	local widgets_by_name = self._widgets_by_name
     local buttons = self.buttons
+
+	local widget_name = passed_widget_name or self.currently_selected_original_skin_widget[widget_name]
+	local hand = passed_hand or self.currently_selected_original_skin_widget[passed_hand]
+	self.currently_selected_original_skin_widget = {
+		hand = hand,
+		widget_name = passed_widget_name,
+	}
 
 	local cur_button_num = #buttons
     local LA_skins_list_entry_widgets = self.LA_skins_list_entry_widgets or {}
@@ -1275,7 +1290,7 @@ function ArmouryView:update(dt, t)
         -- self.viewport_widget.style.viewport.camera_position = self.params.background.camera_position
     end
     
-    self:draw(self:input_service(), dt)
+	self:draw(self:input_service(), dt)
 
 	if self:_has_active_level_vote() then
         mod:handle_transition("close_quest_board_letter_view")
@@ -1328,6 +1343,8 @@ function ArmouryView:on_exit()
 	self.original_skin_list_page_offset = nil
 
 	self.tutorial_widget_number = nil
+
+	self.currently_selected_original_skin_widget = nil
 
 	ShowCursorStack.pop()
 end
