@@ -179,6 +179,13 @@ ArmouryView.create_ui_elements = function (self, params)
 end
 
 
+-- local world = Managers.world:world("level_world")
+-- local wwise_world = Managers.world:wwise_world(world)
+-- WwiseWorld.trigger_event(wwise_world, "play_hud_rewards_tier1")
+
+-- local world = Managers.world:world("level_world")
+-- local wwise_world = Managers.world:wwise_world(world)
+-- WwiseWorld.trigger_event(wwise_world, "play_gui_equipment_power_level_increase")
 
 function ArmouryView:play_sound(event)
 	WwiseWorld.trigger_event(self.wwise_world, event)
@@ -202,12 +209,12 @@ ArmouryView._handle_input = function (self, dt, t)
 
         if is_pressed then
             button_widget.toggled = not button_widget.toggled
-			self:play_sound("Play_hud_select")
             if string.find(name, "hero_select") then
 				--selects hero
                 self.selected_hero = name
                 self:unselect_buttons(widgets_by_name, "hero_select")
                 self:toggle_button(button_widget)
+				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = 0
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
@@ -217,6 +224,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "item_select")
                 self:toggle_button(button_widget)
+				self:play_sound("Play_hud_select")			
 				self.original_skin_list_page_offset = 0
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
@@ -226,6 +234,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_skin")
                 self:toggle_button(button_widget)
+				self:play_sound("hud_morris_weapon_chest_unlock")				
                 -- self:update_original_skin_list()
 				self:spawn_item_in_viewport(name)
 				self:update_original_skin_list_skin_entries(name)
@@ -235,12 +244,14 @@ ArmouryView._handle_input = function (self, dt, t)
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_entry_skin")
                 self:toggle_button(button_widget)
+				self:play_sound("hud_morris_weapon_chest_open")				
                 self:update_LA_skin_list(name, "weapon") --update LA skins
 				self:spawn_item_in_viewport(name)
 				self.original_skin_chosen = name
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_original_entry_outfit_skin") then
 				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
+				self:play_sound("hud_morris_weapon_chest_open")
                 self:toggle_button(button_widget)
                 self:update_LA_skin_list(name, "outfits") --update LA skins
 				self:spawn_item_in_viewport(name)
@@ -252,6 +263,7 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
                 
                 self:toggle_button(button_widget)
+				self:play_sound("play_gui_equipment_power_level_increase")
 
 				local skin_name = self:set_armoury_key(name)
 				self:spawn_item_in_viewport(skin_name)
@@ -263,16 +275,19 @@ ArmouryView._handle_input = function (self, dt, t)
 				-- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_equipped_skin")
                 self:toggle_button(button_widget)
+				self:play_sound("Play_hud_select")
 				self:reset_hand_to_default(name)
 				self:create_equipped_skins_display()
 			elseif string.find(name, "original_skins_equiped_skin_page_button") then
 				self:unselect_buttons(widgets_by_name, "original_skins_equiped_skin_page_button")
 				self:toggle_button(button_widget)
+				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = self.original_skin_list_page_offset + 22
 				self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
 			elseif string.find(name, "tutorial_overlay_toggle") then
 				self:unselect_buttons(widgets_by_name, "tutorial_overlay_toggle")
+				self:play_sound("Play_hud_select")
 				self:toggle_button(button_widget)
 				self:toggle_tutorial_overlay()
             end
@@ -283,6 +298,7 @@ ArmouryView._handle_input = function (self, dt, t)
 			if string.find(name, "_LA_skins_entry_skin") then
 				self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
 				self:toggle_button(button_widget, false)
+				self:play_sound("play_gui_equipment_equip")
 
 				self:set_armoury_key(name, "default")
 
