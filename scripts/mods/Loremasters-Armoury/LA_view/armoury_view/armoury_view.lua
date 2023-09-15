@@ -219,6 +219,10 @@ ArmouryView._handle_input = function (self, dt, t)
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
+
+				self.toggled_buttons = {}
+				self.toggled_buttons[name] = {}
+
             elseif string.find(name, "item_select") then
 				--selects which weapon/item type (ranged, melee, char skin)
                 self.selected_item = name
@@ -229,6 +233,10 @@ ArmouryView._handle_input = function (self, dt, t)
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
+				
+				self.toggled_buttons[self.selected_hero] = {}
+				self.toggled_buttons[self.selected_hero][name] = {}
+
             elseif string.find(name, "_original_skin") then
 				--selects which of the base game items to modify
                 -- self.selected_item = name
@@ -239,6 +247,11 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:spawn_item_in_viewport(name)
 				self:update_original_skin_list_skin_entries(name)
 				self:clear_equipped_skin_widgets()
+
+				self.selected_original_skin = name
+				self.toggled_buttons[self.selected_hero][self.selected_item] = {}
+				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+
 			elseif string.find(name, "_original_entry_skin") then
 				--selects which of the base game skins to modify
                 -- self.selected_item = name
@@ -247,7 +260,11 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:play_sound("hud_morris_weapon_chest_open")				
                 self:update_LA_skin_list(name, "weapon") --update LA skins
 				self:spawn_item_in_viewport(name)
+				
 				self.original_skin_chosen = name
+				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] = {}
+				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][name] = {}
+
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_original_entry_outfit_skin") then
 				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
@@ -255,21 +272,32 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
                 self:update_LA_skin_list(name, "outfits") --update LA skins
 				self:spawn_item_in_viewport(name)
+				
 				self.original_skin_chosen = name
+				self.toggled_buttons[self.selected_hero][self.selected_item] = {}
+				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_LA_skins_entry_skin") then
                 --selects which LA skin to equip
 				-- self.selected_item = name
 				self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
                 
-                self:toggle_button(button_widget)
+                self:toggle_button(button_widget, true)
 				self:play_sound("play_gui_equipment_power_level_increase")
+
+				if self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] then
+					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen] = {}
+					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen][name] = true
+				else
+					self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+				end
 
 				local skin_name = self:set_armoury_key(name)
 				self:spawn_item_in_viewport(skin_name)
 
 				self:create_equipped_skins_display()
-				
+
 			elseif string.find(name, "_original_equipped_skin") then
                 --for reseting the skin to default
 				-- self.selected_item = name
@@ -301,6 +329,12 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:play_sound("play_gui_equipment_equip")
 
 				self:set_armoury_key(name, "default")
+
+				if self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] then
+					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen][name] = nil
+				else
+					self.toggled_buttons[self.selected_hero][self.selected_item][name] = nil
+				end
 
 				self:create_equipped_skins_display()
 				
@@ -575,11 +609,17 @@ ArmouryView.create_equipped_skins_display = function (self)
 	local display_name = item_data.display_name
 
 	-- -- self:clear_equipped_skin_widgets()
-	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "off_hand")
-	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "main_hand")
+	local equipment_types = {
+		"off_hand",
+		"main_hand",
+		"outfits"
+	}
 
-	self:update_equipped_skin_display(Armoury_skin_data_main_hand, item_data, chosen_skin_name, display_name, "main_hand")
-	self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, "outfits")
+	for _, equip_type in pairs(equipment_types) do
+		self:update_equipped_skin_display(Armoury_skin_data_off_hand, item_data, chosen_skin_name, display_name, equip_type)
+		self:update_equipped_skin_display(Armoury_skin_data_main_hand, item_data, chosen_skin_name, display_name, equip_type)
+	end
+
 end
 
 --this function needs to be revisted and simplified to better handle the retrieval of icons based off of handedness.
@@ -1331,6 +1371,26 @@ ArmouryView.draw = function (self, input_service, dt)
 	end
 end
 
+
+local function iterate_toggled_buttons(toggled_buttons_tisch, widgets_by_name)
+	for widget_name, val in pairs(toggled_buttons_tisch) do
+		local widget = widgets_by_name[widget_name]
+		if widget then
+			-- if not widget.content.button_hotspot.is_selected then
+			-- 	widget.content.button_hotspot.is_selected = true
+			-- end
+			widget.content.button_hotspot.is_selected = true
+			if type(val) == 'table' then
+				iterate_toggled_buttons(val, widgets_by_name)
+			end
+		end
+	end
+end
+
+ArmouryView.highlight_button_widget = function(self)
+	iterate_toggled_buttons(self.toggled_buttons, self._widgets_by_name)
+end
+
 -- Required. Executed by `ingame_ui` every tick.
 function ArmouryView:update(dt, t)	
 	if not self.viewport_widget then
@@ -1341,6 +1401,8 @@ function ArmouryView:update(dt, t)
 		self._unit_spawner = unit_spawner
         -- self.viewport_widget.style.viewport.camera_position = self.params.background.camera_position
     end
+
+	self:highlight_button_widget()
     
 	self:draw(self:input_service(), dt)
 
