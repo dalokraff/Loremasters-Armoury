@@ -1372,6 +1372,8 @@ ArmouryView.draw = function (self, input_service, dt)
 end
 
 
+--this funciton and method are probably more of a band-aid solution,
+--to the bug of skin selections not being updated until the UI is refreshed again(item/widget is double clicked)
 local function iterate_toggled_buttons(toggled_buttons_tisch, widgets_by_name)
 	for widget_name, val in pairs(toggled_buttons_tisch) do
 		local widget = widgets_by_name[widget_name]
