@@ -175,6 +175,9 @@ ArmouryView.create_ui_elements = function (self, params)
 
 	self._menu_input_description:set_input_description(nil)
 
+	self.current_viewport_unit = nil
+	self.new_viewport_unit = nil
+
 	self._current_input_desc = nil
 end
 
@@ -244,7 +247,10 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
 				self:play_sound("hud_morris_weapon_chest_unlock")				
                 -- self:update_original_skin_list()
-				self:spawn_item_in_viewport(name)
+
+				self.new_viewport_unit = name
+				-- self:spawn_item_in_viewport(name)
+
 				self:update_original_skin_list_skin_entries(name)
 				self:clear_equipped_skin_widgets()
 
@@ -259,7 +265,9 @@ ArmouryView._handle_input = function (self, dt, t)
                 self:toggle_button(button_widget)
 				self:play_sound("hud_morris_weapon_chest_open")				
                 self:update_LA_skin_list(name, "weapon") --update LA skins
-				self:spawn_item_in_viewport(name)
+
+				self.new_viewport_unit = name
+				-- self:spawn_item_in_viewport(name)
 				
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] = {}
@@ -271,11 +279,13 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:play_sound("hud_morris_weapon_chest_open")
                 self:toggle_button(button_widget)
                 self:update_LA_skin_list(name, "outfits") --update LA skins
-				self:spawn_item_in_viewport(name)
+
+				self.new_viewport_unit = name
+				-- self:spawn_item_in_viewport(name)
 				
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item] = {}
-				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+				self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
 
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_LA_skins_entry_skin") then
@@ -294,7 +304,9 @@ ArmouryView._handle_input = function (self, dt, t)
 				end
 
 				local skin_name = self:set_armoury_key(name)
-				self:spawn_item_in_viewport(skin_name)
+
+				self.new_viewport_unit = skin_name
+				-- self:spawn_item_in_viewport(skin_name)
 
 				self:create_equipped_skins_display()
 
@@ -328,7 +340,8 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:toggle_button(button_widget, false)
 				self:play_sound("play_gui_equipment_equip")
 
-				self:set_armoury_key(name, "default")
+				local skin_name = self:set_armoury_key(name, "default")
+				self.new_viewport_unit = skin_name
 
 				if self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] then
 					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen][name] = nil
@@ -1405,6 +1418,11 @@ function ArmouryView:update(dt, t)
     end
 
 	self:highlight_button_widget()
+
+	if self.new_viewport_unit then
+		self:spawn_item_in_viewport(self.new_viewport_unit)
+		self.new_viewport_unit = nil
+	end
     
 	self:draw(self:input_service(), dt)
 
