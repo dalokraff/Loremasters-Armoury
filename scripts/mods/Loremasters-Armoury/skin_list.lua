@@ -1111,9 +1111,7 @@ mod.SKIN_LIST = {
             "textures/Kruber_Grail_Knight_Body/Devoted/Kruber_GrailKnight_body_devoted_normal",
         },
         textures_fps = {
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_diffuse_1p",
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined_1p",
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal_1p",
+            "textures/Kruber_Grail_Knight_Body/Devoted/Kruber_GrailKnight_body_devoted_diffuse_1p",
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh",
@@ -1170,9 +1168,7 @@ mod.SKIN_LIST = {
             "textures/Kruber_Grail_Knight_Body/Valiant/Kruber_GrailKnight_body_valiant_normal",
         },
         textures_fps = {
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_diffuse_1p",
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_combined_1p",
-            "textures/Kruber_KOTBS_armor/Kruber_EmpireSoldier_KotBS_body_normal_1p",
+            "textures/Kruber_Grail_Knight_Body/Valiant/Kruber_GrailKnight_body_valiant_diffuse_1p",
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/third_person_base/chr_third_person_mesh",
