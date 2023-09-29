@@ -111,6 +111,8 @@ QuestLetters.main_01 = {
         unit = "units/decorations/letters/LA_quest_message_stage01",
         name = "sub_quest_prologue_message",
         desc = "sub_quest_prologue_message_desc",
+        reward = 'sub_quest_01_reward',
+        mission_brief = 'sub_quest_crate_tracker',
     },
     sub_quest_crate_tracker = {
         unit = "units/decorations/letters/LA_quest_message_stage02",
@@ -121,26 +123,36 @@ QuestLetters.main_01 = {
             "sub_quest_04",
             "sub_quest_05",
         },
+        reward = 'sub_quest_06_reward',
+        mission_brief = 'sub_quest_06',
     },
     sub_quest_06 = {
         unit = "units/decorations/letters/LA_quest_message_stage03",
         name = "sub_quest_06_message",
         desc = "sub_quest_06_message_desc",
+        reward = 'sub_quest_07_reward',
+        mission_brief = 'sub_quest_07',
     },
     sub_quest_07 = {
         unit = "units/decorations/letters/LA_quest_message_stage04",
         name = "sub_quest_07_message",
         desc = "sub_quest_07_message_desc",
+        reward = 'sub_quest_08_reward',
+        mission_brief = 'sub_quest_08',
     },
     sub_quest_08 = {
         unit = "units/decorations/letters/LA_quest_message_stage05",
         name = "sub_quest_08_message",
         desc = "sub_quest_08_message_desc",
+        reward = 'sub_quest_09_reward',
+        mission_brief = 'sub_quest_09',
     },
     sub_quest_09 = {
         unit = "units/decorations/letters/LA_quest_message_stage06",
         name = "sub_quest_09_message",
         desc = "sub_quest_09_message_desc",
+        reward = 'sub_quest_10_reward',
+        mission_brief = 'sub_quest_10',
     },
 }
 
