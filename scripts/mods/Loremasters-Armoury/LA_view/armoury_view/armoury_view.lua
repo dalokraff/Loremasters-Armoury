@@ -276,16 +276,17 @@ ArmouryView._handle_input = function (self, dt, t)
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_original_entry_outfit_skin") then
 				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
-				self:play_sound("hud_morris_weapon_chest_open")
                 self:toggle_button(button_widget)
+				self:play_sound("hud_morris_weapon_chest_open")
                 self:update_LA_skin_list(name, "outfits") --update LA skins
 
 				self.new_viewport_unit = name
 				-- self:spawn_item_in_viewport(name)
 				
 				self.original_skin_chosen = name
-				self.toggled_buttons[self.selected_hero][self.selected_item] = {}
-				self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
+				self.toggled_buttons[self.selected_hero][self.selected_item]= {}
+				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+				-- self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
 
 				self:create_equipped_skins_display()
 			elseif string.find(name, "_LA_skins_entry_skin") then
@@ -300,7 +301,8 @@ ArmouryView._handle_input = function (self, dt, t)
 					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen] = {}
 					self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][self.original_skin_chosen][name] = true
 				else
-					self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
+					self.toggled_buttons[self.selected_hero][self.selected_item] = {}
+					self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
 				end
 
 				local skin_name = self:set_armoury_key(name)
