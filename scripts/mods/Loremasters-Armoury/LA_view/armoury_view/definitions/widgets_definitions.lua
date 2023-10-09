@@ -15,7 +15,7 @@ local generate_widgets_definitions = function(
         LA_skins_title_bg = UIWidgets.create_simple_texture("la_ui_headerlarge", "LA_skins_title_bg"),
         LA_skins_title_text = UIWidgets.create_simple_text("LA_skin", "LA_skins_title_text", nil, nil, LA_skins_title_text_style),
         
-       LA_skins_list_mask = LAWidgetUtils.create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
+        LA_skins_list_mask = LAWidgetUtils.create_list_mask("LA_skins_list_window", scenegraph_definition.LA_skins_list_window.size, 10),
         
         window = UIWidgets.create_frame("window_frame", scenegraph_definition.window_frame.size, "la_ui_framecorners", nil, nil, {0,0}, nil, false, true, true),
     
@@ -25,8 +25,16 @@ local generate_widgets_definitions = function(
         window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
         window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
     
-       tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, "la_questionmark_icon", "la_questionmark_icon", "la_questionmark_icon"),
-    
+        -- tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, "la_questionmark_icon", "la_questionmark_icon", "la_questionmark_icon"),
+        tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight(
+                                    "tutorial_overlay_toggle",
+                                    scenegraph_definition.tutorial_overlay_toggle.size,
+                                    nil,
+                                    "la_questionmark_icon",
+                                    "la_questionmark_icon",
+                                    "la_ui_arrowright_large_active"
+                                ),
+
         LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe_armour", "LA_preview_background"),    
     
         es_hero_select = LAWidgetUtils.create_icon_and_remove_name_button("es_hero_select", "la_kruber_button_icon", "es"),

@@ -379,28 +379,6 @@ local generate_scenegraph_definition = function(
                 1
             }
         },
-        tutorial_overlay = {
-            vertical_alignment = "center",
-            parent = "window_background",
-            horizontal_alignment = "center",
-            size = inner_window_size,
-            position = {
-                0,
-                0,
-                100
-            }
-        },
-        tutorial_overlay_toggle = {
-            vertical_alignment = "top",
-            parent = "window_background",
-            horizontal_alignment = "right",
-            size = list_entry_size,
-            position = {
-                0,
-                0,
-                50
-            }
-        },
         loading_icon = {
             vertical_alignment = "center",
             parent = "window_frame",
@@ -1125,6 +1103,114 @@ local generate_scenegraph_definition = function(
                 135*gear_icon_seperation_factor,
                 0, 
                 32 
+            },
+        },
+
+        -- menu tutorial scengraph definitions
+        tutorial_overlay = {
+            vertical_alignment = "center",
+            parent = "window_background",
+            horizontal_alignment = "center",
+            size = inner_window_size,
+            position = {
+                0,
+                0,
+                100
+            }
+        },
+        tutorial_overlay_toggle = {
+            vertical_alignment = "top",
+            parent = "window_background",
+            horizontal_alignment = "right",
+            size = list_entry_size,
+            position = {
+                0,
+                0,
+                50
+            }
+        },
+        tutorial_1 = {
+            parent = "hero_selection",
+            vertical_alignment = "center",
+            horizontal_alignment = "center",
+            size = { 
+                807, 
+                116 
+            },
+            position = { 
+                -397,
+                70, 
+                100 
+            },
+        },
+        tutorial_2 = {
+            parent = "gear_icon_frame",
+            vertical_alignment = "center",
+            horizontal_alignment = "center",
+            size = {
+                664,
+                252
+            },
+            position = { 
+                135*gear_icon_seperation_factor + 350,
+                120, 
+                100
+            },
+        },
+        tutorial_3 = {
+            parent = "original_skins_frame",
+            vertical_alignment = "center",
+            horizontal_alignment = "center",
+            size = {
+                625,
+                247
+            },
+            position = { 
+                0,
+                250, 
+                100
+            },
+        },
+        tutorial_4 = {
+            parent = "original_skins_list_window",
+            vertical_alignment = "center",
+            horizontal_alignment = "center",
+            size = {
+                558,
+                205
+            },
+            position = { 
+                -15,
+                -175, 
+                100
+            },
+        },
+        tutorial_5 = {
+            parent = "LA_skins_frame",
+            vertical_alignment = "center",
+            horizontal_alignment = "center",
+            size = {
+                505,
+                322
+            },
+            position = { 
+                -75,
+                0, 
+                100
+            },
+        },
+        tutorial_0 = {
+            parent = "window",
+            vertical_alignment = "bottom",
+            horizontal_alignment = "right",
+            size = {
+                281,
+                127
+            },
+            position = { 
+                0,
+                0, 
+                100
             },
         },
     }

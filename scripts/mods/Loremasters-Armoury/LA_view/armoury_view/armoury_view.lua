@@ -373,17 +373,38 @@ ArmouryView.toggle_tutorial_overlay = function(self)
 	self.tutorial_toggled = not self.tutorial_toggled
 
 	if self.tutorial_toggled then
-		local overlay_size = scenegraph_definition.tutorial_overlay.size
-		local overlay_widget = UIWidgets.create_background("tutorial_overlay", overlay_size, "la_ui_overlay")
-		local overlay_widget_name = "tutorial_widget"
-		local widget = UIWidget.init(overlay_widget)
-		local widget_number = math.random(10,10^9)
-		self.tutorial_widget_number = widget_number
-		widgets[widget_number] = widget
-		widgets_by_name[overlay_widget_name] = widget
-	elseif self.tutorial_widget_number then
-		widgets[self.tutorial_widget_number] = nil
-		widgets_by_name["tutorial_widget"] = nil
+		self.tutorial_widgets = {}
+		for i=1, 5, 1 do
+			-- string manipulaiton should be fine as this only triggers for one tick
+			local tutorial_widget_name = "tutorial_"..i
+			local tutorial_widget_def = UIWidgets.create_simple_texture("la_ui_0"..i.."_tooltip", tutorial_widget_name)
+			local widget = UIWidget.init(tutorial_widget_def)
+			local widget_number = math.random(10,10^9)
+			widgets[widget_number] = widget
+			widgets_by_name[tutorial_widget_name] = widget
+
+			self.tutorial_widgets[#self.tutorial_widgets + 1] = {
+				widget_number = widget_number,
+				widget_name = tutorial_widget_name,
+			}
+		end
+
+		local mouse_widget_def = UIWidgets.create_simple_texture("la_ui_keybind_tooltip", "tutorial_0")
+		local mouse_widget = UIWidget.init(mouse_widget_def)
+		local mouse_widget_number = math.random(10,10^9)
+		widgets[mouse_widget_number] = widget
+		widgets_by_name["tutorial_0"] = mouse_widget
+
+		self.tutorial_widgets[#self.tutorial_widgets + 1] = {
+			widget_number = mouse_widget_number,
+			widget_name = "tutorial_0",
+		}
+
+	elseif self.tutorial_widgets then
+		for _, widget_info in pairs(self.tutorial_widgets) do
+			widgets[widget_info.widget_number] = nil
+			widgets_by_name[widget_info.widget_name] = nil
+		end
 	end
 
 end
