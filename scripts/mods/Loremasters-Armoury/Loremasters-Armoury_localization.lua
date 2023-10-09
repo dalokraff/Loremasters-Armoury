@@ -407,6 +407,9 @@ local mod_text_ids = {
 	la_catalog_browse = {
 		en = "Browse"
 	},
+	la_ui_illusions = {
+		en = "Illusions",
+	}
 
 }
 

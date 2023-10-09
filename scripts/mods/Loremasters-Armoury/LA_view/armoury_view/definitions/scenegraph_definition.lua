@@ -434,7 +434,7 @@ local generate_scenegraph_definition = function(
             },
             position = {
                 0,
-                -10,
+                -20,
                 32
             }
         },
@@ -498,7 +498,7 @@ local generate_scenegraph_definition = function(
             size = la_ui_headersmall_size,
             position = {
                 0,
-                0,
+                1,
                 32
             }
         },
@@ -531,7 +531,7 @@ local generate_scenegraph_definition = function(
             size = la_ui_headersmall_size,
             position = {
                 0,
-                0,
+                1,
                 32
             }
         },
@@ -688,7 +688,7 @@ local generate_scenegraph_definition = function(
             },
             position = {
                 0,
-                -10,
+                -5,
                 32
             }
         },
@@ -781,7 +781,7 @@ local generate_scenegraph_definition = function(
             },
             position = {
                 82.5,
-                0,
+                1,
                 31
             }
         },
@@ -808,7 +808,7 @@ local generate_scenegraph_definition = function(
             },
             position = {
                 0,
-                -300,
+                -299,
                 30
             }
         },

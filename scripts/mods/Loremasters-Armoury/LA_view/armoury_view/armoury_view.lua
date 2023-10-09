@@ -738,7 +738,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 			32
 		}
 	}
-	local sub_title_widget_def = UIWidgets.create_simple_text("illusions", "original_skins_list_skin_sub_title", nil, nil, title_style)
+	local sub_title_widget_def = UIWidgets.create_simple_text("la_ui_illusions", "original_skins_list_skin_sub_title", nil, nil, title_style)
 	local sub_title_widget = UIWidget.init(sub_title_widget_def)
 	local widget_number = math.random(10,10^9)
 	local sub_title_widget_name = "original_skins_list_skin_sub_title"
