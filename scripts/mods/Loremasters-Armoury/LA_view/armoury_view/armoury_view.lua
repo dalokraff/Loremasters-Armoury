@@ -392,7 +392,7 @@ ArmouryView.toggle_tutorial_overlay = function(self)
 		local mouse_widget_def = UIWidgets.create_simple_texture("la_ui_keybind_tooltip", "tutorial_0")
 		local mouse_widget = UIWidget.init(mouse_widget_def)
 		local mouse_widget_number = math.random(10,10^9)
-		widgets[mouse_widget_number] = widget
+		widgets[mouse_widget_number] = mouse_widget
 		widgets_by_name["tutorial_0"] = mouse_widget
 
 		self.tutorial_widgets[#self.tutorial_widgets + 1] = {
