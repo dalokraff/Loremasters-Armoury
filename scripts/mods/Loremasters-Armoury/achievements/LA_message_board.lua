@@ -19,12 +19,12 @@ LetterBoard.init = function (self, interactable_board_unit_name, visible_board_u
     self.rot = QuaternionBox(board_rot)
     self.world = world
     self.active_quest = "main_01"
-    
+
 
     self.render_menu = false
     self.params = nil
-    
-    
+
+
     local extension_init_data = {}
     local board_unit_interactable = Managers.state.unit_spawner:spawn_network_unit(interactable_board_unit_name, "interaction_unit", extension_init_data, self.pos:unbox(), self.rot:unbox())
     local board_unit_visible = Managers.state.unit_spawner:spawn_local_unit(visible_board_unit_name, board_pos, board_rot)
@@ -32,7 +32,7 @@ LetterBoard.init = function (self, interactable_board_unit_name, visible_board_u
 
     self.interactable_unit = board_unit_interactable
     self.visible_unit = board_unit_visible
-    
+
     self.active_letters = self:spawn_letters()
     self:add_lantern_light()
 
@@ -55,7 +55,7 @@ LetterBoard.spawn_letters = function(self)
             if mod:get(quest) or (string.find(quest, "prologue")) or (string.find(quest, "crate")) then
                 if letter.requires then
                     local fulfilled = true
-                    for _,quest_reqs in pairs(letter.requires) do   
+                    for _,quest_reqs in pairs(letter.requires) do
                         if not mod:get(quest_reqs) then
                             fulfilled = false
                         end
@@ -135,11 +135,11 @@ end
 LetterBoard.destroy_letters = function(self, active_letters)
     local world = self.world
     for quest, units in pairs(active_letters) do
-        
 
 
-        
-      
+
+
+
         World.unlink_unit(world, units["interactable"])
         World.unlink_unit(world, units["visable"])
 
@@ -150,7 +150,7 @@ LetterBoard.destroy_letters = function(self, active_letters)
         units["interactable"] = nil
         units["visable"] = nil
         active_letters[quest] = nil
-        
+
     end
 
 end
@@ -177,7 +177,7 @@ LetterBoard.pin_to_board = function(self, quest, interactable_letter_unit)
     if string.find(quest, "prologue") then
         Unit.set_local_position(interactable_letter_unit, 0, Vector3(0,-0.2,0))
     end
-    
+
     return
 end
 
@@ -240,7 +240,7 @@ end
 
 
 LetterBoard.input_service = function (self)
-	
+
     if self.params then
         return self.params.parent:input_service()
     end
@@ -255,10 +255,10 @@ LetterBoard.mark_unread_letters = function(self)
             mark_board = true
         end
     end
-    if mark_board then 
+    if mark_board then
         mod.render_marker(self.pos, 100)
     end
-    
+
 end
 
 
@@ -272,7 +272,7 @@ end
 
 LetterBoard.reset_selection = function(self)
     local unit = self.interactable_unit
-    Unit.set_data(unit, "current_quest", self.current_painting)    
+    Unit.set_data(unit, "current_quest", self.current_painting)
 end
 
 LetterBoard.unequip_decoration = function(self, new_painting)
@@ -281,7 +281,7 @@ end
 
 LetterBoard.decoration_selected = function(self, current_painting)
     local unit = self.interactable_unit
-    self.current_painting = current_painting    
+    self.current_painting = current_painting
 end
 
 LetterBoard.confirm_selection = function (self)
@@ -305,7 +305,7 @@ end
 
 LetterBoard.is_decoration_in_use = function(self, decoration)
     local unit = self.interactable_unit
-    
+
     local quest = Unit.get_data(unit, "current_quest")
 
 	if quest == decoration then
@@ -313,5 +313,5 @@ LetterBoard.is_decoration_in_use = function(self, decoration)
     end
 
     return false
-    
+
 end

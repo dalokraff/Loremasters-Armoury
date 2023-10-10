@@ -41,7 +41,7 @@ local scenegraph_definition = {
 	root = {
 	  scale = "fit",
 	  size = { 1920, 1080 },
-	  position = { 0, 0, 0 }  
+	  position = { 0, 0, 0 }
 	},
 	-- my_button = {
 	--   parent = "root",
@@ -551,7 +551,7 @@ local animation_definitions = {
 return {
 	scenegraph_definition = scenegraph_definition,
 	widgets = widgets_definitions,
-	animation_definitions = animation_definitions, 
+	animation_definitions = animation_definitions,
 	create_trait_option = LAWidgetUtils.create_trait_option,
 	create_reward_option = LAWidgetUtils.create_reward_option,
 	create_sub_quest_option = LAWidgetUtils.create_sub_quest_option,

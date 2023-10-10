@@ -50,7 +50,7 @@ InteractionDefinitions.catalog_view.replacement_rpc = function(interactable_unit
     if interactable_unit then
         -- mod.interactable_letter_unit = interactable_unit
         mod:handle_transition("open_armoury_view")
-        return true  
+        return true
     end
 end
 

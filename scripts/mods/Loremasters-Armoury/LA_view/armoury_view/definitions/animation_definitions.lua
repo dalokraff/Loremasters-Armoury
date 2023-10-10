@@ -74,7 +74,7 @@ local generate_animation_definition = function()
                 params.render_settings.list_alpha_multiplier = anim_progress
                 local list_widgets = widgets.list_items
                 local longest_anim_distance = 0
-        
+
                 for index, widget in ipairs(list_widgets) do
                   local content = widget.content
                   local offset = widget.offset
@@ -85,7 +85,7 @@ local generate_animation_definition = function()
                   offset[1] = math.floor(default_offset[1] - anim_offset + anim_offset * anim_progress)
                   longest_anim_distance = math.max(longest_anim_distance, anim_offset)
                 end
-        
+
                 local mask_default_width = params.mask_default_width
                 local mask_size = math.floor((mask_default_width + longest_anim_distance) - longest_anim_distance * anim_progress)
                 local list_widget = widgets.list_widget

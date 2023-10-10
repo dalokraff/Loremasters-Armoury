@@ -28,8 +28,8 @@ function QuestBoardArchiveView:init(ingame_ui_context)
 
   local world = Managers.world:world("level_world")
   self.wwise_world = Managers.world:wwise_world(world)
-  
-  
+
+
   self.input_manager = input_manager
   self._ui_renderer = ingame_ui_context.ui_renderer
   self._ui_top_renderer = ingame_ui_context.ui_top_renderer
@@ -111,7 +111,7 @@ function QuestBoardArchiveView:on_enter(transition_params)
 
 --   self:_initialize_simple_decoration_preview()
   self:play_sound("Loremaster_letter_open_sound__1_")
-  
+
 end
 
 
@@ -332,7 +332,7 @@ QuestBoardArchiveView.draw = function (self, input_service, dt)
 
 	UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
 
-	-- for i,widget in pairs(widgets) do 
+	-- for i,widget in pairs(widgets) do
 	-- 	UIRenderer.draw_widget(ui_renderer, widget)
 	-- end
 	-- UIRenderer.draw_widget(ui_renderer, self._widgets[1])
@@ -889,7 +889,7 @@ QuestBoardArchiveView._update_equipped_widget = function (self)
 	end
 end
 
-QuestBoardArchiveView.post_update = function (self, dt, t)	
+QuestBoardArchiveView.post_update = function (self, dt, t)
 	self.ui_animator:update(dt)
 	self:_update_animations(dt)
 end
@@ -924,9 +924,9 @@ QuestBoardArchiveView._update_animations = function (self, dt)
 end
 
 -- Required. Executed by `ingame_ui` every tick.
-function QuestBoardArchiveView:update(dt, t)	
+function QuestBoardArchiveView:update(dt, t)
 	self:_handle_gamepad_activity()
-	
+
 	self:_update_scroll_position()
 	self:draw(self:input_service(), dt)
 
@@ -969,10 +969,10 @@ end
 
 function QuestBoardArchiveView:on_exit()
 	self.ui_animator = nil
-	
+
 	self.input_manager:device_unblock_all_services("keyboard", 1)
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
-  
+
 	ShowCursorStack.pop()
 end

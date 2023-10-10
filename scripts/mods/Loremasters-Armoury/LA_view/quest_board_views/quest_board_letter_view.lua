@@ -24,8 +24,8 @@ function QuestBoardLetterView:init(ingame_ui_context)
 
   local world = Managers.world:world("level_world")
   self.wwise_world = Managers.world:wwise_world(world)
-  
-  
+
+
   self.input_manager = input_manager
   self._ui_renderer = ingame_ui_context.ui_renderer
   self._ui_top_renderer = ingame_ui_context.ui_top_renderer
@@ -69,7 +69,7 @@ function QuestBoardLetterView:on_enter(transition_params)
   self:_initialize_simple_decoration_preview()
   self:play_sound("Loremaster_letter_open_sound__1_")
   self:set_letter_read()
-  
+
 end
 
 QuestBoardLetterView.set_letter_read = function (self)
@@ -176,7 +176,7 @@ QuestBoardLetterView.setup_reward_display = function (self, title_text, descript
 	local widget, additional_height = self:_create_reward_display(title_text, description_text, trait_icon)
 	widgets[#widgets + 1] = widget
 
-	
+
 end
 
 
@@ -221,9 +221,9 @@ QuestBoardLetterView._setup_modifier_list = function (self)
 		widgets[#widgets + 1] = widget
 		widget.offset[2] = -y_offset
 		y_offset = y_offset + spacing + additional_height
-		
+
 	end
-	
+
 end
 
 QuestBoardLetterView._create_sub_quest_display = function (self, title_text, description_text, icon)
@@ -260,7 +260,7 @@ QuestBoardLetterView.setup_sub_quest_display = function (self, title_text, descr
 	local widget, additional_height = self:_create_sub_quest_display(title_text, description_text, trait_icon)
 	widgets[#widgets + 1] = widget
 
-	
+
 end
 
 QuestBoardLetterView._create_ui_elements = function (self)
@@ -276,7 +276,7 @@ QuestBoardLetterView._create_ui_elements = function (self)
 	end
 
 
-	
+
 
 
 	self._widgets = widgets
@@ -304,7 +304,7 @@ QuestBoardLetterView.draw = function (self, input_service, dt)
 
 	UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
 
-	for i,widget in pairs(widgets) do 
+	for i,widget in pairs(widgets) do
 		UIRenderer.draw_widget(ui_renderer, widget)
 	end
 	-- UIRenderer.draw_widget(ui_renderer, self._widgets[1])
@@ -370,7 +370,7 @@ QuestBoardLetterView._is_button_pressed = function (self, widget)
 end
 
 
-QuestBoardLetterView.post_update = function (self, dt, t)	
+QuestBoardLetterView.post_update = function (self, dt, t)
 	self.ui_animator:update(dt)
 	self:_update_animations(dt)
 end
@@ -383,7 +383,7 @@ QuestBoardLetterView._update_animations = function (self, dt)
 end
 
 -- Required. Executed by `ingame_ui` every tick.
-function QuestBoardLetterView:update(dt, t)	
+function QuestBoardLetterView:update(dt, t)
 	self:draw(self:input_service(), dt)
 
 	if self:_has_active_level_vote() then
@@ -401,10 +401,10 @@ end
 
 function QuestBoardLetterView:on_exit()
 	self.ui_animator = nil
-	
+
 	self.input_manager:device_unblock_all_services("keyboard", 1)
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
-  
+
 	ShowCursorStack.pop()
 end

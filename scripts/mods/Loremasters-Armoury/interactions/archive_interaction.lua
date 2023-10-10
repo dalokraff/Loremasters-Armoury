@@ -54,7 +54,7 @@ InteractionDefinitions.archive_search.replacement_rpc = function(interactable_un
     if interactable_unit then
         mod.interactable_questboard_unit = interactable_unit
         mod:handle_transition("open_quest_board_archive_view")
-        return true  
+        return true
     end
 end
 

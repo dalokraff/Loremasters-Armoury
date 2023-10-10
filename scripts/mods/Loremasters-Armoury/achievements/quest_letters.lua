@@ -157,14 +157,14 @@ QuestLetters.main_01 = {
 }
 
 
-for quest, subs in pairs(QuestLetters) do 
-    for sub_quest, letter in pairs(subs) do 
+for quest, subs in pairs(QuestLetters) do
+    for sub_quest, letter in pairs(subs) do
         letter.sub_quest_name = sub_quest
     end
 end
 
-for quest, subs in pairs(QuestLetters) do 
-    for sub_quest, letter in pairs(subs) do 
+for quest, subs in pairs(QuestLetters) do
+    for sub_quest, letter in pairs(subs) do
         local num_husk = #NetworkLookup.husks
         NetworkLookup.husks[letter.unit] = 1
         NetworkLookup.husks[letter.unit.."_visable"] = 1

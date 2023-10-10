@@ -26,7 +26,7 @@ local scenegraph_definition = {
 	root = {
 	  scale = "fit",
 	  size = { 1920, 1080 },
-	  position = { 0, 0, 0 }  
+	  position = { 0, 0, 0 }
 	},
 	my_button = {
 	  parent = "root",
@@ -1304,7 +1304,7 @@ return {
 	entry_widget_definition = LAWidgetUtils.create_entry_widget,
 	dummy_entry_widget_definition = LAWidgetUtils.create_dummy_entry_widget,
 	widgets = widgets_definitions,
-	animation_definitions = animation_definitions, 
+	animation_definitions = animation_definitions,
 	generic_input_actions = generic_input_actions,
 	input_actions = input_actions,
 }

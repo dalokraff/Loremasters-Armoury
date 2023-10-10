@@ -132,7 +132,7 @@ local vanilla_to_modded_skins = {
         bw_1h_sword = {},
         we_2h_axe = {},
         es_1h_mace_shield = {
-            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",    
+            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
             Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
             Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
             Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (spear)",
@@ -197,7 +197,7 @@ local vanilla_to_modded_skins = {
         wh_hammer_shield = {},
         es_2h_hammer = {},
         es_deus_01 = {
-            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",    
+            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
             Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
             Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
             Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (spear)",
@@ -217,7 +217,7 @@ local vanilla_to_modded_skins = {
         wh_deus_01 = {},
         bw_beam_staff = {},
         es_1h_sword_shield = {
-            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",    
+            Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
             Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
             Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
             Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (spear)",
@@ -259,7 +259,7 @@ local vanilla_to_modded_skins = {
 vanilla_to_modded_skins["outfits"] = {}
 for item_name, item_data in pairs(ItemMasterList) do
     if item_data.item_type == "skin" or item_data.item_type == "hat" then
-        vanilla_to_modded_skins.outfits[item_name] = {} 
+        vanilla_to_modded_skins.outfits[item_name] = {}
     end
 end
 

@@ -54,7 +54,7 @@ InteractionDefinitions.letter_read.replacement_rpc = function(interactable_unit)
     if interactable_unit then
         mod.interactable_letter_unit = interactable_unit
         mod:handle_transition("open_quest_board_letter_view")
-        return true  
+        return true
     end
 end
 

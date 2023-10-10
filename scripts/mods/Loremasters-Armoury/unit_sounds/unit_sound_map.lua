@@ -89,7 +89,7 @@ unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh"] = {
         name = "rare_sword_1h_swing",
         delay = 0.2,
     },
-    
+
 }
 
 unit_sound_map["units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_gold"] = {

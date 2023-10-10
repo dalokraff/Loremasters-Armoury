@@ -52,8 +52,8 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
                     local p3 = hand_key:gsub("_hand",""):gsub("unit", "unit_3p")
                     local unit_1p = data_melee[p1]
                     local unit_3p = data_melee[p3]
-                    
-                    
+
+
                     mod.level_queue[unit_1p] = {
                         Armoury_key = Armoury_key_melee,
                         skin = skin,
@@ -72,8 +72,8 @@ mod:hook(SimpleInventoryExtension, "_get_no_wield_required_property_and_trait_bu
                     local p3 = hand_key:gsub("_hand",""):gsub("unit", "unit_3p")
                     local unit_1p = data_range[p1]
                     local unit_3p = data_range[p3]
-                    
-                    
+
+
                     mod.level_queue[unit_1p] = {
                         Armoury_key = Armoury_key_range,
                         skin = skin,
@@ -100,7 +100,7 @@ mod:hook_safe(World, "link_unit", function(self, child, child_node_index, parent
             GearUtils.apply_material_settings(child, WeaponMaterialSettingsTemplates[glow])
         end
     end
-    if type(parent) == "userdata" then 
+    if type(parent) == "userdata" then
         if Unit.has_data(parent, "use_vanilla_glow") then
             local glow = Unit.get_data(child, "use_vanilla_glow")
             GearUtils.apply_material_settings(parent, WeaponMaterialSettingsTemplates[glow])
@@ -111,7 +111,7 @@ end)
 
 --hook to set the vanilla skin name so meshes that just change materials can be properly discerned when swapping textures
 mod:hook_safe(PlayerUnitCosmeticExtension, "_init_mesh_attachment", function(self, world, unit, skin_name, profile, career)
-    local tp_unit = self._tp_unit_mesh 
+    local tp_unit = self._tp_unit_mesh
 
     local first_person_extension = ScriptUnit.has_extension(unit, "first_person_system")
     if first_person_extension then
@@ -119,7 +119,7 @@ mod:hook_safe(PlayerUnitCosmeticExtension, "_init_mesh_attachment", function(sel
         Unit.set_data(first_person_unit, "vanilla_skin", skin_name)
         Unit.set_data(tp_unit, "vanilla_skin", skin_name)
     end
-  
+
 end)
 
 mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_linking)
@@ -143,7 +143,7 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
         if tisch.changed_texture then
             if mod.SKIN_LIST[Armoury_key].new_units then
                 if unit_name == mod.SKIN_LIST[Armoury_key].new_units[1] then
-                    
+
                     mod.SKIN_CHANGED[skin].changed_texture = true
                     mod.level_queue[target] = {
                         Armoury_key = Armoury_key,
@@ -155,13 +155,13 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
                             Armoury_key = Armoury_key,
                             skin = skin,
                         }
-                end  
+                end
             elseif (unit_skin_name == skin) and (unit_hand == mod.SKIN_LIST[Armoury_key].swap_hand) then
                 mod.SKIN_CHANGED[skin].changed_texture = true
                 mod.level_queue[target] = {
                     Armoury_key = Armoury_key,
                     skin = skin,
-                }          
+                }
             end
             if mod.SKIN_LIST[Armoury_key].fps_units then
                 if unit_name == mod.SKIN_LIST[Armoury_key].fps_units[1] then
@@ -173,7 +173,7 @@ mod:hook(AttachmentUtils, 'link', function (func, world, source, target, node_li
             end
         end
     end
- 
+
     return func(world, source, target, node_linking)
 end)
 
@@ -183,10 +183,10 @@ local slot_dict = {
     "ranged",
 }
 slot_dict[6] = "hat", --hat is 6th in the HeroPreviewer's self._item_info_by_slot table, even though the other options are nil
-mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings) 
+mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slot_type, item_template, unit_attachment_node_linking, scene_graph_links, material_settings)
     local player = Managers.player:local_player()
     if player then
-        local player_unit = player.player_unit    
+        local player_unit = player.player_unit
         local inventory_extension = ScriptUnit.extension(player_unit, "inventory_system")
         local career_extension = ScriptUnit.extension(player_unit, "career_system")
         if career_extension then
@@ -194,12 +194,12 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
                 local career_name = career_extension:career_name()
                 for slot_order,units in pairs(self._equipment_units) do
                     local slot = slot_dict[slot_order]
-                    
+
                     if slot then
-                        if self._item_info_by_slot[slot] then 
+                        if self._item_info_by_slot[slot] then
                             local item = BackendUtils.get_loadout_item(career_name, "slot_"..slot)
                             if item_slot_type == "melee" or  item_slot_type == "ranged" then
-                                if item.skin then 
+                                if item.skin then
                                     local skin = item.skin
                                     local Armoury_key = mod:get(skin)
                                     local skin_list = mod.SKIN_LIST[Armoury_key]
@@ -242,13 +242,13 @@ mod:hook_safe(HeroPreviewer, "_spawn_item_unit",  function (self, unit, item_slo
             end
         end
     end
-    
+
 
 
 end)
 
 
-mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt) 
+mod:hook_safe(HeroPreviewer, "post_update",  function (self, dt)
     local unit = self.mesh_unit
     if self._hero_loading_package_data then
         local skin_data = self._hero_loading_package_data.skin_data
@@ -277,7 +277,7 @@ for k,v in pairs(mod.SKIN_LIST) do
         pacakge_tisch[package] = package
         pacakge_tisch[package.."_3p"] = package.."_3p"
     end
-    
+
 end
 
 mod:hook(PackageManager, "load",
@@ -287,7 +287,7 @@ mod:hook(PackageManager, "load",
         func(self, package_name, reference_name, callback, asynchronous,
              prioritize)
     end
-	
+
 end)
 
 mod:hook(PackageManager, "unload",
@@ -295,7 +295,7 @@ mod:hook(PackageManager, "unload",
     if package_name ~= pacakge_tisch[package_name] and package_name ~= pacakge_tisch[package_name.."_3p"] then
         func(self, package_name, reference_name)
     end
-	
+
 end)
 
 mod:hook(PackageManager, "has_loaded",
@@ -303,7 +303,7 @@ mod:hook(PackageManager, "has_loaded",
     if package == pacakge_tisch[package] or package == pacakge_tisch[package.."_3p"] then
         return true
     end
-	
+
     return func(self, package, reference_name)
 end)
 
@@ -317,21 +317,21 @@ mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
     local skin = mod.helper_dict[text_id]
     local Armoury_key = mod:get(skin)
 
-    if word then    
+    if word then
         if mod.SKIN_CHANGED[skin].changed_texture or mod.SKIN_CHANGED[skin].changed_model then
             return word[Armoury_key]
         end
     end
 
     if string.find(text_id, "_LA_menu_widget") then
-        
+
         return func(self, string.gsub(text_id, "_LA_menu_widget", ""))
     end
 
     if not string.find(mod:localize(text_id), "<") then
         return mod:localize(text_id)
     end
-    
+
 	return func(self, text_id)
 end)
 
@@ -355,17 +355,17 @@ mod.attached_units = {}
 mod.replace_chat_message = nil
 local level_quest_table = require("scripts/mods/Loremasters-Armoury/achievements/pickup_maps")
 mod:hook(InteractionDefinitions.pickup_object.client, 'stop', function (func, world, interactor_unit, interactable_unit, data, config, t, result)
-    
-    if interactable_unit then 
+
+    if interactable_unit then
         local go_id = Managers.state.unit_storage:go_id(interactable_unit)
         if go_id then
             if mod.attached_units[go_id] then
-                
+
                 local player = Managers.player:local_player()
                 local player_unit = player.player_unit
 
 
-                if player_unit == interactor_unit then 
+                if player_unit == interactor_unit then
                     Managers.state.unit_spawner:mark_for_deletion(mod.attached_units[go_id].target)
                 end
 
@@ -414,7 +414,7 @@ end)
 
 --checks if you've prayed as myrmidia's shrine
 mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
-	
+
 	if result == InteractionResult.SUCCESS and not data.is_husk and rawget(_G, "HeroViewStateKeepDecorations") then
 		local hud_description = Unit.get_data(interactable_unit, "interaction_data", "hud_description")
         local level_name = Managers.state.game_mode:level_key()
@@ -427,7 +427,7 @@ mod:hook(InteractionDefinitions.decoration.client, "stop", function (func, world
 end)
 
 mod:hook_safe(LevelEndView, "start", function(self)
-    for level,quest in pairs(level_quest_table) do 
+    for level,quest in pairs(level_quest_table) do
         if mod:get(quest.."_temp") then
             if self.game_won then
                 mod:set(quest, true)
@@ -443,7 +443,7 @@ mod:hook_safe(LevelEndView, "start", function(self)
 end)
 
 mod:hook_safe(LevelTransitionHandler,"load_current_level", function (self)
-    for level,quest in pairs(level_quest_table) do 
+    for level,quest in pairs(level_quest_table) do
         mod:set(quest.."_temp", false)
     end
 end)
@@ -453,7 +453,7 @@ end)
 --need to add a check for if the attacking player is the local player
 local skin_killQuest = require("scripts/mods/Loremasters-Armoury/achievements/kill_quests")
 mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_data, statistics_db, is_server)
-	
+
 	local victim_health_extension = ScriptUnit.has_extension(victim_unit, "health_system")
 	local victim_damage_data = victim_health_extension.last_damage_data
 
@@ -463,7 +463,7 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         if attacker_unique_id then
             local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
             local player = Managers.player:local_player()
-            local player_unit = player.player_unit 
+            local player_unit = player.player_unit
             --attacker_player does nto exist when player is joining
             if player_unit == attacker_player.player_unit then
 
@@ -475,8 +475,8 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
                         local item_two = BackendUtils.get_loadout_item(career_name, "slot_ranged")
 
                         local tisch = {
-                            item_one, 
-                            item_two, 
+                            item_one,
+                            item_two,
                         }
 
                         local damage_source = damage_data[DamageDataIndex.DAMAGE_SOURCE_NAME]
@@ -513,18 +513,18 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
         if name == "chaos_exalted_sorcerer" then
             local level_name = Managers.state.game_mode:level_key()
             if level_name == "ground_zero" then
-                if string.find(event, "death") or string.find(event, "ragdoll") then 
-                    local position = Vector3(363.476, 50.4658, -13.7107) 
+                if string.find(event, "death") or string.find(event, "ragdoll") then
+                    local position = Vector3(363.476, 50.4658, -13.7107)
                     local rot = radians_to_quaternion(0, -math.pi/2, 0)
                     local rotation =  Quaternion.multiply(Quaternion.from_elements(0,0,0,1), rot)
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
-                    local artifact_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", unit_template_name, 
+                    local artifact_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_artifact_corrupted_mesh", unit_template_name,
                         extension_init_data, position, rotation)
 
                     LA_PICKUPS[artifact_unit] = LaPickupExtension:new(artifact_unit)
                 end
-                if string.find(event, "intro_lord") and not mod.halescourge_boss_debuff then 
+                if string.find(event, "intro_lord") and not mod.halescourge_boss_debuff then
                     mod.halescourge_boss_debuff = HalescourgeDebuff:new(unit)
                 end
             end
@@ -549,10 +549,10 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                             local world = Managers.world:world("level_world")
                             local wwise_world = Wwise.wwise_world(world)
                             local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.right_unit_1p)
-                        else 
-                            local time = mod.time + sound_event.delay 
+                        else
+                            local time = mod.time + sound_event.delay
                             mod.delayed_sounds[sound_event.name] = {
-                                time = time, 
+                                time = time,
                                 unit = slot_data.right_unit_1p
                             }
                         end
@@ -569,10 +569,10 @@ mod:hook_safe(Unit, "animation_event", function(unit, event, ...)
                             local world = Managers.world:world("level_world")
                             local wwise_world = Wwise.wwise_world(world)
                             local sound_id = WwiseWorld.trigger_event(wwise_world, sound_event.name, slot_data.left_unit_1p)
-                        else 
-                            local time = mod.time + sound_event.delay 
+                        else
+                            local time = mod.time + sound_event.delay
                             mod.delayed_sounds[sound_event.name] = {
-                                time = time, 
+                                time = time,
                                 unit = slot_data.left_unit_1p
                             }
                         end
@@ -590,8 +590,8 @@ mod:hook(AdventureMechanism, "get_end_of_level_rewards_arguments", function (fun
     local collection_levels = require("scripts/mods/Loremasters-Armoury/achievements/official_book_collector")
 
     if mod:get("sub_quest_crate_tracker") then
-        for level, tisch in pairs(collection_levels) do 
-            if level == current_level_key then 
+        for level, tisch in pairs(collection_levels) do
+            if level == current_level_key then
                 local mission_system = Managers.state.entity:system("mission_system")
                 local tome = mission_system:get_level_end_mission_data("tome_bonus_mission")
                 local grimoire = mission_system:get_level_end_mission_data("grimoire_hidden_mission")
@@ -711,7 +711,7 @@ mod.LA_quest_rewards = {
     },
 }
 
-for quest,data in pairs(mod.LA_quest_rewards) do 
+for quest,data in pairs(mod.LA_quest_rewards) do
     ItemMasterList[quest.."_reward"] = {
         display_name = quest.."_reward_name",
         inventory_icon = data.unlocked_reward_icon or "quest_icon_empty",
@@ -723,7 +723,7 @@ for quest,data in pairs(mod.LA_quest_rewards) do
         slot_type = data.slot_type,
         template = data.template,
         skin = data.skin or 'es_1h_sword_skin_02',
-        matching_item_key = data.matching_item_key, 
+        matching_item_key = data.matching_item_key,
 
     }
 end
@@ -825,25 +825,25 @@ mod:hook(HeroViewStateAchievements,"_create_entries", function (func, self, entr
     local quest_manager = self._quest_manager
 	local achievement_manager = self._achievement_manager
     if entry_type == "quest" then
-		
+
 		manager = quest_manager
 	else
-		
+
 		manager = achievement_manager
 	end
-    
+
     for i = 1, #entries, 1 do
         local entry_id = entries[i]
         local entry_data = manager:get_data_by_id(entry_id)
 
         if entry_data.id then
-            if mod.LA_quest_rewards[entry_data.id] then 
+            if mod.LA_quest_rewards[entry_data.id] then
                 entry_data.reward = mod.LA_quest_rewards[entry_data.id]
             end
-        end        
+        end
     end
 
-    
+
 
     return func(self, entries, entry_type, entry_subtype)
 end)
@@ -870,13 +870,13 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
     if not mod.spawned_in_units[level_name] then
         mod.spawned_in_units[level_name] = true
 
-        if mod.list_of_LA_levels[level_name] then 
+        if mod.list_of_LA_levels[level_name] then
             if not mod.list_of_LA_levels[level_name].collected then
                 if (level_name == "military" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "catacombs" and mod:get("sub_quest_prologue_letter_read")) or (level_name == "ussingen" and mod:get("sub_quest_prologue_letter_read")) then
                     if not mod:get("sub_quest_crate_tracker") then
                         local unit_template_name = "interaction_unit"
                         local extension_init_data = {}
-                        local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name, 
+                        local box_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/Loremaster_shipment_box_mesh_real", unit_template_name,
                             extension_init_data, mod.list_of_LA_levels[level_name].position:unbox(), Quaternion.from_elements(0,0,0,0))
                         LA_PICKUPS[box_unit] = LaPickupExtension:new(box_unit)
                     end
@@ -889,7 +889,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                 if (level_name == "dlc_bastion")  and mod:get("sub_quest_06_letter_read") and not mod:get("sub_quest_07") then
                     local unit_template_name = "interaction_unit"
                     local extension_init_data = {}
-                    local book_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", unit_template_name, 
+                    local book_unit = Managers.state.unit_spawner:spawn_network_unit("units/pickups/LA_reikland_chronicle_mesh", unit_template_name,
                         extension_init_data, mod.list_of_LA_levels_books[level_name].position:unbox(), mod.list_of_LA_levels_books[level_name].rotation:unbox())
 
                     LA_PICKUPS[book_unit] = LaPickupExtension:new(book_unit)
@@ -898,7 +898,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
         end
 
         if level_name == "morris_hub" then
-            
+
             local board_pos = Vector3(0, 0, 300)
             local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
             local world = Managers.world:world("level_world")
@@ -906,7 +906,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             local visible_board_unit_name = "units/decorations/LA_message_board_back_board"
             local letter_board = LetterBoard:new(interactable_board_unit_name, visible_board_unit_name, board_pos, board_rot, world)
             mod.letter_board = letter_board
-            
+
             if mod:get("sub_quest_09_letter_read") then
                 local position = Vector3(5.2, -9, -2.15)
                 local rotation = Quaternion.from_elements(0,0,0,0)
@@ -916,7 +916,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     local position = Vector3(4.32, -9.075, -1.8)
                     local rotation = radians_to_quaternion(math.pi*11/10, -math.pi*3/12, math.pi*1/12)
                     local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
-                    
+
                     local position = Vector3(4.8, -9.15, -2.0437)
                     local rotation = radians_to_quaternion(0, math.pi/16, 0)
                     local scroll_path = "units/pickups/Loremaster_magicscroll_interactor_mesh"
@@ -929,7 +929,7 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
                     mod.marker_list[scroll_unit] = Vector3Box(position)
                     mod.sword_unit = sword_unit
 
-                end                            
+                end
             end
 
             if mod:get("sub_quest_10") then
@@ -948,9 +948,9 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             end
 
         end
-        
+
         if string.find(level_name, "inn_level") then
-            
+
             local board_pos = Vector3(24.17, -5.96, 27.2681)
             local board_rot = Quaternion.from_elements(0,0,0.376287, -0.926503)
             local world = Managers.world:world("level_world")
@@ -966,18 +966,18 @@ mod:hook(UnitSpawner, "spawn_network_unit", function (func, self, unit_name, uni
             local catalog_unit_name = "units/decorations/LA_menu_board_mesh"
             local catalog_init_data = {}
             local interactable_catalog_unit = Managers.state.unit_spawner:spawn_network_unit(catalog_unit_name, "interaction_unit", catalog_init_data, catalog_pos, catalog_rot)
-            
+
             if mod:get("sub_quest_crate_tracker") then
                 local position = Vector3(0.8, 7.7, 5.17543)
                 local rotation = radians_to_quaternion(0,math.pi/8,0)
                 local box_unit = Managers.state.unit_spawner:spawn_local_unit("units/decorations/Loremaster_shipment_storage_mesh", position, rotation)
 
-                
+
                 if not mod:get("sub_quest_10") then
                     local position = Vector3(1.8, 9.76, 7)
                     local rotation = radians_to_quaternion(math.pi,0,0)
                     local sword_unit = Managers.state.unit_spawner:spawn_local_unit("units/empire_sword/Kruber_KOTBS_empire_sword_01_mesh_3p", position, rotation)
-                    
+
                     local position = Vector3(0.96, 6.55, 6.18)
                     local rotation = radians_to_quaternion(0,math.pi/4,0)
                     local extension_init_data = {}
@@ -1036,10 +1036,10 @@ end)
 -- =========================================================================================
 
 mod:hook(HeroViewStateAchievements,"draw", function (func, self, input_service, dt)
-    
+
     if self._achievement_widgets then
         for _,widget in pairs(self._achievement_widgets) do
-            for quest, status in pairs(mod.main_quest) do 
+            for quest, status in pairs(mod.main_quest) do
                 if widget.content.title == mod:localize(quest) then
                     if status then
                         widget.content.claimed = true
@@ -1112,13 +1112,13 @@ end)
 --this hook is for generating the marker when close to a LA quest pickup
 --genral idea inspired by the waypoints in https://github.com/badwin-vt/waypoints
 mod:hook(MatchmakingManager, "update", function(func, self, dt, ...)
-    
-    for scrap_id, units in pairs(mod.attached_units) do 
+
+    for scrap_id, units in pairs(mod.attached_units) do
         if Unit.alive(units.target) then
             local position = Unit.world_position(units.target, 0)
             local pos_box = Vector3Box(position)
             mod.render_marker(pos_box, 2)
-        else 
+        else
             mod.attached_units[scrap_id] = nil
         end
     end
@@ -1131,7 +1131,7 @@ end)
 --this is needed to prevent the OutlineSystem from crashing when remvoing the custom LA pickups
 mod:hook(OutlineSystem,"outline_unit", function (func, self, unit, flag, channel, do_outline, apply_method)
     if not Unit.alive(unit) then
-        return 
+        return
     end
     return func(self, unit, flag, channel, do_outline, apply_method)
 end)
@@ -1165,8 +1165,8 @@ mod.LA_new_interactors = {
 }
 
 
---overloading the "1" key as I don't want the netlookup tables to be different across users 
-for k,v in pairs(mod.LA_new_interactors) do 
+--overloading the "1" key as I don't want the netlookup tables to be different across users
+for k,v in pairs(mod.LA_new_interactors) do
     NetworkLookup.husks[v] = 1
     mod.LA_new_interactors[v] = v
 end
@@ -1175,7 +1175,7 @@ end
 
 
 mod:hook(InteractionDefinitions.pictureframe.client, "can_interact", function (func, interactor_unit, interactable_unit, data, config)
-	
+
     if Unit.has_data(interactable_unit, "unit_name") then
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
         if mod.LA_new_interactors[unit_name] then
@@ -1186,7 +1186,7 @@ mod:hook(InteractionDefinitions.pictureframe.client, "can_interact", function (f
 end)
 
 mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, world, interactor_unit, interactable_unit, data, config, t, result)
-	
+
     if Unit.has_data(interactable_unit, "unit_name") then
         local unit_name = Unit.get_data(interactable_unit, "unit_name")
         if mod.LA_new_interactors[unit_name] then
@@ -1206,7 +1206,7 @@ mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, wor
 end)
 
 mod:hook_safe(LevelEndView, "start", function(self)
-    for level,quest in pairs(level_quest_table) do 
+    for level,quest in pairs(level_quest_table) do
         if mod:get(quest.."_temp") then
             if self.game_won then
                 mod:set(quest, true)
@@ -1222,7 +1222,7 @@ mod:hook_safe(LevelEndView, "start", function(self)
 end)
 
 mod:hook_safe(LevelTransitionHandler,"load_current_level", function (self)
-    for level,quest in pairs(level_quest_table) do 
+    for level,quest in pairs(level_quest_table) do
         mod:set(quest.."_temp", false)
     end
 end)
@@ -1236,7 +1236,7 @@ mod.interactor_goid = nil
 
 mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, self, channel_id, interactor_go_id, interactable_go_id, is_level_unit, interaction_type_id)
     local interactable_unit = self.unit_storage:unit(interactable_go_id)
-    
+
     if interactable_unit then
         if Unit.has_data(interactable_unit, "unit_name") then
             local unit_name = Unit.get_data(interactable_unit, "unit_name")
@@ -1252,7 +1252,7 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
                 mod.approve_request = true
                 mod.interactor_goid = interactor_go_id
 
-                return 
+                return
             end
         end
     end
@@ -1260,24 +1260,24 @@ mod:hook(InteractableSystem, "rpc_generic_interaction_request", function (func, 
 end)
 
 mod:hook(GenericUnitInteractableExtension,"set_is_being_interacted_with",function (func, self, interactor_unit, interaction_result)
-    
-    
 
-    if mod.approve_request then 
+
+
+    if mod.approve_request then
         mod.approve_request = false
         interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
         mod.interactor_goid = nil
-        
+
     end
 
     if mod.unit_is_being_interacted_with then
-        
+
         if not self.interactor_unit then
             self.interactor_unit = Managers.state.unit_storage:unit(mod.interactor_goid)
         else
             interactor_unit = nil
         end
-        mod.unit_is_being_interacted_with = false 
+        mod.unit_is_being_interacted_with = false
     end
     mod.unit_is_being_interacted_with = true
 
@@ -1295,7 +1295,7 @@ mod:hook(GenericUnitInteractorExtension,"start_interaction", function (func, sel
     local unit = self.unit
 
     if interactable_go_id == nil then
-        if interactable_unit then 
+        if interactable_unit then
 
             local interaction_data = interaction_context.data
             local interactor_data = interaction_data.interactor_data

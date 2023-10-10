@@ -6,13 +6,13 @@ utils.__index = utils
 
 local table_of_skins = {}
 function utils:skin_id_to_skin(skin_id)
-    if skin_id then 
+    if skin_id then
         local pattern = "_%d%d%d%d"
         local skin = string.gsub(skin_id, pattern, "")
-        
+
         return skin
     end
-    
+
     return skin_id
 end
 

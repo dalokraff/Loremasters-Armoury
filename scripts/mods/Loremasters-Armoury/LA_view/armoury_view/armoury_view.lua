@@ -44,8 +44,8 @@ function ArmouryView:init(ingame_ui_context)
 
     local world = Managers.world:world("level_world")
     self.wwise_world = Managers.world:wwise_world(world)
-    
-    
+
+
     self.input_manager = input_manager
     self.ui_renderer = ingame_ui_context.ui_renderer
     self.ui_top_renderer = ingame_ui_context.ui_top_renderer
@@ -67,12 +67,12 @@ end
 function ArmouryView:init_armoury_db()
 	--populates UI table that tracks which skin is equipped.
 	local armoury_db = self.armoury_db
-	
+
 	for weapon_type, weapon_data in pairs(armoury_db) do
 		for item_name, hand_data in pairs(weapon_data) do
 			hand_data.right = mod:get(item_name.."_rightHand") or "default"
 			hand_data.left = mod:get(item_name) or "default"
-			
+
 		end
 	end
 end
@@ -148,11 +148,11 @@ ArmouryView.create_ui_elements = function (self, params)
     -- end
 
     if self.viewport_widget then
-        UIWidget.destroy(self.ui_renderer, self.viewport_widget) 
+        UIWidget.destroy(self.ui_renderer, self.viewport_widget)
         self.viewport_widget = nil
     end
 
-    
+
     for name, widget_definition in pairs(widget_definitions) do
 		if widget_definition then
 			local widget = UIWidget.init(widget_definition)
@@ -231,12 +231,12 @@ ArmouryView._handle_input = function (self, dt, t)
                 self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "item_select")
                 self:toggle_button(button_widget)
-				self:play_sound("Play_hud_select")			
+				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = 0
 				-- self:clear_original_skin_list_skin_entry_widgets()
                 self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
-				
+
 				self.toggled_buttons[self.selected_hero] = {}
 				self.toggled_buttons[self.selected_hero][name] = {}
 
@@ -245,7 +245,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_skin")
                 self:toggle_button(button_widget)
-				self:play_sound("hud_morris_weapon_chest_unlock")				
+				self:play_sound("hud_morris_weapon_chest_unlock")
                 -- self:update_original_skin_list()
 
 				self.new_viewport_unit = name
@@ -263,12 +263,12 @@ ArmouryView._handle_input = function (self, dt, t)
                 -- self.selected_item = name
                 self:unselect_buttons(widgets_by_name, "_original_entry_skin")
                 self:toggle_button(button_widget)
-				self:play_sound("hud_morris_weapon_chest_open")				
+				self:play_sound("hud_morris_weapon_chest_open")
                 self:update_LA_skin_list(name, "weapon") --update LA skins
 
 				self.new_viewport_unit = name
 				-- self:spawn_item_in_viewport(name)
-				
+
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] = {}
 				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][name] = {}
@@ -282,7 +282,7 @@ ArmouryView._handle_input = function (self, dt, t)
 
 				self.new_viewport_unit = name
 				-- self:spawn_item_in_viewport(name)
-				
+
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item]= {}
 				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
@@ -293,7 +293,7 @@ ArmouryView._handle_input = function (self, dt, t)
                 --selects which LA skin to equip
 				-- self.selected_item = name
 				self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
-                
+
                 self:toggle_button(button_widget, true)
 				self:play_sound("play_gui_equipment_power_level_increase")
 
@@ -352,7 +352,7 @@ ArmouryView._handle_input = function (self, dt, t)
 				end
 
 				self:create_equipped_skins_display()
-				
+
 			end
 		end
     end
@@ -441,7 +441,7 @@ ArmouryView.set_armoury_key = function (self, widget_name, forced_Armoury_key)
 		if string.find(skin_name, "shield") or string.find(skin_name, "dual") or string.find(skin_name, "_and") then
 			mod_setting_id = skin_name.."_rightHand"
 		end
-		self:toggle_button(self._widgets_by_name[widget_name], toggle_state)  
+		self:toggle_button(self._widgets_by_name[widget_name], toggle_state)
 	elseif right_count < left_count or outfits_count>0 then
 		hand = "left"
 		self:toggle_button(self._widgets_by_name[widget_name], toggle_state)
@@ -487,7 +487,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 
 	local item_unit_name = item_data.unit
 	local item_type = item_data.item_type
-	
+
 	if item_type == "skin" then
 		local cosmetic_data = Cosmetics[item_data.name]
 		local unit_name = cosmetic_data.third_person_attachment.unit
@@ -512,21 +512,21 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		POSITION_LOOKUP[skin_unit] = nil
 	end
 
-	if item_unit_name_right then 
+	if item_unit_name_right then
 		Managers.package:load(item_unit_name_right, "global")
 		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
 		self.viewport_right_hand = right_unit
 		self:add_item_to_texture_swap_queue(item_key, right_unit)
 		POSITION_LOOKUP[right_unit] = nil
 	end
-	if item_unit_name_left then 
+	if item_unit_name_left then
 		Managers.package:load(item_unit_name_left, "global")
 		local left_unit = unit_spawner:spawn_local_unit(item_unit_name_left, Vector3(0,0,2), radians_to_quaternion(0,0,math.pi/6))
 		self.viewport_left_hand = left_unit
 		self:add_item_to_texture_swap_queue(item_key, left_unit)
 		POSITION_LOOKUP[left_unit] = nil
 	end
-	if item_unit_name then 
+	if item_unit_name then
 		Managers.package:load(item_unit_name, "global")
 		local hat_unit = unit_spawner:spawn_local_unit(item_unit_name, Vector3(0,0,2), radians_to_quaternion(0,math.pi/2,0))
 		self.viewport_hat = hat_unit
@@ -549,17 +549,17 @@ ArmouryView.remove_units_from_viewport = function (self, widget_name)
 		-- unit_spawner:mark_for_deletion(viewport_right_hand)
 		self.viewport_right_hand = nil
 	end
-	if viewport_left_hand then 
+	if viewport_left_hand then
 		World.destroy_unit(world, viewport_left_hand)
 		-- unit_spawner:mark_for_deletion(viewport_left_hand)
 		self.viewport_left_hand = nil
 	end
-	if viewport_hat then 
+	if viewport_hat then
 		World.destroy_unit(world, viewport_hat)
 		-- unit_spawner:mark_for_deletion(viewport_hat)
 		self.viewport_hat = nil
 	end
-	if viewport_skin then 
+	if viewport_skin then
 		World.destroy_unit(world, viewport_skin)
 		-- unit_spawner:mark_for_deletion(viewport_hat)
 		self.viewport_skin = nil
@@ -575,11 +575,11 @@ ArmouryView.unselect_buttons = function (self, widgets_by_name, category)
 end
 
 ArmouryView.toggle_button = function (self, button_widget, forced_state)
-    local is_toggled = button_widget.content.button_hotspot.is_selected 
+    local is_toggled = button_widget.content.button_hotspot.is_selected
 
 	if is_toggled then
 		button_widget.content.button_hotspot.is_selected = false
-	else 
+	else
 		button_widget.content.button_hotspot.is_selected = true
 	end
 
@@ -677,9 +677,9 @@ ArmouryView.update_equipped_skin_display = function (self, Armoury_skin_data, it
 				-- current_widget_name = string.gsub(current_widget_name, "_LA_skins_entry_skin_off_hand", "")
 
 				if string.find(v, hand_widget) then
-					local widget = widgets_by_name[v]			
+					local widget = widgets_by_name[v]
 					widget.content.button_hotspot.is_selected = true
-				end					
+				end
 			end
 		end
 	end
@@ -753,7 +753,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
 		local item_data = item_master_list[item_name]
 		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
-		
+
 		local scenegraph_definition_size = scenegraph_definition.original_skins_list_skin_entry.size
 		local icon = amoury_change_data.icon or item_data.inventory_icon or "tabs_inventory_icon_hats_normal"
 		local new_widget_def = UIWidgets.create_icon_button("original_skins_list_skin_entry",scenegraph_definition_size , nil, nil, icon)
@@ -824,9 +824,9 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
         }
         buttons[button_number] = new_widget_name
 		self:_start_transition_animation("on_enter", widget, new_widget_name)
-		
+
 	end
-    
+
 	self.original_skin_list_skin_entry_widgets = original_skin_list_skin_entry_widgets
 end
 
@@ -845,8 +845,8 @@ ArmouryView.clear_original_skin_list_skin_entry_widgets = function (self)
 end
 
 ArmouryView.update_LA_skin_list = function (self, widget_name, skin_type)
-    
-	
+
+
 	self:clear_LA_skin_widgets()
 
 	if skin_type == "weapon" then
@@ -903,7 +903,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 	local default_skin_key = string.gsub(widget_name, "_original_entry_skin", "")
 	default_skin_key = string.gsub(widget_name, "_original_entry_outfit_skin", "")
 	default_skin_key = string.gsub(default_skin_key, "_skin.+", "")
-	
+
 
 	local list_of_possible_skins = vanilla_to_modded_table_handed[default_skin_key]
 
@@ -911,7 +911,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
     local selected_item = string.gsub(self.selected_item, "_item_select", "")
 	local item_list = self.items_by_hero[selected_hero][selected_item]
 	local i = 0
-	local j =  0 
+	local j =  0
 
 	local down_shift = 0
 	if hand == "off_hand" then
@@ -967,15 +967,15 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 	for Armoury_key,armoury_name in pairs(list_of_possible_skins) do
 		if type(armoury_name) == "string" then
 			local armoury_data = skin_list[Armoury_key]
-			
+
 			local scenegraph_definition_size = scenegraph_definition["LA_skins_list_entry_"..hand].size
 			local secondary_icon = self:look_for_other_hands_icons(default_skin_key, vanilla_to_modded_table_handed, Armoury_key)
 			local icon = secondary_icon or "la_notification_icon"
 			if armoury_data.icons then
 				icon = armoury_data.icons[default_item_name] or icon
 			end
-			
-			
+
+
 			local new_widget_def = UIWidgets.create_icon_button("LA_skins_list_entry_"..hand, scenegraph_definition_size , nil, nil, icon)
 			new_widget_def.content.texture_hover = "la_ui_icon_active"
 
@@ -1007,7 +1007,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 				end
 			}
 
-			
+
 			local style_item_name = default_item_name
 			local style_Armoury_key = Armoury_key
 			if hand == "main_hand" then
@@ -1016,7 +1016,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 
 			new_widget_def.style.texture_hover.og_skin_name = style_item_name
 			new_widget_def.style.texture_hover.la_skin_name = style_Armoury_key
-			
+
 
 			new_widget_def.content["tooltip_hotspot"] = {}
 			new_widget_def.content["tooltip_text"] = armoury_name or "missing_name"
@@ -1055,9 +1055,9 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 			}
 			buttons[button_number] = new_widget_name
 			self:_start_transition_animation("on_enter", widget, new_widget_name)
-		end		
+		end
 	end
-    
+
 	self.LA_skins_list_entry_widgets = LA_skins_list_entry_widgets
 end
 
@@ -1159,7 +1159,7 @@ ArmouryView.update_original_skin_list = function (self)
         local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
         local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
         new_widget_def.content.texture_hover = "la_ui_icon_active"
-		
+
 		new_widget_def.offset = {
             i*60,
             j*-60 - 35,
@@ -1175,8 +1175,8 @@ ArmouryView.update_original_skin_list = function (self)
 		if string.find(item_name, "_hat") or string.find(item_name, "skin_[%a][%a]_") then
 			widget_suffix = "_original_entry_outfit_skin"
 			tooltip_text = amoury_change_data.display_name or ItemMasterList[item_name].display_name
-		else 
-			
+		else
+
 		end
 
 		local num_passes = #new_widget_def.element.passes
@@ -1236,7 +1236,7 @@ ArmouryView.update_original_skin_list = function (self)
 		::pageOver::
     end
 
-	
+
 
 	local skin_divider_def = UIWidgets.create_simple_texture("la_ui_separatorleft", "original_skins_list_divider")
 	skin_divider_def.offset[2] = (j+1)*-60 - 15 - 50
@@ -1249,13 +1249,13 @@ ArmouryView.update_original_skin_list = function (self)
 		widget_name = "original_skins_list_divider",
 		button_number = math.random(10,10^9),
 	}
-	
+
 	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
 
 	if num_pages > 1 then
 		local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
 		local page_button_def = LAWidgetUtils.create_button_with_hover_highlight("original_skins_equiped_skin_page_button", page_button_size , nil, "la_ui_arrowright_large", "la_ui_arrowright_large", "la_ui_arrowright_large_active")
-		
+
 		local page_button_widget = UIWidget.init(page_button_def)
 		local page_button_widget_number = math.random(10,10^9)
 		local page_button_number = math.random(10,10^9)
@@ -1270,7 +1270,7 @@ ArmouryView.update_original_skin_list = function (self)
 
 
     self._original_skin_list_widgets = original_skin_list_widgets
-	
+
 end
 
 function ArmouryView:_start_transition_animation(animation_name, widget, scenegraph_id, delay_num)
@@ -1282,16 +1282,16 @@ function ArmouryView:_start_transition_animation(animation_name, widget, scenegr
 	if delay_num then
 		params.delay_num = delay_num
 	end
-  
+
 	-- local widgets = {
 	--   list_widget = self.list,
 	--   list_items = self.list_items,
 	--   list_detail_widget = self.list_detail_widgets[2]
 	-- }
-  
+
 	local anim_id = self.ui_animator:start_animation(animation_name, widget, scenegraph_definition, params)
 	self._ui_animations[animation_name] = anim_id
-  
+
   end
 
 ArmouryView.clear_original_skin_list_widgets = function (self)
@@ -1340,14 +1340,14 @@ ArmouryView._is_button_right_click_pressed = function (self, widget)
 end
 
 
-ArmouryView.post_update = function (self, dt, t)	
+ArmouryView.post_update = function (self, dt, t)
 	self.ui_animator:update(dt)
 	self:_update_animations(dt)
 end
 
 ArmouryView._update_animations = function (self, dt)
 	local widgets_by_name = self._widgets_by_name
-	
+
     for _,name in pairs(self.buttons) do
         local button = widgets_by_name[name]
 	    UIWidgetUtils.animate_icon_button(button, dt)
@@ -1381,7 +1381,7 @@ ArmouryView.draw = function (self, input_service, dt)
 
 	UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
 
-	for i,widget in pairs(widgets) do 
+	for i,widget in pairs(widgets) do
 		render_settings.alpha_multiplier = widget.alpha_multiplier or alpha_multiplier
         UIRenderer.draw_widget(ui_renderer, widget)
 	end
@@ -1389,7 +1389,7 @@ ArmouryView.draw = function (self, input_service, dt)
 
 	UIRenderer.end_pass(ui_renderer)
 
-	
+
 
     UIRenderer.begin_pass(ui_renderer, ui_scenegraph, input_service, dt, nil, render_settings)
     -- local viewport_data = self._viewport_data
@@ -1430,7 +1430,7 @@ ArmouryView.highlight_button_widget = function(self)
 end
 
 -- Required. Executed by `ingame_ui` every tick.
-function ArmouryView:update(dt, t)	
+function ArmouryView:update(dt, t)
 	if not self.viewport_widget then
         -- Managers.package:load("resource_packages/levels/ui_inventory_preview", "global")
         self.viewport_widget = UIWidget.init(viewport_definition)
@@ -1446,7 +1446,7 @@ function ArmouryView:update(dt, t)
 		self:spawn_item_in_viewport(self.new_viewport_unit)
 		self.new_viewport_unit = nil
 	end
-    
+
 	self:draw(self:input_service(), dt)
 
 	if self:_has_active_level_vote() then
@@ -1454,7 +1454,7 @@ function ArmouryView:update(dt, t)
     else
         self:_handle_input(dt, t)
     end
-	
+
 	self.time = t
 	self.dt = dt
 end
@@ -1466,19 +1466,19 @@ function ArmouryView:input_service()
 end
 
 function ArmouryView:on_exit()
-	
+
 	self.input_manager:device_unblock_all_services("keyboard", 1)
 	self.input_manager:device_unblock_all_services("mouse", 1)
 	self.input_manager:device_unblock_all_services("gamepad", 1)
 
 	self:play_sound("Play_hud_button_close")
-  
+
     if self.viewport_widget then
-        UIWidget.destroy(self.ui_renderer, self.viewport_widget )    
+        UIWidget.destroy(self.ui_renderer, self.viewport_widget )
         self.viewport_widget = nil
     end
 
-    
+
 
     local widgets_by_name = self._widgets_by_name
     self:unselect_buttons(widgets_by_name, "_original_skin")
@@ -1512,7 +1512,7 @@ end
 
 
 -- need to simplify database structure
--- + have a pregenned table of all valid options for each vanilla weapon 
+-- + have a pregenned table of all valid options for each vanilla weapon
 -- + weapon -> hand -> skin
 
 -- then a second table to keep track of which weapons are currently equipped

@@ -62,7 +62,7 @@ function mod.update(dt)
             mod.SKIN_LIST[Armoury_key].swap_skin = skin or mod.SKIN_LIST[Armoury_key].swap_skin
             mod.apply_new_skin_from_texture(Armoury_key, world, skin, unit)
             flush_level = true
-        end  
+        end
     end
     for unit,tisch in pairs(mod.preview_queue) do
         if Managers.world:has_world("character_preview") then
@@ -87,7 +87,7 @@ function mod.update(dt)
         end
     end
 
-    
+
     for unit,tisch in pairs(mod.LA_armoury_preview) do
         if Managers.world:has_world("LA_armoury_preview") then
             local world = Managers.world:world("LA_armoury_preview")
@@ -102,19 +102,19 @@ function mod.update(dt)
     end
 
 
-    if flush_level then 
+    if flush_level then
         mod.level_queue = {}
     end
-    if flush_preview then 
+    if flush_preview then
         mod.preview_queue = {}
     end
-    if flush_armory_preview then 
+    if flush_armory_preview then
         mod.armory_preview_queue = {}
     end
-    if flush_LA_armoury_preview then 
+    if flush_LA_armoury_preview then
         mod.LA_armoury_preview = {}
     end
-    
+
     mod.outliner()
 
     if mod.letter_board then
@@ -157,14 +157,14 @@ function mod.update(dt)
                             end
                             if not buff_extension:has_buff_type("sub_quest_08_heatgen_buff") then
                                 buff_extension:add_buff("sub_quest_08_heatgen_buff", nil)
-                            end 
+                            end
                         end
                     end
                 end
             end
         end
     end
-    
+
 
     if mod.scroll_unit then
         local position = Vector3Box(Unit.local_position(mod.scroll_unit, 0))
@@ -182,7 +182,7 @@ function mod.update(dt)
             end
         end
     end
-    
+
 
 
     --for displaying item reward after completing main quest, should be sent to it's own funciton or class
@@ -234,7 +234,7 @@ function mod.update(dt)
     end
 
     mod.time = mod_time + dt
-    
+
 end
 
 
@@ -251,56 +251,56 @@ mod.on_game_state_changed = function(status, state_name)
     end
 end
 
-if not mod:get("num_shields_collected") then 
+if not mod:get("num_shields_collected") then
     mod:set("num_shields_collected", 0)
 end
 
 
-if mod:get("sub_quest_prologue") == nil then 
+if mod:get("sub_quest_prologue") == nil then
     mod:set("sub_quest_prologue", false)
 end
 
-if not mod:get("sub_quest_01") then 
+if not mod:get("sub_quest_01") then
     mod:set("sub_quest_01", 0)
 end
 
-if not mod:get("sub_quest_02") then 
+if not mod:get("sub_quest_02") then
     mod:set("sub_quest_02", 0)
 end
 
-if mod:get("sub_quest_03") == nil then 
+if mod:get("sub_quest_03") == nil then
     mod:set("sub_quest_03", false)
 end
 
-if mod:get("sub_quest_04") == nil then 
+if mod:get("sub_quest_04") == nil then
     mod:set("sub_quest_04", false)
 end
 
-if mod:get("sub_quest_05") == nil then 
+if mod:get("sub_quest_05") == nil then
     mod:set("sub_quest_05", false)
 end
 
-if mod:get("sub_quest_crate_tracker") == nil then 
+if mod:get("sub_quest_crate_tracker") == nil then
     mod:set("sub_quest_crate_tracker", false)
 end
 
-if mod:get("sub_quest_06") == nil then 
+if mod:get("sub_quest_06") == nil then
     mod:set("sub_quest_06", false)
 end
 
-if mod:get("sub_quest_07") == nil then 
+if mod:get("sub_quest_07") == nil then
     mod:set("sub_quest_07", false)
 end
 
-if mod:get("sub_quest_08") == nil then 
+if mod:get("sub_quest_08") == nil then
     mod:set("sub_quest_08", false)
 end
 
-if mod:get("sub_quest_09") == nil then 
+if mod:get("sub_quest_09") == nil then
     mod:set("sub_quest_09", false)
 end
 
-if mod:get("sub_quest_10") == nil then 
+if mod:get("sub_quest_10") == nil then
     mod:set("sub_quest_10", false)
 end
 
@@ -489,7 +489,7 @@ mod:command("complete_sub_quest_09", "", function()
 end)
 
 
---sort all items into better categories 
+--sort all items into better categories
 
 mod.items_by_hero = {
     es = {
@@ -535,14 +535,14 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
         local slot_type = ItemMasterList[matching_item_key].slot_type
         local can_wield_tisch = item_data.can_wield or {}
         for _,career in pairs(can_wield_tisch) do
-            local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)   
-            if slot_type then 
+            local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
+            if slot_type then
                 local item_key = slot_type
             --    mod:echo(slot_type)
                 -- if slot_type == "hat" or slot_type == "skin" then
                 --     item_key = "skin"
                 -- end
-                    
+
                     -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
                 if mod.items_by_hero[char] then
                     if mod.items_by_hero[char][item_key] then
@@ -550,8 +550,8 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
                             -- mod:echo(base_skin.."_"..char)
                             local num_items = #mod.items_by_hero[char][item_key] + 1
                             mod.items_by_hero[char][item_key][num_items] = base_skin
-                            mod.items_by_hero[char][item_key][base_skin] = base_skin 
-                            
+                            mod.items_by_hero[char][item_key][base_skin] = base_skin
+
                             local default_skin_key = string.gsub(base_skin, "_skin.+", "")
                             list_of_base_skins[default_skin_key] = {}
                         end
@@ -563,7 +563,7 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
 end
 
 
-for skin_name,skin_tisch in pairs(WeaponSkins.skins) do 
+for skin_name,skin_tisch in pairs(WeaponSkins.skins) do
 
     local skin_name = skin_name
     if skin_name then
@@ -581,23 +581,23 @@ for item_name,item_data in pairs(ItemMasterList) do
     local slot_type = item_data.slot_type
     local can_wield_tisch = item_data.can_wield or {}
     for _,career in pairs(can_wield_tisch) do
-        local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)--gets first 2 letters of entry in can_wield table to determint carreers 
-        if slot_type == "skin" or slot_type == "hat" then 
+        local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)--gets first 2 letters of entry in can_wield table to determint carreers
+        if slot_type == "skin" or slot_type == "hat" then
                 local item_key = slot_type
             --    mod:echo(slot_type)
                 -- if slot_type == "hat" or slot_type == "skin" then
                 --     item_key = "skin"
                 -- end
-                    
+
                     -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
             if mod.items_by_hero[char] then
                 if mod.items_by_hero[char][item_key] then
                     if not mod.items_by_hero[char][item_key][item_name] then
                         -- mod:echo(item_name.."_"..char)
                         local num_items = #mod.items_by_hero[char][item_key] + 1
-                        mod.items_by_hero[char][item_key][num_items] = item_name 
-                        mod.items_by_hero[char][item_key][item_name] = item_name 
-                            
+                        mod.items_by_hero[char][item_key][num_items] = item_name
+                        mod.items_by_hero[char][item_key][item_name] = item_name
+
                         local default_skin_key = string.gsub(item_name, "_skin.+", "")
                         list_of_base_skins[default_skin_key] = {}
                     end
@@ -649,7 +649,7 @@ end
 --     print(k.." = {},")
 -- end
 
--- for skin_name,skin_tisch in pairs(WeaponSkins.skins) do 
+-- for skin_name,skin_tisch in pairs(WeaponSkins.skins) do
 
 --     local skin_name = skin_name
 --     if skin_name then
@@ -663,9 +663,9 @@ end
 
 -- end
 
--- for i,skin_tisch in pairs(WeaponSkins.skins) do 
+-- for i,skin_tisch in pairs(WeaponSkins.skins) do
 --     mod:echo(i)
--- --    for k,v in pairs(skin_tisch) do 
+-- --    for k,v in pairs(skin_tisch) do
 -- --         mod:echo(k)
 -- --    end
 --     -- mod:echo(skin_tisch)
@@ -680,13 +680,13 @@ end
 --         local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
 --         if item_data then
 --             local slot_type = item_data.slot_type
---             if slot_type then 
+--             if slot_type then
 --                 local item_key = slot_type
 
 --                 if slot_type == "hat" or slot_type == "skin" then
 --                     item_key = "skin"
 --                 end
-                
+
 --                 -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
 --                 if mod.items_by_hero[char] then
 --                     if mod.items_by_hero[char][item_key] then

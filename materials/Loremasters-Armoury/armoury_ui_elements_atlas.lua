@@ -1,211 +1,211 @@
 -- image source: textures/armoury_ui_elements/ui_menu
-armoury_ui_elements_atlas = { 
-	gem_blue = { 
+armoury_ui_elements_atlas = {
+	gem_blue = {
 		size = { 27, 22, },
 		uv00 = { 0.889648, 0.029419, },
 		uv11 = { 0.916016, 0.032104, },
 	},
-	la_ui_arrowleft_small = { 
+	la_ui_arrowleft_small = {
 		size = { 30, 26, },
 		uv00 = { 0.958008, 0.025391, },
 		uv11 = { 0.987305, 0.028564, },
 	},
-	la_ui_arrowright_small = { 
+	la_ui_arrowright_small = {
 		size = { 30, 26, },
 		uv00 = { 0.958008, 0.022217, },
 		uv11 = { 0.987305, 0.025391, },
 	},
-	la_questionmark_icon = { 
+	la_questionmark_icon = {
 		size = { 52, 52, },
 		uv00 = { 0.907227, 0.022217, },
 		uv11 = { 0.958008, 0.028564, },
 	},
-	la_ui_arrowleft_large_active = { 
+	la_ui_arrowleft_large_active = {
 		size = { 18, 59, },
 		uv00 = { 0.889648, 0.022217, },
 		uv11 = { 0.907227, 0.029419, },
 	},
-	la_ui_arrowright_large_active = { 
+	la_ui_arrowright_large_active = {
 		size = { 18, 59, },
 		uv00 = { 0.973633, 0.013916, },
 		uv11 = { 0.991211, 0.021118, },
 	},
-	la_ui_arrowleft_large = { 
+	la_ui_arrowleft_large = {
 		size = { 18, 59, },
 		uv00 = { 0.956055, 0.013916, },
 		uv11 = { 0.973633, 0.021118, },
 	},
-	la_ui_arrowright_large = { 
+	la_ui_arrowright_large = {
 		size = { 18, 59, },
 		uv00 = { 0.816406, 0.060547, },
 		uv11 = { 0.833984, 0.067749, },
 	},
-	la_ui_icon_active = { 
+	la_ui_icon_active = {
 		size = { 68, 68, },
 		uv00 = { 0.889648, 0.013916, },
 		uv11 = { 0.956055, 0.022217, },
 	},
-	la_ui_classselect_active = { 
+	la_ui_classselect_active = {
 		size = { 86, 86, },
 		uv00 = { 0.732422, 0.060547, },
 		uv11 = { 0.816406, 0.071045, },
 	},
-	la_ui_empirehelm = { 
+	la_ui_empirehelm = {
 		size = { 96, 114, },
 		uv00 = { 0.889648, 0.000000, },
 		uv11 = { 0.983398, 0.013916, },
 	},
-	la_ui_elfhelm = { 
+	la_ui_elfhelm = {
 		size = { 146, 195, },
 		uv00 = { 0.840820, 0.048828, },
 		uv11 = { 0.983398, 0.072632, },
 	},
-	la_ui_headersmall = { 
+	la_ui_headersmall = {
 		size = { 245, 28, },
 		uv00 = { 0.623047, 0.106567, },
 		uv11 = { 0.862305, 0.109985, },
 	},
-	la_ui_border_test = { 
+	la_ui_border_test = {
 		size = { 258, 83, },
 		uv00 = { 0.623047, 0.096436, },
 		uv11 = { 0.875000, 0.106567, },
 	},
-	la_ui_keybind_tooltip = { 
+	la_ui_keybind_tooltip = {
 		size = { 281, 127, },
 		uv00 = { 0.623047, 0.080933, },
 		uv11 = { 0.897461, 0.096436, },
 	},
-	la_ui_geariconframe = { 
+	la_ui_geariconframe = {
 		size = { 366, 64, },
 		uv00 = { 0.623047, 0.073120, },
 		uv11 = { 0.980469, 0.080933, },
 	},
-	la_ui_frame_right_side = { 
+	la_ui_frame_right_side = {
 		size = { 25, 399, },
 		uv00 = { 0.865234, 0.000000, },
 		uv11 = { 0.889648, 0.048706, },
 	},
-	la_ui_frame_bottom_side = { 
+	la_ui_frame_bottom_side = {
 		size = { 400, 25, },
 		uv00 = { 0.555664, 0.313232, },
 		uv11 = { 0.946289, 0.316284, },
 	},
-	la_ui_framecorners = { 
+	la_ui_framecorners = {
 		size = { 400, 400, },
 		uv00 = { 0.555664, 0.264404, },
 		uv11 = { 0.946289, 0.313232, },
 	},
-	la_ui_frame_left_side = { 
+	la_ui_frame_left_side = {
 		size = { 25, 400, },
 		uv00 = { 0.840820, 0.000000, },
 		uv11 = { 0.865234, 0.048828, },
 	},
-	la_ui_frame_top_side = { 
+	la_ui_frame_top_side = {
 		size = { 400, 25, },
 		uv00 = { 0.555664, 0.261353, },
 		uv11 = { 0.946289, 0.264404, },
 	},
-	la_ui_closebutton = { 
+	la_ui_closebutton = {
 		size = { 426, 44, },
 		uv00 = { 0.555664, 0.255981, },
 		uv11 = { 0.971680, 0.261353, },
 	},
-	la_ui_closebutton_active = { 
+	la_ui_closebutton_active = {
 		size = { 426, 44, },
 		uv00 = { 0.555664, 0.250610, },
 		uv11 = { 0.971680, 0.255981, },
 	},
-	la_ui_geariconframe_new = { 
+	la_ui_geariconframe_new = {
 		size = { 462, 63, },
 		uv00 = { 0.493164, 0.493164, },
 		uv11 = { 0.944336, 0.500854, },
 	},
-	la_ui_headerlarge = { 
+	la_ui_headerlarge = {
 		size = { 488, 85, },
 		uv00 = { 0.493164, 0.482788, },
 		uv11 = { 0.969727, 0.493164, },
 	},
-	la_ui_separatorleft = { 
+	la_ui_separatorleft = {
 		size = { 493, 32, },
 		uv00 = { 0.493164, 0.478882, },
 		uv11 = { 0.974609, 0.482788, },
 	},
-	la_ui_separatorright = { 
+	la_ui_separatorright = {
 		size = { 493, 33, },
 		uv00 = { 0.493164, 0.474854, },
 		uv11 = { 0.974609, 0.478882, },
 	},
-	la_ui_empireweapon = { 
+	la_ui_empireweapon = {
 		size = { 111, 496, },
 		uv00 = { 0.732422, 0.000000, },
 		uv11 = { 0.840820, 0.060547, },
 	},
-	la_ui_05_tooltip = { 
+	la_ui_05_tooltip = {
 		size = { 505, 322, },
 		uv00 = { 0.493164, 0.435547, },
 		uv11 = { 0.986328, 0.474854, },
 	},
-	la_ui_04_tooltip = { 
+	la_ui_04_tooltip = {
 		size = { 558, 205, },
 		uv00 = { 0.000000, 0.591919, },
 		uv11 = { 0.544922, 0.616943, },
 	},
-	la_ui_elfweapon = { 
+	la_ui_elfweapon = {
 		size = { 112, 599, },
 		uv00 = { 0.623047, 0.000000, },
 		uv11 = { 0.732422, 0.073120, },
 	},
-	la_ui_separatorcenter = { 
+	la_ui_separatorcenter = {
 		size = { 622, 27, },
 		uv00 = { 0.000000, 0.588623, },
 		uv11 = { 0.607422, 0.591919, },
 	},
-	la_ui_03_tooltip = { 
+	la_ui_03_tooltip = {
 		size = { 625, 247, },
 		uv00 = { 0.000000, 0.558472, },
 		uv11 = { 0.610352, 0.588623, },
 	},
-	la_ui_02_tooltip = { 
+	la_ui_02_tooltip = {
 		size = { 664, 252, },
 		uv00 = { 0.000000, 0.527710, },
 		uv11 = { 0.648438, 0.558472, },
 	},
-	la_ui_itempreviewframe = { 
+	la_ui_itempreviewframe = {
 		size = { 505, 755, },
 		uv00 = { 0.000000, 0.435547, },
 		uv11 = { 0.493164, 0.527710, },
 	},
-	la_ui_frameright = { 
+	la_ui_frameright = {
 		size = { 569, 757, },
 		uv00 = { 0.000000, 0.343140, },
 		uv11 = { 0.555664, 0.435547, },
 	},
-	la_ui_frameleft = { 
+	la_ui_frameleft = {
 		size = { 569, 758, },
 		uv00 = { 0.000000, 0.250610, },
 		uv11 = { 0.555664, 0.343140, },
 	},
-	la_ui_01_tooltip = { 
+	la_ui_01_tooltip = {
 		size = { 807, 116, },
 		uv00 = { 0.000000, 0.236450, },
 		uv11 = { 0.788086, 0.250610, },
 	},
-	la_ui_frameheader_gemless = { 
+	la_ui_frameheader_gemless = {
 		size = { 859, 58, },
 		uv00 = { 0.000000, 0.229370, },
 		uv11 = { 0.838867, 0.236450, },
 	},
-	la_ui_frameheader = { 
+	la_ui_frameheader = {
 		size = { 859, 58, },
 		uv00 = { 0.000000, 0.222290, },
 		uv11 = { 0.838867, 0.229370, },
 	},
-	la_ui_itempreviewframe_armour = { 
+	la_ui_itempreviewframe_armour = {
 		size = { 638, 867, },
 		uv00 = { 0.000000, 0.116455, },
 		uv11 = { 0.623047, 0.222290, },
 	},
-	la_ui_itempreviewframe_armour_recenter = { 
+	la_ui_itempreviewframe_armour_recenter = {
 		size = { 638, 954, },
 		uv00 = { 0.000000, 0.000000, },
 		uv11 = { 0.623047, 0.116455, },

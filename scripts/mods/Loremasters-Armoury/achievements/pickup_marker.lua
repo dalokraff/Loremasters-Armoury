@@ -98,7 +98,7 @@ function mod.render_marker(pos_box, distance_view)
         local dist = vec3_dist(player_pos, waypoint_position)
 
         if (dist <= distance_view) and (dist > 1) then
-            
+
             local world = Managers.world:world("level_world")
             local viewport = ScriptWorld.viewport(world, player.viewport_name)
             local camera = ScriptViewport.camera(viewport)
@@ -124,7 +124,7 @@ function mod.render_marker(pos_box, distance_view)
             local max_size = 150*0.8
             local max_distance = distance_view
             local waypoint_size = gaussian_size_decrease(distance, min_size, max_size, max_distance)
-            
+
 
 
             local waypoint_size_behind = 32
@@ -156,7 +156,7 @@ function mod.render_marker(pos_box, distance_view)
 
 
 
-            
+
 
             if is_clamped or is_behind then
                 if not waypoint_on_me then
@@ -190,18 +190,18 @@ function mod.render_marker(pos_box, distance_view)
                             gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                         end
                     else
-                        if not mod.gui then 
+                        if not mod.gui then
                             mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                         else
                             gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(screen_width - screen_width/20, screen_height/2), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                         end
                     end
 
-                   
+
                 end
             else
                 local alpha = 255
-                if not mod.gui then  
+                if not mod.gui then
                     mod.gui = gui_bitmap(mod_gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))
                 else
                     gui_update_bitmap(mod_gui, mod.gui, "LA_waypoint_main_icon", Vector2(waypoint_position2d[1], waypoint_position2d[2]), Vector2(waypoint_size, waypoint_size), Color(alpha, 255, 255, 255))

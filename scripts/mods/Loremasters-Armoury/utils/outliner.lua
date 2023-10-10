@@ -36,7 +36,7 @@ mod.LA_outline_units = {
 
 }
 
-for k,v in pairs(mod.LA_outline_units) do 
+for k,v in pairs(mod.LA_outline_units) do
     mod.LA_outline_units[v] = v
 end
 
@@ -52,7 +52,7 @@ function mod.outliner()
 
         local player = Managers.player:local_player()
         local player_unit = player.player_unit
-        
+
         if player_unit then
 
             local first_person_extension = ScriptUnit.extension(player_unit, "first_person_system")
@@ -65,7 +65,7 @@ function mod.outliner()
 
             local closest_unit_hit = nil
             local closest_hit = 9999
-            
+
             if hits then
                 for _, hit in ipairs(hits) do
                     local hit_distance = hit[2]

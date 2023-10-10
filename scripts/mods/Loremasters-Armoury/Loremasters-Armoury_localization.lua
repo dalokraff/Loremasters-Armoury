@@ -431,12 +431,12 @@ end
 
 local game_localize = Managers.localizer
 for _,skin in pairs(mod.vanilla_game_strings) do
-	
+
 	local pattern = "_rightHand"
     local new_name = string.gsub(skin, pattern, "")
-	
+
 	local skin_name = tostring(skin).."_name"
-	
+
 	local display_name_id = ItemMasterList[new_name].display_name
 	local translation = game_localize:_base_lookup(display_name_id)
 

@@ -6,7 +6,7 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_shield02/custom_reinhard",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
@@ -25,7 +25,7 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_bret_shield_basic1_Reynard01/Kruber_bret_shield_basic1_Reynard01_diffuse",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
@@ -41,10 +41,10 @@ mod.SKIN_LIST = {
     },
     Kruber_bret_shield_basic2_Luidhard01 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {
             "textures/Kruber_bret_shield_basic2_Luidhard01/Kruber_bret_shield_basic2_Luidhard01_diffuse",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
@@ -60,10 +60,10 @@ mod.SKIN_LIST = {
     },
     Kruber_bret_shield_basic3_Lothar01 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {
             "textures/Kruber_bret_shield_basic3_Lothar01/Kruber_bret_shield_basic3_Lothar01_diffuse",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
@@ -79,10 +79,10 @@ mod.SKIN_LIST = {
     },
     Kruber_bret_shield_hero1_Alberic01 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {
             "textures/Kruber_bret_shield_hero1_Alberic01/Kruber_bret_shield_hero1_Alberic01_diffuse",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {},
@@ -101,13 +101,13 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_empire_shield_hero1_Ostermark01/Kruber_empire_shield_hero1_Ostermark01_diffuse",
-             
+
         },
         new_units = {
             "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03",
             "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03_3p",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "left_hand_unit",
         skip_meshes = {},
         icons = {
@@ -140,13 +140,13 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_empire_shield_hero1_Kotbs01/Kruber_empire_shield_hero1_Kotbs01_diffuse",
-             
+
         },
         new_units = {
             "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03",
             "units/weapons/player/wpn_es_deus_shield_03/wpn_es_deus_shield_03_3p",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "left_hand_unit",
         skip_meshes = {},
         icons = {
@@ -176,16 +176,16 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_shield_basic_Avelorn01 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {
             "textures/Kerillian_elf_shield_basic_Avelorn01/Kerillian_elf_shield_basic_Avelorn01_diffuse",
-             
+
         },
         new_units = {
             "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01",
             "units/weapons/player/wpn_we_shield_01/wpn_we_shield_01_3p",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "left_hand_unit",
         skip_meshes = {
             skip0 = true,
@@ -212,10 +212,10 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_shield_basic2 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {
             "textures/Kerillian_elf_shield_basic2_Griffongate01/Kerillian_elf_shield_basic2_Griffongate01_diffuse",
-             
+
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {
@@ -224,7 +224,7 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_shield_basic2_mesh = {
         kind = "unit",
-        swap_skin = nil, 
+        swap_skin = nil,
         new_units = {
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01",
             "units/Kerillian_elf_shield/Kerillian_elf_shield_basic2_mesh_Griffongate01_3p",
@@ -404,9 +404,9 @@ mod.SKIN_LIST = {
         fps_units = {
             "units/beings/player/way_watcher_upgraded_skin_01/first_person_base/chr_first_person_mesh",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "armor",
-        skip_meshes = { 
+        skip_meshes = {
             skip4 = true,
             skip5 = true,
             skip6 = true,
@@ -424,19 +424,19 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_bow_Antlersong_Autumn = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {},
         is_vanilla_unit = true,
         special_textures = {
             {
                 slot = "texture_map_c0ba2942",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
             {
                 slot = "texture_map_64cc5eb8",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
         },
         mat_to_skip = {
@@ -448,7 +448,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {
-            skip1 = true, 
+            skip1 = true,
         },
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_icon",
@@ -458,19 +458,19 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_bow_Antlersong_Autumn_runed01 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {},
         is_vanilla_unit = true,
         special_textures = {
             {
                 slot = "texture_map_c0ba2942",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
             {
                 slot = "texture_map_64cc5eb8",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
         },
         mat_to_skip = {
@@ -482,7 +482,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {
-            skip1 = true, 
+            skip1 = true,
         },
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowblue_icon",
@@ -492,19 +492,19 @@ mod.SKIN_LIST = {
     },
     Kerillian_elf_bow_Antlersong_Autumn_runed02 = {
         kind = "texture",
-        swap_skin = nil, 
+        swap_skin = nil,
         textures = {},
         is_vanilla_unit = true,
         special_textures = {
             {
                 slot = "texture_map_c0ba2942",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_limbs_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
             {
                 slot = "texture_map_64cc5eb8",
                 texture = "textures/Kerillian_elf_bow_Antlersong_Autumn/Kerillian_elf_bow_Antlersong_leaf_Autumn_diffuse",
-                mesh = 1, 
+                mesh = 1,
             },
         },
         mat_to_skip = {
@@ -516,7 +516,7 @@ mod.SKIN_LIST = {
         },
         swap_hand = "left_hand_unit",
         skip_meshes = {
-            skip1 = true, 
+            skip1 = true,
         },
         icons = {
             we_longbow_skin_06 = "kerillian_elf_bow_antlersong_limbs_autumn_glowpurple_icon",
@@ -727,12 +727,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Avelorn/Kerillian_Wildrunner_helm_Avelorn_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -744,12 +744,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Caledor/Kerillian_Wildrunner_helm_Caledor_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -761,12 +761,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Chrace/Kerillian_Wildrunner_helm_Chrace_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -778,12 +778,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Cothique/Kerillian_Wildrunner_helm_Cothique_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -795,12 +795,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Eataine/Kerillian_Wildrunner_helm_Eataine_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -812,12 +812,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Ellyrion/Kerillian_Wildrunner_helm_Ellyrion_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -829,12 +829,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Nagarythe/Kerillian_Wildrunner_helm_Nagarythe_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -846,12 +846,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Saphery/Kerillian_Wildrunner_helm_Saphery_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -863,12 +863,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Tiranoc/Kerillian_Wildrunner_helm_Tiranoc_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -880,12 +880,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Wildrunner_helm/Yvresse/Kerillian_Wildrunner_helm_Yvresse_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_maiden_guard/headpiece/ww_mg_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -897,12 +897,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Evercrown_helm_AutumnHerald/Kerillian_Evercrown_helm_AutumnHerald_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -914,12 +914,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kerillian_Evercrown_helm_GreenHerald/Kerillian_Evercrown_helm_GreenHerald_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -935,7 +935,7 @@ mod.SKIN_LIST = {
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {
             skip0 = true,
@@ -956,7 +956,7 @@ mod.SKIN_LIST = {
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {
             skip0 = true,
@@ -977,7 +977,7 @@ mod.SKIN_LIST = {
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {
             skip0 = true,
@@ -1009,7 +1009,7 @@ mod.SKIN_LIST = {
         new_units = {
             "units/beings/player/way_watcher_upgraded/headpiece/ww_u_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {
             skip0 = true,
@@ -1032,7 +1032,7 @@ mod.SKIN_LIST = {
         new_units = {
             "units/beings/player/empire_soldier_knight/headpiece/es_k_hat_12",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1062,7 +1062,7 @@ mod.SKIN_LIST = {
         fps_units = {
             "units/beings/player/empire_soldier_knight/first_person_base/chr_first_person_mesh",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "armor",
         skip_meshes = {
             skip0 = true,
@@ -1073,7 +1073,7 @@ mod.SKIN_LIST = {
             skip5 = true,
             skip6 = true,
             skip10= true,
-            skip11 = true, 
+            skip11 = true,
             skip12 = true,
             skip13 = true,
             skip14 = true,
@@ -1119,7 +1119,7 @@ mod.SKIN_LIST = {
         fps_units = {
             "units/beings/player/empire_soldier_breton/first_person_base/chr_first_person_mesh",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "armor",
         skip_meshes = {
             skip0 = true,
@@ -1130,7 +1130,7 @@ mod.SKIN_LIST = {
             skip5 = true,
             skip6 = true,
             skip10= true,
-            skip11 = true, 
+            skip11 = true,
             skip12 = true,
             skip13 = true,
             skip14 = true,
@@ -1176,7 +1176,7 @@ mod.SKIN_LIST = {
         fps_units = {
             "units/beings/player/empire_soldier_breton/first_person_base/chr_first_person_mesh",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "armor",
         skip_meshes = {
             skip0 = true,
@@ -1187,7 +1187,7 @@ mod.SKIN_LIST = {
             skip5 = true,
             skip6 = true,
             skip10= true,
-            skip11 = true, 
+            skip11 = true,
             skip12 = true,
             skip13 = true,
             skip14 = true,
@@ -1213,12 +1213,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_black_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1230,12 +1230,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_red_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1247,12 +1247,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_white_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1264,12 +1264,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_yellow_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1281,12 +1281,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_devaoted_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1298,12 +1298,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_faithful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1315,12 +1315,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Worthy/Kruber_Worthy_helm_merciful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_01",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1332,12 +1332,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_black_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1349,12 +1349,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_red_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1366,12 +1366,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_white_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1383,29 +1383,29 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_yellow_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
             default = "kruber_pureheart_helm_yellow_icon",
         },
-    }, 
+    },
     Kruber_Pureheart_helm_devoted = {
         kind = "texture",
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_devoted_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1417,12 +1417,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_merciful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1434,12 +1434,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_faithful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1451,12 +1451,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_black_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1468,12 +1468,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_blue_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1485,12 +1485,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_red_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1502,12 +1502,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_white_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1519,12 +1519,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_devoted_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1536,12 +1536,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_faithful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1553,12 +1553,12 @@ mod.SKIN_LIST = {
         swap_skin = nil,
         textures = {
             "textures/Kruber_Grail_Knight_Helm/Hippogryph/Kruber_Hippogryph_helm_merciful_diffuse",
-             
+
         },
         new_units = {
             "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_03",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1569,12 +1569,12 @@ mod.SKIN_LIST = {
         kind = "texture",
         swap_skin = nil,
         textures = {
-            "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse",             
+            "textures/Kruber_SunsetBonnet_helm_Middenland/Kruber_SunsetBonnet_helm_Middenland_diffuse",
         },
         new_units = {
             "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1585,12 +1585,12 @@ mod.SKIN_LIST = {
         kind = "texture",
         swap_skin = nil,
         textures = {
-            "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse",             
+            "textures/Kruber_SunsetBonnet_helm_Nuln/Kruber_SunsetBonnet_helm_Nuln_diffuse",
         },
         new_units = {
             "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1601,12 +1601,12 @@ mod.SKIN_LIST = {
         kind = "texture",
         swap_skin = nil,
         textures = {
-            "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse",             
+            "textures/Kruber_SunsetBonnet_helm_Reikwald/Kruber_SunsetBonnet_helm_Reikwald_diffuse",
         },
         new_units = {
             "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1617,12 +1617,12 @@ mod.SKIN_LIST = {
         kind = "texture",
         swap_skin = nil,
         textures = {
-            "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse",             
+            "textures/Kruber_SunsetBonnet_helm_Stirland/Kruber_SunsetBonnet_helm_Stirland_diffuse",
         },
         new_units = {
             "units/beings/player/empire_soldier_huntsman/headpiece/es_h_hat_02",
         },
-        is_vanilla_unit = true, 
+        is_vanilla_unit = true,
         swap_hand = "hat",
         skip_meshes = {},
         icons = {
@@ -1830,7 +1830,7 @@ mod.SKIN_LIST = {
             bw_1h_sword_skin_02_runed_01 = "la_sienna_kotbs_sword_icon",
             bw_1h_sword_skin_02_runed_02 = "la_sienna_kotbs_sword_icon",
             default = "la_sienna_kotbs_sword_icon",
-        },       
+        },
     },
     Kruber_KOTBS_wizard_sword_01_gold = {
         kind = "unit",
@@ -1853,7 +1853,7 @@ mod.SKIN_LIST = {
             bw_1h_sword_skin_02_runed_01 = "la_sienna_kotbs_sword_glow_icon",
             bw_1h_sword_skin_02_runed_02 = "la_sienna_kotbs_sword_glow_icon",
             default = "la_sienna_kotbs_sword_glow_icon",
-        },       
+        },
     },
     Kruber_KOTBS_wizard_sword_01_flame = {
         kind = "unit",
@@ -1876,7 +1876,7 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_icon",
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_icon",
             default = "la_sienna_kotbs_firesword_icon",
-        },       
+        },
     },
     Kruber_KOTBS_wizard_sword_01_flame_gold = {
         kind = "unit",
@@ -1899,16 +1899,16 @@ mod.SKIN_LIST = {
             bw_1h_flaming_sword_skin_02_runed_01 = "la_sienna_kotbs_firesword_glow_icon",
             bw_1h_flaming_sword_skin_02_runed_02 = "la_sienna_kotbs_firesword_glow_icon",
             default = "la_sienna_kotbs_firesword_glow_icon",
-        },       
+        },
     },
 }
 
 
 mod.locked_skins = {
-    Kruber_KOTBS_empire_sword_01_gold = true, 
-    Kruber_KOTBS_empire_zweihander_01_gold = true, 
-    Kruber_KOTBS_bret_sword_01_gold = true, 
-    Kruber_KOTBS_wizard_sword_01_gold = true, 
+    Kruber_KOTBS_empire_sword_01_gold = true,
+    Kruber_KOTBS_empire_zweihander_01_gold = true,
+    Kruber_KOTBS_bret_sword_01_gold = true,
+    Kruber_KOTBS_wizard_sword_01_gold = true,
     Kruber_KOTBS_wizard_sword_01_flame_gold = true,
 }
 
@@ -2000,8 +2000,8 @@ mod.elf_hat_skins = {
 
 mod.krub_hat_skins = {
 	"knight_hat_1001",
-    "questing_knight_hat_0000", 
-    "questing_knight_hat_0001", 
+    "questing_knight_hat_0000",
+    "questing_knight_hat_0001",
     "questing_knight_hat_0003",
     "huntsman_hat_0001",
 }
@@ -2063,7 +2063,7 @@ mod.wizard_sword_skins = {
     "bw_1h_sword_skin_03",
     "bw_1h_sword_skin_04",
 	"bw_1h_sword_skin_05",
-	"bw_1h_sword_skin_06",	
+	"bw_1h_sword_skin_06",
 	"bw_1h_sword_skin_07",
 	"bw_1h_sword_skin_08",
 	"bw_1h_sword_skin_01_runed_01",
@@ -2091,7 +2091,7 @@ mod.bretonian_longsword_skins = {
 mod.wizard_flame_sword_skins = {
     "bw_1h_flaming_sword_skin_01",
     "bw_1h_flaming_sword_skin_02",
-    "bw_1h_flaming_sword_skin_03",	
+    "bw_1h_flaming_sword_skin_03",
 	"bw_1h_flaming_sword_skin_04",
     "bw_1h_flaming_sword_skin_05",
 	"bw_1h_flaming_sword_skin_06",
@@ -2132,16 +2132,16 @@ for _,skin in pairs(skins_to_change) do
     local unit = nil
     local new_name = string.gsub(skin, pattern, "")
     if skin_table_weapons[new_name] then
-        if string.find(skin, pattern) then 
+        if string.find(skin, pattern) then
             unit = skin_table_weapons[new_name].right_hand_unit
-        else 
+        else
             unit = skin_table_weapons[new_name].left_hand_unit or skin_table_weapons[new_name].right_hand_unit
         end
     elseif skin_table_items[new_name] then
         unit = skin_table_items[new_name].unit
     end
- 
-    
+
+
     local tisch = {
         changed_texture = false,
         changed_model = false,

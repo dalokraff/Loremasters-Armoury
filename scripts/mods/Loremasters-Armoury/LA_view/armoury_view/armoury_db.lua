@@ -231,7 +231,7 @@ for item_name, item_data in pairs(item_master_list) do
 end
 
 for weapon_name, weapon_data in pairs(armoury) do
-    
+
     for item_name, item_data in pairs(item_master_list) do
         local display_name = item_data.display_name
         if display_name then
@@ -265,4 +265,3 @@ return armoury
 
 -- local mutator = mod:persistent_table("DenseOnslaught")
 -- require 'pl.pretty'.dump(mutator.OriginalTerrorEventBlueprints)
-

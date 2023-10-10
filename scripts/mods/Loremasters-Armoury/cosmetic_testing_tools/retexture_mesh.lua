@@ -10,9 +10,9 @@ RetextureMesh.init = function (self, unit, unit_spawner, pos, rot)
     if type(unit) == "string" then
         self.unit = unit_spawner:spawn_local_unit(unit, pos, rot)
     elseif type(unit) == "userdata" then
-        self.unit = unit    
+        self.unit = unit
     end
-    
+
 end
 
 RetextureMesh.set_texture = function(self, text_slot, texture_file, meshes_to_skip)
@@ -34,7 +34,7 @@ RetextureMesh.set_texture = function(self, text_slot, texture_file, meshes_to_sk
                 end
             end
         end
-    end    
+    end
 end
 
 RetextureMesh.set_texture_resoruce = function(self, text_slot, meshes_to_skip, texture_file_key, texture_resource)
@@ -43,7 +43,7 @@ RetextureMesh.set_texture_resoruce = function(self, text_slot, meshes_to_skip, t
     local unit = self.unit
 
     if Unit.alive(unit) and texture_resource and text_slot then
-        
+
         local num_meshes = Unit.num_meshes(unit)
         for i = 0, num_meshes - 1, 1 do
             if not skip_meshes[i] then
@@ -57,7 +57,7 @@ RetextureMesh.set_texture_resoruce = function(self, text_slot, meshes_to_skip, t
                 end
             end
         end
-    end    
+    end
 end
 
 RetextureMesh.set_texture_from_url = function(self, text_slot, texture_file_key, meshes_to_skip, url)
@@ -71,7 +71,7 @@ RetextureMesh.set_texture_from_url = function(self, text_slot, texture_file_key,
 )
 end
 
-RetextureMesh.destroy = function(self) 
+RetextureMesh.destroy = function(self)
 
     self.unit_spawner:mark_for_deletion(self.unit)
 

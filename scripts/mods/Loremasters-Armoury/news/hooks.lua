@@ -31,7 +31,7 @@ mod:hook(NewsFeedUI,"init", function (func, self, parent, ingame_ui_context)
                         end
                     end
                 end
-                
+
                 return false
             end,
         }

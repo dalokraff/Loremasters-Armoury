@@ -1,5 +1,5 @@
 local generate_scenegraph_definition = function(
-        inner_window_size, 
+        inner_window_size,
         window_size,
         window_frame,
         list_window_size,
@@ -16,7 +16,7 @@ local generate_scenegraph_definition = function(
         la_ui_gear_icon,
         gear_icon_seperation_factor
     )
-    
+
     return {
         root = {
             is_root = true,
@@ -184,7 +184,7 @@ local generate_scenegraph_definition = function(
                 35
             }
         },
-    
+
         window_frame = {
             vertical_alignment = "center",
             parent = "screen",
@@ -252,7 +252,7 @@ local generate_scenegraph_definition = function(
                 5
             }
         },
-    
+
         window_background = {
             vertical_alignment = "center",
             parent = "window",
@@ -390,7 +390,7 @@ local generate_scenegraph_definition = function(
                 -1
             }
         },
-    
+
         original_skins_frame = {
             vertical_alignment = "center",
             parent = "window_background",
@@ -562,10 +562,10 @@ local generate_scenegraph_definition = function(
             vertical_alignment = "center",
             horizontal_alignment = "right",
             size = la_ui_separator,
-            position = { 
+            position = {
                 450,
-                0, 
-                32 
+                0,
+                32
             },
         },
         -- original_skins_equiped_skin_hand_bg = {
@@ -643,8 +643,8 @@ local generate_scenegraph_definition = function(
                 32
             }
         },
-    
-    
+
+
         LA_skins_frame = {
             vertical_alignment = "center",
             parent = "window_background",
@@ -734,7 +734,7 @@ local generate_scenegraph_definition = function(
                 0
             }
         },
-    
+
         LA_skins_list_entry_main_hand = {
             vertical_alignment = "top",
             parent = "LA_skins_list_scroll_root",
@@ -785,8 +785,8 @@ local generate_scenegraph_definition = function(
                 31
             }
         },
-    
-        
+
+
         LA_skins_list_entry_off_hand = {
             vertical_alignment = "top",
             parent = "LA_skins_list_scroll_root",
@@ -837,8 +837,8 @@ local generate_scenegraph_definition = function(
                 31
             }
         },
-    
-        
+
+
         LA_skins_list_entry_outfits = {
             vertical_alignment = "top",
             parent = "LA_skins_list_scroll_root",
@@ -850,7 +850,7 @@ local generate_scenegraph_definition = function(
                 -1
             }
         },
-        
+
         LA_skins_outfits_header_root = {
             vertical_alignment = "top",
             parent = "LA_skins_list_scroll_root",
@@ -890,19 +890,19 @@ local generate_scenegraph_definition = function(
                 31
             }
         },
-    
+
         LA_skins_list_divider = {
             parent = "LA_skins_list_scroll_root",
             vertical_alignment = "center",
             horizontal_alignment = "left",
             size = la_ui_separator,
-            position = { 
+            position = {
                 -450,
-                -265, 
-                32 
+                -265,
+                32
             },
         },
-    
+
         LA_skins_list_detail_top = {
             vertical_alignment = "top",
             parent = "LA_skins_list_scrollbar",
@@ -931,7 +931,7 @@ local generate_scenegraph_definition = function(
                 2
             }
         },
-    
+
         my_button = {
           parent = "window",
           vertical_alignment = "bottom",
@@ -939,103 +939,103 @@ local generate_scenegraph_definition = function(
           size = { 438, 44 },
           position = { 12.5, -25, 50 },
         },
-    
+
         hero_selection = {
             parent = "window_background",
             vertical_alignment = "top",
             horizontal_alignment = "center",
-            size = { 
-                200, 
-                100 
+            size = {
+                200,
+                100
             },
-            position = { 
+            position = {
                 0,
-                0, 
-                2 
+                0,
+                2
             },
         },
         es_hero_select = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                50, 
-                50 
+            size = {
+                50,
+                50
             },
-            position = { 
+            position = {
                 -220,
-                -15, 
-                32 
+                -15,
+                32
             },
         },
         dr_hero_select = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                50, 
-                50 
+            size = {
+                50,
+                50
             },
-            position = { 
+            position = {
                 -110,
-                -15, 
-                32 
+                -15,
+                32
             },
         },
         we_hero_select = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                50, 
-                50 
+            size = {
+                50,
+                50
             },
-            position = { 
+            position = {
                 0,
-                -15, 
-                32 
+                -15,
+                32
             },
         },
         wh_hero_select = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                50, 
-                50 
+            size = {
+                50,
+                50
             },
-            position = { 
+            position = {
                 110,
-                -15, 
-                32 
+                -15,
+                32
             },
         },
         bw_hero_select = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                50, 
-                50 
+            size = {
+                50,
+                50
             },
-            position = { 
+            position = {
                 220,
-                -15, 
-                32 
+                -15,
+                32
             },
         },
         hero_select_divider = {
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                530, 
-                20 
+            size = {
+                530,
+                20
             },
-            position = { 
+            position = {
                 0,
-                -75, 
-                32 
+                -75,
+                32
             },
         },
         gear_icon_frame = {
@@ -1043,9 +1043,9 @@ local generate_scenegraph_definition = function(
             vertical_alignment = "center",
             horizontal_alignment = "center",
             size = la_ui_gear_icon,
-            position = { 
+            position = {
                 0,
-                -107.5, 
+                -107.5,
                 31
             },
         },
@@ -1053,56 +1053,56 @@ local generate_scenegraph_definition = function(
             parent = "gear_icon_frame",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                42.5, 
+            size = {
+                42.5,
                 42.5
             },
-            position = { 
+            position = {
                 -135*gear_icon_seperation_factor,
-                0, 
-                32 
+                0,
+                32
             },
         },
         ranged_item_select = {
             parent = "gear_icon_frame",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                42.5, 
+            size = {
+                42.5,
                 42.5
             },
-            position = { 
+            position = {
                 -45*gear_icon_seperation_factor,
-                0, 
-                32 
+                0,
+                32
             },
         },
         skin_item_select = {
             parent = "gear_icon_frame",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                42.5, 
+            size = {
+                42.5,
                 42.5
             },
-            position = { 
+            position = {
                 45*gear_icon_seperation_factor,
-                0, 
-                32 
+                0,
+                32
             },
         },
         hat_item_select = {
             parent = "gear_icon_frame",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                42.5, 
+            size = {
+                42.5,
                 42.5
             },
-            position = { 
+            position = {
                 135*gear_icon_seperation_factor,
-                0, 
-                32 
+                0,
+                32
             },
         },
 
@@ -1133,14 +1133,14 @@ local generate_scenegraph_definition = function(
             parent = "hero_selection",
             vertical_alignment = "center",
             horizontal_alignment = "center",
-            size = { 
-                807, 
-                116 
+            size = {
+                807,
+                116
             },
-            position = { 
+            position = {
                 -397,
-                70, 
-                100 
+                70,
+                100
             },
         },
         tutorial_2 = {
@@ -1151,9 +1151,9 @@ local generate_scenegraph_definition = function(
                 664,
                 252
             },
-            position = { 
+            position = {
                 135*gear_icon_seperation_factor + 350,
-                120, 
+                120,
                 100
             },
         },
@@ -1165,9 +1165,9 @@ local generate_scenegraph_definition = function(
                 625,
                 247
             },
-            position = { 
+            position = {
                 0,
-                250, 
+                250,
                 100
             },
         },
@@ -1179,9 +1179,9 @@ local generate_scenegraph_definition = function(
                 558,
                 205
             },
-            position = { 
+            position = {
                 -15,
-                -175, 
+                -175,
                 100
             },
         },
@@ -1193,9 +1193,9 @@ local generate_scenegraph_definition = function(
                 505,
                 322
             },
-            position = { 
+            position = {
                 -75,
-                0, 
+                0,
                 100
             },
         },
@@ -1207,9 +1207,9 @@ local generate_scenegraph_definition = function(
                 281,
                 127
             },
-            position = { 
+            position = {
                 0,
-                0, 
+                0,
                 100
             },
         },
@@ -1217,4 +1217,3 @@ local generate_scenegraph_definition = function(
 end
 
 return generate_scenegraph_definition
-

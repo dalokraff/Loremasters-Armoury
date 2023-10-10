@@ -43,7 +43,7 @@ local desc_strings = {
     Kerillian_Evercrown_helm_AutumnHerald = "High-status waywatcher's mask, worn by a warrior skilled in the myriad ways of silent death.",
     Kerillian_Evercrown_helm_GreenHerald = "High-status waywatcher's mask, worn by a warrior skilled in the myriad ways of silent death.",
     Kerillian_HornOfKurnous_helm_Beaststalker = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.",
-    Kerillian_HornOfKurnous_helm_Frostwatcher = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.", 
+    Kerillian_HornOfKurnous_helm_Frostwatcher = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.",
     Kerillian_HornOfKurnous_helm_Nightstalker = "Antlered hood, symbolising dedication to Kurnous, God of the Hunt. Seldom worn by elf-maids.",
     Kerillian_HornOfKurnous_helm_Purified = "Showing proper respect to the Pale Queen might call her into acton, and this save your soul from the clutches of chaos.",
     Kerillian_elf_bow_Antlersong_Autumn = "Under the perennially auburn leaves of the mighty guardian Delliandra, the forest grows and grows eternally.",
@@ -105,7 +105,7 @@ mod.bret_shields = {
 }
 
 mod.empire_shields = {
-    Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",    
+    Kruber_empire_shield_basic2 = "Wolfenburg Guard Shield",
     Kruber_empire_shield_basic3_Middenheim01 = "The White Wolf (spear)",
     Kruber_empire_shield_basic2_Middenheim = "The White Wolf",
     Kruber_empire_shield_hero1_Kotbs01 = "Sol Invictus (spear)",
@@ -117,7 +117,7 @@ mod.empire_shields = {
 
 mod.elf_shields = {
     Kerillian_elf_shield_heroClean_Avelorn02 = "Shield of the Maiden Guard",
-    Kerillian_elf_shield_basic2_mesh = "Griffon Gate Sentry-Shield", 
+    Kerillian_elf_shield_basic2_mesh = "Griffon Gate Sentry-Shield",
     -- Kerillian_elf_shield_basic2 = "Griffon Gate Sentry-Shield",
     Kerillian_elf_shield_basic2_Eaglegate01 = "Eagle Gate Sentry-Shield",
     Kerillian_elf_shield_heroClean_Caledor01 = "Dragon Shield of Caledor (Noble)",
@@ -168,7 +168,7 @@ mod.elf_hats = {
     },
     waywatcher_hat_0001 = {
         Kerillian_HornOfKurnous_helm_Beaststalker = "Horn of Kurnous (Beaststalker)",
-        Kerillian_HornOfKurnous_helm_Frostwatcher = "Horn of Kurnous (Frostwatcher)", 
+        Kerillian_HornOfKurnous_helm_Frostwatcher = "Horn of Kurnous (Frostwatcher)",
         Kerillian_HornOfKurnous_helm_Nightstalker = "Horn of Kurnous (Nightstalker)",
         Kerillian_HornOfKurnous_helm_Purified = "Horn of Kurnous (Purified)",
     }
@@ -262,17 +262,17 @@ for k,v in pairs(mod.dwarf_shields) do
     name_strings[k] = v
 end
 for k,helm in pairs(mod.elf_hats) do
-    for variant,name in pairs(helm) do 
+    for variant,name in pairs(helm) do
         name_strings[variant] = name
     end
 end
 for k,helm in pairs(mod.krub_hats) do
-    for variant,name in pairs(helm) do 
+    for variant,name in pairs(helm) do
         name_strings[variant] = name
     end
 end
 for k,weapon in pairs(mod.elf_bows) do
-    for variant,name in pairs(weapon) do 
+    for variant,name in pairs(weapon) do
         name_strings[variant] = name
     end
 end
@@ -314,12 +314,12 @@ local pattern = "_rightHand"
 
 
 for skin, data in pairs(mod.SKIN_CHANGED) do
-    
+
     local new_name = string.gsub(skin, pattern, "")
-    
+
     local description = skin_table[new_name].description
     local heiss = skin_table[new_name].display_name
-    
+
     desc[description] = skin
     name[heiss] = skin
 end
@@ -340,7 +340,7 @@ for k,v in pairs(name) do
     mod.helper_dict[k] = v
 end
 
-for Armoury_key,Armoury_data in pairs(mod.SKIN_LIST) do 
+for Armoury_key,Armoury_data in pairs(mod.SKIN_LIST) do
     WeaponSkins.skins[Armoury_key] = {
         inventory_icon = "quest_icon_empty",
         description = "test_item_desc",

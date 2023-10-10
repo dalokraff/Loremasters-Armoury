@@ -20,6 +20,6 @@ mod.list_of_LA_levels_books = {
     dlc_bastion = {
         position = stingray.Vector3Box(70.4, -10.4, -0.85),
         rotation = QuaternionBox(Quaternion.multiply(Quaternion.from_elements(0,0,0,1), radians_to_quaternion(0, -3*math.pi/4, 0))),
-        collected = false, 
+        collected = false,
     },
 }

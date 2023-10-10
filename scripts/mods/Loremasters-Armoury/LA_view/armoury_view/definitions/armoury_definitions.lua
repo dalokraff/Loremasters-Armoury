@@ -64,7 +64,7 @@ local la_ui_separator = {
 	34*0.9
 }
 local la_ui_gear_icon = {
-	462*0.85, 
+	462*0.85,
 	63*0.85
 }
 local gear_icon_seperation_factor = 0.85/0.90
@@ -115,7 +115,7 @@ UIFrameSettings["la_ui_framecorners"] = {
 }
 
 local scenegraph_definition = generate_scenegraph_definition(
-	inner_window_size, 
+	inner_window_size,
 	window_size,
 	window_frame,
 	list_window_size,
@@ -223,7 +223,7 @@ local LA_skins_title_text_style = {
 	}
 }
 
-  
+
 local widgets_definitions = generate_widgets_definitions(
     scenegraph_definition,
 	window_title_text_style,

@@ -1,5 +1,5 @@
 local skin_killQuest = {
-    
+
     sub_quest_01 = {
         kind = "skaven",
         weapon = nil
