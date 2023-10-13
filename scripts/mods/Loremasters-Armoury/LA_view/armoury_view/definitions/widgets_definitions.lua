@@ -25,14 +25,14 @@ local generate_widgets_definitions = function(
         window_title_bg = UIWidgets.create_background("window_title_bg", scenegraph_definition.window_title_bg.size, "menu_frame_bg_02"),
         window_title_text = UIWidgets.create_simple_text("mod_name", "window_title_text", nil, nil, window_title_text_style),
 
-        -- tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight("tutorial_overlay_toggle", scenegraph_definition.tutorial_overlay_toggle.size, nil, "la_questionmark_icon", "la_questionmark_icon", "la_questionmark_icon"),
         tutorial_overlay_toggle = LAWidgetUtils.create_button_with_hover_highlight(
                                     "tutorial_overlay_toggle",
                                     scenegraph_definition.tutorial_overlay_toggle.size,
                                     nil,
                                     "la_questionmark_icon",
                                     "la_questionmark_icon",
-                                    "la_ui_arrowright_large_active"
+                                    "la_questionmark_icon_active",
+                                    {17,-3}
                                 ),
 
         LA_preview_background = UIWidgets.create_simple_texture("la_ui_itempreviewframe_armour", "LA_preview_background"),

@@ -330,8 +330,7 @@ ArmouryView._handle_input = function (self, dt, t)
 			elseif string.find(name, "tutorial_overlay_toggle") then
 				self:unselect_buttons(widgets_by_name, "tutorial_overlay_toggle")
 				self:play_sound("Play_hud_select")
-				self:toggle_button(button_widget)
-				self:toggle_tutorial_overlay()
+				self:toggle_tutorial_overlay(name)
             end
             return
         end
@@ -365,7 +364,7 @@ ArmouryView._handle_input = function (self, dt, t)
     end
 end
 
-ArmouryView.toggle_tutorial_overlay = function(self)
+ArmouryView.toggle_tutorial_overlay = function(self, toggle_widget_name)
 
 	local widgets = self._widgets
 	local widgets_by_name = self._widgets_by_name
@@ -400,11 +399,15 @@ ArmouryView.toggle_tutorial_overlay = function(self)
 			widget_name = "tutorial_0",
 		}
 
+		self.toggled_buttons[toggle_widget_name] = {}
+
 	elseif self.tutorial_widgets then
 		for _, widget_info in pairs(self.tutorial_widgets) do
 			widgets[widget_info.widget_number] = nil
 			widgets_by_name[widget_info.widget_name] = nil
 		end
+
+		self.toggled_buttons[toggle_widget_name] = nil
 	end
 
 end

@@ -1971,7 +1971,7 @@ LAWidgetUtils.create_list_mask = function(scenegraph_id, size, fade_height)
 	return widget
 end
 
-LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, base_size, frame_name, background_texture, icon_name, hover_glow_texture)
+LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, base_size, frame_name, background_texture, icon_name, hover_glow_texture, hover_offset)
 	background_texture = background_texture or "menu_frame_bg_06"
 	local background_texture_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(background_texture)
 	local frame_settings = frame_name and UIFrameSettings[frame_name] or UIFrameSettings.menu_frame_06
@@ -1979,6 +1979,7 @@ LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, base
 	local icon_settings = UIAtlasHelper.get_atlas_settings_by_texture_name(icon_name)
 	local icon_size = icon_settings.size
 	local size = icon_size
+	hover_offset = hover_offset or {0,0}
 
 	return {
 		element = {
@@ -2050,8 +2051,8 @@ LAWidgetUtils.create_button_with_hover_highlight = function (scenegraph_id, base
 			hover_glow = {
 				texture_size = size,
 				offset = {
-					16,
-					-5,
+					16 - hover_offset[1],
+					-5 - hover_offset[2],
 					32
 				},
 			},

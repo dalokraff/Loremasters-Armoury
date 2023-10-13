@@ -2,8 +2,8 @@
 armoury_ui_elements_atlas = {
 	gem_blue = {
 		size = { 27, 22, },
-		uv00 = { 0.889648, 0.029419, },
-		uv11 = { 0.916016, 0.032104, },
+		uv00 = { 0.940430, 0.029419, },
+		uv11 = { 0.966797, 0.032104, },
 	},
 	la_ui_arrowleft_small = {
 		size = { 30, 26, },
@@ -16,6 +16,11 @@ armoury_ui_elements_atlas = {
 		uv11 = { 0.987305, 0.025391, },
 	},
 	la_questionmark_icon = {
+		size = { 52, 52, },
+		uv00 = { 0.889648, 0.029419, },
+		uv11 = { 0.940430, 0.035767, },
+	},
+	la_questionmark_icon_active = {
 		size = { 52, 52, },
 		uv00 = { 0.907227, 0.022217, },
 		uv11 = { 0.958008, 0.028564, },
@@ -90,27 +95,27 @@ armoury_ui_elements_atlas = {
 		uv00 = { 0.555664, 0.313232, },
 		uv11 = { 0.946289, 0.316284, },
 	},
-	la_ui_framecorners = {
-		size = { 400, 400, },
-		uv00 = { 0.555664, 0.264404, },
-		uv11 = { 0.946289, 0.313232, },
-	},
 	la_ui_frame_left_side = {
 		size = { 25, 400, },
 		uv00 = { 0.840820, 0.000000, },
 		uv11 = { 0.865234, 0.048828, },
+	},
+	la_ui_framecorners = {
+		size = { 400, 400, },
+		uv00 = { 0.555664, 0.264404, },
+		uv11 = { 0.946289, 0.313232, },
 	},
 	la_ui_frame_top_side = {
 		size = { 400, 25, },
 		uv00 = { 0.555664, 0.261353, },
 		uv11 = { 0.946289, 0.264404, },
 	},
-	la_ui_closebutton = {
+	la_ui_closebutton_active = {
 		size = { 426, 44, },
 		uv00 = { 0.555664, 0.255981, },
 		uv11 = { 0.971680, 0.261353, },
 	},
-	la_ui_closebutton_active = {
+	la_ui_closebutton = {
 		size = { 426, 44, },
 		uv00 = { 0.555664, 0.250610, },
 		uv11 = { 0.971680, 0.255981, },
@@ -125,15 +130,15 @@ armoury_ui_elements_atlas = {
 		uv00 = { 0.493164, 0.482788, },
 		uv11 = { 0.969727, 0.493164, },
 	},
-	la_ui_separatorleft = {
-		size = { 493, 32, },
-		uv00 = { 0.493164, 0.478882, },
-		uv11 = { 0.974609, 0.482788, },
-	},
 	la_ui_separatorright = {
 		size = { 493, 33, },
+		uv00 = { 0.493164, 0.478760, },
+		uv11 = { 0.974609, 0.482788, },
+	},
+	la_ui_separatorleft = {
+		size = { 493, 32, },
 		uv00 = { 0.493164, 0.474854, },
-		uv11 = { 0.974609, 0.478882, },
+		uv11 = { 0.974609, 0.478760, },
 	},
 	la_ui_empireweapon = {
 		size = { 111, 496, },
@@ -190,12 +195,12 @@ armoury_ui_elements_atlas = {
 		uv00 = { 0.000000, 0.236450, },
 		uv11 = { 0.788086, 0.250610, },
 	},
-	la_ui_frameheader_gemless = {
+	la_ui_frameheader = {
 		size = { 859, 58, },
 		uv00 = { 0.000000, 0.229370, },
 		uv11 = { 0.838867, 0.236450, },
 	},
-	la_ui_frameheader = {
+	la_ui_frameheader_gemless = {
 		size = { 859, 58, },
 		uv00 = { 0.000000, 0.222290, },
 		uv11 = { 0.838867, 0.229370, },
