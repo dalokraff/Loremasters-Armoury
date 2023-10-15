@@ -194,6 +194,13 @@ function ArmouryView:play_sound(event)
 	WwiseWorld.trigger_event(self.wwise_world, event)
 end
 
+ArmouryView._update_button_hover_sound = function (self, widget, sound)
+	sound = sound or "hud_morris_hover"
+	if UIUtils.is_button_hover_enter(widget) then
+		self:play_sound(sound)
+	end
+end
+
 ArmouryView._handle_input = function (self, dt, t)
     local esc_pressed = self:input_service():get("toggle_menu")
     local widgets = self._widgets
@@ -210,91 +217,104 @@ ArmouryView._handle_input = function (self, dt, t)
 		local is_pressed = self:_is_button_pressed(button_widget)
 		local is_right_click_pressed = self:_is_button_right_click_pressed(button_widget)
 
-        if is_pressed then
-            button_widget.toggled = not button_widget.toggled
-            if string.find(name, "hero_select") then
-				--selects hero
-                self.selected_hero = name
-                self:unselect_buttons(widgets_by_name, "hero_select")
-                self:toggle_button(button_widget)
+		button_widget.toggled = not button_widget.toggled
+		if string.find(name, "hero_select") then
+			--selects hero
+			if is_pressed then
+				self.selected_hero = name
+				self:unselect_buttons(widgets_by_name, "hero_select")
+				self:toggle_button(button_widget)
 				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = 0
-				-- self:clear_original_skin_list_skin_entry_widgets()
-                self:update_original_skin_list()
+				self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
-
 				self.toggled_buttons = {}
 				self.toggled_buttons[name] = {}
-
-            elseif string.find(name, "item_select") then
-				--selects which weapon/item type (ranged, melee, char skin)
-                self.selected_item = name
-                self:unselect_buttons(widgets_by_name, "item_select")
-                self:toggle_button(button_widget)
+			else
+				self:_update_button_hover_sound(button_widget, "play_gui_filter_tab_hover")
+			end
+		elseif string.find(name, "item_select") then
+			--selects which weapon/item type (ranged, melee, char skin)
+			if is_pressed then
+				self.selected_item = name
+				self:unselect_buttons(widgets_by_name, "item_select")
+				self:toggle_button(button_widget)
 				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = 0
-				-- self:clear_original_skin_list_skin_entry_widgets()
-                self:update_original_skin_list()
+				self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
-
 				self.toggled_buttons[self.selected_hero] = {}
 				self.toggled_buttons[self.selected_hero][name] = {}
-
-            elseif string.find(name, "_original_skin") then
-				--selects which of the base game items to modify
-                -- self.selected_item = name
-                self:unselect_buttons(widgets_by_name, "_original_skin")
-                self:toggle_button(button_widget)
+			else
+				self:_update_button_hover_sound(button_widget, "play_gui_filter_tab_hover")
+			end
+		elseif string.find(name, "_original_skin") then
+			--selects which of the base game items to modify
+			if is_pressed then
+				self:unselect_buttons(widgets_by_name, "_original_skin")
+				self:toggle_button(button_widget)
 				self:play_sound("hud_morris_weapon_chest_unlock")
-                -- self:update_original_skin_list()
+			self.new_viewport_unit = name
+			self.new_viewport_unit = name
+			-- self:spawn_item_in_viewport(name)
 
 				self.new_viewport_unit = name
-				-- self:spawn_item_in_viewport(name)
+			-- self:spawn_item_in_viewport(name)
 
 				self:update_original_skin_list_skin_entries(name)
 				self:clear_equipped_skin_widgets()
-
 				self.selected_original_skin = name
 				self.toggled_buttons[self.selected_hero][self.selected_item] = {}
 				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
-
-			elseif string.find(name, "_original_entry_skin") then
-				--selects which of the base game skins to modify
-                -- self.selected_item = name
-                self:unselect_buttons(widgets_by_name, "_original_entry_skin")
-                self:toggle_button(button_widget)
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		elseif string.find(name, "_original_entry_skin") then
+			--selects which of the base game skins to modify
+			if is_pressed then
+				self:unselect_buttons(widgets_by_name, "_original_entry_skin")
+				self:toggle_button(button_widget)
 				self:play_sound("hud_morris_weapon_chest_open")
-                self:update_LA_skin_list(name, "weapon") --update LA skins
+				self:update_LA_skin_list(name, "weapon") --update LA skins
+			self.new_viewport_unit = name
+			self.new_viewport_unit = name
+			-- self:spawn_item_in_viewport(name)
 
 				self.new_viewport_unit = name
-				-- self:spawn_item_in_viewport(name)
+			-- self:spawn_item_in_viewport(name)
 
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] = {}
 				self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin][name] = {}
-
 				self:create_equipped_skins_display()
-			elseif string.find(name, "_original_entry_outfit_skin") then
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		elseif string.find(name, "_original_entry_outfit_skin") then
+			if is_pressed then
 				self:unselect_buttons(widgets_by_name, "_original_entry_outfit_skin")
-                self:toggle_button(button_widget)
+				self:toggle_button(button_widget)
 				self:play_sound("hud_morris_weapon_chest_open")
-                self:update_LA_skin_list(name, "outfits") --update LA skins
+				self:update_LA_skin_list(name, "outfits") --update LA skins
+			self.new_viewport_unit = name
+			self.new_viewport_unit = name
+			-- self:spawn_item_in_viewport(name)
 
 				self.new_viewport_unit = name
-				-- self:spawn_item_in_viewport(name)
+			-- self:spawn_item_in_viewport(name)
 
 				self.original_skin_chosen = name
 				self.toggled_buttons[self.selected_hero][self.selected_item]= {}
 				self.toggled_buttons[self.selected_hero][self.selected_item][name] = {}
-				-- self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
-
 				self:create_equipped_skins_display()
-			elseif string.find(name, "_LA_skins_entry_skin") then
-                --selects which LA skin to equip
-				-- self.selected_item = name
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		elseif string.find(name, "_LA_skins_entry_skin") then
+			--selects which LA skin to equip
+			if is_pressed then
 				self:unselect_buttons(widgets_by_name, "_LA_skins_entry_skin")
-
-                self:toggle_button(button_widget, true)
+				self:toggle_button(button_widget, true)
 				self:play_sound("play_gui_equipment_power_level_increase")
 
 				if self.toggled_buttons[self.selected_hero][self.selected_item][self.selected_original_skin] then
@@ -305,35 +325,53 @@ ArmouryView._handle_input = function (self, dt, t)
 					self.toggled_buttons[self.selected_hero][self.selected_item][name] = true
 				end
 
+			local skin_name = self:set_armoury_key(name)
+			local skin_name = self:set_armoury_key(name)
+
 				local skin_name = self:set_armoury_key(name)
 
+			self.new_viewport_unit = skin_name
+			self.new_viewport_unit = skin_name
+			-- self:spawn_item_in_viewport(skin_name)
+
 				self.new_viewport_unit = skin_name
-				-- self:spawn_item_in_viewport(skin_name)
+			-- self:spawn_item_in_viewport(skin_name)
 
 				self:create_equipped_skins_display()
-
-			elseif string.find(name, "_original_equipped_skin") then
-                --for reseting the skin to default
-				-- self.selected_item = name
-                self:unselect_buttons(widgets_by_name, "_original_equipped_skin")
-                self:toggle_button(button_widget)
+			else
+				self:_update_button_hover_sound(button_widget, "Play_hud_store_button_hover")
+			end
+		elseif string.find(name, "_original_equipped_skin") then
+			--for reseting the skin to default
+			if is_pressed then
+				self:unselect_buttons(widgets_by_name, "_original_equipped_skin")
+				self:toggle_button(button_widget)
 				self:play_sound("Play_hud_select")
 				self:reset_hand_to_default(name)
 				self:create_equipped_skins_display()
-			elseif string.find(name, "original_skins_equiped_skin_page_button") then
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		elseif string.find(name, "original_skins_equiped_skin_page_button") then
+			if is_pressed then
 				self:unselect_buttons(widgets_by_name, "original_skins_equiped_skin_page_button")
 				self:toggle_button(button_widget)
 				self:play_sound("Play_hud_select")
 				self.original_skin_list_page_offset = self.original_skin_list_page_offset + 22
 				self:update_original_skin_list()
 				self:clear_equipped_skin_widgets()
-			elseif string.find(name, "tutorial_overlay_toggle") then
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		elseif string.find(name, "tutorial_overlay_toggle") then
+			if is_pressed then
 				self:unselect_buttons(widgets_by_name, "tutorial_overlay_toggle")
 				self:play_sound("Play_hud_select")
 				self:toggle_tutorial_overlay(name)
-            end
-            return
-        end
+			else
+				self:_update_button_hover_sound(button_widget)
+			end
+		end
 
 		if is_right_click_pressed then
 			if string.find(name, "_LA_skins_entry_skin") then
