@@ -461,7 +461,7 @@ mod:hook(StatisticsUtil, "register_kill", function(func, victim_unit, damage_dat
         local player_manager = Managers.player
         local attacker_unique_id = victim_damage_data.attacker_unique_id
         if attacker_unique_id then
-            local attacker_player = player_manager:player_from_unique_id(attacker_unique_id)
+            local attacker_player = player_manager:player_from_unique_id(attacker_unique_id) or {}
             local player = Managers.player:local_player()
             local player_unit = player.player_unit
             --attacker_player does nto exist when player is joining
