@@ -21,7 +21,7 @@ unit = [
 
 texture = [
   "textures/*"
-] 
+]
 
 wwise_dep = [
   "wwise/*"
