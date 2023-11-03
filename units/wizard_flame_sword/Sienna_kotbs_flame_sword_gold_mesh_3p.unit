@@ -4,7 +4,7 @@ data = {
     }
 
      mat_to_use = "units/weapons/player/wpn_we_dagger_01_t1/wpn_we_dagger_01_t1_runed_01_3p"
-    
+
     colors = {
         slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_diffuse"
     }
@@ -21,7 +21,7 @@ data = {
         slot1 = "textures/Kruber_empire_sword/KOTBS_01/LA_Sienna_kotbs_firesword_glow_emission"
     }
 
-    color_slot = "texture_map_c0ba2942" 
+    color_slot = "texture_map_c0ba2942"
     norm_slot = "texture_map_59cd86b9"
     MAB_slot = "texture_map_0205ba86"
     emis_col_slot = "texture_map_71d74d4d"
@@ -33,10 +33,10 @@ data = {
         node_part_pairs = 1,
         1 = {
             node = 1,
-            fx = "fx/wpnfx_flaming_sword",
-            package = "units/weapons/player/wpn_brw_dagger_05/wpn_brw_dagger_05_runed_01_3p",
+            fx = "fx/wpnfx_flaming_sword_remap",
+            package = "units/weapons/player/wpn_brw_sword_01_t1/wpn_brw_flaming_sword_01_t1_runed_01_3p",
             offset = {
-                x = 0, 
+                x = 0,
                 y = 0.1,
                 z = 0,
             },
@@ -57,13 +57,3 @@ renderables = {
 		viewport_visible = true
 	},
 }
-
-
-
-
-
-
-
-
-
-
