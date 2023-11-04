@@ -566,7 +566,8 @@ end
 for skin_name,skin_tisch in pairs(WeaponSkins.skins) do
 
     local skin_name = skin_name
-    if skin_name then
+    local in_itemmasterlist = rawget(ItemMasterList, skin_name) ~= nil
+    if skin_name and in_itemmasterlist then
         local default_skin_key = string.gsub(skin_name, "_skin.+", "")
 
         if list_of_base_skins[default_skin_key] then
