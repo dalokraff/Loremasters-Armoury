@@ -107,6 +107,8 @@ local vanilla_to_modded_skins = {
         wh_2h_hammer = {},
         dr_1h_throwing_axes = {},
         we_2h_sword = {},
+        bw_ghost_scythe = {},
+        bw_necromancy_staff = {},
     },
     off_hand = {
         we_sword = {},
@@ -253,6 +255,8 @@ local vanilla_to_modded_skins = {
         wh_2h_hammer = {},
         dr_1h_throwing_axes = {},
         we_2h_sword = {},
+        bw_ghost_scythe = {},
+        bw_necromancy_staff = {},
     },
 }
 
