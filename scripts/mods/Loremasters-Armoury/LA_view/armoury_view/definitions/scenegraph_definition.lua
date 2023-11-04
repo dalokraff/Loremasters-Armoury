@@ -498,7 +498,7 @@ local generate_scenegraph_definition = function(
             size = la_ui_headersmall_size,
             position = {
                 0,
-                1,
+                -8,
                 32
             }
         },
@@ -531,7 +531,7 @@ local generate_scenegraph_definition = function(
             size = la_ui_headersmall_size,
             position = {
                 0,
-                1,
+                -8,
                 32
             }
         },

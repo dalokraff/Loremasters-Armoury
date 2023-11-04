@@ -759,7 +759,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		widget_name = sub_title_bg_widget_name,
 		button_number = math.random(10,10^9),
 	}
-	self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
+	-- self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
 
 	local title_style = {
 		dynamic_height = false,
@@ -789,7 +789,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		widget_name = sub_title_widget_name,
 		button_number = math.random(10,10^9),
 	}
-	self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
+	-- self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
 
 	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
 		local item_data = item_master_list[item_name]
@@ -864,7 +864,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
             button_number = button_number,
         }
         buttons[button_number] = new_widget_name
-		self:_start_transition_animation("on_enter", widget, new_widget_name)
+		-- self:_start_transition_animation("on_enter", widget, new_widget_name)
 
 	end
 
@@ -1095,7 +1095,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 				button_number = button_number,
 			}
 			buttons[button_number] = new_widget_name
-			self:_start_transition_animation("on_enter", widget, new_widget_name)
+			-- self:_start_transition_animation("on_enter", widget, new_widget_name)
 		end
 	end
 
@@ -1134,7 +1134,7 @@ ArmouryView.update_original_skin_list = function (self)
 		widget_name = sub_title_bg_widget_name,
 		button_number = math.random(10,10^9),
 	}
-	self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
+	-- self:_start_transition_animation("on_enter", sub_title_bg_widget, sub_title_bg_widget_name)
 
     local selected_hero = string.gsub(self.selected_hero, "_hero_select", "")
     local selected_item = string.gsub(self.selected_item, "_item_select", "")
@@ -1168,7 +1168,7 @@ ArmouryView.update_original_skin_list = function (self)
 		widget_name = sub_title_widget_name,
 		button_number = math.random(10,10^9),
 	}
-	self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
+	-- self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
 
     local i = 0
 	local j = 0
@@ -1273,7 +1273,7 @@ ArmouryView.update_original_skin_list = function (self)
             button_number = button_number,
         }
         buttons[button_number] = new_widget_name
-		self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
+		-- self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
 		::pageOver::
     end
 
@@ -1291,7 +1291,7 @@ ArmouryView.update_original_skin_list = function (self)
 		button_number = math.random(10,10^9),
 	}
 
-	self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
+	-- self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
 
 	if num_pages > 1 then
 		local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
