@@ -135,6 +135,9 @@ function ArmouryView:on_enter(transition_params)
 		-- tutorial_overlay_toggle = {},
 	}
 
+	-- contains sound assets used by menu
+	Managers.package:load("resource_packages/levels/dlcs/morris/map", "ArmouryView", nil, true)
+
 end
 
 
@@ -539,14 +542,14 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		local package_lookup_id = NetworkLookup.inventory_packages[unit_name]
 		local new_mtrs = nil
 		if package_lookup_id then
-			Managers.package:load(unit_name, "global")
+			Managers.package:load(unit_name, "ArmouryView")
 			if not viewport_pacakges[unit_name] then
 				viewport_pacakges[unit_name] = {}
 			end
 		end
 		if cosmetic_data.material_changes then
 			local mtr_package_name = cosmetic_data.material_changes.package_name
-			Managers.package:load(mtr_package_name, "global")
+			Managers.package:load(mtr_package_name, "ArmouryView")
 			new_mtrs = table.clone(cosmetic_data.material_changes.third_person)
 			if not viewport_pacakges[unit_name] then
 				viewport_pacakges[unit_name] = {}
@@ -566,7 +569,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 	end
 
 	if item_unit_name_right then
-		Managers.package:load(item_unit_name_right, "global")
+		Managers.package:load(item_unit_name_right, "ArmouryView")
 		if not viewport_pacakges[item_unit_name_right] then
 			viewport_pacakges[item_unit_name_right] = {}
 		end
@@ -578,7 +581,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		viewport_pacakges[item_unit_name_right][#viewport_pacakges[item_unit_name_right] + 1] = right_unit
 	end
 	if item_unit_name_left then
-		Managers.package:load(item_unit_name_left, "global")
+		Managers.package:load(item_unit_name_left, "ArmouryView")
 		if not viewport_pacakges[item_unit_name_left] then
 			viewport_pacakges[item_unit_name_left] = {}
 		end
@@ -590,7 +593,7 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		viewport_pacakges[item_unit_name_left][#viewport_pacakges[item_unit_name_left] + 1] = left_unit
 	end
 	if item_unit_name then
-		Managers.package:load(item_unit_name, "global")
+		Managers.package:load(item_unit_name, "ArmouryView")
 		if not viewport_pacakges[item_unit_name] then
 			viewport_pacakges[item_unit_name] = {}
 		end
@@ -607,7 +610,7 @@ end
 ArmouryView.unload_pacakges = function(self)
 	local package_list = self.pacakges_to_unload
 	for index, package_name in pairs(package_list) do
-		Managers.package:unload(package_name, "global")
+		Managers.package:unload(package_name, "ArmouryView")
 		package_list[index] = nil
 	end
 end
@@ -1533,7 +1536,7 @@ end
 -- Required. Executed by `ingame_ui` every tick.
 function ArmouryView:update(dt, t)
 	if not self.viewport_widget then
-        -- Managers.package:load("resource_packages/levels/ui_inventory_preview", "global")
+        -- Managers.package:load("resource_packages/levels/ui_inventory_preview", "ArmouryView")
         self.viewport_widget = UIWidget.init(viewport_definition)
 		local world = Managers.world:world(viewport_definition.style.viewport.world_name)
 		local unit_spawner = UnitSpawner:new(world, StateIngame.entity_manager, StateIngame.is_server)
@@ -1613,6 +1616,9 @@ function ArmouryView:on_exit()
 	self.selected_skin_main_hand = nil
 	self.selected_skin_off_hand = nil
 	-- self.toggled_buttons = nil
+
+	-- contains sound assets used by menu
+	Managers.package:unload("resource_packages/levels/dlcs/morris/map", "ArmouryView")
 
 	ShowCursorStack.pop()
 end
