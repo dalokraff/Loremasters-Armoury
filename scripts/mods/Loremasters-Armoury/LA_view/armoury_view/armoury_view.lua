@@ -494,7 +494,15 @@ ArmouryView.set_armoury_key = function (self, widget_name, forced_Armoury_key)
 		self:toggle_button(self._widgets_by_name[widget_name], toggle_state)
 	end
 	mod:set(mod_setting_id, Armoury_key)
-	armoury_db[weapon_type][skin_name][hand] = Armoury_key
+
+	-- thi scheck is done as the WeaponSkins.skins table and the ItemmasterList table have differing weapon skins in them
+	-- particularlly es_deus_01_skin_magic is in weaponsskins but not ItemMasterList
+	if armoury_db[weapon_type][skin_name] then
+		armoury_db[weapon_type][skin_name][hand] = Armoury_key
+	else
+		armoury_db[weapon_type][skin_name] = armoury_db[weapon_type][skin_name] or {}
+		armoury_db[weapon_type][skin_name][hand] = Armoury_key
+	end
 
 	-- self:spawn_item_in_viewport(skin_name)
 	return skin_name
