@@ -96,6 +96,9 @@ function ArmouryView:on_enter(transition_params)
     self._animations = {}
     self._ui_animations = {}
 
+	self.packages_loaded_viewport = {}
+	self.pacakges_to_unload = {}
+
 	self.selected_hero = "es_hero_select"
     self.selected_item = "melee_item_select"
     self.buttons = {
@@ -513,6 +516,7 @@ end
 ArmouryView.spawn_item_in_viewport = function (self, widget_name)
     self:remove_units_from_viewport()
 	local unit_spawner = self._unit_spawner
+	local viewport_pacakges = self.packages_loaded_viewport
 
 	local item_key = string.gsub(widget_name, "_original_skin", "")
 	item_key = string.gsub(item_key, "_original_entry_skin", "")
@@ -536,11 +540,17 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		local new_mtrs = nil
 		if package_lookup_id then
 			Managers.package:load(unit_name, "global")
+			if not viewport_pacakges[unit_name] then
+				viewport_pacakges[unit_name] = {}
+			end
 		end
 		if cosmetic_data.material_changes then
 			local mtr_package_name = cosmetic_data.material_changes.package_name
 			Managers.package:load(mtr_package_name, "global")
 			new_mtrs = table.clone(cosmetic_data.material_changes.third_person)
+			if not viewport_pacakges[unit_name] then
+				viewport_pacakges[unit_name] = {}
+			end
 		end
 		local skin_unit = unit_spawner:spawn_local_unit(unit_name, Vector3(0,0,1), radians_to_quaternion(0,math.pi/2,0))
 		if new_mtrs then
@@ -551,30 +561,75 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 		self.viewport_skin = skin_unit
 		self:add_item_to_texture_swap_queue(item_key, skin_unit)
 		POSITION_LOOKUP[skin_unit] = nil
+		-- gotta rethink package loading with material changes
+		-- viewport_pacakges[unit_name][#viewport_pacakges[unit_name] + 1] = skin_unit
 	end
 
 	if item_unit_name_right then
 		Managers.package:load(item_unit_name_right, "global")
+		if not viewport_pacakges[item_unit_name_right] then
+			viewport_pacakges[item_unit_name_right] = {}
+		end
+
 		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
 		self.viewport_right_hand = right_unit
 		self:add_item_to_texture_swap_queue(item_key, right_unit)
 		POSITION_LOOKUP[right_unit] = nil
+		viewport_pacakges[item_unit_name_right][#viewport_pacakges[item_unit_name_right] + 1] = right_unit
 	end
 	if item_unit_name_left then
 		Managers.package:load(item_unit_name_left, "global")
+		if not viewport_pacakges[item_unit_name_left] then
+			viewport_pacakges[item_unit_name_left] = {}
+		end
+
 		local left_unit = unit_spawner:spawn_local_unit(item_unit_name_left, Vector3(0,0,2), radians_to_quaternion(0,0,math.pi/6))
 		self.viewport_left_hand = left_unit
 		self:add_item_to_texture_swap_queue(item_key, left_unit)
 		POSITION_LOOKUP[left_unit] = nil
+		viewport_pacakges[item_unit_name_left][#viewport_pacakges[item_unit_name_left] + 1] = left_unit
 	end
 	if item_unit_name then
 		Managers.package:load(item_unit_name, "global")
+		if not viewport_pacakges[item_unit_name] then
+			viewport_pacakges[item_unit_name] = {}
+		end
+
 		local hat_unit = unit_spawner:spawn_local_unit(item_unit_name, Vector3(0,0,2), radians_to_quaternion(0,math.pi/2,0))
 		self.viewport_hat = hat_unit
 		self:add_item_to_texture_swap_queue(item_key, hat_unit)
 		POSITION_LOOKUP[hat_unit] = nil
+		viewport_pacakges[item_unit_name][#viewport_pacakges[item_unit_name] + 1] = hat_unit
 	end
 
+end
+
+ArmouryView.unload_pacakges = function(self)
+	local package_list = self.pacakges_to_unload
+	for index, package_name in pairs(package_list) do
+		Managers.package:unload(package_name, "global")
+		package_list[index] = nil
+	end
+end
+
+ArmouryView.unload_unit_from_viewport = function(self, world, unit)
+	local viewport_pacakges = self.packages_loaded_viewport
+	local unit_name = Unit.get_data(unit, 'unit_name')
+	if unit_name then
+		local units_in_pacakge = viewport_pacakges[item_unit_name] or {}
+		for index, stored_unit in pairs(units_in_pacakge) do
+			if stored_unit == unit then
+				units_in_pacakge[index] = nil
+			end
+		end
+		if #units_in_pacakge == 0 then
+			self.pacakges_to_unload[#self.pacakges_to_unload + 1] = unit_name
+		end
+
+		World.destroy_unit(world, unit)
+	else
+		World.destroy_unit(world, unit)
+	end
 end
 
 ArmouryView.remove_units_from_viewport = function (self, widget_name)
@@ -586,23 +641,28 @@ ArmouryView.remove_units_from_viewport = function (self, widget_name)
 	local viewport_skin = self.viewport_skin
 
 	if viewport_right_hand then
-		World.destroy_unit(world, viewport_right_hand)
+		-- World.destroy_unit(world, viewport_right_hand)
 		-- unit_spawner:mark_for_deletion(viewport_right_hand)
+		self:unload_unit_from_viewport(world, viewport_right_hand)
 		self.viewport_right_hand = nil
 	end
 	if viewport_left_hand then
-		World.destroy_unit(world, viewport_left_hand)
+		-- World.destroy_unit(world, viewport_left_hand)
 		-- unit_spawner:mark_for_deletion(viewport_left_hand)
+		self:unload_unit_from_viewport(world, viewport_left_hand)
 		self.viewport_left_hand = nil
 	end
 	if viewport_hat then
-		World.destroy_unit(world, viewport_hat)
+		-- World.destroy_unit(world, viewport_hat)
 		-- unit_spawner:mark_for_deletion(viewport_hat)
+		self:unload_unit_from_viewport(world, viewport_hat)
 		self.viewport_hat = nil
 	end
 	if viewport_skin then
 		World.destroy_unit(world, viewport_skin)
 		-- unit_spawner:mark_for_deletion(viewport_hat)
+		-- don't have good way store pacakges skins come from
+		-- self:unload_unit_from_viewport(viewport_skin)
 		self.viewport_skin = nil
 	end
 	-- unit_spawner:remove_units_marked_for_deletion()
@@ -1483,6 +1543,8 @@ function ArmouryView:update(dt, t)
 
 	self:highlight_button_widget()
 
+	self:unload_pacakges()
+
 	if self.new_viewport_unit then
 		self:spawn_item_in_viewport(self.new_viewport_unit)
 		self.new_viewport_unit = nil
@@ -1532,6 +1594,10 @@ function ArmouryView:on_exit()
 	self.buttons = nil
 	self._widgets_by_name = nil
 	self._widgets = nil
+
+	self:unload_pacakges()
+	self.packages_loaded_viewport = nil
+	self.pacakges_to_unload = nil
 
 	self._unit_spawner = nil
 	self.viewport_right_hand = nil
