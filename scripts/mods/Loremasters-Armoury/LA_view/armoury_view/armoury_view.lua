@@ -372,7 +372,7 @@ ArmouryView._handle_input = function (self, dt, t)
 		elseif string.find(name, "tutorial_overlay_toggle") then
 			if is_pressed then
 				self:unselect_buttons(widgets_by_name, "tutorial_overlay_toggle")
-				self:play_sound("Play_hud_select")
+				self:play_sound("Loremaster_scroll_place_sound")
 				self:toggle_tutorial_overlay(name)
 			else
 				self:_update_button_hover_sound(button_widget)
