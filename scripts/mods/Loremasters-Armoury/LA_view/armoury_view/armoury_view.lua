@@ -1255,9 +1255,11 @@ ArmouryView.update_original_skin_list = function (self)
 		page_offset = 0
 	end
 
+	-- local index = 1 + items_per_page*page_offset
     for index,item_name in ipairs(item_list) do
 		--this if statement acts as a filter to remove skins that dont' have LA skins made for them
-		local amoury_change_data = mod.SKIN_CHANGED[item_name]
+		--uncomment the latter part to remove filter
+        local amoury_change_data = mod.SKIN_CHANGED[item_name] -- or {}
 		if amoury_change_data then
 			if index-page_offset > items_per_page  or (index < page_offset) then
 				goto pageOver
@@ -1348,7 +1350,6 @@ ArmouryView.update_original_skin_list = function (self)
 			-- self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
 			::pageOver::
 		end
-
     end
 
 
@@ -1366,8 +1367,7 @@ ArmouryView.update_original_skin_list = function (self)
 	}
 
 	-- self:_start_transition_animation("on_enter", skin_divider_widget, "original_skins_list_divider")
-
-	if num_pages > 1 then
+	if (num_pages > 1 and displayed_items+1 >= items_per_page)  or page_offset > 0 then
 		local page_button_size = scenegraph_definition.original_skins_equiped_skin_page_button.size
 		local page_button_def = LAWidgetUtils.create_button_with_hover_highlight("original_skins_equiped_skin_page_button", page_button_size , nil, "la_ui_arrowright_large", "la_ui_arrowright_large", "la_ui_arrowright_large_active")
 
