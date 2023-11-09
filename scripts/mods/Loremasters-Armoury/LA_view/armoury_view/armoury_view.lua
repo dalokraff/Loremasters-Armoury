@@ -1256,96 +1256,99 @@ ArmouryView.update_original_skin_list = function (self)
 	end
 
     for index,item_name in ipairs(item_list) do
-        if index-page_offset > items_per_page  or (index < page_offset) then
-			goto pageOver
-		end
-
-		if i > 5 then
-			i = 0
-			j = j + 1
-		end
-
-		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
-
-		local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
-        local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
-        local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
-        new_widget_def.content.texture_hover = "la_ui_icon_active"
-
-		new_widget_def.offset = {
-            i*60,
-            j*-60 - 35,
-            32
-        }
-        new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
-        i = i + 1
-		displayed_items = displayed_items + 1
-
-		local widget_suffix = "_original_skin"
-		-- local tooltip_text = string.gsub(item_name, "_skin.+", "") or amoury_change_data.display_name
-		local tooltip_text = ItemMasterList[item_name].matching_item_key or amoury_change_data.display_name
-		if string.find(item_name, "_hat") or string.find(item_name, "skin_[%a][%a]_") then
-			widget_suffix = "_original_entry_outfit_skin"
-			tooltip_text = amoury_change_data.display_name or ItemMasterList[item_name].display_name
-		else
-
-		end
-
-		local num_passes = #new_widget_def.element.passes
-		new_widget_def.element.passes[num_passes+1] = {
-			pass_type = "hotspot",
-			content_id = "tooltip_hotspot",
-			content_check_function = function (ui_content)
-				return not ui_content.disabled
+		--this if statement acts as a filter to remove skins that dont' have LA skins made for them
+		local amoury_change_data = mod.SKIN_CHANGED[item_name]
+		if amoury_change_data then
+			if index-page_offset > items_per_page  or (index < page_offset) then
+				goto pageOver
 			end
-		}
-		new_widget_def.element.passes[num_passes+2] = {
-			style_id = "tooltip_text",
-			pass_type = "tooltip_text",
-			text_id = "tooltip_text",
-			content_check_function = function (ui_content)
-				return ui_content.tooltip_hotspot.is_hover
+
+			if i > 5 then
+				i = 0
+				j = j + 1
 			end
-		}
 
-		new_widget_def.content["tooltip_hotspot"] = {}
-		-- es_1h_sword
-		new_widget_def.content["tooltip_text"] = tooltip_text
+			local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
+			local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
+			local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
+			new_widget_def.content.texture_hover = "la_ui_icon_active"
 
-		new_widget_def.style["tooltip_text"] = {
-			dynamic_height = false,
-			upper_case = false,
-			localize = true,
-			word_wrap = true,
-			font_size = 16,
-			max_width = 150,
-			vertical_alignment = "top",
-			horizontal_alignment = "left",
-			use_shadow = true,
-			dynamic_font_size = false,
-			font_type = "hell_shark",
-			text_color = {255,247,170,6},
-			offset = {
-				0,
-				0,
-				2
+			new_widget_def.offset = {
+				i*60,
+				j*-60 - 35,
+				32
 			}
-		}
+			new_widget_def.style.texture_icon.texture_size = scenegraph_definition_size
+			i = i + 1
+			displayed_items = displayed_items + 1
 
-		local widget = UIWidget.init(new_widget_def)
-        local widget_number =math.random(10,10^9)
-        local button_number = math.random(10,10^9)
+			local widget_suffix = "_original_skin"
+			-- local tooltip_text = string.gsub(item_name, "_skin.+", "") or amoury_change_data.display_name
+			local tooltip_text = ItemMasterList[item_name].matching_item_key or amoury_change_data.display_name
+			if string.find(item_name, "_hat") or string.find(item_name, "skin_[%a][%a]_") then
+				widget_suffix = "_original_entry_outfit_skin"
+				tooltip_text = amoury_change_data.display_name or ItemMasterList[item_name].display_name
+			else
 
-        local new_widget_name = item_name..widget_suffix
-		widgets[widget_number] = widget
-		widgets_by_name[new_widget_name] = widget
-        original_skin_list_widgets[widget_number] = {
-            widget_name = new_widget_name,
-            button_number = button_number,
-        }
-        buttons[button_number] = new_widget_name
-		-- self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
-		::pageOver::
+			end
+
+			local num_passes = #new_widget_def.element.passes
+			new_widget_def.element.passes[num_passes+1] = {
+				pass_type = "hotspot",
+				content_id = "tooltip_hotspot",
+				content_check_function = function (ui_content)
+					return not ui_content.disabled
+				end
+			}
+			new_widget_def.element.passes[num_passes+2] = {
+				style_id = "tooltip_text",
+				pass_type = "tooltip_text",
+				text_id = "tooltip_text",
+				content_check_function = function (ui_content)
+					return ui_content.tooltip_hotspot.is_hover
+				end
+			}
+
+			new_widget_def.content["tooltip_hotspot"] = {}
+			-- es_1h_sword
+			new_widget_def.content["tooltip_text"] = tooltip_text
+
+			new_widget_def.style["tooltip_text"] = {
+				dynamic_height = false,
+				upper_case = false,
+				localize = true,
+				word_wrap = true,
+				font_size = 16,
+				max_width = 150,
+				vertical_alignment = "top",
+				horizontal_alignment = "left",
+				use_shadow = true,
+				dynamic_font_size = false,
+				font_type = "hell_shark",
+				text_color = {255,247,170,6},
+				offset = {
+					0,
+					0,
+					2
+				}
+			}
+
+			local widget = UIWidget.init(new_widget_def)
+			local widget_number =math.random(10,10^9)
+			local button_number = math.random(10,10^9)
+
+			local new_widget_name = item_name..widget_suffix
+			widgets[widget_number] = widget
+			widgets_by_name[new_widget_name] = widget
+			original_skin_list_widgets[widget_number] = {
+				widget_name = new_widget_name,
+				button_number = button_number,
+			}
+			buttons[button_number] = new_widget_name
+			-- self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
+			::pageOver::
+		end
+
     end
 
 
