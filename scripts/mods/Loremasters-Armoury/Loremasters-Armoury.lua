@@ -1,5 +1,6 @@
 local mod = get_mod("Loremasters-Armoury")
 mod:dofile("scripts/mods/Loremasters-Armoury/buffs/LA_buffs")
+mod:dofile("scripts/mods/Loremasters-Armoury/achievements/reward_popups")
 mod:dofile("scripts/mods/Loremasters-Armoury/buffs/hooks")
 mod:dofile("scripts/mods/Loremasters-Armoury/utils/hooks")
 -- mod:dofile("scripts/mods/Loremasters-Armoury/achievements/manager")
@@ -40,6 +41,8 @@ mod.time = 0
 mod.delayed_sounds = {}
 mod.show_reward = nil
 mod.marker_list = {}
+
+mod.reward_popups = {}
 
 --on mod update:
 --the level_queue and previe_queue are checked to see if the respective worlds have any units that need to be retextured
@@ -183,54 +186,8 @@ function mod.update(dt)
         end
     end
 
-
-
-    --for displaying item reward after completing main quest, should be sent to it's own funciton or class
-    if not mod.reward_popup or mod.show_reward then
-        local ingame_ui_context = Managers.ui._ingame_ui_context
-        if ingame_ui_context then
-            local reward_params = {
-                wwise_world = ingame_ui_context.wwise_world,
-                ui_renderer = ingame_ui_context.ui_renderer,
-                ui_top_renderer = ingame_ui_context.ui_top_renderer,
-                input_manager = ingame_ui_context.input_manager
-            }
-            mod.reward_popup = RewardPopupUI:new(reward_params)
-
-            mod.reward_popup:set_input_manager(ingame_ui_context.input_manager)
-
-            local presentation_data = {}
-            local weapon_skin_name = mod.show_reward
-            local weapon_skin_data = WeaponSkins.skins[weapon_skin_name]
-            if weapon_skin_data then
-                local rarity = weapon_skin_data.rarity or "plentiful"
-                local display_name = weapon_skin_data.display_name
-                local description = weapon_skin_data.description
-                local icon = weapon_skin_data.inventory_icon
-                local description = {}
-                local entry = {}
-                description[1] = Localize(display_name)
-                description[2] = Localize("achv_menu_reward_claimed_title")
-                entry[#entry + 1] = {
-                    widget_type = "description",
-                    value = description
-                }
-                entry[#entry + 1] = {
-                    widget_type = "weapon_skin",
-                    value = {
-                        icon = icon,
-                        rarity = rarity
-                    }
-                }
-                presentation_data[#presentation_data + 1] = entry
-
-                mod.show_reward = nil
-
-                mod.reward_popup:display_presentation(presentation_data)
-            end
-        end
-    elseif mod.reward_popup then
-        mod.reward_popup:update(dt)
+    for _, reward_popup in pairs(mod.reward_popups) do
+        reward_popup:update(dt)
     end
 
     mod.time = mod_time + dt

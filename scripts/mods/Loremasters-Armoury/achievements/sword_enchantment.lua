@@ -63,7 +63,12 @@ end
 
 SwordEnchantment.stage_three = function(self)
 
-    mod.show_reward = "main_quest_reward"
+    local weapon_skin_data = WeaponSkins.skins["main_quest_reward"]
+    local rarity = weapon_skin_data.rarity or "plentiful"
+    local display_name = weapon_skin_data.display_name
+    local icon = weapon_skin_data.inventory_icon
+    mod.reward_popups["main_quest_reward"] = LaRewardPopup:new(Managers.ui._ingame_ui_context, "main_quest_reward", rarity, display_name, icon)
+
     self:destroy()
 end
 

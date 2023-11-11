@@ -1,4 +1,5 @@
 local mod = get_mod("Loremasters-Armoury")
+mod:echo(mod:get("sub_quest_prologue".."_letter_read"))
 
 local definitions = local_require("scripts/mods/Loremasters-Armoury/LA_view/quest_board_views/definitions/quest_board_letter_definitions")
 local widget_definitions = definitions.widgets
@@ -59,8 +60,10 @@ function QuestBoardLetterView:on_enter(transition_params)
 	"hello",
 	"world",
   }
+
   self._empty_decoration_name = Unit.get_data(mod.interactable_letter_unit, "quest")
   self:set_letter_read()
+  self:reward_popup()
 
 --   self:_initialize_simple_decoration_preview()
   self:_create_ui_elements()
@@ -74,6 +77,7 @@ end
 
 QuestBoardLetterView.set_letter_read = function (self)
 	local quest = self._empty_decoration_name
+	print('read ', quest)
 	mod:set(quest.."_letter_read", true)
 end
 
@@ -263,6 +267,30 @@ QuestBoardLetterView.setup_sub_quest_display = function (self, title_text, descr
 
 end
 
+QuestBoardLetterView.reward_popup = function (self)
+
+	local quest_board = self.quest_board
+	local active_quest = quest_board.active_quest
+	local main_quest = QuestLetters[active_quest]
+	local sub_quest_data = main_quest[self._empty_decoration_name]
+	local achievement_data = AchievementTemplates.achievements[self._empty_decoration_name]
+
+	local completion_func = achievement_data.completed
+
+	completion_func()
+
+	-- disable popup for now and just use this to enable letter readign completion for quest so
+	-- non locked icons are displayed in mission brief
+
+	-- local reward_name = sub_quest_data.reward
+
+	-- local reward_data =ItemMasterList[reward_name]
+    -- local rarity = reward_data.rarity or "plentiful"
+    -- local display_name = reward_data.display_name
+    -- local icon = reward_data.inventory_icon
+    -- mod.reward_popups[reward_name] = LaRewardPopup:new(Managers.ui._ingame_ui_context, reward_name, rarity, display_name, icon, completion_func)
+end
+
 QuestBoardLetterView._create_ui_elements = function (self)
 	self._ui_scenegraph = UISceneGraph.init_scenegraph(scenegraph_definition)
 	local widgets = {}
@@ -274,10 +302,6 @@ QuestBoardLetterView._create_ui_elements = function (self)
 		widgets[num_widgets + 1] = widget
 		widgets_by_name[name] = widget
 	end
-
-
-
-
 
 	self._widgets = widgets
 	self._widgets_by_name = widgets_by_name
