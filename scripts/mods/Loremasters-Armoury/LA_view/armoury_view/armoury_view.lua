@@ -861,8 +861,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 		button_number = math.random(10,10^9),
 	}
 	-- self:_start_transition_animation("on_enter", sub_title_widget, sub_title_widget_name)
-
-	for _,item_name in pairs(list_of_base_skins[default_skin_key]) do
+	for _,item_name in ipairs(item_list[default_skin_key]) do
 		local item_data = item_master_list[item_name]
 		local amoury_change_data = mod.SKIN_CHANGED[item_name] or {}
 
@@ -1260,7 +1259,9 @@ ArmouryView.update_original_skin_list = function (self)
 		--this if statement acts as a filter to remove skins that dont' have LA skins made for them
 		--uncomment the latter part to remove filter
         local amoury_change_data = mod.SKIN_CHANGED[item_name] -- or {}
-		if amoury_change_data then
+		print('update_original_skin_list', item_name, amoury_change_data)
+		-- if amoury_change_data then
+			print(index, page_offset, items_per_page)
 			if index-page_offset > items_per_page  or (index < page_offset) then
 				goto pageOver
 			end
@@ -1271,7 +1272,7 @@ ArmouryView.update_original_skin_list = function (self)
 			end
 
 			local scenegraph_definition_size = scenegraph_definition.original_skins_list_entry.size
-			local icon = amoury_change_data.icon or ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
+			local icon = ItemMasterList[item_name].inventory_icon or "tabs_inventory_icon_hats_normal"
 			local new_widget_def = UIWidgets.create_icon_button("original_skins_list_entry", scenegraph_definition_size , nil, nil, icon)
 			new_widget_def.content.texture_hover = "la_ui_icon_active"
 
@@ -1286,10 +1287,10 @@ ArmouryView.update_original_skin_list = function (self)
 
 			local widget_suffix = "_original_skin"
 			-- local tooltip_text = string.gsub(item_name, "_skin.+", "") or amoury_change_data.display_name
-			local tooltip_text = ItemMasterList[item_name].matching_item_key or amoury_change_data.display_name
+			local tooltip_text = item_name
 			if string.find(item_name, "_hat") or string.find(item_name, "skin_[%a][%a]_") then
 				widget_suffix = "_original_entry_outfit_skin"
-				tooltip_text = amoury_change_data.display_name or ItemMasterList[item_name].display_name
+				tooltip_text = ItemMasterList[item_name].display_name
 			else
 
 			end
@@ -1349,7 +1350,7 @@ ArmouryView.update_original_skin_list = function (self)
 			buttons[button_number] = new_widget_name
 			-- self:_start_transition_animation("on_enter", widget, new_widget_name, button_number-cur_button_num)
 			::pageOver::
-		end
+		-- end
     end
 
 

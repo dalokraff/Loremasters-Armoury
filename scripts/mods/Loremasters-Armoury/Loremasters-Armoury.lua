@@ -484,32 +484,62 @@ mod.items_by_hero = {
 mod.list_of_base_skins = {}
 local list_of_base_skins = mod.list_of_base_skins
 
-for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
-    local base_skin = skin_list.common[1] or skin_list.rare[1] or skin_list.plentiful[1]
-    if base_skin then
-        local item_data = ItemMasterList[base_skin]
-        local matching_item_key = item_data.matching_item_key
-        local slot_type = ItemMasterList[matching_item_key].slot_type
-        local can_wield_tisch = item_data.can_wield or {}
-        for _,career in pairs(can_wield_tisch) do
-            local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
-            if slot_type then
+for weapon,skins_by_rarity_list in pairs(WeaponSkins.skin_combinations) do
+    local default_skin_key = string.gsub(weapon, "_skin.+", "")
+    list_of_base_skins[default_skin_key] = {}
+
+    for rarity, skins in pairs(skins_by_rarity_list) do
+        for indx, base_skin in ipairs(skins) do
+            if rawget(ItemMasterList, base_skin) and  rawget(ItemMasterList, default_skin_key) then
+                if mod.SKIN_CHANGED[base_skin] then
+                    local item_data = ItemMasterList[default_skin_key]
+                    local slot_type = item_data.slot_type
+                    local can_wield_tisch = item_data.can_wield or {}
+                    for _,career in pairs(can_wield_tisch) do
+                        local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
+                        if slot_type then
+                            if mod.items_by_hero[char] then
+                                if mod.items_by_hero[char][slot_type] then
+                                    print(char, slot_type, base_skin, default_skin_key)
+                                    if not mod.items_by_hero[char][slot_type][default_skin_key] then
+                                        local num_items = #mod.items_by_hero[char][slot_type] + 1
+                                        mod.items_by_hero[char][slot_type][num_items] = default_skin_key
+                                        mod.items_by_hero[char][slot_type][default_skin_key] = {}
+
+                                        mod.items_by_hero[char][slot_type][default_skin_key][1] = base_skin
+                                        mod.items_by_hero[char][slot_type][default_skin_key][base_skin] = 1
+
+                                    elseif not mod.items_by_hero[char][slot_type][default_skin_key][base_skin] then
+                                        local num_skins = #mod.items_by_hero[char][slot_type][default_skin_key] + 1
+                                        mod.items_by_hero[char][slot_type][default_skin_key][num_skins] = base_skin
+                                        mod.items_by_hero[char][slot_type][default_skin_key][base_skin] = num_skins
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+for item_name,item_data in pairs(ItemMasterList) do
+    local slot_type = item_data.slot_type
+    local can_wield_tisch = item_data.can_wield or {}
+    for _,career in pairs(can_wield_tisch) do
+        local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)--gets first 2 letters of entry in can_wield table to determint carreers
+        if slot_type == "skin" or slot_type == "hat" then
                 local item_key = slot_type
-            --    mod:echo(slot_type)
-                -- if slot_type == "hat" or slot_type == "skin" then
-                --     item_key = "skin"
-                -- end
-
-                    -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
-                if mod.items_by_hero[char] then
-                    if mod.items_by_hero[char][item_key] then
-                        if not mod.items_by_hero[char][item_key][base_skin] then
-                            -- mod:echo(base_skin.."_"..char)
+            if mod.items_by_hero[char] then
+                if mod.items_by_hero[char][item_key] then
+                    if not mod.items_by_hero[char][item_key][item_name] then
+                        if mod.SKIN_CHANGED[item_name] then
                             local num_items = #mod.items_by_hero[char][item_key] + 1
-                            mod.items_by_hero[char][item_key][num_items] = base_skin
-                            mod.items_by_hero[char][item_key][base_skin] = base_skin
+                            mod.items_by_hero[char][item_key][num_items] = item_name
+                            mod.items_by_hero[char][item_key][item_name] = item_name
 
-                            local default_skin_key = string.gsub(base_skin, "_skin.+", "")
+                            local default_skin_key = string.gsub(item_name, "_skin.+", "")
                             list_of_base_skins[default_skin_key] = {}
                         end
                     end
@@ -519,54 +549,6 @@ for weapon,skin_list in pairs(WeaponSkins.skin_combinations) do
     end
 end
 
-
-for skin_name,skin_tisch in pairs(WeaponSkins.skins) do
-
-    local skin_name = skin_name
-    local in_itemmasterlist = rawget(ItemMasterList, skin_name) ~= nil
-    if skin_name and in_itemmasterlist then
-        local default_skin_key = string.gsub(skin_name, "_skin.+", "")
-
-        if list_of_base_skins[default_skin_key] then
-            list_of_base_skins[default_skin_key][#list_of_base_skins[default_skin_key] + 1] = skin_name
-        end
-    end
-
-end
-
-
-for item_name,item_data in pairs(ItemMasterList) do
-    local slot_type = item_data.slot_type
-    local can_wield_tisch = item_data.can_wield or {}
-    for _,career in pairs(can_wield_tisch) do
-        local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)--gets first 2 letters of entry in can_wield table to determint carreers
-        if slot_type == "skin" or slot_type == "hat" then
-                local item_key = slot_type
-            --    mod:echo(slot_type)
-                -- if slot_type == "hat" or slot_type == "skin" then
-                --     item_key = "skin"
-                -- end
-
-                    -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
-            if mod.items_by_hero[char] then
-                if mod.items_by_hero[char][item_key] then
-                    if not mod.items_by_hero[char][item_key][item_name] then
-                        -- mod:echo(item_name.."_"..char)
-                        local num_items = #mod.items_by_hero[char][item_key] + 1
-                        mod.items_by_hero[char][item_key][num_items] = item_name
-                        mod.items_by_hero[char][item_key][item_name] = item_name
-
-                        local default_skin_key = string.gsub(item_name, "_skin.+", "")
-                        list_of_base_skins[default_skin_key] = {}
-                    end
-                end
-            end
-        end
-    end
-end
-
-
--- local mod = get_mod("Loremasters-Armoury")
 local items_by_hero = mod.items_by_hero
 mod.items_per_page_original_skin_entry = 18
 for char,char_item_data in pairs(items_by_hero) do
@@ -579,83 +561,6 @@ for char,char_item_data in pairs(items_by_hero) do
         item_list["num_items"] = num_items
     end
 end
--- require 'pl.pretty'.dump(mod.items_by_hero)
-
-
--- local mod = get_mod("Loremasters-Armoury")
--- local items_by_hero = mod.items_by_hero
--- for char,char_item_data in pairs(items_by_hero) do
---     for slot_type, item_list in pairs(char_item_data) do
---         local num_items = 0
---         for item_name, _ in ipairs(item_list) do
---             num_items = num_items + 1
---         end
---        mod:echo(slot_type)
---     end
--- end
-
-
--- for k,v in pairs(list_of_base_skins["wh_1h_axe"]) do
---     mod:echo(v)
--- end
-
--- local str = string.gsub("es_1h_mace_shield_skin_01", "_skin.+", "")
--- mod:echo(str)
-
--- local mod = get_mod("Loremasters-Armoury")
--- for k,v in pairs(mod.list_of_base_skins) do
---     print(k.." = {},")
--- end
-
--- for skin_name,skin_tisch in pairs(WeaponSkins.skins) do
-
---     local skin_name = skin_name
---     if skin_name then
---         local default_skin_key = string.gsub(skin_name, "_skin.+", "")
---         mod:echo(default_skin_key)
-
---         if mod.list_of_base_skins[default_skin_key] then
---             mod.list_of_base_skins[default_skin_key][#mod.list_of_base_skins[default_skin_key] + 1] = skin_name
---         end
---     end
-
--- end
-
--- for i,skin_tisch in pairs(WeaponSkins.skins) do
---     mod:echo(i)
--- --    for k,v in pairs(skin_tisch) do
--- --         mod:echo(k)
--- --    end
---     -- mod:echo(skin_tisch)
-
--- end
-
-
--- for item_name, item_data in pairs(ItemMasterList) do
---     if item_name
---     local can_wield_tisch = item_data.can_wield or {}
---     for _,career in pairs(can_wield_tisch) do
---         local char = string.sub(career, 1, 1)..string.sub(career, 2, 2)
---         if item_data then
---             local slot_type = item_data.slot_type
---             if slot_type then
---                 local item_key = slot_type
-
---                 if slot_type == "hat" or slot_type == "skin" then
---                     item_key = "skin"
---                 end
-
---                 -- mod.items_by_hero[char][item_key][#mod.items_by_hero[char][item_key] + 1] = item_name
---                 if mod.items_by_hero[char] then
---                     if mod.items_by_hero[char][item_key] then
---                         table.insert(mod.items_by_hero[char][item_key], item_name)
---                     end
---                 end
---             end
---         end
---     end
--- end
-
 
 mod:dofile("scripts/mods/Loremasters-Armoury/cosmetic_testing_tools/retexture_mesh")
 
