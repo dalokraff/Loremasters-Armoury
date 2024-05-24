@@ -508,8 +508,8 @@ ArmouryView.set_armoury_key = function (self, widget_name, forced_Armoury_key)
 	return skin_name
 end
 
-ArmouryView.add_item_to_texture_swap_queue = function(self, skin_name, unit)
-	local Armoury_key = mod:get(skin_name)
+ArmouryView.add_item_to_texture_swap_queue = function(self, skin_name, unit, handed_suffix)
+	local Armoury_key = mod:get(skin_name..(handed_suffix or ""))
 	local skin_list = mod.SKIN_LIST[Armoury_key]
 	if skin_list then
 		local hand = skin_list.swap_hand
@@ -584,7 +584,13 @@ ArmouryView.spawn_item_in_viewport = function (self, widget_name)
 
 		local right_unit = unit_spawner:spawn_local_unit(item_unit_name_right, Vector3(-0.25,0,2), radians_to_quaternion(0,0,-math.pi/6))
 		self.viewport_right_hand = right_unit
-		self:add_item_to_texture_swap_queue(item_key, right_unit)
+
+		local handed_suffix = nil
+		if string.find(item_key, "shield") or string.find(item_key, "dual") or string.find(item_key, "_and") then
+			handed_suffix = "_rightHand"
+		end
+
+		self:add_item_to_texture_swap_queue(item_key, right_unit, handed_suffix)
 		POSITION_LOOKUP[right_unit] = nil
 		viewport_pacakges[item_unit_name_right][#viewport_pacakges[item_unit_name_right] + 1] = right_unit
 	end
