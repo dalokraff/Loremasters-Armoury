@@ -1446,6 +1446,23 @@ mod.SKIN_LIST = {
             default = "kruber_pureheart_helm_failtful_icon",
         },
     },
+    Kruber_Pureheart_helm_loyal = {
+        kind = "texture",
+        swap_skin = nil,
+        textures = {
+            "textures/Kruber_Grail_Knight_Helm/Pureheart/Kruber_Pureheart_helm_loyal_diffuse",
+
+        },
+        new_units = {
+            "units/beings/player/empire_soldier_breton/headpiece/es_gk_hat_02",
+        },
+        is_vanilla_unit = true,
+        swap_hand = "hat",
+        skip_meshes = {},
+        -- icons = {
+        --     default = "kruber_pureheart_helm_failtful_icon",
+        -- },
+    },
     Kruber_Hippogryph_helm_black = {
         kind = "texture",
         swap_skin = nil,

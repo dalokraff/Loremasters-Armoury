@@ -67,6 +67,7 @@ local desc_strings = {
     Kruber_Pureheart_helm_devoted = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
     Kruber_Pureheart_helm_faithful = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
     Kruber_Pureheart_helm_merciful = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
+    Kruber_Pureheart_helm_loyal = "Helm of a valiant hero. Several valiant heroes, in fact, because the wearers have something of knack for finding fatal trouble.",
     Kruber_Worthy_helm_black = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_red = "A knight's headpiece, as stalwart and true as he who dons it.",
     Kruber_Worthy_helm_white = "A knight's headpiece, as stalwart and true as he who dons it.",
@@ -195,6 +196,7 @@ mod.krub_hats = {
         Kruber_Pureheart_helm_devoted = "Pureheart Helm (Devoted)",
         Kruber_Pureheart_helm_faithful = "Pureheart Helm (Faithful)",
         Kruber_Pureheart_helm_merciful = "Pureheart Helm (Merciful)",
+        Kruber_Pureheart_helm_loyal = "Pureheart Helm (Loyal)",
     },
     questing_knight_hat_0000 = {
         Kruber_Worthy_helm_black = "Helm of the Worthy (Outcast)",
