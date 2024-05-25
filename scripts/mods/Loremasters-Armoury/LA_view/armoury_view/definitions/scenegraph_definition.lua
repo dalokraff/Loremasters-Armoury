@@ -486,7 +486,7 @@ local generate_scenegraph_definition = function(
             horizontal_alignment = "left",
             size = la_ui_headersmall_size,
             position = {
-                0,
+                40,
                 15,
                 30
             }
@@ -519,8 +519,8 @@ local generate_scenegraph_definition = function(
             horizontal_alignment = "left",
             size = la_ui_headersmall_size,
             position = {
-                0,
-                5,
+                40,
+                17.5,
                 30
             }
         },
@@ -755,8 +755,8 @@ local generate_scenegraph_definition = function(
                 300
             },
             position = {
-                0,
-                0,
+                -40,
+                10,
                 30
             }
         },
@@ -807,7 +807,7 @@ local generate_scenegraph_definition = function(
                 300
             },
             position = {
-                0,
+                -40,
                 -299,
                 30
             }

@@ -881,7 +881,7 @@ ArmouryView.update_original_skin_list_skin_entries = function (self, widget_name
 			j = j + 1
 		end
 		new_widget_def.offset = {
-            i*60,
+            5*60 +20 - i*60,
             j*-60 + divider_offset- 45,
             32
         }
@@ -1101,7 +1101,7 @@ ArmouryView.update_LA_skin_hand = function (self, passed_widget_name, passed_han
 				j = j + 1
 			end
 			new_widget_def.offset = {
-				i*-60,
+				-5*60 - 20 + i*60,
 				j*-60 + down_shift - 40,
 				-1
 			}
@@ -1283,7 +1283,7 @@ ArmouryView.update_original_skin_list = function (self)
 			new_widget_def.content.texture_hover = "la_ui_icon_active"
 
 			new_widget_def.offset = {
-				i*60,
+				5*60 + 20 - i*60,
 				j*-60 - 35,
 				32
 			}
