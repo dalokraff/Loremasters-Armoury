@@ -16,6 +16,12 @@ banks = {
 		events = [
 		]
 	}
+	laughing = {
+		events = [
+			"satania_laughing"
+			"satania_laughing_01"
+		]
+	}
 	Loremasters_Armoury = {
 		events = [
 			"LA_lightning_strike_01_sound"
@@ -30,6 +36,7 @@ banks = {
 			"Loremaster_letter_open_sound"
 			"Loremaster_letter_open_sound__1_"
 			"Loremaster_magicboon_sound"
+			"Loremaster_magicboon_sound_plus"
 			"Loremaster_scroll_place_sound"
 			"Loremaster_shipment_pickup_sound"
 		]
@@ -85,6 +92,11 @@ banks = {
 			"psf_saltz_03_2"
 			"psf_saltz_03_3"
 			"psf_saltz_04_1"
+		]
+	}
+	tanzen = {
+		events = [
+			"tanzen"
 		]
 	}
 }
@@ -188,6 +200,13 @@ events = {
 		positioning = "2D"
 	}
 	Loremaster_magicboon_sound = {
+		attenuation_max = 100
+		duration_max = 13.38862
+		duration_min = 13.38862
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	Loremaster_magicboon_sound_plus = {
 		attenuation_max = 100
 		duration_max = 13.38862
 		duration_min = 13.38862
@@ -520,6 +539,27 @@ events = {
 		attenuation_max = 500
 		duration_max = 56.02066
 		duration_min = 0.679184
+		duration_type = "OneShot"
+		positioning = "3D"
+	}
+	satania_laughing = {
+		attenuation_max = 0
+		duration_max = 0
+		duration_min = 0
+		duration_type = "Infinite"
+		positioning = "2D"
+	}
+	satania_laughing_01 = {
+		attenuation_max = 0
+		duration_max = 0.606021
+		duration_min = 0.606021
+		duration_type = "OneShot"
+		positioning = "2D"
+	}
+	tanzen = {
+		attenuation_max = 100
+		duration_max = 175.2134
+		duration_min = 175.2134
 		duration_type = "OneShot"
 		positioning = "3D"
 	}
