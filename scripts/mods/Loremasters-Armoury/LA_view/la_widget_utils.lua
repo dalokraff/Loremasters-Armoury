@@ -1418,12 +1418,12 @@ LAWidgetUtils.create_trait_option = function(scenegraph_id, title_text, descript
 				word_wrap = true,
 				upper_case = false,
 				localize = false,
-				font_size = 20,
+				font_size = 18,
 				horizontal_alignment = "left",
 				vertical_alignment = "top",
 				dynamic_font_size = false,
 				size = {
-					400,
+					300,
 					50
 				},
 				font_type = (masked and "hell_shark_masked") or "hell_shark",
@@ -1438,12 +1438,12 @@ LAWidgetUtils.create_trait_option = function(scenegraph_id, title_text, descript
 				word_wrap = true,
 				upper_case = false,
 				localize = false,
-				font_size = 20,
+				font_size = 18,
 				horizontal_alignment = "left",
 				vertical_alignment = "top",
 				dynamic_font_size = false,
 				size = {
-					400,
+					300,
 					50
 				},
 				font_type = (masked and "hell_shark_masked") or "hell_shark",

@@ -35,10 +35,8 @@ LaRewardPopup.init = function (self, ingame_ui_context, reward_name, rarity, dis
     }
     presentation_data[#presentation_data + 1] = entry
 
-    print(quest_callback)
     if quest_callback then
         local value = quest_callback(...)
-        print(reward_name, value)
     end
 
     self.popup:display_presentation(presentation_data)

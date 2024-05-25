@@ -77,7 +77,6 @@ end
 
 QuestBoardLetterView.set_letter_read = function (self)
 	local quest = self._empty_decoration_name
-	print('read ', quest)
 	mod:set(quest.."_letter_read", true)
 end
 
@@ -220,7 +219,7 @@ QuestBoardLetterView._setup_modifier_list = function (self)
 		local trait_advanced_description = modifier_data.desc or ""
 		local trait_icon = modifier_data.icon
 		local title_text = Localize(trait_name)
-		local description_text = modifier_data.desc or ""
+		local description_text = Localize(modifier_data.desc or "")
 		local widget, additional_height = self:_create_trait_option_entry(title_text, description_text, trait_icon)
 		widgets[#widgets + 1] = widget
 		widget.offset[2] = -y_offset

@@ -36,7 +36,7 @@ HalescourgeBuff.update = function (self, dt)
 end
 
 HalescourgeBuff.stage_one = function(self)
-    WwiseWorld.trigger_event(self.wwise_world, "Loremaster_magicboon_sound")
+    WwiseWorld.trigger_event(self.wwise_world, "Loremaster_magicboon_sound_plus")
     self.stage = "stage_two"
     self.wait_time = self.current_time + 6
 end

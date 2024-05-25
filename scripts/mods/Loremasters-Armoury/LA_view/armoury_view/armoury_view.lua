@@ -1265,9 +1265,7 @@ ArmouryView.update_original_skin_list = function (self)
 		--this if statement acts as a filter to remove skins that dont' have LA skins made for them
 		--uncomment the latter part to remove filter
         local amoury_change_data = mod.SKIN_CHANGED[item_name] -- or {}
-		print('update_original_skin_list', item_name, amoury_change_data)
 		-- if amoury_change_data then
-			print(index, page_offset, items_per_page)
 			if index-page_offset > items_per_page  or (index < page_offset) then
 				goto pageOver
 			end

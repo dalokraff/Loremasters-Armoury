@@ -246,22 +246,3 @@ for weapon_name, weapon_data in pairs(armoury) do
 end
 
 return armoury
-
--- local moode = get_mod("Loremasters-Armoury")
--- moode.Terra = {
---     firma = {1,2,3,4,5}
--- }
-
--- local moode = get_mod("Loremasters-Armoury")
--- mod.terracopy = table.clone(moode.Terra)
--- moode.Terra.firma[2] = 8
--- require 'pl.pretty'.dump(moode.Terra)
--- require 'pl.pretty'.dump(mod.terracopy)
-
--- local moode = get_mod("Loremasters-Armoury")
--- moode.Terra = mod.terracopy
--- require 'pl.pretty'.dump(moode.Terra)
-
-
--- local mutator = mod:persistent_table("DenseOnslaught")
--- require 'pl.pretty'.dump(mutator.OriginalTerrorEventBlueprints)

@@ -398,6 +398,18 @@ local mod_text_ids = {
 	halescourge_buff_chat_message = {
 		en = "The Loremaster channels supportive magic your way: +25% CDR, +4 Stamina",
 	},
+	halescourge_boss_debuff = {
+		en = "Urannon's Thunderbolt",
+	},
+	halescourge_boss_debuff_desc = {
+		en = "The chosen of Nurgle is periodically struck by an almighty ball of lightning.",
+	},
+	sub_quest_08_cdr_buff = {
+		en = "Hand of Glory",
+	},
+	sub_quest_08_cdr_buff_desc = {
+		en = "Your party is enchanted with increased Stamina, Career Skill Cooldown Reduction and generates less Overheat.",
+	},
 	la_pickup_message = {
 		en = "Pickup",
 	},

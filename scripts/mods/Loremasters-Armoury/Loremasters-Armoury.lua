@@ -500,7 +500,6 @@ for weapon,skins_by_rarity_list in pairs(WeaponSkins.skin_combinations) do
                         if slot_type then
                             if mod.items_by_hero[char] then
                                 if mod.items_by_hero[char][slot_type] then
-                                    print(char, slot_type, base_skin, default_skin_key)
                                     if not mod.items_by_hero[char][slot_type][default_skin_key] then
                                         local num_items = #mod.items_by_hero[char][slot_type] + 1
                                         mod.items_by_hero[char][slot_type][num_items] = default_skin_key

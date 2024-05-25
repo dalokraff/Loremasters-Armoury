@@ -6,12 +6,12 @@ mod.sub_quest_modifiers = {
 			sub_quest_08_cdr_buff = {
 				name = "sub_quest_08_cdr_buff",
 				icon = "la_ui_quest_modificator01_icon",
-				desc = "desc",
+				desc = "sub_quest_08_cdr_buff_desc",
 			},
 			halescourge_boss_debuff = {
 				name = "halescourge_boss_debuff",
 				icon = "la_ui_quest_modificator02_icon",
-				desc = "desc",
+				desc = "halescourge_boss_debuff_desc",
 			},
 		}
 	}
