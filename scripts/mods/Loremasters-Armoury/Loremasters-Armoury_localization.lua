@@ -421,7 +421,13 @@ local mod_text_ids = {
 	},
 	la_ui_illusions = {
 		en = "Illusions",
-	}
+	},
+	mission_reward = {
+		en = "Mission Reward",
+	},
+	mission_summary = {
+		en = "Mission Summary",
+	},
 
 }
 
