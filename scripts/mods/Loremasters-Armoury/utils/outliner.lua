@@ -36,11 +36,17 @@ mod.LA_outline_units = {
 
 }
 
-for k,v in pairs(mod.LA_outline_units) do 
+for k,v in pairs(mod.LA_outline_units) do
     mod.LA_outline_units[v] = v
 end
 
 mod.current_outlined_unit = nil
+
+
+local flag = "outline_unit"
+local channel = QuaternionBox(255, 255, 255, 255)
+local apply_method = "unit_and_childs"
+local outline_settings = {}
 
 function mod.outliner()
 
@@ -52,7 +58,7 @@ function mod.outliner()
 
         local player = Managers.player:local_player()
         local player_unit = player.player_unit
-        
+
         if player_unit then
 
             local first_person_extension = ScriptUnit.extension(player_unit, "first_person_system")
@@ -65,7 +71,7 @@ function mod.outliner()
 
             local closest_unit_hit = nil
             local closest_hit = 9999
-            
+
             if hits then
                 for _, hit in ipairs(hits) do
                     local hit_distance = hit[2]
@@ -78,9 +84,7 @@ function mod.outliner()
                 end
             end
 
-            local flag = "outline_unit"
-            local channel = Color(255, 255, 255, 255)
-            local apply_method = "unit_and_childs"
+
 
             if closest_unit_hit then
                 if closest_unit_hit ~= mod.current_outlined_unit and Unit.alive(closest_unit_hit) then
@@ -89,14 +93,14 @@ function mod.outliner()
                         if mod.LA_outline_units[unit_name] then
                             local do_outline = true
                             if Unit.alive(closest_unit_hit) then
-                                outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
+                                outline_system:outline_unit(closest_unit_hit, flag, channel:unbox(), do_outline, apply_method, outline_settings)
                                 mod.current_outlined_unit = closest_unit_hit
                             end
                         else
                             if mod.current_outlined_unit then
                                 local do_outline = false
                                 if Unit.alive(closest_unit_hit) then
-                                    outline_system:outline_unit(mod.current_outlined_unit, flag, channel, do_outline, apply_method)
+                                    outline_system:outline_unit(mod.current_outlined_unit, flag, channel:unbox(), do_outline, apply_method, outline_settings)
                                 end
                                 mod.current_outlined_unit = nil
                             end
@@ -104,14 +108,14 @@ function mod.outliner()
                     elseif mod.current_outlined_unit then
                         local do_outline = false
                         if Unit.alive(closest_unit_hit) then
-                            outline_system:outline_unit(mod.current_outlined_unit, flag, channel, do_outline, apply_method)
+                            outline_system:outline_unit(mod.current_outlined_unit, flag, channel:unbox(), do_outline, apply_method, outline_settings)
                         end
                         mod.current_outlined_unit = nil
                     end
                 else
                     local do_outline = true
                     if Unit.alive(closest_unit_hit) then
-                        outline_system:outline_unit(closest_unit_hit, flag, channel, do_outline, apply_method)
+                        outline_system:outline_unit(closest_unit_hit, flag, channel:unbox(), do_outline, apply_method, outline_settings)
                         mod.current_outlined_unit = closest_unit_hit
                     end
                 end
