@@ -28,13 +28,6 @@ local scenegraph_definition = {
 	  size = { 1920, 1080 },
 	  position = { 0, 0, 0 }
 	},
-	my_button = {
-	  parent = "root",
-	  vertical_alignment = "center",
-	  horizontal_alignment = "center",
-	  size = { 150, 50 },
-	  position = { 0, 0, 0 }
-	},
 	list_window = {
 		vertical_alignment = "top",
 		parent = "root",
@@ -1206,45 +1199,6 @@ local widgets_definitions = {
 	confirm_button = UIWidgets.create_default_button("confirm_button", scenegraph_definition.confirm_button.size, "button_frame_01_gold", nil, Localize("menu_settings_apply"), 32, nil, "button_detail_01_gold", nil, disable_with_gamepad),
 	close_button = UIWidgets.create_default_button("close_button", scenegraph_definition.close_button.size, "button_frame_01_gold", nil, Localize("interaction_action_close"), 32, nil, "button_detail_01_gold", nil, disable_with_gamepad),
 
-	my_button = {
-		element = {
-		  passes = {
-			{
-			  pass_type = "hotspot",
-			  content_id = "button_hotspot"
-			},
-			{
-			  pass_type = "rect",
-			  style_id = "rect"
-			},
-			{
-			  pass_type = "text",
-			  text_id = "text",
-			  style_id = "text"
-			}
-		  }
-		},
-		content = {
-		  button_hotspot = {},
-		  text = "Click to Close"
-		},
-		style = {
-		  rect = {
-			color = { 255, 0, 0, 0 },
-			offset = { 0, 0, 0 }
-		  },
-		  text = {
-			text_color = { 255, 255, 255, 255 },
-			font_type = "hell_shark",
-			font_size = 18,
-			vertical_alignment = "center",
-			horizontal_alignment = "center",
-			offset = { 0, 0, 1 }
-		  }
-		},
-		scenegraph_id = "my_button",
-		offset = { 0, 0, 0 }
-	}
 }
 
 
