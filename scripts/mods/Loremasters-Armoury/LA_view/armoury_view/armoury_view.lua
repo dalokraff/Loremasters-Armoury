@@ -212,10 +212,15 @@ ArmouryView._handle_input = function (self, dt, t)
     local widgets = self._widgets
 	local widgets_by_name = self._widgets_by_name
 
-    if self:_is_button_pressed(widgets_by_name["my_button"]) then
+	local close_button = widgets_by_name["my_button"]
+    if self:_is_button_pressed(close_button) then
 		self:play_sound("Play_hud_select")
 		mod:handle_transition("close_quest_board_letter_view")
 		return
+	elseif close_button.content.button_hotspot then
+		if close_button.content.button_hotspot.is_hover then
+			self:_update_button_hover_sound(close_button)
+		end
     end
 
     for _,name in pairs(self.buttons) do
