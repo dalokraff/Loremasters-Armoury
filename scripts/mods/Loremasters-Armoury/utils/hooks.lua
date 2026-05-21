@@ -1170,31 +1170,6 @@ mod:hook(InteractionDefinitions.pictureframe.client, "stop", function (func, wor
     return func(world, interactor_unit, interactable_unit, ...)
 end)
 
-mod:hook_safe(LevelEndView, "start", function(self)
-    for level,quest in pairs(level_quest_table) do
-        if mod:get(quest.."_temp") then
-            if self.game_won then
-                mod:set(quest, true)
-                if mod.list_of_LA_levels[level] then
-                    mod.list_of_LA_levels[level].compelted = true
-                end
-                if mod.list_of_LA_levels_books[level] then
-                    mod.list_of_LA_levels_books[level].compelted = true
-                end
-            end
-        end
-    end
-end)
-
-mod:hook_safe(LevelTransitionHandler,"load_current_level", function (self)
-    for level,quest in pairs(level_quest_table) do
-        mod:set(quest.."_temp", false)
-    end
-end)
-
-
-
-
 
 mod.approve_request = false
 mod.interactor_goid = nil
@@ -1691,14 +1666,4 @@ mod:hook(GameSession, "create_game_object", function( func, self, ...)
         return math.random(400, 500)
     end
     return func(self, ...)
-end)
-
-
-
-mod:hook(LocalizationManager, "_base_lookup", function (func, self, text_id)
-    if not string.find(mod:localize(text_id), "<") then
-        return mod:localize(text_id)
-    end
-
-	return func(self, text_id)
 end)
